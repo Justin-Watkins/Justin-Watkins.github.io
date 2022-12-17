@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 6 Forcasting Sales and Setting Prices | Fundamentals of Sports Business Analytics and Strategy</title>
+<meta name="author" content="Justin Watkins">
+<meta name="description" content="Like segmentation, it would be easy to write an entire book on how to forecast and price tickets. There are innumerable considerations such as determining a willingness to pay, taking arbitrage...">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta property="og:title" content="Chapter 6 Forcasting Sales and Setting Prices | Fundamentals of Sports Business Analytics and Strategy">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/images/book_cover.png">
+<meta property="og:description" content="Like segmentation, it would be easy to write an entire book on how to forecast and price tickets. There are innumerable considerations such as determining a willingness to pay, taking arbitrage...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 6 Forcasting Sales and Setting Prices | Fundamentals of Sports Business Analytics and Strategy">
+<meta name="twitter:description" content="Like segmentation, it would be easy to write an entire book on how to forecast and price tickets. There are innumerable considerations such as determining a willingness to pay, taking arbitrage...">
+<meta name="twitter:image" content="/images/book_cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Prompt-0.4.4/font.css" rel="stylesheet">
+<link href="libs/JetBrains_Mono-0.4.4/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.4.1/transition.js"></script><script src="libs/bs3compat-0.4.1/tabs.js"></script><script src="libs/bs3compat-0.4.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentals of Sports Business Analytics and Strategy</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Abstract and forward</a></li>
+<li><a class="" href="chapter1.html"><span class="header-section-number">1</span> Analytics and sports business strategy</a></li>
+<li><a class="" href="chapter2.html"><span class="header-section-number">2</span> Constructing our data sets</a></li>
+<li><a class="" href="chapter3.html"><span class="header-section-number">3</span> Exploring your data</a></li>
+<li><a class="" href="chapter4.html"><span class="header-section-number">4</span> Structuring analytics projects</a></li>
+<li><a class="" href="chapter5.html"><span class="header-section-number">5</span> Segmentation</a></li>
+<li><a class="active" href="chapter6.html"><span class="header-section-number">6</span> Forcasting Sales and Setting Prices</a></li>
+<li><a class="" href="chapter7.html"><span class="header-section-number">7</span> Lead Scoring</a></li>
+<li><a class="" href="chapter8.html"><span class="header-section-number">8</span> Marketing promotions</a></li>
+<li><a class="" href="chapter9.html"><span class="header-section-number">9</span> Consumer Research</a></li>
+<li><a class="" href="chapter10.html"><span class="header-section-number">10</span> Operations and Analytics</a></li>
+<li><a class="" href="Chapter11.html"><span class="header-section-number">11</span> Epilogue</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/Justin-Watkins/FOSBAAS_web.git">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="chapter6" class="section level1" number="6">
+<h1>
+<span class="header-section-number">6</span> Forcasting Sales and Setting Prices<a class="anchor" aria-label="anchor" href="#chapter6"><i class="fas fa-link"></i></a>
+</h1>
+<p>Like <em>segmentation</em>, it would be easy to write an entire book on how to forecast and price tickets. There are innumerable considerations such as determining a <em>willingness to pay</em>, taking <em>arbitrage</em> into account, <em>cannibalizing your sales</em>, <em>margins</em>, <em>marketing channel</em>, <em>product suite</em>, <em>brand considerations</em>, and <em>competing internal goals</em>. This chapter also immediately follows some examples on how you might potentially segment a market. This is purposeful. Pricing is a dynamic exercise and in certain circumstances products may be worth more or less money. However, pricing isn’t always a deliberate exercise. I love a quote that is found in Robert Phillips’ book “Revenue and Pricing Optimization” <span class="citation">(<a href="references.html#ref-Phillips2005" role="doc-biblioref">Phillips 2005</a>)</span></p>
+<blockquote>
+<p>“In many cases, the prices charged to customers are the result of a large number of uncoordinate and arbitrary decisions.”</p>
+<p>— Robert L. Phillips</p>
+</blockquote>
+<p>This is absolutely true. While pricing is a fundamental component of your marketing mix, it isn’t always well understood how it interacts with promotions and other marketing efforts (we’ll explore this a little in chapter <a href="chapter9.html#chapter9">9</a>). Additionally, we always have brand considerations to consider. Marketers often regress to the blunt instrument of lower prices in an effort to move more tickets. This can be counterproductive in the long term. When a team isn’t good, lower prices will have less impact than when a team is performing well. However, there is less impetus to lower prices when a team is performing well. There has been tremendous research in this area <span class="citation">(<a href="references.html#ref-Keller2003" role="doc-biblioref">Keller 2003</a>)</span>.</p>
+<blockquote>
+<p>Wharton’s Peter Fader pooints out a number of limitations of valuation approaches: They require much judgmental data and thus contain much subjectivity; Intangible assets are not always synoymous with brand equity.”</p>
+</blockquote>
+<p>Your brand is impacted by price. Since season ticket holders are a critical part of risk mitigation, anything that erodes their value should be viewed with scrutiny. This chapter will take you through a simplified example of how you can set prices and discuss the rationale behind our thinking. We will walk through some real examples to demonstrate a way this could be done in practice. However, keep in mind we are only going knee deep in the ocean. Pricing can be a challenging exercise.</p>
+<div id="understanding-your-inventory" class="section level2" number="6.1">
+<h2>
+<span class="header-section-number">6.1</span> Understanding your inventory<a class="anchor" aria-label="anchor" href="#understanding-your-inventory"><i class="fas fa-link"></i></a>
+</h2>
+<p>How do you value tickets? Let’s think about how your inventory might look. There are multiple ticket classes and individuals may cross multiple classes. Additionally, there are certain conditions that make your sales inventory fluid. For instance, if your goal is to maximize revenue selling as many season tickets as possible may actually reduce revenue potential because they are sold at a discount. There is a tipping point. Other pieces of inventory may be inefficient to use during certain games. For instance, you may not want to use group discounts on an opening day. Major ticketing inventory includes:</p>
+<ul>
+<li>Season tickets</li>
+<li>Group tickets</li>
+<li>Small plans</li>
+<li>Single game tickets</li>
+<li>subscription tickets</li>
+</ul>
+<p>Additionally, there are several channels where tickets might be obtained. Understanding channels is critical for pricing. Think of airlines. They exert significant control over their channels and it enables extremely fine-grain control pricing tactics. Typical ticketing channels include:</p>
+<ul>
+<li>Primary channels
+<ul>
+<li>Directly through a team or league</li>
+<li>Through some consignment mechanism</li>
+<li>Through a ticketing system such as Ticketmaster</li>
+</ul>
+</li>
+<li>Secondary channels
+<ul>
+<li>SeatGeek</li>
+<li>Stubhub</li>
+</ul>
+</li>
+</ul>
+<p>Secondary channels are even more nuanced because a large number of tickets may be owned by professional ticket brokers. These tickets may or may not exist in a liquid market that allows prices to float to any levels. Ticket brokers represent a special problem. Let’s discus exactly what ticket brokers are and do.</p>
+<p>Ticket brokers buy and sell tickets to events. In a sports environment, there are two primary strategies. However, you can hedge your bets by purchasing multiple events and teams in the same sport or different sports. Other arbitrage opportunities might also exist such as parking passes. The two main strategies are:</p>
+<ol style="list-style-type: decimal">
+<li>Scale through the purchase of cheap inventory</li>
+<li>Purchase good inventory and maintain strong margins</li>
+</ol>
+<p>Option can be a little risky. However, this varies by market. You purchase lots of inexpensive inventory and make money on marquee events where margins are high because demand significantly outstrips supply (Think about big games on the weekend against prime opponents or playoff games). Option two is a little more difficult. It likely takes time and makes you more visible to the team. Many clubs now employ revenue sharing opportunities with brokers and are simply using them as a way to sell single game tickets on the secondary market. Clubs may also leverage these secondary channels to flatten the markets.</p>
+<p>Selling to brokers mitigates risk because you get money that can be used for operations early. The amount of money that we are dealing with could be large <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;This will not be public information&lt;/p&gt;"><sup>38</sup></a>. However, there is a tradeoff. You no longer control your sales channels. Imagine if you could purchase airline tickets through secondary channels. Would airlines be able to dynamically price as effectively? Additionally, customer service could be an issue. It no longer resides with the club. What happens if you ticket doesn’t work? How do you fix it? This becomes a brand problem. Recently, the quick proliferation of digital tickets has made this problem less relevant, but it does persist. There is also a technology component. What does the ticketing platform allow or disallow. While many of these technology problems will likely be solved in the future, they haven’t currently been eliminated.</p>
+<p>Adding to the complexity of sales channels and inventory classes is price levels associated with specific locations:</p>
+<ul>
+<li>Premium areas might have amenities such as free F&amp;B, better seats, club access, in-seat service etc.</li>
+<li>Some seats may be in shaded areas</li>
+<li>Distance from the field or court may matter from an experiential and perceptual perspective</li>
+<li>The home field side of the park may be more attractive to some buyers</li>
+<li>The setting sun may make some seats less appealing</li>
+<li>Some people may want to sit in an area that is near certain food offerings, or near an ingress point close to their preferred parking location.</li>
+<li>Scoreboard sightlines may be an issue</li>
+</ul>
+<p>All of these factors may not be considered, but some of them certainly should be. Product stratification is key to maximizing revenue opportunity across the spectrum of customer expectations.</p>
+<p>How do you determine <em>willingness-to-pay</em>? You have should have some historical data based on what people have paid for tickets for past events. You should also have sales levels associated with these prices for each ticket-class and specific location. Other data might be much harder to capture.A stadium or arena might have dozens or even hundreds of different price levels. This is where <em>cannibalization</em> must be considered. You may not know what a price increase or decrease in one section might do to demand in another. The cross-price elasticity of demand between seating locations isn’t a trivial question to answer. You can also deploy some interesting techniques to help mitigate cannibalization such as liner optimization<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Linear_programming" class="uri"&gt;https://en.wikipedia.org/wiki/Linear_programming&lt;/a&gt;&lt;/p&gt;'><sup>39</sup></a>.</p>
+<p>Another confounding factor is inventory levels. How do you know how much inventory is available? You might know that you sold seven seats in the dugout section were sold against the Brewers on a Saturday night in July. However, you might not know that inventory was on hold and not available for sale. Additionally, you might not have visibility into how many of those tickets were for sale on the secondary market. We aren’t even considering marketing efforts to promote the game.</p>
+<p>Inventory control is a critical part of a pricing exercise. It shouldn’t be overlooked. Incentives to sell specific asset classes by the sales team can lead to sub-optimal inventory control protocols. For instance, the sales team may be inclined to hold inventory for specific games to help hit group goals. When conducting a pricing exercise, make sure you understand how invenotry may be alloted.</p>
+</div>
+<div id="understanding-pricing-mechanisms" class="section level2" number="6.2">
+<h2>
+<span class="header-section-number">6.2</span> Understanding pricing mechanisms<a class="anchor" aria-label="anchor" href="#understanding-pricing-mechanisms"><i class="fas fa-link"></i></a>
+</h2>
+<p>When pricing ticket you may be faced with an unresolvable goal.</p>
+<blockquote>
+<p>We want to sell all of our available tickets at the highest price possible to optimize revenue</p>
+</blockquote>
+<p>Is selling 10 tickets at $100 for $1,000 in revenue equivalent to selling 100 tickets at $10 for $1,000 in revenue? The answer may be different depending on who you ask. We are going to look at price-response functions to get a quantitative perspective. Price response functions are fun to work with and from an analytics perspective, you should get a lot of enjoyment out of deploying this type of analysis. Price response functions are incredibly useful as is pointed out in “Pricing Segmentation and Analytics.” <span class="citation">(<a href="references.html#ref-Ferguson2012" role="doc-biblioref">Tudor Bodea 2012</a>)</span></p>
+<blockquote>
+<p>The most useful feature of price-response functions is that, once estimated, they can be used to determine the price sensitivity of a product or how demand will change in resposne to a change in price. - Furguson and Bodea</p>
+</blockquote>
+<p>What does a price-response function look like in practice.? Let’s say that you sell some tickets and build a chart of the results:</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="center">Sales</th>
+<th align="center">Price</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">20</td>
+<td align="center">25</td>
+</tr>
+<tr class="even">
+<td align="center">30</td>
+<td align="center">28</td>
+</tr>
+<tr class="odd">
+<td align="center">35</td>
+<td align="center">29</td>
+</tr>
+<tr class="even">
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+</tbody>
+</table></div>
+<p>This table tells you how many tickets were sold at each price level. figure <a href="chapter6.html#fig:prfa">6.1</a> represents this data:</p>
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># The Price response function</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="co"># Build a simple data set</span></span>
+<span><span class="va">sales</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>,<span class="fl">30</span>,<span class="fl">35</span>,<span class="fl">43</span>,<span class="fl">35</span>,<span class="fl">8</span>,<span class="fl">2</span>,<span class="fl">0</span><span class="op">)</span>,</span>
+<span>  price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">25</span>,<span class="fl">28</span>,<span class="fl">29</span>,<span class="fl">30</span>,<span class="fl">31</span>,<span class="fl">34</span>,<span class="fl">35</span>,<span class="fl">36</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">x_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'\n Price'</span><span class="op">)</span></span>
+<span><span class="va">y_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket Sales \n'</span><span class="op">)</span></span>
+<span><span class="va">title</span>    <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket Sales by Price'</span><span class="op">)</span></span>
+<span><span class="va">line_sales</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data  <span class="op">=</span> <span class="va">sales</span>, </span>
+<span>                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">price</span>,</span>
+<span>                      y <span class="op">=</span> <span class="va">sales</span><span class="op">)</span><span class="op">)</span>                 <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2.5</span>,color <span class="op">=</span> <span class="st">'mediumseagreen'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/dollar_format.html">dollar</a></span><span class="op">)</span>      <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                   <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                   <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                  <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span>                                <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"mediumseagreen"</span><span class="op">)</span>             <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">'lm'</span><span class="op">)</span> </span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:prfa"></span>
+<img src="images/ch6_line_sales.png" alt="Linear price response function" width="100%"><p class="caption">
+Figure 6.1: Linear price response function
+</p>
+</div>
+<p>We can clearly see that a linear model probably won’t do a great job of forecasting sales at different price levels. We might also deduce that we will encounter diminishing returns at some point as we continue to raise prices. This graph is also missing some critical information. For now, let’s assume that these prices represent one section of a stadium and only refer to single game tickets. We’ll ignore the fact that we don’t know when these tickets were sold, what channel they were sold through, or available inventory. Let’s also briefly talk about fitting distributions and price response functions. There are a lot of different ways you could do this and we are going to look at a relatively simple example. the following examples are taken from “Pricing Segmentation and Analytics.” <span class="citation">(<a href="references.html#ref-Ferguson2012" role="doc-biblioref">Tudor Bodea 2012</a>)</span></p>
+<p>Typical examples of price response functions include:</p>
+<p>Linear models:</p>
+<p><span class="math display">\[\begin{equation}
+\ {d(p)} = {D} + {m}*{b}
+\end{equation}\]</span></p>
+<p>Exponential models:</p>
+<p><span class="math display">\[\begin{equation}
+\ d(p) = C*p^\epsilon
+\end{equation}\]</span></p>
+<p>Logit models:</p>
+<p><span class="math display">\[\begin{equation}
+\ {d(p)} = \frac{C*e^{a+b*p}}{1 + e^{a+b*p}}
+\end{equation}\]</span></p>
+<p>Let’s try to build a simple model that approximates our data a little better than a straight line. We can see that a linear model won’t fit this data as well as a curved one. It also doesn’t look constant or like a logit curve (two models that you are likely to encounter). Let’s try a simple polynomial.</p>
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># The Price response function</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">x_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'\n Price'</span><span class="op">)</span></span>
+<span><span class="va">y_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket Sales \n'</span><span class="op">)</span></span>
+<span><span class="va">title</span>    <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket Sales by Price'</span><span class="op">)</span></span>
+<span><span class="va">line_sales_poly</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">sales</span>, </span>
+<span>                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">price</span>,</span>
+<span>                      y <span class="op">=</span> <span class="va">sales</span><span class="op">)</span><span class="op">)</span>                 <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2.5</span>,color <span class="op">=</span> <span class="st">'mediumseagreen'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/dollar_format.html">dollar</a></span><span class="op">)</span>      <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                   <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                   <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                  <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span>                                <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"mediumseagreen"</span><span class="op">)</span>             <span class="op">+</span>          </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">stat_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>,color <span class="op">=</span> <span class="st">'coral'</span>, </span>
+<span>              formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span> </span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:prfb"></span>
+<img src="images/ch6_line_sales_poly.png" alt="Polynomial price response function" width="100%"><p class="caption">
+Figure 6.2: Polynomial price response function
+</p>
+</div>
+<p>This curve approximates our line relatively well. We could go through the exercise of finding the line that produces the best fit, but it isn’t necessary at this stage. Now that we are happy that a simple polynomial does a reasonable job of approximating our curve, what do we do? R provides several ways to evaluate fits. In the following example we feed a polynomial function to the <em>lm</em> (linear model) function in R. We can then write a function ( <strong>f_get_Sales</strong> ) that we can use to return values from the line in figure <a href="chapter6.html#fig:prfb">6.2</a>. We’ll use the coefficients to complete our function.</p>
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Function to return sales based on price</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">sales</span><span class="op">$</span><span class="va">sales</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">sales</span><span class="op">$</span><span class="va">price</span>,<span class="fl">2</span>,raw<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span> <span class="va">f_get_sales</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">new_price</span><span class="op">)</span><span class="op">{</span></span>
+<span> <span class="va">sales</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> </span>
+<span>         <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">*</span><span class="va">new_price</span> <span class="op">+</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">*</span> <span class="va">new_price</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span></span>
+<span> <span class="op">}</span></span>
+<span> </span></code></pre></div>
+<p>We now have an <em>overfit</em> price response function that we can use to forecast sales at different price levels. Since this concept may be unfamiliar to you we’ll take a minute to explain what is going on here. <strong>fit &lt;- lm(sales<span class="math inline">\(sales~poly(sales\)</span>price,2,raw=TRUE))</strong> is using the <strong>lm</strong> function (linear model) to fit a line to our data points. We aren’t necessarily looking for the best fit in this example. The function <strong>f_get_sales()</strong> simply takes the coefficients generated by the model stored in <strong>fit</strong> and builds an equation that we can use to plug price values into the eqation to give us sales values (y) in terms of price (x). This might look a little scary, but it is really just middle-school algebra at this stage.</p>
+<p>The equation in our function <strong>sales &lt;- coef(fit)[1] + (coef(fit)[2]<em>new_price + (coef(fit)[3] </em> new_price^2))</strong> is nothing more than a rearranged linear equation with a second degree exponent. A linear equation such as the equation that would fit the line in figure <a href="chapter6.html#fig:prfa">6.1</a> would take this familiar form:</p>
+<p><span class="math display">\[\begin{equation}
+\ {y} = {m}{x} + {b}
+\end{equation}\]</span></p>
+<p>All that we have done is rearranged this linear equation and added a second degree exponent. The math now looks like this:</p>
+<p><span class="math display">\[\begin{equation}
+\ {f(x)} = b + {m_1}{x} + {m_2}{x^2}
+\end{equation}\]</span></p>
+<p>I conceptualize linear regression as a simple linear equation where each additional feature manipulates the slope of the line. I think this is the simplest way to think about it.</p>
+<p><span class="math display">\[\begin{equation}
+\ ({m_1}{x} + {m_2}{x^2}) = {m}{x}
+\end{equation}\]</span></p>
+<p>Now we can take a look at our estimates by <em>applying</em> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;See ?apply in R&lt;/p&gt;"><sup>40</sup></a> our function to our original values. The apply functions are one of the areas where R diverges from other languages. If you are familiar with Map functions, they do basically the same thing. In our case, we are replacing a for or while loop with sapply.</p>
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Use f_get_sales to get modeled demand at each price level</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">old_prices</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">25</span>,<span class="fl">28</span>,<span class="fl">29</span>,<span class="fl">30</span>,<span class="fl">31</span>,<span class="fl">34</span>,<span class="fl">35</span>,<span class="fl">36</span><span class="op">)</span></span>
+<span><span class="va">estimated_sales</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">old_prices</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">f_get_sales</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:estsales1">Table 6.1: </span>Estimates applied to old sales</caption>
+<thead><tr class="header">
+<th align="center">original_sales</th>
+<th align="center">estimated_sales</th>
+<th align="center">difference</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">20</td>
+<td align="center">19.751628</td>
+<td align="center">0.2483715</td>
+</tr>
+<tr class="even">
+<td align="center">30</td>
+<td align="center">34.504337</td>
+<td align="center">-4.5043365</td>
+</tr>
+<tr class="odd">
+<td align="center">35</td>
+<td align="center">35.798031</td>
+<td align="center">-0.7980312</td>
+</tr>
+<tr class="even">
+<td align="center">43</td>
+<td align="center">35.279789</td>
+<td align="center">7.7202115</td>
+</tr>
+<tr class="odd">
+<td align="center">35</td>
+<td align="center">32.949608</td>
+<td align="center">2.0503916</td>
+</tr>
+<tr class="even">
+<td align="center">8</td>
+<td align="center">15.087444</td>
+<td align="center">-7.0874442</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">5.509515</td>
+<td align="center">-3.5095147</td>
+</tr>
+<tr class="even">
+<td align="center">0</td>
+<td align="center">-5.880352</td>
+<td align="center">5.8803520</td>
+</tr>
+</tbody>
+</table></div>
+<p>Additionally, we can feed other numbers directly to the function. How many sales would we expect at a $26 price level?</p>
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Use f_get_sales to get modeled demand at each price level</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">estimated_sales_new</span> <span class="op">&lt;-</span> <span class="fu">f_get_sales</span><span class="op">(</span><span class="fl">26</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:estsales2">Table 6.2: </span>Estimates applied to new sales</caption>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="center">x</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="center">26.48114</td>
+</tr></tbody>
+</table></div>
+<p>There are other tricks we can use on this equation. The highest point on the curve represents the maximum number of tickets sold at a particular price level. How do we find the price and the number of sales at this point? This is our raw equation:</p>
+<p><span class="math display">\[\begin{equation}
+\ {f(x)} = -737.366 + {52.934}{x} + {-0.906}{x^2}
+\end{equation}\]</span></p>
+<p>This is about as deep as we get into math in this book. We’ll see some tricky stuff in the chapter on operations, but this is as difficult as we get here. Calculate the derivative of this function. If it has been a while since you’ve taken calculus, simply use a math engine such as Wolframalpha <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.wolframalpha.com/examples/mathematics/calculus-and-analysis/" class="uri"&gt;https://www.wolframalpha.com/examples/mathematics/calculus-and-analysis/&lt;/a&gt;&lt;/p&gt;'><sup>41</sup></a>.</p>
+<p><span class="math display">\[\begin{equation}
+\ \frac{dy}{dx} ({-737.366} + {52.934}{x} - {0.906}{x^2}) = {52.934} - {1.812}{x}
+\end{equation}\]</span></p>
+<p>Setting the derivative = 0 and solving the equation will give you the price level at the highest point on the curve:</p>
+<p><span class="math display">\[\begin{equation}
+\ f'(0) = {52.934} - {1.812}{x};
+\end{equation}\]</span></p>
+<p>Now we simply solve the equation:</p>
+<p><span class="math display">\[\begin{equation}
+{26467}/{906} = {29.21}
+\end{equation}\]</span></p>
+<p>The highest number of sales happen at a price of $29.21. We can plug this number back into our original equation to get the y value.</p>
+<p><span class="math display">\[\begin{equation}
+\ f(29.21) = -737.366 + {52.934}{29.21} + {-0.906}{29.21^2} = 35.8151054
+\end{equation}\]</span></p>
+<p>At $29.21 our model predicts 35.8151054 tickets to be sold. Let’s take a look at it on figure <a href="chapter6.html#fig:prfsix">6.3</a> and try to do some interpretation. As a side note, if you want to be a jerk and refuse to use some basic calculus you could write a binary search function that traverses the function along your range of values and outputs minimums and maximums. Since we are typically dealing with whole numbers on a limited range, there is really nothing wrong with taking that approach.</p>
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Demonstrate the highest point on the curve</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">x_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'\n Price'</span><span class="op">)</span></span>
+<span><span class="va">y_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket Sales \n'</span><span class="op">)</span></span>
+<span><span class="va">title</span>   <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket Sales by Price'</span><span class="op">)</span></span>
+<span><span class="va">line_sales_polyb</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data  <span class="op">=</span> <span class="va">sales</span>, </span>
+<span>                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">price</span>,</span>
+<span>                      y <span class="op">=</span> <span class="va">sales</span><span class="op">)</span><span class="op">)</span>                     <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2.5</span>,color <span class="op">=</span> <span class="st">'mediumseagreen'</span><span class="op">)</span>     <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/dollar_format.html">dollar</a></span><span class="op">)</span>          <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                       <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                       <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                      <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span>                                    <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"mediumseagreen"</span><span class="op">)</span>                 <span class="op">+</span>                                         </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">stat_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, color <span class="op">=</span> <span class="st">'coral'</span>,</span>
+<span>              formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span>, se <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">35.8151054</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>        <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">29.21</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:prfsix"></span>
+<img src="images/ch6_line_sales_polyb.png" alt="Finding a local maximum" width="100%"><p class="caption">
+Figure 6.3: Finding a local maximum
+</p>
+</div>
+<p>This is great. We have identified the maximum number of tickets sold at any price level in our range. What does our revenue look like at specific prices according to this model?</p>
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Look for optimum price levels</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">estimated_prices</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">25</span>, to <span class="op">=</span> <span class="fl">35</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">estimated_sales</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">estimated_prices</span>,</span>
+<span>                          <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">f_get_sales</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">estimated_revenue</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  </span>
+<span>  sales      <span class="op">=</span> <span class="va">estimated_sales</span>,</span>
+<span>  price      <span class="op">=</span> <span class="va">estimated_prices</span>,</span>
+<span>  revenue    <span class="op">=</span> <span class="va">estimated_sales</span> <span class="op">*</span> <span class="va">estimated_prices</span>,</span>
+<span>  totalSales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:comps2">Table 6.3: </span>Forecasted revenue at different price levels</caption>
+<thead><tr class="header">
+<th align="center">sales</th>
+<th align="center">price</th>
+<th align="center">revenue</th>
+<th align="center">totalSales</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">19.751628</td>
+<td align="center">25</td>
+<td align="center">493.7907</td>
+<td align="center">288.421119</td>
+</tr>
+<tr class="even">
+<td align="center">26.481135</td>
+<td align="center">26</td>
+<td align="center">688.5095</td>
+<td align="center">268.669491</td>
+</tr>
+<tr class="odd">
+<td align="center">31.398705</td>
+<td align="center">27</td>
+<td align="center">847.7650</td>
+<td align="center">242.188355</td>
+</tr>
+<tr class="even">
+<td align="center">34.504337</td>
+<td align="center">28</td>
+<td align="center">966.1214</td>
+<td align="center">210.789651</td>
+</tr>
+<tr class="odd">
+<td align="center">35.798031</td>
+<td align="center">29</td>
+<td align="center">1038.1429</td>
+<td align="center">176.285314</td>
+</tr>
+<tr class="even">
+<td align="center">35.279789</td>
+<td align="center">30</td>
+<td align="center">1058.3937</td>
+<td align="center">140.487283</td>
+</tr>
+<tr class="odd">
+<td align="center">32.949608</td>
+<td align="center">31</td>
+<td align="center">1021.4379</td>
+<td align="center">105.207495</td>
+</tr>
+<tr class="even">
+<td align="center">28.807491</td>
+<td align="center">32</td>
+<td align="center">921.8397</td>
+<td align="center">72.257886</td>
+</tr>
+<tr class="odd">
+<td align="center">22.853436</td>
+<td align="center">33</td>
+<td align="center">754.1634</td>
+<td align="center">43.450395</td>
+</tr>
+<tr class="even">
+<td align="center">15.087444</td>
+<td align="center">34</td>
+<td align="center">512.9731</td>
+<td align="center">20.596959</td>
+</tr>
+<tr class="odd">
+<td align="center">5.509515</td>
+<td align="center">35</td>
+<td align="center">192.8330</td>
+<td align="center">5.509515</td>
+</tr>
+</tbody>
+</table></div>
+<p>Now imagine that we have to set prices for the product that we have just modeled. How do you do it. We know where the revenue maximizing number lives. Does it tell the entire story? Let’s assume that for every price level you sell all of the tickets that cost more. What does cumulative revenue look like in that case?</p>
+<p>Let’s use a loop this time instead of an apply function and a defined function.</p>
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Look for optimum price levels</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">revenue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="kw">while</span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">estimated_revenue</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  </span>
+<span> <span class="va">revenue</span><span class="op">[</span><span class="va">x</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">estimated_revenue</span><span class="op">[</span><span class="va">x</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">*</span> <span class="va">estimated_revenue</span><span class="op">[</span><span class="va">x</span>,<span class="fl">4</span><span class="op">]</span></span>
+<span> <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">estimated_revenue</span><span class="op">$</span><span class="va">totalRevenue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">revenue</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:comps4">Table 6.4: </span>Revenue maximizing prices</caption>
+<thead><tr class="header">
+<th align="center">sales</th>
+<th align="center">price</th>
+<th align="center">revenue</th>
+<th align="center">totalSales</th>
+<th align="center">totalRevenue</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">19.751628</td>
+<td align="center">25</td>
+<td align="center">493.7907</td>
+<td align="center">288.421119</td>
+<td align="center">7210.5280</td>
+</tr>
+<tr class="even">
+<td align="center">26.481135</td>
+<td align="center">26</td>
+<td align="center">688.5095</td>
+<td align="center">268.669491</td>
+<td align="center">6985.4068</td>
+</tr>
+<tr class="odd">
+<td align="center">31.398705</td>
+<td align="center">27</td>
+<td align="center">847.7650</td>
+<td align="center">242.188355</td>
+<td align="center">6539.0856</td>
+</tr>
+<tr class="even">
+<td align="center">34.504337</td>
+<td align="center">28</td>
+<td align="center">966.1214</td>
+<td align="center">210.789651</td>
+<td align="center">5902.1102</td>
+</tr>
+<tr class="odd">
+<td align="center">35.798031</td>
+<td align="center">29</td>
+<td align="center">1038.1429</td>
+<td align="center">176.285314</td>
+<td align="center">5112.2741</td>
+</tr>
+<tr class="even">
+<td align="center">35.279789</td>
+<td align="center">30</td>
+<td align="center">1058.3937</td>
+<td align="center">140.487283</td>
+<td align="center">4214.6185</td>
+</tr>
+<tr class="odd">
+<td align="center">32.949608</td>
+<td align="center">31</td>
+<td align="center">1021.4379</td>
+<td align="center">105.207495</td>
+<td align="center">3261.4323</td>
+</tr>
+<tr class="even">
+<td align="center">28.807491</td>
+<td align="center">32</td>
+<td align="center">921.8397</td>
+<td align="center">72.257886</td>
+<td align="center">2312.2524</td>
+</tr>
+<tr class="odd">
+<td align="center">22.853436</td>
+<td align="center">33</td>
+<td align="center">754.1634</td>
+<td align="center">43.450395</td>
+<td align="center">1433.8630</td>
+</tr>
+<tr class="even">
+<td align="center">15.087444</td>
+<td align="center">34</td>
+<td align="center">512.9731</td>
+<td align="center">20.596959</td>
+<td align="center">700.2966</td>
+</tr>
+<tr class="odd">
+<td align="center">5.509515</td>
+<td align="center">35</td>
+<td align="center">192.8330</td>
+<td align="center">5.509515</td>
+<td align="center">192.8330</td>
+</tr>
+</tbody>
+</table></div>
+<p>This is an interesting way to look at this problem. If you make the assumption that you will sell every ticket that costs more than the price that you set, it appears that setting your prices at $25 would make you the most revenue. However, if you sold every ticket at the forecasted amounts then you actually earn more revenue: 8495.9703213. This simplistic example demonstrates the power of variable and dynamic pricing. There are also other considerations. If you could only set prices once in this case it might appear that the $25 price level would be the best. You earn the most ticket revenue and sell the most tickets. However, that is simply due to price elasticity and some assumptions that we have made. What would you do if the season-ticket-holder price was $29? you now have brand considerations. When inventory is limited it makes these decisions slightly more discrete.</p>
+</div>
+<div id="basics-of-forecasting" class="section level2" number="6.3">
+<h2>
+<span class="header-section-number">6.3</span> Basics of forecasting<a class="anchor" aria-label="anchor" href="#basics-of-forecasting"><i class="fas fa-link"></i></a>
+</h2>
+<p>forecasting is fundamental to setting prices and there are lots of different ways to do it. This subject can also get very sophisticated. We’ll focus on a couple of basic approaches to forecasting that you would be confronted with if you were working for a club. Once again, while we will demonstrate how to approach these problems our focus is on how to think about them. Let’s create some sample data. You can also find this data in the FOSBAAS package. by using FOSBAAS::past_season_data. You can use the functions to build different conditions into the data set if you would like to simulated different situations.</p>
+<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Generate past seasons data</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">season_2022</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_build_season.html">f_build_season</a></span><span class="op">(</span>seed1 <span class="op">=</span> <span class="fl">3000</span>, season_year <span class="op">=</span> <span class="fl">2022</span>,</span>
+<span>  seed2 <span class="op">=</span> <span class="fl">714</span>, num_games <span class="op">=</span> <span class="fl">81</span>, seed3 <span class="op">=</span> <span class="fl">366</span>, num_bbh <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  num_con <span class="op">=</span> <span class="fl">3</span>, num_oth <span class="op">=</span> <span class="fl">5</span>, seed4 <span class="op">=</span> <span class="fl">309</span>, seed5  <span class="op">=</span> <span class="fl">25</span>,</span>
+<span>  mean_sales <span class="op">=</span> <span class="fl">29000</span>, sd_sales <span class="op">=</span> <span class="fl">3500</span></span>
+<span> <span class="op">)</span></span>
+<span></span>
+<span><span class="va">season_2023</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_build_season.html">f_build_season</a></span><span class="op">(</span>seed1 <span class="op">=</span> <span class="fl">755</span>, season_year <span class="op">=</span> <span class="fl">2023</span>,</span>
+<span>  seed2 <span class="op">=</span> <span class="fl">4256</span>, num_games <span class="op">=</span> <span class="fl">81</span>, seed3 <span class="op">=</span> <span class="fl">54</span>, num_bbh <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>  num_con <span class="op">=</span> <span class="fl">4</span>, num_oth <span class="op">=</span> <span class="fl">7</span>, seed4 <span class="op">=</span> <span class="fl">309</span>, seed5  <span class="op">=</span> <span class="fl">25</span>,</span>
+<span>  mean_sales <span class="op">=</span> <span class="fl">30500</span>, sd_sales <span class="op">=</span> <span class="fl">3000</span></span>
+<span> <span class="op">)</span></span>
+<span></span>
+<span><span class="va">season_2024</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_build_season.html">f_build_season</a></span><span class="op">(</span>seed1 <span class="op">=</span> <span class="fl">2892</span>, season_year <span class="op">=</span> <span class="fl">2024</span>,</span>
+<span>  seed2 <span class="op">=</span> <span class="fl">714</span>, num_games <span class="op">=</span> <span class="fl">81</span>, seed3 <span class="op">=</span> <span class="fl">366</span>, num_bbh <span class="op">=</span> <span class="fl">9</span>,</span>
+<span>  num_con <span class="op">=</span> <span class="fl">2</span>, num_oth <span class="op">=</span> <span class="fl">6</span>, seed4 <span class="op">=</span> <span class="fl">6856</span>, seed5  <span class="op">=</span> <span class="fl">2892</span>,</span>
+<span>  mean_sales <span class="op">=</span> <span class="fl">32300</span>, sd_sales <span class="op">=</span> <span class="fl">2900</span></span>
+<span> <span class="op">)</span></span>
+<span></span>
+<span><span class="va">past_season</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html">rbind</a></span><span class="op">(</span><span class="va">season_2022</span>,<span class="va">season_2023</span>,<span class="va">season_2024</span><span class="op">)</span></span></code></pre></div>
+<p>Now let’s take a look at the data set that we have created.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:forecast2">Table 6.5: </span>past seasons data</caption>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="center">gameNumber</th>
+<th align="center">team</th>
+<th align="center">date</th>
+<th align="center">dayOfWeek</th>
+<th align="center">month</th>
+<th align="center">weekEnd</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">238</td>
+<td align="center">76</td>
+<td align="center">FLA</td>
+<td align="center">2024-09-22</td>
+<td align="center">Sun</td>
+<td align="center">Sep</td>
+<td align="center">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">239</td>
+<td align="center">77</td>
+<td align="center">FLA</td>
+<td align="center">2024-09-23</td>
+<td align="center">Mon</td>
+<td align="center">Sep</td>
+<td align="center">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">240</td>
+<td align="center">78</td>
+<td align="center">FLA</td>
+<td align="center">2024-09-24</td>
+<td align="center">Tue</td>
+<td align="center">Sep</td>
+<td align="center">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">241</td>
+<td align="center">79</td>
+<td align="center">LAA</td>
+<td align="center">2024-10-04</td>
+<td align="center">Fri</td>
+<td align="center">Oct</td>
+<td align="center">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">242</td>
+<td align="center">80</td>
+<td align="center">LAA</td>
+<td align="center">2024-10-05</td>
+<td align="center">Sat</td>
+<td align="center">Oct</td>
+<td align="center">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">243</td>
+<td align="center">81</td>
+<td align="center">LAA</td>
+<td align="center">2024-10-06</td>
+<td align="center">Sun</td>
+<td align="center">Oct</td>
+<td align="center">FALSE</td>
+</tr>
+</tbody>
+</table></div>
+<p>In this section, we are going to dive into regression in a little more rigorous fashion. I highly recommend purchasing a book on regression. There are many great examples. My current favorite is “An R Companion to Applied Regression.” <span class="citation">(<a href="references.html#ref-Fox2019" role="doc-biblioref">John Fox 2019</a>)</span> by John Fox and Sanford Weisberg.It is very practical and doesn’t dwell on theory. There are lots of statistical terms you will need to be familiar with to really dig into it. These include:</p>
+<ul>
+<li>Hypothesis testing</li>
+<li>Normality</li>
+<li>Independence</li>
+<li>linearity</li>
+<li>Validation</li>
+<li>Homoskedacity vs Heteroskedacity</li>
+<li>Autocorrelation</li>
+<li>Multicolinearity</li>
+<li>Interaction terms</li>
+<li>Transformations</li>
+</ul>
+<p>An unfortunate fact about working with sports data is that you will be living in a non-parametric world where rank order might be what is important. Additionally, some of the critical underlying assumptions about your data may not be met. There are specific ways to deal with some of these problems. However, we are not doing a clinical study, so there is no need in going into going through every test in the world to make sure our model is durable. We will hit the high points and move on. You just need to make sure that you are aware of how deep the ocean goes. We won’t get in over our heads.</p>
+<p>As we said, we can approach forecasting in several ways, but there are two main types of forecasting approaches that we typically deploy:</p>
+<ul>
+<li>Top-down forecasts</li>
+<li>Bottom-up forecasts</li>
+</ul>
+<p>What we call a <em>top-down forecast</em> typically consists of macro-level factors such as <em>team payroll</em> and projected wins. These forecasts can be useful for comparing potential across the entire league since we can understand the main components in advance. <em>Bottom-up forecasts</em> can vary in granularity, but consist of more specific information such as the marketing schedule and specifics around scheduling and game attractiveness specific to your market. This might mean rivalry games will be more attractive and you can build that into your model. Let’s start by building a simple bottom-up forecast.</p>
+<p>Let’s begin by creating a treatment and control group so that we can evaluate the efficacy of our model. We’ll perform these tasks with a couple of different packages in future chapters and go into more depth about how to more rigorously apply modeling techniques to our data. The following lines of code will create a training and test data set. There are many ways to accomplish this. This example uses standard R functions.</p>
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Build test and training set</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">samp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">0.05</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">past_season</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">715</span><span class="op">)</span></span>
+<span><span class="va">rows</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">past_season</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>                        size <span class="op">=</span> <span class="va">samp</span><span class="op">)</span></span>
+<span><span class="va">train</span> <span class="op">&lt;-</span> <span class="va">past_season</span><span class="op">[</span><span class="op">-</span><span class="va">rows</span>, <span class="op">]</span></span>
+<span><span class="va">test</span>  <span class="op">&lt;-</span> <span class="va">past_season</span><span class="op">[</span><span class="va">rows</span>, <span class="op">]</span></span></code></pre></div>
+<p>In some of our earlier examples we overfit the models. We didn’t split the data into testing and training data. You could even partition the data further with a calibration set, but we’ll stick with a simpler training and test set for now.</p>
+<p>Now we can build a simple linear model on the training data set. Why did we select the following values? Selecting values for your model can be involved. For the time being, let’s just select a few values that we think look reasonable. Variable selection can be involved and creating parsimonious models (the simplest model that captures the most variance) is a best practice. Also keep in mind that you are dealing with mixed data sets. Most of the regression examples you find deal with clean numerical data that is normally distributed. That is rarely the case in the wild.</p>
+<p>The following sections won’t be exhaustive, but will give you a crash course on some of the things you need to look for. They also use a realistic example that you would find working for a club.</p>
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Linear model for ticket sales</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">ln_mod_bu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">ticketSales</span> <span class="op">~</span> <span class="va">promotion</span> <span class="op">+</span> <span class="va">daysSinceLastGame</span> <span class="op">+</span> </span>
+<span>                  <span class="va">schoolInOut</span> <span class="op">+</span> <span class="va">weekEnd</span> <span class="op">+</span> <span class="va">team</span> , data <span class="op">=</span> <span class="va">train</span><span class="op">)</span></span>
+<span><span class="va">ln_mod_bu_sum</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  st_error     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod_bu</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  r_square     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod_bu</span><span class="op">)</span><span class="op">[</span><span class="fl">8</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  adj_r_square <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod_bu</span><span class="op">)</span><span class="op">[</span><span class="fl">9</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  f_stat       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod_bu</span><span class="op">)</span><span class="op">$</span><span class="va">fstatistic</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>the standard summary for a model looks like this:</p>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = ticketSales ~ promotion + daysSinceLastGame + schoolInOut + 
+#&gt;     weekEnd + team, data = train)
+#&gt; 
+#&gt; Residuals:
+#&gt;      Min       1Q   Median       3Q      Max 
+#&gt; -10994.7  -2468.7    126.9   2504.1   8969.3 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                   Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)       33357.39    2929.22  11.388  &lt; 2e-16 ***
+#&gt; promotionconcert    127.09    1657.31   0.077 0.938953    
+#&gt; promotionnone     -5358.02     988.93  -5.418 1.71e-07 ***
+#&gt; promotionother    -3721.18    1375.10  -2.706 0.007390 ** 
+#&gt; daysSinceLastGame   288.13      42.69   6.750 1.53e-10 ***
+#&gt; schoolInOutTRUE    4608.16    1037.41   4.442 1.47e-05 ***
+#&gt; weekEndTRUE        6397.82     610.61  10.478  &lt; 2e-16 ***
+#&gt; teamATL            3135.03    3000.93   1.045 0.297417    
+#&gt; teamBAL            4382.63    2925.33   1.498 0.135651    
+#&gt; teamBOS           12751.52    3594.69   3.547 0.000484 ***
+#&gt; teamCHC           13193.89    3565.58   3.700 0.000278 ***
+#&gt; teamCIN            3659.22    3226.57   1.134 0.258101    
+#&gt; teamCLE            2201.94    2906.84   0.758 0.449632    
+#&gt; teamCOL            3057.71    3285.54   0.931 0.353142    
+#&gt; teamCWS            3906.19    2985.27   1.308 0.192195    
+#&gt; teamDET            3202.46    3267.54   0.980 0.328217    
+#&gt; teamFLA            2833.12    2924.04   0.969 0.333750    
+#&gt; teamHOU           10209.56    2947.13   3.464 0.000649 ***
+#&gt; teamKAN            5246.46    3732.75   1.406 0.161403    
+#&gt; teamLAA            9102.40    2888.86   3.151 0.001875 ** 
+#&gt; teamLAD           12150.54    3198.52   3.799 0.000192 ***
+#&gt; teamMIN            1625.41    3708.86   0.438 0.661672    
+#&gt; teamNYM            9879.64    3030.31   3.260 0.001306 ** 
+#&gt; teamOAK            1877.06    3741.10   0.502 0.616397    
+#&gt; teamPHI            9450.28    3949.78   2.393 0.017645 *  
+#&gt; teamSF             8185.73    3741.10   2.188 0.029813 *  
+#&gt; teamTB             3212.49    3191.25   1.007 0.315305    
+#&gt; teamTEX            4595.50    3069.58   1.497 0.135925    
+#&gt; teamWAS            1036.66    3036.91   0.341 0.733192    
+#&gt; ---
+#&gt; Signif. codes:  
+#&gt; 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; 
+#&gt; Residual standard error: 3900 on 202 degrees of freedom
+#&gt; Multiple R-squared:  0.6632, Adjusted R-squared:  0.6166 
+#&gt; F-statistic: 14.21 on 28 and 202 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>What are we looking for with this output. You’ll need to hit the books here. If you aren’t familiar with confusing statistics speak, you’ll need to be.</p>
+<ul>
+<li>Estimate: These are the coefficients for the equation produced by this regression</li>
+<li>Std. Error: The standard error represents the average distance the estimates fall from the regression line.</li>
+<li>t value: This is the coefficient divided by the standard error</li>
+<li>Pr(&gt;|t|): The p value. It will tell you if the variable is significant. How sure are we that the estimate falls within the confidence interval.</li>
+<li>Residual standard error: The larger this number, the less likely your model will be useful.</li>
+<li>Multiple R-squared: How much variation is being explained by this model</li>
+<li>F-statistic: Is the model valid? Lower numbers here are bad</li>
+</ul>
+<p>About 60% of the variance in ticket sales is explained by this simple model. Is that good? Probably not especially when we consider the standard error. Is there anything we can do to improve it? Let’s take a look at some regression diagnostics to help us evaluate our results. Additionally, you can run <em>plot(ln_mod_bu)</em> to get a few standard diagnostic plots.</p>
+<p>we have cut the statistics down for brevity. That is why our summaries tend to look like this:</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:chsixsumstatsa">Table 6.6: </span>Summary stats for model</caption>
+<thead><tr class="header">
+<th align="center">st_error</th>
+<th align="center">r_square</th>
+<th align="center">adj_r_square</th>
+<th align="center">f_stat</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="center">3899.53</td>
+<td align="center">0.6632383</td>
+<td align="center">0.6165585</td>
+<td align="center">14.20824</td>
+</tr></tbody>
+</table></div>
+<p>This is OLS regression and there are certain assumptions that need to be made about the underlying data. If they aren’t satisfied, your model may have some problems. It would be best to consult a book on regression to understand some of these concepts, but we’ll take a look at a few of them to get you familiar with some of the terminology. The car package <span class="citation">(<a href="references.html#ref-R-car" role="doc-biblioref">Fox, Weisberg, and Price 2021</a>)</span> has some great tools to help you evaluate your models. We’ll use it to further evaluate the model.</p>
+<div id="outliers-and-unusual-data-points" class="section level3" number="6.3.1">
+<h3>
+<span class="header-section-number">6.3.1</span> Outliers and unusual data points<a class="anchor" aria-label="anchor" href="#outliers-and-unusual-data-points"><i class="fas fa-link"></i></a>
+</h3>
+<p>Linear regression is sensitive to outliers. It is always best to look for data points that fall well outside the average range. For instance, perhaps some games were rained out. Maybe a new promotion worked really well. Something will create an unusual data point or two. Sometimes it is appropriate to remove them.</p>
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Outliers test</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/car/">car</a></span><span class="op">)</span></span>
+<span><span class="va">outliers</span> <span class="op">&lt;-</span> <span class="fu">car</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/car/man/outlierTest.html">outlierTest</a></span><span class="op">(</span><span class="va">ln_mod_bu</span><span class="op">)</span></span></code></pre></div>
+<p>There only appears to be one outlier:</p>
+<div class="inline-table"><table class="kable_wrapper">
+<caption>
+<span id="tab:forecast6">Table 6.7: </span>Outliers
+</caption>
+<tbody><tr>
+<td>
+<table class="table table-sm">
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">x</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left">48</td>
+<td align="right">0.0035699</td>
+</tr></tbody>
+</table>
+</td>
+</tr></tbody>
+</table></div>
+<p>A QQ plot will help check that our underlying assumptions around <em>normality</em> are satisfied. It demonstrates the “95% confidence envelope.”</p>
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># QQPlot</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">qq</span> <span class="op">&lt;-</span> <span class="fu">car</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/car/man/qqPlot.html">qqPlot</a></span><span class="op">(</span><span class="va">ln_mod_bu</span>, main<span class="op">=</span><span class="st">"QQ Plot"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure">
+<img src="06-Pricing_files/figure-html/forecast7-1.png" width="672">
+For the most part, out points tend to fall on the line. A few points stray from it and we can see our outlier (48) at the bottom. Linear regression models can be highly influenced by extreme points. We’ll end up removing this point and rerunning the model.</div>
+<p>We can run an influence plot to combine several of the graphs we would see in You can see with <em>plot(ln_mod_bu)</em>. The bigger the circle, the larger <em>Cooks Distance</em>. Cooks distance has a mathematical definition, but just think of it as a way to identify influential points in the data.</p>
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Influence plot</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">ip</span> <span class="op">&lt;-</span> <span class="fu">car</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/car/man/influencePlot.html">influencePlot</a></span><span class="op">(</span><span class="va">ln_mod_bu</span>, id.method<span class="op">=</span><span class="st">"identify"</span>, </span>
+<span>              main<span class="op">=</span><span class="st">"Influence plot for our linear model "</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="06-Pricing_files/figure-html/forecast8-1.png" width="672"></div>
+<p>It appears that several points are having an outsized influence on our model. We should evaluate them. It may be OK to remove them from our model if their values appear to be influenced by some exogenous factor that we are not accounting for. Why might some of the points be influential? Perhaps it rained on a few of these dates and it depressed ticket sales. It might be reasonable to exclude these dates from the analysis.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:forecast9">Table 6.8: </span>Influential Observations</caption>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="center">StudRes</th>
+<th align="center">Hat</th>
+<th align="center">CookD</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">37</td>
+<td align="center">-2.474975</td>
+<td align="center">0.0625549</td>
+<td align="center">0.0137460</td>
+</tr>
+<tr class="even">
+<td align="left">48</td>
+<td align="center">-2.948634</td>
+<td align="center">0.0508503</td>
+<td align="center">0.0154727</td>
+</tr>
+<tr class="odd">
+<td align="left">53</td>
+<td align="center">-2.087044</td>
+<td align="center">0.2021280</td>
+<td align="center">0.0374285</td>
+</tr>
+<tr class="even">
+<td align="left">129</td>
+<td align="center">-1.983284</td>
+<td align="center">0.3338126</td>
+<td align="center">0.0669910</td>
+</tr>
+<tr class="odd">
+<td align="left">142</td>
+<td align="center">-0.313120</td>
+<td align="center">0.5010784</td>
+<td align="center">0.0034107</td>
+</tr>
+<tr class="even">
+<td align="left">143</td>
+<td align="center">0.313120</td>
+<td align="center">0.5010784</td>
+<td align="center">0.0034107</td>
+</tr>
+</tbody>
+</table></div>
+<p>Let’s remove some of the observations.</p>
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co">#  Remove outliers and view summary</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">past_season_clean</span> <span class="op">&lt;-</span> <span class="va">past_season</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">37</span>,<span class="fl">48</span>,<span class="fl">53</span>,<span class="fl">129</span>,<span class="fl">142</span>,<span class="fl">143</span><span class="op">)</span>,<span class="op">]</span></span>
+<span></span>
+<span><span class="va">ln_mod_clean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">ticketSales</span> <span class="op">~</span> <span class="va">promotion</span> <span class="op">+</span> <span class="va">daysSinceLastGame</span> <span class="op">+</span> </span>
+<span>                  <span class="va">schoolInOut</span> <span class="op">+</span> <span class="va">weekEnd</span> <span class="op">+</span> <span class="va">team</span> , </span>
+<span>                  data <span class="op">=</span> <span class="va">past_season_clean</span><span class="op">)</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Save our model</span></span>
+<span><span class="co"># save(ln_mod_clean, file="ch6_ln_mod_clean.rda")</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">ln_mod_clean_sum</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  st_error     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod_clean</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  r_square     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod_clean</span><span class="op">)</span><span class="op">[</span><span class="fl">8</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  adj_r_square <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod_clean</span><span class="op">)</span><span class="op">[</span><span class="fl">9</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  f_stat       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod_clean</span><span class="op">)</span><span class="op">$</span><span class="va">fstatistic</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:sumstatsa">Table 6.9: </span>Summary stats for clean model</caption>
+<thead><tr class="header">
+<th align="center">st_error</th>
+<th align="center">r_square</th>
+<th align="center">adj_r_square</th>
+<th align="center">f_stat</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="center">3820.177</td>
+<td align="center">0.6688948</td>
+<td align="center">0.624323</td>
+<td align="center">15.00711</td>
+</tr></tbody>
+</table></div>
+<p>We only get a modest improvement by removing some of the influential values. What else can we do? We can also look for interaction terms or transform our response. There are multiple ways to handle this. Additionally you may not need to transform the data. In this case, we don’t see obvious curvature in the data.</p>
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Transforming the data</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">pw_mod</span> <span class="op">&lt;-</span> <span class="fu">car</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/car/man/powerTransform.html">powerTransform</a></span><span class="op">(</span><span class="va">ln_mod_clean</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; bcPower Transformation to Normality </span></span>
+<span><span class="co">#&gt;    Est Power Rounded Pwr Wald Lwr Bnd Wald Upr Bnd</span></span>
+<span><span class="co">#&gt; Y1    3.0383        3.04       2.2665       3.8101</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Likelihood ratio test that transformation parameter is equal to 0</span></span>
+<span><span class="co">#&gt;  (log transformation)</span></span>
+<span><span class="co">#&gt;                            LRT df       pval</span></span>
+<span><span class="co">#&gt; LR test, lambda = (0) 71.19639  1 &lt; 2.22e-16</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Likelihood ratio test that no transformation is needed</span></span>
+<span><span class="co">#&gt;                            LRT df       pval</span></span>
+<span><span class="co">#&gt; LR test, lambda = (1) 30.40168  1 3.5122e-08</span></span></code></pre></div>
+<p>You can also transform variables in your regression directly</p>
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Directly transforming the data</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">ln_mod_log</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">ticketSales</span><span class="op">)</span> <span class="op">~</span> <span class="va">promotion</span> <span class="op">+</span> <span class="va">daysSinceLastGame</span> <span class="op">+</span> </span>
+<span>                        <span class="va">schoolInOut</span> <span class="op">+</span> <span class="va">weekEnd</span> <span class="op">+</span> <span class="va">team</span> , </span>
+<span>                        data <span class="op">=</span> <span class="va">past_season_clean</span><span class="op">)</span></span>
+<span><span class="va">ln_mod_log_sum</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  st_error     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod_log</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  r_square     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod_log</span><span class="op">)</span><span class="op">[</span><span class="fl">8</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  adj_r_square <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod_log</span><span class="op">)</span><span class="op">[</span><span class="fl">9</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  f_stat       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod_log</span><span class="op">)</span><span class="op">$</span><span class="va">fstatistic</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:sumstatsb">Table 6.10: </span>Summary stats for log model</caption>
+<thead><tr class="header">
+<th align="center">st_error</th>
+<th align="center">r_square</th>
+<th align="center">adj_r_square</th>
+<th align="center">f_stat</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="center">0.1106438</td>
+<td align="center">0.6462896</td>
+<td align="center">0.5986747</td>
+<td align="center">13.57327</td>
+</tr></tbody>
+</table></div>
+<p>This makes the model worse. It also makes it more difficult to interpret. This isn’t uncommon with the data that you will find working in sports. We aren’t dealing with new medicines. We are dealing with dollars and cents. You don’t have to be as precise. However, precision helps! Often in business, you simply do the best you can. If you understand the limitations of what you have done, you’ll still be in good shape when it comes time to make a decision.</p>
+<p>Let’s go ahead and apply our model to our testing data set. How well does it appear to approximate ticket sales in practice? We’ll use the predict function to apply our predictions to our test data to observe how close the estimates fall to reality.</p>
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Apply predictions to our test data set. </span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">test</span><span class="op">$</span><span class="va">pred_tickets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">ln_mod_clean</span>,</span>
+<span>                             newdata <span class="op">=</span> <span class="va">test</span><span class="op">)</span></span>
+<span><span class="va">test</span><span class="op">$</span><span class="va">percDiff</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">ticketSales</span> <span class="op">-</span> <span class="va">test</span><span class="op">$</span><span class="va">pred_tickets</span><span class="op">)</span><span class="op">/</span><span class="va">test</span><span class="op">$</span><span class="va">ticketSales</span></span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mean_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">test</span><span class="op">$</span><span class="va">percDiff</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:chtenmeantest">Table 6.11: </span>Mean error percentage</caption>
+<thead><tr class="header">
+<th align="center">x</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="center">-0.0239013</td>
+</tr></tbody>
+</table></div>
+<p>On average, we are about 2% off of the mark. Is that good? Maybe. It depends on what you are trying to accomplish. Let’s take a look at this error on a graph.</p>
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Apply predictions to our test data set. </span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">test_line</span> <span class="op">&lt;-</span> <span class="va">test</span></span>
+<span><span class="va">test_line</span><span class="op">$</span><span class="va">order</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">test_line</span> <span class="op">&lt;-</span>   <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">test_line</span>,</span>
+<span>                      cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'ticketSales'</span>,<span class="st">'pred_tickets'</span><span class="op">)</span>,</span>
+<span>                      values_transform <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>val <span class="op">=</span> <span class="va">as.character</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">x_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'\n Selected Game'</span><span class="op">)</span></span>
+<span><span class="va">y_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket Sales \n'</span><span class="op">)</span></span>
+<span><span class="va">title</span>   <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket forecasts vs. Actuals'</span><span class="op">)</span></span>
+<span><span class="va">line_est</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data      <span class="op">=</span> <span class="va">test_line</span>, </span>
+<span>                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x     <span class="op">=</span> <span class="va">order</span>,</span>
+<span>                      y     <span class="op">=</span> <span class="va">value</span>,</span>
+<span>                      color <span class="op">=</span> <span class="va">name</span><span class="op">)</span><span class="op">)</span>             <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span>                         <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span>                                    <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">palette</span><span class="op">)</span>           <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>      <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                  <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                  <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                 <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
+<div class="inline-figure"><img src="images/ch6_line_pred.png" width="100%"></div>
+<p>Overall, our error is relatively low. However, we can see that while the average error is low the point estimates can vary considerably. Would I feel comfortable applying this model to new data. I believe so. However, I would probably look for other predictors that might improve my model. Perhaps removing season tickets would help. Unfortunately, the further away from the season, the more blunt your estimates will tend to be. You won’t gambling odds, you may not have a promotional schedule. If you pull insignificant teams from the model you won’t be able to use them to make a forecast, you’ll have to guess. You’ll often have to settle for “good enough.”</p>
+<p>This top-down approach to forecasting sales and analyzing prices is useful in certain circumstances and has many applications. Our next example will cover a bottom-up approach.</p>
+</div>
+<div id="analyzing-a-schedule-and-ranking-games" class="section level3" number="6.3.2">
+<h3>
+<span class="header-section-number">6.3.2</span> Analyzing a schedule and ranking games<a class="anchor" aria-label="anchor" href="#analyzing-a-schedule-and-ranking-games"><i class="fas fa-link"></i></a>
+</h3>
+<p>How much of an impact does a schedule have on the financial success of a team? What other factors should be considered? For a sport like professional baseball, ticket sales are the most important component of revenue generation. Almost every other revenue stream is derived from sales. Let’s take a look at some schedule data to begin to frame this problem. I like to take an ensemble approach to these problems. In this case, we are going to do the same thing in two different ways. First, we are going to evaluate games based on how attractive they seem to fans. This is a bottom-up approach will use secondary market purchases to estimate how attractive each game might be.</p>
+<div id="utilizing-transaction-data" class="section level4" number="6.3.2.1">
+<h4>
+<span class="header-section-number">6.3.2.1</span> Utilizing transaction data<a class="anchor" aria-label="anchor" href="#utilizing-transaction-data"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Secondary market data, manifest, and sales data</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">sm</span>  <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">secondary_data</span></span>
+<span><span class="va">man</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">manifest_data</span></span>
+<span><span class="va">sea</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">season_data</span></span>
+<span><span class="va">sea</span><span class="op">$</span><span class="va">gameID</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sea</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>As always, let’s begin by getting an understanding of the underlying data structure.</p>
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Secondary market data, manifest, and sales data</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">sm</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">7</span>,<span class="fl">9</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:sma">Table 6.12: </span>Secondary market data structure</caption>
+<thead><tr class="header">
+<th align="left">seatID</th>
+<th align="left">custID</th>
+<th align="left">price</th>
+<th align="left">secondayrPrice</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">9010</td>
+<td align="left">N22J8UPWACNO</td>
+<td align="left">54.0</td>
+<td align="left">60.51</td>
+</tr>
+<tr class="even">
+<td align="left">20950</td>
+<td align="left">II3IGIN0PY15</td>
+<td align="left">30.0</td>
+<td align="left">37.11</td>
+</tr>
+<tr class="odd">
+<td align="left">16</td>
+<td align="left">HL1LS8PNUJXU</td>
+<td align="left">190.0</td>
+<td align="left">174.34</td>
+</tr>
+<tr class="even">
+<td align="left">30607</td>
+<td align="left">XA8PY4QVWBMF</td>
+<td align="left">20.7</td>
+<td align="left">24.30</td>
+</tr>
+<tr class="odd">
+<td align="left">2399</td>
+<td align="left">RTC7OFV5BUBL</td>
+<td align="left">103.5</td>
+<td align="left">143.24</td>
+</tr>
+<tr class="even">
+<td align="left">10250</td>
+<td align="left">EP37BTOALOCY</td>
+<td align="left">54.0</td>
+<td align="left">77.03</td>
+</tr>
+</tbody>
+</table></div>
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Secondary sales by section</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">sm_man</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">sm</span>,<span class="va">man</span>, by <span class="op">=</span> <span class="st">'seatID'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">avg_price_comps</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">sm_man</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gameID</span>,<span class="va">price</span>,<span class="va">singlePrice</span>,<span class="va">tickets</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>             <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="op">)</span>                                       <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>             <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">gameID</span><span class="op">)</span>                         <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>             <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanSec   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span>,</span>
+<span>                       meanPri   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">singlePrice</span><span class="op">)</span>,</span>
+<span>                       tickets   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">tickets</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:smb">Table 6.13: </span>Secondary market data structure</caption>
+<thead><tr class="header">
+<th align="center">gameID</th>
+<th align="center">meanSec</th>
+<th align="center">meanPri</th>
+<th align="center">tickets</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">40.35872</td>
+<td align="center">44.19619</td>
+<td align="center">3101</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">40.72825</td>
+<td align="center">44.16555</td>
+<td align="center">3520</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">39.96533</td>
+<td align="center">43.85449</td>
+<td align="center">3186</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">40.02371</td>
+<td align="center">43.43759</td>
+<td align="center">3484</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">39.83003</td>
+<td align="center">43.48523</td>
+<td align="center">3293</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">41.42634</td>
+<td align="center">45.21318</td>
+<td align="center">3347</td>
+</tr>
+</tbody>
+</table></div>
+<p>Now we can look by game to see how many transactions happened and what was spent. We can join this table to our original season data table and then see if we we can use a regression to accurately predict which games commanded higher prices on the secondary market. This data wasn’t created to be linked, so we are going to alter it a little bit. We’re going to do this so the results actually look realistic.</p>
+<p>We’ll simply create a coefficient representing scaled ticket sales and add it to the mean secondary price.</p>
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Adjust secondary to reflect primary</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">sea_adj</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">sea</span>,<span class="va">avg_price_comps</span>, by <span class="op">=</span> <span class="st">"gameID"</span><span class="op">)</span> </span>
+<span><span class="va">adj_coef</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">sea_adj</span><span class="op">$</span><span class="va">ticketSales</span><span class="op">)</span></span>
+<span><span class="va">sea_adj</span><span class="op">$</span><span class="va">meanSecAdj</span> <span class="op">&lt;-</span> <span class="va">sea_adj</span><span class="op">$</span><span class="va">meanSec</span> <span class="op">+</span> <span class="op">(</span><span class="va">adj_coef</span> <span class="op">*</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<p>Now let’s build a model on this data.</p>
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Adjust secondary to reflect primary</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">ln_mod_sec</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">meanSecAdj</span> <span class="op">~</span> <span class="va">promotion</span> <span class="op">+</span> <span class="va">daysSinceLastGame</span> <span class="op">+</span> </span>
+<span>                        <span class="va">schoolInOut</span> <span class="op">+</span> <span class="va">weekEnd</span> <span class="op">+</span> <span class="va">team</span> , </span>
+<span>                        data <span class="op">=</span> <span class="va">sea_adj</span><span class="op">)</span></span>
+<span><span class="va">ln_mod_sec_sum</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  st_error     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod_sec</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  r_square     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod_sec</span><span class="op">)</span><span class="op">[</span><span class="fl">8</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  adj_r_square <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod_sec</span><span class="op">)</span><span class="op">[</span><span class="fl">9</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  f_stat       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod_sec</span><span class="op">)</span><span class="op">$</span><span class="va">fstatistic</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:chsixsmb">Table 6.14: </span>Linear model summary statistics</caption>
+<thead><tr class="header">
+<th align="center">st_error</th>
+<th align="center">r_square</th>
+<th align="center">adj_r_square</th>
+<th align="center">f_stat</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="center">3.071083</td>
+<td align="center">0.9193594</td>
+<td align="center">0.9075117</td>
+<td align="center">77.5983</td>
+</tr></tbody>
+</table></div>
+<p>This model appears to work well. It appears to explain about 90% of the variance in secondary market prices. This model is overfit, but you get the point. Let’s assume that we put more rigor into this example and get to application.</p>
+</div>
+</div>
+<div id="applying-our-models-to-a-new-data-set" class="section level3" number="6.3.3">
+<h3>
+<span class="header-section-number">6.3.3</span> Applying our models to a new data set<a class="anchor" aria-label="anchor" href="#applying-our-models-to-a-new-data-set"><i class="fas fa-link"></i></a>
+</h3>
+<p>Now that we have a model constructed, how do we apply it to new data? What are we doing with it? Let’s evaluate the results of the model against themselves to create an <em>event score</em> that can be used to think about our promotion schedule. Here is how we can do it.</p>
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Create data for a new season</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">season_2025</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_build_season.html">f_build_season</a></span><span class="op">(</span>seed1 <span class="op">=</span> <span class="fl">755</span>, season_year <span class="op">=</span> <span class="fl">2025</span>,</span>
+<span>  seed2 <span class="op">=</span> <span class="fl">714</span>, num_games <span class="op">=</span> <span class="fl">81</span>, seed3 <span class="op">=</span> <span class="fl">366</span>, num_bbh <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  num_con <span class="op">=</span> <span class="fl">3</span>, num_oth <span class="op">=</span> <span class="fl">7</span>, seed4 <span class="op">=</span> <span class="fl">366</span>, seed5  <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  mean_sales <span class="op">=</span> <span class="fl">0</span>, sd_sales <span class="op">=</span> <span class="fl">0</span></span>
+<span> <span class="op">)</span></span></code></pre></div>
+<p>Our new data uses seed2 = 714. If I type <em>View(f_build_season)</em> I can see that seed2 controls the teams that are selected for the schedule. What happens if use a different seed2? You might get factor levels that you didn’t anticipate. The model is unable to make a prediction on these values. What do you do here. The easist thing to do is to remove the offending factor levels. You could also make them analogs and substitute in a like-factor.</p>
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Apply model output to new data set</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">season_2025</span><span class="op">$</span><span class="va">predTickets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">ln_mod_clean</span>,</span>
+<span>                             newdata <span class="op">=</span> <span class="va">season_2025</span><span class="op">)</span></span>
+<span><span class="va">season_2025</span><span class="op">$</span><span class="va">predPrices</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">ln_mod_sec</span>,</span>
+<span>                             newdata <span class="op">=</span> <span class="va">season_2025</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:seastf">Table 6.15: </span>2025 season data</caption>
+<thead><tr class="header">
+<th align="left">variable</th>
+<th align="left">classe</th>
+<th align="left">first_values</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">gameNumber</td>
+<td align="left">integer</td>
+<td align="left">1, 2</td>
+</tr>
+<tr class="even">
+<td align="left">team</td>
+<td align="left">character</td>
+<td align="left">FLA, FLA</td>
+</tr>
+<tr class="odd">
+<td align="left">date</td>
+<td align="left">character</td>
+<td align="left">2025-03-27, 2025-03-28</td>
+</tr>
+<tr class="even">
+<td align="left">dayOfWeek</td>
+<td align="left">integer</td>
+<td align="left">Thu, Fri</td>
+</tr>
+<tr class="odd">
+<td align="left">month</td>
+<td align="left">integer</td>
+<td align="left">Mar, Mar</td>
+</tr>
+<tr class="even">
+<td align="left">weekEnd</td>
+<td align="left">logical</td>
+<td align="left">FALSE, TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">schoolInOut</td>
+<td align="left">logical</td>
+<td align="left">FALSE, FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">daysSinceLastGame</td>
+<td align="left">double</td>
+<td align="left">50, 1</td>
+</tr>
+<tr class="odd">
+<td align="left">openingDay</td>
+<td align="left">logical</td>
+<td align="left">TRUE, FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">promotion</td>
+<td align="left">character</td>
+<td align="left">none, none</td>
+</tr>
+<tr class="odd">
+<td align="left">ticketSales</td>
+<td align="left">double</td>
+<td align="left">0, 0</td>
+</tr>
+<tr class="even">
+<td align="left">season</td>
+<td align="left">double</td>
+<td align="left">2025, 2025</td>
+</tr>
+<tr class="odd">
+<td align="left">predTickets</td>
+<td align="left">double</td>
+<td align="left">44958.4169736301, 37738.5433636259</td>
+</tr>
+<tr class="even">
+<td align="left">predPrices</td>
+<td align="left">double</td>
+<td align="left">48.6265858538348, 36.6916490543523</td>
+</tr>
+</tbody>
+</table></div>
+<p>Now that we have some predictions around ticket sales, we can build some event scores off of them. This is the simple part.</p>
+<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Build event scores</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">season_2025</span><span class="op">$</span><span class="va">eventScoreA</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">season_2025</span><span class="op">$</span><span class="va">predTickets</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span><span class="op">)</span></span>
+<span><span class="va">season_2025</span><span class="op">$</span><span class="va">eventScoreB</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">season_2025</span><span class="op">$</span><span class="va">predPrices</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span><span class="op">)</span></span>
+<span><span class="va">season_2025</span><span class="op">$</span><span class="va">eventScore</span>  <span class="op">&lt;-</span> </span>
+<span>   <span class="va">season_2025</span><span class="op">$</span><span class="va">eventScoreA</span> <span class="op">+</span> <span class="va">season_2025</span><span class="op">$</span><span class="va">eventScoreB</span></span>
+<span></span>
+<span><span class="va">season_2025</span> <span class="op">&lt;-</span> <span class="va">season_2025</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="op">-</span><span class="va">season_2025</span><span class="op">$</span><span class="va">eventScore</span><span class="op">)</span>,<span class="op">]</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:seastfpreds">Table 6.16: </span>2025 season event scores</caption>
+<thead><tr class="header">
+<th align="left">variable</th>
+<th align="left">classe</th>
+<th align="left">first_values</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">gameNumber</td>
+<td align="left">integer</td>
+<td align="left">79, 52</td>
+</tr>
+<tr class="even">
+<td align="left">team</td>
+<td align="left">character</td>
+<td align="left">LAA, DET</td>
+</tr>
+<tr class="odd">
+<td align="left">date</td>
+<td align="left">character</td>
+<td align="left">2025-09-13, 2025-07-25</td>
+</tr>
+<tr class="even">
+<td align="left">dayOfWeek</td>
+<td align="left">integer</td>
+<td align="left">Sat, Fri</td>
+</tr>
+<tr class="odd">
+<td align="left">month</td>
+<td align="left">integer</td>
+<td align="left">Sep, Jul</td>
+</tr>
+<tr class="even">
+<td align="left">weekEnd</td>
+<td align="left">logical</td>
+<td align="left">TRUE, TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">schoolInOut</td>
+<td align="left">logical</td>
+<td align="left">FALSE, TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">daysSinceLastGame</td>
+<td align="left">double</td>
+<td align="left">1, 10</td>
+</tr>
+<tr class="odd">
+<td align="left">openingDay</td>
+<td align="left">logical</td>
+<td align="left">FALSE, FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">promotion</td>
+<td align="left">character</td>
+<td align="left">bobblehead, none</td>
+</tr>
+<tr class="odd">
+<td align="left">ticketSales</td>
+<td align="left">double</td>
+<td align="left">0, 0</td>
+</tr>
+<tr class="even">
+<td align="left">season</td>
+<td align="left">double</td>
+<td align="left">2025, 2025</td>
+</tr>
+<tr class="odd">
+<td align="left">predTickets</td>
+<td align="left">double</td>
+<td align="left">49358.3881551301, 46644.2609827693</td>
+</tr>
+<tr class="even">
+<td align="left">predPrices</td>
+<td align="left">double</td>
+<td align="left">56.1825828148457, 54.144879836537</td>
+</tr>
+<tr class="odd">
+<td align="left">eventScoreA</td>
+<td align="left">double</td>
+<td align="left">239.600940080784, 184.096168478207</td>
+</tr>
+<tr class="even">
+<td align="left">eventScoreB</td>
+<td align="left">double</td>
+<td align="left">230.93966856631, 206.238484837644</td>
+</tr>
+<tr class="odd">
+<td align="left">eventScore</td>
+<td align="left">double</td>
+<td align="left">470.540608647093, 390.334653315851</td>
+</tr>
+</tbody>
+</table></div>
+<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Observe differences in event scores</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="va">season_2025</span><span class="op">$</span><span class="va">order</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">season_2025</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">x_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'\n Game'</span><span class="op">)</span></span>
+<span><span class="va">y_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Event Scores \n'</span><span class="op">)</span></span>
+<span><span class="va">title</span>   <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ordered event scores'</span><span class="op">)</span></span>
+<span><span class="va">line_est_es</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data  <span class="op">=</span> <span class="va">season_2025</span>, </span>
+<span>                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">order</span>,</span>
+<span>                      y <span class="op">=</span> <span class="va">eventScore</span><span class="op">)</span><span class="op">)</span>             <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1.3</span>,color <span class="op">=</span> <span class="st">'dodgerblue'</span><span class="op">)</span>      <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span>                                      <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">palette</span><span class="op">)</span>             <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>        <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                    <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                    <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                   <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
+<div class="inline-figure"><img src="images/ch6_line_est_es.png" width="100%"></div>
+<p>We can see that there are groupings of games that have similar levels of <em>attractiveness</em>. Although many games appear much more attractive than others, they may have also been priced higher. Based on this demand attractiveness, we can progressively price our games with the ones with the highest anticipated demand receiving higher prices.</p>
+<p>Let’s cluster like games together based on their event scores. We’ll use the <em>kmeans</em> function to group our games together. You’ll see kmeans getting used quite a bit. It is relatively simple to understand and does a good job of discriminating numerical data sets.</p>
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Kmeans clustering on event scores</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">715</span><span class="op">)</span></span>
+<span><span class="va">clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span><span class="va">season_2025</span><span class="op">$</span><span class="va">eventScore</span>,<span class="fl">6</span><span class="op">)</span></span>
+<span><span class="va">season_2025</span><span class="op">$</span><span class="va">cluster</span> <span class="op">&lt;-</span> <span class="va">clusters</span><span class="op">$</span><span class="va">cluster</span></span>
+<span><span class="co">#write.csv(season_2025,'season_2025.csv',row.names = F)</span></span></code></pre></div>
+<p>Now let’s look at some summary stats for the groups</p>
+<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Summary statistics</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="va">season_summary</span> <span class="op">&lt;-</span> <span class="va">season_2025</span>                            <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>                  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">cluster</span><span class="op">)</span>                      <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>                  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>mean   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">eventScore</span><span class="op">)</span>,</span>
+<span>                            median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">eventScore</span><span class="op">)</span>,</span>
+<span>                            sd     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">eventScore</span><span class="op">)</span>,</span>
+<span>                            n      <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>                <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>                  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">mean</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">season_summary</span>,caption <span class="op">=</span> <span class="st">"Summary stats by cluster"</span>,</span>
+<span>             align <span class="op">=</span> <span class="st">'c'</span>,format <span class="op">=</span> <span class="st">"markdown"</span>,padding <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:forecast18">Table 6.17: </span>Summary stats by cluster</caption>
+<thead><tr class="header">
+<th align="center">cluster</th>
+<th align="center">mean</th>
+<th align="center">median</th>
+<th align="center">sd</th>
+<th align="center">n</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">388.62293</td>
+<td align="center">387.30144</td>
+<td align="center">50.45311</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">260.07078</td>
+<td align="center">259.18470</td>
+<td align="center">25.11326</td>
+<td align="center">13</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">60.71921</td>
+<td align="center">55.16080</td>
+<td align="center">38.29457</td>
+<td align="center">16</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">-32.95683</td>
+<td align="center">-16.52499</td>
+<td align="center">29.59564</td>
+<td align="center">24</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">-191.62441</td>
+<td align="center">-202.08667</td>
+<td align="center">24.68114</td>
+<td align="center">10</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">-276.02569</td>
+<td align="center">-268.42818</td>
+<td align="center">20.09275</td>
+<td align="center">13</td>
+</tr>
+</tbody>
+</table></div>
+<p>We now have several groups of games that we can evaluate. We can use these groups in various ways. One way might be to look for games that might need help. Perhaps we can see if a promotion impacted sales. We’ll do this in chapter <a href="chapter8.html#chapter8">8</a>. You now have a data set that gives you a good idea of how attractive each game is against every other game. However, pricing is much more complex in practice. Reference pricing plays a part in how you might price. The main idea here is that we are going to price our games based on how attractive they are. We are using attractiveness as a proxy for demand.</p>
+<p>How can we improve this bottom-up forecast? We can begin to layer other data onto it. What data are we looking for? There are several pieces of data that we can use:</p>
+<ul>
+<li>The number of season tickets that we have sold and anticipate selling</li>
+<li>Available inventory by game and how it is allocated</li>
+<li>prices paid and volume for each ticket class</li>
+</ul>
+<p>You are unlikely to have perfect conditions for setting prices. Additionally, our model isn’t especially powerful. How could we improve our model? In practice, we prefer an ensemble approach. If you have access to a liquid market, like the secondary market with a high number of transactions at different prices, you can use that data.</p>
+</div>
+</div>
+<div id="leveraging-qualitative-data" class="section level2" number="6.4">
+<h2>
+<span class="header-section-number">6.4</span> Leveraging qualitative data<a class="anchor" aria-label="anchor" href="#leveraging-qualitative-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>Leveraging surveys for pricing support may or may not have utility. There are two main methodologies that we have deployed in practice:</p>
+<ul>
+<li>Van Westendorp analysis</li>
+<li>Conjoint</li>
+</ul>
+<p>Both of these techniques are supported by survey tools such as Qualtrics. Conjoint analysis can be complex and understanding it is well outside the scope of this book. Let’s take a look at a Van Westendorp survey and talk about how it can be useful.</p>
+<p>First, we need to create some survey data.</p>
+<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Create Van Westendorp survey data</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">vw_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1000</span>, ncol <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">vw_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'DugoutSeats'</span>, <span class="st">'PriceExpectation'</span>, </span>
+<span>                    <span class="st">'TooExpensive'</span>, <span class="st">'TooCheap'</span>, </span>
+<span>                    <span class="st">'WayTooCheap'</span>, <span class="st">'WayTooExpensive'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">715</span><span class="op">)</span></span>
+<span><span class="va">vw_data</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">'DugoutSeats'</span></span>
+<span><span class="va">vw_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">100</span>,<span class="fl">10</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">vw_data</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">130</span>,<span class="fl">20</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">vw_data</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">60</span>,<span class="fl">15</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">vw_data</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">50</span>,<span class="fl">10</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">vw_data</span><span class="op">[</span>,<span class="fl">6</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">160</span>,<span class="fl">20</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table style="width:100%;" class="table table-sm">
+<caption>
+<span id="tab:vwaa">Table 6.18: </span>Survey results</caption>
+<colgroup>
+<col width="15%">
+<col width="21%">
+<col width="16%">
+<col width="10%">
+<col width="15%">
+<col width="20%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">DugoutSeats</th>
+<th align="center">PriceExpectation</th>
+<th align="center">TooExpensive</th>
+<th align="center">TooCheap</th>
+<th align="center">WayTooCheap</th>
+<th align="center">WayTooExpensive</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">DugoutSeats</td>
+<td align="center">100</td>
+<td align="center">115</td>
+<td align="center">57</td>
+<td align="center">39</td>
+<td align="center">170</td>
+</tr>
+<tr class="even">
+<td align="center">DugoutSeats</td>
+<td align="center">113</td>
+<td align="center">147</td>
+<td align="center">69</td>
+<td align="center">52</td>
+<td align="center">129</td>
+</tr>
+<tr class="odd">
+<td align="center">DugoutSeats</td>
+<td align="center">102</td>
+<td align="center">169</td>
+<td align="center">67</td>
+<td align="center">51</td>
+<td align="center">163</td>
+</tr>
+<tr class="even">
+<td align="center">DugoutSeats</td>
+<td align="center">103</td>
+<td align="center">134</td>
+<td align="center">72</td>
+<td align="center">54</td>
+<td align="center">148</td>
+</tr>
+<tr class="odd">
+<td align="center">DugoutSeats</td>
+<td align="center">99</td>
+<td align="center">88</td>
+<td align="center">46</td>
+<td align="center">37</td>
+<td align="center">163</td>
+</tr>
+<tr class="even">
+<td align="center">DugoutSeats</td>
+<td align="center">83</td>
+<td align="center">123</td>
+<td align="center">77</td>
+<td align="center">59</td>
+<td align="center">145</td>
+</tr>
+</tbody>
+</table></div>
+<p>Like many statistical tools that you will find, there is a package for analyzing Van Westendorp data. Let’s start by doing it a little more manually. We’ll have to do a little prep work. Let’s build a new dataframe with some slightly different terminology.</p>
+<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Empirical cumulative distribution function</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://hbiostat.org/R/Hmisc/">Hmisc</a></span><span class="op">)</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    <span class="st">"toocheap"</span>     <span class="op">=</span> <span class="va">vw_data</span><span class="op">$</span><span class="va">WayTooCheap</span>,</span>
+<span>    <span class="st">"notbargain"</span>   <span class="op">=</span> <span class="va">vw_data</span><span class="op">$</span><span class="va">TooExpensive</span>,</span>
+<span>    <span class="st">"notexpensive"</span> <span class="op">=</span> <span class="va">vw_data</span><span class="op">$</span><span class="va">TooCheap</span>,</span>
+<span>    <span class="st">"tooexpensive"</span> <span class="op">=</span> <span class="va">vw_data</span><span class="op">$</span><span class="va">WayTooExpensive</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Hmisc/man/Ecdf.html">Ecdf</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">toocheap</span>,what<span class="op">=</span><span class="st">"1-F"</span>,pl<span class="op">=</span><span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Hmisc/man/Ecdf.html">Ecdf</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">notbargain</span>, pl<span class="op">=</span><span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Hmisc/man/Ecdf.html">Ecdf</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">notexpensive</span>,what <span class="op">=</span> <span class="st">"1-F"</span>, pl<span class="op">=</span><span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Hmisc/man/Ecdf.html">Ecdf</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">tooexpensive</span>,pl<span class="op">=</span><span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span></code></pre></div>
+<p>The Ecdf function from the Hmisc package will give you coordinates for the cumulative distribution. We’ll use the <em>reshape2</em> <span class="citation">(<a href="references.html#ref-R-reshape2" role="doc-biblioref">Wickham 2020b</a>)</span> package to <em>melt</em> the data frame. This package helps pivot data and the results will be identical to using tools in the tidyr package that we have already seen.</p>
+<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Build data set for creating graphic</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/reshape">reshape2</a></span><span class="op">)</span></span>
+<span><span class="va">ecdf1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  <span class="st">"variable"</span>  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"toocheap"</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="st">"ecdf"</span>      <span class="op">=</span> <span class="va">a</span>,</span>
+<span>   <span class="st">"value"</span>    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">toocheap</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ecdf2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  <span class="st">"variable"</span>  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"notbargain"</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="st">"ecdf"</span>      <span class="op">=</span> <span class="va">b</span>,</span>
+<span>  <span class="st">"value"</span>     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">notbargain</span><span class="op">)</span>,decreasing <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ecdf3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  <span class="st">"variable"</span>  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"notexpensive"</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">c</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>   <span class="st">"ecdf"</span>     <span class="op">=</span> <span class="va">c</span>,</span>
+<span>   <span class="st">"value"</span>    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">notexpensive</span><span class="op">)</span>,decreasing <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ecdf4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  <span class="st">"variable"</span>  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"tooexpensive"</span>,<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="st">"ecdf"</span>      <span class="op">=</span> <span class="va">d</span>,</span>
+<span>  <span class="st">"value"</span>     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">tooexpensive</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">dat2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html">rbind</a></span><span class="op">(</span><span class="va">ecdf1</span>,<span class="va">ecdf2</span>,<span class="va">ecdf3</span>,<span class="va">ecdf4</span><span class="op">)</span></span>
+<span><span class="va">dat</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape2/man/melt.html">melt</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span><span class="va">dat</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">dat</span>,<span class="va">dat2</span>,by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"variable"</span>,<span class="st">"value"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Now we are ready to view our graph.</p>
+<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Graph the results</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">Paired</span>     <span class="op">&lt;-</span> <span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">4</span>,<span class="st">"Paired"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">g_xlab</span>     <span class="op">&lt;-</span> <span class="st">'\n prices'</span></span>
+<span><span class="va">g_ylab</span>     <span class="op">&lt;-</span> <span class="st">'Responses  \n'</span></span>
+<span><span class="va">g_title</span>    <span class="op">&lt;-</span> <span class="st">'Dugout Price Value Perception\n'</span></span>
+<span></span>
+<span><span class="va">vw_gaphic</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">value</span>, <span class="va">ecdf</span>, color<span class="op">=</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span>     <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"rect"</span>, xmin <span class="op">=</span> <span class="fl">55</span>, xmax <span class="op">=</span> <span class="fl">146</span>, </span>
+<span>                     ymin <span class="op">=</span> <span class="fl">0</span>,  ymax <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>             alpha <span class="op">=</span> <span class="fl">.4</span>, fill <span class="op">=</span> <span class="st">'coral'</span><span class="op">)</span>          <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">Paired</span>,</span>
+<span>                       name <span class="op">=</span> <span class="st">'Value Perception'</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">g_xlab</span><span class="op">)</span>                                  <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">g_ylab</span><span class="op">)</span>                                  <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">g_title</span><span class="op">)</span>                              <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="va">percent</span><span class="op">)</span>          <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="va">dollar</span><span class="op">)</span>           <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">220</span><span class="op">)</span>,ylim<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">.5</span>,</span>
+<span>               lty<span class="op">=</span><span class="fl">4</span>,</span>
+<span>               alpha <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>                        <span class="op">+</span></span>
+<span>    <span class="va">graphics_theme_1</span></span></code></pre></div>
+<div class="inline-figure"><img src="images/ch6_vw_gaphic.png" width="100%"></div>
+<p>We can also use the <em>pricesensitivitymeter</em> package to produce our analysis a little more quickly.</p>
+<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Duplicate work with a library</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://max-alletsee.github.io/pricesensitivitymeter/">pricesensitivitymeter</a></span><span class="op">)</span></span>
+<span><span class="va">price_sensitivity</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://max-alletsee.github.io/pricesensitivitymeter/reference/psm_analysis.html">psm_analysis</a></span><span class="op">(</span></span>
+<span>                           toocheap        <span class="op">=</span> <span class="st">"WayTooCheap"</span>,</span>
+<span>                           cheap           <span class="op">=</span> <span class="st">"TooCheap"</span>,</span>
+<span>                           expensive       <span class="op">=</span> <span class="st">"TooExpensive"</span>,</span>
+<span>                           tooexpensive    <span class="op">=</span> <span class="st">"WayTooExpensive"</span>,</span>
+<span>                           data            <span class="op">=</span> <span class="va">vw_data</span>,</span>
+<span>                           validate        <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p>The price_sensitivity object makes it easy to explore the data.</p>
+<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Explore price sensitivity data</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">ps</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>lower_price <span class="op">=</span> <span class="va">price_sensitivity</span><span class="op">$</span><span class="va">pricerange_lower</span>,</span>
+<span>                 upper_price <span class="op">=</span> <span class="va">price_sensitivity</span><span class="op">$</span><span class="va">pricerange_upper</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:psmetrics">Table 6.19: </span>Price sensitivity metrics</caption>
+<thead><tr class="header">
+<th align="center">lower_price</th>
+<th align="center">upper_price</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="center">55</td>
+<td align="center">146</td>
+</tr></tbody>
+</table></div>
+<p>You can also produce the same plot that we have already produced. The plotting mechanism leverages ggplot2, so you can override the look. We now have some qualitative data on price sensitivity. This doesn’t represent willingness to pay, but it does help us conceptualize a range of prices that might be appropriate.</p>
+</div>
+<div id="implementing-revenue-management-strategies-in-sports" class="section level2" number="6.5">
+<h2>
+<span class="header-section-number">6.5</span> Implementing revenue management strategies in sports<a class="anchor" aria-label="anchor" href="#implementing-revenue-management-strategies-in-sports"><i class="fas fa-link"></i></a>
+</h2>
+<p>These techniques are becoming increasingly commoditized. The mechanisms for forecasting and pricing are well understood and widely deployed. Additionally, ticketing platforms and markets are already working together to make deploying changes possible across multiple changes instantaneously. We have already covered the main considerations, but we didn’t talk about all of them:</p>
+<ul>
+<li>Brand and consumer equity</li>
+<li>Setting initial prices</li>
+<li>Automatically adjusting prices</li>
+<li>Controlling cannibalization</li>
+<li>Public relations and perception</li>
+<li>The perceived fairness of raising prices</li>
+</ul>
+<p>Lowering prices can negatively impact perception and brand equity in the long term. Concepts such as <em>prospect theory</em> explain how changes in utility are asymmetric between gains and losses. <span class="citation">(<a href="references.html#ref-Ferguson2012" role="doc-biblioref">Tudor Bodea 2012</a>)</span> If someone feels that they missed out because of your pricing policy it will have negative impacts. Additionally, not all price changes may be perceived as fair. keep behavioral economics in mind as you deploy your pricing strategy.</p>
+<p>Initial prices are difficult to set and reference prices are powerful mechanisms. If you develop a new product (such as a premium seating area), you’ll have to think carefully about the value proposition. Some in-market competitive intelligence may be useful here. Don’t rely on a pro forma.</p>
+<p>How do you evaluate prices and deploy them. It is best to set an internal mechanism with sales, marketing, and operations. Pricing is one of the single-most important sales and revenue influencers. You’ll want the right people at the table. You’ll also want to make sure the right technology is deployed. How does the price get to the market? How is it updated on the website? Do you have policies about how much or little specific tickets may cost?</p>
+<p>Additionally, your inventory control protocols may influence your decisions. If I raise prices in one section, how does it impact demand in another? This is a fundamental component of pricing. Your price levels are linked. You might be able to explain these links through systems of equations. There are multiple ways to approach these problems.</p>
+<p>Finally, how will people respond to prices? It will depend on a number of factors such as demand, success, and markets. Exploiting opportunities isn’t always appropriate. Qualitative research may help. You can deploy conjoint surveys and other research tools to help gauge how fans will respond to products or changes in price. Taking an ensemble approach to pricing is a recommended approach.</p>
+</div>
+<div id="key-concepts-and-chapter-summary-5" class="section level2" number="6.6">
+<h2>
+<span class="header-section-number">6.6</span> Key concepts and chapter summary<a class="anchor" aria-label="anchor" href="#key-concepts-and-chapter-summary-5"><i class="fas fa-link"></i></a>
+</h2>
+<p>Getting pricing right is a key component of an integrated marketing mix strategy. Pricing has a number of quantitative and qualitative components. We covered several concepts:</p>
+<ul>
+<li>Inventory control</li>
+<li>Mechanical price controls</li>
+<li>More in-depth regression</li>
+<li>Forecasting and schedule analysis</li>
+<li>Event scoring</li>
+<li>Qualitative research</li>
+</ul>
+<p>We only skimmed this broad subject, but you know understand some of the basics of this very complex subject.</p>
+<ul>
+<li>Inventory can be complex and people may perceive inventory in different ways. Understanding the differences between inventory is important if you are building a discreet-choice model.</li>
+<li>The mechanics for determining prices tend to rely on mathematical models. These models can be adjusted to promote more sales or to maximize revenue generation. These goals may be inclusive or exclusive.</li>
+<li>Regression can be rigorous. If you want to be confident in the results, you’ll need to spend some time evaluating the model in a methodical way. Get a book on regression and make sure that you understand it enough to use it correctly.</li>
+<li>Schedules can play an out-sized role in revenue generation. We walked through how to evaluate a schedule. This will be useful when marketing wants to build promotions for games with less demand.</li>
+<li>We covered how to use a Van Westendorp analysis to help us understand how people perceive inventory and prices.</li>
+</ul>
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="chapter5.html"><span class="header-section-number">5</span> Segmentation</a></div>
+<div class="next"><a href="chapter7.html"><span class="header-section-number">7</span> Lead Scoring</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#chapter6"><span class="header-section-number">6</span> Forcasting Sales and Setting Prices</a></li>
+<li><a class="nav-link" href="#understanding-your-inventory"><span class="header-section-number">6.1</span> Understanding your inventory</a></li>
+<li><a class="nav-link" href="#understanding-pricing-mechanisms"><span class="header-section-number">6.2</span> Understanding pricing mechanisms</a></li>
+<li>
+<a class="nav-link" href="#basics-of-forecasting"><span class="header-section-number">6.3</span> Basics of forecasting</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#outliers-and-unusual-data-points"><span class="header-section-number">6.3.1</span> Outliers and unusual data points</a></li>
+<li><a class="nav-link" href="#analyzing-a-schedule-and-ranking-games"><span class="header-section-number">6.3.2</span> Analyzing a schedule and ranking games</a></li>
+<li><a class="nav-link" href="#applying-our-models-to-a-new-data-set"><span class="header-section-number">6.3.3</span> Applying our models to a new data set</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#leveraging-qualitative-data"><span class="header-section-number">6.4</span> Leveraging qualitative data</a></li>
+<li><a class="nav-link" href="#implementing-revenue-management-strategies-in-sports"><span class="header-section-number">6.5</span> Implementing revenue management strategies in sports</a></li>
+<li><a class="nav-link" href="#key-concepts-and-chapter-summary-5"><span class="header-section-number">6.6</span> Key concepts and chapter summary</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/Justin-Watkins/FOSBAAS_web.git/blob/master/06-Pricing.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/Justin-Watkins/FOSBAAS_web.git/edit/master/06-Pricing.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-17.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 7 Lead Scoring | Fundamentals of Sports Business Analytics and Strategy</title>
+<meta name="author" content="Justin Watkins">
+<meta name="description" content="What if I told you that I would pay you $50,000 if you sold four season tickets to someone in the next twenty-four hours? What would you do? The first thing I would do is ask how much the tickets...">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta property="og:title" content="Chapter 7 Lead Scoring | Fundamentals of Sports Business Analytics and Strategy">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/images/book_cover.png">
+<meta property="og:description" content="What if I told you that I would pay you $50,000 if you sold four season tickets to someone in the next twenty-four hours? What would you do? The first thing I would do is ask how much the tickets...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 7 Lead Scoring | Fundamentals of Sports Business Analytics and Strategy">
+<meta name="twitter:description" content="What if I told you that I would pay you $50,000 if you sold four season tickets to someone in the next twenty-four hours? What would you do? The first thing I would do is ask how much the tickets...">
+<meta name="twitter:image" content="/images/book_cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Prompt-0.4.4/font.css" rel="stylesheet">
+<link href="libs/JetBrains_Mono-0.4.4/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.4.1/transition.js"></script><script src="libs/bs3compat-0.4.1/tabs.js"></script><script src="libs/bs3compat-0.4.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentals of Sports Business Analytics and Strategy</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Abstract and forward</a></li>
+<li><a class="" href="chapter1.html"><span class="header-section-number">1</span> Analytics and sports business strategy</a></li>
+<li><a class="" href="chapter2.html"><span class="header-section-number">2</span> Constructing our data sets</a></li>
+<li><a class="" href="chapter3.html"><span class="header-section-number">3</span> Exploring your data</a></li>
+<li><a class="" href="chapter4.html"><span class="header-section-number">4</span> Structuring analytics projects</a></li>
+<li><a class="" href="chapter5.html"><span class="header-section-number">5</span> Segmentation</a></li>
+<li><a class="" href="chapter6.html"><span class="header-section-number">6</span> Forcasting Sales and Setting Prices</a></li>
+<li><a class="active" href="chapter7.html"><span class="header-section-number">7</span> Lead Scoring</a></li>
+<li><a class="" href="chapter8.html"><span class="header-section-number">8</span> Marketing promotions</a></li>
+<li><a class="" href="chapter9.html"><span class="header-section-number">9</span> Consumer Research</a></li>
+<li><a class="" href="chapter10.html"><span class="header-section-number">10</span> Operations and Analytics</a></li>
+<li><a class="" href="Chapter11.html"><span class="header-section-number">11</span> Epilogue</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/Justin-Watkins/FOSBAAS_web.git">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="chapter7" class="section level1" number="7">
+<h1>
+<span class="header-section-number">7</span> Lead Scoring<a class="anchor" aria-label="anchor" href="#chapter7"><i class="fas fa-link"></i></a>
+</h1>
+<p>What if I told you that I would pay you $50,000 if you sold four season tickets to someone in the next twenty-four hours? What would you do? The first thing I would do is ask how much the tickets cost. If it is less than $50,000 I know that I could always just buy the tickets myself and collect the surplus. What are some ways that I could increase the likelihood that I sold those four season tickets?</p>
+<ul>
+<li>I could call a ticket broker and ask them to buy tickets.</li>
+<li>I could look for lapsed purchasers</li>
+<li>I could look for abandoned carts on our website</li>
+<li>I could call individuals who have yet to renew season tickets</li>
+<li>I could beg family and friends to purchase</li>
+</ul>
+<p>There are lots of tactics you could deploy to make sure that you are picking all the low-hanging fruit. It is unlikely that you ever get to the point where you simply pick up a telephone and begin calling phone numbers. Is there a way for us to approach this problem more analytically?</p>
+<p>Lead scoring is fundamental to sales campaigns. Qualifying leads can be done in many ways, but the goal is always the same. You are ordering your leads in a more efficient way so that your sales efforts can maintain some level of efficiency threshold. Warm leads are critical and if someone hasn’t interacted with your brand, they are likely a less efficient use of your time. Working in marketing always reminds me of this one-hundred and thirty year old quote:</p>
+<blockquote>
+<p>“Half the money I spend on advertising is wasted; the trouble is I don’t know which half.”</p>
+<p>— John Wannamker</p>
+</blockquote>
+<p>Lead scoring should assist you in evaluating your direct sales efforts and help to maximize ROI in that context. However, there are several considerations. How do we evaluate a lead?</p>
+<ul>
+<li>Customer lifetime Value?</li>
+<li>The likelihood to purchase during this sales cycle</li>
+<li>Recent, frequency, monetary value</li>
+</ul>
+<p>This might also be a judgment call that is predicated on how sales and marketing teams are incentivized. Always consider compensation packages. Compensation is designed to incentivize behavior. However, it may not be optimized in terms of achieving organizational goals.</p>
+<div id="recency-frequency-and-monetary-value" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> Recency, frequency, and monetary value<a class="anchor" aria-label="anchor" href="#recency-frequency-and-monetary-value"><i class="fas fa-link"></i></a>
+</h2>
+<p>RFM scores could be described as a poor-analyst’s analytic technique. The basic premise is to score sales candidates along those three dimensions and to build lists comprising cohorts with the highest aggregate scores. How might this work in practice?</p>
+<p>Let’s put together and ad hoc data set to demonstrate how RFM scores might work.</p>
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># RFM data</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="va">demo_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">demographic_data</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">4</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">44</span><span class="op">)</span></span>
+<span><span class="va">demo_data</span> <span class="op">&lt;-</span> <span class="va">demo_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>lastInteraction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">demo_data</span><span class="op">)</span>,<span class="fl">50</span>,<span class="fl">30</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>interactionsYTD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">demo_data</span><span class="op">)</span>,<span class="fl">10</span>,<span class="fl">5</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>lifetimeSpend   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">demo_data</span><span class="op">)</span>,<span class="fl">10000</span>,<span class="fl">7000</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>We have added three columns to the customer file:</p>
+<ul>
+<li>How long the last interaction happened in days</li>
+<li>How many interaction have happened</li>
+<li>How much has been spent by the customer</li>
+</ul>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:lsrfmb">Table 7.1: </span>Prepped RFM data</caption>
+<colgroup>
+<col width="17%">
+<col width="19%">
+<col width="22%">
+<col width="22%">
+<col width="19%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">custID</th>
+<th align="center">nameFull</th>
+<th align="center">lastInteraction</th>
+<th align="center">interactionsYTD</th>
+<th align="center">lifetimeSpend</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">MBT9G0X70NTI</td>
+<td align="center">Philip Riddle</td>
+<td align="center">70</td>
+<td align="center">7</td>
+<td align="center">11554</td>
+</tr>
+<tr class="even">
+<td align="center">QTR3JJJ5J6GJ</td>
+<td align="center">Evelyn Campos</td>
+<td align="center">51</td>
+<td align="center">14</td>
+<td align="center">4480</td>
+</tr>
+<tr class="odd">
+<td align="center">HOMV3XQW32LW</td>
+<td align="center">Sarah Valdez</td>
+<td align="center">5</td>
+<td align="center">13</td>
+<td align="center">3986</td>
+</tr>
+<tr class="even">
+<td align="center">RJ7CCATUH4Q1</td>
+<td align="center">Pamela Munoz</td>
+<td align="center">46</td>
+<td align="center">11</td>
+<td align="center">9454</td>
+</tr>
+<tr class="odd">
+<td align="center">9GZT5Z5AOMKV</td>
+<td align="center">Ronald Ortiz</td>
+<td align="center">14</td>
+<td align="center">11</td>
+<td align="center">11336</td>
+</tr>
+<tr class="even">
+<td align="center">S0Y0Y2454IU2</td>
+<td align="center">Nicole Barry</td>
+<td align="center">10</td>
+<td align="center">8</td>
+<td align="center">9259</td>
+</tr>
+</tbody>
+</table></div>
+<p>There are many ways to apply scores here. We will take a similar approach to scoring events, but add one extra step. RFM scores are traditionally built from one to five with five being the highest score.</p>
+<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Function to calculate FRM scores</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">demo_data</span><span class="op">$</span><span class="va">Recency</span>       <span class="op">&lt;-</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">demo_data</span><span class="op">$</span><span class="va">lastInteraction</span><span class="op">)</span></span>
+<span><span class="va">demo_data</span><span class="op">$</span><span class="va">Frequency</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">demo_data</span><span class="op">$</span><span class="va">interactionsYTD</span><span class="op">)</span></span>
+<span><span class="va">demo_data</span><span class="op">$</span><span class="va">MonetaryValue</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">demo_data</span><span class="op">$</span><span class="va">lifetimeSpend</span><span class="op">)</span></span>
+<span><span class="co"># Produce quantiles for each scaled value</span></span>
+<span><span class="va">r_quant</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">demo_data</span><span class="op">$</span><span class="va">Recency</span>,</span>
+<span>                           probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.2</span>,<span class="fl">.4</span>,<span class="fl">.6</span>,<span class="fl">.8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">f_quant</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">demo_data</span><span class="op">$</span><span class="va">Recency</span>,</span>
+<span>                           probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.2</span>,<span class="fl">.4</span>,<span class="fl">.6</span>,<span class="fl">.8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">m_quant</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">demo_data</span><span class="op">$</span><span class="va">Recency</span>,</span>
+<span>                           probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.2</span>,<span class="fl">.4</span>,<span class="fl">.6</span>,<span class="fl">.8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Function to evaluate RFM score</span></span>
+<span><span class="va">f_create_rfm</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">quantList</span>,<span class="va">number</span><span class="op">)</span><span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">number</span> <span class="op">&lt;=</span> <span class="va">quantList</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">{</span><span class="st">'1'</span><span class="op">}</span></span>
+<span>    <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">number</span> <span class="op">&lt;=</span> <span class="va">quantList</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">{</span><span class="st">'2'</span><span class="op">}</span></span>
+<span>      <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">number</span> <span class="op">&lt;=</span> <span class="va">quantList</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">{</span><span class="st">'3'</span><span class="op">}</span></span>
+<span>        <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">number</span> <span class="op">&lt;=</span> <span class="va">quantList</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">{</span><span class="st">'4'</span><span class="op">}</span></span>
+<span>          <span class="kw">else</span><span class="op">{</span><span class="st">'5'</span><span class="op">}</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>Now we can apply the function to our data set. We could generalize this more if we wanted. We could also use an apply function. For this sort of exercise, we aren’t concerned with extreme efficiency. We just want to demonstrate the mechanics. We’ll use lists and for loops to accomplish our task. If we had to repeat this exercise often, daisy chaining for loops is not a best practice. Try not to copy and paste more than three times. You’ll make errors.</p>
+<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Create final RFM values</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">j</span>     <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">demo_data</span><span class="op">$</span><span class="va">Recency</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">value</span><span class="op">[</span><span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">f_create_rfm</span><span class="op">(</span><span class="va">r_quant</span>,<span class="va">i</span><span class="op">)</span></span>
+<span>  <span class="va">j</span> <span class="op">&lt;-</span> <span class="va">j</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">demo_data</span><span class="op">$</span><span class="va">r_val</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">j</span>     <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">demo_data</span><span class="op">$</span><span class="va">Frequency</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">value</span><span class="op">[</span><span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">f_create_rfm</span><span class="op">(</span><span class="va">f_quant</span>,<span class="va">i</span><span class="op">)</span></span>
+<span>  <span class="va">j</span> <span class="op">&lt;-</span> <span class="va">j</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">demo_data</span><span class="op">$</span><span class="va">f_val</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">j</span>     <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">demo_data</span><span class="op">$</span><span class="va">MonetaryValue</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">value</span><span class="op">[</span><span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">f_create_rfm</span><span class="op">(</span><span class="va">m_quant</span>,<span class="va">i</span><span class="op">)</span></span>
+<span>  <span class="va">j</span> <span class="op">&lt;-</span> <span class="va">j</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">demo_data</span><span class="op">$</span><span class="va">m_val</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span></span>
+<span><span class="va">demo_data</span><span class="op">$</span><span class="va">RFM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">demo_data</span><span class="op">$</span><span class="va">r_val</span>,</span>
+<span>                       <span class="va">demo_data</span><span class="op">$</span><span class="va">f_val</span>,</span>
+<span>                       <span class="va">demo_data</span><span class="op">$</span><span class="va">m_val</span>, sep <span class="op">=</span> <span class="st">''</span><span class="op">)</span></span></code></pre></div>
+<p>Now each customer has an RFM score that can be used to build campaigns. Let’s subset a group for a campaign. We’ll select customers that have interacted the most recently, the most frequently, and have tended to spend the most.</p>
+<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Create final RFM values</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">top_prospects</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">demo_data</span>,<span class="va">demo_data</span><span class="op">$</span><span class="va">RFM</span> <span class="op">==</span> <span class="st">'555'</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:rfmc">Table 7.2: </span>Top prospects for campaign</caption>
+<thead><tr class="header">
+<th align="left">nameFull</th>
+<th align="left">r_val</th>
+<th align="left">f_val</th>
+<th align="left">m_val</th>
+<th align="left">RFM</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ryan Livingston</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">555</td>
+</tr>
+<tr class="even">
+<td align="left">Russell Church</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">555</td>
+</tr>
+<tr class="odd">
+<td align="left">Stephen Lawrence</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">555</td>
+</tr>
+<tr class="even">
+<td align="left">Karen Waller</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">555</td>
+</tr>
+<tr class="odd">
+<td align="left">Elizabeth Clements</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">555</td>
+</tr>
+<tr class="even">
+<td align="left">Teresa Compton</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">555</td>
+</tr>
+</tbody>
+</table></div>
+<p>RFM scores can be useful for some segmentation schemes and for lead scoring. However, there are better ways to accomplish the same goal. Lead scoring is as close as we get in this book to discussing <em>Customer Relationship Management</em> (CRM). It is also a fundamental component of CRM. The following examples will take you through a more sophisticated example and will take advantage of an analytics framework that will make regression and machine learning easier.</p>
+</div>
+<div id="scoring-season-ticket-holders-on-their-liklihood-to-renew" class="section level2" number="7.2">
+<h2>
+<span class="header-section-number">7.2</span> Scoring season ticket holders on their liklihood to renew<a class="anchor" aria-label="anchor" href="#scoring-season-ticket-holders-on-their-liklihood-to-renew"><i class="fas fa-link"></i></a>
+</h2>
+<p>With advancements in hardware and software, the art of lead scoring has become a bit of a commodity. You can leverage several techniques including: <em>random forests</em>, <em>gradient boosting</em>, <em>logistic regression</em>, or even <em>deep learning</em> with a tool such as Tensorflow without getting penalized because of time and costs. Take a minute to appreciate this fact. It is amazing. Amazon, Google, and others are making this process even better through AWS and GCP. This example will demonstrate how machine-learning is applied to a real world problem. We’ll frame this problem around a common question that is asked every year and every club in sports.</p>
+<blockquote>
+<p>The ticket sales service manager would like a way to understand which accounts are less likely to renew their season tickets.</p>
+</blockquote>
+<p>We’ll use the mlr3 library <span class="citation">(<a href="references.html#ref-R-mlr" role="doc-biblioref">Bischl et al. 2021</a>)</span> to demonstrate a couple of different machine learning algorithms. The package mlr3 is similar to caret <span class="citation">(<a href="references.html#ref-R-caret" role="doc-biblioref">Kuhn 2021</a>)</span> which has been refactored into tidymodels <span class="citation">(<a href="references.html#ref-R-tidymodels" role="doc-biblioref">Kuhn and Wickham 2021</a>)</span>. Caret was a great library that sought to create a unifying API for scores of other R libraries. We’ll look tidymodels in the next chapter. To me, mlr3 is very reminiscent of scikit-learn in Python. If you like using python for analysis, mlr3 will feel familiar.</p>
+<p>While we can call our functions directly, this library makes the process much easier. The lack of consistent frameworks in R is one of the languages biggest drawbacks. Additionally, mlr3 has excellent documentation <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://mlr3book.mlr-org.com/train-predict.html" class="uri"&gt;https://mlr3book.mlr-org.com/train-predict.html&lt;/a&gt;&lt;/p&gt;'><sup>42</sup></a>.</p>
+<p>Using a framework also comes with some issues.</p>
+<ol style="list-style-type: decimal">
+<li>You’ll have to learn it, which adds some complexity to the task.</li>
+<li>Errors (especially in beta versions) can be frustrating to trouble-shoot</li>
+<li>They can work more slowly than the libraries that are used for the task</li>
+</ol>
+<p>However, I believe that you’ll be better off in the long run to leverage a framework. They tend to make the basic tasks of machine-learning much more systematic and repeatable, especially when it comes to benchmarking.</p>
+<p>Let’s also discuss the package data.table <span class="citation">(<a href="references.html#ref-R-datatable" role="doc-biblioref">Dowle and Srinivasan 2021</a>)</span> here. data.table is a powerful tool that underlies many popular packages. While it has many uses, it can be more confusing to work with as opposed to dplyr <span class="citation">(<a href="references.html#ref-R-dplyr" role="doc-biblioref">Wickham, François, et al. 2021</a>)</span>. It underlies many other libraries and can softly be considered one of the pillars that holds up much of the R universe. If you have been using python, datatable will remind you of pandas <span class="citation">(<a href="references.html#ref-reback2020pandas" role="doc-biblioref">team 2020</a>)</span>. If you are working with really large data sets, datatable will be useful to learn.</p>
+<div id="implementing-a-lead-scoring-project" class="section level3" number="7.2.1">
+<h3>
+<span class="header-section-number">7.2.1</span> Implementing a lead scoring project<a class="anchor" aria-label="anchor" href="#implementing-a-lead-scoring-project"><i class="fas fa-link"></i></a>
+</h3>
+<p>A random forest is an excellent tool for classification and can forecast more than two classes. Logistic regression is typically used for binary classes (renewed, did not renew) and should probably be your first step. There are forms of logistic regression that will handle multi-class problems. We’ll take a look at both tools. In practice, a random forest tends to handle a wide variety of problems you will be faced with at a club very well.</p>
+<p>Missing data or orphan cases can make these tasks extremely frustrating. There is no guarantee that your model will converge. We stated earlier that most of your time will be spent putting your data in order. You’ll be much happier if you put the hours into getting your data in the proper spot. The fun part of these exercises is the modeling. However, it ends up being the part you spend the smallest amount of time working on.</p>
+<p>Additionally, we should follow the process that we outlined in chapter <a href="chapter4.html#chapter4">4</a>. We’ll do this to demonstrate that it isn’t managerial BS. Structuring projects is critical when you are working in teams or working in a distributed fashion. Let’s remind ourselves of the basic steps we want to follow:</p>
+<ol style="list-style-type: decimal">
+<li>Define a measurable goal or hypothesis</li>
+<li>Data collection</li>
+<li>Model the data</li>
+<li>Evaluate your results</li>
+<li>Communicate the results</li>
+<li>Deploying the results</li>
+</ol>
+<div id="defining-our-goal" class="section level4" number="7.2.1.1">
+<h4>
+<span class="header-section-number">7.2.1.1</span> Defining our goal<a class="anchor" aria-label="anchor" href="#defining-our-goal"><i class="fas fa-link"></i></a>
+</h4>
+<p>We are going to use multiple years of season ticket holder renewal data. We also have a problem statement:</p>
+<blockquote>
+<p>We don’t understand how to identify season ticket accounts that are less likely to renew.</p>
+</blockquote>
+<p>What is the output that we are trying to achieve? How do we know if we are successful?</p>
+<p>Our output will be a score that can be used to compare customers against one another. We’ll need to look for features that might predict whether or not someone is likely to renew their tickets. This might be ticket usage or tenure. We don’t know.</p>
+<p>The rub here is that we don’t know if we can help improve the prospects that someone might renew. What levers can we pull? It is one thing to build a useful model that predicts renewals for finance, but we are trying to impact renewals for sales. We’ll need to think carefully about the insight that we gather. Perhaps we will find something that we didn’t know we were looking for. From that perspective, success can be gauged in several ways.</p>
+</div>
+<div id="understanding-the-data-set" class="section level4" number="7.2.1.2">
+<h4>
+<span class="header-section-number">7.2.1.2</span> Understanding the data set<a class="anchor" aria-label="anchor" href="#understanding-the-data-set"><i class="fas fa-link"></i></a>
+</h4>
+<p>Our data set includes several features including an account, whether they renewed, and several features related to their season tickets. The data is located in the <em>FOSBASS</em> package. You can see how the data is created in section <a href="chapter2.html#renewaldata">2.2</a>.</p>
+<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># access renewal data</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Justin-Watkins/FOSBAAS">FOSBAAS</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="va">mod_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">customer_renewals</span></span></code></pre></div>
+<p>This data set contains several years of data. It looks like something that you would find at a club and is going to behave appropriately. Let’s take a look at the structure of this data:</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:leadscoredata2">Table 7.3: </span>Dataset for evaluating likelihood to renew</caption>
+<thead><tr class="header">
+<th align="left">variable</th>
+<th align="left">class</th>
+<th align="left">values</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">accountID</td>
+<td align="left">character</td>
+<td align="left">WD6TDY7C151R</td>
+</tr>
+<tr class="even">
+<td align="left">corporate</td>
+<td align="left">character</td>
+<td align="left">i</td>
+</tr>
+<tr class="odd">
+<td align="left">season</td>
+<td align="left">double</td>
+<td align="left">2021</td>
+</tr>
+<tr class="even">
+<td align="left">planType</td>
+<td align="left">character</td>
+<td align="left">p</td>
+</tr>
+<tr class="odd">
+<td align="left">ticketUsage</td>
+<td align="left">double</td>
+<td align="left">0.728026975947432</td>
+</tr>
+<tr class="even">
+<td align="left">tenure</td>
+<td align="left">double</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="left">spend</td>
+<td align="left">double</td>
+<td align="left">4908</td>
+</tr>
+<tr class="even">
+<td align="left">tickets</td>
+<td align="left">double</td>
+<td align="left">6</td>
+</tr>
+<tr class="odd">
+<td align="left">distance</td>
+<td align="left">double</td>
+<td align="left">61.6614648674555</td>
+</tr>
+<tr class="even">
+<td align="left">renewed</td>
+<td align="left">character</td>
+<td align="left">nr</td>
+</tr>
+</tbody>
+</table></div>
+<p>This data isn’t particularly complex. We can see that we have several columns that appear useful. This data set is also already clean, but let’s refer to section <a href="chapter4.html#evaldata">4.3.1</a> in chapter <a href="chapter4.html#chapter4">4</a> to make sure that we are covering all of our bases. We know that this data is in good shape, we still have to deal with major issues that you face when running some operation on your data.</p>
+<ol style="list-style-type: decimal">
+<li>What sort of analysis mechanism will be useful to solve this problem?</li>
+<li>Is this data structured and formatted in a way that I can use it?</li>
+<li>Are there missing values or other systematic issues that will cause a problem?</li>
+</ol>
+<p>Question one is easy. We can refer to our chart in section <a href="chapter4.html#fig:modelingdatachfour">4.4</a>. This is clearly an example of calculating future, numerical values.</p>
+<p>For question two, different analysis techniques require different formats. We can see that a couple of columns are categorical. Let’s go ahead and create two data sets. We’ll dummy code our categorical data so that one data set only contains numerical values.</p>
+<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Dummy code and alter data frame for all numeric input</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">d1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/dummy.code.html">dummy.code</a></span><span class="op">(</span><span class="va">mod_data</span><span class="op">$</span><span class="va">corporate</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">d2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/dummy.code.html">dummy.code</a></span><span class="op">(</span><span class="va">mod_data</span><span class="op">$</span><span class="va">planType</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mod_data_numeric</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">mod_data</span>,<span class="va">ticketUsage</span>,</span>
+<span>                                        <span class="va">tenure</span>,<span class="va">spend</span>,<span class="va">tickets</span>,</span>
+<span>                                        <span class="va">distance</span>,<span class="va">renewed</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>                    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols</a></span><span class="op">(</span><span class="va">d1</span>,<span class="va">d2</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:leadscoredata4">Table 7.4: </span>Numeric data set for regression</caption>
+<thead><tr class="header">
+<th align="left">ticketUsage</th>
+<th align="left">tenure</th>
+<th align="left">spend</th>
+<th align="left">tickets</th>
+<th align="left">distance</th>
+<th align="left">renewed</th>
+<th align="left">i</th>
+<th align="left">c</th>
+<th align="left">f</th>
+<th align="left">p</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">0.7280270</td>
+<td align="left">2</td>
+<td align="left">4908</td>
+<td align="left">6</td>
+<td align="left">61.661465</td>
+<td align="left">nr</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">0.9921047</td>
+<td align="left">19</td>
+<td align="left">16410</td>
+<td align="left">2</td>
+<td align="left">19.534115</td>
+<td align="left">nr</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+<tr class="odd">
+<td align="left">0.9791836</td>
+<td align="left">5</td>
+<td align="left">7248</td>
+<td align="left">3</td>
+<td align="left">5.738407</td>
+<td align="left">r</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">0.8221204</td>
+<td align="left">23</td>
+<td align="left">6442</td>
+<td align="left">2</td>
+<td align="left">1.280233</td>
+<td align="left">r</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+<tr class="odd">
+<td align="left">0.9836147</td>
+<td align="left">5</td>
+<td align="left">19800</td>
+<td align="left">8</td>
+<td align="left">19.028667</td>
+<td align="left">r</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">0.9032806</td>
+<td align="left">3</td>
+<td align="left">6640</td>
+<td align="left">4</td>
+<td align="left">15.584057</td>
+<td align="left">r</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+</tbody>
+</table></div>
+<p>For question three, we can do a little preparation on our standard data set. We’ll get rid of a couple of columns that we won’t use and turn our response variable into a factor. We know there isn’t missing data, so we will skip that part. We have already covered how to deal with it.</p>
+<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Prepare the data for analysis</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">mod_data</span><span class="op">$</span><span class="va">renewed</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">mod_data</span><span class="op">$</span><span class="va">renewed</span><span class="op">)</span></span>
+<span><span class="va">mod_data</span><span class="op">$</span><span class="va">accountID</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span><span class="va">mod_data</span><span class="op">$</span><span class="va">season</span>    <span class="op">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div>
+<p>In terms of prep work, we are ready to go. No need to dwell on it. This chapter is designed to cover data modeling in more detail, so it isn’t important anyway. We also didn’t have to really worry about data collection. What other data might be interesting to have here?</p>
+<p>Additionally, I would like to briefly cover a special topic that deserves a lot more attention than we are about to give. Maps. Geography is important for sales, marketing, corporate sponsorship groups, and others. In this context, we’ll see how geography will impact sales and marketing strategy further along in this chapter.</p>
+<div id="understanding-geography-and-building-maps" class="section level5" number="7.2.1.2.1">
+<h5>
+<span class="header-section-number">7.2.1.2.1</span> Understanding geography and building maps<a class="anchor" aria-label="anchor" href="#understanding-geography-and-building-maps"><i class="fas fa-link"></i></a>
+</h5>
+<p>Geography plays a large role in selling tickets to sporting events. This is especially true for sports that have more games such as baseball. Coupling the digital and physical assets of the club may eventually make this less important holistically. However, for ticket sales geography is and will remain a critical point of consideration.</p>
+<p>R also isn’t the best way to do this, but it is an easy way to accomplish it in the same analysis platform. GIS is a large field unto itself that is outside the scope of this book. However, R has multiple libraries devoted to maps and it is a good choice if you aren’t looking for extremely high quality geographic graphics. This map was created using stamen maps<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://maps.stamen.com/#watercolor/12/37.7706/-122.3782" class="uri"&gt;http://maps.stamen.com/#watercolor/12/37.7706/-122.3782&lt;/a&gt;&lt;/p&gt;'><sup>43</sup></a>, an open source tool that can be used for a wide variety of projects.</p>
+<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Using R to visualize geographic data</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dkahle/ggmap">ggmap</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">demos</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">demographic_data</span></span>
+<span><span class="va">demos</span> <span class="op">&lt;-</span> <span class="va">demos</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">demos</span><span class="op">)</span>, <span class="fl">5000</span><span class="op">)</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="va">map_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">demos</span>,<span class="va">demos</span><span class="op">$</span><span class="va">longitude</span> <span class="op">&gt;=</span> <span class="op">-</span><span class="fl">125</span> <span class="op">&amp;</span> </span>
+<span>                   <span class="va">demos</span><span class="op">$</span><span class="va">longitude</span> <span class="op">&lt;=</span> <span class="op">-</span><span class="fl">67</span> <span class="op">&amp;</span></span>
+<span>                   <span class="va">demos</span><span class="op">$</span><span class="va">latitude</span> <span class="op">&gt;=</span> <span class="fl">25.75</span> <span class="op">&amp;</span> </span>
+<span>                   <span class="va">demos</span><span class="op">$</span><span class="va">latitude</span> <span class="op">&lt;=</span> <span class="fl">49</span><span class="op">)</span></span>
+<span><span class="va">us</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>left <span class="op">=</span> <span class="op">-</span><span class="fl">91</span>, bottom <span class="op">=</span> <span class="fl">32</span>, right <span class="op">=</span> <span class="op">-</span><span class="fl">80</span>, top <span class="op">=</span> <span class="fl">38</span><span class="op">)</span></span>
+<span><span class="va">map</span> <span class="op">&lt;-</span> <span class="fu">get_stamenmap</span><span class="op">(</span><span class="va">us</span>, zoom <span class="op">=</span> <span class="fl">6</span>, maptype <span class="op">=</span> <span class="st">"toner-lite"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>       <span class="fu">ggmap</span><span class="op">(</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="va">geographic_vis</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">map</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">map_data</span>, </span>
+<span>             mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y <span class="op">=</span> <span class="va">latitude</span><span class="op">)</span>,</span>
+<span>             size <span class="op">=</span> <span class="fl">.2</span>,alpha <span class="op">=</span> <span class="fl">.5</span>, color<span class="op">=</span> <span class="st">'dodgerblue'</span><span class="op">)</span></span></code></pre></div>
+<p><img src="images/ch7_map_ex.png" width="100%">
+These maps aren’t the best, but they are easy to execute and can give you much of the same insight you would get from a more sophisticated product such as ArcGIS <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.esri.com/en-us/home" class="uri"&gt;https://www.esri.com/en-us/home&lt;/a&gt;&lt;/p&gt;'><sup>44</sup></a>. R also makes it easy to access google APIs that will allow you to Geocode addresses and perform many other interesting tasks with geographic data. You can find a multitude of informative demos online.</p>
+</div>
+</div>
+<div id="model" class="section level4" number="7.2.1.3">
+<h4>
+<span class="header-section-number">7.2.1.3</span> Model the data<a class="anchor" aria-label="anchor" href="#model"><i class="fas fa-link"></i></a>
+</h4>
+<p>While we will use the mlr3 framework here, it is important to understand that there is no need to use one of these frameworks. You can call functions directly. mlr3 is descended from mlr, <span class="citation">(<a href="references.html#ref-R-mlr" role="doc-biblioref">Bischl et al. 2021</a>)</span> but is built on a more modern framework. You’ll want to begin by downloading the library and poking around in it <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://mlr3book.mlr-org.com/train-predict.html" class="uri"&gt;https://mlr3book.mlr-org.com/train-predict.html&lt;/a&gt;&lt;/p&gt;'><sup>45</sup></a>.</p>
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Download and install the mlr3 libraries</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mlr3.mlr-org.com">"mlr3"</a></span><span class="op">)</span>         <span class="co">#  install.packages("mlr3viz")</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mlr3learners.mlr-org.com">"mlr3learners"</a></span><span class="op">)</span> <span class="co">#  install.packages("mlr3learners")</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mlr3viz.mlr-org.com">"mlr3viz"</a></span><span class="op">)</span>      <span class="co">#  install.packages("mlr3viz")</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mlr3tuning.mlr-org.com">"mlr3tuning"</a></span><span class="op">)</span>   <span class="co">#  install.packages("mlr3tuning")</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://paradox.mlr-org.com">"paradox"</a></span><span class="op">)</span>      <span class="co">#  install.packages("paradox")</span></span></code></pre></div>
+<p>After downloading some of the packages that we will need we can go ahead get started on the task of modeling the data. We know that we want to determine how likely it is that a specific season ticket holder will renew. Make sure that your data set doesn’t contain any characters. You’ll need to dummy code or change them to factors.</p>
+<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Recode response to a factor</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">mod_data_numeric</span><span class="op">$</span><span class="va">renewed</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">mod_data_numeric</span><span class="op">$</span><span class="va">renewed</span><span class="op">)</span></span></code></pre></div>
+<p>This is a classification problem and mlr3 follows a specific pattern when you are building a model. The data is placed in an object called a task:</p>
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Build task</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">task_mod_data</span> <span class="op">&lt;-</span> <span class="va"><a href="https://mlr3.mlr-org.com/reference/TaskClassif.html">TaskClassif</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>id       <span class="op">=</span> <span class="st">"task_renew"</span>, </span>
+<span>                                 backend  <span class="op">=</span> <span class="va">mod_data_numeric</span>, </span>
+<span>                                 target   <span class="op">=</span> <span class="st">"renewed"</span>, </span>
+<span>                                 positive <span class="op">=</span> <span class="st">"r"</span><span class="op">)</span></span>
+<span><span class="co"># Add task to the task dictionary</span></span>
+<span><span class="va">mlr_tasks</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span><span class="st">"task_renew"</span>, <span class="va">task_mod_data</span><span class="op">)</span></span></code></pre></div>
+<p>The input here is straight forward. We name the object, tell it what data to use, give it a target column, and the result. In this case, “r” indicates that the account renewed in the past.</p>
+<p>After you have a task, you will want to select the <em>learner</em> that you would like to use. MLR works with several other libraries. In this case I would like to apply a random forest to this data and I am going to use the ranger <span class="citation">(<a href="references.html#ref-R-ranger" role="doc-biblioref">Wright, Wager, and Probst 2021</a>)</span> package. Ranger is a powerful library and it includes lots of tools that you can leverage to build random forest models. This is where you can add parameters from the ranger function to the library.</p>
+<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Define learner</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">learner_ranger_rf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span><span class="op">(</span><span class="st">"classif.ranger"</span>,</span>
+<span>                         predict_type <span class="op">=</span> <span class="st">"prob"</span>,</span>
+<span>                         mtry         <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>                         num.trees    <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
+<span><span class="co"># Check parameters with this: learner_ranger_rf$param_set$ids()</span></span>
+<span><span class="co"># look at a list of learners: mlr3::mlr_learners</span></span></code></pre></div>
+<p>We can now build a test and training data set. As a reminder, we could also use a three-way data partition so that we would have a calibration data set. However, this isn’t really necessary.</p>
+<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Build test and training data set</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">44</span><span class="op">)</span></span>
+<span><span class="va">train_mod_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">task_mod_data</span><span class="op">$</span><span class="va">nrow</span>, </span>
+<span>                         <span class="fl">0.75</span> <span class="op">*</span> <span class="va">task_mod_data</span><span class="op">$</span><span class="va">nrow</span><span class="op">)</span></span>
+<span><span class="va">test_mod_data</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="va">task_mod_data</span><span class="op">$</span><span class="va">nrow</span><span class="op">)</span>, </span>
+<span>                          <span class="va">train_mod_data</span><span class="op">)</span></span></code></pre></div>
+<p>Training the model is simple. We’ll use our learner object and point it to our task with rows being identified with our training data set.</p>
+<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Train the model</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">learner_ranger_rf</span><span class="op">$</span><span class="fu">train</span><span class="op">(</span>task    <span class="op">=</span> <span class="va">task_mod_data</span>, </span>
+<span>                        row_ids <span class="op">=</span> <span class="va">train_mod_data</span><span class="op">)</span></span></code></pre></div>
+<p>The learner contains several useful pieces of data that were generated. You can access them in a few different ways.</p>
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Inspect the results</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># print(learner_ranger_rf$model)</span></span>
+<span><span class="va">learner_output</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>    numTrees  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="va">learner_ranger_rf</span><span class="op">$</span><span class="va">model</span><span class="op">$</span><span class="va">num.trees</span><span class="op">)</span>,</span>
+<span>    trys      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="va">learner_ranger_rf</span><span class="op">$</span><span class="va">model</span><span class="op">$</span><span class="va">mtry</span><span class="op">)</span>,</span>
+<span>    samples   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="va">learner_ranger_rf</span><span class="op">$</span><span class="va">model</span><span class="op">$</span><span class="va">num.samples</span><span class="op">)</span>,</span>
+<span>    error     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html">unname</a></span><span class="op">(</span><span class="va">learner_ranger_rf</span><span class="op">$</span><span class="va">model</span><span class="op">$</span><span class="va">prediction.error</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:mlr6eval">Table 7.5: </span>Learner output</caption>
+<thead><tr class="header">
+<th align="left">numTrees</th>
+<th align="left">trys</th>
+<th align="left">samples</th>
+<th align="left">error</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left">500</td>
+<td align="left">3</td>
+<td align="left">10279</td>
+<td align="left">0.1391261</td>
+</tr></tbody>
+</table></div>
+<p>This model doesn’t appear to do a great job judging by the prediction error. Let’s take a look at it on our holdout sample:</p>
+<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Evaluate holdout sample</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">prediction</span> <span class="op">&lt;-</span> <span class="va">learner_ranger_rf</span><span class="op">$</span><span class="fu">predict</span><span class="op">(</span><span class="va">task_mod_data</span>, </span>
+<span>                                        row_ids <span class="op">=</span> <span class="va">test_mod_data</span><span class="op">)</span></span></code></pre></div>
+<p>There are several ways to consider how accurate this model might be and interpretation can be confusing. THis first thing to look at is a confusion matrix. A confusion matrix is a simple way to gauge how well your model predictions performed against known values.</p>
+<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Confusion matrix</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">prediction</span><span class="op">$</span><span class="va">confusion</span></span>
+<span><span class="co">#&gt;         truth</span></span>
+<span><span class="co">#&gt; response    r   nr</span></span>
+<span><span class="co">#&gt;       r  2662  508</span></span>
+<span><span class="co">#&gt;       nr  106  151</span></span></code></pre></div>
+<p>A confusion matrix demonstrates how often the model was correct and incorrect for each response. In this case, our model isn’t performing very well. Would it perform better than a random guess? There are many other metrics that you can extract from your model.</p>
+<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Evaluate holdout sample</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">measure</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">msr</a></span><span class="op">(</span><span class="st">"classif.acc"</span><span class="op">)</span></span>
+<span><span class="va">prediction</span><span class="op">$</span><span class="fu">score</span><span class="op">(</span><span class="va">measure</span><span class="op">)</span></span>
+<span><span class="co">#&gt; classif.acc </span></span>
+<span><span class="co">#&gt;   0.8208345</span></span></code></pre></div>
+<p>in this case, our model is 0.8208345 percent accurate. Let’s visualize some of the results.</p>
+<p>For simple models, the <em>mlr3::autoplot()</em> function includes several graphs and is built on ggplot2, which means you can apply your themes to them. First, let’s explore our data a little more. You can access the predictions with this command <em>learner_ranger_rf<span class="math inline">\(model\)</span>predictions</em>. The probabilities may come in useful depending on what you are doing.</p>
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Access model predictions</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">probs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">learner_ranger_rf</span><span class="op">$</span><span class="va">model</span><span class="op">$</span><span class="va">predictions</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">probs</span><span class="op">)</span></span>
+<span><span class="co">#&gt;           r         nr</span></span>
+<span><span class="co">#&gt; 1 0.5376683 0.46233166</span></span>
+<span><span class="co">#&gt; 2 0.9015481 0.09845190</span></span>
+<span><span class="co">#&gt; 3 0.9252880 0.07471201</span></span>
+<span><span class="co">#&gt; 4 0.9603436 0.03965638</span></span>
+<span><span class="co">#&gt; 5 0.9370835 0.06291653</span></span>
+<span><span class="co">#&gt; 6 0.9028345 0.09716551</span></span></code></pre></div>
+<p>We can compare models against one another in a couple of different ways. Here we will compare our random forest model to a model that simply predicts the classifier. It doesn’t use the parameters we fed to our model.</p>
+<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Evaluate holdout sample</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span></span>
+<span><span class="va">tasks</span>        <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">tsks</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"task_renew"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">learner</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrns</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"classif.featureless"</span>,<span class="st">"classif.rpart"</span><span class="op">)</span>,</span>
+<span>                     predict_type <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span></span>
+<span><span class="va">resampling</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">rsmps</a></span><span class="op">(</span><span class="st">"cv"</span><span class="op">)</span></span>
+<span><span class="va">object</span>       <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/benchmark.html">benchmark</a></span><span class="op">(</span><span class="fu"><a href="https://mlr3.mlr-org.com/reference/benchmark_grid.html">benchmark_grid</a></span><span class="op">(</span><span class="va">tasks</span>, </span>
+<span>                                         <span class="va">learner</span>, </span>
+<span>                                         <span class="va">resampling</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Use head(fortify(object)) to see the ce for the resamples</span></span></code></pre></div>
+<p>Our classification error is better with our random forest, but not by a large amount. These classification errors are from resampling and rerunning the models.</p>
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Boxplot of classification error</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">bplot</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">object</span><span class="op">)</span>   <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'dodgerblue'</span><span class="op">)</span> </span></code></pre></div>
+<div class="inline-figure"><img src="images/ch7_bxplot_model.png" width="100%"></div>
+<p>We can also see that we do generate some lift with the model by looking at the ROC curve.</p>
+<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># ROC curve for random forest model</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">roc_model</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">object</span><span class="op">$</span><span class="fu">filter</span><span class="op">(</span>task_ids <span class="op">=</span> <span class="st">"task_renew"</span><span class="op">)</span>, </span>
+<span>         type <span class="op">=</span> <span class="st">"roc"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">palette</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="images/ch7_roc_model.png" width="100%"></div>
+<p>So what do we do with this data? We can now use our model to predict how likely a person is to renew thier ticket. However, we can see that the model doesn’t perform as well as we would like. What can we do? We have a few options:</p>
+<ul>
+<li>Tune the model parameters to try to improve it</li>
+<li>Try a different model</li>
+<li>Get more data</li>
+</ul>
+<p>Let’s try a couple of different models and attempt to tune the models to improve their accuracy.</p>
+<div id="resampling" class="section level5" number="7.2.1.3.1">
+<h5>
+<span class="header-section-number">7.2.1.3.1</span> Resampling<a class="anchor" aria-label="anchor" href="#resampling"><i class="fas fa-link"></i></a>
+</h5>
+<p>Conceptually, our last model was validated on one <em>training</em> set of data and one <em>test</em> set of data. Occasionally you’ll see a three-way partition of data such as <em>train</em>, <em>test</em>, and <em>calibration</em> set, but often times it is just a <em>train</em> and <em>test</em> set that were randomly sampled from the entire data set. In many cases this is OK, but it could lead you to having more confidence in your model than is warranted. Resampling strategies will help to calibrate your model and give you more confidence in its accuracy. We can visualize what we mean by resampling in figure <a href="chapter7.html#fig:resamplefig">7.1</a>.</p>
+<div class="figure">
+<span style="display:block;" id="fig:resamplefig"></span>
+<img src="images/ch7_resample.png" alt="Resampling concept" width="100%"><p class="caption">
+Figure 7.1: Resampling concept
+</p>
+</div>
+<p>A common method that you will find is 10-fold cross validation where the learning procedure is executed 10 times on different training sets (that overlap) and the 10 error estimates are averaged to yield an overall error estimate <span class="citation">(<a href="references.html#ref-Witten2011" role="doc-biblioref">Ian H. Witten 2011</a>)</span>. Leveraging a framework such as mlr3 makes these efforts (resampling and tuning) much easier. Let’s look at an example of cross validation in regards to the model that we have already constructed.</p>
+<p>The task object and learner objects are identical to what we saw in the previous sections.</p>
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Rebuild model</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">task_mod_data</span> <span class="op">&lt;-</span> <span class="va"><a href="https://mlr3.mlr-org.com/reference/TaskClassif.html">TaskClassif</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>id       <span class="op">=</span> <span class="st">"task_renew"</span>, </span>
+<span>                                 backend  <span class="op">=</span> <span class="va">mod_data_numeric</span>, </span>
+<span>                                 target   <span class="op">=</span> <span class="st">"renewed"</span>, </span>
+<span>                                 positive <span class="op">=</span> <span class="st">"r"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">learner_ranger_rf</span><span class="op">$</span><span class="fu">train</span><span class="op">(</span><span class="va">task_mod_data</span>, row_ids <span class="op">=</span> <span class="va">train_mod_data</span><span class="op">)</span></span></code></pre></div>
+<p>However, we will need to add a resampling object:</p>
+<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Add a resampliing parameter</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">resampling_mod_data</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">rsmp</a></span><span class="op">(</span><span class="st">"cv"</span><span class="op">)</span></span></code></pre></div>
+<p>We’ll then need to instantiate the resampling strategy. This just means that we are going tocreate it again.</p>
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Rebuild model</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">resampling_mod_data</span><span class="op">$</span><span class="fu">instantiate</span><span class="op">(</span><span class="va">task_mod_data</span><span class="op">)</span></span>
+<span><span class="va">resampling_mod_data</span><span class="op">$</span><span class="va">iters</span></span>
+<span><span class="co">#&gt; [1] 10</span></span></code></pre></div>
+<p>We can now call the resample. This will take longer than what we have seen because we are building a model on multiple data sets.</p>
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># We can now call the resample object</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">resamp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">task_mod_data</span>, </span>
+<span>                   <span class="va">learner_ranger_rf</span>, </span>
+<span>                   <span class="va">resampling_mod_data</span>, </span>
+<span>                   store_models <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; INFO  [18:10:20.969] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:10:28.228] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 2/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:10:35.985] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 3/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:10:42.838] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 4/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:10:50.257] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 5/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:10:57.929] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 6/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:11:05.422] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 7/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:11:13.324] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 8/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:11:20.308] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 9/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:11:27.582] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 10/10)</span></span></code></pre></div>
+<p>You now have a more relevant way to evaluate your model.</p>
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Rebuild model</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">resamp</span><span class="op">$</span><span class="fu">aggregate</span><span class="op">(</span><span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">msr</a></span><span class="op">(</span><span class="st">"classif.ce"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; classif.ce </span></span>
+<span><span class="co">#&gt;  0.1794095</span></span>
+<span><span class="co"># Look at scores from the models: resamp$score(msr("classif.ce"))</span></span></code></pre></div>
+<p>Our classification error has improved. That is great! How do we improve further.</p>
+</div>
+<div id="optimizing-your-model" class="section level5" number="7.2.1.3.2">
+<h5>
+<span class="header-section-number">7.2.1.3.2</span> Optimizing your model<a class="anchor" aria-label="anchor" href="#optimizing-your-model"><i class="fas fa-link"></i></a>
+</h5>
+<p>Many algorithms have parameters that can alter the performance of the model. For instance, a random forest can have different numbers of trees applied to the model. How do you know that you are tuning the algorithm appropriately?</p>
+<p>Let’s take a look at the different parameters available to the ranger package. There are 29 in all, but we will only look at the first few.</p>
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Parameter set</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">param_set</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">learner_ranger_rf</span><span class="op">$</span><span class="va">param_set</span><span class="op">$</span><span class="fu">ids</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">param_set</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   learner_ranger_rf$param_set$ids()</span></span>
+<span><span class="co">#&gt; 1                             alpha</span></span>
+<span><span class="co">#&gt; 2            always.split.variables</span></span>
+<span><span class="co">#&gt; 3                     class.weights</span></span>
+<span><span class="co">#&gt; 4                           holdout</span></span>
+<span><span class="co">#&gt; 5                        importance</span></span>
+<span><span class="co">#&gt; 6                        keep.inbag</span></span></code></pre></div>
+<p>Let’s select a couple of parameters to tune</p>
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Tuning parameters</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">tune_rf_params</span> <span class="op">&lt;-</span> <span class="va"><a href="https://rdrr.io/pkg/paradox/man/ParamSet.html">ParamSet</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>  <span class="va"><a href="https://rdrr.io/pkg/paradox/man/ParamInt.html">ParamInt</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"min.node.size"</span>, lower <span class="op">=</span> <span class="fl">10</span>, upper <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>,</span>
+<span>  <span class="va"><a href="https://rdrr.io/pkg/paradox/man/ParamInt.html">ParamInt</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"max.depth"</span>,     lower <span class="op">=</span> <span class="fl">2</span>,  upper <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>,</span>
+<span>  <span class="va"><a href="https://rdrr.io/pkg/paradox/man/ParamInt.html">ParamInt</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"num.trees"</span>,     lower <span class="op">=</span> <span class="fl">500</span>,  upper <span class="op">=</span> <span class="fl">600</span><span class="op">)</span></span>
+<span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>We will also have to consider a resampling strategy. Since cross validated results demonstrated similar error rates, let’s use a holdout sample. We’ll use classification error as our measure.</p>
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># set resampling and eval parameters</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">resamp_strat</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">rsmp</a></span><span class="op">(</span><span class="st">"holdout"</span><span class="op">)</span></span>
+<span><span class="va">measure_mod_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">msr</a></span><span class="op">(</span><span class="st">"classif.ce"</span><span class="op">)</span></span>
+<span><span class="va">evals_10</span>         <span class="op">&lt;-</span> <span class="fu"><a href="https://bbotk.mlr-org.com/reference/trm.html">trm</a></span><span class="op">(</span><span class="st">"evals"</span>, n_evals <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<p>Let’s put everything together into a tune instance that will pass our new criteria to the model.</p>
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Build a tuning instance</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">tune_instance</span> <span class="op">&lt;-</span> <span class="va"><a href="https://mlr3tuning.mlr-org.com/reference/TuningInstanceSingleCrit.html">TuningInstanceSingleCrit</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
+<span>  task         <span class="op">=</span> <span class="va">task_mod_data</span>,</span>
+<span>  learner      <span class="op">=</span> <span class="va">learner_ranger_rf</span>,</span>
+<span>  resampling   <span class="op">=</span> <span class="va">resamp_strat</span>,</span>
+<span>  measure      <span class="op">=</span> <span class="va">measure_mod_data</span>,</span>
+<span>  search_space <span class="op">=</span> <span class="va">tune_rf_params</span>,</span>
+<span>  terminator   <span class="op">=</span> <span class="va">evals_10</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Now we have to determine how we search for different parameters to search. We’ll use a random search. This means that levels will be randomly searched within the parameters that we set.</p>
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Randomly select options within tuning min and max</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">tuner_rf</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3tuning.mlr-org.com/reference/tnr.html">tnr</a></span><span class="op">(</span><span class="st">"random_search"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Run the models</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">tuner</span> <span class="op">&lt;-</span> <span class="va">tuner_rf</span><span class="op">$</span><span class="fu">optimize</span><span class="op">(</span><span class="va">tune_instance</span><span class="op">)</span></span>
+<span><span class="co">#&gt; INFO  [18:11:52.689] [bbotk] Starting to optimize 3 parameter(s) with '&lt;OptimizerRandomSearch&gt;' and '&lt;TerminatorEvals&gt; [n_evals=10, k=0]'</span></span>
+<span><span class="co">#&gt; INFO  [18:11:52.729] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:11:52.771] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:11:52.784] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:11:56.734] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:11:56.954] [bbotk] Result of batch 1:</span></span>
+<span><span class="co">#&gt; INFO  [18:11:56.957] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:11:56.957] [bbotk]            123        18       542   0.175093        0</span></span>
+<span><span class="co">#&gt; INFO  [18:11:56.957] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:11:56.957] [bbotk]       0             3.91</span></span>
+<span><span class="co">#&gt; INFO  [18:11:56.957] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:11:56.957] [bbotk]  cbfe8e24-6d99-46ab-b831-0d25774940af</span></span>
+<span><span class="co">#&gt; INFO  [18:11:56.961] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:11:56.986] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:11:56.992] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:11:59.933] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:11:59.952] [bbotk] Result of batch 2:</span></span>
+<span><span class="co">#&gt; INFO  [18:11:59.953] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:11:59.953] [bbotk]            200        17       507  0.1726855        0</span></span>
+<span><span class="co">#&gt; INFO  [18:11:59.953] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:11:59.953] [bbotk]       0             2.94</span></span>
+<span><span class="co">#&gt; INFO  [18:11:59.953] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:11:59.953] [bbotk]  21f64ea7-d866-419c-b5ec-60e699a06d4d</span></span>
+<span><span class="co">#&gt; INFO  [18:11:59.955] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:11:59.970] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:11:59.974] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:01.365] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:12:01.385] [bbotk] Result of batch 3:</span></span>
+<span><span class="co">#&gt; INFO  [18:12:01.387] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:12:01.387] [bbotk]            120        11       508  0.1739987        0</span></span>
+<span><span class="co">#&gt; INFO  [18:12:01.387] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:12:01.387] [bbotk]       0             1.39</span></span>
+<span><span class="co">#&gt; INFO  [18:12:01.387] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:12:01.387] [bbotk]  821b022c-a354-46b0-9f36-1b1d7b6ae79f</span></span>
+<span><span class="co">#&gt; INFO  [18:12:01.390] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:01.405] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:12:01.409] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:03.083] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:12:03.104] [bbotk] Result of batch 4:</span></span>
+<span><span class="co">#&gt; INFO  [18:12:03.106] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:12:03.106] [bbotk]             79        11       520  0.1755308        0</span></span>
+<span><span class="co">#&gt; INFO  [18:12:03.106] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:12:03.106] [bbotk]       0             1.67</span></span>
+<span><span class="co">#&gt; INFO  [18:12:03.106] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:12:03.106] [bbotk]  7a9c4172-35fc-4a24-ad65-4fdd1fc248f4</span></span>
+<span><span class="co">#&gt; INFO  [18:12:03.109] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:03.125] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:12:03.128] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:04.740] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:12:04.764] [bbotk] Result of batch 5:</span></span>
+<span><span class="co">#&gt; INFO  [18:12:04.765] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:12:04.765] [bbotk]            125        11       594  0.1739987        0</span></span>
+<span><span class="co">#&gt; INFO  [18:12:04.765] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:12:04.765] [bbotk]       0             1.61</span></span>
+<span><span class="co">#&gt; INFO  [18:12:04.765] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:12:04.765] [bbotk]  ccd6939f-276a-4865-bce6-dba2710ceb30</span></span>
+<span><span class="co">#&gt; INFO  [18:12:04.772] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:04.795] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:12:04.800] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:08.082] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:12:08.104] [bbotk] Result of batch 6:</span></span>
+<span><span class="co">#&gt; INFO  [18:12:08.105] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:12:08.105] [bbotk]            109        16       597  0.1748742        0</span></span>
+<span><span class="co">#&gt; INFO  [18:12:08.105] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:12:08.105] [bbotk]       0             3.27</span></span>
+<span><span class="co">#&gt; INFO  [18:12:08.105] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:12:08.105] [bbotk]  3c4102e6-b1d9-43f5-84ff-1332fe120ba9</span></span>
+<span><span class="co">#&gt; INFO  [18:12:08.107] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:08.123] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:12:08.128] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:09.091] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:12:09.112] [bbotk] Result of batch 7:</span></span>
+<span><span class="co">#&gt; INFO  [18:12:09.113] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:12:09.113] [bbotk]            124         4       580  0.1696214        0</span></span>
+<span><span class="co">#&gt; INFO  [18:12:09.113] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:12:09.113] [bbotk]       0             0.95</span></span>
+<span><span class="co">#&gt; INFO  [18:12:09.113] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:12:09.113] [bbotk]  9a68da96-5fbb-420a-bae1-a540885a71be</span></span>
+<span><span class="co">#&gt; INFO  [18:12:09.116] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:09.132] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:12:09.136] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:11.942] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:12:11.967] [bbotk] Result of batch 8:</span></span>
+<span><span class="co">#&gt; INFO  [18:12:11.968] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:12:11.968] [bbotk]             16        17       560  0.1792515        0</span></span>
+<span><span class="co">#&gt; INFO  [18:12:11.968] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:12:11.968] [bbotk]       0             2.79</span></span>
+<span><span class="co">#&gt; INFO  [18:12:11.968] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:12:11.968] [bbotk]  948f8e98-666c-4e65-935a-2c8ce1b708ce</span></span>
+<span><span class="co">#&gt; INFO  [18:12:11.972] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:11.991] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:12:11.995] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:12.884] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:12:12.904] [bbotk] Result of batch 9:</span></span>
+<span><span class="co">#&gt; INFO  [18:12:12.905] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:12:12.905] [bbotk]             97         5       520  0.1696214        0</span></span>
+<span><span class="co">#&gt; INFO  [18:12:12.905] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:12:12.905] [bbotk]       0             0.89</span></span>
+<span><span class="co">#&gt; INFO  [18:12:12.905] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:12:12.905] [bbotk]  6a819477-e01a-4dc8-b797-005d850469f7</span></span>
+<span><span class="co">#&gt; INFO  [18:12:12.907] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:12.923] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:12:12.928] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:15.516] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:12:15.539] [bbotk] Result of batch 10:</span></span>
+<span><span class="co">#&gt; INFO  [18:12:15.540] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:12:15.540] [bbotk]             42        20       560  0.1772817        0</span></span>
+<span><span class="co">#&gt; INFO  [18:12:15.540] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:12:15.540] [bbotk]       0             2.57</span></span>
+<span><span class="co">#&gt; INFO  [18:12:15.540] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:12:15.540] [bbotk]  473c5ce7-113c-4260-bfb7-f126f9a901fc</span></span>
+<span><span class="co">#&gt; INFO  [18:12:15.546] [bbotk] Finished optimizing after 10 evaluation(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:15.546] [bbotk] Result:</span></span>
+<span><span class="co">#&gt; INFO  [18:12:15.547] [bbotk]  min.node.size max.depth num.trees learner_param_vals</span></span>
+<span><span class="co">#&gt; INFO  [18:12:15.547] [bbotk]            124         4       580          &lt;list[5]&gt;</span></span>
+<span><span class="co">#&gt; INFO  [18:12:15.547] [bbotk]   x_domain classif.ce</span></span>
+<span><span class="co">#&gt; INFO  [18:12:15.547] [bbotk]  &lt;list[3]&gt;  0.1696214</span></span></code></pre></div>
+<p>Now we can take a look at our best result</p>
+<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Get the best parameters</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">best_params</span> <span class="op">&lt;-</span> <span class="va">tune_instance</span><span class="op">$</span><span class="va">result_learner_param_vals</span></span></code></pre></div>
+<p>The best results came from a minimum node size of <code>{r tune_instance$result_learner_param_vals$min.node.size</code> and max depth of 4.</p>
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Observe new classification error</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">tune_instance</span><span class="op">$</span><span class="va">result_y</span></span>
+<span><span class="co">#&gt; classif.ce </span></span>
+<span><span class="co">#&gt;  0.1696214</span></span></code></pre></div>
+<p>Tuning has improved our model. 0.0097881 percent. Now we can apply this model back to our test data and observe the results.</p>
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Rerun model</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">learner_ranger_rf</span><span class="op">$</span><span class="va">param_set</span><span class="op">$</span><span class="va">values</span> <span class="op">=</span> </span>
+<span>  <span class="va">tune_instance</span><span class="op">$</span><span class="va">result_learner_param_vals</span></span>
+<span><span class="va">learner_ranger_rf</span><span class="op">$</span><span class="fu">train</span><span class="op">(</span><span class="va">task_mod_data</span><span class="op">)</span></span></code></pre></div>
+<p>This is where a three-part data partition is useful. We would use it to further calibrate these results. Let’s take a look at how the new predictions look.</p>
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Build a tuning instance</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">prediction_tuned</span> <span class="op">&lt;-</span> <span class="va">learner_ranger_rf</span><span class="op">$</span><span class="fu">predict</span><span class="op">(</span><span class="va">task_mod_data</span>, </span>
+<span>                                        row_ids <span class="op">=</span> <span class="va">test_mod_data</span><span class="op">)</span></span></code></pre></div>
+<p>The new model does a fair job of discriminating between those that renewed and did not renew.</p>
+<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Observe confusion matrix</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">prediction_tuned</span><span class="op">$</span><span class="va">confusion</span></span>
+<span><span class="co">#&gt;         truth</span></span>
+<span><span class="co">#&gt; response    r   nr</span></span>
+<span><span class="co">#&gt;       r  2714  504</span></span>
+<span><span class="co">#&gt;       nr   54  155</span></span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Observe optimized classification</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">measure</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">msr</a></span><span class="op">(</span><span class="st">"classif.acc"</span><span class="op">)</span></span>
+<span><span class="va">prediction_tuned</span><span class="op">$</span><span class="fu">score</span><span class="op">(</span><span class="va">measure</span><span class="op">)</span></span>
+<span><span class="co">#&gt; classif.acc </span></span>
+<span><span class="co">#&gt;   0.8371754</span></span></code></pre></div>
+<p>We certainly improved the accuracy. Now let’s take a look at comparing our model produced with a random forest to a model produced with a different algorithm.</p>
+</div>
+</div>
+<div id="comparing-the-results-of-different-model-types" class="section level4" number="7.2.1.4">
+<h4>
+<span class="header-section-number">7.2.1.4</span> Comparing the results of different model types<a class="anchor" aria-label="anchor" href="#comparing-the-results-of-different-model-types"><i class="fas fa-link"></i></a>
+</h4>
+<p>How do we know that the model that we constructed is the best model for our problem? We’ll have to try a few different ones. For these types of problems you are unlikely to have much success by altering your classification system. We will go through this for demonstration purposes.</p>
+<p>We can choose from available learners with the following command. We know that we are looking at classification problems:</p>
+<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Observe all learners</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu">mlr3</span><span class="fu">::</span><span class="va"><a href="https://mlr3.mlr-org.com/reference/mlr_learners.html">mlr_learners</a></span></span>
+<span><span class="co">#&gt; &lt;DictionaryLearner&gt; with 27 stored values</span></span>
+<span><span class="co">#&gt; Keys: classif.cv_glmnet, classif.debug,</span></span>
+<span><span class="co">#&gt;   classif.featureless, classif.glmnet, classif.kknn,</span></span>
+<span><span class="co">#&gt;   classif.lda, classif.log_reg, classif.multinom,</span></span>
+<span><span class="co">#&gt;   classif.naive_bayes, classif.nnet, classif.qda,</span></span>
+<span><span class="co">#&gt;   classif.ranger, classif.rpart, classif.svm,</span></span>
+<span><span class="co">#&gt;   classif.xgboost, regr.cv_glmnet, regr.debug,</span></span>
+<span><span class="co">#&gt;   regr.featureless, regr.glmnet, regr.kknn, regr.km,</span></span>
+<span><span class="co">#&gt;   regr.lm, regr.nnet, regr.ranger, regr.rpart,</span></span>
+<span><span class="co">#&gt;   regr.svm, regr.xgboost</span></span></code></pre></div>
+<p>Many algorithms will not accept certain data types. Numerical types are always safe. We’ll use the same data set that we have been using to test another algorithm.</p>
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Observe all learners</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span></span>
+<span><span class="va">task_mod_data_num</span> <span class="op">&lt;-</span> <span class="va"><a href="https://mlr3.mlr-org.com/reference/TaskClassif.html">TaskClassif</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>id   <span class="op">=</span> <span class="st">"task_bench"</span>, </span>
+<span>                                 backend  <span class="op">=</span> <span class="va">mod_data_numeric</span>, </span>
+<span>                                 target   <span class="op">=</span> <span class="st">"renewed"</span>, </span>
+<span>                                 positive <span class="op">=</span> <span class="st">"r"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">learner_num</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span><span class="op">(</span><span class="st">"classif.xgboost"</span>, predict_type <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span>, </span>
+<span>  <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span><span class="op">(</span><span class="st">"classif.ranger"</span>, predict_type <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">44</span><span class="op">)</span></span>
+<span><span class="va">train_mod_data_num</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">task_mod_data_num</span><span class="op">$</span><span class="va">nrow</span>, <span class="fl">0.75</span> <span class="op">*</span> <span class="va">task_mod_data_num</span><span class="op">$</span><span class="va">nrow</span><span class="op">)</span></span>
+<span><span class="va">test_mod_data_num</span>  <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="va">task_mod_data_num</span><span class="op">$</span><span class="va">nrow</span><span class="op">)</span>, <span class="va">train_mod_data_num</span><span class="op">)</span></span></code></pre></div>
+<p>Now we can build a new task consisting of a group of learners. We’ll use a gradient boosting algorithm, our random forest, and a naive bayes algorithm.</p>
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Build new task and learner</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">design_bnch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/benchmark_grid.html">benchmark_grid</a></span><span class="op">(</span></span>
+<span><span class="va">task_bnch</span>        <span class="op">&lt;-</span> <span class="va"><a href="https://mlr3.mlr-org.com/reference/TaskClassif.html">TaskClassif</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span>id  <span class="op">=</span> <span class="st">"task_class2"</span>, </span>
+<span>                               backend  <span class="op">=</span> <span class="va">mod_data_numeric</span>, </span>
+<span>                               target   <span class="op">=</span> <span class="st">"renewed"</span>, </span>
+<span>                               positive <span class="op">=</span> <span class="st">"r"</span><span class="op">)</span>,</span>
+<span><span class="va">learners_bnch</span>    <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span><span class="op">(</span><span class="st">"classif.xgboost"</span>, predict_type <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span>, </span>
+<span>       <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span><span class="op">(</span><span class="st">"classif.ranger"</span>,  predict_type <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span>,</span>
+<span>       <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span><span class="op">(</span><span class="st">"classif.naive_bayes"</span>, predict_type <span class="op">=</span> <span class="st">"prob"</span> <span class="op">)</span><span class="op">)</span>,</span>
+<span><span class="va">resamplings_bnch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">rsmp</a></span><span class="op">(</span><span class="st">"holdout"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># benchmark our designs</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">bmr</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/benchmark.html">benchmark</a></span><span class="op">(</span><span class="va">design_bnch</span><span class="op">)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:17.053] [mlr3] Running benchmark with 3 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:12:17.057] [mlr3] Applying learner 'classif.xgboost' on task 'task_class2' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:17.116] [mlr3] Applying learner 'classif.ranger' on task 'task_class2' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:20.110] [mlr3] Applying learner 'classif.naive_bayes' on task 'task_class2' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:12:20.562] [mlr3] Finished benchmark</span></span></code></pre></div>
+<p>We can take a look at the available measures with the following command:</p>
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Observe available measures</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu">mlr3</span><span class="fu">::</span><span class="va"><a href="https://mlr3.mlr-org.com/reference/mlr_measures.html">mlr_measures</a></span></span>
+<span><span class="co">#&gt; &lt;DictionaryMeasure&gt; with 62 stored values</span></span>
+<span><span class="co">#&gt; Keys: aic, bic, classif.acc, classif.auc,</span></span>
+<span><span class="co">#&gt;   classif.bacc, classif.bbrier, classif.ce,</span></span>
+<span><span class="co">#&gt;   classif.costs, classif.dor, classif.fbeta,</span></span>
+<span><span class="co">#&gt;   classif.fdr, classif.fn, classif.fnr, classif.fomr,</span></span>
+<span><span class="co">#&gt;   classif.fp, classif.fpr, classif.logloss,</span></span>
+<span><span class="co">#&gt;   classif.mauc_au1p, classif.mauc_au1u,</span></span>
+<span><span class="co">#&gt;   classif.mauc_aunp, classif.mauc_aunu,</span></span>
+<span><span class="co">#&gt;   classif.mbrier, classif.mcc, classif.npv,</span></span>
+<span><span class="co">#&gt;   classif.ppv, classif.prauc, classif.precision,</span></span>
+<span><span class="co">#&gt;   classif.recall, classif.sensitivity,</span></span>
+<span><span class="co">#&gt;   classif.specificity, classif.tn, classif.tnr,</span></span>
+<span><span class="co">#&gt;   classif.tp, classif.tpr, debug, oob_error,</span></span>
+<span><span class="co">#&gt;   regr.bias, regr.ktau, regr.mae, regr.mape,</span></span>
+<span><span class="co">#&gt;   regr.maxae, regr.medae, regr.medse, regr.mse,</span></span>
+<span><span class="co">#&gt;   regr.msle, regr.pbias, regr.rae, regr.rmse,</span></span>
+<span><span class="co">#&gt;   regr.rmsle, regr.rrse, regr.rse, regr.rsq,</span></span>
+<span><span class="co">#&gt;   regr.sae, regr.smape, regr.srho, regr.sse,</span></span>
+<span><span class="co">#&gt;   selected_features, sim.jaccard, sim.phi, time_both,</span></span>
+<span><span class="co">#&gt;   time_predict, time_train</span></span></code></pre></div>
+<p>We can view the measures for each algorithm with the following command:</p>
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Compare the models</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">measures</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">msr</a></span><span class="op">(</span><span class="st">"classif.auc"</span>, id <span class="op">=</span> <span class="st">"auc"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">msr</a></span><span class="op">(</span><span class="st">"classif.ce"</span>, id <span class="op">=</span> <span class="st">"ce_train"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">measure_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">bmr</span><span class="op">$</span><span class="fu">score</span><span class="op">(</span><span class="va">measures</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">measure_list</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6</span>,<span class="fl">11</span>,<span class="fl">12</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="co">#&gt;            learner_id       auc  ce_train</span></span>
+<span><span class="co">#&gt; 1     classif.xgboost 0.6953685 0.1744364</span></span>
+<span><span class="co">#&gt; 2      classif.ranger 0.6795682 0.1792515</span></span>
+<span><span class="co">#&gt; 3 classif.naive_bayes 0.6735490 0.2061720</span></span></code></pre></div>
+<p>OUr _xgboost model performed slightly better than the random forest. Perhaps we should use it instead.</p>
+</div>
+<div id="manually-calling-a-logistic-regression-model" class="section level4" number="7.2.1.5">
+<h4>
+<span class="header-section-number">7.2.1.5</span> Manually calling a logistic regression model<a class="anchor" aria-label="anchor" href="#manually-calling-a-logistic-regression-model"><i class="fas fa-link"></i></a>
+</h4>
+<p>Logistic regression is a form of regression that “builds a linear model based on a transformed target variable.” <span class="citation">(<a href="references.html#ref-Witten2011" role="doc-biblioref">Ian H. Witten 2011</a>)</span> This target variable will take the form of 1 or 0. Applied to our problem, <em>will renew</em> or <em>will not renew</em>. Let’s call a basic logistic regression model for fun.</p>
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Compare the models</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">renewed</span> <span class="op">~</span> <span class="va">ticketUsage</span> <span class="op">+</span> <span class="va">tenure</span> <span class="op">+</span> </span>
+<span>           <span class="va">spend</span> <span class="op">+</span> <span class="va">distance</span>,</span>
+<span>           data <span class="op">=</span> <span class="va">mod_data_numeric</span>,</span>
+<span>           family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span></span>
+<span>           <span class="op">)</span></span>
+<span><span class="va">mod_sum</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  deviance      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">$</span><span class="va">deviance</span><span class="op">)</span>,</span>
+<span>  null.deviance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">$</span><span class="va">null.deviance</span><span class="op">)</span>,</span>
+<span>  aic           <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">$</span><span class="va">aic</span><span class="op">)</span>,</span>
+<span>  df.residual   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">$</span><span class="va">df.residual</span><span class="op">)</span>,</span>
+<span>  pseudoR2      <span class="op">=</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">mod</span><span class="op">$</span><span class="va">deviance</span> <span class="op">/</span> <span class="va">mod</span><span class="op">$</span><span class="va">null.deviance</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:chsevenmodoutpu">Table 7.6: </span>Summary stats for logistic model</caption>
+<thead><tr class="header">
+<th align="center">deviance</th>
+<th align="center">null.deviance</th>
+<th align="center">aic</th>
+<th align="center">df.residual</th>
+<th align="center">pseudoR2</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="center">11746.19</td>
+<td align="center">13211.17</td>
+<td align="center">11756.19</td>
+<td align="center">13701</td>
+<td align="center">0.1108893</td>
+</tr></tbody>
+</table></div>
+<p>This output looks slightly different than the other regression outputs that we have seen. We won’t cover logistic regression here, but I wanted to make you aware of it. It generally performs well and is a great place to start if you are predicting two possible outcomes. Additionally, you need to be careful with these models. We estimated a pseudoRSquared, but there are multiple ways to do it. Try the function <em>pscl::pR2(mod)</em> <span class="citation">(<a href="references.html#ref-pscl2008" role="doc-biblioref">Zeileis, Kleiber, and Jackman 2008</a>)</span> to see different methods.</p>
+</div>
+</div>
+<div id="measuring-performance" class="section level3" number="7.2.2">
+<h3>
+<span class="header-section-number">7.2.2</span> Measuring performance<a class="anchor" aria-label="anchor" href="#measuring-performance"><i class="fas fa-link"></i></a>
+</h3>
+<p>Measuring performance can be difficult. The measures themselves can be technical and confusing. If you are using holdout samples, you can ignore many of them to a degree. If you sampled and calibrated correctly, using “ce” or <em>classification error</em> with a visual inspection of the confusion matrix will often be enough. Let’s build a plot of the classification error to give us some additional insight into what is going on.</p>
+<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Compare the models</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">calc_rates</span> <span class="op">&lt;-</span> <span class="va">learner_ranger_rf</span><span class="op">$</span><span class="fu">predict_newdata</span><span class="op">(</span><span class="va">mod_data_numeric</span><span class="op">)</span></span>
+<span><span class="va">mod_data_numeric</span><span class="op">$</span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">mod</span>,newdata <span class="op">=</span> <span class="va">mod_data_numeric</span>,</span>
+<span>                                 type <span class="op">=</span> <span class="st">'response'</span><span class="op">)</span></span></code></pre></div>
+<p>Let’s look at a density plot of the renewal scores and classes.</p>
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Density plot of error</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">title</span>   <span class="op">&lt;-</span> <span class="st">'Density plot of renewal'</span></span>
+<span><span class="va">x_label</span> <span class="op">&lt;-</span> <span class="st">'Prediction'</span></span>
+<span><span class="va">y_label</span> <span class="op">&lt;-</span> <span class="st">'Density'</span></span>
+<span><span class="va">density_pred</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mod_data_numeric</span>, </span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pred</span>,color<span class="op">=</span><span class="va">renewed</span>,lty<span class="op">=</span><span class="va">renewed</span><span class="op">)</span><span class="op">)</span>    <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span>                       <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">palette</span><span class="op">)</span>           <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">)</span>    <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                  <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                  <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                 <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
+<div class="inline-figure"><img src="images/ch7_density.png" width="100%"></div>
+<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># ROC curve</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://expasy.org/tools/pROC/">pROC</a></span><span class="op">)</span></span>
+<span><span class="co">#define object to plot</span></span>
+<span><span class="va">roc_object</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pROC/man/roc.html">roc</a></span><span class="op">(</span><span class="va">mod_data_numeric</span><span class="op">$</span><span class="va">renewed</span>, <span class="va">mod_data_numeric</span><span class="op">$</span><span class="va">pred</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">title</span>   <span class="op">&lt;-</span> <span class="st">'ROC curve for renewals'</span></span>
+<span><span class="va">x_label</span> <span class="op">&lt;-</span> <span class="st">'Specificity'</span></span>
+<span><span class="va">y_label</span> <span class="op">&lt;-</span> <span class="st">'Sensitivity'</span></span>
+<span></span>
+<span><span class="va">roc_graph</span> <span class="op">&lt;-</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/pROC/man/ggroc.html">ggroc</a></span><span class="op">(</span><span class="va">roc_object</span>,colour <span class="op">=</span> <span class="st">'dodgerblue'</span>,size <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                    <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                    <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                   <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
+<div class="inline-figure"><img src="images/ch7_roc.png" width="100%"></div>
+<p>Interpret this ROC curve</p>
+</div>
+</div>
+<div id="using-this-data" class="section level2" number="7.3">
+<h2>
+<span class="header-section-number">7.3</span> Using this data<a class="anchor" aria-label="anchor" href="#using-this-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>Lead scores are <strong>EASY</strong> to use. Qualifying leads is likely the most important analytics exercise that can be quickly and easily deployed. This is thinking strategically at its simplest and finest. We simply need to apply our preferred model to new data. All of the algorithms performed in a similar way (which isn’t uncommon). So what do you do with it. Scored data is typically placed into quantiles and then deployed in order based on what we desire to happen.</p>
+<div id="building-cumulative-gains-charts" class="section level3" number="7.3.1">
+<h3>
+<span class="header-section-number">7.3.1</span> Building cumulative gains charts<a class="anchor" aria-label="anchor" href="#building-cumulative-gains-charts"><i class="fas fa-link"></i></a>
+</h3>
+<p>How do we know that our model has efficacy in practice? Let’s take a sample of our model data and pretend that it is a new group that we plan to deploy in a renewal campaign. Let’s begin by borrowing some data from our last analysis. Let’s pretend these individuals are new and we are trying to renew them.</p>
+<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Build data fro cumulative gains chart</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">mod_data_sample</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">mod_data_numeric</span>                                      <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">pred</span>,<span class="va">renewed</span><span class="op">)</span>                           <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>custId <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">mod_data_numeric</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">5000</span><span class="op">)</span>                                 <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">qt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">mod_data_sample</span><span class="op">$</span><span class="va">pred</span>,</span>
+<span>               probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">.2</span>,<span class="fl">.3</span>,<span class="fl">.4</span>,<span class="fl">.5</span>,<span class="fl">.6</span>,<span class="fl">.7</span>,<span class="fl">.8</span>,<span class="fl">.9</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">f_apply_quant</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="va">qt</span><span class="op">[</span><span class="fl">9</span><span class="op">]</span>,<span class="fl">1</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="va">qt</span><span class="op">[</span><span class="fl">8</span><span class="op">]</span>,<span class="fl">2</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="va">qt</span><span class="op">[</span><span class="fl">7</span><span class="op">]</span>,<span class="fl">3</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="va">qt</span><span class="op">[</span><span class="fl">6</span><span class="op">]</span>,<span class="fl">4</span>,</span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="va">qt</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span>,<span class="fl">5</span>,</span>
+<span>          <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="va">qt</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>,<span class="fl">6</span>,</span>
+<span>            <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="va">qt</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>,<span class="fl">7</span>,</span>
+<span>              <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="va">qt</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,<span class="fl">8</span>,</span>
+<span>                <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="va">qt</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,<span class="fl">9</span>,<span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">mod_data_sample</span><span class="op">$</span><span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">mod_data_sample</span><span class="op">$</span><span class="va">pred</span>,</span>
+<span>                                <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">f_apply_quant</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">mod_data_sample</span><span class="op">$</span><span class="va">group</span>,<span class="va">mod_data_sample</span><span class="op">$</span><span class="va">renewed</span><span class="op">)</span></span>
+<span><span class="co">#&gt;     </span></span>
+<span><span class="co">#&gt;       nr   r</span></span>
+<span><span class="co">#&gt;   1   53 447</span></span>
+<span><span class="co">#&gt;   2   52 448</span></span>
+<span><span class="co">#&gt;   3   56 444</span></span>
+<span><span class="co">#&gt;   4   52 448</span></span>
+<span><span class="co">#&gt;   5   52 449</span></span>
+<span><span class="co">#&gt;   6   71 428</span></span>
+<span><span class="co">#&gt;   7  101 399</span></span>
+<span><span class="co">#&gt;   8   83 417</span></span>
+<span><span class="co">#&gt;   9  124 376</span></span>
+<span><span class="co">#&gt;   10 299 201</span></span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Build data for cumulative gains chart</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">mod_data_sample</span><span class="op">$</span><span class="va">renewedNum</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">mod_data_sample</span><span class="op">$</span><span class="va">renewed</span> <span class="op">==</span> <span class="st">'r'</span>,<span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">mod_data_sample</span><span class="op">$</span><span class="va">perpop</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">mod_data_sample</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">mod_data_sample</span><span class="op">)</span><span class="op">)</span><span class="op">*</span><span class="fl">100</span></span>
+<span></span>
+<span><span class="va">mod_data_sample</span><span class="op">$</span><span class="va">percRenew</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">mod_data_sample</span><span class="op">$</span><span class="va">renewedNum</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">mod_data_sample</span><span class="op">$</span><span class="va">renewedNum</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">title</span>   <span class="op">&lt;-</span> <span class="st">'Cumulative gains chart'</span></span>
+<span><span class="va">x_label</span> <span class="op">&lt;-</span> <span class="st">'Population'</span></span>
+<span><span class="va">y_label</span> <span class="op">&lt;-</span> <span class="st">'Cumulative Renewal Percentage'</span></span>
+<span><span class="va">cgc</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mod_data_sample</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">percRenew</span>,x<span class="op">=</span><span class="va">perpop</span><span class="op">)</span><span class="op">)</span>           <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">mod_data_sample</span><span class="op">$</span><span class="va">group</span>,size <span class="op">=</span> <span class="fl">1.2</span> <span class="op">)</span>      <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html">geom_rug</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">mod_data_sample</span><span class="op">$</span><span class="va">group</span>,sides <span class="op">=</span> <span class="st">'b'</span> <span class="op">)</span>      <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="fl">0</span>, slope <span class="op">=</span> <span class="fl">.01</span>, size <span class="op">=</span> <span class="fl">0.5</span>,lty<span class="op">=</span><span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                             <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                             <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                            <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
+<div class="inline-figure"><img src="images/ch7_cgc.png" width="100%"></div>
+<p>What would this curve look like if the renewal rates differed more by group?</p>
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Build data for improved cumulative gains chart </span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">mod_data_gain</span> <span class="op">&lt;-</span> <span class="va">mod_data_sample</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>                 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>                 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>cumRenewed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">renewedNum</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">new_renewals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">500</span>,<span class="fl">490</span>,<span class="fl">455</span>,<span class="fl">400</span>,<span class="fl">300</span>,<span class="fl">200</span>,<span class="fl">120</span>,<span class="fl">90</span>,<span class="fl">70</span>,<span class="fl">20</span><span class="op">)</span></span>
+<span><span class="va">mod_data_gain</span><span class="op">$</span><span class="va">cumRenewed</span> <span class="op">&lt;-</span> <span class="va">new_renewals</span></span>
+<span></span>
+<span><span class="va">mod_data_gain</span><span class="op">$</span><span class="va">gain</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">mod_data_gain</span><span class="op">$</span><span class="va">cumRenewed</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">mod_data_gain</span><span class="op">$</span><span class="va">cumRenewed</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">title</span>   <span class="op">&lt;-</span> <span class="st">'Cumulative gains chart'</span></span>
+<span><span class="va">x_label</span> <span class="op">&lt;-</span> <span class="st">'Group'</span></span>
+<span><span class="va">y_label</span> <span class="op">&lt;-</span> <span class="st">'Gain'</span></span>
+<span></span>
+<span><span class="va">cgc_imp</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mod_data_gain</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">gain</span>,x<span class="op">=</span><span class="va">group</span><span class="op">)</span><span class="op">)</span>                  <span class="op">+</span></span>
+<span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">mod_data_gain</span><span class="op">$</span><span class="va">group</span>,size <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span>         <span class="op">+</span></span>
+<span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>,<span class="fl">10</span><span class="op">)</span><span class="op">)</span>    <span class="op">+</span></span>
+<span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>intercept <span class="op">=</span> <span class="fl">0</span>, slope <span class="op">=</span> <span class="fl">.01</span>, size <span class="op">=</span> <span class="fl">0.5</span>,lty<span class="op">=</span><span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                             <span class="op">+</span> </span>
+<span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                             <span class="op">+</span> </span>
+<span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                            <span class="op">+</span></span>
+<span> <span class="va">graphics_theme_1</span></span></code></pre></div>
+<div class="inline-figure"><img src="images/ch7_roc_im.png" width="100%"></div>
+<p>We can see that the curve is pushed out in the middle. A the curve begins to flatten, your campaign is less efficient.</p>
+</div>
+</div>
+<div id="key-concepts-and-chapter-summary-6" class="section level2" number="7.4">
+<h2>
+<span class="header-section-number">7.4</span> Key concepts and chapter summary<a class="anchor" aria-label="anchor" href="#key-concepts-and-chapter-summary-6"><i class="fas fa-link"></i></a>
+</h2>
+<p>Systematically interacting with your potential customers is a core component of direct marketing. We covered a few major concepts:</p>
+<ul>
+<li>RFM scores</li>
+<li>Lead scoring with a random forest</li>
+<li>Cross Validation</li>
+<li>Model optimization</li>
+<li>Model comparisons</li>
+<li>Evaluating your model for efficacy</li>
+<li>How to use these models in practice</li>
+</ul>
+<p>These subjects cover specific techniques for lead scoring, but also cover model construction in some depth.</p>
+<ul>
+<li>Recency, Frequency, and Monetary Value scores are relatively simple to construct and have been referred to as “poor man’s analytics.” They are easy to interpret and simple to use.</li>
+<li>A random forest is a great tool when your data is short-and-wide. The results are easy to interpret and tend to work as well as a logistic regression. This is bread-and-butter machine learning.</li>
+<li>Cross validating results is an important part of the analytics process that is sometimes overlooked when building a model.</li>
+<li>Models can be optimized in different ways depending on the model. This includes regression models and machine learning models.</li>
+<li>There are readily-available tools that you can use to compare models against each other. It is always best to try a couple of different things.</li>
+<li>Leveraging lead-scores is simple and makes your salespeople more effective.</li>
+</ul>
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="chapter6.html"><span class="header-section-number">6</span> Forcasting Sales and Setting Prices</a></div>
+<div class="next"><a href="chapter8.html"><span class="header-section-number">8</span> Marketing promotions</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#chapter7"><span class="header-section-number">7</span> Lead Scoring</a></li>
+<li><a class="nav-link" href="#recency-frequency-and-monetary-value"><span class="header-section-number">7.1</span> Recency, frequency, and monetary value</a></li>
+<li>
+<a class="nav-link" href="#scoring-season-ticket-holders-on-their-liklihood-to-renew"><span class="header-section-number">7.2</span> Scoring season ticket holders on their liklihood to renew</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#implementing-a-lead-scoring-project"><span class="header-section-number">7.2.1</span> Implementing a lead scoring project</a></li>
+<li><a class="nav-link" href="#measuring-performance"><span class="header-section-number">7.2.2</span> Measuring performance</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#using-this-data"><span class="header-section-number">7.3</span> Using this data</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#building-cumulative-gains-charts"><span class="header-section-number">7.3.1</span> Building cumulative gains charts</a></li></ul>
+</li>
+<li><a class="nav-link" href="#key-concepts-and-chapter-summary-6"><span class="header-section-number">7.4</span> Key concepts and chapter summary</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/Justin-Watkins/FOSBAAS_web.git/blob/master/07-LeadScoring.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/Justin-Watkins/FOSBAAS_web.git/edit/master/07-LeadScoring.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-17.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

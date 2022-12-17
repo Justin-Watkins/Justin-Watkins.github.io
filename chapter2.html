@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 2 Constructing our data sets | Fundamentals of Sports Business Analytics and Strategy</title>
+<meta name="author" content="Justin Watkins">
+<meta name="description" content="This is the most important chapter in this book. Not because it is informative, but because it gives us the raw material from which we will divine our insights. Data is the fuel for analytics...">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta property="og:title" content="Chapter 2 Constructing our data sets | Fundamentals of Sports Business Analytics and Strategy">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/images/book_cover.png">
+<meta property="og:description" content="This is the most important chapter in this book. Not because it is informative, but because it gives us the raw material from which we will divine our insights. Data is the fuel for analytics...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 2 Constructing our data sets | Fundamentals of Sports Business Analytics and Strategy">
+<meta name="twitter:description" content="This is the most important chapter in this book. Not because it is informative, but because it gives us the raw material from which we will divine our insights. Data is the fuel for analytics...">
+<meta name="twitter:image" content="/images/book_cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Prompt-0.4.4/font.css" rel="stylesheet">
+<link href="libs/JetBrains_Mono-0.4.4/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.4.1/transition.js"></script><script src="libs/bs3compat-0.4.1/tabs.js"></script><script src="libs/bs3compat-0.4.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentals of Sports Business Analytics and Strategy</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Abstract and forward</a></li>
+<li><a class="" href="chapter1.html"><span class="header-section-number">1</span> Analytics and sports business strategy</a></li>
+<li><a class="active" href="chapter2.html"><span class="header-section-number">2</span> Constructing our data sets</a></li>
+<li><a class="" href="chapter3.html"><span class="header-section-number">3</span> Exploring your data</a></li>
+<li><a class="" href="chapter4.html"><span class="header-section-number">4</span> Structuring analytics projects</a></li>
+<li><a class="" href="chapter5.html"><span class="header-section-number">5</span> Segmentation</a></li>
+<li><a class="" href="chapter6.html"><span class="header-section-number">6</span> Forcasting Sales and Setting Prices</a></li>
+<li><a class="" href="chapter7.html"><span class="header-section-number">7</span> Lead Scoring</a></li>
+<li><a class="" href="chapter8.html"><span class="header-section-number">8</span> Marketing promotions</a></li>
+<li><a class="" href="chapter9.html"><span class="header-section-number">9</span> Consumer Research</a></li>
+<li><a class="" href="chapter10.html"><span class="header-section-number">10</span> Operations and Analytics</a></li>
+<li><a class="" href="Chapter11.html"><span class="header-section-number">11</span> Epilogue</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/Justin-Watkins/FOSBAAS_web.git">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="chapter2" class="section level1" number="2">
+<h1>
+<span class="header-section-number">2</span> Constructing our data sets<a class="anchor" aria-label="anchor" href="#chapter2"><i class="fas fa-link"></i></a>
+</h1>
+<p>This is the most important chapter in this book. Not because it is informative, but because it gives us the raw material from which we will divine our insights. Data is the fuel for analytics work, and your business strategy should be derived from some objective justifications arrived at through systematic evaluation. I also considered not including it, but it gives me an opportunity to familiarize you with data that you might encounter. It also lets me give some introduction to the R language which we use throughout the book. As I have said, this book is about <em>How</em> and <em>Why</em>. Understanding the how is important despite what I said about the <em>why</em>. We’ll cover the basics of exploring and analyzing a data set in the next chapter. For now, we’ll just cover some of what the data means, how to interpret sports data, and demonstrate some of the code that created it.</p>
+<p>Additionally, I want to talk about coding for just a moment. People are afraid of it. You shouldn’t be. You learn by doing. You can’t read a book on coding to learn it, you just have to dive in. Every piece of code in this book is available, should run on your machine, and can be hacked and adapted to similar problems. We will be using R and R Studio <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.rstudio.com/" class="uri"&gt;https://www.rstudio.com/&lt;/a&gt;&lt;/p&gt;'><sup>14</sup></a> as our primary analysis tool. R is a great choice for analyzing sports data. While I find R a bit idiosyncratic, you don’t have to dream in C++ to use it. If you like to script a little bit, but don’t want to be a full-on developer, R is your ticket. Additionally, R Studio is a great IDE for analysis. It has a ton of useful features that will make your life much easier. I highly recommend it.</p>
+<p>In this chapter we’ll cover a few subjects:</p>
+<ul>
+<li>Understanding common data sets in the context of professional sports</li>
+<li>Constructing some sample data sets to mimic these data sets</li>
+<li>Building an R package to reference these data sets throughout the rest of the book</li>
+</ul>
+<p>The particulars of ticketing datasets vary and a small number of companies dominate the sports industry. TicketMaster is common in pro sports. Paciolin is another player in this arena, but they are more common in college sports and other venues. Ultimately, the system won’t matter. You’ll have to transform the data into a format that will be useful for an analytics process.</p>
+<p>For our purposes, we’ll invent a professional baseball team, the Nashville Game Hens. The Game Hens were an expansion team in 2017 and play a typical baseball schedule of 162 games.</p>
+<div id="some-basic-notes-on-the-r-language" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> Some basic notes on the R language<a class="anchor" aria-label="anchor" href="#some-basic-notes-on-the-r-language"><i class="fas fa-link"></i></a>
+</h2>
+<p>This chapter will introduce you to some R code if you aren’t familiar with it. Ultimately, it doesn’t matter what tool you use. Python, Julia, R, Stata, SAS, and Matlab all provide some similar functionality. However, being confronted with code can be a little overwhelming at first. We are leveraging code, particularly R for a few reasons.</p>
+<ol style="list-style-type: decimal">
+<li>If your analysis is done in code each step is readily reproducible and documented</li>
+<li>R is free, easy to use, has a large user base, and has a great IDE</li>
+</ol>
+<p>I have found that it is best to get good at one tool and to stick with it. However, I say this with a note of caution. Let’s consider a quote from a horrifying poem called “The Second Coming.”</p>
+<blockquote>
+<p>“Things fall apart; the center cannot hold”</p>
+<p>Willaim Butler Yeats, “The Second Coming”</p>
+</blockquote>
+<p>Technologies are doomed to obsolescence. While many legacy technologies have endured for decades (Fortran, Cobal, R, Python, C, C++), they have all evolved. Additionally, many technologies have been eclipsed by better tools. Don’t be so rigid that you devote your personal brand to a particular technology. You might find yourself on the scrap-pile with it… “Things fall apart.” Indeed.</p>
+<p>We leveraged R for this book. It is relatively simplistic on the outside relative to many other languages. It has a more limited number of data structures, doesn’t use scalars, and tends to avoid standard flow-control. It is a little idiosyncratic. If you have some programming experience with another language you might find yourself having a little difficulty with it. If you are new to programming, it is going to look weird. This book isn’t on programming. We are simply writing scripts that piggyback off of programmers that have done a fabulous job of creating a free tool that currently rivals any others in the analytics space <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Python is the currently the closest rival and is a great tool. Julia still hasn’t caught on, but has some compelling features&lt;/p&gt;"><sup>15</sup></a>.</p>
+<p>Additionally, I recommend using code instead of a point-and-click tool. Code demonstrates exactly what you have done and is easy to communicate to anyone with a knowledge of the language. It will make your life easier even if it makes it more difficult in the beginning. The best thing about R is that there has been a huge user base over the years and there are many resources that you can leverage to learn what it can do. Ultimately, the decision on what tool to use needs to be driven by what you want to get out it. Are you prototyping or do you need to operationalize your code? Are you dealing with huge datasets? Do you want something built for speed or comfort? I am not going to cover anything about the language in this book. There are just too many resources available that will do a better job than me. Here are my basic recommendations if you would like to use R:</p>
+<ol style="list-style-type: decimal">
+<li>Get and IDE that you like. RStudio is currently the best choice for R for a number of reasons.</li>
+<li>Download R <span class="citation">(<a href="references.html#ref-R-base" role="doc-biblioref">R Core Team 2021</a>)</span>. It works on all major platforms and use your favorite search engine to find some free classes on how to use it. There are hundreds of how-tos available online. You can also purchase any number of books that will teach you how the language works. My favorite is “Advanced R” <span class="citation">(<a href="references.html#ref-Wickham2014" role="doc-biblioref">Wickham 2014</a>)</span> and I highly recommend it as a must-have reference book.</li>
+<li>Practice it! It doesn’t take long to get over-the-hump in terms of getting some functional fluency. I consider it similar to playing an instrument. “Flight of the bumblebee” <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Flight of the Bumblebee by Rimsky-Korsakov, 1900. If you aren’t familiar with this song, look it up&lt;/p&gt;"><sup>16</sup></a> doesn’t need to be the first song that you learn on piano. Start simple and build on your knowledge. You will eventually develop an intuitive understanding of what your tool can do.</li>
+</ol>
+<p>It is also important to consider that R does have some drawbacks.</p>
+<ol style="list-style-type: decimal">
+<li>A language won’t tell you what you should do. It only provides methods to execute functions. You still need to understand how to approach and solve your problem. R won’t help you there.</li>
+<li>R is slow. This has to do with how it was constructed <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;R was constructed by Mathematicians and not computer scientists. It was created to be easy, not fast.&lt;/p&gt;"><sup>17</sup></a>. However, there are ways to speed it up significantly. Rcpp <span class="citation">(<a href="references.html#ref-R-Rcpp" role="doc-biblioref">Eddelbuettel et al. 2022</a>)</span> is an almost seamless api to C++ that will allow you to build and leverage C++ functions in your R environment. It is a highly leveraged and important tool in R world.</li>
+<li>R isn’t the best choice for operationalizing something that you have built. Many people prototype with R and then leverage another tool to put the work to use.</li>
+<li>It’s user base may decline in favor of other tools. Python has become more popular in recent years. Languages tend to benefit from network effects where the more users that it has, the more features that are built for it. User-base size is very important.</li>
+</ol>
+<p>Some of the following sections will demonstrate how the datasets for this book were created. I think that this is important to do for a couple of different reasons.</p>
+<ol style="list-style-type: decimal">
+<li>You may not be familiar with R. The code sections will get you familiar with how it looks.</li>
+<li>If you don’t work with data in sports, the data is going to be foreign to you. This is an opportunity to explain the data sets.</li>
+</ol>
+<p>One other comment I want to make is on coding in-general. It is easier to write code than to read somebody elses code. To that end, I like comments. While in many cases the code can act as the documentation, I like to add explicit descriptors. I don’t make them detailed. I just give you enough to know what the code block is doing. I’ll follow this practice throughout the book.</p>
+<p>These data sets and the code used to create them are available in the R package <em>FOSBAAS</em> and are publicly available, so there is no reason to type any of the following sections, but suit yourself. You can download a file with all of the code in this book here: <a href="https://github.com/Justin-Watkins/FOSBAAS/blob/master/FOSBAAS_code.R" class="uri">https://github.com/Justin-Watkins/FOSBAAS/blob/master/FOSBAAS_code.R</a>.</p>
+<p>Additionally, this book will make use of a lot of libraries. you can run the following code to make sure that they are installed:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Install libraries</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">libraries</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'ggplot2'</span>, <span class="st">'dplyr'</span>,<span class="st">'Hmisc'</span>,<span class="st">'tidyverse'</span>,<span class="st">'scales'</span>,<span class="st">'stargazer'</span>,</span>
+<span>    <span class="st">'xtable'</span>,<span class="st">'psych'</span>,<span class="st">'Hmisc'</span>,<span class="st">'RColorBrewer'</span>,<span class="st">'knitr'</span>,</span>
+<span>    <span class="st">'shiny'</span>, <span class="st">'Rcpp'</span>,<span class="st">'rpart'</span>,<span class="st">'rpart.plot'</span>,<span class="st">'devtools'</span>,<span class="st">'roxygen2'</span>,</span>
+<span>    <span class="st">'reticulate'</span>,<span class="st">'caret'</span>,<span class="st">'nnet'</span>,<span class="st">'viridis'</span>,<span class="st">'mlr'</span>,<span class="st">'tidymodels'</span>,</span>
+<span>    <span class="st">'data.table'</span>,<span class="st">'car'</span>,<span class="st">'pROC'</span>,<span class="st">'mice'</span>,<span class="st">'lubridate'</span>,<span class="st">'nFactors'</span>,</span>
+<span>    <span class="st">'GPArotation'</span>,<span class="st">'mlr3'</span>,<span class="st">'shiny'</span>,<span class="st">'reshape2'</span>,<span class="st">'data.table'</span>,<span class="st">'ranger'</span>,</span>
+<span>    <span class="st">'rsample'</span>,<span class="st">'pwr'</span>,<span class="st">'AlgDesign'</span>,<span class="st">'anacor'</span>,<span class="st">'mgcv'</span>,<span class="st">'forcats'</span>,<span class="st">'pscl'</span>,</span>
+<span>    <span class="st">'plyr'</span>,<span class="st">'tibble'</span>,<span class="st">'scales'</span>,<span class="st">'poLCA'</span>,<span class="st">'pricesensitivitymeter'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">libraries</span>, </span>
+<span>                         <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
+<p>Keep in mind that certain functions will deprecate over time. Additionally, you can end up with problems if certain functions have the same names as functions in other packages. Although there are ways to make sure that you are using the same library version that I used, we are going to ignore them for now. I expect them to slowly fail. Furthermore, these packages will download a long list of dependencies. Installing all of these libraries at once may take a minute. Just a warning.</p>
+</div>
+<div id="renewaldata" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> Simulating customer renewal data<a class="anchor" aria-label="anchor" href="#renewaldata"><i class="fas fa-link"></i></a>
+</h2>
+<p>The first data set that we will create will be related to building a model to estimate the likelihood that a season ticket holder will renew season tickets. This data is difficult to create because we need to build certain patterns into the data that build on each other. The goal of this section is to build build a function that will produce a data set on command. However, due to the fact that it builds on itself, it is difficult to generalize the function.</p>
+<p>When we build a function, we will denote it with a prefix <em>f-underscore</em> and each word will be separated with an underscore. Columns in data sets will follow camel case (camelCase) where the first letter of each word is capitalized and there are no spaces between the words. You don’t have to do it like this, but I have found that it works for me. Whatever you do, choose one way of doing this. You’ll be glad that you did.</p>
+<p>We will begin by creating the function <em>FOSBAAS::f_create_lead_scoring_data</em>. A best practice is to name a function in a way that tells you exactly what it does. If you aren’t familiar with building functions, they are easy to understand. a simple <em>function</em> that outputs a y in terms of x is a linear function where m = slope and b = the y intercept:</p>
+<p><span class="math display">\[\begin{equation}
+\ {y} = {m}{x} + {b}
+\end{equation}\]</span></p>
+<p>You can think of the functions that we will write to build our data sets in the same way. We will input a variable (or multiple variables) and the function will process the variables and output a value. An R function to output a y value for x based on a linear equation would look like this what we find here.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Linear equation function</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">f_linear_equation</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>,<span class="va">slope</span>,<span class="va">yIntercept</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">slope</span><span class="op">*</span><span class="va">x</span> <span class="op">+</span> <span class="va">yIntercept</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>You will input values for x, the slope, and the y-intercept, and the function will return a value for y. This is a very simplistic example, but it demonstrates functions well. Let’s try it.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Linear equation function inputs</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu">f_linear_equation</span><span class="op">(</span> x          <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>                   slope      <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>                   yIntercept <span class="op">=</span> <span class="fl">7</span><span class="op">)</span> </span>
+<span><span class="co">#&gt; [1] 27</span></span></code></pre></div>
+<p>Now we have a simple function that we can use to get the y value where x = 2, the slope of the line is 10, and the y intercept is 7. Input, process, output.</p>
+<p>The following sections will demonstrate the functions used to build some of the data sets that you will find in this book. We won’t go into full detail with every data set. Full documentation on them can be found in the help section of the FOSBAAS package. Additionally, we did something a little strange on this first function, we feed it other helper functions. One of the helper functions requires the use of a function as well. We won’t do this on the other data sets, but it is an important feature of R to understand. Everything you <em>do</em> in R can be based on a function, and you can use them in a similar way to <em>methods</em> in other languages.</p>
+<p>We have already built these functions. The first one simply creates data for lead scoring. Lead scoring means that we are going to use the data to predict which groups of people are more likely to purchase a ticket. We are not going to cover installing R or R studio. Use Google. It’s easy.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Create lead scoring data</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Justin-Watkins/FOSBAAS">FOSBAAS</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_create_lead_scoring_data.html">f_create_lead_scoring_data</a></span><span class="op">(</span><span class="fl">714</span>, </span>
+<span>                           <span class="fl">5000</span>,</span>
+<span>                           <span class="st">"2021"</span>,</span>
+<span>                           <span class="va">f_calculate_tenure</span>,</span>
+<span>                           <span class="va">f_calculate_spend</span>,</span>
+<span>                           <span class="va">f_calculate_ticket_use</span>,</span>
+<span>                           <span class="va">f_renewal_assignment</span>,</span>
+<span>                           <span class="va">f_assign_renewal</span>,</span>
+<span>                           renew <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<p>This function also accepts several arguments:</p>
+<ol style="list-style-type: decimal">
+<li>A seed variable that enables us to create reproducible data sets.</li>
+<li>the number of rows that we want.</li>
+<li>Five functions that create tenure, spend, and ticket usage</li>
+<li>Two functions that help assign renewal</li>
+<li>A renewal argument that will produce a column indicating if the account renewed.</li>
+</ol>
+<p>If you want to see the code that this function uses, you can use the following command:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># View your functions</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/edit.html">edit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/getAnywhere.html">getAnywhere</a></span><span class="op">(</span><span class="st">'f_create_lead_scoring_data'</span><span class="op">)</span>, </span>
+<span>     file <span class="op">=</span> <span class="st">'f_create_lead_scoring_data.r'</span><span class="op">)</span></span></code></pre></div>
+<p>Calling this function will produce a data set that looks something like this. If you use the same parameters, you will get exactly the same data.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:leadscorecreation2">Table 2.1: </span>customer renewal data</caption>
+<thead><tr class="header">
+<th align="left">variable</th>
+<th align="left">class</th>
+<th align="left">first_values</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">accountID</td>
+<td align="left">character</td>
+<td align="left">WD6TDY7C151R, X3SB8ADEML22</td>
+</tr>
+<tr class="even">
+<td align="left">corporate</td>
+<td align="left">character</td>
+<td align="left">i, c</td>
+</tr>
+<tr class="odd">
+<td align="left">season</td>
+<td align="left">double</td>
+<td align="left">2021, 2021</td>
+</tr>
+<tr class="even">
+<td align="left">planType</td>
+<td align="left">character</td>
+<td align="left">p, f</td>
+</tr>
+<tr class="odd">
+<td align="left">ticketUsage</td>
+<td align="left">double</td>
+<td align="left">0.728026975947432, 0.992104738159105</td>
+</tr>
+<tr class="even">
+<td align="left">tenure</td>
+<td align="left">double</td>
+<td align="left">2, 19</td>
+</tr>
+<tr class="odd">
+<td align="left">spend</td>
+<td align="left">double</td>
+<td align="left">4908, 16410</td>
+</tr>
+<tr class="even">
+<td align="left">tickets</td>
+<td align="left">double</td>
+<td align="left">6, 2</td>
+</tr>
+<tr class="odd">
+<td align="left">distance</td>
+<td align="left">double</td>
+<td align="left">61.6614648674555, 19.5341155295423</td>
+</tr>
+<tr class="even">
+<td align="left">renewed</td>
+<td align="left">character</td>
+<td align="left">nr, nr</td>
+</tr>
+</tbody>
+</table></div>
+<p>This data set includes several columns:</p>
+<ol style="list-style-type: decimal">
+<li>An account id representing a specific individual</li>
+<li>Is the account used by a company or an individual</li>
+<li>The season year</li>
+<li>The plan type (Partial season or Full season)</li>
+<li>Ticket usage percentage</li>
+<li>The number of years the account has been with us</li>
+<li>The amount spent on tickets in 2021</li>
+<li>Distance from the ballpark</li>
+<li>Did the account renew at the end of the season</li>
+</ol>
+<p>This process is a little involved (see figure <a href="chapter2.html#fig:datacreationprocess">2.1</a>). We’ll walk through it step by step.</p>
+<div class="figure">
+<span style="display:block;" id="fig:datacreationprocess"></span>
+<img src="images/ch2_data_creation_process.png" alt="Data creation process" width="100%"><p class="caption">
+Figure 2.1: Data creation process
+</p>
+</div>
+<div id="building-our-function" class="section level3" number="2.2.1">
+<h3>
+<span class="header-section-number">2.2.1</span> Building our function<a class="anchor" aria-label="anchor" href="#building-our-function"><i class="fas fa-link"></i></a>
+</h3>
+<p>The following code creates a dataframe with nine columns and then assigns a list of names to each column. Think of a dataframe as an excel workbook. R uses &lt;- for assignment, however you can use the equals sign. We then use the <em>sapply</em> function to create a sequence of random letters and numbers to represent account ids. The apply functions are incredibly important. You can type ‘?sapply’ into the console in R studio.</p>
+<p>As a quick aside, each of the following commands do the same thing. They calculate the output of a linear equation. <em>lapply</em> and <em>imap</em> are significantly faster in terms of how much time was clocked by the CPU (system). We have talked about this, but keep it in mind. R doesn’t do loops very well. Apply and map functions are also more concise, if less readable.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># fake data</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">x</span>        <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">1</span>,to<span class="op">=</span><span class="fl">1000000</span>,by<span class="op">=</span><span class="fl">1</span><span class="op">)</span>   <span class="co"># x values</span></span>
+<span><span class="va">m</span>        <span class="op">&lt;-</span> <span class="fl">2</span>                             <span class="co"># Slope</span></span>
+<span><span class="va">b</span>        <span class="op">&lt;-</span> <span class="fl">5</span>                             <span class="co"># Y Intercept</span></span>
+<span><span class="va">i</span>        <span class="op">&lt;-</span> <span class="fl">1</span>                             <span class="co"># Iterator</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># 1. While Loop</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">line_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span></span>
+<span><span class="kw">while</span><span class="op">(</span><span class="va">i</span> <span class="op">&lt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span> <span class="va">line_value</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">*</span><span class="va">m</span> <span class="op">+</span> <span class="va">b</span></span>
+<span> <span class="va">i</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span><span class="op">}</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt;    user  system elapsed </span></span>
+<span><span class="co">#&gt;    1.11    0.08    1.29</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># 2. lapply</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span></span>
+<span><span class="va">line_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="va">x</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">*</span><span class="va">m</span> <span class="op">+</span> <span class="va">b</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt;    user  system elapsed </span></span>
+<span><span class="co">#&gt;    0.92    0.00    0.92</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># 3. For Loop</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">line_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
+<span> <span class="va">line_value</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">*</span><span class="va">m</span> <span class="op">+</span> <span class="va">b</span></span>
+<span><span class="op">}</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt;    user  system elapsed </span></span>
+<span><span class="co">#&gt;    0.75    0.08    0.87</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># 4. purrr:imap</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html">system.time</a></span><span class="op">(</span></span>
+<span><span class="va">line_value</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/imap.html">imap</a></span><span class="op">(</span><span class="va">x</span>,<span class="op">~</span> <span class="va">.x</span><span class="op">*</span><span class="va">m</span> <span class="op">+</span> <span class="va">b</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt;    user  system elapsed </span></span>
+<span><span class="co">#&gt;    1.02    0.02    1.07</span></span></code></pre></div>
+<p>This looks weird. <em>sth_data[,1]</em> references the first column in the data frame data frame[row,column]. The first argument in sapply is giving the function a list of rows to traverse. The second argument uses something called an anonymous function, which is confusing. Look it up if you want a deeper understanding of it. It will begin to make sense as you play with it. <em>paste(sample(c(0:9, LETTERS), 12, replace=TRUE),collapse = ““))</em> simply creates a random twelve digit alphanumeric string. We follow this up with assigning a season to the season column.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="chapter2.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------------------------------------------------</span></span>
+<span id="cb13-2"><a href="chapter2.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Create a data frame to hold our data</span></span>
+<span id="cb13-3"><a href="chapter2.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------------------------------------------------</span></span>
+<span id="cb13-4"><a href="chapter2.html#cb13-4" aria-hidden="true" tabindex="-1"></a>  sth_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">matrix</span>(<span class="at">nrow=</span>num_purchasers,<span class="at">ncol=</span><span class="dv">9</span>))</span>
+<span id="cb13-5"><a href="chapter2.html#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(sth_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"accountID"</span>,<span class="st">"corporate"</span>,<span class="st">"season"</span>, </span>
+<span id="cb13-6"><a href="chapter2.html#cb13-6" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"planType"</span>,<span class="st">"ticketUsage"</span>,<span class="st">"tenure"</span>,</span>
+<span id="cb13-7"><a href="chapter2.html#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Build ids and append to customer data frame</span></span>
+<span id="cb13-8"><a href="chapter2.html#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(seed)</span>
+<span id="cb13-9"><a href="chapter2.html#cb13-9" aria-hidden="true" tabindex="-1"></a>  sth_data[,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">seq</span>(<span class="fu">nrow</span>(sth_data)), <span class="cf">function</span>(x)</span>
+<span id="cb13-10"><a href="chapter2.html#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>, LETTERS), <span class="dv">12</span>, <span class="at">replace=</span><span class="cn">TRUE</span>),</span>
+<span id="cb13-11"><a href="chapter2.html#cb13-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">collapse =</span> <span class="st">""</span>))</span>
+<span id="cb13-12"><a href="chapter2.html#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Assign a season year to the data </span></span>
+<span id="cb13-13"><a href="chapter2.html#cb13-13" aria-hidden="true" tabindex="-1"></a>  sth_data<span class="sc">$</span>season <span class="ot">&lt;-</span> season</span></code></pre></div>
+<p>Many season ticket accounts are owned by corporations. We’ll build a list called <em>corporate</em> and sample it in order to assign a “c” for corporate or “i” for individual to each account. We use the <em>set.seed()</em> function for reproducibility. We’ll use the sample function to sample a <em>c</em> or an <em>i</em> from the list at the rate of 20% corporations and 80% individuals.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># 4. Assign corporate or individual to each account</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="va">seed</span><span class="op">)</span></span>
+<span>  <span class="va">corporate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="st">"i"</span><span class="op">)</span></span>
+<span>  <span class="va">sth_data</span><span class="op">$</span><span class="va">corporate</span> <span class="op">&lt;-</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">)</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">corporate</span>, <span class="fl">1</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>             prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.20</span>, <span class="fl">.80</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Season ticket holders can purchase full or partial plans. The proportions change based on if they are a corporate or individual account. These statements could have been generalized and turned into a function. However, we only had to copy-and-paste once, so we left it alone. Always look for opportunities to generalize functions. This function operates exactly the same was as the previous one.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># 5. Assign a plan type to each account</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Corporations</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="va">seed</span><span class="op">)</span></span>
+<span>  <span class="va">planType</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"f"</span>,<span class="st">"p"</span><span class="op">)</span></span>
+<span>  <span class="va">sth_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"c"</span><span class="op">)</span>,<span class="op">]</span><span class="op">$</span><span class="va">planType</span> <span class="op">&lt;-</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"c"</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>           <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">planType</span>, <span class="fl">1</span>, </span>
+<span>                              replace <span class="op">=</span> <span class="cn">TRUE</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.95</span>, <span class="fl">.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Individuals</span></span>
+<span>  <span class="va">planType</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"f"</span>,<span class="st">"p"</span><span class="op">)</span></span>
+<span>  <span class="va">sth_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span><span class="op">)</span>,<span class="op">]</span><span class="op">$</span><span class="va">planType</span> <span class="op">&lt;-</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>           <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">planType</span>, <span class="fl">1</span>, </span>
+<span>                              replace <span class="op">=</span> <span class="cn">TRUE</span>, prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.60</span>, <span class="fl">.40</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>To calculate the distance from the stadium we’ll leverage the <em>rexp()</em> function to give us an exponentially distributed list of numbers that we can modify and sample for each account. This density pattern is common in many urban areas where population density is much higher in specific areas. We’ll show you how to visualize this pattern in a subsequent chapter. The outcome here is that individuals will tend to live further away than corporations.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># 6. Calculate the distance from the stadium</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="va">seed</span><span class="op">)</span></span>
+<span>  <span class="va">distances_corp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span><span class="op">(</span><span class="va">num_purchasers</span><span class="op">)</span> <span class="op">*</span> <span class="fl">12</span></span>
+<span>  <span class="va">distances_indv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span><span class="op">(</span><span class="va">num_purchasers</span><span class="op">)</span> <span class="op">*</span> <span class="fl">30</span></span>
+<span><span class="co"># Corporate</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="va">seed</span><span class="op">)</span></span>
+<span>  <span class="va">sth_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"c"</span><span class="op">)</span>,<span class="op">]</span><span class="op">$</span><span class="va">distance</span> <span class="op">&lt;-</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"c"</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>           <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">distances_corp</span>, <span class="fl">1</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Individuals</span></span>
+<span>  <span class="va">sth_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span><span class="op">)</span>,<span class="op">]</span><span class="op">$</span><span class="va">distance</span> <span class="op">&lt;-</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>           <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">distances_indv</span>, <span class="fl">1</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Next, we’ll build a list of numbers that will refer to the number of season tickets purchased by each account. We’ll then assign a number of tickets based on the distributions denoted in the <em>prob</em> argument of the <em>sample()</em> function. Basically, we want corporations to purchase more tickets.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># 7. Determine the number of tickets each account has purchased</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span>  <span class="va">tickets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">8</span>,<span class="fl">6</span>,<span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="va">seed</span><span class="op">)</span></span>
+<span><span class="co"># Corporations</span></span>
+<span>  <span class="va">sth_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"c"</span><span class="op">)</span>,<span class="op">]</span><span class="op">$</span><span class="va">tickets</span> <span class="op">&lt;-</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"c"</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>           <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">tickets</span>, <span class="fl">1</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>             prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.02</span>,<span class="fl">.08</span>,<span class="fl">.10</span>,<span class="fl">.05</span>,<span class="fl">.50</span>,<span class="fl">.05</span>,<span class="fl">.20</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Individuals</span></span>
+<span>  <span class="va">sth_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span><span class="op">)</span>,<span class="op">]</span><span class="op">$</span><span class="va">tickets</span> <span class="op">&lt;-</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>           <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">tickets</span>, <span class="fl">1</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>             prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">.10</span>,<span class="fl">.05</span>,<span class="fl">.40</span>,<span class="fl">.05</span>,<span class="fl">.30</span>,<span class="fl">.10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
+<p>For tenure, if we set the <em>renew</em> argument = TRUE, we leverage our <em>f_tenure</em> function to assign the number of years based on a list of arguments that we have created within our main function. Flow control with conditions is really important to understand. A simple way to explain them is like this: “If(some condition == TRUE), then do something. If(condition == FALSE), then do something else”. In R, == is used to compare things. = is used for assignment.</p>
+<p>In this function we use <em>mapply</em>. It works like <em>sapply</em>, but it accepts multiple arguments. We also used a <em>with</em> statement. With just means you have to type less. It tells R that everything within it belongs to one piece of data.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># 8a. Assign years the account holder has had tickets</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">renew</span> <span class="op">==</span> <span class="cn">T</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">avgDist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">distance</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="va">seed</span><span class="op">)</span></span>
+<span>  <span class="va">tenures</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">sth_data</span>,<span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span><span class="op">(</span><span class="va">f_calculate_tenure</span>,</span>
+<span>                                  <span class="va">corporate</span>,</span>
+<span>                                  <span class="va">planType</span>,</span>
+<span>                                  <span class="va">distance</span>,</span>
+<span>                                  <span class="va">avgDist</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">sth_data</span><span class="op">$</span><span class="va">tenure</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">tenures</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="kw">else</span><span class="op">{</span><span class="va">sth_data</span><span class="op">$</span><span class="va">tenure</span> <span class="op">=</span> <span class="fl">0</span><span class="op">}</span></span></code></pre></div>
+<p>The <em>f_calculate_tenure()</em> function accepts four arguments. These arguments are constructed from the code chunks that we have been running. This function is simply a long if-else statement. We did it like this because we have specific patterns we would like to construct within the tenure column.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#----------------------------------------------------------------- </span></span>
+<span><span class="co"># 9b. Function to calculate tenure</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">f_calculate_tenure</span><span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">corporate</span>,<span class="va">planType</span>,<span class="va">distance</span>,<span class="va">avgDist</span><span class="op">)</span><span class="op">{</span></span>
+<span><span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"c"</span> <span class="op">&amp;</span> <span class="va">planType</span> <span class="op">==</span> <span class="st">"f"</span> <span class="op">&amp;</span> <span class="va">distance</span> <span class="op">&lt;=</span> <span class="va">avgDist</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">ten</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">14</span>,sd <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span> <span class="op">&amp;</span> <span class="va">planType</span> <span class="op">==</span> <span class="st">"f"</span> <span class="op">&amp;</span> <span class="va">distance</span> <span class="op">&lt;=</span> <span class="va">avgDist</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">ten</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">10</span>,sd <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"c"</span> <span class="op">&amp;</span> <span class="va">planType</span> <span class="op">==</span> <span class="st">"p"</span> <span class="op">&amp;</span> <span class="va">distance</span> <span class="op">&lt;=</span> <span class="va">avgDist</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">ten</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">3</span>,sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span> <span class="op">&amp;</span> <span class="va">planType</span> <span class="op">==</span> <span class="st">"p"</span> <span class="op">&amp;</span> <span class="va">distance</span> <span class="op">&lt;=</span> <span class="va">avgDist</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">ten</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">3</span>,sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"c"</span> <span class="op">&amp;</span> <span class="va">planType</span> <span class="op">==</span> <span class="st">"f"</span> <span class="op">&amp;</span> <span class="va">distance</span> <span class="op">&gt;=</span> <span class="va">avgDist</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">ten</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">9</span>,sd <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span> <span class="op">&amp;</span> <span class="va">planType</span> <span class="op">==</span> <span class="st">"f"</span> <span class="op">&amp;</span> <span class="va">distance</span> <span class="op">&gt;=</span> <span class="va">avgDist</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">ten</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">7</span>,sd <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span>  </span>
+<span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"c"</span> <span class="op">&amp;</span> <span class="va">planType</span> <span class="op">==</span> <span class="st">"p"</span> <span class="op">&amp;</span> <span class="va">distance</span> <span class="op">&gt;=</span> <span class="va">avgDist</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">ten</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">2</span>,sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span> <span class="op">&amp;</span> <span class="va">planType</span> <span class="op">==</span> <span class="st">"p"</span> <span class="op">&amp;</span> <span class="va">distance</span> <span class="op">&gt;=</span> <span class="va">avgDist</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">ten</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">2</span>,sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="kw">else</span><span class="op">{</span><span class="va">ten</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">8</span>,sd <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">ten</span><span class="op">)</span> </span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>We based season ticket holder spend on tenure, plan-type, and the account type.</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#----------------------------------------------------------------- </span></span>
+<span><span class="co"># 9a. SPEND</span></span>
+<span><span class="co">#-----------------------------------------------------------------  </span></span>
+<span>  <span class="va">avgTenure</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">tenure</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="va">seed</span><span class="op">)</span></span>
+<span>  <span class="va">spend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">sth_data</span>,<span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span><span class="op">(</span><span class="va">f_calculate_spend</span>,</span>
+<span>                                <span class="va">corporate</span>,</span>
+<span>                                <span class="va">planType</span>,</span>
+<span>                                <span class="va">tenure</span>,</span>
+<span>                                <span class="va">avgTenure</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">sth_data</span><span class="op">$</span><span class="va">spend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">spend</span><span class="op">)</span> <span class="op">*</span> <span class="va">sth_data</span><span class="op">$</span><span class="va">tickets</span></span></code></pre></div>
+<p>The function <em>f_calculate_spend</em> uses the <em>rnorm()</em> function. This function accepts a mean and standard deviation argument that allows us to sample a number on a specific normal distribution. Once again, we could have generalized this function a little more, but since it’s just a helper function with one purpose we hardcoded our numbers into it.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># 9b. Function to calculate spend</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">f_calculate_spend</span><span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">corporate</span>,<span class="va">planType</span>,<span class="va">tenure</span>,<span class="va">avgTenure</span><span class="op">)</span><span class="op">{</span></span>
+<span><span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"c"</span> <span class="op">&amp;</span> <span class="va">planType</span> <span class="op">==</span> <span class="st">"f"</span> <span class="op">&amp;</span> <span class="va">tenure</span> <span class="op">&gt;=</span> <span class="va">avgTenure</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">spend</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">7500</span>,sd <span class="op">=</span> <span class="fl">800</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span> <span class="op">&amp;</span> <span class="va">planType</span> <span class="op">==</span> <span class="st">"f"</span> <span class="op">&amp;</span> <span class="va">tenure</span> <span class="op">&gt;=</span> <span class="va">avgTenure</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">spend</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">2100</span>,sd <span class="op">=</span> <span class="fl">500</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"c"</span> <span class="op">&amp;</span> <span class="va">planType</span> <span class="op">==</span> <span class="st">"p"</span> <span class="op">&amp;</span> <span class="va">tenure</span> <span class="op">&gt;=</span> <span class="va">avgTenure</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">spend</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">2000</span>,sd <span class="op">=</span> <span class="fl">300</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span> <span class="op">&amp;</span> <span class="va">planType</span> <span class="op">==</span> <span class="st">"p"</span> <span class="op">&amp;</span> <span class="va">tenure</span> <span class="op">&gt;=</span> <span class="va">avgTenure</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">spend</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">1200</span>,sd <span class="op">=</span> <span class="fl">200</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"c"</span> <span class="op">&amp;</span> <span class="va">planType</span> <span class="op">==</span> <span class="st">"f"</span> <span class="op">&amp;</span> <span class="va">tenure</span> <span class="op">&lt;=</span> <span class="va">avgTenure</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">spend</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">5000</span>,sd <span class="op">=</span> <span class="fl">500</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span> <span class="op">&amp;</span> <span class="va">planType</span> <span class="op">==</span> <span class="st">"f"</span> <span class="op">&amp;</span> <span class="va">tenure</span> <span class="op">&lt;=</span> <span class="va">avgTenure</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">spend</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">2000</span>,sd <span class="op">=</span> <span class="fl">300</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span>  </span>
+<span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"c"</span> <span class="op">&amp;</span> <span class="va">planType</span> <span class="op">==</span> <span class="st">"p"</span> <span class="op">&amp;</span> <span class="va">tenure</span> <span class="op">&lt;=</span> <span class="va">avgTenure</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">spend</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">2000</span>,sd <span class="op">=</span> <span class="fl">400</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span> <span class="op">&amp;</span> <span class="va">planType</span> <span class="op">==</span> <span class="st">"p"</span> <span class="op">&amp;</span> <span class="va">tenure</span> <span class="op">&lt;=</span> <span class="va">avgTenure</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">spend</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">800</span>,sd <span class="op">=</span> <span class="fl">75</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="kw">else</span><span class="op">{</span><span class="va">spend</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">2500</span>,sd <span class="op">=</span> <span class="fl">300</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">spend</span><span class="op">)</span> </span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>Ticket usage represents the percentage of tickets used:</p>
+<p><span class="math display">\[\begin{equation}
+\ {ticketUsage} =  {totalTicketsUsed} / {totalTickets}
+\end{equation}\]</span></p>
+<p>Similarly to the previous examples, we are building ticket usage in a particular way.</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># 10a. Calculate the percentage of tickets used</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span>  <span class="va">avgDist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">distance</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="va">seed</span><span class="op">)</span></span>
+<span>  <span class="va">ticket_use</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">sth_data</span>,<span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span><span class="op">(</span><span class="va">f_calculate_ticket_use</span>,</span>
+<span>                                     <span class="va">corporate</span>,</span>
+<span>                                     <span class="va">distance</span>,</span>
+<span>                                     <span class="va">avgDist</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">sth_data</span><span class="op">$</span><span class="va">ticketUsage</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">ticket_use</span><span class="op">)</span></span></code></pre></div>
+<p>The function <em>f_calculate_ticket_use</em> uses the <em>runif()</em> function that produces a random number on a uniform distribution based on a minimum and maximum value. These numbers are also hardcoded so that we can produce specific patterns.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># 10b. Function to return ticket usage</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">f_calculate_ticket_use</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">corporate</span>,<span class="va">distance</span>,<span class="va">avgDist</span><span class="op">)</span><span class="op">{</span></span>
+<span><span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"c"</span> <span class="op">&amp;</span> <span class="va">distance</span> <span class="op">&lt;=</span> <span class="va">avgDist</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">tu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span>,min <span class="op">=</span> <span class="fl">.89</span>, max <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">}</span></span>
+<span>    <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span> <span class="op">&amp;</span> <span class="va">distance</span> <span class="op">&lt;=</span> <span class="va">avgDist</span><span class="op">)</span><span class="op">{</span></span>
+<span>      <span class="va">tu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span>,min <span class="op">=</span> <span class="fl">.82</span>, max <span class="op">=</span> <span class="fl">.94</span><span class="op">)</span><span class="op">}</span></span>
+<span>        <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"c"</span> <span class="op">&amp;</span> <span class="va">distance</span> <span class="op">&gt;=</span> <span class="va">avgDist</span><span class="op">)</span><span class="op">{</span></span>
+<span>          <span class="va">tu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span>,min <span class="op">=</span> <span class="fl">.65</span>, max <span class="op">=</span> <span class="fl">.9</span><span class="op">)</span><span class="op">}</span></span>
+<span>            <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span> <span class="op">&amp;</span> <span class="va">distance</span> <span class="op">&gt;=</span> <span class="va">avgDist</span><span class="op">)</span><span class="op">{</span></span>
+<span>              <span class="va">tu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span>,min <span class="op">=</span> <span class="fl">.55</span>, max <span class="op">=</span> <span class="fl">.85</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="kw">else</span><span class="op">{</span><span class="va">tu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span>,min <span class="op">=</span> <span class="fl">.65</span>, max <span class="op">=</span> <span class="fl">.95</span><span class="op">)</span><span class="op">}</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">tu</span><span class="op">)</span> </span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>Finally, we check the <em>renew</em> argument and if (using an <em>if</em> statement) it is true, we determine if the account renewed its tickets based on the values in the data frame <em>sth_data</em>. If <em>renew</em> = <em>F</em>, we return our dataframe without a <em>renewed</em> field.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># 11a.Return proper data frame</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">renew</span> <span class="op">==</span> <span class="cn">T</span><span class="op">)</span><span class="op">{</span></span>
+<span>   <span class="va">sth_data_renew</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_renewal_assignment.html">f_renewal_assignment</a></span><span class="op">(</span><span class="va">seed</span>,<span class="va">sth_data</span>,</span>
+<span>                                           <span class="va">f_assign_renewal</span><span class="op">)</span></span>
+<span>   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">sth_data_renew</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="kw">else</span><span class="op">{</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">)</span><span class="op">}</span></span></code></pre></div>
+<p>The following statement uses two functions: <em>f_assign_renewal()</em> and <em>f_renewal_assignment()</em>, which is a little confusing. <em>f_assign_renewal()</em> is a helper function that assigns a renewal value based on a cluster assignment designated in <em>f_renewal_assignment()</em>.</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># 11b.Calculate renewal percentage</span></span>
+<span><span class="co">#----------------------------------------------------------------- </span></span>
+<span><span class="va">f_assign_renewal</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>,<span class="va">renew</span><span class="op">)</span><span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">10</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.99</span>,<span class="fl">.01</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span>  <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">9</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.98</span>,<span class="fl">.02</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span>   <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">8</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.95</span>,<span class="fl">.05</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span>    <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">7</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.95</span>,<span class="fl">.05</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span>     <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">6</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.92</span>,<span class="fl">.08</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span>      <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">5</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.90</span>,<span class="fl">.10</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span>       <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.85</span>,<span class="fl">.15</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span>        <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.80</span>,<span class="fl">.20</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span>         <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.30</span>,<span class="fl">.70</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span>          <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.25</span>,<span class="fl">.75</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span>   <span class="kw">else</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>,<span class="fl">.5</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p><em>f_renewal_assignment()</em> accepts <em>f_assign_renewal()</em> as an argument. It does a couple of things. First, it clusters <em>ticket_usage</em> and <em>distance</em> using the <em>kmeans()</em> function. We’ll cover some clustering exercises in chapter <a href="chapter4.html#chapter4">4</a>. The cluster assignments are added together and biased renewals are assigned based on how high or low the number is. Higher numbers are more likely to renew. we use a while loop instead of the <em>mapply()</em> function in this example. Vectorizing the loop with an <em>apply()</em> function is a better method when using <em>R</em>.</p>
+<p>This function is more complex than the others and has a dependency <em>dplyr</em>. We also call a list() which is the most used data structure in R. A list is simply an indexed array. Dataframes are collections of lists.</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># 11c.Calculate renewal percentage</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">f_renewal_assignment</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">seed</span>,<span class="va">sth_data</span>,<span class="va">f_assign_renewal</span><span class="op">)</span><span class="op">{</span></span>
+<span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">accountID</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">ids</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"accountID"</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="va">seed</span><span class="op">)</span></span>
+<span>  <span class="va">centers1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">ticketUsage</span>, centers <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">$</span><span class="va">centers</span></span>
+<span>  <span class="va">centers1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">centers1</span><span class="op">)</span></span>
+<span>  <span class="va">ids</span><span class="op">$</span><span class="va">clusterTU</span> <span class="op">&lt;-</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">ticketUsage</span>, centers <span class="op">=</span> <span class="va">centers1</span><span class="op">)</span><span class="op">$</span><span class="va">cluster</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="va">seed</span><span class="op">)</span></span>
+<span>  <span class="va">centers2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">distance</span>, centers <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">$</span><span class="va">centers</span></span>
+<span>  <span class="va">centers2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">centers2</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">ids</span><span class="op">$</span><span class="va">clusterDI</span> <span class="op">&lt;-</span> </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">distance</span>, centers <span class="op">=</span> <span class="va">centers2</span><span class="op">)</span><span class="op">$</span><span class="va">cluster</span></span>
+<span>  </span>
+<span>  <span class="va">ids</span><span class="op">$</span><span class="va">clustSum</span>   <span class="op">&lt;-</span> <span class="va">ids</span><span class="op">$</span><span class="va">clusterTU</span> <span class="op">+</span> <span class="va">ids</span><span class="op">$</span><span class="va">clusterDI</span></span>
+<span>  <span class="va">sth_data_renew</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">ids</span>,<span class="va">sth_data</span>, </span>
+<span>                                     by <span class="op">=</span> <span class="st">"accountID"</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span>  <span class="va">renew</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"r"</span>,<span class="st">"nr"</span><span class="op">)</span></span>
+<span>  <span class="va">a_renew</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="kw">while</span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sth_data_renew</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">clust</span> <span class="op">&lt;-</span> <span class="va">sth_data_renew</span><span class="op">[</span><span class="va">x</span>,<span class="fl">3</span><span class="op">]</span></span>
+<span>    <span class="va">a_renew</span><span class="op">[</span><span class="va">x</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_assign_renewal.html">f_assign_renewal</a></span><span class="op">(</span><span class="va">clust</span>,<span class="va">renew</span><span class="op">)</span></span>
+<span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span>  <span class="op">}</span></span>
+<span>  </span>
+<span>  <span class="va">sth_data_renew</span><span class="op">$</span><span class="va">renewed</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">a_renew</span><span class="op">)</span></span>
+<span>  <span class="va">sth_data_renew</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">sth_data_renew</span>,<span class="va">accountID</span>,</span>
+<span>                                  <span class="va">corporate</span>,<span class="va">season</span>,<span class="va">planType</span>,</span>
+<span>                                  <span class="va">ticketUsage</span>,<span class="va">tenure</span>,</span>
+<span>                                  <span class="va">spend</span>,<span class="va">tickets</span>,<span class="va">distance</span>,</span>
+<span>                                  <span class="va">renewed</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">sth_data_renew</span><span class="op">)</span></span>
+<span></span>
+<span><span class="op">}</span> <span class="co"># End</span></span></code></pre></div>
+<p>We just walked through everything in figure <a href="chapter2.html#fig:datacreationprocess">2.1</a>. This process would be much more succinct if the patterns that we are constructing weren’t based on specific features that we are creating. However, we were able to take a look at several programming features and some features endemic to R.</p>
+<ul>
+<li>Building your own functions</li>
+<li>The apply family of functions</li>
+<li>If statements</li>
+<li>While/for loops</li>
+<li>kmeans clustering</li>
+<li>rnorm and rexp functions for distributions</li>
+<li>runif for creating random numbers</li>
+<li>subsetting with dplyr</li>
+</ul>
+<p>We can now call the function with different input variables to produce a different result:</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Function to build a parabola</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Justin-Watkins/FOSBAAS">FOSBAAS</a></span><span class="op">)</span></span>
+<span><span class="va">new_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_create_lead_scoring_data.html">f_create_lead_scoring_data</a></span><span class="op">(</span><span class="fl">434</span>, </span>
+<span>                                       <span class="fl">100</span>,</span>
+<span>                                       <span class="st">"2023"</span>,</span>
+<span>                                       <span class="va">f_calculate_tenure</span>,</span>
+<span>                                       <span class="va">f_calculate_spend</span>,</span>
+<span>                                       <span class="va">f_calculate_ticket_use</span>,</span>
+<span>                                       <span class="va">f_renewal_assignment</span>,</span>
+<span>                                       <span class="va">f_assign_renewal</span>,</span>
+<span>                                       renew <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
+<p>Calling this function will produce a data set that looks something like this:</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:leadscorecreation4">Table 2.2: </span>customer renewal data</caption>
+<thead><tr class="header">
+<th align="left">variable</th>
+<th align="left">class</th>
+<th align="left">first_values</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">accountID</td>
+<td align="left">character</td>
+<td align="left">IQ7G9BPWYJSD, L3TA5OEHCAAF</td>
+</tr>
+<tr class="even">
+<td align="left">corporate</td>
+<td align="left">character</td>
+<td align="left">i, i</td>
+</tr>
+<tr class="odd">
+<td align="left">season</td>
+<td align="left">character</td>
+<td align="left">2023, 2023</td>
+</tr>
+<tr class="even">
+<td align="left">planType</td>
+<td align="left">character</td>
+<td align="left">f, f</td>
+</tr>
+<tr class="odd">
+<td align="left">ticketUsage</td>
+<td align="left">double</td>
+<td align="left">0.726619377103634, 0.880502448994666</td>
+</tr>
+<tr class="even">
+<td align="left">tenure</td>
+<td align="left">double</td>
+<td align="left">0, 0</td>
+</tr>
+<tr class="odd">
+<td align="left">spend</td>
+<td align="left">double</td>
+<td align="left">8848, 4892</td>
+</tr>
+<tr class="even">
+<td align="left">tickets</td>
+<td align="left">double</td>
+<td align="left">4, 2</td>
+</tr>
+<tr class="odd">
+<td align="left">distance</td>
+<td align="left">double</td>
+<td align="left">25.237493169165, 4.39980797935277</td>
+</tr>
+</tbody>
+</table></div>
+<p>This is a typical data set that you would find in the wild. The data is also beautiful. This is not something that you typically find. We’ll discuss what to do with incomplete data and other problems further into the book.</p>
+<p>We can now use this function to produce as many different data sets as we would like.We’ll follow this same procedure of building helper functions to build our other data sets.</p>
+</div>
+</div>
+<div id="simulating-operations-data" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> Simulating Operations data<a class="anchor" aria-label="anchor" href="#simulating-operations-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>Operations data my include any number of data sets. We’ll cover building a ballpark ingress scans table here. However, there could be many others such as line length at a concessions stand or the number of transactions for F&amp;B.</p>
+<div id="ticket-scans" class="section level3" number="2.3.1">
+<h3>
+<span class="header-section-number">2.3.1</span> Ticket scans<a class="anchor" aria-label="anchor" href="#ticket-scans"><i class="fas fa-link"></i></a>
+</h3>
+<p>First we can build a simple function to help us build a parabola. This function builds a parabola that has an x intercept at x = 1 and x = 300. These points will refer to the number of observations that we will make in Chapter <a href="chapter10.html#chapter10">10</a>. All we are doing is building a quadratic function that spits out a y value for a value of x. This function takes the familiar form of a quadratic function:</p>
+<p><span class="math display">\[\begin{equation}
+\ {f(x)} = {ax^2} + {bx} + c
+\end{equation}\]</span></p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#--------------------------------------------------------------------</span></span>
+<span><span class="co"># Function to build a parabola</span></span>
+<span><span class="co">#--------------------------------------------------------------------</span></span>
+<span><span class="va">f_calc_scans</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>,<span class="va">y</span>,<span class="va">j</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">a</span> <span class="op">&lt;-</span> <span class="va">y</span><span class="op">/</span><span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">300</span><span class="op">*</span><span class="va">x</span> <span class="op">+</span> <span class="fl">300</span><span class="op">)</span></span>
+<span>  <span class="va">z</span> <span class="op">&lt;-</span> <span class="va">a</span><span class="op">*</span><span class="op">(</span><span class="va">j</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">301</span><span class="op">*</span><span class="va">j</span> <span class="op">+</span> <span class="fl">300</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>We can then build a function to create any number of data sets. This function will calculate the number of scans per increment on a normal distribution.</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Function to return a scans data frame</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">f_get_scan_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x_value</span>,<span class="va">y_value</span>,<span class="va">seed</span>,<span class="va">sd_mod</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Justin-Watkins/FOSBAAS">FOSBAAS</a></span><span class="op">)</span></span>
+<span>  <span class="va">x_val</span> <span class="op">&lt;-</span> <span class="va">x_value</span></span>
+<span>  <span class="va">y_val</span> <span class="op">&lt;-</span> <span class="va">y_value</span></span>
+<span>  <span class="va">obs</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">300</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="va">seed</span><span class="op">)</span></span>
+<span>  <span class="va">scans</span>           <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span><span class="op">(</span><span class="va">f_calc_scans</span>,<span class="va">x_val</span>,<span class="va">y_val</span>,<span class="va">obs</span><span class="op">)</span></span>
+<span>  <span class="va">scan_data</span>       <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>observations <span class="op">=</span> <span class="va">obs</span>,</span>
+<span>                                scans        <span class="op">=</span> <span class="va">scans</span><span class="op">)</span></span>
+<span>  <span class="va">scan_data</span><span class="op">$</span><span class="va">scans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">scan_data</span><span class="op">$</span><span class="va">scans</span>,</span>
+<span>                          <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="va">x</span>,<span class="va">x</span><span class="op">/</span><span class="va">sd_mod</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">scan_data</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>This function will produce a data set that looks like this:</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">scan_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">scan_data</span></span></code></pre></div>
+<p>This tells you the number of scans that happened in one minute increments on a particular data.</p>
+</div>
+</div>
+<div id="simulating-and-understanding-ticketing-data-sets" class="section level2" number="2.4">
+<h2>
+<span class="header-section-number">2.4</span> Simulating and understanding ticketing data sets<a class="anchor" aria-label="anchor" href="#simulating-and-understanding-ticketing-data-sets"><i class="fas fa-link"></i></a>
+</h2>
+<p>Ticketing data seems like it should be relatively straight-forward. It isn’t. There is a lot of complexity. The environment is very dynamic, and in some cases we can get into big-data territory. For the context of this book, we stay away from big-data problems. Many big-data problems are nothing more than small-data problems in disguise. Because of the nature of sports, three years of data is likely enough to do everything that we will need.</p>
+<p>We’ll begin by simulating three seasons worth of data. For simplicities sake, we’ll transform the data into a format that will be useful for the applications we’ll be demonstrating throughout the book. There are four features of this data that are the most important:</p>
+<ul>
+<li>Customer details and demographics</li>
+<li>Ticket purchases (including secondary market purchases)</li>
+<li>Plan purchases</li>
+<li>Qualitative data obtained through surveys</li>
+</ul>
+<p>From a macro-level, elements of the season will be important. Some of our analysis will cover a top-down approach to forecasting sales and revenue.</p>
+</div>
+<div id="simulating-season-data" class="section level2" number="2.5">
+<h2>
+<span class="header-section-number">2.5</span> Simulating season data<a class="anchor" aria-label="anchor" href="#simulating-season-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>Professional baseball teams typically play 81 games. We’ll be simulating three seasons of data. While building a schedule is a complex process, we aren’t hindered by the myriad constraints and will therefore make this easy on ourselves. The schedule will provide the framework for the customer and ticketing data that we will build in subsequent sections of this chapter. It is also important to note that this is a top-down approach as opposed to bottom-up approach consisting of sales at a more granular level.</p>
+<div id="function-to-manually-bias-our-season-data" class="section level3" number="2.5.1">
+<h3>
+<span class="header-section-number">2.5.1</span> Function to manually bias our season data<a class="anchor" aria-label="anchor" href="#function-to-manually-bias-our-season-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>This function (<em>f_simulate_sales</em>) modifies certain characteristics we’ll use to forecast sales later in the book. It is creating distributions of numbers that will be used to place our variables on a defined range of possibilities. Instead of walking through the code, I’ll just tell you what it does:</p>
+<ol style="list-style-type: decimal">
+<li>Creates a base attendance for each team. For instance, if we play BOS, CHC, NYY, LAD, or STL we get the highest sales base.</li>
+<li>If the day of the week falls on the weekend the sales base is higher than a weekday.</li>
+<li>If we are playing in the summer months, sales are higher.</li>
+<li>If school is out, sales are higher.</li>
+<li>If it is the last game of the year, sales are higher.</li>
+<li>If it is opening day, sales are higher.</li>
+<li>If there is a bobblehead, sales are higher</li>
+</ol>
+<p>This function that creates a pattern in the ticket sales data based on the averages of normal distributions. The entire function is a little complex, so instead of showing everything we’ll simply talk about it a little and show you the results. You can access the function through the FOSBAAS package.</p>
+<p>This function accepts several arguments. One of them is the function <em>f_simulate_sales</em>. It asks for three random numbers, three modifiers which are simply coefficients to bias the results further, and a season.</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Function to build season data</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">seed1</span>      <span class="op">&lt;-</span> <span class="fl">309</span></span>
+<span><span class="va">seed2</span>      <span class="op">&lt;-</span> <span class="fl">755</span></span>
+<span><span class="va">seed3</span>      <span class="op">&lt;-</span> <span class="fl">512</span></span>
+<span><span class="va">modifier</span>   <span class="op">&lt;-</span> <span class="fl">1.00</span></span>
+<span><span class="va">dayMod</span>     <span class="op">&lt;-</span> <span class="fl">1.10</span></span>
+<span><span class="va">monthMod</span>   <span class="op">&lt;-</span> <span class="fl">1.15</span></span>
+<span><span class="va">seasonYear</span> <span class="op">&lt;-</span> <span class="st">'2023'</span></span>
+<span></span>
+<span><span class="va">season23</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_build_season.html">f_build_season</a></span><span class="op">(</span><span class="va">seed1</span>, </span>
+<span>                             <span class="va">seed2</span>, </span>
+<span>                             <span class="va">seed3</span>, </span>
+<span>                             <span class="va">seasonYear</span>,</span>
+<span>                             <span class="va">f_simulate_sales</span>, </span>
+<span>                             <span class="va">modifier</span>, </span>
+<span>                             <span class="va">dayMod</span>, </span>
+<span>                             <span class="va">monthMod</span><span class="op">)</span></span></code></pre></div>
+<p>The resulting data set looks like this:</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">season_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">season_data</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:seasondataframe4">Table 2.3: </span>Sample season purchase data</caption>
+<thead><tr class="header">
+<th align="left">variable</th>
+<th align="left">class</th>
+<th align="left">first_values</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">gameNumber</td>
+<td align="left">double</td>
+<td align="left">1, 2</td>
+</tr>
+<tr class="even">
+<td align="left">team</td>
+<td align="left">character</td>
+<td align="left">SF, SF</td>
+</tr>
+<tr class="odd">
+<td align="left">date</td>
+<td align="left">double</td>
+<td align="left">2022-03-27, 2022-03-28</td>
+</tr>
+<tr class="even">
+<td align="left">dayOfWeek</td>
+<td align="left">character</td>
+<td align="left">Sun, Mon</td>
+</tr>
+<tr class="odd">
+<td align="left">month</td>
+<td align="left">character</td>
+<td align="left">Mar, Mar</td>
+</tr>
+<tr class="even">
+<td align="left">weekEnd</td>
+<td align="left">logical</td>
+<td align="left">FALSE, FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">schoolInOut</td>
+<td align="left">logical</td>
+<td align="left">FALSE, FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">daysSinceLastGame</td>
+<td align="left">double</td>
+<td align="left">50, 1</td>
+</tr>
+<tr class="odd">
+<td align="left">openingDay</td>
+<td align="left">logical</td>
+<td align="left">TRUE, FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">promotion</td>
+<td align="left">character</td>
+<td align="left">none, none</td>
+</tr>
+<tr class="odd">
+<td align="left">ticketSales</td>
+<td align="left">double</td>
+<td align="left">42928, 25759</td>
+</tr>
+<tr class="even">
+<td align="left">season</td>
+<td align="left">double</td>
+<td align="left">2022, 2022</td>
+</tr>
+</tbody>
+</table></div>
+<p>This data set is a simulated schedule with several fields:</p>
+<ul>
+<li>The game number</li>
+<li>opposing team</li>
+<li>date</li>
+<li>day of the week</li>
+<li>the month</li>
+<li>if it was a weekend</li>
+<li>if schools is in or out</li>
+<li>the days since the last game</li>
+<li>if it is opening day</li>
+<li>if there was a promotion</li>
+<li>the number of ticket sales</li>
+<li>the season year</li>
+</ul>
+<p>This is fine for a base package. When modeling you can obviously go much deeper and include statistics such as Las Vegas odds for the playoffs, more granular promotional data, and many others. We are ignoring the current divisional structure here for simplicities sake. Structuring a calendar is a complex task that involves many factors that we aren’t considering such as:</p>
+<ul>
+<li>Travel time</li>
+<li>Restrictions based on the collective bargaining agreement</li>
+<li>Team level requests</li>
+</ul>
+<p>This data looks similar to data that you would actually have at the beginning of the season. We’ll use it to forecast ticket sales in chapter six. Another important piece of data is the manifest. The manifest represents seating inventory. It is interesting because it represents an upper bound for what is available to sell. A typical manifest would look like this:</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">manifest_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">manifest_data</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:seasondataframe5">Table 2.4: </span>Sample manifest data</caption>
+<thead><tr class="header">
+<th align="left">variable</th>
+<th align="left">classe</th>
+<th align="left">first_values</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">seatID</td>
+<td align="left">double</td>
+<td align="left">1, 2</td>
+</tr>
+<tr class="even">
+<td align="left">section</td>
+<td align="left">double</td>
+<td align="left">1, 1</td>
+</tr>
+<tr class="odd">
+<td align="left">sectionNumber</td>
+<td align="left">double</td>
+<td align="left">1, 1</td>
+</tr>
+<tr class="even">
+<td align="left">rowNumber</td>
+<td align="left">double</td>
+<td align="left">1, 1</td>
+</tr>
+<tr class="odd">
+<td align="left">seatNumber</td>
+<td align="left">double</td>
+<td align="left">1, 2</td>
+</tr>
+<tr class="even">
+<td align="left">seasonPrice</td>
+<td align="left">double</td>
+<td align="left">190, 190</td>
+</tr>
+<tr class="odd">
+<td align="left">groupPrice</td>
+<td align="left">double</td>
+<td align="left">199.5, 199.5</td>
+</tr>
+<tr class="even">
+<td align="left">singlePrice</td>
+<td align="left">double</td>
+<td align="left">218.5, 218.5</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="simulating-customer-data" class="section level3" number="2.5.2">
+<h3>
+<span class="header-section-number">2.5.2</span> Simulating customer data<a class="anchor" aria-label="anchor" href="#simulating-customer-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>Let’s begin by creating a customer data set. This data will be used throughout the book. This data set is simply a customer id and a name. We’ll make up some names for each id. We built our list of names from a couple of government websites <span class="citation">(<a href="references.html#ref-SSA2020" role="doc-biblioref">ssa 2020</a>)</span> and <span class="citation">(<a href="references.html#ref-Census2020" role="doc-biblioref">Census 2020</a>)</span>.</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">customer_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">customer_data</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#--------------------------------------------------------------------</span></span>
+<span><span class="co">#--------------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org">magrittr</a></span><span class="op">)</span></span>
+<span><span class="va">custdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">customer_data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>variable     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">custdata</span><span class="op">)</span>,</span>
+<span>           class        <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">custdata</span>, <span class="va">typeof</span><span class="op">)</span>,</span>
+<span>           first_values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">custdata</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">]</span>,  collapse <span class="op">=</span> <span class="st">", "</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>           row.names <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">'Sample customer data'</span>,align <span class="op">=</span> <span class="st">'l'</span>,format <span class="op">=</span> <span class="st">"markdown"</span>,padding <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+<p>We’ll use this data frame to simulate a transformed data set that could be pulled from a ticketing system. Now we can use this data to create a data set for purchases on the secondary market.</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">secondary_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">secondary_data</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:customerdataframeid">Table 2.5: </span>Secondary market purchases</caption>
+<thead><tr class="header">
+<th align="left">variable</th>
+<th align="left">classe</th>
+<th align="left">first_values</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">seatID</td>
+<td align="left">double</td>
+<td align="left">9010, 20950</td>
+</tr>
+<tr class="even">
+<td align="left">custID</td>
+<td align="left">character</td>
+<td align="left">N22J8UPWACNO, II3IGIN0PY15</td>
+</tr>
+<tr class="odd">
+<td align="left">ticketType</td>
+<td align="left">character</td>
+<td align="left">se, se</td>
+</tr>
+<tr class="even">
+<td align="left">gameID</td>
+<td align="left">double</td>
+<td align="left">130, 111</td>
+</tr>
+<tr class="odd">
+<td align="left">tickets</td>
+<td align="left">double</td>
+<td align="left">1, 1</td>
+</tr>
+<tr class="even">
+<td align="left">priceKey</td>
+<td align="left">character</td>
+<td align="left">9010_se, 20950_se</td>
+</tr>
+<tr class="odd">
+<td align="left">price</td>
+<td align="left">double</td>
+<td align="left">54, 30</td>
+</tr>
+<tr class="even">
+<td align="left">orderedCluster</td>
+<td align="left">double</td>
+<td align="left">8, 7</td>
+</tr>
+<tr class="odd">
+<td align="left">secondayrPrice</td>
+<td align="left">double</td>
+<td align="left">60.51, 37.11</td>
+</tr>
+</tbody>
+</table></div>
+<p>This data set contains:</p>
+<ul>
+<li>A seat id corresponding to the manifest</li>
+<li>A customer id corresponding to our customer list</li>
+<li>The ticket type (single game si, season se)</li>
+<li>The game id from the schedule</li>
+<li>The number of tickets sold</li>
+<li>A key field</li>
+<li>The original price of the ticket</li>
+<li>A modeled cluster field</li>
+<li>The price sold on the secondary market</li>
+</ul>
+<p>A completely clean data set like this is unlikely to be encountered outside of <em>the lab</em>. In reality, customer data will be fraught with duplication and other problems. This data is already transformed. In reality, you would have to join a few tables to produce a data set that looks like this.</p>
+</div>
+</div>
+<div id="simulating-demographic-data" class="section level2" number="2.6">
+<h2>
+<span class="header-section-number">2.6</span> Simulating demographic data<a class="anchor" aria-label="anchor" href="#simulating-demographic-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>Demographic data can be used for a variety of tasks such as segmentation and other targeted marketing efforts.</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">demo_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">demographic_data</span><span class="op">)</span></span></code></pre></div>
+<p>Demographic data is typically purchased from one of several vendors and may contain hundreds of columns. This data contains:</p>
+<ul>
+<li>A customer ID</li>
+<li>The first name of the customer</li>
+<li>The last name of the customer</li>
+<li>The full name of the customer</li>
+<li>Gender</li>
+<li>Age</li>
+<li>Latitude</li>
+<li>Longitude</li>
+<li>Distance from the ballpark</li>
+<li>marital status</li>
+<li>ethnicity</li>
+<li>children living in the household</li>
+</ul>
+</div>
+<div id="simulating-survey-data" class="section level2" number="2.7">
+<h2>
+<span class="header-section-number">2.7</span> Simulating survey data<a class="anchor" aria-label="anchor" href="#simulating-survey-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>We’ll use an example of survey data to construct a specific segmentation scheme based on a factor analysis. We’ll base some of this analysis on an example from Chapman and Feit’s excellent”R for Marketing Research and Analytics” <span class="citation">(<a href="references.html#ref-Chapman-Feit2015" role="doc-biblioref">Chris Chapman 2015</a>)</span>. We’ll cover survey construction in a later chapter.</p>
+<div id="perceptual-data" class="section level3" number="2.7.1">
+<h3>
+<span class="header-section-number">2.7.1</span> Perceptual data<a class="anchor" aria-label="anchor" href="#perceptual-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>This initial data set will take the form of a multi-select table:</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="center">Team</th>
+<th align="center">Friendly</th>
+<th align="center">Exciting</th>
+<th align="center">Winners</th>
+<th align="center">Losers</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">Came Hens</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Predators</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">Grizzlies</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table></div>
+<p>This data takes the form of an aggregated survey response where specific answers are counted and aggregated for each team in the questions. The question would read like this:</p>
+<blockquote>
+<p>How do you feel about the following sports properties? Please check all that apply for each of the teams listed.</p>
+</blockquote>
+<p>This question will allow us to create a perceptual map. We’ll send it to 5,000 of our customers that we created in Section <a href="chapter2.html#simulating-customer-data">2.5.2</a>.</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">perceptual_data</span>             <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>nrow<span class="op">=</span><span class="fl">3</span>,ncol<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">perceptual_data</span><span class="op">)</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Friendly'</span>,<span class="st">'Exciting'</span>,<span class="st">'Fresh'</span>,</span>
+<span>                                 <span class="st">'Inovative'</span>,<span class="st">'Fun'</span>,<span class="st">'Old'</span>,<span class="st">'Historic'</span>,</span>
+<span>                                 <span class="st">'Winners'</span>,<span class="st">'Great'</span>,<span class="st">'Expensive'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">perceptual_data</span><span class="op">)</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Game Hens'</span>,<span class="st">'Grizzlies'</span>,</span>
+<span>                                 <span class="st">'Predators'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2632</span><span class="op">)</span></span>
+<span><span class="va">perceptual_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">perceptual_data</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,</span>
+<span>                         <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3000</span>,<span class="fl">1000</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>This produces the following table:</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:customerdataframesurveydata2">Table 2.6: </span>Perceptual data</caption>
+<thead><tr class="header">
+<th align="center">Friendly</th>
+<th align="center">Exciting</th>
+<th align="center">Fresh</th>
+<th align="center">Inovative</th>
+<th align="center">Fun</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">1930</td>
+<td align="center">3080</td>
+<td align="center">1955</td>
+<td align="center">2128</td>
+<td align="center">2861</td>
+</tr>
+<tr class="even">
+<td align="center">2646</td>
+<td align="center">4732</td>
+<td align="center">1444</td>
+<td align="center">2569</td>
+<td align="center">3508</td>
+</tr>
+<tr class="odd">
+<td align="center">2928</td>
+<td align="center">3783</td>
+<td align="center">2959</td>
+<td align="center">3831</td>
+<td align="center">3417</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div id="pricing-survey-data" class="section level3" number="2.7.2">
+<h3>
+<span class="header-section-number">2.7.2</span> Pricing survey data<a class="anchor" aria-label="anchor" href="#pricing-survey-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>This data will be used to perform a van Westendorp analysis and to demonstrate the basics of qualitative pricing analytics. You’ll want this data in a specific format.</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">vw_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1000</span>, ncol <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">vw_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'DugoutSeats'</span>, <span class="st">'PriceExpectation'</span>, </span>
+<span>                    <span class="st">'TooExpensive'</span>, <span class="st">'TooCheap'</span>, </span>
+<span>                    <span class="st">'WayTooCheap'</span>, <span class="st">'WayTooExpensive'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">715</span><span class="op">)</span></span>
+<span><span class="va">vw_data</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">'DugoutSeats'</span></span>
+<span><span class="va">vw_data</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">100</span>,<span class="fl">10</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">vw_data</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">130</span>,<span class="fl">20</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">vw_data</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">60</span>,<span class="fl">15</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">vw_data</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">50</span>,<span class="fl">10</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">vw_data</span><span class="op">[</span>,<span class="fl">6</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">160</span>,<span class="fl">20</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+<p>A Van Westendorp<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Van_Westendorp%27s_Price_Sensitivity_Meter" class="uri"&gt;https://en.wikipedia.org/wiki/Van_Westendorp%27s_Price_Sensitivity_Meter&lt;/a&gt;&lt;/p&gt;'><sup>18</sup></a> analysis asks the respondent to answer a series of questions about a product related to their perception of the price. The questions would take the following form:</p>
+<ol style="list-style-type: decimal">
+<li>At what price would you consider the product to be so expensive that you would not consider buying it? (Too expensive)</li>
+<li>At what price would you consider the product to be priced so low that you would feel the quality couldn’t be very good? (Too cheap)</li>
+<li>At what price would you consider the product starting to get expensive, so that it is not out of the question, but you would have to give some thought to buying it? (Expensive/High Side)</li>
+<li>At what price would you consider the product to be a bargain—a great buy for the money? (Cheap/Good Value)</li>
+</ol>
+<p>These questions were taken directly from the Wikipedia article. The resulting data set would resemble the following:</p>
+<div class="inline-table"><table style="width:100%;" class="table table-sm">
+<caption>
+<span id="tab:vwchtwoa">Table 2.7: </span>Van Westendorp survey data</caption>
+<colgroup>
+<col width="15%">
+<col width="21%">
+<col width="16%">
+<col width="10%">
+<col width="15%">
+<col width="20%">
+</colgroup>
+<thead><tr class="header">
+<th align="center">DugoutSeats</th>
+<th align="center">PriceExpectation</th>
+<th align="center">TooExpensive</th>
+<th align="center">TooCheap</th>
+<th align="center">WayTooCheap</th>
+<th align="center">WayTooExpensive</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">DugoutSeats</td>
+<td align="center">100</td>
+<td align="center">115</td>
+<td align="center">57</td>
+<td align="center">39</td>
+<td align="center">170</td>
+</tr>
+<tr class="even">
+<td align="center">DugoutSeats</td>
+<td align="center">113</td>
+<td align="center">147</td>
+<td align="center">69</td>
+<td align="center">52</td>
+<td align="center">129</td>
+</tr>
+<tr class="odd">
+<td align="center">DugoutSeats</td>
+<td align="center">102</td>
+<td align="center">169</td>
+<td align="center">67</td>
+<td align="center">51</td>
+<td align="center">163</td>
+</tr>
+<tr class="even">
+<td align="center">DugoutSeats</td>
+<td align="center">103</td>
+<td align="center">134</td>
+<td align="center">72</td>
+<td align="center">54</td>
+<td align="center">148</td>
+</tr>
+<tr class="odd">
+<td align="center">DugoutSeats</td>
+<td align="center">99</td>
+<td align="center">88</td>
+<td align="center">46</td>
+<td align="center">37</td>
+<td align="center">163</td>
+</tr>
+<tr class="even">
+<td align="center">DugoutSeats</td>
+<td align="center">83</td>
+<td align="center">123</td>
+<td align="center">77</td>
+<td align="center">59</td>
+<td align="center">145</td>
+</tr>
+</tbody>
+</table></div>
+<p>These data sets represent the main top-line data that you would tend to use working for a club.</p>
+</div>
+</div>
+<div id="housing-your-data-and-functions-in-a-package" class="section level2" number="2.8">
+<h2>
+<span class="header-section-number">2.8</span> Housing your data and functions in a package<a class="anchor" aria-label="anchor" href="#housing-your-data-and-functions-in-a-package"><i class="fas fa-link"></i></a>
+</h2>
+<p>While this book isn’t meant to be an expose on how to use the R language, R has some great features for analytic work that are worth exploring. They will make our lives easier as we move through the subsequent chapters. The data in this book can be found in the package FOSBAAS and is located here: <a href="https://github.com/Justin-Watkins/FOSBAAS_Package.git" class="uri">https://github.com/Justin-Watkins/FOSBAAS_Package.git</a>. Analyitical work tends to be repetitive and housing your functions in a package will make your life easier. There are many resources available that make building your own package easy and we’ll cover the basics here.</p>
+<p>There are two packages that will make your life building packages really simple: devtools <span class="citation">(<a href="references.html#ref-R-devtools" role="doc-biblioref">Wickham, Hester, et al. 2021</a>)</span> and roxygen <span class="citation">(<a href="references.html#ref-R-roxygen2" role="doc-biblioref">Wickham, Danenberg, et al. 2021</a>)</span>. There are also numerous resources on how to build your own package. Rstudio even has some built-in-tools that makes this process even easier. I want to demonstrate this process because it is really easy and is incredibly useful.</p>
+<div id="building-a-simple-package" class="section level3" number="2.8.1">
+<h3>
+<span class="header-section-number">2.8.1</span> Building a simple package<a class="anchor" aria-label="anchor" href="#building-a-simple-package"><i class="fas fa-link"></i></a>
+</h3>
+<p>You’ll want to install RStudio and open a new R file. Creating a basic package only takes a few steps:</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Step 1: Download the utility packages</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"roxygen2"</span><span class="op">)</span></span>
+<span><span class="co">##browseVignettes("devtools")</span></span>
+<span><span class="co">##browseVignettes("roxygen2")</span></span></code></pre></div>
+<p>Now that you have installed the packages that you need you can use them to create the package:</p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Step 2: Create a shell for your package</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/create.html">create</a></span><span class="op">(</span><span class="st">"UselessRPackage"</span><span class="op">)</span></span></code></pre></div>
+<p>You can then create a data set that we want to include in the package.</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Step 3: Build a data set</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/document.html">document</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">uselessData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">755</span><span class="op">)</span></span></code></pre></div>
+<p>We then place the data in the package.</p>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Step 4: Place data set in package</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/use_data.html">use_data</a></span><span class="op">(</span><span class="va">uselessData</span>, overwrite <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<p>Finally, we install the package.</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Step 5: Install the package</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/install.html">install</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>You can access the data using your packages namespace.</p>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Step 5: Access your data</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu">UselessRPackage</span><span class="fu">::</span><span class="va">uselessData</span></span></code></pre></div>
+<p>There is a lot more that you have to do, especially around documentation. However, you have now housed data in a package that you can easily access. Once you begin using R more heavily I highly recommend putting some time into understanding how to create and use your own packages. This little feature will save you a lot of time. This also allows you to share your work through a service such a Github if you are working remotely or with a team.</p>
+</div>
+</div>
+<div id="key-concepts-and-chapter-summary-1" class="section level2" number="2.9">
+<h2>
+<span class="header-section-number">2.9</span> Key concepts and chapter summary<a class="anchor" aria-label="anchor" href="#key-concepts-and-chapter-summary-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>This chapter was written to introduce you to a little code in R and to explain our data and data sets. It also demonstrates some of the concepts that we will cover in ensuing chapters. We also covered why R may or may not be a good choice for you to use for analysis.</p>
+<p>Additionally, we covered the basics of how to build a package in R. Analysis tends to be repetitive. Housing some of your specific functions in a package is a very simple way to document what those functions do and to easily access them. R’s extensibility is one of its best features and makes it an incredibly flexible tool (especially when coupled with RStudio).</p>
+<p>In Chapter <a href="chapter3.html#chapter3">3</a> will delve into what to do with this data by creating graphics and summarizing some data. Subsequent chapters will explore additional functionality and will delve into solving more specific problems. They will also spend a significant amount of time explaining how to think about those problems and how to solve them.</p>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="chapter1.html"><span class="header-section-number">1</span> Analytics and sports business strategy</a></div>
+<div class="next"><a href="chapter3.html"><span class="header-section-number">3</span> Exploring your data</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#chapter2"><span class="header-section-number">2</span> Constructing our data sets</a></li>
+<li><a class="nav-link" href="#some-basic-notes-on-the-r-language"><span class="header-section-number">2.1</span> Some basic notes on the R language</a></li>
+<li>
+<a class="nav-link" href="#renewaldata"><span class="header-section-number">2.2</span> Simulating customer renewal data</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#building-our-function"><span class="header-section-number">2.2.1</span> Building our function</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#simulating-operations-data"><span class="header-section-number">2.3</span> Simulating Operations data</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#ticket-scans"><span class="header-section-number">2.3.1</span> Ticket scans</a></li></ul>
+</li>
+<li><a class="nav-link" href="#simulating-and-understanding-ticketing-data-sets"><span class="header-section-number">2.4</span> Simulating and understanding ticketing data sets</a></li>
+<li>
+<a class="nav-link" href="#simulating-season-data"><span class="header-section-number">2.5</span> Simulating season data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#function-to-manually-bias-our-season-data"><span class="header-section-number">2.5.1</span> Function to manually bias our season data</a></li>
+<li><a class="nav-link" href="#simulating-customer-data"><span class="header-section-number">2.5.2</span> Simulating customer data</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#simulating-demographic-data"><span class="header-section-number">2.6</span> Simulating demographic data</a></li>
+<li>
+<a class="nav-link" href="#simulating-survey-data"><span class="header-section-number">2.7</span> Simulating survey data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#perceptual-data"><span class="header-section-number">2.7.1</span> Perceptual data</a></li>
+<li><a class="nav-link" href="#pricing-survey-data"><span class="header-section-number">2.7.2</span> Pricing survey data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#housing-your-data-and-functions-in-a-package"><span class="header-section-number">2.8</span> Housing your data and functions in a package</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#building-a-simple-package"><span class="header-section-number">2.8.1</span> Building a simple package</a></li></ul>
+</li>
+<li><a class="nav-link" href="#key-concepts-and-chapter-summary-1"><span class="header-section-number">2.9</span> Key concepts and chapter summary</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/Justin-Watkins/FOSBAAS_web.git/blob/master/02-BuildingDataSets.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/Justin-Watkins/FOSBAAS_web.git/edit/master/02-BuildingDataSets.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-17.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

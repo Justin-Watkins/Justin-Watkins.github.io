@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 3 Exploring your data | Fundamentals of Sports Business Analytics and Strategy</title>
+<meta name="author" content="Justin Watkins">
+<meta name="description" content="R makes it easy to do exploratory work on your data. There are numerous packages and functions that make it easy visualize and tabulate your data. We’ll leverage many packages outlined in the book...">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta property="og:title" content="Chapter 3 Exploring your data | Fundamentals of Sports Business Analytics and Strategy">
+<meta property="og:type" content="book">
+<meta property="og:image" content="/images/book_cover.png">
+<meta property="og:description" content="R makes it easy to do exploratory work on your data. There are numerous packages and functions that make it easy visualize and tabulate your data. We’ll leverage many packages outlined in the book...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 3 Exploring your data | Fundamentals of Sports Business Analytics and Strategy">
+<meta name="twitter:description" content="R makes it easy to do exploratory work on your data. There are numerous packages and functions that make it easy visualize and tabulate your data. We’ll leverage many packages outlined in the book...">
+<meta name="twitter:image" content="/images/book_cover.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Prompt-0.4.4/font.css" rel="stylesheet">
+<link href="libs/JetBrains_Mono-0.4.4/font.css" rel="stylesheet">
+<script src="libs/bs3compat-0.4.1/transition.js"></script><script src="libs/bs3compat-0.4.1/tabs.js"></script><script src="libs/bs3compat-0.4.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Fundamentals of Sports Business Analytics and Strategy</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Abstract and forward</a></li>
+<li><a class="" href="chapter1.html"><span class="header-section-number">1</span> Analytics and sports business strategy</a></li>
+<li><a class="" href="chapter2.html"><span class="header-section-number">2</span> Constructing our data sets</a></li>
+<li><a class="active" href="chapter3.html"><span class="header-section-number">3</span> Exploring your data</a></li>
+<li><a class="" href="chapter4.html"><span class="header-section-number">4</span> Structuring analytics projects</a></li>
+<li><a class="" href="chapter5.html"><span class="header-section-number">5</span> Segmentation</a></li>
+<li><a class="" href="chapter6.html"><span class="header-section-number">6</span> Forcasting Sales and Setting Prices</a></li>
+<li><a class="" href="chapter7.html"><span class="header-section-number">7</span> Lead Scoring</a></li>
+<li><a class="" href="chapter8.html"><span class="header-section-number">8</span> Marketing promotions</a></li>
+<li><a class="" href="chapter9.html"><span class="header-section-number">9</span> Consumer Research</a></li>
+<li><a class="" href="chapter10.html"><span class="header-section-number">10</span> Operations and Analytics</a></li>
+<li><a class="" href="Chapter11.html"><span class="header-section-number">11</span> Epilogue</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/Justin-Watkins/FOSBAAS_web.git">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="chapter3" class="section level1" number="3">
+<h1>
+<span class="header-section-number">3</span> Exploring your data<a class="anchor" aria-label="anchor" href="#chapter3"><i class="fas fa-link"></i></a>
+</h1>
+<p>R makes it easy to do exploratory work on your data. There are numerous packages and functions that make it easy visualize and tabulate your data. We’ll leverage many packages outlined in the book “R For Data Science” <span class="citation">(<a href="references.html#ref-Wickham2017" role="doc-biblioref">Wickham 2017</a>)</span>. Our graphics will be created with an excellent graphics package called ggplot2 <span class="citation">(<a href="references.html#ref-R-ggplot2" role="doc-biblioref">Wickham, Chang, et al. 2021</a>)</span>. ggplot2 makes it easy to look at data in many different ways.</p>
+<p>We’ll also recommend several methods of analyzing your data. “R in Action” by Robert Kabacoff <span class="citation">(<a href="references.html#ref-Kabacoff2011" role="doc-biblioref">Kabacoff 2011</a>)</span> does an outstanding job of demonstrating cursory data analysis with a variety of data sets. We’ll reference this book several times in this chapter. While there are innumerable statistical methods and rubrics for analyzing your data, graphs do the best job of conveying most of the information that you will encounter in this book.</p>
+<div id="building-a-consistent-design-language" class="section level2" number="3.1">
+<h2>
+<span class="header-section-number">3.1</span> Building a consistent design language<a class="anchor" aria-label="anchor" href="#building-a-consistent-design-language"><i class="fas fa-link"></i></a>
+</h2>
+<p>There are several graphics paradigms available in R and elsewhere. D3 <span class="citation">(<a href="references.html#ref-d32020" role="doc-biblioref">d3 2020</a>)</span> is an outstanding javascript library for building dynamic graphics. Python also contains several libraries such as seaborn <span class="citation">(<a href="references.html#ref-Waskom2021" role="doc-biblioref">Waskom 2021</a>)</span> that will help you construct statistical graphics. We’ll use the ggplot2 <span class="citation">(<a href="references.html#ref-R-ggplot2" role="doc-biblioref">Wickham, Chang, et al. 2021</a>)</span> paradigm for the graphics in this book. ggplot2 will make it easy to build consistent and visually appealing graphics in R.</p>
+<p>Let’s start by constructing a graphics theme that we will use throughout our examples. We begin this example by creating a color palette that we can use or modify. Afterward, we simply set a variable equal to a set of parameters corresponding to components of the images that we will be creating. Almost all of the graphics in this book were created with a combination of ggplot and dplyr. They are always installed and are used frequently throughout the book.</p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># creating a color palette</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">palette</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'dodgerblue'</span>,<span class="st">'grey25'</span>,<span class="st">'coral'</span>,<span class="st">'mediumseagreen'</span>,</span>
+<span>             <span class="st">'orchid'</span>,<span class="st">'firebrick'</span>,<span class="st">'goldenrod'</span>,<span class="st">'cyan'</span>,</span>
+<span>             <span class="st">'brown'</span>,<span class="st">'steelblue'</span>,<span class="st">'magenta'</span><span class="op">)</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Creating a custom theme</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">graphics_theme_1</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x  <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle  <span class="op">=</span> <span class="fl">0</span>, size  <span class="op">=</span> <span class="fl">14</span>, </span>
+<span>                                    vjust  <span class="op">=</span> <span class="fl">0</span>, color <span class="op">=</span> <span class="st">"grey10"</span><span class="op">)</span>,  </span>
+<span>        axis.text.y  <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>angle  <span class="op">=</span> <span class="fl">0</span>, size  <span class="op">=</span> <span class="fl">14</span>, </span>
+<span>                                    vjust  <span class="op">=</span> <span class="fl">0</span>, color <span class="op">=</span> <span class="st">"grey10"</span><span class="op">)</span>,  </span>
+<span>        axis.title.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size   <span class="op">=</span> <span class="fl">16</span>, face <span class="op">=</span> <span class="st">"plain"</span>, </span>
+<span>                                    colour <span class="op">=</span> <span class="st">"grey10"</span><span class="op">)</span>, </span>
+<span>        axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size   <span class="op">=</span> <span class="fl">16</span>, face <span class="op">=</span> <span class="st">"plain"</span>, </span>
+<span>                                    color  <span class="op">=</span> <span class="st">"grey10"</span><span class="op">)</span>, </span>
+<span>        legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size   <span class="op">=</span> <span class="fl">14</span>, face <span class="op">=</span> <span class="st">"plain"</span>, </span>
+<span>                                    color  <span class="op">=</span> <span class="st">"grey10"</span><span class="op">)</span>, </span>
+<span>        legend.text  <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size   <span class="op">=</span> <span class="fl">11</span>, </span>
+<span>                                    color  <span class="op">=</span> <span class="st">"grey10"</span><span class="op">)</span>, </span>
+<span>        plot.title   <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"grey10"</span>, </span>
+<span>                                    size   <span class="op">=</span> <span class="fl">14</span>, angle <span class="op">=</span> <span class="fl">0</span>, </span>
+<span>                                    hjust  <span class="op">=</span> <span class="fl">.5</span>, vjust <span class="op">=</span> <span class="fl">.5</span>, </span>
+<span>                                    face   <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>, </span>
+<span>        legend.position   <span class="op">=</span> <span class="st">"right"</span>, </span>
+<span>        legend.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill     <span class="op">=</span> <span class="st">"grey99"</span>, </span>
+<span>                                         size     <span class="op">=</span> <span class="fl">3</span>,  </span>
+<span>                                         linetype <span class="op">=</span> <span class="st">"solid"</span>, </span>
+<span>                                         colour   <span class="op">=</span> <span class="st">"grey99"</span><span class="op">)</span>, </span>
+<span>        legend.key        <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill     <span class="op">=</span> <span class="st">"grey99"</span>, </span>
+<span>                                         color    <span class="op">=</span> <span class="st">"grey99"</span><span class="op">)</span>, </span>
+<span>        strip.background  <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill     <span class="op">=</span>  <span class="st">"grey99"</span>, </span>
+<span>                                         colour   <span class="op">=</span> <span class="st">"grey99"</span><span class="op">)</span>, </span>
+<span>        strip.text        <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size     <span class="op">=</span> <span class="fl">14</span>, </span>
+<span>                                         face     <span class="op">=</span> <span class="st">"plain"</span>, </span>
+<span>                                         color    <span class="op">=</span> <span class="st">"grey10"</span><span class="op">)</span>, </span>
+<span>        panel.grid.major  <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>colour   <span class="op">=</span> <span class="st">"grey80"</span><span class="op">)</span>,  </span>
+<span>        panel.grid.minor  <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>colour   <span class="op">=</span> <span class="st">"grey80"</span><span class="op">)</span>, </span>
+<span>        panel.background  <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill     <span class="op">=</span> <span class="st">"grey99"</span>, </span>
+<span>                                         colour   <span class="op">=</span> <span class="st">"grey99"</span><span class="op">)</span>, </span>
+<span>        plot.background   <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill     <span class="op">=</span> <span class="st">"grey99"</span>, </span>
+<span>                                         colour   <span class="op">=</span> <span class="st">"grey99"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>The object <strong>graphics_theme_1</strong> will be used on all of our subsequent graphs. It will keep them looking consistent. You can easily adjust any element by simply adding it to your plot after the theme.</p>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># High level schedule data</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Justin-Watkins/FOSBAAS">FOSBAAS</a></span><span class="op">)</span></span>
+<span><span class="va">season_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">season_data</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:fosbaasdataknitr">Table 3.1: </span>Example of schedule data</caption>
+<thead><tr class="header">
+<th align="center">gameNumber</th>
+<th align="center">team</th>
+<th align="center">date</th>
+<th align="center">dayOfWeek</th>
+<th align="center">month</th>
+<th align="center">weekEnd</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">SF</td>
+<td align="center">2022-03-27</td>
+<td align="center">Sun</td>
+<td align="center">Mar</td>
+<td align="center">FALSE</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">SF</td>
+<td align="center">2022-03-28</td>
+<td align="center">Mon</td>
+<td align="center">Mar</td>
+<td align="center">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">SF</td>
+<td align="center">2022-03-29</td>
+<td align="center">Tue</td>
+<td align="center">Mar</td>
+<td align="center">FALSE</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">BAL</td>
+<td align="center">2022-04-05</td>
+<td align="center">Tue</td>
+<td align="center">Apr</td>
+<td align="center">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">BAL</td>
+<td align="center">2022-04-06</td>
+<td align="center">Wed</td>
+<td align="center">Apr</td>
+<td align="center">FALSE</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">BAL</td>
+<td align="center">2022-04-07</td>
+<td align="center">Thu</td>
+<td align="center">Apr</td>
+<td align="center">FALSE</td>
+</tr>
+</tbody>
+</table></div>
+<p>We’ve already talked about this data, so the next few sections will demonstrate the sorts of plots and exploratory analysis that you would typically perform to help you understand patterns in the data. This part of analysis is critical. It helps you understand the data so that you can perform more sophisticated modeling on it in later steps. It is also the best way to communicate patterns in the data to those with less experience with data. However, I also offer a word of warning. Most people do not think in distributions. Simple bar and line plots will get the most traction with folks. Don’t attempt to explain a box plot to someone in a meeting. You will lose the room.</p>
+</div>
+<div id="histograms-and-density-plots" class="section level2" number="3.2">
+<h2>
+<span class="header-section-number">3.2</span> Histograms and density plots<a class="anchor" aria-label="anchor" href="#histograms-and-density-plots"><i class="fas fa-link"></i></a>
+</h2>
+<p>Histograms and density plots are critical to understanding the underlying structure of data. Using a point estimate such as an average is a good way to misinterpret data. Learn to think in distributions. The following two graphs are called with simple commands: <em>geom_histogram</em> and <em>geom_density</em>.</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Histograms</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">season_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">season_data</span></span>
+<span><span class="va">x_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'\n Ticket Sales'</span><span class="op">)</span></span>
+<span><span class="va">y_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Count \n'</span><span class="op">)</span></span>
+<span><span class="va">title</span>    <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Distribution of Seasonal Ticket Sales'</span><span class="op">)</span></span>
+<span><span class="va">legend</span>   <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Season'</span><span class="op">)</span></span>
+<span><span class="va">hist_sales</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data  <span class="op">=</span> <span class="va">season_data</span>,</span>
+<span>                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ticketSales</span>,</span>
+<span>                      fill  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">season</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>         <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>                      <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span><span class="va">legend</span>, values <span class="op">=</span> <span class="va">palette</span><span class="op">)</span>          <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html">geom_rug</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">'coral'</span><span class="op">)</span>                            <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>            <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>            <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                        <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                        <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                       <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
+<p>This code creates the graph in figure <a href="chapter3.html#fig:distributionticketsa">3.1</a>. Histograms are incredibly useful for understanding a data set’s structure. If you are unfamiliar with them, they demonstrate the count of a specific instance of something (in this case, ticket sales). We also included a <em>rug</em> at the bottom of the graph. This rug demonstrates where the data points actually on the graph. It may be unnecessary, but I find that it helps me interpret the graph a little easier. This is especially true for density plots.</p>
+<p>The following diagram also layers different seasons on the diagram using colors. The colors that you use are important. While we aren’t going to cover design here, you should have a basic understanding of the “color wheel.” Google it. There are also several R packages that deal with color such as RColorBrewer <span class="citation">(<a href="references.html#ref-R-RColorBrewer" role="doc-biblioref">Neuwirth 2014</a>)</span>. This package was designed for maps, but demonstrates the point. Put some thought into the colors that you use and why you use them.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:distributionticketsa"></span>
+<img src="images/ch3_sales_histogram.png" alt="Histogram of Ticket Sales" width="100%"><p class="caption">
+Figure 3.1: Histogram of Ticket Sales
+</p>
+</div>
+<p>How can we interpret this plot? Honestly, it is difficult to see much of a difference. However, it looks like 2024 had a higher percentage of sellouts. It also looks like there is a huge spike at around 31,000 tickets. Perhaps there are better ways to help us understand this data.</p>
+<p>With a small change, you can create a density plot. Density plots convey similar information as histograms, but they can be confusing for some individuals. Know your audience before choosing to use one over a more interpretable histogram. You can see this plot in figure <a href="chapter3.html#fig:distributionticketsdensity">3.2</a>.</p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Kernel density plot</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">x_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'\n Ticket Sales'</span><span class="op">)</span></span>
+<span><span class="va">y_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Density \n'</span><span class="op">)</span></span>
+<span><span class="va">title</span>    <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Distribution of Seasonal Ticket Sales'</span><span class="op">)</span></span>
+<span><span class="va">legend</span>   <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Season'</span><span class="op">)</span></span>
+<span><span class="va">density_sales</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">season_data</span>, </span>
+<span>                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x    <span class="op">=</span> <span class="va">ticketSales</span>, </span>
+<span>                      fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">season</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>                <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>                                   <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span><span class="va">legend</span>,values <span class="op">=</span> <span class="va">palette</span><span class="op">)</span>                 <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html">geom_rug</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">'coral'</span><span class="op">)</span>                                  <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>                  <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">)</span>                <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                              <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                              <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                             <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
+<p>A kernal density plot represents the density at a particular point. Think of it as how much area lives under the curve. The plot looks like this.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:distributionticketsdensity"></span>
+<img src="images/ch3_sales_density.png" alt="Density Plot of Ticket Sales" width="100%"><p class="caption">
+Figure 3.2: Density Plot of Ticket Sales
+</p>
+</div>
+<p>This graph helps us visualize skew a little better than the histogram. We used an <em>alpha</em> argument to make the graphs transparent. It is much easier to see that 2024 skews to the right more than 2022 or 2023.</p>
+<p>How can we interpret the data under curve at a certain point? You can approximate it fairly easily. There are multiple methods to do this and you don’t necessarily have to integrate. However, if you did have to use an integral R can help there too. Keep in mind that if you are actually doing calculus working for a club on the business side you are probably doing something wrong.</p>
+<p>You can use the density function to help you understand what is going on with these curves.</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Demonstrate AUC</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">den</span>      <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/density.html">density</a></span><span class="op">(</span><span class="va">season_data</span><span class="op">$</span><span class="va">ticketSales</span><span class="op">)</span></span>
+<span><span class="va">bin_size</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">den</span><span class="op">$</span><span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="va">den</span><span class="op">$</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">den</span><span class="op">$</span><span class="va">y</span><span class="op">)</span> <span class="op">*</span> <span class="va">bin_size</span>,<span class="fl">2</span><span class="op">)</span> <span class="co"># Approximates to 1</span></span>
+<span><span class="co">#&gt; [1] 1</span></span></code></pre></div>
+<p>This part should be intuitive. We can now use this data to make observations at specific points on the x axis.</p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Demonstrate AUC at 40,000 Tickets</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">den</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="va">den</span><span class="op">$</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">40000</span><span class="op">]</span><span class="op">)</span> <span class="op">*</span> <span class="va">bin_size</span></span>
+<span><span class="co">#&gt; [1] 0.1337782</span></span></code></pre></div>
+<p>About thirteen percent of the area under the curve is at points above 40,000 tickets. We included these calculations for demonstrative purposes. It should make density plots easier to understand. We could perform these calculations for each density curve to help us understand the data in a little more granular fashion.</p>
+<p>Histograms and density plots are of particular use when you performing certain statistical analyses of data. We’ll use them frequently. Familiarize yourself with them.</p>
+</div>
+<div id="box-faceted-and-scatter-plots" class="section level2" number="3.3">
+<h2>
+<span class="header-section-number">3.3</span> Box, faceted, and scatter plots<a class="anchor" aria-label="anchor" href="#box-faceted-and-scatter-plots"><i class="fas fa-link"></i></a>
+</h2>
+<p>You can also easily split your data by season to analyze the distributions slightly differently. In this case, we’ve used the <strong>facet_grid(season ~ .)</strong> argument to split the graph on season. There really isn’t anything different here. The function <strong>facet_wrap()</strong> does something similar. Try it out to see the difference. The faceted histogram can be seen in figure <a href="chapter3.html#fig:distributionticketseightfacet">3.3</a>.</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Faceting a plot</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">x_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'\n Ticket Sales'</span><span class="op">)</span></span>
+<span><span class="va">y_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Count \n'</span><span class="op">)</span></span>
+<span><span class="va">title</span>    <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Distribution of Seasonal Ticket Sales'</span><span class="op">)</span></span>
+<span><span class="va">histogram_sales_facet</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">season_data</span>, </span>
+<span>                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ticketSales</span><span class="op">)</span><span class="op">)</span>                        <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span><span class="va">season</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span>                                       <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1000</span>, fill <span class="op">=</span> <span class="va">palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>           <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html">geom_rug</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">'coral'</span><span class="op">)</span>                                    <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>                    <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>                    <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                                <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                                <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                               <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span> </span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:distributionticketseightfacet"></span>
+<img src="images/ch3_sales_facet.png" alt="Faceted histogram" width="100%"><p class="caption">
+Figure 3.3: Faceted histogram
+</p>
+</div>
+<p>Notice how we restricted the graph to one color. Avoid multiple colors on graphs that split the data. You don’t need to have multiple ways to distinguish individual subsets of the data. One way will suffice.</p>
+<p>How can we interpret this graph? We get the same interpretation. 2024 is skewed to the right likely indicating higher average ticket sales.2023 appears to have a few clusters of attendance while 2022 is fairly evenly distributed. Perhaps this is because differences in the schedule.</p>
+<p>Splitting graphs on various features is very useful and you’ll see it frequently. We can create box-plots by changing one argument. The following code produces the boxplot in figure <a href="chapter3.html#fig:chthreeboxplotexample">3.4</a>.</p>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Box plots</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">x_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'\n Season'</span><span class="op">)</span></span>
+<span><span class="va">y_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket Sales \n'</span><span class="op">)</span></span>
+<span><span class="va">title</span>    <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Distribution of Seasonal Ticket Sales'</span><span class="op">)</span></span>
+<span><span class="va">box_sales</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data  <span class="op">=</span> <span class="va">season_data</span>, </span>
+<span>                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">season</span><span class="op">)</span>, </span>
+<span>                      y <span class="op">=</span> <span class="va">ticketSales</span><span class="op">)</span><span class="op">)</span>               <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'dodgerblue'</span><span class="op">)</span>                   <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">.2</span>,  height <span class="op">=</span> <span class="fl">0</span>, </span>
+<span>              width <span class="op">=</span> <span class="fl">.25</span>, color  <span class="op">=</span> <span class="st">'coral'</span><span class="op">)</span>          <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html">geom_rug</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">'coral'</span><span class="op">)</span>                           <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>           <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                       <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                       <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                      <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
+<p>Boxplots are my preferred method of looking at distributions. In this case, we blended a boxplot with a scatter plot. How do you interpret a boxplot? The black line in the middle of the colored section represents the median. The box represents the 50th percentile of values. This is the interquartile (IQR) range representing the values between 25% and 50%. The whiskers represent a calculation based on that range and dots represent outliers.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:chthreeboxplotexample"></span>
+<img src="images/ch3_sales_box.png" alt="Segmented histogram and box-whisker plots" width="100%"><p class="caption">
+Figure 3.4: Segmented histogram and box-whisker plots
+</p>
+</div>
+<p>In this case, it is much easier to interpret the data. The IQR is skewed much higher and we clearly have a larger median value. Why use median instead of the mean? The median is a safer interpretation when you are looking at non-normal distributions (distributions with skew). It is actually best to look at both of them, but we will get to that.</p>
+<p>We’ll explore one more type of basic plot. A violin plot will blend a density plot and boxplot. The following code produces the plot in figure <a href="chapter3.html#fig:chthreeticketsviolin">3.5</a>.</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># violin plot</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">x_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'\n Season'</span><span class="op">)</span></span>
+<span><span class="va">y_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket Sales \n'</span><span class="op">)</span></span>
+<span><span class="va">title</span>    <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Distribution of Seasonal Ticket Sales'</span><span class="op">)</span></span>
+<span><span class="va">violin_sales</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">season_data</span>, </span>
+<span>                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">season</span><span class="op">)</span>, </span>
+<span>                      y <span class="op">=</span> <span class="va">ticketSales</span><span class="op">)</span><span class="op">)</span>             <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html">geom_violin</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'dodgerblue'</span><span class="op">)</span>                  <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">.35</span>, height <span class="op">=</span> <span class="fl">0</span>, </span>
+<span>              width <span class="op">=</span> <span class="fl">.25</span>, color <span class="op">=</span> <span class="st">'coral'</span><span class="op">)</span>         <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html">geom_rug</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">'coral'</span><span class="op">)</span>                         <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>         <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                     <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                     <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                    <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:chthreeticketsviolin"></span>
+<img src="images/ch3_sales_violin.png" alt="Segmented violin plot" width="100%"><p class="caption">
+Figure 3.5: Segmented violin plot
+</p>
+</div>
+<p>I think violin plots are interesting, but I typically don’t use them. I prefer to split my density plots and boxplots into separate graphs. You may feel differently. I would not recommend showing one of these plots to someone with limited statistical experience. Perhaps you shouldn’t use them at all.</p>
+</div>
+<div id="line-and-tile-plots" class="section level2" number="3.4">
+<h2>
+<span class="header-section-number">3.4</span> Line and tile plots<a class="anchor" aria-label="anchor" href="#line-and-tile-plots"><i class="fas fa-link"></i></a>
+</h2>
+<p>Line plots and tile plots can be used in various ways. Line plots tend to be used to demonstrate some sort of longitudinal trend. Tile plots can help to visualize that that is multidimensional and correlates with other features being displayed. Line plots will need some sort of grouping variable and can occasionally be frustrating to work with. In general, you put them together in the same way as the other plots you have seen. The following code produces the plot in figure <a href="chapter3.html#fig:chthreeticketsline">3.6</a>.</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Line plot</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">x_label</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'\n Game Number'</span><span class="op">)</span></span>
+<span><span class="va">y_label</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket Sales \n'</span><span class="op">)</span></span>
+<span><span class="va">title</span>   <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket Sales by Game Number'</span><span class="op">)</span></span>
+<span><span class="va">legend</span>  <span class="op">&lt;-</span> <span class="st">'Season'</span></span>
+<span><span class="va">line_sales</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data      <span class="op">=</span> <span class="va">season_data</span>, </span>
+<span>                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x     <span class="op">=</span> <span class="va">gameNumber</span>,</span>
+<span>                      y     <span class="op">=</span> <span class="va">ticketSales</span>,</span>
+<span>                      color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">season</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>             <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">.9</span><span class="op">)</span>                                     <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span><span class="va">legend</span>, values <span class="op">=</span> <span class="va">palette</span><span class="op">)</span>             <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>                <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                            <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                            <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                           <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position   <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span></code></pre></div>
+<p>Line plots are a mainstay of analysis. They are typically leveraged to demonstrate change over time or some other series of data points. You should be pretty familiar with them.</p>
+<div class="figure">
+<span style="display:block;" id="fig:chthreeticketsline"></span>
+<img src="images/ch3_sales_line.png" alt="Line and Tile Plots" width="100%"><p class="caption">
+Figure 3.6: Line and Tile Plots
+</p>
+</div>
+<p>What are we seeing here? It appears that there is some degree of seasonality in the data. We can see that there are very few games with relatively low attendance during the middle of the season? Perhaps this is because school is out in the summer months and it helps bolster attendance. Additionally, are there other sports competing with baseball during these months?</p>
+<p>If you look past the sixtieth game you will notice that 2024 has a surge in attendance. Maybe this because they were in a playoff race. Line graphs are also interesting because if you notice trend and seasonality you might be able to decompose these components using exponential smoothing or even a moving average. In practice, I have found limited use for these techniques in sports. However, it is something to think about.</p>
+<p>Tile plots (or heatmaps) add a level of dimensionality to data and can be extremely useful. This one is a little different. We need to do some aggregation on the data before visualizing it. We’ll use the <em>dplyr</em> for most transformations. It just makes life easier. This is very different than what you will tend to see in languages such as python. it uses the pipe <em>%&gt;%</em> to say the words <em>then do</em>. You’ll be seeing a lot more of it. Try it out on some data. In this case we are just picking some columns, grouping them, and then creating an aggregation. It feels similar to SQL. I wonder why. This plot can be seen in figure <a href="chapter3.html#fig:chthreetileplotex">3.7</a>.</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Tile plot or heat map</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">x_label</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'\n Day of Week'</span><span class="op">)</span></span>
+<span><span class="va">y_label</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Month \n'</span><span class="op">)</span></span>
+<span><span class="va">title</span>   <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket Sales by Day and Month'</span><span class="op">)</span></span>
+<span><span class="co"># compress data into an easier format</span></span>
+<span><span class="va">sd_comp</span> <span class="op">&lt;-</span> <span class="va">season_data</span>                    <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dayOfWeek</span>,<span class="va">month</span>,<span class="va">ticketSales</span><span class="op">)</span>     <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">dayOfWeek</span>,<span class="va">month</span><span class="op">)</span>               <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>avgSales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">ticketSales</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tile_sales</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data     <span class="op">=</span> <span class="va">sd_comp</span>, </span>
+<span>                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x    <span class="op">=</span> <span class="va">dayOfWeek</span>,</span>
+<span>                      y    <span class="op">=</span> <span class="va">month</span>,</span>
+<span>                      fill <span class="op">=</span> <span class="va">avgSales</span><span class="op">)</span><span class="op">)</span>                       <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span><span class="op">)</span>                                                 <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradient</a></span><span class="op">(</span>low <span class="op">=</span> <span class="st">"white"</span>, high <span class="op">=</span> <span class="st">"dodgerblue"</span>,</span>
+<span>                      name <span class="op">=</span> <span class="st">'Tickets'</span>,label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                               <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                               <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                              <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:chthreetileplotex"></span>
+<img src="images/ch3_sales_tile.png" alt="Tile Plots" width="100%"><p class="caption">
+Figure 3.7: Tile Plots
+</p>
+</div>
+<p>How do we interpret this data? We can clearly see that Friday and Saturday tend to have higher average ticket sales. This shouldn’t be a surprise. It also looks like Sundays in March did well. Beware! That is likely an artifact from a reduced sample size. Overall, Heatmaps do a good job of visualizing correlations, but they can be misleading. Be careful with them and always consider sampling issues.</p>
+<p>We can also look at a variation of a heatmap called a hex plot. It can be used in slightly different ways. You can see the hex plot in figure <a href="chapter3.html#fig:chthreehex">3.8</a>.</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Hexplots</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">x_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'\n Game Number'</span><span class="op">)</span></span>
+<span><span class="va">y_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket Sales \n'</span><span class="op">)</span></span>
+<span><span class="va">title</span>   <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket Sales by game'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">hex_sales</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data     <span class="op">=</span> <span class="va">season_data</span>, </span>
+<span>                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x    <span class="op">=</span> <span class="va">gameNumber</span>,</span>
+<span>                      y    <span class="op">=</span> <span class="va">ticketSales</span><span class="op">)</span><span class="op">)</span>                    <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_hex.html">geom_hex</a></span><span class="op">(</span><span class="op">)</span>                                                  <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradient</a></span><span class="op">(</span>low <span class="op">=</span> <span class="st">"dodgerblue"</span>, high <span class="op">=</span> <span class="st">"coral"</span>,</span>
+<span>                      name <span class="op">=</span> <span class="st">'Count'</span>,label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>   <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>                 <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                               <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                               <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                              </span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:chthreehex"></span>
+<img src="images/ch3_hex_sales.png" alt="Hex Plots" width="100%"><p class="caption">
+Figure 3.8: Hex Plots
+</p>
+</div>
+<p>This heatmap is a little different. It demonstrates the number of games that fall into each bin. I tend to use these plots when I have continuous variables on the x and y axis and I am interested in the density at each point. Additionally, you can perceive some of the seasonality that is evident around game forty.</p>
+</div>
+<div id="bar-plots" class="section level2" number="3.5">
+<h2>
+<span class="header-section-number">3.5</span> Bar plots<a class="anchor" aria-label="anchor" href="#bar-plots"><i class="fas fa-link"></i></a>
+</h2>
+<p>If you want to use a pie chart, don’t. Bar plots are almost always a better choice. Visualizing the relationships between area is simply easier. These are probably the most popular way to display data, but I find them lacking. You really need to train yourself to think in distributions. When you are standing in line at the grocery store don’t mindlessly look at the magazine covers. Look at the people and think of their height as a distribution. Don’t simply count them. Bar Plots are for counts. The basic bar plot produced by the following code can be seen in figure <a href="chapter3.html#fig:chthreebarexample">3.9</a>.</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Bar plot version one</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">x_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'\n Season'</span><span class="op">)</span></span>
+<span><span class="va">y_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Proportion of Ticket Sales \n'</span><span class="op">)</span></span>
+<span><span class="va">title</span>    <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Proportion of Ticket Sales by DOW'</span><span class="op">)</span></span>
+<span><span class="va">bar_sales_pro</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data     <span class="op">=</span> <span class="va">season_data</span>, </span>
+<span>                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y    <span class="op">=</span> <span class="va">ticketSales</span>,</span>
+<span>                      x    <span class="op">=</span> <span class="va">season</span>,</span>
+<span>                      fill <span class="op">=</span> <span class="va">weekEnd</span><span class="op">)</span><span class="op">)</span>                   <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">'identity'</span>,position <span class="op">=</span> <span class="st">'fill'</span><span class="op">)</span>          <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">palette</span>, name <span class="op">=</span> <span class="st">'Weekend'</span><span class="op">)</span>  <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">)</span>            <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                          <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                          <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                         <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position   <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:chthreebarexample"></span>
+<img src="images/ch3_sales_bar_pro.png" alt="Proportional of sales by day of week" width="100%"><p class="caption">
+Figure 3.9: Proportional of sales by day of week
+</p>
+</div>
+<p>In this example we are looking at the percentages of tickets sold on the weekend vs. weekdays by season. This graph does a great job of it. We can clearly see that weekends make up a higher proportion of sales in 2024. We also know that weekdays make up the majority of sales.</p>
+<p>We can build a variation on this plot with the <em>position</em> argument. Now we can take a look at the overall numbers. This second bar plot can be viewed in figure <a href="chapter3.html#fig:chthreebarplottwo">3.10</a>.</p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Bar plot version two</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">x_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'\n Season'</span><span class="op">)</span></span>
+<span><span class="va">y_label</span>  <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket Sales \n'</span><span class="op">)</span></span>
+<span><span class="va">title</span>    <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Ticket Sales by DOW'</span><span class="op">)</span></span>
+<span><span class="va">bar_sales</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data     <span class="op">=</span> <span class="va">season_data</span>, </span>
+<span>                  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y    <span class="op">=</span> <span class="va">ticketSales</span>,</span>
+<span>                      x    <span class="op">=</span> <span class="va">season</span>,</span>
+<span>                      fill <span class="op">=</span> <span class="va">weekEnd</span><span class="op">)</span><span class="op">)</span>                  <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">'identity'</span>, position <span class="op">=</span> <span class="st">'stack'</span><span class="op">)</span>       <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">palette</span>, name <span class="op">=</span> <span class="st">'Weekend'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>             <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                         <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                         <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                        <span class="op">+</span></span>
+<span>  <span class="va">graphics_theme_1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position   <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:chthreebarplottwo"></span>
+<img src="images/ch3_sales_bar.png" alt="Barplot of sales" width="100%"><p class="caption">
+Figure 3.10: Barplot of sales
+</p>
+</div>
+<p>We can see that 2022 and 2023 are almost identical and 2024 had significantly more ticket sales. This is the type of plot you might use for descriptive reporting. It is something accounting would want to see. They don’t need to know why? They typically just need the what.</p>
+</div>
+<div id="a-final-word-on-graphics" class="section level2" number="3.6">
+<h2>
+<span class="header-section-number">3.6</span> A final word on graphics<a class="anchor" aria-label="anchor" href="#a-final-word-on-graphics"><i class="fas fa-link"></i></a>
+</h2>
+<p>Be cautious about how you represent data. We just covered the absolute rudiments or creating graphs and demonstrated some of the most commonly used instruments. Always think about the simplest way to illustrate the point that you are trying to make. Bar plots are usually fine. I like to follow a few rules when building graphs.</p>
+<ol style="list-style-type: decimal">
+<li>Never use a pie chart. They are more difficult to interpret than a bar plot</li>
+<li>Don’t use two Y axes. It is almost always better to use two graphs because the differences in scale or units can be confusing.</li>
+<li>stick with a consistent color scheme.</li>
+<li>Stick with a consistent font scheme</li>
+<li>Don’t put too much on one graph. Too many colors or shapes make graphs confusing. Always simplify.</li>
+</ol>
+<p>Additionally, we didn’t cover dynamic plots. R provides some interesting capabilities on this front. Shiny <span class="citation">(<a href="references.html#ref-R-shiny" role="doc-biblioref">Chang et al. 2021</a>)</span> allows you to build some cool interactive web apps. Furthermore, there are innumerable tools such as Tableau <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;These technologies are dynamic and constantly changing. At the time of writing, Tableau was the dominant tool in this space.&lt;/p&gt;"><sup>19</sup></a> and Looker that provide good business intelligence capability. Often, these tools are easier to use for quick ad hoc data exploration. However, there is a lot of utility in putting everything into code. It automatically documents your work for those that can read it. It also gives you a readily available reference. You will find that this work can tend to be repetitive. You will use a lot of variations on the same theme. Most code is already written. You just need to adapt it.</p>
+</div>
+<div id="summarizing-the-data" class="section level2" number="3.7">
+<h2>
+<span class="header-section-number">3.7</span> Summarizing the data<a class="anchor" aria-label="anchor" href="#summarizing-the-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>We’ll make heavy use of a an R package named dplyr <span class="citation">(<a href="references.html#ref-R-dplyr" role="doc-biblioref">Wickham, François, et al. 2021</a>)</span>. We’ll use dplyr because it is easy to read. We’ll also reference a couple of other packages that are useful for summarizing data such as <span class="citation">(<a href="references.html#ref-R-psych" role="doc-biblioref">Revelle 2021</a>)</span>. Overall, summarizing data is an accoutrement to graphs. You don’t always have to do it, but you will find yourself doing often.</p>
+<p>Let’s create simple summary of ticket sales using <em>dplyr</em>.</p>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Creating a summary statistics table</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="va">average_by_dow</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">season_data</span>                          <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">dayOfWeek</span><span class="op">)</span>                         <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>AverageSales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">ticketSales</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:summarystats2">Table 3.2: </span>Mean ticket sales by day of week</caption>
+<thead><tr class="header">
+<th align="center">dayOfWeek</th>
+<th align="center">AverageSales</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">Fri</td>
+<td align="center">38794.03</td>
+</tr>
+<tr class="even">
+<td align="center">Mon</td>
+<td align="center">28243.46</td>
+</tr>
+<tr class="odd">
+<td align="center">Sat</td>
+<td align="center">38146.29</td>
+</tr>
+<tr class="even">
+<td align="center">Sun</td>
+<td align="center">29690.38</td>
+</tr>
+<tr class="odd">
+<td align="center">Thu</td>
+<td align="center">28560.53</td>
+</tr>
+<tr class="even">
+<td align="center">Tue</td>
+<td align="center">28217.72</td>
+</tr>
+<tr class="odd">
+<td align="center">Wed</td>
+<td align="center">28893.47</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>dplyr</em> has a wide assortment of useful tools for manipulating data. I highly recommend leveraging it whenever possible. For edification, an identical table can be produced in base R using the <em>by</em> function:</p>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Creating a summary statistics table using 'by'</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/by.html">by</a></span><span class="op">(</span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">season_data</span><span class="op">$</span><span class="va">ticketSales</span>,</span>
+<span>   <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">season_data</span><span class="op">$</span><span class="va">dayOfWeek</span>,<span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; FOSBAAS::season_data$dayOfWeek: Fri</span></span>
+<span><span class="co">#&gt; [1] 38794.03</span></span>
+<span><span class="co">#&gt; --------------------------------------------- </span></span>
+<span><span class="co">#&gt; FOSBAAS::season_data$dayOfWeek: Mon</span></span>
+<span><span class="co">#&gt; [1] 28243.46</span></span>
+<span><span class="co">#&gt; --------------------------------------------- </span></span>
+<span><span class="co">#&gt; FOSBAAS::season_data$dayOfWeek: Sat</span></span>
+<span><span class="co">#&gt; [1] 38146.29</span></span>
+<span><span class="co">#&gt; --------------------------------------------- </span></span>
+<span><span class="co">#&gt; FOSBAAS::season_data$dayOfWeek: Sun</span></span>
+<span><span class="co">#&gt; [1] 29690.38</span></span>
+<span><span class="co">#&gt; --------------------------------------------- </span></span>
+<span><span class="co">#&gt; FOSBAAS::season_data$dayOfWeek: Thu</span></span>
+<span><span class="co">#&gt; [1] 28560.53</span></span>
+<span><span class="co">#&gt; --------------------------------------------- </span></span>
+<span><span class="co">#&gt; FOSBAAS::season_data$dayOfWeek: Tue</span></span>
+<span><span class="co">#&gt; [1] 28217.72</span></span>
+<span><span class="co">#&gt; --------------------------------------------- </span></span>
+<span><span class="co">#&gt; FOSBAAS::season_data$dayOfWeek: Wed</span></span>
+<span><span class="co">#&gt; [1] 28893.47</span></span></code></pre></div>
+<p>There are many other data manipulation packages such as <em>data.table</em> <span class="citation">(<a href="references.html#ref-R-datatable" role="doc-biblioref">Dowle and Srinivasan 2021</a>)</span> and <em>plyr</em> <span class="citation">(<a href="references.html#ref-R-plyr" role="doc-biblioref">Wickham 2020a</a>)</span>. Let’s take a look at a few more examples. You will frequently find yourself looking at quantiles. You can use this data to set simple fences for segmentation.</p>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Getting quantiles</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">quants</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">season_data</span><span class="op">$</span><span class="va">ticketSales</span>, </span>
+<span>                   probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">.10</span>,<span class="fl">.25</span>,<span class="fl">.5</span>,<span class="fl">.75</span>,<span class="fl">.9</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">quants</span></span>
+<span><span class="co">#&gt;      0%     10%     25%     50%     75%     90%    100% </span></span>
+<span><span class="co">#&gt; 19920.0 22797.6 26126.5 30956.0 35664.0 40816.6 45000.0</span></span></code></pre></div>
+<p>In this case we know that 25% of the observations are below 26,126.5 tickets sold. You can access the components of this object with brackets and an index. Many object in R can be accessed with indexes. This comes in handy when you are scripting.</p>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Getting quantiles</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">quants</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span>
+<span><span class="co">#&gt;     25% </span></span>
+<span><span class="co">#&gt; 26126.5</span></span></code></pre></div>
+<p>Turning data from long to wide format and vise-versa is something that is also a common task. There are several ways to accomplish this. Let’s look at one example. Perhaps you would like to see the Giants and Baltimore. This will be a little more complex, but it demonstrates how logically this system operates. We’ll use the <em>dplyr</em> <span class="citation">(<a href="references.html#ref-R-dplyr" role="doc-biblioref">Wickham, François, et al. 2021</a>)</span> and <em>tidyr</em> <span class="citation">(<a href="references.html#ref-R-tidyr" role="doc-biblioref">Wickham 2021b</a>)</span> libraries to achieve this result.</p>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Converting to wide format</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
+<span><span class="va">team_dow</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">season_data</span>                                   <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">team</span>,<span class="va">dayOfWeek</span>,<span class="va">ticketSales</span><span class="op">)</span>                     <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">team</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'SF'</span>,<span class="st">'BAL'</span><span class="op">)</span><span class="op">)</span>                        <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">team</span>,<span class="va">dayOfWeek</span><span class="op">)</span>                               <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>medianSales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">ticketSales</span><span class="op">)</span>,</span>
+<span>            games       <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>                           <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from  <span class="op">=</span> <span class="va">team</span>,</span>
+<span>                     values_from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">medianSales</span>,<span class="va">games</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>difference <span class="op">=</span> <span class="va">medianSales_BAL</span> <span class="op">-</span> <span class="va">medianSales_SF</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">difference</span><span class="op">)</span>                          </span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>(#tab:widelonga )Median ticket sales by day of week</caption>
+<thead><tr class="header">
+<th align="center">dayOfWeek</th>
+<th align="center">medianSales_BAL</th>
+<th align="center">medianSales_SF</th>
+<th align="center">games_BAL</th>
+<th align="center">games_SF</th>
+<th align="center">difference</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">Sun</td>
+<td align="center">28209.0</td>
+<td align="center">42928.0</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">-14719.0</td>
+</tr>
+<tr class="even">
+<td align="center">Sat</td>
+<td align="center">29787.0</td>
+<td align="center">43999.0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">-14212.0</td>
+</tr>
+<tr class="odd">
+<td align="center">Thu</td>
+<td align="center">22561.0</td>
+<td align="center">35357.5</td>
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">-12796.5</td>
+</tr>
+<tr class="even">
+<td align="center">Fri</td>
+<td align="center">33734.0</td>
+<td align="center">43608.5</td>
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">-9874.5</td>
+</tr>
+<tr class="odd">
+<td align="center">Wed</td>
+<td align="center">26301.5</td>
+<td align="center">28773.0</td>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center">-2471.5</td>
+</tr>
+<tr class="even">
+<td align="center">Mon</td>
+<td align="center">25658.5</td>
+<td align="center">25759.0</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">-100.5</td>
+</tr>
+<tr class="odd">
+<td align="center">Tue</td>
+<td align="center">26464.0</td>
+<td align="center">26233.0</td>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center">231.0</td>
+</tr>
+</tbody>
+</table></div>
+<p>Now we have a table that tells us exactly what we want to know. In practice you will probably need this data in long format more often. Let’s pretend we want to graph this data. Because of the way ggplot works you will probably want to convert this data. It is simple to go back.</p>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Converting to long format</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
+<span><span class="va">team_dow_long</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">team_dow</span>                                          <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">dayOfWeek</span>, <span class="va">medianSales_BAL</span>,<span class="va">medianSales_SF</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">!</span><span class="va">dayOfWeek</span>, </span>
+<span>                      names_to  <span class="op">=</span> <span class="st">"club"</span>, </span>
+<span>                      values_to <span class="op">=</span> <span class="st">"medianSales"</span><span class="op">)</span></span>
+<span>                         </span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>(#tab:widelongd )Median ticket sales by day of week</caption>
+<thead><tr class="header">
+<th align="center">dayOfWeek</th>
+<th align="center">club</th>
+<th align="center">medianSales</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">Sun</td>
+<td align="center">medianSales_BAL</td>
+<td align="center">28209.0</td>
+</tr>
+<tr class="even">
+<td align="center">Sun</td>
+<td align="center">medianSales_SF</td>
+<td align="center">42928.0</td>
+</tr>
+<tr class="odd">
+<td align="center">Sat</td>
+<td align="center">medianSales_BAL</td>
+<td align="center">29787.0</td>
+</tr>
+<tr class="even">
+<td align="center">Sat</td>
+<td align="center">medianSales_SF</td>
+<td align="center">43999.0</td>
+</tr>
+<tr class="odd">
+<td align="center">Thu</td>
+<td align="center">medianSales_BAL</td>
+<td align="center">22561.0</td>
+</tr>
+<tr class="even">
+<td align="center">Thu</td>
+<td align="center">medianSales_SF</td>
+<td align="center">35357.5</td>
+</tr>
+</tbody>
+</table></div>
+<p>This data will be much easier to use in ggplot. For the most part, these are the main operations you will be performing. They can be much more complex, but you just went through the main building blocks. If you understand what we just covered, you will be surprised at how far you can take it.</p>
+<div id="getting-statistical-information" class="section level3" number="3.7.1">
+<h3>
+<span class="header-section-number">3.7.1</span> Getting statistical information<a class="anchor" aria-label="anchor" href="#getting-statistical-information"><i class="fas fa-link"></i></a>
+</h3>
+<p>We also thought it might be useful to mention a few ways to get statistical data without having to calculate it yourself. R excels here and several people have extended it’s capabilities. I’ll show you a couple of the ones I have used the most. The <em>psych</em> <span class="citation">(<a href="references.html#ref-R-psych" role="doc-biblioref">Revelle 2021</a>)</span> library contains lots of useful functions for manipulating data.</p>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Summary stats psych</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://personality-project.org/r/psych/">psych</a></span><span class="op">)</span></span>
+<span><span class="va">psy_desc</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span><span class="op">(</span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">season_data</span><span class="op">$</span><span class="va">ticketSales</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>(#tab:psychshow )Summary Statistics</caption>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">X1</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">vars</td>
+<td align="right">1.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">n</td>
+<td align="right">243.0000000</td>
+</tr>
+<tr class="odd">
+<td align="left">mean</td>
+<td align="right">31411.0370370</td>
+</tr>
+<tr class="even">
+<td align="left">sd</td>
+<td align="right">6578.2640431</td>
+</tr>
+<tr class="odd">
+<td align="left">median</td>
+<td align="right">30956.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">trimmed</td>
+<td align="right">31107.2256410</td>
+</tr>
+<tr class="odd">
+<td align="left">mad</td>
+<td align="right">7103.1366000</td>
+</tr>
+<tr class="even">
+<td align="left">min</td>
+<td align="right">19920.0000000</td>
+</tr>
+<tr class="odd">
+<td align="left">max</td>
+<td align="right">45000.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">range</td>
+<td align="right">25080.0000000</td>
+</tr>
+<tr class="odd">
+<td align="left">skew</td>
+<td align="right">0.3095442</td>
+</tr>
+<tr class="even">
+<td align="left">kurtosis</td>
+<td align="right">-0.7500429</td>
+</tr>
+<tr class="odd">
+<td align="left">se</td>
+<td align="right">421.9958351</td>
+</tr>
+</tbody>
+</table></div>
+<p>This gives you a good overview of what the structure of the ticket sales data looks like. This gives me a good opportunity to point out one of R’s quirks. The <em>psych</em> package and the <em>Hmisc</em> <span class="citation">(<a href="references.html#ref-R-Hmisc" role="doc-biblioref">Harrell 2021</a>)</span> package both have a function with the same name. They even do similar things. Be cautious with dependencies because they can cause problems.</p>
+<p>The following example uses the Hmisc package to display some summary statistics.</p>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Summary stats Hmisc</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">hmisc_desc</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu">Hmisc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Hmisc/man/describe.html">describe</a></span><span class="op">(</span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">season_data</span><span class="op">$</span><span class="va">ticketSales</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">hmisc_desc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">hmisc_desc</span><span class="op">$</span><span class="va">counts</span><span class="op">)</span></span>
+<span><span class="va">hmisc_desc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">hmisc_desc</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Unload a package</span></span>
+<span><span class="co"># unloadNamespace("Hmisc")</span></span>
+<span><span class="co"># detach("package:Hmisc")</span></span></code></pre></div>
+<p>You can remove libraries from your environment in a couple of different ways seen in the previous code chuck.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>(#tab:hmiscshow )Summary Statistics using Hmisc</caption>
+<tbody>
+<tr class="odd">
+<td align="left">n</td>
+<td align="right">243</td>
+</tr>
+<tr class="even">
+<td align="left">missing</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">distinct</td>
+<td align="right">234</td>
+</tr>
+<tr class="even">
+<td align="left">Info</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Mean</td>
+<td align="right">31411</td>
+</tr>
+<tr class="even">
+<td align="left">Gmd</td>
+<td align="right">7517</td>
+</tr>
+<tr class="odd">
+<td align="left">.05</td>
+<td align="right">22115</td>
+</tr>
+<tr class="even">
+<td align="left">.10</td>
+<td align="right">22798</td>
+</tr>
+<tr class="odd">
+<td align="left">.25</td>
+<td align="right">26127</td>
+</tr>
+<tr class="even">
+<td align="left">.50</td>
+<td align="right">30956</td>
+</tr>
+<tr class="odd">
+<td align="left">.75</td>
+<td align="right">35664</td>
+</tr>
+<tr class="even">
+<td align="left">.90</td>
+<td align="right">40817</td>
+</tr>
+<tr class="odd">
+<td align="left">.95</td>
+<td align="right">43602</td>
+</tr>
+</tbody>
+</table></div>
+<p>As you can see, somebody else has done the hard work for you. You just need to know where to look. Keep in mind, not all R packages are good. This software is user generated and provided for free. While there are lots of reputable packages, there are also lots that are poorly written. It is sometimes useful to look for provenance.</p>
+</div>
+<div id="building-models-and-basic-statistics" class="section level3" number="3.7.2">
+<h3>
+<span class="header-section-number">3.7.2</span> Building models and basic statistics<a class="anchor" aria-label="anchor" href="#building-models-and-basic-statistics"><i class="fas fa-link"></i></a>
+</h3>
+<p>We’ll apply more rigor to our models as we progress through the ensuing chapters. However, I want to introduce a couple of concepts in this here. We will add to the complexity as we move into actual projects.</p>
+<div id="anova" class="section level4" number="3.7.2.1">
+<h4>
+<span class="header-section-number">3.7.2.1</span> ANOVA<a class="anchor" aria-label="anchor" href="#anova"><i class="fas fa-link"></i></a>
+</h4>
+<p>An <em>analysis of variance</em> is a commonly used tool to gauge differences between groups. We are only going to take a cursory look at one version of ANOVA. There are lots of different types of ANOVA and you’ll want to put some time into understanding when and how to use them. Additionally, ANOVA output is equivalent to regression output. However, we are going to use it when we want to understand differences between groups. There are other ways to analyze the differences between groups such as a students T test. The following sections will walk you through a simple ANOVA example.</p>
+<p>This example is a <em>one-way</em> ANOVA with a covariate, but there are several research designs that you will want to be familiar with. We want to look at the differences in ticket sales by promotion by the day of the week. We can begin by looking at our samples</p>
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Build a frequency table</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">season_data</span><span class="op">$</span><span class="va">promotion</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; bobblehead    concert       none      other </span></span>
+<span><span class="co">#&gt;         16          8        212          7</span></span></code></pre></div>
+<p>Each group has completely different representation. This is not a balanced design. Does that matter? It certainly could. We will test for group differences using the <em>aov</em> function.</p>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># One Way ANOVA</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">ticketSales</span> <span class="op">~</span> <span class="va">promotion</span> <span class="op">+</span> <span class="va">dayOfWeek</span>,</span>
+<span>           data <span class="op">=</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">season_data</span><span class="op">)</span></span>
+<span><span class="co">#summary(mod)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>(#tab:anova2 )ANOVA results</caption>
+<thead><tr class="header">
+<th align="right">term</th>
+<th align="right">df</th>
+<th align="right">sumsq</th>
+<th align="right">meansq</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">promotion</td>
+<td align="right">3</td>
+<td align="right">865001255</td>
+<td align="right">288333752</td>
+<td align="right">12.26602</td>
+<td align="right">2e-07</td>
+</tr>
+<tr class="even">
+<td align="right">dayOfWeek</td>
+<td align="right">6</td>
+<td align="right">4130134954</td>
+<td align="right">688355826</td>
+<td align="right">29.28337</td>
+<td align="right">0e+00</td>
+</tr>
+<tr class="odd">
+<td align="right">Residuals</td>
+<td align="right">233</td>
+<td align="right">5477064783</td>
+<td align="right">23506716</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table></div>
+<p>We’ll discuss designing experiments (DOE) in a later chapter. For now, we’ll simply walk through some of the output. We aren’t being rigorous here. Basically, our P Value looks good and we have an F statistic that isn’t super small. We can move forward. Let’s take a look at some statistics in a graph.</p>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Viewing group means</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="va">graph_table</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">season_data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>               </span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">promotion</span>,<span class="va">ticketSales</span>,<span class="va">dayOfWeek</span>,<span class="va">daysSinceLastGame</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">promotion</span>,<span class="va">dayOfWeek</span><span class="op">)</span>                              <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">ticketSales</span><span class="op">)</span>,</span>
+<span>              daysSinceLastGame <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">daysSinceLastGame</span><span class="op">)</span>,</span>
+<span>              N <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>              sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">ticketSales</span><span class="op">)</span>,</span>
+<span>              se <span class="op">=</span> <span class="va">sd</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span><span class="op">)</span>         </span>
+<span></span>
+<span><span class="va">x_label</span> <span class="op">&lt;-</span> <span class="st">'Day of Week'</span>                                             </span>
+<span><span class="va">y_label</span> <span class="op">&lt;-</span> <span class="st">'Mean ticket sales'</span>                                            </span>
+<span><span class="va">title</span>   <span class="op">&lt;-</span> <span class="st">'Group means and standard error: promos and sales'</span></span>
+<span><span class="va">se</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">graph_table</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">sales</span>, </span>
+<span>                        x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">dayOfWeek</span>,<span class="va">sales</span>,<span class="va">mean</span><span class="op">)</span>, </span>
+<span>                        color<span class="op">=</span><span class="va">promotion</span><span class="op">)</span><span class="op">)</span>                     <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">sales</span><span class="op">-</span><span class="va">se</span>, ymax <span class="op">=</span> <span class="va">sales</span><span class="op">+</span><span class="va">se</span><span class="op">)</span>, </span>
+<span>                  width <span class="op">=</span><span class="fl">.3</span>,size <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>                  position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html">position_dodge</a></span><span class="op">(</span><span class="fl">0.25</span><span class="op">)</span><span class="op">)</span>            <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span>                                              <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">palette</span><span class="op">)</span>                      <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>                 <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                             <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                             <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                            <span class="op">+</span></span>
+<span>    <span class="va">graphics_theme_1</span> </span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:chthreese"></span>
+<img src="images/ch3_se.png" alt="Group means and standard error by promotion and dow" width="100%"><p class="caption">
+Figure 3.11: Group means and standard error by promotion and dow
+</p>
+</div>
+<p>This model output isn’t incredibly informative, but the graph gives you a lot of information. Once you have your model constructed you can access all the parts with a dollar sign: <em>mod$terms</em>. There is a lot to consider in these models when you begin making them more complex. In this case, we can see that we have some sample issues.</p>
+<p>We can see that certain promotions may be more effective than others and that the day of the week may have an impact on how effective the promotion might be in absolute terms.</p>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Summary stats psych</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">tu_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>(#tab:anova4 )Tukey Comparisons</caption>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">diff</th>
+<th align="right">lwr</th>
+<th align="right">upr</th>
+<th align="right">p adj</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">concert-bobblehead</td>
+<td align="right">4465.5000</td>
+<td align="right">-967.0665</td>
+<td align="right">9898.067</td>
+<td align="right">0.1475821</td>
+</tr>
+<tr class="even">
+<td align="left">none-bobblehead</td>
+<td align="right">-4442.5448</td>
+<td align="right">-7695.2441</td>
+<td align="right">-1189.845</td>
+<td align="right">0.0027589</td>
+</tr>
+<tr class="odd">
+<td align="left">other-bobblehead</td>
+<td align="right">-3646.7321</td>
+<td align="right">-9332.1099</td>
+<td align="right">2038.646</td>
+<td align="right">0.3474454</td>
+</tr>
+<tr class="even">
+<td align="left">none-concert</td>
+<td align="right">-8908.0448</td>
+<td align="right">-13426.6337</td>
+<td align="right">-4389.456</td>
+<td align="right">0.0000042</td>
+</tr>
+<tr class="odd">
+<td align="left">other-concert</td>
+<td align="right">-8112.2321</td>
+<td align="right">-14605.3911</td>
+<td align="right">-1619.073</td>
+<td align="right">0.0076108</td>
+</tr>
+<tr class="even">
+<td align="left">other-none</td>
+<td align="right">795.8127</td>
+<td align="right">-4023.7710</td>
+<td align="right">5615.396</td>
+<td align="right">0.9737610</td>
+</tr>
+</tbody>
+</table></div>
+<p>In this case, the mean ticket sales for bobbleheads and concerts aren’t significantly different from each other. What does this mean? If your KPI is ticket sales and there are different marginal costs associated with concerts and bobbleheads then the less expensive option might be better. Let’s visualize these results,</p>
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Viewing group means</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">x_label</span> <span class="op">&lt;-</span> <span class="st">'Value'</span>                                             </span>
+<span><span class="va">y_label</span> <span class="op">&lt;-</span> <span class="st">'Promotion Comps'</span>                                            </span>
+<span><span class="va">title</span>   <span class="op">&lt;-</span> <span class="st">'95% CI comps by promotion '</span></span>
+<span><span class="va">tu_comp_graph</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tu_comp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">diff</span>, </span>
+<span>                    y<span class="op">=</span><span class="va">promotion</span><span class="op">)</span><span class="op">)</span>                             <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbar</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="va">lwr</span>, xmax <span class="op">=</span> <span class="va">upr</span><span class="op">)</span>, </span>
+<span>                  width <span class="op">=</span><span class="fl">.3</span>,size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>                         <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span>                                              <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>                 <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                             <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                             <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                            <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>,color <span class="op">=</span> <span class="st">'red'</span>,lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>          <span class="op">+</span></span>
+<span>    <span class="va">graphics_theme_1</span> </span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:chthreesetukey"></span>
+<img src="images/ch3_tu.png" alt="Group means and standard error by promotion and dow" width="100%"><p class="caption">
+Figure 3.12: Group means and standard error by promotion and dow
+</p>
+</div>
+<p>If an interval crosses zero, it isn’t significant. We can get a significant amount of information from this plot.</p>
+</div>
+<div id="linear-regression" class="section level4" number="3.7.2.2">
+<h4>
+<span class="header-section-number">3.7.2.2</span> Linear Regression<a class="anchor" aria-label="anchor" href="#linear-regression"><i class="fas fa-link"></i></a>
+</h4>
+<p>We’ll go into regression in more detail in a later chapter. Functionally, the output is the same as an ANOVA.</p>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Creating a simple linear model</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">ln_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">ticketSales</span> <span class="op">~</span> <span class="va">team</span><span class="op">+</span><span class="va">dayOfWeek</span><span class="op">+</span><span class="va">month</span><span class="op">+</span></span>
+<span>                           <span class="va">daysSinceLastGame</span><span class="op">+</span><span class="va">openingDay</span><span class="op">+</span><span class="va">promotion</span>,</span>
+<span>                           data <span class="op">=</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">season_data</span><span class="op">)</span></span>
+<span><span class="va">stats_ticket_sales</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>st_error     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>               r_square     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod</span><span class="op">)</span><span class="op">[</span><span class="fl">8</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>               adj_r_square <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod</span><span class="op">)</span><span class="op">[</span><span class="fl">9</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>               f_stat       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod</span><span class="op">)</span><span class="op">$</span><span class="va">fstatistic</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:salesmodeltwo">Table 3.3: </span>Summary statistics</caption>
+<thead><tr class="header">
+<th align="right">st_error</th>
+<th align="right">r_square</th>
+<th align="right">adj_r_square</th>
+<th align="right">f_stat</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="right">1980.077</td>
+<td align="right">0.925496</td>
+<td align="right">0.9093972</td>
+<td align="right">57.48835</td>
+</tr></tbody>
+</table></div>
+<p>You can use these coefficients to explain the impact of specific variables. For instance, how many tickets is the month of July worth? The coefficient (5264.39) represents this impact. July gives you a five-thousand ticket bump. You can also use the model to make predictions. This model is completly <em>overfit</em>, but that doesn’t matter at this point. Let’s try it.</p>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Using the regression output</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">seasons</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">season_data</span></span>
+<span><span class="va">seasons</span><span class="op">$</span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">ln_mod</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">x_label</span> <span class="op">&lt;-</span> <span class="st">'Actual Sales'</span>                                             </span>
+<span><span class="va">y_label</span> <span class="op">&lt;-</span> <span class="st">'Predicted Sales'</span>                                            </span>
+<span><span class="va">title</span>   <span class="op">&lt;-</span> <span class="st">'Actual Sales vs. Predictions'</span></span>
+<span><span class="va">legend</span>   <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'Season'</span><span class="op">)</span></span>
+<span><span class="va">sales_mod</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">seasons</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ticketSales</span>, </span>
+<span>                    y <span class="op">=</span> <span class="va">pred</span>,</span>
+<span>                    color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">season</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>                  <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span>                                              <span class="op">+</span></span>
+<span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">stat_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">'lm'</span>, se <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>                      <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span><span class="va">legend</span>,values <span class="op">=</span> <span class="va">palette</span><span class="op">)</span>               <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>                 <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span>                 <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">x_label</span><span class="op">)</span>                                             <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                             <span class="op">+</span> </span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                            <span class="op">+</span></span>
+<span>    <span class="va">graphics_theme_1</span> </span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:chthreepreds"></span>
+<img src="images/ch3_sales_mod.png" alt="Prediction vs. acutal values" width="100%"><p class="caption">
+Figure 3.13: Prediction vs. acutal values
+</p>
+</div>
+<p>We can see that the model does a pretty good job of approximating sales. We’ll go through a more formal example of regression to demonstrate more of the dogma associated with it.</p>
+</div>
+</div>
+</div>
+<div id="key-concepts-and-chapter-summary-2" class="section level2" number="3.8">
+<h2>
+<span class="header-section-number">3.8</span> Key concepts and chapter summary<a class="anchor" aria-label="anchor" href="#key-concepts-and-chapter-summary-2"><i class="fas fa-link"></i></a>
+</h2>
+<p>Exploring your data is a fundamental component of analysis. You are looking for useful patterns that might make more sophisticated analysis possible. You are also looking for things like missing data and sparsity. Graphs are typically the easiest way to accomplish this goal. They are also the best method for communicating results.
+We covered several key concepts in this chapter:</p>
+<ul>
+<li>It is important to create a consistent design language for your graphs. Pay attention to colors.</li>
+<li>Certain graphs are better at representing specific data. You often don’t need exotic plots to convey information. You’ll use variations on a few different forms.</li>
+<li>Summarizing data can be done in multiple ways. There are multiple tools that you can use to reshape and summarize data. You can even implement your own methods relatively easily.</li>
+<li>R makes it easy to explore and deploy a wide variety of statistical methods.</li>
+<li>When interpreting or communicating findings the simplest explanation is always the best. Most people will not care how you did something.</li>
+</ul>
+<p>Think of this chapter as a reference. You just went through the basic Business Intelligence and analytics tools that you will use for basic data exploration. There are also different ways to accomplish everything that you just saw. In fact, there are multiple ways to accomplish each of these tasks in R. I just showed you one method.</p>
+<p>Additionally you can use Business Intelligence tools like Tableau to add additional dimensions to your illustrations. If you want to build custom websites R provides tools to accomplish this as well. You could even use javascript or python to accomplish the same thing.</p>
+
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="chapter2.html"><span class="header-section-number">2</span> Constructing our data sets</a></div>
+<div class="next"><a href="chapter4.html"><span class="header-section-number">4</span> Structuring analytics projects</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#chapter3"><span class="header-section-number">3</span> Exploring your data</a></li>
+<li><a class="nav-link" href="#building-a-consistent-design-language"><span class="header-section-number">3.1</span> Building a consistent design language</a></li>
+<li><a class="nav-link" href="#histograms-and-density-plots"><span class="header-section-number">3.2</span> Histograms and density plots</a></li>
+<li><a class="nav-link" href="#box-faceted-and-scatter-plots"><span class="header-section-number">3.3</span> Box, faceted, and scatter plots</a></li>
+<li><a class="nav-link" href="#line-and-tile-plots"><span class="header-section-number">3.4</span> Line and tile plots</a></li>
+<li><a class="nav-link" href="#bar-plots"><span class="header-section-number">3.5</span> Bar plots</a></li>
+<li><a class="nav-link" href="#a-final-word-on-graphics"><span class="header-section-number">3.6</span> A final word on graphics</a></li>
+<li>
+<a class="nav-link" href="#summarizing-the-data"><span class="header-section-number">3.7</span> Summarizing the data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#getting-statistical-information"><span class="header-section-number">3.7.1</span> Getting statistical information</a></li>
+<li><a class="nav-link" href="#building-models-and-basic-statistics"><span class="header-section-number">3.7.2</span> Building models and basic statistics</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#key-concepts-and-chapter-summary-2"><span class="header-section-number">3.8</span> Key concepts and chapter summary</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/Justin-Watkins/FOSBAAS_web.git/blob/master/03-ExploringYourData.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/Justin-Watkins/FOSBAAS_web.git/edit/master/03-ExploringYourData.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-17.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
