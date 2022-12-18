@@ -226,7 +226,7 @@ while(i <= length(x)){
 }
 )
 #>    user  system elapsed 
-#>    1.18    0.06    1.24
+#>    1.15    0.03    1.20
 #-----------------------------------------------------------------
 # 2. lapply
 #-----------------------------------------------------------------
@@ -234,7 +234,7 @@ system.time(
 line_value <- lapply(1:length(x), function(i) x[i]*m + b)
 )
 #>    user  system elapsed 
-#>    0.82    0.05    0.88
+#>    0.82    0.03    0.88
 #-----------------------------------------------------------------
 # 3. For Loop
 #-----------------------------------------------------------------
@@ -245,7 +245,7 @@ for(i in x){
 }
 )
 #>    user  system elapsed 
-#>    0.78    0.04    0.84
+#>    0.78    0.04    0.83
 #-----------------------------------------------------------------
 # 4. purrr:imap
 #-----------------------------------------------------------------
@@ -253,7 +253,7 @@ system.time(
 line_value <- purrr::imap(x,~ .x*m + b)
 )
 #>    user  system elapsed 
-#>    1.00    0.05    1.05
+#>    1.01    0.02    1.03
 ```
 
 This looks weird. _sth_data[,1]_ references the first column in the data frame data frame[row,column]. The first argument in sapply is giving the function a list of rows to traverse. The second argument uses something called an anonymous function, which is confusing. Look it up if you want a deeper understanding of it. It will begin to make sense as you play with it. _paste(sample(c(0:9, LETTERS), 12, replace=TRUE),collapse = ""))_ simply creates a random twelve digit alphanumeric string. We follow this up with assigning a season to the season column. 
