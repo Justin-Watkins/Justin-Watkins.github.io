@@ -3,7 +3,7 @@
 
 
 
-If a sports team has two fundamental core competencies they should be events managment and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth operation is critical to brand perception. It is a pillar of our product and should be treated as such.  
+If a sports team has two fundamental core competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth operation is critical to brand perception. It is a pillar of our product and should be treated as such.  
 
 The overarching umbrella of operations in the club context is to get fans into, around, and out of our facility safely, quickly, and conveniently. There are design, system, and technology components that must be considered. There are also optimization considerations such as the cost and number of point-of-sale units for concessions and retail, labor optimization for security, food production, the number of seats in particular sections, the number of bathrooms, etc. The list is extensive. We'll apply some techniques from the overlapping academic fields of Operations Research, Industrial Engineering, and Operations Management to analyze and solve a couple of ubiquitous _operations_ problems. 
 
@@ -21,14 +21,14 @@ While these systems help to solve existing problems, they can exacerbate other i
 Despite advances in technology, venues will always be faced with optimization problems around moving large numbers of people through their systems in a short amount of time. There are also additive factors such as parking or public transit, nearby entertainment districts, game day promotional items, food an beverage service, and security screenings that all must be considered. At a high level, this chapter hopes to accomplish three things:
 
 - Introduce you to some basic Operations Management problems and solutions
-- Cover project management at a high level
+- Cover even more project management at a high level
 - Introduce you to the complexity of venue operations
 
 We'll take you through a couple of examples of these problems and demonstrate some techniques for solving them. These techniques are generalized and are the basic tools that you could use to solve many interrelated operations problems. You'll come away with a better appreciation for the design and maintenance of these systems in the context of running a club. 
 
 ## Understanding basic issues with ingress
 
-Capacity constraints are obvious and unavoidable with ingress. If you have 30,000 to 400,000 people trying to get to the same place at the same time, lines are unavoidable. The Romans certainly understood these issues well. The colosseum of Rome was designed with 76 vomitoria that would accommodate over 50,000 people^[https://en.wikipedia.org/wiki/Colosseum]. Ironically, the Colosseum was likely more efficient at ingress and egress than a modern stadium. Many venues require a security check involving a magnetometer. Bags must be checked, tickets may need to be scanned, building and fire codes create constraints, and internal space is taken up by concessions and mechanical infrastructure. The Romans didn't have to worry about running electricity or HVAC throughout their venues. These issues also extend outside of the building and apply to road traffic, ADA considerations, public transit, and ride-sharing partnerships. 
+Capacity constraints are obvious and unavoidable with ingress. If you have 30,000 to 400,000 people trying to get to the same place at the same time, lines are unavoidable. The Romans certainly understood these issues well. The Colosseum of Rome was designed with 76 vomitoria that would accommodate over 50,000 people^[https://en.wikipedia.org/wiki/Colosseum]. Ironically, the Colosseum was likely more efficient at ingress and egress than a modern stadium. Many venues require a security check involving a magnetometer. Bags must be checked, tickets may need to be scanned, building and fire codes create constraints, and internal space is taken up by concessions and mechanical infrastructure. The Romans didn't have to worry about running electricity or HVAC throughout their venues. These issues also extend outside of the building and apply to road traffic, ADA considerations, public transit, and ride-sharing partnerships. 
 
 Getting thousands of people into a venue quickly, safely, and in an orderly fashion is difficult. There are multiple constraints to consider:
 

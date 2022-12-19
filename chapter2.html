@@ -214,7 +214,7 @@
 <span><span class="op">}</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;    user  system elapsed </span></span>
-<span><span class="co">#&gt;    1.04    0.06    1.11</span></span>
+<span><span class="co">#&gt;    0.99    0.09    1.08</span></span>
 <span></span>
 <span><span class="va">line_value</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -240,7 +240,7 @@
 <span><span class="op">}</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;    user  system elapsed </span></span>
-<span><span class="co">#&gt;    0.97    0.00    0.96</span></span>
+<span><span class="co">#&gt;    0.97    0.04    1.00</span></span>
 <span></span>
 <span><span class="va">line_value</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -261,7 +261,7 @@
 <span><span class="va">line_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="va">x</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">*</span><span class="va">m</span> <span class="op">+</span> <span class="va">b</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;    user  system elapsed </span></span>
-<span><span class="co">#&gt;    0.86    0.03    0.89</span></span>
+<span><span class="co">#&gt;    0.93    0.06    1.00</span></span>
 <span></span>
 <span><span class="va">line_value</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -282,7 +282,7 @@
 <span><span class="va">line_value</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/imap.html">imap</a></span><span class="op">(</span><span class="va">x</span>,<span class="op">~</span> <span class="va">.x</span><span class="op">*</span><span class="va">m</span> <span class="op">+</span> <span class="va">b</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;    user  system elapsed </span></span>
-<span><span class="co">#&gt;    0.99    0.01    1.00</span></span>
+<span><span class="co">#&gt;    1.00    0.02    1.01</span></span>
 <span></span>
 <span><span class="va">line_value</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
