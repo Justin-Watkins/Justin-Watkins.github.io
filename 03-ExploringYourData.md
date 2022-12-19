@@ -635,7 +635,7 @@ team_dow <-
 
 
 
-Table: (\#tab:widelonga )Median ticket sales by day of week
+Table: (\#tab:widelonga)Median ticket sales by day of week
 
 |dayOfWeek|medianSales_BAL|medianSales_SF|games_BAL|games_SF|difference|
 |:-------:|:-------------:|:------------:|:-------:|:------:|:--------:|
@@ -668,7 +668,7 @@ team_dow_long <-
 
 
 
-Table: (\#tab:widelongd )Median ticket sales by day of week
+Table: (\#tab:widelongd)Median ticket sales by day of week
 
 |dayOfWeek|     club      |medianSales|
 |:-------:|:-------------:|:---------:|
@@ -700,7 +700,7 @@ psy_desc <-
 
 
 
-Table: (\#tab:psychshow )Summary Statistics
+Table: (\#tab:psychshow)Summary Statistics
 
 |        |           X1|
 |:-------|------------:|
@@ -740,7 +740,7 @@ hmisc_desc <- as.data.frame(hmisc_desc)
 You can remove libraries from your environment in a couple of different ways seen in the previous code chuck. 
 
 
-Table: (\#tab:hmiscshow )Summary Statistics using Hmisc
+Table: (\#tab:hmiscshow)Summary Statistics using Hmisc
 
 |        |     |
 |:-------|----:|
@@ -797,7 +797,7 @@ mod <- aov(ticketSales ~ promotion + dayOfWeek,
 ```
 
 
-Table: (\#tab:anova2 )ANOVA results
+Table: (\#tab:anova2)ANOVA results
 
 |     term| df|     sumsq|   meansq|statistic|p.value|
 |--------:|--:|---------:|--------:|--------:|------:|
@@ -867,7 +867,7 @@ tu_test <- TukeyHSD(mod)
 
 
 
-Table: (\#tab:anova4 )Tukey Comparisons
+Table: (\#tab:anova4)Tukey Comparisons
 
 |                  |      diff|        lwr|      upr|    p adj|
 |:-----------------|---------:|----------:|--------:|--------:|

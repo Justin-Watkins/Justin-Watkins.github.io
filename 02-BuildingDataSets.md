@@ -149,7 +149,7 @@ for(i in x){
 }
 )
 #>    user  system elapsed 
-#>    0.99    0.09    1.08
+#>    1.00    0.05    1.04
 
 line_value[1:3]
 #> [[1]]
@@ -180,7 +180,7 @@ while(i <= length(x)){
 }
 )
 #>    user  system elapsed 
-#>    0.97    0.04    1.00
+#>       1       0       1
 
 line_value[1:3]
 #> [[1]]
@@ -204,7 +204,7 @@ system.time(
 line_value <- lapply(1:length(x), function(i) x[i]*m + b)
 )
 #>    user  system elapsed 
-#>    0.93    0.06    1.00
+#>    0.90    0.04    0.94
 
 line_value[1:3]
 #> [[1]]
@@ -228,7 +228,7 @@ system.time(
 line_value <- purrr::imap(x,~ .x*m + b)
 )
 #>    user  system elapsed 
-#>    1.00    0.02    1.01
+#>       1       0       1
 
 line_value[1:3]
 #> [[1]]
@@ -718,7 +718,7 @@ We can now use this function to produce as many different data sets as we would 
 
 ## Simulating Operations data
 
-Operations data my include any number of data sets. We'll cover building a ballpark ingress scans table here. However, there could be many others such as line length at a concessions stand or the number of transactions for F&B. 
+Operations data might include any number of data sets. We'll cover building a ballpark ingress scans table here. However, there could be many others such as line length at a concessions stand or the number of transactions for F&B. 
 
 ### Ticket scans
 
@@ -769,6 +769,17 @@ This function will produce a data set that looks like this:
 ```r
 scan_data <- FOSBAAS::scan_data
 ```
+
+
+| observations| scans|action_time |date     |
+|------------:|-----:|:-----------|:--------|
+|            1|     0|61200 secs  |4/1/2024 |
+|            2|     2|61260 secs  |4/1/2024 |
+|            3|     4|61320 secs  |4/1/2024 |
+|            4|     7|61380 secs  |4/1/2024 |
+|            5|    10|61440 secs  |4/1/2024 |
+|            6|    11|61500 secs  |4/1/2024 |
+
 
 
 

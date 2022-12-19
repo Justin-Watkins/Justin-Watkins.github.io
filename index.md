@@ -1,14 +1,13 @@
 --- 
 title: "Fundamentals of Sports Business Analytics and Strategy"
 author: "Justin Watkins"
-date: "2022-12-18"
+date: "2022-12-19"
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: yes
 url: "https://justin-watkins.github.io/"
-cover-image: images/book_cover.png
-description: "Fundamentals of Sports Business Analytics and Strategy\nwas written
-  to give you a head-start into this industry\n"
+cover-image: images/cover.png
+description: 
 biblio-style: apalike
 bibliography:
 - bibliography.bib
@@ -28,8 +27,7 @@ html-document:
 
 # Abstract and forward {-}
 
-<img src="images/book_cover.png" class="cover" width="250" height="328"/> If you are want to get straight to work, skip the first few chapters and go straight to the segmentation chapter. The meat of this book is all contained in the back half. If you read on, I am going to explain why I put this project together. I also want to tell you who this book is for. It was primarily created as a resource for a young person who wants to work in sports business under an analytics, strategy, and to a lesser extent, and I.T. group. However, I believe this book could be useful to almost anyone that wants to be better at their job. I was once asked by a college professor teaching an analytics course how many analyst we are going to need in the future. My response wasn't what he wanted to hear. I said we are going to need fewer. I encouraged the students to apply their analytics skills to a discipline such as marketing, I.T., or finance. Technology is rapidly commoditizing analytics work. If you have these skills, but work in another discipline you can be an incredibly effective manager. From that perspective, anyone working in sports business could benefit from this knowledge. It helps you understand the benefits and limitations of analytics and puts you in the driver's seat in terms of implementing the strategies that you believe will be most effective.  
-
+<img src="images/cover.png" style="float: right;" class="cover" width="262" height="350"/>If you want to get straight to work, skip the first few chapters and go directly to the segmentation chapter. The work-content of this book is all contained in the back half. If you read on, I am going to explain why I put this project together. I also want to tell you who this book is for. It was primarily created as a resource for a young person who wants to work in sports business under an analytics, strategy, and to a lesser extent, an I.T. group. However, I believe this book could be useful to almost anyone that wants to be better at their job. I was once asked by a college professor teaching an analytics course how many analyst we are going to need in the future. My response wasn't what he wanted to hear. I said we are going to need fewer. I encouraged the students to apply their analytics skills to a discipline such as marketing, I.T., or finance. Technology is rapidly commoditizing analytics work. If you have these skills, but work in another discipline you can be an incredibly effective manager. From that perspective, anyone working in sports business could benefit from this knowledge. It helps you understand the benefits and limitations of analytics and puts you in the driver's seat in terms of implementing the strategies that you believe will be most effective.  
 
 Additionally, this book is at least partially inspired by a vestigial lament from my youth. When I took a math class I was always forced to show my work, but the hypocritical writers of textbooks didn't feel as though this precept applied to them. You were invariably tricked on a test through some algebraic edge-case that was entirely new to you. It is also incumbent on me to blame some of my teachers here. I was uninterested in laboring through concepts in the vain hope of understanding some deeper meaning. This stuff was formulaic. Just demonstrate to me exactly how to solve these problems and I can do the same for all similar problems.These _people_ do this because they wanted me to understand the concept. While that is a noble goal, I contend that the need is overblown and ineffective in many cases. I want to right this wrong in some limited way. I want to show you the naked truth. This book is an exposure. To that end it serves four main purposes:
 
@@ -38,7 +36,7 @@ Additionally, this book is at least partially inspired by a vestigial lament fro
 3. To demonstrate how to apply this knowledge to real problems to achieve desired outcomes
 4. To build a reference manual of solutions to common problems
 
-The first three items of this list are the foundations of your core business strategy. You need experience to put together effective stratagies. This text should give you a head-start working with analytical tasks that help support strategy. You won't be a strategy or analytics expert, but you'll better understand how to approach many common problems. Analytics (as a field) is a great tool for understanding many problems. However, it has limits. keep this quote in mind:
+The first three items of this list are the foundations of your core business strategy. You need experience to put together effective strategies. This text should give you a head-start working with analytical tasks that help support strategy. You won't be a strategy or analytics expert, but you'll better understand how to approach many common problems. Analytics (as a field) is a great tool for understanding many problems. However, it has limits. keep this quote in mind:
 
 > If all you have is a hammer, everything looks like a nail. 
 
@@ -67,7 +65,6 @@ That is a mouthful and is deconstructable, but We don't want to be too narrow or
 Furthermore, this book is concerned with the _WHY_ and the _HOW_. While you don't have to understand that the Atkinson cycle ^[Your car may use something different: https://en.wikipedia.org/wiki/Atkinson_cycle] makes your car work to be able to drive it. Many analytic techniques can be thought of the same way. You don't need to understand the underlying mechanisms, you just need to understand how to appropriately wield them. However, I believe a mechanic is likely a more competent operator of a vehicle. An analyst or a strategist is a mechanic for the business systems of a club. If everything always worked you wouldn't need them. We'll cover some of the most commonly used tools and techniques and apply them to realistic and specific problems. 
 
 The first chapter \@ref(chapter1) will cover some important elements of analytics such as the intersection of information technology. It will also look at the distinction between disciplines such as _Business Intelligence_ and _Analytics_. We'll also discuss some technologies that are integrating these disciplines at scale and discuss how these functions will continue to evolve in the future. This chapter helps frame a foundation for the rest of the book. 
-
 
 The ability to leverage analytic techniques is predicated on access to quality data. The second chapter  \@ref(chapter2) will familiarize you with the data that we will be using by going through the exercise of creating it. The formats will closely resemble data that we have found _in-the-wild_. This includes customer data along with common demographic data formats. We'll also build a database of ticketing data from the primary and secondary market to be used in a pricing exercise. Additionally, we'll build some activity data to demonstrate some common pitfalls we've seen when building sales and marketing plans. This data will be constructed based on an imaginary professional baseball team. Baseball operates a little differently than other sports because of the high number of games. However, the lessons learned here can be applied to almost any sport. In fact, lessons contained in this book can be applied to business problems in a variety of industries. It is a boring chapter. This book isn't about coding, but we will demonstrate exactly how we do everything we show you. That will pay off a debt my old math teachers owe me. 
 

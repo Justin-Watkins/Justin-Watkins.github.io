@@ -1,7 +1,7 @@
 
 # Epilogue {#Chapter11}
 
-We have covered a variety of subjects related to foundations business strategy in a sports business setting. This setting is specific to working at a club. We have been focused on how to build strategies that increase ticket sales and revenue, and strategies to benefit business operations. We have also uncovered some thought process during our time together. Additionally, you were shown a number of concepts in two different parts. Chapters 1-5 covers foundational elements that are needed in order to analyze specific problems. Chapters 5-10 looks at those specific problems and demonstrates some techniques that you can use to solve them.
+We have covered a variety of subjects related to foundational elements of business strategy in a sports business setting. This setting is specific to working at a club. We have been focused on how to build strategies that increase ticket sales and revenue, and strategies to benefit business operations. Additionally, you were shown a number of concepts in two different parts. Chapters 1-5 covers foundational elements that are needed in order to analyze specific problems. Chapters 5-10 looks at those specific problems and demonstrates some techniques that you can use to solve them.
 
 1. Chapter \@ref(chapter1) introduced us to __how to think about and use data__. Using data is fundamental to business strategy
 2. Chapter \@ref(chapter2) introduced us to some specific data sets and to how to create them using the __R language__. Some knowledge of programming is still critical for the analysis. 
@@ -21,11 +21,11 @@ This is a lot of material, but have only scratched the surface. In fact, I strug
 3. To apply this knowledge to real problems to achieve desired outcomes
 4. To build a reference manual of solutions to common problems
 
-Ultimately, this knowledge coalesces into strategic thought. You aren't born understanding strategy. The foundations of strategy are built on experience. Analytics is tightly coupled to strategy. It is something that touches every functional unit of a business and helps produce the answers to questions that the strategist devises. Let's review your analytics toolbox. 
+Ultimately, this knowledge coalesces into strategic thought. You aren't born understanding business strategy. The foundations of strategy are built on experience. Analytics is tightly coupled to strategy. It is something that touches every functional unit of a business and helps produce the answers to questions that the strategist or manager devises. Let's review your analytics toolbox. 
 
 ## Your analytics toolbox
 
-We covered a lot of code in this book and introduced a number of concepts. You definitely should have come away with a good analytics toolbox. At a high level, we covered:
+We covered a lot of code in this book and introduced a number of concepts. At a high level, we covered:
 
 - How to manipulate and summarize data with code
 - regression
@@ -35,14 +35,15 @@ We covered a lot of code in this book and introduced a number of concepts. You d
 - Building graphics
 - Problem solving and framing projects
 
-We also covered several techniques, the code that you can use to implement them, and how to interpret the results. However, there is a lot that we didn't cover We didn't cover. 
+We also covered several techniques, the code that you can use to implement those techniques, and how to interpret the results. However, there is a lot that we didn't cover. 
 
 1. Neural Networks and A.I.
-2. More exotic forms of regression
+2. More exotic forms of regression (mixed effects models, etc.)
 3. Bayesian methods
 4. Other ensemble learning methods
+5. Deploying web apps for reporting and information dissemination 
 
-This is deliberate. Once you understand how to think through a problem, applying a specific algorithm is trivial once you have your data sets in the proper place. There are also hundreds of algorithms, but they more-are less do the same things in our context:
+This is deliberate. There is no need to cover everything. Once you understand how to think through a problem, applying a specific algorithm is trivial once you have your data sets in the proper place. There are also hundreds of algorithms, but they more-are less do the same things in our context:
 
 1. Predict a numerical value
 2. Predict a class
@@ -52,13 +53,13 @@ We didn't cover tools such as convolutional neural networks for computer vision 
 
 ## Sports business 
 
-We also discussed how to think about problems and should understand some of the distinctions between sports and other industries. Sports is unique and outcomes are often out of your control. You can't just apply techniques and analysis learned in business school because the business is constricted in many ways. There are geographic boundaries, agency agreements, labor issues, and many other unique circumstances. At their heart, many leagues are simply trade organizations. Our work revolves around a constrained optimization exercise. It's like we operate a mutual fund. Sometimes it's up, sometimes it's down. Your job is to navigate those seas and to think about problems in advance and in an abstract fashion.
+We also discussed how to think about problems and should understand some of the distinctions between sports and other industries. Sports is unique and outcomes are often out of your control. You can't just apply techniques and analysis learned in business school because the business is constricted in many ways. There are geographic boundaries, agency agreements, labor issues, and many other unique circumstances. At their heart, many leagues are simply trade organizations. Our work revolves around a constrained optimization exercise. It's similar to operating a mutual or hedge fund. Sometimes it's up, sometimes it's down. Your job is to navigate those seas and to think about problems in advance and in an abstract fashion.
 
-Individuals are also attracted to sports for a variety of reasons and that should influence our thought. Clubs deal with public relations issues along a variety of avenues. They can be appropriated by politicians at the most inopportune times. Our brand is critical and we aren't always in control of it. This is a strategic problem that we didn't even consider covering, but should be understood. How do you proactively protect your brand through public relations and community involvement. How do these issues impact corporate sponsorship or ticket sales? These measures could be defensive or offensive in nature. How do you know that you are making the right choices? You may not know. You just do the best you can.  
+Individuals are also attracted to sports for a variety of reasons and that should influence our thought. Clubs deal with public relations issues along a variety of avenues. They can be appropriated by politicians at the most inopportune times. Our brand is critical and we aren't always in control of it. What do you do if you have a PR scandal? This is a strategic problem that we didn't even consider covering, but should be understood. How do you proactively protect your brand through public relations and corporate communication? How do these issues impact corporate sponsorship or ticket sales? These measures could be defensive or offensive in nature. How do you know that you are making the right choices? You may not know. You just do the best you can.  
 
 ## Problems faced by a club
 
-Additionally, we covered many real-world problems.The first part of this book was concerned with a few main subjects:
+Additionally, we covered many real-world problems. The first part of this book was concerned with a few main subjects:
 
 1. Understanding the context of analytics and strategy within sports business (specifically at a club)
 2. Building and understanding common data sets (To introduce you to R and the data)
@@ -75,7 +76,7 @@ The second half of this book covered the application of analytic techniques and 
 6. Operations
 
 
-We didn't cover many subjects related to functional departments or exercises that make some of what we covered possible. Some of these functions live in I.T. or live at the Executive level. Some of thse related subjects include: 
+We didn't cover many subjects related to functional departments or exercises that make some of what we covered possible. Some of these functions live in I.T. or live at the Executive level. Some of these related subjects include: 
 
 1. Asset valuation in corporate sponsorship departments
 2. Building dashboards and other business intelligence functions
@@ -88,13 +89,14 @@ Additionally, we didn't cover higher-order strategic problems. These problems mi
 - Other issues with politics or legal issues
 - Growing top-of-funnel audiences (looking at Gen Z or Gen Alpha)
 - Business development and growth
+- Mergers or aquisitions
 
 
 ## How do I learn more
 
 Google it. Seriously. There are a million resources for learning R or Python online. You can take free classes or access entire books on subjects like programming for free. The same can be said for machine learning techniques. However, this comes with a warning. Techniques change rapidly. Techniques such as random forests and support vector machines may be destined for the scrap-pile as neural networks become easier to deploy. TensorFlow [@tensorflow2020] accelerated this trend several years ago.
 
-Additionally, if you are a student take some classes and network. Contact someone at a club and ask if you can work on a project with them for school. I you already work in the industry, try to expand your horizon. Don't get locked into only working on a few narrow projects. Look to expand your influence throughout the office. The broader your work experience, the better you'll be at everything that you do.  
+Additionally, if you are a student take some classes and network. Contact someone at a club and ask if you can work on a project with them for school. If you already work in the industry, try to expand your horizon. Don't get locked into only working on a few narrow projects. Look to expand your influence throughout the office. The broader your work experience, the better you'll be at everything that you do.  
 
 There are also scores of books on any number of subjects related to analytics. The subject is so broad that you will naturally gravitate toward specific components. You may prefer visualization or building databases. You might fall-in-love with modeling and statistics. Figure out what components of analytics that you like, purchase a used book on it, read it and try to duplicate what you can find. R, Python, TensorFlow, and many other technologies can be used for _free_. Download them and get started on some data. Thousands of data sets can even be found embedded in R and Python. In R you can find them with a simple command:
 
@@ -114,13 +116,13 @@ Find some interesting data sets and use them. Many packages also have excellent 
 
 ## What does the future hold
 
-Many of the examples that you saw in this book have been solved to one degree or another. The problems are well understood within and outside of sports. For instance, we only explored pricing from a very rudimentary standpoint. Dynamically pricing tickets based on variable demand levels has been happening in industry (by applying specific algorithms) for over forty years. Probably much longer. It's commoditized. This is a good thing. During the nascency of the analytics revolution the analyst may have been considered a malevolent presence in the board room. They are now a necessity and that influence will continue to grow. The skill sets need to wield an analytics team will be a prerequisite for future leadership. Working in the field is the best way to get that experience.
+Many of the examples that you saw in this book have been solved to one degree or another. The problems are well understood within and outside of sports. For instance, we only explored pricing from a very rudimentary standpoint. Dynamically pricing tickets based on variable demand levels has been happening in industry (by applying specific algorithms) for over forty years. Probably much longer. It's a commodity. This is a good thing. During the nascency of the analytics revolution the analyst may have been considered a malevolent presence in the board room. They are now a necessity and that influence will continue to grow. The skill sets needed to wield an analytics team will be a prerequisite for future leadership. Working in the field is the best way to get that experience. However, it might be even more useful to use those skill sets directly by specializing in another vertical such as finance. Your life is winding path and isn't linear. 
 
-Over time, you will see more functions become integrated into CRM systems and skill sets will become more comoditized as students continue to flock to "analytcs" oriented degree programs funded through cheap government student loans. This is neither bad nor good. I look at analytics in a similar vein to Computer Engineering degrees. You don't need one-million people with Computer Engineering degrees. Do you know what you call a second-rate computer engineer? A bartender. They might also run a call center or do other I.T. work. The point here is that you only need a few people who are really good at building better processors. Analytics is similar to me. You don't need armies; You need a few people who are really good at it.
+Over time, you will see more functions become integrated into CRM systems and skill sets will become more comoditized as students continue to flock to _analytcs_ oriented degree programs funded through cheap government student loans. This is neither bad nor good. I look at analytics in a similar vein to Computer Engineering degrees. You don't need one-million people with Computer Engineering degrees. Do you know what you call a second-rate computer engineer? A bartender. They might also run a call center or do other I.T. work. The point here is that you only need a few people who are really good at building better processors. Analytics is similar to me. You don't need armies; You need a few people who are really good at it.
 
-Furthermore, analytics will begin to change the workforce in sports. Chat-bots will increasingly take over for sales and service personnel. Accountants are similarly doomed. If what you do is formulaic, you aren't going to be doing it long. These workforce changes aren't limited to sports. We all better be voting for universal basic income.  
+Furthermore, analytics will begin to change the workforce in sports. Chat-bots will increasingly take over for sales and service personnel. Accountants are similarly doomed. If what you do is formulaic, you aren't going to be doing it long. These workforce changes aren't limited to sports. We all better be voting for universal basic income because the machines are coming for white-collar jobs next and they are already here.  
 
-Media will continue to rapidly change. GenZ and GenAlpha (All born after 2000) will continue to shape media consumption and content strategy. Both of these factors impact sports consumption through media and even more critically, in-person. What is trick? Nobody knows yet, but most literature says something like this [@Fromm2018]:
+Media will continue to rapidly change. GenZ and GenAlpha (All born after 2000) will continue to shape media consumption and content strategy. Both of these factors impact sports consumption through media and even more critically, in-person. What is the trick to attracting these attention-deficit-disordered youths? Nobody knows yet, but most literature says something like this [@Fromm2018]:
 
 > "Start by humanizing your brand. This means giving your brand a personality that consumers can engage with."
 
@@ -128,26 +130,25 @@ Apparently, communication rules have changed. Interactions with hardware seem al
 
 > "Pivitols learned to swipe before they could speak. Attempting to swipe the unswipable--like TV screens or the pages of a magazine--they assumed the image in front of them was broken."
 
-I admit that I have swiped a magazine page. Gen Z interacts with social media and technology in a much more intuitive way than older generations. Sports is adapting, but will have to continue to adapt. We don't know what the answer is here, but interfacing with young people is a huge strategic problem that has to be thought of as an investment. At the club level, it is difficult to think about marketing initiatives in the context of investment. However, we have to do it. 
+I admit that I have swiped a magazine page. Gen Z interacts with social media and technology in a much more intuitive way than older generations. Sports is adapting, but will have to continue to adapt. We don't know what the answer is here, but interfacing with young people is a huge strategic problem that has to be thought of as an investment. At the club level, it is difficult to think about marketing initiatives in the context of investment. If we don't we might find ourselves the media equivilent of professional fishing, or the code equivalent of FoxPro. Remember FoxPro?  
 
-Stadium operation will also continue to change. New venues will be more purposefully constructed to provide more convenient and more immersive experiences for fans. I've been concerned for years that a terrorist attack on a large public sporting event would revolutionize how we approach ticketing, ingress, and egress. The same thing happened in 2001 when attacks on the World Trade Center permanently altered air travel ^[https://www.pbs.org/newshour/nation/how-911-changed-air-travel]. You'll see massive changes here. Whether these changes improve the experience will be up for debate. However, the proliferation of gaming and gambling will definetly have an impact. 
+Stadium operation will also continue to change. New venues will be more purposefully constructed to provide more convenient and more immersive experiences for fans. I've been concerned for years that a terrorist attack on a large public sporting event would revolutionize how we approach ticketing, ingress, and egress. The same thing happened in 2001 when attacks on the World Trade Center permanently altered air travel ^[https://www.pbs.org/newshour/nation/how-911-changed-air-travel]. You'll see massive changes here. Whether these changes improve the experience will be up for debate.
 
-
-Additionally, everything is incremental. Nothing is new about any of the concepts in this book. Neural Networks have been around for decades. Looking back at an old textbook from college "Decision Support Systems and Intelligent Systems" published in 2001 [@Aronson2001] I reviewed the chapter on Neural Networks. Fundamentally, nothing has changed. Incremental improvements in hardware, software, and mathematics have simply pushed these technologies further. In the final chapter of the book there is a section entitled "The future of Management Support SYstems. A couple of predictions stood out to me:
+Additionally, everything is incremental. Nothing is new about any of the concepts in this book. Neural Networks have been around for decades. Looking back at an old textbook from college "Decision Support Systems and Intelligent Systems" published in 2001 [@Aronson2001] I reviewed the chapter on Neural Networks. Fundamentally, nothing has changed. Incremental improvements in hardware, software, and mathematics have simply pushed these technologies further along. In the final chapter of the book there is a section entitled "The future of Management Support SYstems. A couple of predictions stood out to me:
 
 > Groupware technologies for collaboratoin and communication will become easier to use, more powerful, and less expensive. They will make electronic group support a viable initiative even in small organizations. 
 
-Thank you COVID19. Zoom, Slack, Microsoft Teams, and a host of other technologies are now ubiquitous and necessary. Let's look at another excellent prediction:
+Thank you COVID19. Zoom, Slack, Microsoft Teams, and a host of other technologies are now ubiquitous and necessary. The magical Metaverse might take this concept even further where you are interacting with a digital version of yourself in a 3D environment. Let's have a meeting on the top of Denali. I don't know if that is cool or not. Let's look at another prediction:
 
 > The use of voice technologies and natural language processing will further facilitate the usage of MSS. 
 
-Bingo. Amazon Alexa, Apple's Siri, and many others have dramatically expanded the use of NLP. Thank you neural networks. I'd like to share one more:
+Bingo. Amazon Alexa, Apple's Siri, and many others have dramatically expanded the use of NLP. Thank you neural networks. These technologies may even supplant keyboard based search and alter the companies that created them in unpredictable ways. I'd like to share one more:
 
 > Frontline decision support technologies that mostly support CRM will become an integral part of IT in most medium-sized and large corportations.
 
-This is the most accurate quote from this section. Salesforce has become a dominant player and is continuing to expand it's capabilities through acquisition (in 2019 Tableau and in 2020 Slack) ^[https://investor.salesforce.com/press-releases/press-release-details/2019/Salesforce-Signs-Definitive-Agreement-to-Acquire-Tableau/default.aspx, https://investor.salesforce.com/press-releases/press-release-details/2020/Salesforce-Signs-Definitive-Agreement-to-Acquire-Slack/default.aspx]. CRM platforms are increasingly using NLP to enable conversational intelligence. These developments take a long time. Almost 20 years after this quote was written development is still proceeding at a rapid pace. 
+This is the most accurate quote from this section. Salesforce has become a dominant player and is continuing to expand it's capabilities through acquisition (in 2019 Tableau and in 2020 Slack) ^[https://investor.salesforce.com/press-releases/press-release-details/2019/Salesforce-Signs-Definitive-Agreement-to-Acquire-Tableau/default.aspx, https://investor.salesforce.com/press-releases/press-release-details/2020/Salesforce-Signs-Definitive-Agreement-to-Acquire-Slack/default.aspx]. CRM platforms are increasingly using NLP to enable conversational intelligence. These developments take a long time to mature. Almost 20 years after this quote was written development is still proceeding at a rapid pace. 
 
-Ultimately, we aren't in chaos, but there are a lot of disruptive and chaotic problems that we face. Littlefinger in Game of Thrones called chaos a ladder. ^[https://www.quora.com/What-is-the-meaning-of-the-Chaos-is-a-ladder-quote-from-Game-of-Thrones] He was correct. Uncertainty creates innovation and the problems faced by clubs are more complex than ever. If your core business isn't efficient, it prohibits you from working on potentially much more rewarding projects. Hopefully, this book give you a good idea of how to implement basic analytical tasks to serve the strategic initiatives of managers throughout your organization. 
+Uncertainty, egos, intelligence, and luck breed innovation, and the problems faced by clubs are more complex than ever. If your core business isn't efficient, it prohibits you from working on potentially much more rewarding projects. Hopefully, this book give you a good idea of how to implement basic analytical tasks to serve the strategic initiatives of you and the managers throughout your organization. Take what you learn here and improve on it.
 
 
 

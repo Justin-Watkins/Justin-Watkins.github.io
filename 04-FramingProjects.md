@@ -71,7 +71,7 @@ agg_calls <-
 ```
 
 
-Table: (\#tab:closesb )Calls and revenue by rep
+Table: (\#tab:closesb)Calls and revenue by rep
 
 |       repID|calls|  revenue|revByCall|
 |-----------:|----:|--------:|--------:|

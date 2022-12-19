@@ -6,17 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 10 Operations and Analytics | Fundamentals of Sports Business Analytics and Strategy</title>
 <meta name="author" content="Justin Watkins">
-<meta name="description" content="If a sports team has two fundamental core competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
 <meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Chapter 10 Operations and Analytics | Fundamentals of Sports Business Analytics and Strategy">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://justin-watkins.github.io/chapter10.html">
-<meta property="og:image" content="https://justin-watkins.github.io/images/book_cover.png">
-<meta property="og:description" content="If a sports team has two fundamental core competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
+<meta property="og:image" content="https://justin-watkins.github.io/images/cover.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 10 Operations and Analytics | Fundamentals of Sports Business Analytics and Strategy">
-<meta name="twitter:description" content="If a sports team has two fundamental core competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
-<meta name="twitter:image" content="https://justin-watkins.github.io/images/book_cover.png">
+<meta name="twitter:image" content="https://justin-watkins.github.io/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Prompt-0.4.4/font.css" rel="stylesheet">
@@ -49,6 +46,9 @@
     }
   </style>
 <link rel="stylesheet" href="style.css">
+<meta name="description" content="If a sports team has two fundamental core competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
+<meta property="og:description" content="If a sports team has two fundamental core competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
+<meta name="twitter:description" content="If a sports team has two fundamental core competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -86,7 +86,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io.git">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -94,15 +94,16 @@
 <h1>
 <span class="header-section-number">10</span> Operations and Analytics<a class="anchor" aria-label="anchor" href="#chapter10"><i class="fas fa-link"></i></a>
 </h1>
-<p>If a sports team has two fundamental core competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth operation is critical to brand perception. It is a pillar of our product and should be treated as such.</p>
-<p>The overarching umbrella of operations in the club context is to get fans into, around, and out of our facility safely, quickly, and conveniently. There are design, system, and technology components that must be considered. There are also optimization considerations such as the cost and number of point-of-sale units for concessions and retail, labor optimization for security, food production, the number of seats in particular sections, the number of bathrooms, etc. The list is extensive. We’ll apply some techniques from the overlapping academic fields of Operations Research, Industrial Engineering, and Operations Management to analyze and solve a couple of ubiquitous <em>operations</em> problems.</p>
-<p>Operations is really about studying systems and this chapter will only cover a small fraction of the field. Once again, this is about being aware of ways to approach these problems. The ocean always gets deeper. We will identify some key concepts that are easy to apply to a wide variety of problems. Additionally, venues are now being designed with more advanced capabilities in mind. These capabilities might include:</p>
+<p>If a sports team has two fundamental core competencies they should be <em>events management</em> and <em>selling tickets</em>. These two efforts are where most of the work takes place. Additionally, a smooth operation is critical to brand perception. It is a pillar of our product and should be treated as such.</p>
+<p>The overarching umbrella of operations in the club context covers getting fans into, around, and out of our facility safely, quickly, and conveniently. There are design, system, and technology components that must be constructed. There are also optimization considerations such as the cost and number of point-of-sale units for concessions and retail, labor optimization for security, food production, the number of seats in particular sections, the number of bathrooms, etc. The list is extensive. We’ll apply some techniques from the overlapping academic fields of Operations Research, Industrial Engineering, and Operations Management to analyze and solve a couple of ubiquitous <em>operations</em> problems.</p>
+<p>Operations is really about studying systems and this chapter will only cover a small fraction of the field. Once again, this is about being aware of ways to approach these problems. We will identify some key concepts that are easy to apply to a wide variety of problems. Additionally, venues are now being designed with more advanced capabilities in mind. These capabilities might include:</p>
 <ul>
 <li>Ordering food and beverages from your phone</li>
 <li>Digital tickets</li>
 <li>More advanced security scanning technologies</li>
 <li>Security cameras that feature facial recognition</li>
 <li>Integrated commerce systems and loyalty mechanisms</li>
+<li>Automated systems for ordering and paying for items</li>
 <li>Integrated public transit</li>
 </ul>
 <p>While these systems help to solve existing problems, they can exacerbate other issues. For instance, attempting food delivery without considering kitchen locations could lead to quality control issues. Never consider technology solutions without carefully examining the underlying execution capability. Businesses are littered with the withered husks of technology solutions that failed to deliver, were an ill fit, were a pet project of some inept executive, or simply faded away from an internal or external inability to manage the solution.</p>
@@ -1790,8 +1791,8 @@ P_{n} = \rho_{n}/[k!k^{n-k}]P_{0}
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io.git/blob/master/10-OperationsAndAnalytics.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io.git/edit/master/10-OperationsAndAnalytics.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io/blob/main/10-OperationsAndAnalytics.md">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io/edit/main/10-OperationsAndAnalytics.md">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -1803,7 +1804,7 @@ P_{n} = \rho_{n}/[k!k^{n-k}]P_{0}
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-18.</p>
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

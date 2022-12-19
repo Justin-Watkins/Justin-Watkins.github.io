@@ -31,10 +31,17 @@ fig:chthreehex
 fig:chthreebarexample
 fig:chthreebarplottwo
 tab:summarystats2
+tab:widelonga
+tab:widelongd
+tab:psychshow
+tab:hmiscshow
+tab:anova2
 fig:chthreese
+tab:anova4
 fig:chthreesetukey
 tab:salesmodeltwo
 fig:chthreepreds
+tab:closesb
 fig:chfourboxplotone
 fig:chfourlineplotone
 fig:chfourbarplotone

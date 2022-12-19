@@ -6,17 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 4 Structuring analytics projects | Fundamentals of Sports Business Analytics and Strategy</title>
 <meta name="author" content="Justin Watkins">
-<meta name="description" content="Framing projects tends to be an overlooked component of analytics exercises. While we aren’t going to overlook it here, we are only going to give this subject a cursory nod. I break these projects...">
 <meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Chapter 4 Structuring analytics projects | Fundamentals of Sports Business Analytics and Strategy">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://justin-watkins.github.io/chapter4.html">
-<meta property="og:image" content="https://justin-watkins.github.io/images/book_cover.png">
-<meta property="og:description" content="Framing projects tends to be an overlooked component of analytics exercises. While we aren’t going to overlook it here, we are only going to give this subject a cursory nod. I break these projects...">
+<meta property="og:image" content="https://justin-watkins.github.io/images/cover.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 4 Structuring analytics projects | Fundamentals of Sports Business Analytics and Strategy">
-<meta name="twitter:description" content="Framing projects tends to be an overlooked component of analytics exercises. While we aren’t going to overlook it here, we are only going to give this subject a cursory nod. I break these projects...">
-<meta name="twitter:image" content="https://justin-watkins.github.io/images/book_cover.png">
+<meta name="twitter:image" content="https://justin-watkins.github.io/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Prompt-0.4.4/font.css" rel="stylesheet">
@@ -49,6 +46,9 @@
     }
   </style>
 <link rel="stylesheet" href="style.css">
+<meta name="description" content="Framing projects tends to be an overlooked component of analytics exercises. While we aren’t going to overlook it here, we are only going to give this subject a cursory nod. I break these projects...">
+<meta property="og:description" content="Framing projects tends to be an overlooked component of analytics exercises. While we aren’t going to overlook it here, we are only going to give this subject a cursory nod. I break these projects...">
+<meta name="twitter:description" content="Framing projects tends to be an overlooked component of analytics exercises. While we aren’t going to overlook it here, we are only going to give this subject a cursory nod. I break these projects...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -86,7 +86,7 @@
 </ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io.git">View book source <i class="fab fa-github"></i></a></p>
+          <p><a id="book-repo" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io">View book source <i class="fab fa-github"></i></a></p>
         </div>
       </nav>
 </div>
@@ -157,7 +157,8 @@
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>revByCall <span class="op">=</span> <span class="va">revenue</span><span class="op">/</span><span class="va">calls</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">revByCall</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
-<caption>(#tab:closesb )Calls and revenue by rep</caption>
+<caption>
+<span id="tab:closesb">Table 4.1: </span>Calls and revenue by rep</caption>
 <thead><tr class="header">
 <th align="right">repID</th>
 <th align="right">calls</th>
@@ -350,7 +351,7 @@ Figure 4.3: Cumulative revenue by rep
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">quants</span>,caption <span class="op">=</span> <span class="st">'Aggregated sales data quantiles'</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:closesquantstable">Table 4.1: </span>Aggregated sales data quantiles</caption>
+<span id="tab:closesquantstable">Table 4.2: </span>Aggregated sales data quantiles</caption>
 <thead><tr class="header">
 <th align="left"></th>
 <th align="right">x</th>
@@ -717,8 +718,8 @@ Figure 4.4: Choosing the right technique
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io.git/blob/master/04-FramingProjects.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io.git/edit/master/04-FramingProjects.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io/blob/main/04-FramingProjects.md">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io/edit/main/04-FramingProjects.md">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -730,7 +731,7 @@ Figure 4.4: Choosing the right technique
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-18.</p>
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -3,17 +3,18 @@
 
 
 
-If a sports team has two fundamental core competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth operation is critical to brand perception. It is a pillar of our product and should be treated as such.  
+If a sports team has two fundamental core competencies they should be _events management_ and _selling tickets_. These two efforts are where most of the work takes place. Additionally, a smooth operation is critical to brand perception. It is a pillar of our product and should be treated as such.  
 
-The overarching umbrella of operations in the club context is to get fans into, around, and out of our facility safely, quickly, and conveniently. There are design, system, and technology components that must be considered. There are also optimization considerations such as the cost and number of point-of-sale units for concessions and retail, labor optimization for security, food production, the number of seats in particular sections, the number of bathrooms, etc. The list is extensive. We'll apply some techniques from the overlapping academic fields of Operations Research, Industrial Engineering, and Operations Management to analyze and solve a couple of ubiquitous _operations_ problems. 
+The overarching umbrella of operations in the club context covers getting fans into, around, and out of our facility safely, quickly, and conveniently. There are design, system, and technology components that must be constructed. There are also optimization considerations such as the cost and number of point-of-sale units for concessions and retail, labor optimization for security, food production, the number of seats in particular sections, the number of bathrooms, etc. The list is extensive. We'll apply some techniques from the overlapping academic fields of Operations Research, Industrial Engineering, and Operations Management to analyze and solve a couple of ubiquitous _operations_ problems. 
 
-Operations is really about studying systems and this chapter will only cover a small fraction of the field. Once again, this is about being aware of ways to approach these problems. The ocean always gets deeper. We will identify some key concepts that are easy to apply to a wide variety of problems. Additionally, venues are now being designed with more advanced capabilities in mind. These capabilities might include:
+Operations is really about studying systems and this chapter will only cover a small fraction of the field. Once again, this is about being aware of ways to approach these problems. We will identify some key concepts that are easy to apply to a wide variety of problems. Additionally, venues are now being designed with more advanced capabilities in mind. These capabilities might include:
 
 - Ordering food and beverages from your phone 
 - Digital tickets
 - More advanced security scanning technologies
 - Security cameras that feature facial recognition
 - Integrated commerce systems and loyalty mechanisms
+- Automated systems for ordering and paying for items
 - Integrated public transit
 
 While these systems help to solve existing problems, they can exacerbate other issues. For instance, attempting food delivery without considering kitchen locations could lead to quality control issues. Never consider technology solutions without carefully examining the underlying execution capability. Businesses are littered with the withered husks of technology solutions that failed to deliver, were an ill fit, were a pet project of some inept executive, or simply faded away from an internal or external inability to manage the solution. 
