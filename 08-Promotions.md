@@ -3,7 +3,7 @@
 
 
 
-It can be difficult to measure the efficacy of promotions.If we take a wider view of promotions and consider all advertising as some form of promotion it becomes even more difficult. Some clubs have began to eliminate many forms of promotion if they are unable to measure the outcomes. While this makes sense on some level, I don't go that far. Major Sports is unique in some ways because the brands tend to carry themselves when the team is performing well. However, you can't always be good. How do you reconcile these issues from the standpoint of promotions? This chapter will give a specific example of measuring the impact of a promotion and cover some of the nuance of this subject in the context of a club.
+It can be difficult to measure the efficacy of promotions. If we take a wider view of promotions and consider all advertising as some form of promotion it becomes even more difficult. Some clubs have began to eliminate many forms of promotion if they are unable to measure the outcomes. While this makes sense on some level, I don't go that far. Major Sport brands are unique in some ways because the brands tend to carry themselves when the team is performing well. However, you can't always be good. How do you reconcile these issues from the standpoint of promotions? This chapter will give a specific example of measuring the impact of a promotion and cover some of the nuance of this subject in the context of a club.
 
 Why do teams have promotions? Like all marketing techniques, promotions exist to increase sales. In sports, they are typically _a response to less anticipated demand than capacity_. However, this concept can be paradoxical. Promotions perform the best when the team is performing the best. If you were to take a multi-year point-of-view on marketing you would likely make different decisions than if you only look at it from a fiscal-year standpoint. There are also brand considerations.
 
@@ -11,7 +11,7 @@ Additionally, there are competing philosophies on the use of promotions. There a
 
 Typical sales promotions are aimed at value: getting more product for less money. However, you see a myriad of promotions in sports:
 
-- Giveaways such as bobbleheads
+- Giveaways such as bobbleheads and hats
 - Post-game concerts
 - Buy one ticket, get one free
 - Loyalty programs for season ticket holders
@@ -19,7 +19,7 @@ Typical sales promotions are aimed at value: getting more product for less money
 
 Additionally, promotions may also have negative impacts on your brand integrity. Constantly reverting to price promotions can damage your brand [@Keller2003]. 
 
-> "The objective of value pricing is to uncover the right blend of product quality, product cost, and product prices that fully satisfies the needs andwants of consumers and the profit targets of the firm". 
+> "The objective of value pricing is to uncover the right blend of product quality, product cost, and product prices that fully satisfies the needs and wants of consumers and the profit targets of the firm". 
 
 Furthermore, many channels are notoriously difficult to evaluate. Advertisement and promotion could occur in any number of places:
 
@@ -35,7 +35,7 @@ Furthermore, many channels are notoriously difficult to evaluate. Advertisement 
 
 Social platforms have become an increasingly important part of advertisement. However, the platforms are walled gardens with their own algorithms for demonstrating ROAS. They don't have an incentive to tell you that something isn't working. SEM is an even bigger problem and can be confounding. If I know when you type "Game Hen Tickets" into goggle it seems like it would be pretty easy to serve you an ad that can potentially be tracked to a sale. SEM is more of a beach-head for secondary market sellers. The secondary markets such as Stubhub tends to worry more about transactions. Since they operate across the spectrum of tickets, they are impossible to outspend. 
 
-Media evaluation is handled in specific ways. A.I. based methods using convolutional neural networks to measure exposure have become popular over the past several years. Media equivalency is tough and typically propped up by some arbitrary figure. We'll discuss evaluating advertising later in this chapter. 
+Media evaluation is handled in specific ways. A.I. based methods using neural networks to measure exposure have become popular over the past several years. Media equivalency is tough and typically propped up by some arbitrary figure. We'll discuss evaluating advertising later in this chapter. 
 
 How do you know if any of your other marketing activity is worthwhile? In many cases you don't. Baselining sales can be difficult because all of these activities are naturally baked-into your sales. Some effects, such as what we see with salary in figure \@ref(fig:salarytwoaa) are clearly outside of a marketer's influence. 
 
@@ -50,7 +50,7 @@ There is clearly some level of correlation between payroll and tickets sold. How
 
 > If you are able to make reasonable estimates as to ticket sales using macro factors such as payroll and wins, what impact do your marketing efforts actually have?
 
-This is a sticky point, but it is valid. The most important factor for many clubs is likely the investment in the team. This is more true for baseball because of the number of games. You are more exposed to perturbations in performance when you have more events. This is where the NFL has a major advantage. 
+This is a sticky point, but it is valid. You will never find a president or owner that liquidates their marketing department. Indeed they do a lot more than push tickets. The most important factor for many clubs is likely the investment in the team. This is more true for baseball because of the number of games. You are more exposed to perturbations in performance when you have more events. This is where the NFL has a major advantage. 
 
 There is also a lot of complexity in specific market conditions. There are a number of questions that we can ask ourselves when focusing on ticket sales.
 
@@ -66,7 +66,7 @@ If there is reasonably good evidence that major promotions do increase ticket sa
 
 ## Measuring the impact of promotions
 
-Measuring the impact of promotions can be difficult. This analysis builds on analyses that we have already completed.We'll begin with the now familiar season_data data set. This is a great spot to begin in order to evaluate promotions.
+Measuring the impact of promotions can be difficult. This analysis builds on analyses that we have already completed. We'll begin with the now familiar season_data data set. This is a great spot to begin in order to evaluate promotions.
 
 
 ```r
@@ -123,7 +123,7 @@ ticket_sales <-
              group = promotion)                                  +
   ggtitle(title)                                                 +
   xlab(x_label)                                                  +                         
-  ylab(y_label)                                                  +                           scale_x_continuous(breaks = 1:243  )                           +
+  ylab(y_label)                                                  +                           
   scale_y_continuous(labels = scales::comma)                     +
   geom_point(aes(y=ticketSales,x=count), size=2)                 +
   geom_smooth(data=subset(
@@ -338,7 +338,7 @@ This plot does a good job of discriminating between promotions. It appears that 
 
 As we have seen, regression takes some rigor to do correctly. It works best when you have a lot of data, which is a luxury that we don't tend to have in many cases. We'll go though another example, but we are going to look at our analysis in a slightly different way. We'll also use a different framework this time. Why? Why not? There are lots of ways to do the same thing in R and you will like certain ways better. 
 
-We'll use the tidymodels [@R-tidymodels] package for this exercise ^[https://www.tidymodels.org/].Tidymodels (like MLR3), will make the preprocsssing and evaluation much simpler. We'll begin by installing our libraries and doing a little preprocessing on the data.
+We'll use the tidymodels [@R-tidymodels] package for this exercise ^[https://www.tidymodels.org/].Tidymodels (like MLR3) It will make the preprocsssing and evaluation much simpler. We'll begin by installing our libraries and doing a little processing on the data.
 
 
 ```r
@@ -357,7 +357,7 @@ data <- data[,c("gameNumber","team","month","weekEnd",
                 "daysSinceLastGame","promotion","ticketSales")]
 ```
 
-We are going to build a linear regression model. We also know that we are interested in how much influence promotions have on ticket sales. We'll make one change to this data set with the function _f_change_order()_ to make our results easier to interpret when we complete this exercise.
+Again, We are going to build a linear regression model. We also know that we are interested in how much influence promotions have on ticket sales. We'll make one change to this data set with the function _f_change_order()_ to make our results easier to interpret when we complete this exercise.
 
 
 ```r
@@ -372,7 +372,7 @@ data$promotion <- sapply(data$promotion,function(x)
                          f_change_order(x))
 ```
 
-We'll use the rsample library [@R-rsample] to build our training and test set. There are so many ways to partition data and we have used a different one every time. Find one that you like. We'll split the data with twenty-five percent going to our holdout sample. Be aware that if you try to use your model to predict sales and a value in the new data is new, the model won't work. This can be frustrating. Just making you aware. It will happen. 
+We'll use the rsample library [@R-rsample] to build our training and test set. There are so many ways to partition data and we have used a different one every time. Find one that you like. We'll split the data with twenty-five percent going to our holdout sample. Be aware that if you try to use your model to predict sales and a value in the new data the model won't work. This can be frustrating. Just making you aware. It will happen. 
 
 
 ```r
@@ -385,7 +385,7 @@ train_data <- rsample::training(data_split)
 test_data  <- rsample::testing(data_split)
 ```
 
-Tidymodels leverages tidy principles and builds _recipes_ up in layers. If ind this to be easier to work with than other frameworks. Pipes are just easier to read and to understand. However, programmers might find the procedural nature of them irritating. 
+Tidymodels leverages tidy principles and builds _recipes_ up in layers. I find this to be easier to work with than other frameworks. Pipes are just easier to read and to understand. However, programmers might find the procedural nature of them irritating. 
 
 
 
@@ -517,7 +517,7 @@ However this isn't the entire story. Concerts, bobbleheads, and other promotions
 - Replacing damaged turf
 - Lighting
 
-This is far from an exclusive list, but the electric bill at a stadium may shock you. A promotion such as a bobblehead has a much more discrete cost. You have a per unit fee and incur the costs associated with storing and dispensing the item.This makes the calculus fairly simple if you are only considering the dimension of ticket sales. Concerts may increase other ancillary purchases such as food and beverage. Additionally, the excess tickets sold for a bobblehead may be the least expensive seats in the stadium. Which one will net the most revenue?
+This is far from an exclusive list, but the electric bill at a stadium may shock you. A promotion such as a bobblehead has a much more discrete cost. You have a per unit fee and incur the costs associated with storing and dispensing the item. This makes the calculus fairly simple if you are only considering the dimension of ticket sales. Concerts may increase other ancillary purchases such as food and beverage. Additionally, the excess tickets sold for a bobblehead may be the least expensive seats in the stadium. Which one will net the most revenue?
 
 
 ## How to place promotions on a schedule
@@ -563,7 +563,6 @@ es_box <-
 <img src="images/ch8_event_box.png" alt="Event attractivness range by cluster" width="100%" />
 <p class="caption">(\#fig:promotiondatabox)Event attractivness range by cluster</p>
 </div>
-
 
 
 If our goal is to maximize ticket sales we shouldn't plan one of these promotions on games where there is a possibility that the game sells out. If a sellout is within the confidence interval for a sellout it should be disqualified from consideration. Let's take a look at some candidate dates. We'll assume that we want to maximize sales. We decided to go this route because we believe the ancillary revenue associated with concessions and retail will make up for the ticket premium we are forgoing. However, we are also looking for games that have more potential in terms higher prices. Let's start by identifying the borders of our clusters. An easy way to do this is to use the _duplicated_ function. We'll reverse the output so that it makes more sense for our header.
@@ -748,7 +747,7 @@ The tidyModels framework is an easy way to take care of the mechanics of model c
 
 Placing promotions on a schedule is related to pricing. There are obviously complex interactions between price and demand. Sports is a little unique in that the product has multiple qualitative considerations such as win-loss record, playoff chances, seasonality, promotional items.
 
-Evaluation the returun on marketing spend is difficult. Many assets defy valuation. In terms of internal assets, pricing them can be challenging, but typically has three considerations. Viewership, engagement quality, and brand association.  
+Evaluation the return on marketing spend is difficult. Many assets defy valuation. In terms of internal assets, pricing them can be challenging, but typically has three considerations. Viewership, engagement quality, and brand association.  
 
 
 

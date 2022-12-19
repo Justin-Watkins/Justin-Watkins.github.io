@@ -3,18 +3,18 @@
 
 
 
-Consumer research takes many forms and is leveraged in different ways and in different contexts. This chapter will discuss different research techniques within the context of a professional sports team. This would be an easy chapter to skip. Most people don't like surveys. They don't like taking them and they would like thinking about how to design them even less. Analyzing them is tedious and painful and is typically repetitive in nature. Research is just difficult and unless you have a PhD or worked in the research industry, it is unlikely that you have extensive experience with it.
+Consumer research takes many forms and is leveraged in different ways and in different contexts. This chapter will discuss different research techniques within our context. This would be an easy chapter to skip. Most people don't like surveys. They don't like taking them and they would like thinking about how to design them even less. Analyzing them is tedious and painful and is typically repetitive in nature. Research is just difficult and unless you have a PhD (This is what PHDs do) or worked in the research industry, it is unlikely that you have extensive experience with it.
 
 Additionally, results are often only considered in a cursory fashion. The person who understands the results the best will be the designer and analyst. This is partly because many of the internal consumers will only be interested in a narrow band of concerns. This can be discouraging.
 
-Furthermore, proper reseasearch is a very large topic. In chapters \@ref(chapter5) and \@ref(chapter6) we mention that it would be easy to write an entire book on pricing and segmentation. It would be easy to fill multiple volumes on consumer research and these topics clearly overlap. You can find any number of these tomes on ebay or on other market sites being traded at a significant discount. It would be useful to purchase a few of them to add to your library. These topics are old and well understood. Having a few references is advised. This chapter will discuss two main topics:
+Furthermore, proper research is a very large topic. In chapters \@ref(chapter5) and \@ref(chapter6) we mention that it would be easy to write an entire book on pricing and segmentation. It would be easy to fill multiple volumes on consumer research and these topics clearly overlap. You can find any number of these tomes on ebay or on other market sites being traded at a significant discount. It would be useful to purchase a few of them to add to your library. These topics are old and well understood. Having a few references is advised. This chapter will discuss two main topics:
 
 1. The basics of experiment design and hypothesis testing
 2. Planning and designing surveys
 
 We'll only be able to cover a sliver of topics and techniques that you will likely face at some point in your career. We have already discussed ANOVA and a few other mechanisms to analyze experiments, but we didn't discuss how those experiments need to be designed in order to validate our techniques. This is where the term _statistical significance_ gets thrown around. However, most people don't understand it. It is used in a narrow context around hypothesis testing. It is a mathematical artifact and doesn't mean that a survey isn't good or useful. We'll discuss it a little later. 
 
-I included experiment design here because it is a topic in which most people don't have any experience. Indeed, many business leaders aren't well versed in research in any practical way and have a difficult time navigating and consuming it. I'd like you to come away from this chapter with a few pieces of knowledge that will help you grasp research. This might read a little cynically. 
+I included experiment design here because it is a topic in which most people don't have any experience. Indeed, many business leaders aren't well versed in research in any practical way and have a difficult time navigating and consuming it. I'd like you to come away from this chapter with a few pieces of knowledge that will help you grasp research. This might read a little cynically, but here is some food for thought. 
 
 - You can't always trust it
 - Different techniques can lead to more practical outcomes
@@ -33,7 +33,7 @@ Accurate data is an enormous problem. Garbage-in, garbage-out. I've seen this in
 
 Despite the issues that you will encounter, research should be a fundamental component of business strategy. The bigger the problem, the more important conducting worthwhile research becomes. Understanding how to frame questions that can be answered by some form of research is an overlooked skill set. Getting good at it takes experience. Hopefully, this chapter will get you thinking about this at a high level and give you the rudiments of a toolbox you can use to be more effective at conducting and analyzing research. 
 
-For the most part, you will probably conduct rather simplistic satisfaction surveys through email and deployed after games or periodically throughout the season. Conducting surveys follows a distinct process. We'll loosely frame this chapter around a process for designing a survey borrowed from"Designing Surveys, a guide to decisions and procedures." [@Blair2014] These steps include:
+For the most part, you will probably conduct rather simplistic satisfaction surveys through email and deployed after games or periodically throughout the season. Conducting surveys follows a distinct process. We'll loosely frame this chapter around a process for designing a survey borrowed from "Designing Surveys, a guide to decisions and procedures." [@Blair2014] These steps include:
 
 - Planning and survey design
 - Questionnaire design and pretesting
@@ -49,7 +49,7 @@ There are many ways to design an experiment and this is an extremely deep subjec
 
 There are a multitude of resources that you can leverage to learn more about experiment design and we have already covered a few methods for analyzing data produced through experiments such as ANOVA. Any book on analysis will cover experiment design to a degree. We'll try to hit the high points and demonstrate a couple of practical examples. In terms of a framework for discussion, we used "Designing experiments and analyzing data" [@Maxwell1990] by Maxwell and Delaney and "Applied Survey Data Analysis" [@Heeringa2014] by Heeringa, West, and Berglund as a high level reference.
 
-There are lots of survey designs and there are lots of considerations. That said, we are not designing experiments to test the validity of a vaccine. The stakes are not as high for you working on the business-side of a professional sports team. Most of the experiments you conduct won't need much rigor and you may not even concern yourself with actual experiment design. However, to be a complete analyst you will want to be familiar with it. To me this is analogous to understanding that to find the area under a curve you could use an integral. If you understand enough to be dangerous, you will probably be safe in our world. 
+There are lots of survey designs.. That said, we are not designing experiments to test the validity of a vaccine. The stakes are not as high for you working on the business-side of a professional sports team. Most of the experiments you conduct won't need much rigor and you may not even concern yourself with actual experiment design. However, to be a complete analyst you will want to be familiar with it. To me this is analogous to understanding that to find the area under a curve you could use an integral. If you understand enough to be dangerous, you will probably be safe in our world. 
 
 Experiment design is really about validity. You are concerned about your results having merit in real-world applications. There are also multiple types of validity such as _statistical conclusion validity_ and _construct validity_. Much of the analysis we have covered to date has been on _statistical conclusion validity_. That is, do your results meet specific criteria related to testing your hypothesis. _Construct validity_ refers to drawing the correct conclusions from that analysis. There are many other potential problems with the validity of an experiment. Always keep this in the back of your mind. 
 
@@ -131,8 +131,6 @@ Table: (\#tab:chninespenddataview)t.test results
 |conf.high   |7.532789                |
 |method      |Welch Two Sample t-test |
 |alternative |two.sided               |
-
-
 
 
 In this case we _reject the null hypothesis_ that the differences in means are zero. The alternative hypothesis is true. There are also alternatives to the base _t.test_. You also need to consider if the sample sizes are equal and that other assumptions that you are making are actually true. 
@@ -289,7 +287,7 @@ The best way to illustrate this process is by creating a specific scenario.
 
 > The markeing department of the Nashville Game Hens is interested in approaching marketing efforts in a more sophisticated fashion. We want to achieve a couple of different things about our fanbase: 
 
-> 1. To understand our market structure. Who is coming to games and how does this compare to the general population of the region? We to want break that market structure into logical segments that can be discovered through multiple channels to use in marketing campaigns.
+> 1. To understand our market structure. Who is coming to games and how does this compare to the general population of the region? We want to break that market structure into logical segments that can be discovered through multiple channels to use in marketing campaigns.
 
 > 2. To understand something about our brand affinity and what it means. How is our brand percieved in the market and how does in influence our fortunes?
 
@@ -362,7 +360,7 @@ What features are we interested in looking at? At this stage we won't know what 
 
 Why do you want a feature such as ethnicity? Why does it matter what ethnic group an individual belongs to? This could be useful to your advertising department in terms of channel or the location of particular OOH efforts. Additionally, the data could be used longitudinally for a variety of purposes.
 
-Look carefully at potential questionnaire and data quality issues. Carefully considering the question at hand is the best way to fetter out issues that may manifest at a later stage. The more time you spend considering the quesition, the better your final results will be. 
+Look carefully at potential questionnaire and data quality issues. Carefully considering the question at hand is the best way to fetter out issues that may manifest at a later stage. The more time you spend considering the question, the better your final results will be. 
 
 ### Selecting the right research method
 
@@ -407,7 +405,7 @@ Often times you'll break a larger survey into specific sections:
 - Satisfaction
 - Product
 
-As a rule, try to keep surveys as short and as relevent as possible. 
+As a rule, try to keep surveys as short and as relevant as possible. 
 
 ### Qualifying your sample
 
@@ -417,7 +415,7 @@ It is often critical to qualify your sample. Qualifying your sample will make th
 > - Male
 > - Female
 
-This is important because you might have a quota. A sample that is 85% male may not be desirable. Additionally, you might have quota limits on specific ethnicity. 
+This is important because you might have a quota. A sample that is 85% male may not be desirable. There are also guides about how to ask questions that are increasingly becoming controversial. Gender is one of them and I would suggest putting some time in here. Be consistnet. Additionally, you might have quota limits on specific ethnicity. 
 
 > 2. What is your ethnicity?
 > - White or Caucasion
@@ -480,7 +478,7 @@ Instead of asking for an age, I prefer to ask for birth year and then to calcula
 
 This will make it easier to compare this data to data collected in the past or the future. It also makes it easy to place people into demographic buckets. Additionally, you'll be able to build more accurate scatter plots of the data. When I can, I try to collect numerical data. While age can be a sensitive subject, I haven't seen a problem with simply asking for a birth year. 
 
-Asking about educational achievement is also common. Why do we care? Education is often a proxy for wealth. SOmeone may not be comfortable telling you their income, but education isn't as taboo.
+Asking about educational achievement is also common. Why do we care? Education is often a proxy for wealth. Someone may not be comfortable telling you their income, but education isn't as taboo.
 
 > 1. What is the highest level of education that you have completed?
 > - High school
@@ -511,7 +509,7 @@ Almost all sports look to develop youth and understanding how many children atte
 > -	11 to 15
 > -	16 to 17
 
-In this case we are using a multi-select Multi-select is more difficult to work with on the back-end and will require additional munging. The more complicated the question structure, the less likely you will be to actually use it. 
+In this case we are using a multi-select. multi-select is more difficult to work with on the back-end and will require additional munging. The more complicated the question structure, the less likely you will be to actually use it. 
 
 Geography is especially important for a club. Season ticket holders likely live in a relatively small area that surrounds the stadium or ballpark. Idiosyncrasies in a market also make understanding the relative geography important. The lack of rail or other infrastructure may make the stadium less accessible from certain parts of the region. The most generalized way to get geography is by asking for a zipcode. 
 
@@ -698,7 +696,6 @@ We aren't going to mention the other topics at all. If you want to learn about t
 ## Key concepts and chapter summary
 
 Research should be a foundation of strategic initiatives. Whether you are improving an operations process, pricing tickets, or building pitch decks for a sponsorship team, producing credible research is critical. 
-
 
 - Planning and survey design
 - Questionnaire design and pretesting

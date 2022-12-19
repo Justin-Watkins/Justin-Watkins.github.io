@@ -40,7 +40,7 @@ Ticket brokers buy and sell tickets to events. In a sports environment, there ar
 1. Scale through the purchase of cheap inventory
 2. Purchase good inventory and maintain strong margins
 
-Option can be a little risky. However, this varies by market. You purchase lots of inexpensive inventory and make money on marquee events where margins are high because demand significantly outstrips supply (Think about big games on the weekend against prime opponents or playoff games). Option two is a little more difficult. It likely takes time and makes you more visible to the team. Many clubs now employ revenue sharing opportunities with brokers and are simply using them as a way to sell single game tickets on the secondary market. Clubs may also leverage these secondary channels to flatten the markets. 
+Option number one can be a little risky. However, this varies by market. You purchase lots of inexpensive inventory and make money on marquee events where margins are high because demand significantly outstrips supply (Think about big games on the weekend against prime opponents or playoff games). Option two is a little more difficult. It likely takes time and makes you more visible to the team. Many clubs now employ revenue sharing opportunities with brokers and are simply using them as a way to sell single game tickets on the secondary market. Clubs may also leverage these secondary channels to flatten the markets. 
 
 Selling to brokers mitigates risk because you get money that can be used for operations early. The amount of money that we are dealing with could be large ^[This will not be public information]. However, there is a tradeoff. You no longer control your sales channels. Imagine if you could purchase airline tickets through secondary channels. Would airlines be able to dynamically price as effectively? Additionally, customer service could be an issue. It no longer resides with the club. What happens if you ticket doesn't work? How do you fix it? This becomes a brand problem. Recently, the quick proliferation of digital tickets has made this problem less relevant, but it does persist. There is also a technology component. What does the ticketing platform allow or disallow. While many of these technology problems will likely be solved in the future, they haven't currently been eliminated. 
 
@@ -58,9 +58,9 @@ All of these factors may not be considered, but some of them certainly should be
 
 How do you determine _willingness-to-pay_? You have should have some historical data based on what people have paid for tickets for past events. You should also have sales levels associated with these prices for each ticket-class and specific location. Other data might be much harder to capture.A stadium or arena might have dozens or even hundreds of different price levels. This is where _cannibalization_ must be considered. You may not know what a price increase or decrease in one section might do to demand in another. The cross-price elasticity of demand between seating locations isn't a trivial question to answer. You can also deploy some interesting techniques to help mitigate cannibalization such as liner optimization^[https://en.wikipedia.org/wiki/Linear_programming].  
 
-Another confounding factor is inventory levels. How do you know how much inventory is available? You might know that you sold seven seats in the dugout section were sold against the Brewers on a Saturday night in July. However, you might not know that inventory was on hold and not available for sale. Additionally, you might not have visibility into how many of those tickets were for sale on the secondary market. We aren't even considering marketing efforts to promote the game.
+Another confounding factor is inventory levels. How do you know how much inventory is available? You might know that you sold seven seats in the dugout section and they were sold against the Brewers on a Saturday night in July. However, you might not know that inventory was on hold and not available for sale. Additionally, you might not have visibility into how many of those tickets were for sale on the secondary market. We aren't even considering marketing efforts to promote the game.
 
-Inventory control is a critical part of a pricing exercise. It shouldn't be overlooked. Incentives to sell specific asset classes by the sales team can lead to sub-optimal inventory control protocols. For instance, the sales team may be inclined to hold inventory for specific games to help hit group goals. When conducting a pricing exercise, make sure you understand how invenotry may be alloted. 
+Inventory control is a critical part of a pricing exercise. It shouldn't be overlooked. Incentives to sell specific asset classes by the sales team can lead to sub-optimal inventory control protocols. For instance, the sales team may be inclined to hold inventory for specific games to help hit group goals. When conducting a pricing exercise, make sure you understand how inventory may be alloted. 
 
 
 ## Understanding pricing mechanisms
@@ -195,7 +195,7 @@ fit <- lm(sales$sales~poly(sales$price,2,raw=TRUE))
  
 ```
 
-We now have an _overfit_ price response function that we can use to forecast sales at different price levels. Since this concept may be unfamiliar to you we'll take a minute to explain what is going on here. __fit <- lm(sales$sales~poly(sales$price,2,raw=TRUE))__ is using the __lm__ function (linear model) to fit a line to our data points. We aren't necessarily looking for the best fit in this example. The function __f_get_sales()__ simply takes the coefficients generated by the model stored in  __fit__ and builds an equation that we can use to plug price values into the eqation to give us sales values (y) in terms of price (x). This might look a little scary, but it is really just middle-school algebra at this stage.
+We now have an _overfit_ price response function that we can use to forecast sales at different price levels. Since this concept may be unfamiliar to you we'll take a minute to explain what is going on here. __fit <- lm(sales$sales~poly(sales$price,2,raw=TRUE))__ is using the __lm__ function (linear model) to fit a line to our data points. We aren't necessarily looking for the best fit in this example. The function __f_get_sales()__ simply takes the coefficients generated by the model stored in  __fit__ and builds an equation that we can use to plug price values into the equation to give us sales values (y) in terms of price (x). This might look a little scary, but it is really just middle-school algebra at this stage.
 
 The equation in our function __sales <- coef(fit)[1] + (coef(fit)[2]*new_price + (coef(fit)[3] * new_price^2))__ is nothing more than a rearranged linear equation with a second degree exponent. A linear equation such as the equation that would fit the line in figure \@ref(fig:prfa) would take this familiar form:
 
@@ -215,7 +215,7 @@ I conceptualize linear regression as a simple linear equation where each additio
 \ ({m_1}{x} + {m_2}{x^2}) = {m}{x}
 \end{equation}
 
-Now we can take a look at our estimates by _applying_ ^[See ?apply in R] our function to our original values. The apply functions are one of the areas where R diverges from other languages. If you are familiar with Map functions, they do basically the same thing. In our case, we are replacing a for or while loop with sapply.
+Now we can take a look at our estimates by _applying_ ^[See ?apply in R] our function to our original values. Again, the apply functions are one of the areas where R diverges from other languages. If you are familiar with Map functions, they do basically the same thing. In our case, we are replacing a for or while loop with sapply.
 
 
 ```r
@@ -448,7 +448,7 @@ Table: (\#tab:forecast2)past seasons data
 |243|    81    |LAA |2024-10-06|   Sun   | Oct | FALSE |
 
 
-In this section, we are going to dive into regression in a little more rigorous fashion. I highly recommend purchasing a book on regression. There are many great examples. My current favorite is "An R Companion to Applied Regression." [@Fox2019] by John Fox and Sanford Weisberg.It is very practical and doesn't dwell on theory. There are lots of statistical terms you will need to be familiar with to really dig into it. These include:
+In this section, we are going to dive into regression in a little more rigorous fashion.Again, I highly recommend purchasing a book on regression and my current favorite is "An R Companion to Applied Regression." [@Fox2019] by John Fox and Sanford Weisberg. It is very practical and doesn't dwell on theory. There are lots of statistical terms you will need to be familiar with to really dig into it. These include:
 
 - Hypothesis testing
 - Normality
@@ -470,7 +470,7 @@ As we said, we can approach forecasting in several ways, but there are two main 
 
 What we call a _top-down forecast_ typically consists of macro-level factors such as _team payroll_ and projected wins. These forecasts can be useful for comparing potential across the entire league since we can understand the main components in advance. _Bottom-up forecasts_ can vary in granularity, but consist of more specific information such as the marketing schedule and specifics around scheduling and game attractiveness specific to your market. This might mean rivalry games will be more attractive and you can build that into your model. Let's start by building a simple bottom-up forecast. 
 
-Let's begin by creating a treatment and control group so that we can evaluate the efficacy of our model. We'll perform these tasks with a couple of different packages in future chapters and go into more depth about how to more rigorously apply modeling techniques to our data. The following lines of code will create a training and test data set. There are many ways to accomplish this. This example uses standard R functions.
+First, let's create a treatment and control group so that we can evaluate the efficacy of our model. We'll perform these tasks with a couple of different packages in future chapters and go into more depth about how to more rigorously apply modeling techniques to our data. The following lines of code will create a training and test data set. This example uses standard R functions.
 
 
 ```r
@@ -585,7 +585,7 @@ Table: (\#tab:chsixsumstatsa)Summary stats for model
 |3899.53 |0.6632383| 0.6165585  |14.20824|
 
 
-This is OLS regression and there are certain assumptions that need to be made about the underlying data. If they aren't satisfied, your model may have some problems. It would be best to consult a book on regression to understand some of these concepts, but we'll take a look at a few of them to get you familiar with some of the terminology. The car package [@R-car] has some great tools to help you evaluate your models. We'll use it to further evaluate the model. 
+This is OLS regression and there are certain assumptions that need to be made about the underlying data. If they aren't satisfied, your model may have some problems. The car package [@R-car] has some great tools to help you evaluate your models. We'll use it to further evaluate the model. 
 
 ### Outliers and unusual data points
 
@@ -631,7 +631,8 @@ qq <- car::qqPlot(ln_mod_bu, main="QQ Plot")
 ```
 
 <img src="06-Pricing_files/figure-html/forecast7-1.png" width="672" />
-For the most part, out points tend to fall on the line. A few points stray from it and we can see our outlier (48) at the bottom. Linear regression models can be highly influenced by extreme points. We'll end up removing this point and rerunning the model. 
+
+For the most part, our points tend to fall on the line. A few points stray from it and we can see our outlier (48) at the bottom. Linear regression models can be highly influenced by extreme points. We'll end up removing this point and rerunning the model. 
 
 We can run an influence plot to combine several of the graphs we would see in You can see with _plot(ln_mod_bu)_. The bigger the circle, the larger _Cooks Distance_. Cooks distance has a mathematical definition, but just think of it as a way to identify influential points in the data. 
 
@@ -647,7 +648,7 @@ ip <- car::influencePlot(ln_mod_bu, id.method="identify",
 
 <img src="06-Pricing_files/figure-html/forecast8-1.png" width="672" />
 
-It appears that several points are having an outsized influence on our model. We should evaluate them. It may be OK to remove them from our model if their values appear to be influenced by some exogenous factor that we are not accounting for. Why might some of the points be influential? Perhaps it rained on a few of these dates and it depressed ticket sales. It might be reasonable to exclude these dates from the analysis.  
+It appears that several points are having an out-sized influence on our model. We should evaluate them individually. It may be OK to remove them from our model if their values appear to be influenced by some exogenous factor that we are not accounting for. Why might some of the points be influential? Perhaps it rained on a few of these dates and it depressed ticket sales. It might be reasonable to exclude these dates from the analysis.  
 
 
 Table: (\#tab:forecast9)Influential Observations
@@ -808,10 +809,9 @@ line_est <-
 <img src="images/ch6_line_pred.png" width="100%" />
 
 
-Overall, our error is relatively low. However, we can see that while the average error is low the point estimates can vary considerably. Would I feel comfortable applying this model to new data. I believe so. However, I would probably look for other predictors that might improve my model. Perhaps removing season tickets would help. Unfortunately, the further away from the season, the more blunt your estimates will tend to be. You won't gambling odds, you may not have a promotional schedule. If you pull insignificant teams from the model you won't be able to use them to make a forecast, you'll have to guess. You'll often have to settle for "good enough."
+Overall, our error is relatively low. However, we can see that while the average error is low, the point estimates can vary considerably. Would I feel comfortable applying this model to new data. I believe so. However, I would probably look for other predictors that might improve my model. Perhaps removing season tickets would help. Unfortunately, the further away from the season, the more blunt your estimates will tend to be. You won't have gambling odds, you may not have a promotional schedule. If you pull insignificant teams from the model you won't be able to use them to make a forecast, you'll have to guess. You'll often have to settle for "good enough."
 
 This top-down approach to forecasting sales and analyzing prices is useful in certain circumstances and has many applications. Our next example will cover a bottom-up approach.
-
 
 
 ### Analyzing a schedule and ranking games
@@ -952,7 +952,7 @@ season_2025 <-
  )
 ```
 
-Our new data uses seed2 = 714. If I type _View(f_build_season)_ I can see that seed2 controls the teams that are selected for the schedule. What happens if use a different seed2? You might get factor levels that you didn't anticipate. The model is unable to make a prediction on these values. What do you do here. The easist thing to do is to remove the offending factor levels. You could also make them analogs and substitute in a like-factor. 
+Our new data uses seed2 = 714. If I type _View(f_build_season)_ I can see that seed2 controls the teams that are selected for the schedule. What happens if use a different seed2? You might get factor levels that you didn't anticipate. The model is unable to make a prediction on these values. What do you do here. The easiest thing to do is to remove the offending factor levels. You could also make them analogs and substitute in a like-factor. 
 
 
 ```r
@@ -1057,8 +1057,6 @@ line_est_es <-
 ```
 
 <img src="images/ch6_line_est_es.png" width="100%" />
-
-
 
 
 We can see that there are groupings of games that have similar levels of _attractiveness_. Although many games appear much more attractive than others, they may have also been priced higher. Based on this demand attractiveness, we can progressively price our games with the ones with the highest anticipated demand receiving higher prices.  
@@ -1305,7 +1303,7 @@ You can also produce the same plot that we have already produced. The plotting m
 
 ## Implementing revenue management strategies in sports
 
-These techniques are becoming increasingly commoditized. The mechanisms for forecasting and pricing are well understood and widely deployed. Additionally, ticketing platforms and markets are already working together to make deploying changes possible across multiple changes instantaneously. We have already covered the main considerations, but we didn't talk about all of them:
+These techniques are becoming increasingly commoditized. The mechanisms for forecasting and pricing are well understood and widely deployed. Additionally, ticketing platforms and markets are already working together to make deploying changes possible across multiple markets instantaneously. We have already covered the main considerations, but we didn't talk about all of them:
 
 - Brand and consumer equity
 - Setting initial prices

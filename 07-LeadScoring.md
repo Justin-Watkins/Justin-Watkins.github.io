@@ -13,7 +13,7 @@ What if I told you that I would pay you \$50,000 if you sold four season tickets
 
 There are lots of tactics you could deploy to make sure that you are picking all the low-hanging fruit. It is unlikely that you ever get to the point where you simply pick up a telephone and begin calling phone numbers. Is there a way for us to approach this problem more analytically?
 
-Lead scoring is fundamental to sales campaigns. Qualifying leads can be done in many ways, but the goal is always the same. You are ordering your leads in a more efficient way so that your sales efforts can maintain some level of efficiency threshold. Warm leads are critical and if someone hasn't interacted with your brand, they are likely a less efficient use of your time. Working in marketing always reminds me of this one-hundred and thirty year old quote:  
+Lead scoring is fundamental to sales campaigns. Qualifying leads can be done in many ways, but the goal is always the same. You are ordering your leads in a more efficient way so that your sales efforts can maintain some greater level of efficiency. Warm leads are critical and if someone hasn't interacted with your brand, they are likely a less efficient use of your time. Working in marketing always reminds me of this one-hundred and thirty year old quote:  
 
 > “Half the money I spend on advertising is wasted; the trouble is I don't know which half.”
 > 
@@ -29,7 +29,7 @@ This might also be a judgment call that is predicated on how sales and marketing
 
 ## Recency, frequency, and monetary value
 
-RFM scores could be described as a poor-analyst's analytic technique. The basic premise is to score sales candidates along those three dimensions and to build lists comprising cohorts with the highest aggregate scores. How might this work in practice? 
+RFM scores have been described as a _poor-man's_ analytic technique. The basic premise is to score sales candidates along three dimensions and to build lists comprising cohorts with the highest aggregate scores. How might this work in practice? 
 
 Let's put together and ad hoc data set to demonstrate how RFM scores might work.
 
@@ -180,16 +180,16 @@ Using a framework also comes with some issues.
 
 However, I believe that you'll be better off in the long run to leverage a framework. They tend to make the basic tasks of machine-learning much more systematic and repeatable, especially when it comes to benchmarking. 
 
-Let's also discuss the package data.table [@R-datatable] here. data.table is a powerful tool that underlies many popular packages. While it has many uses, it can be more confusing to work with as opposed to dplyr [@R-dplyr]. It underlies many other libraries and can softly be considered one of the pillars that holds up much of the R universe. If you have been using python, datatable will remind you of pandas [@reback2020pandas]. If you are working with really large data sets, datatable will be useful to learn.
+Let's also discuss the package data.table [@R-data.table] here. data.table is a powerful tool that underlies many popular packages. While it has many uses, it can be more confusing to work with as opposed to dplyr [@R-dplyr]. It can softly be considered one of the pillars that holds up much of the R universe. If you have been using python, datatable will remind you of pandas [@reback2020pandas]. If you are working with really large data sets, datatable will be useful to learn.
 
 
 ### Implementing a lead scoring project
 
 A random forest is an excellent tool for classification and can forecast more than two classes. Logistic regression is typically used for binary classes (renewed, did not renew) and should probably be your first step. There are forms of logistic regression that will handle multi-class problems. We'll take a look at both tools. In practice, a random forest tends to handle a wide variety of problems you will be faced with at a club very well. 
 
-Missing data or orphan cases can make these tasks extremely frustrating. There is no guarantee that your model will converge. We stated earlier that most of your time will be spent putting your data in order. You'll be much happier if you put the hours into getting your data in the proper spot. The fun part of these exercises is the modeling. However, it ends up being the part you spend the smallest amount of time working on. 
+Missing data or orphan cases can make these tasks extremely frustrating. There is no guarantee that your model will converge. We stated earlier that most of your time will be spent putting your data in order. You'll be much happier if you put the hours into getting your data in the proper spot. The fun part of these exercises is the modeling. However, it ends up being the part you spend the smallest amount of time working on. I hope the high is worth the lows to you.  
 
-Additionally, we should follow the process that we outlined in chapter \@ref(chapter4). We'll do this to demonstrate that it isn't managerial BS. Structuring projects is critical when you are working in teams or working in a distributed fashion. Let's remind ourselves of the basic steps we want to follow:
+Additionally, we should follow the process that we outlined in chapter \@ref(chapter4). We'll do this to demonstrate that it isn't managerial B.S. Structuring projects is critical when you are working in teams or working in a distributed fashion. Let's remind ourselves of the basic steps we want to follow:
 
 1. Define a measurable goal or hypothesis
 2. Data collection 
@@ -203,8 +203,6 @@ Additionally, we should follow the process that we outlined in chapter \@ref(cha
 We are going to use multiple years of season ticket holder renewal data. We also have a problem statement:
 
 > We don't understand how to identify season ticket accounts that are less likely to renew.
-
-What is the output that we are trying to achieve? How do we know if we are successful?
 
 Our output will be a score that can be used to compare customers against one another. We'll need to look for features that might predict whether or not someone is likely to renew their tickets. This might be ticket usage or tenure. We don't know. 
 
@@ -331,12 +329,13 @@ geographic_vis <-
 
 
 <img src="images/ch7_map_ex.png" width="100%" />
+
 These maps aren't the best, but they are easy to execute and can give you much of the same insight you would get from a more sophisticated product such as ArcGIS ^[https://www.esri.com/en-us/home]. R also makes it easy to access google APIs that will allow you to Geocode addresses and perform many other interesting tasks with geographic data. You can find a multitude of informative demos online. 
 
 
 #### Model the data {#model}
 
-While we will use the mlr3 framework here, it is important to understand that there is no need to use one of these frameworks. You can call functions directly. mlr3 is descended from mlr, [@R-mlr] but is built on a more modern framework. You'll want to begin by downloading the library and poking around in it ^[https://mlr3book.mlr-org.com/train-predict.html]. 
+While we will use the mlr3 framework here, again it is important to understand that there is no need to use one of these frameworks. You can call functions directly. mlr3 is descended from mlr, [@R-mlr] but is built on a more modern framework. You'll want to begin by downloading the library and poking around in it ^[https://mlr3book.mlr-org.com/train-predict.html]. 
 
 
 ```r
@@ -457,7 +456,7 @@ prediction <- learner_ranger_rf$predict(task_mod_data,
                                         row_ids = test_mod_data)
 ```
 
-There are several ways to consider how accurate this model might be and interpretation can be confusing. THis first thing to look at is a confusion matrix. A confusion matrix is a simple way to gauge how well your model predictions performed against known values.
+There are several ways to consider how accurate this model might be and interpretation can be confusing. The first thing to look at is a confusion matrix. A confusion matrix is a simple way to gauge how well your model predictions performed against known values.
 
 
 ```r
@@ -470,6 +469,7 @@ prediction$confusion
 #>       r  2662  508
 #>       nr  106  151
 ```
+
 A confusion matrix demonstrates how often the model was correct and incorrect for each response. In this case, our model isn't performing very well. Would it perform better than a random guess? There are many other metrics that you can extract from your model.
 
 
@@ -482,7 +482,8 @@ prediction$score(measure)
 #> classif.acc 
 #>   0.8208345
 ```
-in this case, our model is 0.8208345 percent accurate. Let's visualize some of the results.
+
+In this case, our model is 0.8208345 percent accurate. Let's visualize some of the results.
 
 
 For simple models, the _mlr3::autoplot()_ function includes several graphs and is built on ggplot2, which means you can apply your themes to them. First, let's explore our data a little more. You can access the predictions with this command _learner_ranger_rf$model$predictions_. The probabilities may come in useful depending on what you are doing. 
@@ -539,6 +540,7 @@ autoplot(object)   +
 
 We can also see that we do generate some lift with the model by looking at the ROC curve. 
 
+
 ```r
 #-----------------------------------------------------------------
 # ROC curve for random forest model
@@ -553,7 +555,7 @@ autoplot(object$filter(task_ids = "task_renew"),
 
 <img src="images/ch7_roc_model.png" width="100%" />
 
-So what do we do with this data? We can now use our model to predict how likely a person is to renew thier ticket. However, we can see that the model doesn't perform as well as we would like. What can we do? We have a few options:
+So what do we do with this data? We can now use our model to predict how likely a person is to renew their ticket. However, we can see that the model doesn't perform as well as we would like. We have a few options in terms of proceding:
 
 - Tune the model parameters to try to improve it
 - Try a different model
@@ -598,7 +600,7 @@ resampling_mod_data  <- rsmp("cv")
 ```
 
 
-We'll then need to instantiate the resampling strategy. This just means that we are going tocreate it again.
+We'll then need to instantiate the resampling strategy. This just means that we are going to create it again.
 
 
 ```r
@@ -609,6 +611,7 @@ resampling_mod_data$instantiate(task_mod_data)
 resampling_mod_data$iters
 #> [1] 10
 ```
+
 We can now call the resample. This will take longer than what we have seen because we are building a model on multiple data sets.
 
 
@@ -620,19 +623,19 @@ resamp <- resample(task_mod_data,
                    learner_ranger_rf, 
                    resampling_mod_data, 
                    store_models = TRUE)
-#> INFO  [21:05:44.918] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/10)
-#> INFO  [21:05:48.539] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 2/10)
-#> INFO  [21:05:52.455] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 3/10)
-#> INFO  [21:05:56.315] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 4/10)
-#> INFO  [21:06:00.236] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 5/10)
-#> INFO  [21:06:04.113] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 6/10)
-#> INFO  [21:06:07.712] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 7/10)
-#> INFO  [21:06:11.568] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 8/10)
-#> INFO  [21:06:15.082] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 9/10)
-#> INFO  [21:06:18.959] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 10/10)
+#> INFO  [20:18:36.597] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/10)
+#> INFO  [20:18:40.890] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 2/10)
+#> INFO  [20:18:45.287] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 3/10)
+#> INFO  [20:18:49.150] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 4/10)
+#> INFO  [20:18:53.387] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 5/10)
+#> INFO  [20:18:57.792] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 6/10)
+#> INFO  [20:19:01.380] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 7/10)
+#> INFO  [20:19:05.499] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 8/10)
+#> INFO  [20:19:09.130] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 9/10)
+#> INFO  [20:19:13.114] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 10/10)
 ```
 
-You now have a more relevant way to evaluate your model.
+You now have a more confident way to evaluate your model.
 
 
 ```r
@@ -644,6 +647,7 @@ resamp$aggregate(msr("classif.ce"))
 #>  0.1794095
 # Look at scores from the models: resamp$score(msr("classif.ce"))
 ```
+
 Our classification error has improved. That is great! How do we improve further. 
 
 
@@ -668,6 +672,7 @@ head(param_set)
 #> 5                        importance
 #> 6                        keep.inbag
 ```
+
 Let's select a couple of parameters to tune
 
 
@@ -682,7 +687,7 @@ tune_rf_params <- ParamSet$new(list(
 ))
 ```
 
-We will also have to consider a resampling strategy. Since cross validated results demonstrated similar error rates, let's use a holdout sample. We'll use classification error as our measure.
+We will also have to consider a resampling strategy. Since cross-validated results demonstrated similar error rates, let's use a holdout sample. We'll use classification error as our measure.
 
 
 
@@ -730,123 +735,123 @@ tuner_rf = tnr("random_search")
 # Run the models
 #-----------------------------------------------------------------
 tuner <- tuner_rf$optimize(tune_instance)
-#> INFO  [21:06:34.280] [bbotk] Starting to optimize 3 parameter(s) with '<OptimizerRandomSearch>' and '<TerminatorEvals> [n_evals=10, k=0]'
-#> INFO  [21:06:34.299] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [21:06:34.323] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [21:06:34.328] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [21:06:36.328] [mlr3] Finished benchmark
-#> INFO  [21:06:36.446] [bbotk] Result of batch 1:
-#> INFO  [21:06:36.448] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [21:06:36.448] [bbotk]            123        18       542   0.175093        0
-#> INFO  [21:06:36.448] [bbotk]  errors runtime_learners
-#> INFO  [21:06:36.448] [bbotk]       0                2
-#> INFO  [21:06:36.448] [bbotk]                                 uhash
-#> INFO  [21:06:36.448] [bbotk]  f4666aeb-236f-46ae-9f54-4aa922b7b7ea
-#> INFO  [21:06:36.451] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [21:06:36.466] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [21:06:36.470] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [21:06:38.049] [mlr3] Finished benchmark
-#> INFO  [21:06:38.071] [bbotk] Result of batch 2:
-#> INFO  [21:06:38.072] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [21:06:38.072] [bbotk]            200        17       507  0.1726855        0
-#> INFO  [21:06:38.072] [bbotk]  errors runtime_learners
-#> INFO  [21:06:38.072] [bbotk]       0             1.57
-#> INFO  [21:06:38.072] [bbotk]                                 uhash
-#> INFO  [21:06:38.072] [bbotk]  4d7f4603-792d-420e-baa8-a85c5494abb4
-#> INFO  [21:06:38.075] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [21:06:38.092] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [21:06:38.096] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [21:06:39.556] [mlr3] Finished benchmark
-#> INFO  [21:06:39.577] [bbotk] Result of batch 3:
-#> INFO  [21:06:39.578] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [21:06:39.578] [bbotk]            120        11       508  0.1739987        0
-#> INFO  [21:06:39.578] [bbotk]  errors runtime_learners
-#> INFO  [21:06:39.578] [bbotk]       0             1.47
-#> INFO  [21:06:39.578] [bbotk]                                 uhash
-#> INFO  [21:06:39.578] [bbotk]  5862d9cc-7d0e-4a98-8058-ef77603ce3ff
-#> INFO  [21:06:39.580] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [21:06:39.597] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [21:06:39.601] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [21:06:43.494] [mlr3] Finished benchmark
-#> INFO  [21:06:43.514] [bbotk] Result of batch 4:
-#> INFO  [21:06:43.516] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [21:06:43.516] [bbotk]             79        11       520  0.1755308        0
-#> INFO  [21:06:43.516] [bbotk]  errors runtime_learners
-#> INFO  [21:06:43.516] [bbotk]       0             3.87
-#> INFO  [21:06:43.516] [bbotk]                                 uhash
-#> INFO  [21:06:43.516] [bbotk]  992ee32d-bbb4-41fa-8b15-6507e797a760
-#> INFO  [21:06:43.519] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [21:06:43.535] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [21:06:43.539] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [21:06:45.184] [mlr3] Finished benchmark
-#> INFO  [21:06:45.205] [bbotk] Result of batch 5:
-#> INFO  [21:06:45.206] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [21:06:45.206] [bbotk]            125        11       594  0.1739987        0
-#> INFO  [21:06:45.206] [bbotk]  errors runtime_learners
-#> INFO  [21:06:45.206] [bbotk]       0             1.64
-#> INFO  [21:06:45.206] [bbotk]                                 uhash
-#> INFO  [21:06:45.206] [bbotk]  e782fc7b-17e3-4773-84dd-8b8426912c19
-#> INFO  [21:06:45.209] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [21:06:45.226] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [21:06:45.230] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [21:06:48.547] [mlr3] Finished benchmark
-#> INFO  [21:06:48.569] [bbotk] Result of batch 6:
-#> INFO  [21:06:48.570] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [21:06:48.570] [bbotk]            109        16       597  0.1748742        0
-#> INFO  [21:06:48.570] [bbotk]  errors runtime_learners
-#> INFO  [21:06:48.570] [bbotk]       0             3.29
-#> INFO  [21:06:48.570] [bbotk]                                 uhash
-#> INFO  [21:06:48.570] [bbotk]  74a66fbb-453d-4f19-9e45-f1ec6600cbab
-#> INFO  [21:06:48.572] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [21:06:48.588] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [21:06:48.593] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [21:06:49.483] [mlr3] Finished benchmark
-#> INFO  [21:06:49.505] [bbotk] Result of batch 7:
-#> INFO  [21:06:49.506] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [21:06:49.506] [bbotk]            124         4       580  0.1696214        0
-#> INFO  [21:06:49.506] [bbotk]  errors runtime_learners
-#> INFO  [21:06:49.506] [bbotk]       0             0.89
-#> INFO  [21:06:49.506] [bbotk]                                 uhash
-#> INFO  [21:06:49.506] [bbotk]  a0b35060-92da-40c5-88b4-fb4184498537
-#> INFO  [21:06:49.508] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [21:06:49.524] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [21:06:49.528] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [21:06:52.294] [mlr3] Finished benchmark
-#> INFO  [21:06:52.319] [bbotk] Result of batch 8:
-#> INFO  [21:06:52.320] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [21:06:52.320] [bbotk]             16        17       560  0.1792515        0
-#> INFO  [21:06:52.320] [bbotk]  errors runtime_learners
-#> INFO  [21:06:52.320] [bbotk]       0             2.76
-#> INFO  [21:06:52.320] [bbotk]                                 uhash
-#> INFO  [21:06:52.320] [bbotk]  86eab047-579b-4f60-9c12-d0b7fa561e7b
-#> INFO  [21:06:52.323] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [21:06:52.340] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [21:06:52.344] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [21:06:53.266] [mlr3] Finished benchmark
-#> INFO  [21:06:53.288] [bbotk] Result of batch 9:
-#> INFO  [21:06:53.289] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [21:06:53.289] [bbotk]             97         5       520  0.1696214        0
-#> INFO  [21:06:53.289] [bbotk]  errors runtime_learners
-#> INFO  [21:06:53.289] [bbotk]       0             0.92
-#> INFO  [21:06:53.289] [bbotk]                                 uhash
-#> INFO  [21:06:53.289] [bbotk]  ae171763-e6c3-486a-bf72-d0f678c3f251
-#> INFO  [21:06:53.292] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [21:06:53.309] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [21:06:53.314] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [21:06:55.964] [mlr3] Finished benchmark
-#> INFO  [21:06:55.986] [bbotk] Result of batch 10:
-#> INFO  [21:06:55.987] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [21:06:55.987] [bbotk]             42        20       560  0.1772817        0
-#> INFO  [21:06:55.987] [bbotk]  errors runtime_learners
-#> INFO  [21:06:55.987] [bbotk]       0             2.65
-#> INFO  [21:06:55.987] [bbotk]                                 uhash
-#> INFO  [21:06:55.987] [bbotk]  5131d77d-0e16-4195-b6f0-26eb4541006a
-#> INFO  [21:06:55.992] [bbotk] Finished optimizing after 10 evaluation(s)
-#> INFO  [21:06:55.993] [bbotk] Result:
-#> INFO  [21:06:55.993] [bbotk]  min.node.size max.depth num.trees learner_param_vals
-#> INFO  [21:06:55.993] [bbotk]            124         4       580          <list[5]>
-#> INFO  [21:06:55.993] [bbotk]   x_domain classif.ce
-#> INFO  [21:06:55.993] [bbotk]  <list[3]>  0.1696214
+#> INFO  [20:19:28.607] [bbotk] Starting to optimize 3 parameter(s) with '<OptimizerRandomSearch>' and '<TerminatorEvals> [n_evals=10, k=0]'
+#> INFO  [20:19:28.620] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [20:19:28.639] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [20:19:28.644] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [20:19:30.576] [mlr3] Finished benchmark
+#> INFO  [20:19:30.708] [bbotk] Result of batch 1:
+#> INFO  [20:19:30.710] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [20:19:30.710] [bbotk]            123        18       542   0.175093        0
+#> INFO  [20:19:30.710] [bbotk]  errors runtime_learners
+#> INFO  [20:19:30.710] [bbotk]       0             1.92
+#> INFO  [20:19:30.710] [bbotk]                                 uhash
+#> INFO  [20:19:30.710] [bbotk]  6d467bcd-9826-4913-9758-837858f41f56
+#> INFO  [20:19:30.713] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [20:19:30.733] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [20:19:30.739] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [20:19:32.473] [mlr3] Finished benchmark
+#> INFO  [20:19:32.497] [bbotk] Result of batch 2:
+#> INFO  [20:19:32.498] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [20:19:32.498] [bbotk]            200        17       507  0.1726855        0
+#> INFO  [20:19:32.498] [bbotk]  errors runtime_learners
+#> INFO  [20:19:32.498] [bbotk]       0             1.72
+#> INFO  [20:19:32.498] [bbotk]                                 uhash
+#> INFO  [20:19:32.498] [bbotk]  514c66e6-dc9c-4687-bd3c-2c32fbd5a4be
+#> INFO  [20:19:32.501] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [20:19:32.519] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [20:19:32.524] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [20:19:34.104] [mlr3] Finished benchmark
+#> INFO  [20:19:34.126] [bbotk] Result of batch 3:
+#> INFO  [20:19:34.127] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [20:19:34.127] [bbotk]            120        11       508  0.1739987        0
+#> INFO  [20:19:34.127] [bbotk]  errors runtime_learners
+#> INFO  [20:19:34.127] [bbotk]       0             1.56
+#> INFO  [20:19:34.127] [bbotk]                                 uhash
+#> INFO  [20:19:34.127] [bbotk]  07256c47-6430-4d0f-942e-58ad215500e3
+#> INFO  [20:19:34.130] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [20:19:34.147] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [20:19:34.151] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [20:19:35.973] [mlr3] Finished benchmark
+#> INFO  [20:19:35.997] [bbotk] Result of batch 4:
+#> INFO  [20:19:35.998] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [20:19:35.998] [bbotk]             79        11       520  0.1755308        0
+#> INFO  [20:19:35.998] [bbotk]  errors runtime_learners
+#> INFO  [20:19:35.998] [bbotk]       0              1.8
+#> INFO  [20:19:35.998] [bbotk]                                 uhash
+#> INFO  [20:19:35.998] [bbotk]  8e33f0a2-9c0c-4168-b778-3bdfc2e1b1e3
+#> INFO  [20:19:36.001] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [20:19:36.018] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [20:19:36.022] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [20:19:37.720] [mlr3] Finished benchmark
+#> INFO  [20:19:37.739] [bbotk] Result of batch 5:
+#> INFO  [20:19:37.741] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [20:19:37.741] [bbotk]            125        11       594  0.1739987        0
+#> INFO  [20:19:37.741] [bbotk]  errors runtime_learners
+#> INFO  [20:19:37.741] [bbotk]       0              1.7
+#> INFO  [20:19:37.741] [bbotk]                                 uhash
+#> INFO  [20:19:37.741] [bbotk]  836ff7af-1b6d-47bf-a215-90f3ed9847ec
+#> INFO  [20:19:37.743] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [20:19:37.758] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [20:19:37.762] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [20:19:41.169] [mlr3] Finished benchmark
+#> INFO  [20:19:41.192] [bbotk] Result of batch 6:
+#> INFO  [20:19:41.193] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [20:19:41.193] [bbotk]            109        16       597  0.1748742        0
+#> INFO  [20:19:41.193] [bbotk]  errors runtime_learners
+#> INFO  [20:19:41.193] [bbotk]       0              3.4
+#> INFO  [20:19:41.193] [bbotk]                                 uhash
+#> INFO  [20:19:41.193] [bbotk]  8f3f8cfc-b631-44ad-9083-1ad5a919143e
+#> INFO  [20:19:41.196] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [20:19:41.213] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [20:19:41.218] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [20:19:42.134] [mlr3] Finished benchmark
+#> INFO  [20:19:42.160] [bbotk] Result of batch 7:
+#> INFO  [20:19:42.161] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [20:19:42.161] [bbotk]            124         4       580  0.1696214        0
+#> INFO  [20:19:42.161] [bbotk]  errors runtime_learners
+#> INFO  [20:19:42.161] [bbotk]       0             0.91
+#> INFO  [20:19:42.161] [bbotk]                                 uhash
+#> INFO  [20:19:42.161] [bbotk]  dc49f705-f757-41fb-bb45-125939f08fec
+#> INFO  [20:19:42.164] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [20:19:42.182] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [20:19:42.186] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [20:19:44.984] [mlr3] Finished benchmark
+#> INFO  [20:19:45.006] [bbotk] Result of batch 8:
+#> INFO  [20:19:45.007] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [20:19:45.007] [bbotk]             16        17       560  0.1792515        0
+#> INFO  [20:19:45.007] [bbotk]  errors runtime_learners
+#> INFO  [20:19:45.007] [bbotk]       0              2.8
+#> INFO  [20:19:45.007] [bbotk]                                 uhash
+#> INFO  [20:19:45.007] [bbotk]  b0b906e9-39da-4711-b023-53d759d20cdc
+#> INFO  [20:19:45.009] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [20:19:45.025] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [20:19:45.029] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [20:19:45.961] [mlr3] Finished benchmark
+#> INFO  [20:19:45.987] [bbotk] Result of batch 9:
+#> INFO  [20:19:45.988] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [20:19:45.988] [bbotk]             97         5       520  0.1696214        0
+#> INFO  [20:19:45.988] [bbotk]  errors runtime_learners
+#> INFO  [20:19:45.988] [bbotk]       0             0.93
+#> INFO  [20:19:45.988] [bbotk]                                 uhash
+#> INFO  [20:19:45.988] [bbotk]  1d370b6f-a150-4de1-b107-8be62fbe981b
+#> INFO  [20:19:45.991] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [20:19:46.010] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [20:19:46.014] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [20:19:48.722] [mlr3] Finished benchmark
+#> INFO  [20:19:48.743] [bbotk] Result of batch 10:
+#> INFO  [20:19:48.744] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [20:19:48.744] [bbotk]             42        20       560  0.1772817        0
+#> INFO  [20:19:48.744] [bbotk]  errors runtime_learners
+#> INFO  [20:19:48.744] [bbotk]       0              2.7
+#> INFO  [20:19:48.744] [bbotk]                                 uhash
+#> INFO  [20:19:48.744] [bbotk]  423a15ea-5d55-48d6-9811-4a6783f11e06
+#> INFO  [20:19:48.749] [bbotk] Finished optimizing after 10 evaluation(s)
+#> INFO  [20:19:48.750] [bbotk] Result:
+#> INFO  [20:19:48.750] [bbotk]  min.node.size max.depth num.trees learner_param_vals
+#> INFO  [20:19:48.750] [bbotk]            124         4       580          <list[5]>
+#> INFO  [20:19:48.750] [bbotk]   x_domain classif.ce
+#> INFO  [20:19:48.750] [bbotk]  <list[3]>  0.1696214
 ```
 
 Now we can take a look at our best result
@@ -863,6 +868,7 @@ best_params <- tune_instance$result_learner_param_vals
 The best results came from a minimum node size of `{r tune_instance$result_learner_param_vals$min.node.size` and max depth of 4. 
 
 
+
 ```r
 #-----------------------------------------------------------------
 # Observe new classification error
@@ -871,6 +877,7 @@ tune_instance$result_y
 #> classif.ce 
 #>  0.1696214
 ```
+
 Tuning has improved our model. 0.0097881 percent. Now we can apply this model back to our test data and observe the results.
 
 
@@ -918,6 +925,7 @@ prediction_tuned$score(measure)
 #> classif.acc 
 #>   0.8371754
 ```
+
 We certainly improved the accuracy. Now let's take a look at comparing our model produced with a random forest to a model produced with a different algorithm.
 
 #### Comparing the results of different model types
@@ -943,6 +951,7 @@ mlr3::mlr_learners
 #>   regr.lm, regr.nnet, regr.ranger, regr.rpart,
 #>   regr.svm, regr.xgboost
 ```
+
 Many algorithms will not accept certain data types. Numerical types are always safe. We'll use the same data set that we have been using to test another algorithm. 
 
 
@@ -997,11 +1006,11 @@ resamplings_bnch <- rsmp("holdout")
 # benchmark our designs
 #-----------------------------------------------------------------
 bmr = benchmark(design_bnch)
-#> INFO  [21:06:57.590] [mlr3] Running benchmark with 3 resampling iterations
-#> INFO  [21:06:57.594] [mlr3] Applying learner 'classif.xgboost' on task 'task_class2' (iter 1/1)
-#> INFO  [21:06:57.656] [mlr3] Applying learner 'classif.ranger' on task 'task_class2' (iter 1/1)
-#> INFO  [21:07:00.719] [mlr3] Applying learner 'classif.naive_bayes' on task 'task_class2' (iter 1/1)
-#> INFO  [21:07:01.154] [mlr3] Finished benchmark
+#> INFO  [20:19:50.342] [mlr3] Running benchmark with 3 resampling iterations
+#> INFO  [20:19:50.347] [mlr3] Applying learner 'classif.xgboost' on task 'task_class2' (iter 1/1)
+#> INFO  [20:19:50.457] [mlr3] Applying learner 'classif.ranger' on task 'task_class2' (iter 1/1)
+#> INFO  [20:19:53.584] [mlr3] Applying learner 'classif.naive_bayes' on task 'task_class2' (iter 1/1)
+#> INFO  [20:19:54.130] [mlr3] Finished benchmark
 ```
 
 We can take a look at the available measures with the following command:
@@ -1053,8 +1062,7 @@ measure_list[,c(6,11,12)]
 #> 3 classif.naive_bayes 0.6735490 0.2061720
 ```
 
-OUr _xgboost model performed slightly better than the random forest. Perhaps we should use it instead. 
-
+Our _xgboost_ model performed slightly better than the random forest. Perhaps we should use it instead. 
 
 
 #### Manually calling a logistic regression model
@@ -1110,7 +1118,6 @@ Let's look at a density plot of the renewal scores and classes.
 
 
 
-
 ```r
 #-----------------------------------------------------------------
 # Density plot of error
@@ -1158,20 +1165,17 @@ ggroc(roc_object,colour = 'dodgerblue',size = 1.2) +
 
 <img src="images/ch7_roc.png" width="100%" />
 
-Interpret this ROC curve
-
-
+It looks like our ROC curve demonstrates that we can be more efficient by targeting certain groups.
 
 ## Using this data
 
 Lead scores are __EASY__ to use. Qualifying leads is likely the most important analytics exercise that can be quickly and easily deployed. This is thinking strategically at its simplest and finest. We simply need to apply our preferred model to new data. All of the algorithms performed in a similar way (which isn't uncommon). So what do you do with it. Scored data is typically placed into quantiles and then deployed in order based on what we desire to happen. 
 
 
-
-
 ### Building cumulative gains charts
 
 How do we know that our model has efficacy in practice? Let's take a sample of our model data and pretend that it is a new group that we plan to deploy in a renewal campaign. Let's begin by borrowing some data from our last analysis. Let's pretend these individuals are new and we are trying to renew them. 
+
 
 
 ```r
@@ -1290,7 +1294,7 @@ ggplot(mod_data_gain,aes(y=gain,x=group))                  +
 
 <img src="images/ch7_roc_im.png" width="100%" />
 
-We can see that the curve is pushed out in the middle. A the curve begins to flatten, your campaign is less efficient. 
+We can see that the curve is pushed out in the middle. A the curve begins to flatten, your campaign is less efficient. These problems are complex. Your data isn't perfect and it can be difficult to get the amazing results you see in texts.  
 
 ## Key concepts and chapter summary
 

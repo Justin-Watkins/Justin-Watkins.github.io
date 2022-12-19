@@ -3,6 +3,7 @@ fig:chonedataticketing
 fig:chonedatacrm
 fig:chonedatabi
 fig:chonedatafanddim
+fig:stupidmeme
 fig:regressbb
 fig:regresscc
 tab:chonereneweddata
@@ -137,7 +138,9 @@ fig:chtenfitsgraphb
 tab:runwaittimesuncfeval
 book-liscense
 code-liscense
+contact-information
 chapter1
+understanding-the-meaning-of-strategy
 technologies-place-in-strategy-and-analytics
 data
 understanding-data-structures

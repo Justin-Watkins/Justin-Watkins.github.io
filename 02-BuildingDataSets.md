@@ -3,9 +3,9 @@
 
 
 
-This is the most important chapter in this book. Not because it is informative, but because it gives us the raw material from which we will divine our insights. Data is the fuel for analytics work, and your business strategy should be derived from some objective justifications arrived at through systematic evaluation. I also considered not including it, but it gives me an opportunity to familiarize you with data that you might encounter. It also lets me give some introduction to the R language which we use throughout the book. As I have said, this book is about _How_ and _Why_. Understanding the how is important despite what I said about the _why_. We'll cover the basics of exploring and analyzing a data set in the next chapter. For now, we'll just cover some of what the data means, how to interpret sports data, and demonstrate some of the code that created it. 
+Feel free to skip this chapter. I considered not including it. However, it is an important chapter. It is important not because it is informative, but because it gives us the raw material from which we will divine our insights. Data is the fuel for analytics work, and your business strategy should be derived from some objective justifications arrived at through systematic evaluation. If you don't have very much coding experience, it gives me an opportunity to familiarize you with data that you might encounter. It also lets me give some introduction to the R language which we use throughout the book. As I have said, this book is about _How_ and _Why_. Understanding the _how_ is important despite what I said about the _why_. We'll cover the basics of exploring and analyzing a data set in the next chapter. For now, we'll just cover some of what the data means, how to interpret sports data, and demonstrate some of the code that created it. 
 
-Additionally, I want to talk about coding for just a moment. People are afraid of it. You shouldn't be. You learn by doing. You can't read a book on coding to learn it, you just have to dive in. Every piece of code in this book is available, should run on your machine, and can be hacked and adapted to similar problems. We will be using R and R Studio ^[https://www.rstudio.com/] as our primary analysis tool. R is a great choice for analyzing sports data. While I find R a bit idiosyncratic, you don't have to dream in C++ to use it. If you like to script a little bit, but don't want to be a full-on developer, R is your ticket. Additionally, R Studio is a great IDE for analysis. It has a ton of useful features that will make your life much easier. I highly recommend it. 
+Additionally, I am going to need to discuss coding. People are afraid of it. You shouldn't be. You learn by doing. You can't read a book on coding to learn it, you just have to dive in. Every piece of code in this book is available, should run on your machine, and can be hacked and adapted to similar problems. We will be using R and R Studio ^[https://www.rstudio.com/] as our primary analysis tool. R is a great choice for analyzing sports data. While I find R a bit idiosyncratic, you don't have to dream in C++ to use it. If you like to script a little bit, but don't want to be a full-on developer, R is your ticket. Additionally, R Studio is a great IDE for analysis. It has a ton of useful features that will make your life much easier. I highly recommend it. 
 
 In this chapter we'll cover a few subjects:
 
@@ -22,7 +22,8 @@ For our purposes, we'll invent a professional baseball team, the Nashville Game 
 This chapter will introduce you to some R code if you aren't familiar with it. Ultimately, it doesn't matter what tool you use. Python, Julia, R, Stata, SAS, and Matlab all provide some similar functionality. However, being confronted with code can be a little overwhelming at first. We are leveraging code, particularly R for a few reasons. 
 
 1. If your analysis is done in code each step is readily reproducible and documented
-2. R is free, easy to use, has a large user base, and has a great IDE  
+2. R is free, easy to use, has a large user base, and has a great IDE 
+3. R is massively extensible for smaller-scaled tasks
 
 I have found that it is best to get good at one tool and to stick with it. However, I say this with a note of caution. Let's consider a quote from a horrifying poem called "The Second Coming."
 
@@ -30,9 +31,9 @@ I have found that it is best to get good at one tool and to stick with it. Howev
 >
 > Willaim Butler Yeats, "The Second Coming" 
 
-Technologies are doomed to obsolescence. While many legacy technologies have endured for decades (Fortran, Cobal, R, Python, C, C++), they have all evolved. Additionally, many technologies have been eclipsed by better tools. Don't be so rigid that you devote your personal brand to a particular technology. You might find yourself on the scrap-pile with it... "Things fall apart." Indeed. 
+Technologies are doomed to obsolescence. While many legacy technologies have endured for decades (Fortran, Cobal, R, Python, C, C++), they have all evolved. Additionally, many technologies have been eclipsed by better tools. Tools tend to be fairly specialized. For instance, R isn't the best tool to build large-scaled web applications. Don't be so rigid that you devote your personal brand to a particular technology. You might find yourself on the scrap-pile with it... "Things fall apart." 
 
-We leveraged R for this book. It is relatively simplistic on the outside relative to many other languages. It has a more limited number of data structures, doesn't use scalars, and tends to avoid standard flow-control. It is a little idiosyncratic. If you have some programming experience with another language you might find yourself having a little difficulty with it. If you are new to programming, it is going to look weird. This book isn't on programming. We are simply writing scripts that piggyback off of programmers that have done a fabulous job of creating a free tool that currently rivals any others in the analytics space ^[Python is the currently the closest rival and is a great tool. Julia still hasn't caught on, but has some compelling features]. 
+We leveraged R for this book. It is relatively simplistic on the outside relative to many other languages. It has a more limited number of data structures, doesn't use scalars, is single-threaded, and tends to avoid standard flow-control. It is a little idiosyncratic. If you have some programming experience with another language you might find yourself having a little difficulty with it. If you are new to programming, it is going to look weird. This book isn't on programming. We are simply writing scripts that piggyback off of programmers that have done a fabulous job of creating a free tool that currently rivals any others in the analytics space ^[Python is the currently the closest rival and is a great tool. Julia still hasn't caught on, but has some compelling features]. 
 
 Additionally, I recommend using code instead of a point-and-click tool. Code demonstrates exactly what you have done and is easy to communicate to anyone with a knowledge of the language. It will make your life easier even if it makes it more difficult in the beginning. The best thing about R is that there has been a huge user base over the years and there are many resources that you can leverage to learn what it can do. Ultimately, the decision on what tool to use needs to be driven by what you want to get out it. Are you prototyping or do you need to operationalize your code? Are you dealing with huge datasets? Do you want something built for speed or comfort? I am not going to cover anything about the language in this book. There are just too many resources available that will do a better job than me. Here are my basic recommendations if you would like to use R:
 
@@ -44,8 +45,8 @@ Additionally, I recommend using code instead of a point-and-click tool. Code dem
 It is also important to consider that R does have some drawbacks. 
 
 1. A language won't tell you what you should do. It only provides methods to execute functions. You still need to understand how to approach and solve your problem. R won't help you there.
-2. R is slow. This has to do with how it was constructed ^[R was constructed by Mathematicians and not computer scientists. It was created to be easy, not fast.]. However, there are ways to speed it up significantly. Rcpp [@R-Rcpp] is an almost seamless api to C++ that will allow you to build and leverage C++ functions in your R environment. It is a highly leveraged and important tool in R world. 
-3. R isn't the best choice for operationalizing something that you have built. Many people prototype with R and then leverage another tool to put the work to use. 
+2. R can be relatively slow if you don't use it correctly. This has to do with how it was constructed ^[R was constructed by Mathematicians and not computer scientists. It was created to be easy, not fast.]. However, there are ways to speed it up significantly. Rcpp [@R-Rcpp] is an almost seamless api to C++ that will allow you to build and leverage C++ functions in your R environment. It is a highly leveraged and important tool in R world. 
+3. R may not be the best choice for operationalizing something that you have built. Many people prototype with R and then leverage another tool to put the work to use. 
 4. It's user base may decline in favor of other tools. Python has become more popular in recent years. Languages tend to benefit from network effects where the more users that it has, the more features that are built for it. User-base size is very important.
 
 Some of the following sections will demonstrate how the datasets for this book were created. I think that this is important to do for a couple of different reasons. 
@@ -82,6 +83,12 @@ Keep in mind that certain functions will deprecate over time. Additionally, you 
 
 
 ## Simulating customer renewal data {#renewaldata}
+
+There are three main things we do with code in this book:
+
+1. Write functions
+2. Appy those functions to data
+3. Graph the output
 
 The first data set that we will create will be related to building a model to estimate the likelihood that a season ticket holder will renew season tickets. This data is difficult to create because we need to build certain patterns into the data that build on each other. The goal of this section is to build build a function that will produce a data set on command. However, due to the fact that it builds on itself, it is difficult to generalize the function.  
 
@@ -120,9 +127,125 @@ f_linear_equation( x          = 2,
 ```
   
 
-Now we have a simple function that we can use to get the y value where x = 2, the slope of the line is 10, and the y intercept is 7. Input, process, output.
+Now we have a simple function that we can use to get the y value where x = 2, the slope of the line is 10, and the y intercept is 7. Input, process, output. Now that we have an understanding of the way a function works, you need a way to repetitively apply that function to data. You can do that in a lot of different ways. In most programming languages you'll use a _For_ loop. We wrapped each snippet in the _system.time()_ to demonstrate differences in the speed of each operation. 
+
+
+```r
+#-----------------------------------------------------------------
+# fake data
+#-----------------------------------------------------------------
+x        <- seq(from=1,to=1000000,by=1)    # x values
+m        <- 10                             # Slope
+b        <- 7                              # Y Intercept
+
+#-----------------------------------------------------------------
+# 1. For Loop
+#-----------------------------------------------------------------
+line_value <- list()
+
+system.time(
+for(i in x){
+ line_value[i] <- x[i]*m + b
+}
+)
+#>    user  system elapsed 
+#>    1.04    0.06    1.11
+
+line_value[1:3]
+#> [[1]]
+#> [1] 17
+#> 
+#> [[2]]
+#> [1] 27
+#> 
+#> [[3]]
+#> [1] 37
+```
+
+A _while_ loop does the same thing, but is open-ended and is generally used much less frequently. In python, while loops are typically discouraged. 
+
+
+
+```r
+#-----------------------------------------------------------------
+# 2. While Loop
+#-----------------------------------------------------------------
+i <- 1                               # Iterator
+line_value <- list()
+
+system.time(
+while(i <= length(x)){
+ line_value[i] <- x[i]*m + b
+ i <- i + 1
+}
+)
+#>    user  system elapsed 
+#>    0.97    0.00    0.96
+
+line_value[1:3]
+#> [[1]]
+#> [1] 17
+#> 
+#> [[2]]
+#> [1] 27
+#> 
+#> [[3]]
+#> [1] 37
+```
+A third approach, and the one that is preferred is to use an _apply_ function. See _?apply_. These functions might be more confusing at first, but they are useful and work much more quickly. 
+
+
+```r
+
+#-----------------------------------------------------------------
+# 3. lapply
+#-----------------------------------------------------------------
+system.time(
+line_value <- lapply(1:length(x), function(i) x[i]*m + b)
+)
+#>    user  system elapsed 
+#>    0.86    0.03    0.89
+
+line_value[1:3]
+#> [[1]]
+#> [1] 17
+#> 
+#> [[2]]
+#> [1] 27
+#> 
+#> [[3]]
+#> [1] 37
+```
+The apply functions have even been improved upon in specific ways. The following snippet uses the _imap_ function from the _purrr_ [@R-purrr] package. 
+
+
+```r
+
+#-----------------------------------------------------------------
+# 4. purrr:imap
+#-----------------------------------------------------------------
+system.time(
+line_value <- purrr::imap(x,~ .x*m + b)
+)
+#>    user  system elapsed 
+#>    0.99    0.01    1.00
+
+line_value[1:3]
+#> [[1]]
+#> [1] 17
+#> 
+#> [[2]]
+#> [1] 27
+#> 
+#> [[3]]
+#> [1] 37
+```
+
+These are the basic tools that you will use for everything we are going to do going forward. There are also tradeoffs that you will have to consider. Speed and readability are important considerations. Ultimately, you can use whatever you feel most comfortable with. 
+
 
 The following sections will demonstrate the functions used to build some of the data sets that you will find in this book. We won't go into full detail with every data set. Full documentation on them can be found in the help section of the FOSBAAS package. Additionally, we did something a little strange on this first function, we feed it other helper functions. One of the helper functions requires the use of a function as well. We won't do this on the other data sets, but it is an important feature of R to understand. Everything you _do_ in R can be based on a function, and you can use them in a similar way to _methods_ in other languages. 
+
 
 We have already built these functions. The first one simply creates data for lead scoring. Lead scoring means that we are going to use the data to predict which groups of people are more likely to purchase a ticket. We are not going to cover installing R or R studio. Use Google. It's easy.
 
@@ -204,58 +327,6 @@ This process is a little involved (see figure \@ref(fig:datacreationprocess)). W
 
 The following code creates a dataframe with nine columns and then assigns a list of names to each column. Think of a dataframe as an excel workbook. R uses <- for assignment, however you can use the equals sign. We then use the _sapply_ function to create a sequence of random letters and numbers to represent account ids. The apply functions are incredibly important. You can type '?sapply' into the console in R studio. 
 
-As a quick aside, each of the following commands do the same thing. They calculate the output of a linear equation. _lapply_ and _imap_ are significantly faster in terms of how much time was clocked by the CPU (system). We have talked about this, but keep it in mind. R doesn't do loops very well. Apply and map functions are also more concise, if less readable. 
-
-
-```r
-#-----------------------------------------------------------------
-# fake data
-#-----------------------------------------------------------------
-x        <- seq(from=1,to=1000000,by=1)   # x values
-m        <- 2                             # Slope
-b        <- 5                             # Y Intercept
-i        <- 1                             # Iterator
-#-----------------------------------------------------------------
-# 1. While Loop
-#-----------------------------------------------------------------
-line_value <- list()
-system.time(
-while(i <= length(x)){
- line_value[i] <- x[i]*m + b
- i <- i + 1
-}
-)
-#>    user  system elapsed 
-#>    1.15    0.03    1.20
-#-----------------------------------------------------------------
-# 2. lapply
-#-----------------------------------------------------------------
-system.time(
-line_value <- lapply(1:length(x), function(i) x[i]*m + b)
-)
-#>    user  system elapsed 
-#>    0.82    0.03    0.88
-#-----------------------------------------------------------------
-# 3. For Loop
-#-----------------------------------------------------------------
-line_value <- list()
-system.time(
-for(i in x){
- line_value[i] <- x[i]*m + b
-}
-)
-#>    user  system elapsed 
-#>    0.78    0.04    0.83
-#-----------------------------------------------------------------
-# 4. purrr:imap
-#-----------------------------------------------------------------
-system.time(
-line_value <- purrr::imap(x,~ .x*m + b)
-)
-#>    user  system elapsed 
-#>    1.01    0.02    1.03
-```
-
 This looks weird. _sth_data[,1]_ references the first column in the data frame data frame[row,column]. The first argument in sapply is giving the function a list of rows to traverse. The second argument uses something called an anonymous function, which is confusing. Look it up if you want a deeper understanding of it. It will begin to make sense as you play with it. _paste(sample(c(0:9, LETTERS), 12, replace=TRUE),collapse = ""))_ simply creates a random twelve digit alphanumeric string. We follow this up with assigning a season to the season column. 
 
 
@@ -284,10 +355,12 @@ Many season ticket accounts are owned by corporations. We'll build a list called
 #-----------------------------------------------------------------
   set.seed(seed)
   corporate <- c("c", "i")
-  sth_data$corporate <- 
-    sapply(seq(nrow(sth_data)), function(x)
-      sample(corporate, 1, replace = TRUE, 
-             prob = c(.20, .80)))
+  sth_data$corporate <-  
+  sapply(seq(nrow(sth_data)), 
+         function(x) sample(corporate, 
+                            1, 
+                            replace = TRUE, 
+                            prob = c(.20, .80)))
 ```
 
 Season ticket holders can purchase full or partial plans. The proportions change based on if they are a corporate or individual account. These statements could have been generalized and turned into a function. However, we only had to copy-and-paste once, so we left it alone. Always look for opportunities to generalize functions. This function operates exactly the same was as the previous one. 
@@ -302,17 +375,21 @@ set.seed(seed)
   planType <- c("f","p")
   sth_data[which(sth_data$corporate == "c"),]$planType <- 
     sapply(seq(nrow(sth_data[which(sth_data$corporate == "c"),])), 
-           function(x) sample(planType, 1, 
-                              replace = TRUE, prob = c(.95, .5)))
+           function(x) sample(planType, 
+                              1, 
+                              replace = TRUE, 
+                              prob = c(.95, .5)))
 # Individuals
   planType <- c("f","p")
   sth_data[which(sth_data$corporate == "i"),]$planType <- 
     sapply(seq(nrow(sth_data[which(sth_data$corporate == "i"),])), 
-           function(x) sample(planType, 1, 
-                              replace = TRUE, prob = c(.60, .40)))
+           function(x) sample(planType, 
+                              1, 
+                              replace = TRUE, 
+                              prob = c(.60, .40)))
 ```
 
-To calculate the distance from the stadium we'll leverage the _rexp()_ function to give us an exponentially distributed list of numbers that we can modify and sample for each account. This density pattern is common in many urban areas where population density is much higher in specific areas. We'll show you how to visualize this pattern in a subsequent chapter. The outcome here is that individuals will tend to live further away than corporations.
+To calculate the distance from the stadium we'll leverage the _rexp()_ function to give us an exponentially distributed list of numbers that we can modify and sample for each account. This density pattern is common in many urban areas where population density is much higher in certain centralized areas. We'll show you how to visualize this pattern in a subsequent chapter. The outcome here is that individuals will tend to live further away than corporations.
 
 
 ```r
@@ -326,11 +403,15 @@ To calculate the distance from the stadium we'll leverage the _rexp()_ function 
   set.seed(seed)
   sth_data[which(sth_data$corporate == "c"),]$distance <- 
     sapply(seq(nrow(sth_data[which(sth_data$corporate == "c"),])), 
-           function(x) sample(distances_corp, 1, replace = TRUE))
+           function(x) sample(distances_corp, 
+                              1, 
+                              replace = TRUE))
 # Individuals
   sth_data[which(sth_data$corporate == "i"),]$distance <- 
     sapply(seq(nrow(sth_data[which(sth_data$corporate == "i"),])), 
-           function(x) sample(distances_indv, 1, replace = TRUE))
+           function(x) sample(distances_indv, 
+                              1, 
+                              replace = TRUE))
 ```
 
 Next, we'll build a list of numbers that will refer to the number of season tickets purchased by each account. We'll then assign a number of tickets based on the distributions denoted in the _prob_ argument of the _sample()_ function. Basically, we want corporations to purchase more tickets. 

@@ -1,5 +1,4 @@
 
-
 # Structuring analytics projects {#chapter4}
 
 
@@ -41,10 +40,10 @@ Your ticket sales manager says "that they need more leads so that they can sell 
 When you put these thoughts into the context of what motivates your sales manager, this simple statement could actually be insidious:  
 
 - I need an excuse as to why I am not hitting numbers and you will be my scapegoat. 
-- I am out of ideas and because I am afraid and I am going to make my guys work harder.
+- I am out of ideas and because I am afraid I am going to make my guys work harder.
 - I just want to execute my job. Just give me what I want.
 
-Let's assume that the sales manager believes that the number of calls directly correlates to the number of tickets that are sold. Why do they think this and is this something that we can investigate? How could we do that? A simplistic method might be to look to see if the number of phone calls are correlated with sales in any particular way. There are formal and informal methods that we could use, but the easiest thing to do is to simply put this data into a couple of tables and graphs 
+These attitudes exist in any sales organization and aren't new. However, they are still prevelent everywhere. Let's assume that the sales manager believes that the number of calls directly correlates to the number of tickets that are sold. Why do they think this and is this something that we can investigate? How could we do that? A simplistic method might be to look to see if the number of phone calls are correlated with sales in any particular way. There are formal and informal methods that we could use, but the easiest thing to do is to simply put this data into a couple of tables and graphs 
 
 ### Identifying goals
 
@@ -230,15 +229,6 @@ bar_sales <-
 
 
 
-
-
-
-
-
-
-
-
-
 Overall, no rep stands out as being more or less efficient, although there are some differences at the top and bottom. Let's take a closer look at the distribution of sales revenue. Instead of a density plot, let's take a look at the summary statistics and make a couple of comparisons between the highest and lowest performers.
 
 
@@ -325,6 +315,7 @@ ag_sales_data                                          %>%
 #> 2 AFA0Z9M2M4LQ     453204.            9
 ```
 
+
 Our top performer generated nine times as much revenue from the top 1% of spenders. When you couple this with a tendency to be more successful, you have your answer as to the reason some reps do better. Now you have to answer why. What have we established?
 
 1. The number of phone calls per rep is only weakly correlated with revenue. 
@@ -339,13 +330,13 @@ What else should we look for?
 - How does seasonality impact these figures? Perhaps reps began at different times?
 - Are there brokers hidden in these sales?
 
-What have we established? If the number of calls that a rep makes is only weakly correlated to sales, your goal shouldn't be to have the reps make more phone calls. It also shouldn't be to add more sales reps unless perhaps the sales rep's experience or other factor is impacting sales. These two solutions tend to be the most common solutions that you would hear, however technology is rapidly changing this mindset. A.I. technology is automating lead-warming where sales might be more about upsells than gauging or establishing interest.
+What have we established? If the number of calls that a rep makes is only weakly correlated to sales, your goal shouldn't be to have the reps make more phone calls. It also shouldn't be to add more sales reps unless perhaps the sales rep's experience or another factor is impacting sales. These two solutions tend to be the most common solutions that you would hear, however technology is rapidly changing this mindset. A.I. technology is automating lead-warming where sales might be more about upsells than gauging or establishing interest.
 
-The point of this section is that to establish goals, you need some sort of objective justification. Determine what is driving desired outcomes before settling on a tactic. That sounds obvious, but it isn't. The reasons could even be political. 
+The point of this section is that to establish goals, you need some sort of objective justification or where those goals should be. Determine what is driving the desired outcomes before settling on a tactic. That sounds obvious, but it isn't. The reasons could even be political. 
 
 ## Collecting data
 
-There is a lot to understand about data collection. We'll only cover a small portion here. However, you will always be forced to confront the questions of what data you need and how to acquire it. Some is much easier to acquire than others. For instance, transnational data will abound. You hopefully have access to several years of ticketing and CRM data. However, there may be problems with formatting and consistency. I would place data collection under a few headings:
+There is a lot to understand about data collection. We'll only cover a small portion here. However, you will always be forced to confront the questions of what data you need and how to acquire it. Some data is much easier to acquire than other data sets. For instance, transnational data will abound. You hopefully have access to several years of ticketing and CRM data. However, there may be problems with formatting and consistency. I would place data collection under a few headings:
 
 - Transnational data from ticketing, CRM, or other internal systems
 - Transnational data from external systems (perhaps you have an agency agreement for something like concessions)
@@ -364,7 +355,7 @@ Internal sources such as survey results, transaction data, interaction data thro
 - The Can-Spam Act ^[https://www.ftc.gov/tips-advice/business-center/guidance/can-spam-act-compliance-guide-business]
 - The No-Call list ^[https://www.donotcall.gov/]
 
-As long as you live in the United States, some or all of these laws might impact how you are able to leverage your or third party data. THis list is not even comprehensive. GDRP (a European privacy law) is far reaching and does have some influence on what we are able to do in the United States. The future of commerce will undoubtedly make this arena more challenging to navigate as biometrics become more prolific.  
+As long as you live in the United States, some or all of these laws might impact how you are able to leverage your or third party data. This list is not even comprehensive. GDRP (a European privacy law) is far reaching and does have some influence on what we are able to do in the United States. The future of commerce will undoubtedly make this arena more challenging to navigate as biometrics become more prolific.  
 
 Additionally, Data is often not accurate. Where do third party data-brokers get their data? Sometimes they simply use a bank of names to determine if a person is male or female, or African American vs. Asian: Washington = African American, Yang = Asian, Lopez = LatinX. LatinX represents a special problem with culture and the notion of race. Third party brokers (such as Axiom) source their data from multiple sources and model components of it. Unless you are dealing with massive datasets (not common in sports), working with third party data can be difficult and frustrating. 
 
@@ -388,18 +379,18 @@ The main gist is that you need to focus on a couple of things:
 
 This process can sprawl because you have to be concerned with consistency. That is where a rubric and training may come into play. We'll give an example in chapter \@ref(chapter10). Additionally, Public sources of data abound, but don't typically offer the granularity needed to be useful for anything besides supplementary reporting. An example is census data. There are extensive APIs to access this data, but the results may not be practically useful outside of long-term planning exercises.
 
-Data collection might also involve _competitive intelligence_. An example here would be going to other venues and monitoring prices or operational tactics. Competitive intelligence may also take the form of monitoring other industries that operate in similar spaces. For instance, what can we learn about loyalty programs from a company like Starbucks? 
+Data collection might also involve _competitive intelligence_. An example here would be going to other venues and monitoring prices or operational tactics. Competitive intelligence may also take the form of monitoring other industries that operate in similar spaces. For instance, what can we learn about loyalty programs from a company like Starbucks? You might learn that they aren't appropriate for you.
 
-We only touched some high-level concepts here. Just understand that data collection will require a combination of I.T. skillsets, research knowledge, and critical thinking exercises. Getting your data in the right spot will take the majority of your time. Don't overlook it. 
+We only touched some high-level concepts here. Just understand that data collection will require a combination of I.T. skill sets, research knowledge, and critical thinking exercises. Getting your data in the right spot will take the majority of your time. Don't overlook it. 
 
 
 ## Modeling the data
 
-Modeling the data is the fun part of working in analytics. We aren't talking about _Modeling_ data from in the database sense, although structuring the data is a component of the process. We aren't going into actually modeling the data here. I would like to speak about some of the tools. At the lower levels you will be leveraging at least two languages (SQL and some other programming language). Additionally, this space is becoming commoditized. I don't know if there are large advantages to using one tool over the other. For instance, is there an advantage to using Google's tools over Microsoft? Is there an advantage to using python over R. The answers probably vary. In some cases yes and in some cases no. Since this book is demonstrating fundamentals, we are going to look at a lot of code. Over time, you'll see the reliance on code wane. However, it really helps to understand the underlying mechanisms.
+Modeling the data is the fun part of working in analytics. We aren't talking about _Modeling_ data in the database sense, although structuring the data is a component of the process. We aren't going into actually modeling the data here. I would like to speak about some of the tools. At the lower levels you will be leveraging at least two languages (SQL and some other programming language). Additionally, this space is becoming commoditized. I don't know if there are large advantages to using one tool over the other. For instance, is there an advantage to using Google's tools over Microsoft? Is there an advantage to using python over R. The answers probably vary. In some cases yes and in some cases no. Since this book is demonstrating fundamentals, we are going to look at a lot of code. Over time, you'll see the reliance on code wane. However, it really helps to understand the underlying mechanisms.
 
 Let's talk about the two most popular languages for analytics. Differences between R and Python may make a distinction between which tool that you plan on using. This is especially true when we look to deploy results. R and Python are both highly extensible. There are libraries for almost everything and the need to write your own implementation is likely minimal. If you do have the need, it would probably be better to use another language such as C++. 
 
-Many analytics projects in Python will use the same relatively small sets of libraries. Additionally, the code for one model will look almost exactly like the code for another. This won't always be true in R and I consider this an advantage for Python users.Let's look at an example.
+Many analytics projects in Python will use the same relatively small sets of libraries. Additionally, the code for one model will look almost exactly like the code for another. This won't always be true in R and I consider this an advantage for Python users. Let's look at an example.
 
 The code to hierarchically cluster a data set in python might look something like the following:
 
@@ -458,9 +449,9 @@ cl           <- stats::kmeans(data, centers = 6)
 data$cluster <- cl$cluster
 ```
 
-This isn't always the case. R, like Python has thousands of packages. However, in python there tends to be one _correct_ way to do everything. It's the _Pythonic_ way. R is the wild west. Different algorithms often have different authors who approach writing the code and dealing with objects differently. However, developers in R have attempted to solve this problem. 
+This isn't always the case. R, like Python, it has thousands of packages. However, in python there tends to be one _correct_ way to do everything. It's the _Pythonic_ way. R is the wild west. Different algorithms often have different authors who approach writing the code and dealing with objects differently. However, developers in R have attempted to solve this problem. 
 
-You an even run python from R using the _reticulate_ [@R-reticulate] package. Packages such as caret [@R-caret], _mlr3_ [@R-mlr3], and _tidymodels_ [@R-tidymodels] have attempted to create a standard api to many R functions. It means that a similar approach can be taken in terms of writing and understanding the code for many functions. The trade-off is often speed. However, I think it is incredibly useful to take advantage of one of these frameworks. They make it much easier to cover all steps of the modeling process. R and Python have learned from one another.At the end of the day, pick a tool and get good at it. I prefer R, but admire python. They both have their place and it really isn't that difficult to switch between the two. 
+You can even run python from R using the _reticulate_ [@R-reticulate] package. Packages such as caret [@R-caret], _mlr3_ [@R-mlr3], and _tidymodels_ [@R-tidymodels] have attempted to create a standard api to many R functions. It means that a similar approach can be taken in terms of writing and understanding the code for many functions. The trade-off is often speed. However, I think it is incredibly useful to take advantage of one of these frameworks. They make it much easier to cover all steps of the modeling process. R and Python have learned from one another. At the end of the day, pick a tool and get good at it. I prefer R, but admire python. They both have their place and it really isn't that difficult to switch between the two. 
 
 lets consider the modeling process. We'll refer to parts of this process in the subsequent chapter, chapter \@ref(chapter5). Modeling data is a process with a few discreet (often iterative) steps.
 
@@ -513,13 +504,13 @@ Gone are the days of an expert having to use sound judgment to select the approp
 <p class="caption">(\#fig:modelingdatachfour)Choosing the right technique</p>
 </div>
 
-I am exaggerating a little here. Many of these techniques require a high degree of rigor to validate the results. However, you have it much easier than analysts from twenty years ago. The surplus of methods has become a problem in and of itself. Additionally, it is easy to get in a rut. For instance, I like _deep learning_. I am going to use it for every problem. If all I have is a hammer I will use it to fix everything. Sometimes you need a wrench. Keep that in mind.  
+I am exaggerating a little here. Many of these techniques require a high degree of rigor to validate the results. However, you have it much easier than analysts from twenty years ago. The surplus of methods has become a problem in and of itself. Additionally, it is easy to get in a rut. For instance, I like _deep learning_. I am going to use it for every problem. If all I like to use is a hammer I will use it to fix everything. We already discussed this. I just thought it might warrant being repeated. Sometimes you need a wrench. Keep that in mind.  
  
 ### Processing your data
 
 Begin by looking for the simplest solution first. Stingy, parsimonious models tend to be the most forgiving and friendly. Always look for the simplest solution. This is especially important for interpretability, but also for durability. Simpler solutions tend to be more elegant and are just easier to deal with. However, you need to approach processing in an intelligent, procedural way. Let's illustrate this with a brief example:
 
-> "The ticket sales manager wants to understand who are the most likely candidates in our system to purchase season tickets. They also want to understand who is most likely to spend more or to upgrade thier seats."
+> "The ticket sales manager wants to understand who are the most likely candidates in our system to purchase season tickets. They also want to understand who is most likely to spend more or to upgrade their seats."
 
 How could you approach this problem once you have gathered and cleaned data that might be relevant? This sounds like a classification problem related to lead scoring. While OLS regression tends to be the best place to start and the gold standard for estimating numerical values, Logistic regression tends to be the best place to begin when trying to estimate classes. There are even special forms such as "multinominal logistic regression" [@R-nnet] that can estimate several classes, not just binary classes. Logistic regression, like OLS regression are such good places to begin because of interpretability. They are much easier to understand than black-box methods such as Deep Learning. 
 
@@ -550,7 +541,7 @@ Getting your research in the hands of Executives or Managers that need to unders
 
 This quote from Haidt [@Haidt2006] hammers home the concept of confirmation bias. The results in this case may or may not be about winning an argument. This can be a frustrating phenomenon. It also has some merit. How much experience do you have with this problem? Are there strong beliefs as to the solution? Understanding how and why someone might interpret a solution (especially if that solution challenges preconceived notions) must be given some thought. If someone could be threatened by a solution, put some thought into how you present it. Even think about the words you use and how they are perceived by the recipients of your message.  
 
-Additionally, there are certainly best practices that you can follow. For me, the higher someones title is, the more words and bullet points to include, the lower the title or the more technical in nature the audience is, the more graphs and explanation to include:
+Additionally, there are certainly best practices that you can follow. For me, the higher someones title is, the more words and bullet points to include, the lower the title or the more technical in nature the audience is, the more graphs and explanation I include:
 
 - Executives: Bullet points that refer to the solution. Keep it terse. Get to the point.
 - Managers: Include more specific explanations pertaining to their domain knowledge. 
@@ -566,7 +557,7 @@ Deployment could mean one of several things. One refers to people and one refers
 1. Communicating the results (The subject of the last section)
 2. Operationalizing the output (The automation component discussed in figure \@ref(fig:choneheirarh).
 
-The second part of deploying results refers to automating a process and putting those solutions into production. There are lots of tools that make this possible. Although this tends to be where other languages have an advantage over R. Compiled languages such as C++ can be much faster than R and are more full-featured in some sense. Although there are some exceptions. SQL Server has supported an integration with R ^[https://docs.microsoft.com/en-us/sql/machine-learning/tutorials/r-tutorials?view=sql-server-ver15] and Python since 2016, although it isn't clear how widespread its use has become. Google, Amazon, and Microsoft are all building analytics frameworks into their cloud-based DBMSs. They allow you to turn-up the computing power to make your models run much more quickly. Thinking about how to make something more efficient has probably already been done for you.
+The second part of deploying results refers to automating a process and putting those solutions into production. There are lots of tools that make this possible. Although this tends to be where other languages have an advantage over R. Compiled languages such as C++ can be much faster than R and are more full-featured in some sense. Although there are some exceptions. SQL Server has supported an integration with R ^[https://docs.microsoft.com/en-us/sql/machine-learning/tutorials/r-tutorials?view=sql-server-ver15] and Python since 2016, although it isn't clear how widespread its use has become. Google, Amazon, and Microsoft are all building analytics frameworks into their cloud-based DBMSs. They allow you to turn-up the computing power to make your models run much more quickly. Thinking about how to make something more efficient has probably already been done for you. At this stage, R may be used for protoyping and something else for the actual deployment.
 
 Where is this valuable?
 
@@ -575,7 +566,7 @@ Where is this valuable?
 3. The predicted vs. actual vs. expected results of a marketing campaign could be constantly evaluated for ROI.
 4. Ticket Prices could be automatically updated on a tight interval for optimizing sales or revenue. 
 
-There are lots of applications. Additionally, you could always write a wrapper within your system that runs a script using a simple batch script (A notepad file saved as .bat). The following example runs and R script called _YourRScript.R_.
+There are lots of applications. Additionally, you could always write a wrapper (in windows) within your system that runs a script using a simple batch script (A notepad file saved as .bat). The following example runs and R script called _YourRScript.R_.
 
 
 ```r
@@ -608,7 +599,7 @@ You'll work through these steps whether you mean to or not. They are simply the 
 - Data collection and management is typically the most time-consuming component of one of these projects. Getting quality data can be difficult or even impossible. If you have to collect the data yourself, be systematic about it. Document what you are doing for reproducibility. 
 - Modeling the data is the fun part of an analytics project. You have a lot of options, but start with the simplest method first. While deep-learning has been more prominent in recent years, it isn't always the best tool to use. Interpretibility can be important here. Put some thought into why you are using one technique over another. 
 - Evaluating the results is a quantitative and qualitative exercise. It is never just about the data. Think about your output in the context of the exercise and give it a good smell-test. Are the results logical? Can you take action on them? Are they relevant to your goal?
-- "Simplicity is the ultimate sophistication." This quote is attributed to Leonardo Da Vinci. Keep it in mind. Use bullet points. Keep your results simple to understand. 
+- "Simplicity is the ultimate sophistication." This quote is attributed to Leonardo Da Vinci. Only God knows where it actually came from. Keep it in mind. Use bullet points. Keep your results simple to understand. 
 - Deploying results can mean multiple things. There are lots of tools available to put your results in action. 
 
 

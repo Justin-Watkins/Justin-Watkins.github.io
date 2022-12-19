@@ -1,5 +1,4 @@
 
-
 # Segmentation {#chapter5}
 
 
@@ -41,7 +40,7 @@ Our example is going to be based on demographic data and qualitative data taken 
 3. Validating these segments will require constant experimentation. We are going to have to be willing and capable of experimenting on this data.
 4. Sales and Marketing leadership must support and remain involved with segmentation.  
 
-Sometimes segmentation schemes can be too diffuse. For instance people-with-nipples. That covers a pretty large swath of humans. Other segmentation schemes can be irrelevant to the problem. If you are selling dog-food, women with red hair may not be a relevant segment. They can also be too diffuse and irrelevant. An example here might be people with brown eyes.
+Sometimes segmentation schemes can be too diffuse. For instance people-with-necks. That covers a pretty large swath of humans. Other segmentation schemes can be irrelevant to the problem. If you are selling dog-food, women with red hair may not be a relevant segment. They can also be too diffuse and irrelevant. An example here might be people with brown eyes.
 
 Our basic *goal* is to find groups of fans and potential customers that differ in observable ways associated with how we communicate, their content preference, and marketing response. Generally, we are looking for an answer to the question: __Who is our consumer and what do they want?__. By understanding these differences, we hope to make better strategic marketing decisions regarding pricing, market positioning, 
 sales and sponsorship opportunities, and brand development. The analysis has two components:  
@@ -63,6 +62,7 @@ Ultimately, success should be judged on the basis of creating testable hypothese
 * Did we create the capability to accurately measure some _return on marketing spend_?
 * Were we able to increase sales revenue by increasing _conversion rates_?
 * Are we able to better determine _product offerings_?
+* Are we able to get more relevent results from surveys and other research projects?
     
 Regardless of how we define success, segmentation should always be considered a work in progress. Segmentation cannot remain static and be successful. To maximize our opportunity, we must understand how to change our behavior to best suit our customers expectations, channel capability, and purchase behavior.
 
@@ -76,7 +76,7 @@ Demographic segmentation is attractive for many reasons. However, discoverabilit
 >--- Steve Koonin
 
 
-Alpharetta is a suburb of Atlanta that contrasts with much of Fulton County GA in that its citizens (as of 2021) tend to be less ethnically diverse (mostly white), more right-leaning politically (mostly Republican), and tend to be more homogeneously affluent. Being an outlying suburb, it is also geographically isolated.^[https://www.espn.com/nba/story/_/id/12080830/reselling-hawks-atlanta] Steve's response is loaded for several reasons. He is actually saying that the Hawks brand is not congruent with their marketing tactics. He may have also been taking a shot at another in-market team. Either way, his _segment_ may or may not exist. Perhaps it is just irrelevant to his specific situation and this statement is a political stunt to justify the direction he decided to take sales and marketing. 
+Alpharetta is a suburb of Atlanta that contrasts with much of Fulton County GA in that its citizens (as of 2021) tend to be less ethnically diverse (mostly white), more right-leaning politically (mostly Republican), and tend to be more homogeneously affluent. Being an outlying suburb, it is also geographically isolated.^[https://www.espn.com/nba/story/_/id/12080830/reselling-hawks-atlanta] Steve's response is loaded for several reasons. He is actually saying that the Hawks brand is not congruent with their marketing tactics or product. He may have also been taking a shot at another in-market team. Either way, his _segment_ may or may not exist. Perhaps it is just irrelevant to his specific situation and this statement is a political stunt to justify the direction he decided to take sales and marketing positions. 
 
 Let's begin by taking a look at a relatively simple data set. You will undoubtedly be confronted with data that is much more complex during your career, but in the context of sports your data will likely be fairly straightforward and simple. Our data sample can be found in the FOSBAAS package and is entitled _demographic_data_.
 
@@ -274,7 +274,7 @@ hist_dist <-
 <img src="images/ch5_distance_histogram.png" width="100%" />
 
 
-This distribution is also bimodal. Can we speculate as to why? Perhaps the sample has more season ticket holders as a percentage of the group. Perhaps there is another major city around two-hundred miles away? Patterns like this show up when you are looking at tickets sales. It is simply easier for people close-by to purchase tickets. You could never imagine a ballpark or stadium being placed in a rural area. Distance is simply going to be a significant variable in models. Be careful of how you treat it. Are you measuring the distance for purchasers? Each individual ticket? Are you differentiating between fans and companies? 
+This distribution is also bimodal. Can we speculate as to why? Perhaps the sample has more season ticket holders as a percentage of the group. Perhaps there is another major city around two-hundred miles away? Patterns like this show up when you are looking at tickets sales. It is simply easier for people close-by to purchase and utilize tickets. You could never imagine a ballpark or stadium being placed in a rural area. Distance is simply going to be a significant variable in models. Be careful of how you treat it. Are you measuring the distance for purchasers? Each individual ticket? Are you differentiating between fans and companies? 
 
 
 
@@ -367,7 +367,7 @@ Table: (\#tab:demographicsincomedescriptionA)Descriptive statistics income
 |kurtosis|-1.20496002863362 |
 |se      |2.06992116914645  |
 
-There are clearly clusters of groups in this data. Think critically about this one. Does a higher household income mean more disposable income? In some cases yes, but in some cases, no. Are there any implicit signs of disposable income that we could use? Perhaps luxury cars or pool ownership. Up to a point, people may tend to spend most of their income. If someone makes more money they tend to buy nicer cars or bigger houses. While asset investments such as houses may increase wealth, they may not indicate more disposable income. 
+There are clearly clusters of groups in this data. Think critically about this one. Does a higher household income mean more disposable income? In some cases yes, but in some cases, no. Are there any implicit signs of disposable income that we could use? Perhaps luxury cars or pool ownership. Up to a point, people may tend to spend most of their income. If someone makes more money they tend to buy nicer cars or bigger houses. While asset investments such as houses may increase wealth, they may not indicate more disposable income. Have you ever been to someone's fabulous home and noticed how cheap the furniture was? 
 
 #### Consololidating the numerical analysis
 
@@ -400,7 +400,6 @@ Table: (\#tab:demographicsconsolidatedA)Consolidated statistics
 |skew    |-0.131120256604631|-0.217211029101283|0.895830211498572  |
 |kurtosis|-1.34730877799027 |-1.20496002863362 |-0.0936393439147278|
 |se      |0.0278758434159171|2.06992116914645  |0.206045433065273  |
-
 
 
 As a best practice, don't do things multiple times. If you can think of a way that you would like to view your data, somebody else has probably thought about it and solved the problem. 
@@ -569,7 +568,7 @@ for(i in names(demo_data)){
 # sapply(1:length(names(demo_data)), function(x)
 #        paste(sum(is.na(demo_data[,x])),names(demo_data[x])))
 
-# A best practice is to funcionalize in R when possible
+# A best practice is to use apply functions in R when possible
 ```
 
 
@@ -626,7 +625,7 @@ demo_data$age[is.na(demo_data$age)] <- mA
 
 using averages is interesting because if you looked at the entire data set you would find that very few know individuals are the average age. This is a known issue when designing everything from airplane cockpits to gloves. We could also simulate the distribution and randomly assign values from that distribution. However, that technique also has issues. Once again, just be aware of what you are doing and think critically about it. If you can reasonably justify an approach, it is probably good enough. 
 
-We know that about 58% of our fans are married. How should we approach this one? Is the pattern for marriage random? If we randomly pick one assuming that the individual is married 58% of the time will that be more accurate than simply saying everyone is married? We can't really tell here. We could pull out Bayes' theorem and coming up with all kinds of ways to estimate the likelihood that a person is married. Since we are only dealing with 2% of our data, we are going to go with simple imputation of random guesses with a discrete probability.
+We know that about 58% of our fans are married. How should we approach this one? Is the pattern for marriage random? If we randomly pick one assuming that the individual is married 58% of the time will that be more accurate than simply saying everyone is married? We can't really tell here. We could pull out Bayes' theorem and come up with all kinds of ways to estimate the likelihood that a person is married. Since we are only dealing with 2% of our data, we are going to go with simple imputation of random guesses with a discrete probability.
 
 
 ```r
@@ -771,7 +770,7 @@ demo_data_discrete$generation <-
   sapply(birthYear,f_seg_generation_def)
 ```
 
-Programmers thrive on criticizing this sort of function. There are often algorithmic methods for simplifying this sort of operation. The _switch_ function in R and other languages can sometimes be used. As long as you aren't dealing with massive data sets, who cares? This is readable and will get the job done. 
+Programmers thrive on criticizing this sort of function. There are often algorithmic methods for simplifying this sort of operation. The _switch_ function in R and other languages can sometimes be used. As long as you aren't dealing with massive data sets, who cares? This is readable and will get the job done. SQL joins are usually more efficient than an if-then statement and that is usually a good direction to begin with larger data sets.  
 
 I tend to find that I prefer to have an individual's birth year over age. It helps keep the data evergreen. Keep this in mind when you build surveys. Now we have a discrete value representing specific generations. 
 
@@ -914,7 +913,7 @@ Our new dataframe now mixes our discrete and continuous variables in a format th
 
 Hierarchical clustering is seductive because its results are so easily illustrated. However, the drawback here is that for simple models, this technique may tell you what you already know. A more precise explanation would be "The constraint that the structure is hierarchical corresponds to the fact that, although subsets can include one another, they cannot intersect." [@Witten2011] This technique could also be problematic for larger data sets. 
 
-Let's take a look at an example. We'll have to start by creating a dissimilarity matrix. We'll sample of data to deal first. 
+Let's take a look at an example. We'll have to start by creating a dissimilarity matrix.  
 
 
 ```r
@@ -955,7 +954,7 @@ As we can see, there are several groups of fans that tend to cluster together. H
 
 ### Latent class regression
 
-Latent class regression is a powerful technique that produces durable clusters. It leverages discrete data, so continuous data will have to be discredited and dummy-coded prior to use. While we've already dummy-coded our data, we'll have to process it one more time so that it accepted by the LCR function. This is another one of the quirks of R. It allows this to happen. In this case we'll simply make the zeros = 2. We can do this with an apply function and a simple _ifelse_ function. 
+Latent class regression is a powerful technique that produces durable clusters. It leverages discrete data, so continuous data will have to be discredited and dummy-coded prior to use. While we've already dummy-coded our data, we'll have to process it one more time so that it is accepted by the LCR function. This is another one of the quirks of R. It allows this to happen. In this case we'll simply make the zeros = 2. We can do this with an apply function and a simple _ifelse_ function. 
 
 
 
@@ -1005,7 +1004,7 @@ formula <-
 ```
 
 
-We are going to choose five classes to include in this data. While there are formal methods for determining the number of classes to include, keep in mind that for these classes to be useful and understandable, you will probably have to abstract them into relatively few groups. This can also be problematic since the behaviors exhibited by the group can become diffuse.
+We are going to choose five classes to include in this data. While there are formal methods for determining the number of classes to include, keep in mind that for these classes to be useful and understandable you will probably have to abstract them into relatively few groups. This can also be problematic since the behaviors exhibited by the group can become diffuse.
 
 
 
@@ -1227,7 +1226,7 @@ demo_seg_ethnicity <-
 ```
   
 
-This one is a little more complex. We can use a heat map to visualize the relationships. We will exponentially diminish the differences between the colors by using the log function int the fill argument. This is a useful technique. Keep it in mind. Logarithms are great at compressing data that isn't easy to visualize because of the distriburion. 
+This one is a little more complex. We can use a heat map to visualize the relationships. We will exponentially diminish the differences between the colors by using the log function in the fill argument. This is a useful technique. Keep it in mind. Logarithms are great at compressing data that isn't easy to visualize because of the distribution. 
 
 
 
@@ -1620,7 +1619,7 @@ point_segment <-
 <img src="images/ch5_point_segment.png" width="100%" />
 
 
-We can use this sort of analysis to produce psychographic profiles. In this case, we can say that our all male and female segments tend to index older than our other segments and live an average distance away from the park. Our _Young and Broke_ segment tends to live nearby. We gave _Nearby Ned_ and ironic name since he tends to live the furthest from the park. 
+In this case, we can say that our all male and female segments tend to index older than our other segments and live an average distance away from the park. Our _Young and Broke_ segment tends to live nearby. We gave _Nearby Ned_ and ironic name since he tends to live the furthest from the park. 
 
 Once again, we are just getting started. This example was produced to demonstrate how tedious segmentation can be. A full analysis would be much more exhausting, but repetitive. We covered the basic steps. 
 
@@ -1650,7 +1649,7 @@ Segmenting data is an art and a science. It is also frustrating, repetitive, and
 There are lots of ways to segment customers or potential customers and you can be creative here. The key is to uncover something beyond market structure. You are looking for exploitable differences between groups that help you spend limited marketing dollars more efficiently. 
 
 - While demographic segmentation has its merits, it may not be of much use to you. It is simply the easiest place to typically start. 
-- Preparing your data for analysis is a tedious task better suited to someone besides you. This part of the project will be the most time consuming. It bears heavily on your outcome get it correct.
+- Preparing your data for analysis is a tedious task better suited to someone besides you. This part of the project will be the most time consuming. It bears heavily on your outcome so get it correct.
 - Hierarchical approaches to segmentation have utility in some cases, but can often tell you what you already know.
 - Latent class regression tends to produce durable segments and is a good second-step after looking at simple segmentation schemes.
 - Benefits-sought approaches to segmentation often have good utility, but are not as discoverable as other methods. A factor analysis is a good method to simplify complex data sets.
