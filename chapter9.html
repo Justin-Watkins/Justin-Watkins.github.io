@@ -143,7 +143,7 @@
 <p>Hypothesis testing is confusing just because of the sentence structure that you will encounter. If you don’t have a statistics background, you need to take some time to understand hypothesis testing. The next couple of paragraphs are simply going to touch the high points. There are a few steps and a few statistics that you will want to consider.You begin by Specifying an hypothesis. Let’s use an example.</p>
 <p>I want to understand if season ticket holders spend more money on concessions than non season ticket holders. My <em>Null hypothesis</em> is that the mean spend of season ticket holders - the mean spend of non season ticket holders = 0. If I reject the null hypotheses it implies that the mean spend between these two populations is not equal to 0.</p>
 <p>You begin by taking a sample from both groups. Let’s create some data.</p>
-<div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb268"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Create spend data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -212,7 +212,7 @@
 <li>The null hypothesis is false and you fail to reject it. This is called a type II error.</li>
 </ol>
 <p>The basic way to test an hypothesis is by using a student’s t test. Let’s apply it here and take a look at the output.</p>
-<div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb269"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># T Test</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -282,7 +282,7 @@
 </ul>
 <p>As you can imagine, this could get complex.</p>
 <p>From the preceding example, how do we know how many people to sample. We can use a <em>power analysis</em> to give us an idea. We’ll use the <em>pwr</em> <span class="citation">(<a href="references.html#ref-R-pwr" role="doc-biblioref">Champely 2020</a>)</span> package to evaluate our data. The following example is adapted from Kabacoff <span class="citation">(<a href="references.html#ref-Kabacoff2011" role="doc-biblioref">Kabacoff 2011</a>)</span>.</p>
-<div class="sourceCode" id="cb268"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Power analysis</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -356,7 +356,7 @@ As a note, a full factorial design just isn’t always feasible because it comes
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb269"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Factorial Design</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -907,12 +907,12 @@ Figure 9.1: Perceptual map of Nashville Sports Properties
 <span class="header-section-number">9.3</span> Brand affinity<a class="anchor" aria-label="anchor" href="#brand-affinity"><i class="fas fa-link"></i></a>
 </h2>
 <p>Gauging brand avidity is difficult. We’ll explore a tool to take a look at one component of brand avidity called a perceptual map. We’ll use the library <em>anacor</em> <span class="citation">(<a href="references.html#ref-R-anacor" role="doc-biblioref">Mair and De Leeuw 2022</a>)</span> to accomplish a part of this task.</p>
-<div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb272"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Calculating scores for perceptual data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/">anacor</a></span><span class="op">)</span></span>
-<span><span class="va">pd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">perceptual_data</span><span class="op">)</span></span>
+<span><span class="va">pd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/perceptual_data.html">perceptual_data</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">pd</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Chickens'</span>,<span class="st">'Titans'</span>,<span class="st">'Predators'</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="va">anHolder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/anacor/man/anacor.html">anacor</a></span><span class="op">(</span><span class="va">pd</span>,ndim<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
@@ -961,7 +961,7 @@ Figure 9.1: Perceptual map of Nashville Sports Properties
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb273"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Create perceptual map</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1091,8 +1091,8 @@ Figure 9.2: Perceptual map of Nashville Sports Properties
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io/blob/main/09-Research.md">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io/edit/main/09-Research.md">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io/blob/main/09-Research.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io/edit/main/09-Research.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -1104,7 +1104,7 @@ Figure 9.2: Perceptual map of Nashville Sports Properties
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-19.</p>
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

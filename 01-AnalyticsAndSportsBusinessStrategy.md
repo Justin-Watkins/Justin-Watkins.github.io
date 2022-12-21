@@ -320,6 +320,17 @@ devtools::install_github("Justin-Watkins/FOSBAAS"
 ```
 
 
+Type a question mark in front of data sets of functions to see the documentation behind them.
+
+
+```r
+#-----------------------------------------------------------------
+# View data set documentation
+#-----------------------------------------------------------------
+?FOSBAAS::customer_renewals
+```
+
+
 A decision tree is simply an organized set of cascading questions and answers and are simple to understand at a high level. Let's consider a simple data set:
 
 

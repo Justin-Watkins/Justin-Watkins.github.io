@@ -407,12 +407,18 @@ Figure 1.8: Output of our linear equation
 <span>                         ,ref<span class="op">=</span><span class="st">"master"</span></span>
 <span>                         ,auth_token <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>A decision tree is simply an organized set of cascading questions and answers and are simple to understand at a high level. Let’s consider a simple data set:</p>
+<p>Type a question mark in front of data sets of functions to see the documentation behind them.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># View data set documentation</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="op">?</span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/customer_renewals.html">customer_renewals</a></span></span></code></pre></div>
+<p>A decision tree is simply an organized set of cascading questions and answers and are simple to understand at a high level. Let’s consider a simple data set:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Customer renewal data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
-<span><span class="va">renewal_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">customer_renewals</span></span></code></pre></div>
+<span><span class="va">renewal_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/customer_renewals.html">customer_renewals</a></span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
 <span id="tab:chonereneweddata">Table 1.1: </span>Renewal data set</caption>
@@ -475,7 +481,7 @@ Figure 1.8: Output of our linear equation
 </tbody>
 </table></div>
 <p>We’ll see this data several times through the book. Basically, it is just a number of factors and a column that states whether the fan renewed season tickets of not. Let’s apply a decision tree to the data. We’ll only look at one factor, distance. For this example we used two libraries: rpart <span class="citation">(<a href="references.html#ref-R-rpart" role="doc-biblioref">Therneau and Atkinson 2022</a>)</span> and rpart.plot <span class="citation">(<a href="references.html#ref-R-rpart.plot" role="doc-biblioref">Milborrow 2022</a>)</span>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Customer renewal data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -547,7 +553,7 @@ Figure 1.10: Operationalizing analytical procedures
 <p><span class="math display">\[\begin{equation} \$1,400,000 Ticket Revenue / 40,000 Available Tickets = \$35.00 \end{equation}\]</span>
 <span class="math display">\[\begin{equation} \$1,600,000 Ticket Revenue / 40,000 Available Tickets = \$40.00 \end{equation}\]</span></p>
 <p>Yield is higher when revenue is higher now that we hold the denominator constant. Hopefully, this indicates that we were more efficient at selling our seats or perhaps demand at higher prices buoyed up revenue. This number is much easier to interpret and to leverage for hypothesis testing. The easiest way to consider this metric is to visualize it. A simple scatter plot (figure <a href="chapter1.html#fig:chonepercapgraph">1.11</a>) does the trick. In a real life scenario average ticket price isn’t highly correlated to overall revenue until games begin to approach a sellout and percap approximates yield.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># percap scatter plot</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -667,8 +673,8 @@ Figure 1.12: Relationship to avg salary and ticket sales
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io/blob/main/01-AnalyticsAndSportsBusinessStrategy.md">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io/edit/main/01-AnalyticsAndSportsBusinessStrategy.md">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io/blob/main/01-AnalyticsAndSportsBusinessStrategy.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io/edit/main/01-AnalyticsAndSportsBusinessStrategy.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -680,7 +686,7 @@ Figure 1.12: Relationship to avg salary and ticket sales
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-19.</p>
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

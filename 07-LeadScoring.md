@@ -332,6 +332,89 @@ geographic_vis <-
 
 These maps aren't the best, but they are easy to execute and can give you much of the same insight you would get from a more sophisticated product such as ArcGIS ^[https://www.esri.com/en-us/home]. R also makes it easy to access google APIs that will allow you to Geocode addresses and perform many other interesting tasks with geographic data. You can find a multitude of informative demos online. 
 
+If you can get county names on your consumer data you can create maps that look like the following. This one took a lot of data wrangling, but the output looks nice. The underlying data is identical. 
+
+
+```r
+#-----------------------------------------------------------------
+# Using R to visualize geographic data
+#-----------------------------------------------------------------
+
+fips <- 
+maps::county.fips %>%
+  as_tibble       %>% 
+  extract(polyname, 
+          c("region", "subregion"), "^([^,]+),([^,]+)$") 
+
+county_data <- 
+ggplot::map_data("county") %>% 
+  left_join(fips)          %>%
+mutate(county = paste(region,subregion, sep = ',')) 
+
+
+customers <- left_join(customers,county_data, by = 'county')
+
+counts    <- customers %>% group_by(county) %>%
+                           summarise(accounts = n())
+
+county_data <- county_data %>% left_join(counts,by='county') 
+
+state_data           <- map_data("state") 
+main_color           <- 'steelblue4'
+county_data$accounts <- ifelse(is.na(county_data$accounts) == T,
+                               1,
+                               county_data$accounts)
+
+# adjust number of accounts per county
+correction <- county_data %>% select(county,accounts)                       %>%
+                              group_by(county)                              %>%
+                              mutate(adjustment = n())                      %>%
+                              unique()                                      %>%
+                              summarise(adj_accounts = accounts/adjustment) %>%
+                              select(county,adj_accounts)
+
+correction$adj_accounts <- ifelse(correction$adj_accounts <= 1,
+                                  1,
+                                  correction$adj_accounts)
+
+county_data <- county_data %>% left_join(correction, by = 'county')
+
+region_map <- 
+      
+  county_data %>% 
+  ggplot(aes(long, lat, group = group))                                 +
+  geom_polygon(aes(fill=log10((adj_accounts))), 
+               color=main_color,size = 0)                               +
+  geom_polygon(data = state_data ,color="white",
+               size = .01,fill = 'transparent')                         +
+  coord_map(xlim = c(-91,-79), ylim = c(31,38.5))                       +
+ #scale_fill_viridis(option="inferno")                                  + 
+  scale_fill_gradient(low = main_color ,high = 'white')                 +
+  labs( x = '', y ='',
+        title = "Nashville ticket purchasers",
+        subtitle = "Total accounts by county",
+        caption  = "purchaser density")                                 +
+   theme(plot.caption = element_text(hjust = 0, 
+                                     face= "italic",color = "grey90"),
+         plot.title.position = "plot", 
+         plot.caption.position =  "plot",
+         plot.subtitle = element_text(color = "grey90"))                +
+  graphics_theme_1                                                      +
+  theme(rect = element_rect(fill = main_color ),
+        axis.text.x  = element_blank(),  
+        axis.text.y  = element_blank(),
+        panel.grid.major  = element_line(colour = main_color ),  
+        panel.grid.minor  = element_line(colour = main_color ), 
+        panel.background  = element_rect(fill = main_color , 
+                                         colour = main_color ), 
+        plot.background   = element_rect(fill = main_color , 
+                                         colour = main_color ),
+        legend.position="none")
+```
+
+
+<img src="images/ch7_county_map.png" width="100%" />
+
 
 #### Model the data {#model}
 
@@ -623,16 +706,16 @@ resamp <- resample(task_mod_data,
                    learner_ranger_rf, 
                    resampling_mod_data, 
                    store_models = TRUE)
-#> INFO  [16:36:53.532] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/10)
-#> INFO  [16:37:00.320] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 2/10)
-#> INFO  [16:37:07.523] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 3/10)
-#> INFO  [16:37:14.678] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 4/10)
-#> INFO  [16:37:21.453] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 5/10)
-#> INFO  [16:37:29.255] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 6/10)
-#> INFO  [16:37:36.634] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 7/10)
-#> INFO  [16:37:43.723] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 8/10)
-#> INFO  [16:37:49.323] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 9/10)
-#> INFO  [16:37:53.186] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 10/10)
+#> INFO  [17:55:46.281] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/10)
+#> INFO  [17:55:49.798] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 2/10)
+#> INFO  [17:55:53.547] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 3/10)
+#> INFO  [17:55:57.440] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 4/10)
+#> INFO  [17:56:00.992] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 5/10)
+#> INFO  [17:56:04.769] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 6/10)
+#> INFO  [17:56:08.261] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 7/10)
+#> INFO  [17:56:11.978] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 8/10)
+#> INFO  [17:56:15.458] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 9/10)
+#> INFO  [17:56:19.222] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 10/10)
 ```
 
 You now have a more confident way to evaluate your model.
@@ -735,123 +818,123 @@ tuner_rf = tnr("random_search")
 # Run the models
 #-----------------------------------------------------------------
 tuner <- tuner_rf$optimize(tune_instance)
-#> INFO  [16:38:08.680] [bbotk] Starting to optimize 3 parameter(s) with '<OptimizerRandomSearch>' and '<TerminatorEvals> [n_evals=10, k=0]'
-#> INFO  [16:38:08.696] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [16:38:08.720] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [16:38:08.726] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [16:38:10.790] [mlr3] Finished benchmark
-#> INFO  [16:38:10.908] [bbotk] Result of batch 1:
-#> INFO  [16:38:10.910] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [16:38:10.910] [bbotk]            123        18       542   0.175093        0
-#> INFO  [16:38:10.910] [bbotk]  errors runtime_learners
-#> INFO  [16:38:10.910] [bbotk]       0             2.06
-#> INFO  [16:38:10.910] [bbotk]                                 uhash
-#> INFO  [16:38:10.910] [bbotk]  e4bc7314-b5ca-4598-83a0-194620cbf2b0
-#> INFO  [16:38:10.912] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [16:38:10.928] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [16:38:10.932] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [16:38:12.473] [mlr3] Finished benchmark
-#> INFO  [16:38:12.500] [bbotk] Result of batch 2:
-#> INFO  [16:38:12.502] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [16:38:12.502] [bbotk]            200        17       507  0.1726855        0
-#> INFO  [16:38:12.502] [bbotk]  errors runtime_learners
-#> INFO  [16:38:12.502] [bbotk]       0             1.54
-#> INFO  [16:38:12.502] [bbotk]                                 uhash
-#> INFO  [16:38:12.502] [bbotk]  6c9e96cb-18a5-41b7-8cce-be18a89d4d8c
-#> INFO  [16:38:12.506] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [16:38:12.523] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [16:38:12.529] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [16:38:16.077] [mlr3] Finished benchmark
-#> INFO  [16:38:16.096] [bbotk] Result of batch 3:
-#> INFO  [16:38:16.097] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [16:38:16.097] [bbotk]            120        11       508  0.1739987        0
-#> INFO  [16:38:16.097] [bbotk]  errors runtime_learners
-#> INFO  [16:38:16.097] [bbotk]       0             3.53
-#> INFO  [16:38:16.097] [bbotk]                                 uhash
-#> INFO  [16:38:16.097] [bbotk]  c793aac0-b8cb-464d-b696-1a78c40e4941
-#> INFO  [16:38:16.100] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [16:38:16.116] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [16:38:16.120] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [16:38:17.829] [mlr3] Finished benchmark
-#> INFO  [16:38:17.849] [bbotk] Result of batch 4:
-#> INFO  [16:38:17.850] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [16:38:17.850] [bbotk]             79        11       520  0.1755308        0
-#> INFO  [16:38:17.850] [bbotk]  errors runtime_learners
-#> INFO  [16:38:17.850] [bbotk]       0             1.69
-#> INFO  [16:38:17.850] [bbotk]                                 uhash
-#> INFO  [16:38:17.850] [bbotk]  cfabf896-58c0-4711-8c30-d4b5626fd696
-#> INFO  [16:38:17.852] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [16:38:17.869] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [16:38:17.873] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [16:38:19.527] [mlr3] Finished benchmark
-#> INFO  [16:38:19.548] [bbotk] Result of batch 5:
-#> INFO  [16:38:19.549] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [16:38:19.549] [bbotk]            125        11       594  0.1739987        0
-#> INFO  [16:38:19.549] [bbotk]  errors runtime_learners
-#> INFO  [16:38:19.549] [bbotk]       0             1.62
-#> INFO  [16:38:19.549] [bbotk]                                 uhash
-#> INFO  [16:38:19.549] [bbotk]  dde9a079-cb9e-487b-9049-0330d5b1de70
-#> INFO  [16:38:19.552] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [16:38:19.569] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [16:38:19.573] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [16:38:23.042] [mlr3] Finished benchmark
-#> INFO  [16:38:23.064] [bbotk] Result of batch 6:
-#> INFO  [16:38:23.065] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [16:38:23.065] [bbotk]            109        16       597  0.1748742        0
-#> INFO  [16:38:23.065] [bbotk]  errors runtime_learners
-#> INFO  [16:38:23.065] [bbotk]       0             3.45
-#> INFO  [16:38:23.065] [bbotk]                                 uhash
-#> INFO  [16:38:23.065] [bbotk]  626fc2b7-5396-4438-aed0-78aa5ef71ae8
-#> INFO  [16:38:23.068] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [16:38:23.084] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [16:38:23.088] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [16:38:24.017] [mlr3] Finished benchmark
-#> INFO  [16:38:24.041] [bbotk] Result of batch 7:
-#> INFO  [16:38:24.042] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [16:38:24.042] [bbotk]            124         4       580  0.1696214        0
-#> INFO  [16:38:24.042] [bbotk]  errors runtime_learners
-#> INFO  [16:38:24.042] [bbotk]       0             0.92
-#> INFO  [16:38:24.042] [bbotk]                                 uhash
-#> INFO  [16:38:24.042] [bbotk]  aa570650-a79a-4689-b389-a8a9153cadec
-#> INFO  [16:38:24.044] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [16:38:24.062] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [16:38:24.066] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [16:38:28.595] [mlr3] Finished benchmark
-#> INFO  [16:38:28.628] [bbotk] Result of batch 8:
-#> INFO  [16:38:28.629] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [16:38:28.629] [bbotk]             16        17       560  0.1792515        0
-#> INFO  [16:38:28.629] [bbotk]  errors runtime_learners
-#> INFO  [16:38:28.629] [bbotk]       0             4.52
-#> INFO  [16:38:28.629] [bbotk]                                 uhash
-#> INFO  [16:38:28.629] [bbotk]  c0e6610c-a26e-4d64-bc5d-74ad85fe8a20
-#> INFO  [16:38:28.633] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [16:38:28.658] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [16:38:28.665] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [16:38:30.194] [mlr3] Finished benchmark
-#> INFO  [16:38:30.249] [bbotk] Result of batch 9:
-#> INFO  [16:38:30.251] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [16:38:30.251] [bbotk]             97         5       520  0.1696214        0
-#> INFO  [16:38:30.251] [bbotk]  errors runtime_learners
-#> INFO  [16:38:30.251] [bbotk]       0             1.54
-#> INFO  [16:38:30.251] [bbotk]                                 uhash
-#> INFO  [16:38:30.251] [bbotk]  220ad9d4-bb26-4a94-863e-969653917292
-#> INFO  [16:38:30.255] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [16:38:30.280] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [16:38:30.290] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [16:38:35.425] [mlr3] Finished benchmark
-#> INFO  [16:38:35.458] [bbotk] Result of batch 10:
-#> INFO  [16:38:35.460] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [16:38:35.460] [bbotk]             42        20       560  0.1772817        0
-#> INFO  [16:38:35.460] [bbotk]  errors runtime_learners
-#> INFO  [16:38:35.460] [bbotk]       0             5.12
-#> INFO  [16:38:35.460] [bbotk]                                 uhash
-#> INFO  [16:38:35.460] [bbotk]  3cd3f38e-b92d-4c89-8e4f-d05021ac653c
-#> INFO  [16:38:35.468] [bbotk] Finished optimizing after 10 evaluation(s)
-#> INFO  [16:38:35.469] [bbotk] Result:
-#> INFO  [16:38:35.470] [bbotk]  min.node.size max.depth num.trees learner_param_vals
-#> INFO  [16:38:35.470] [bbotk]            124         4       580          <list[5]>
-#> INFO  [16:38:35.470] [bbotk]   x_domain classif.ce
-#> INFO  [16:38:35.470] [bbotk]  <list[3]>  0.1696214
+#> INFO  [17:56:33.917] [bbotk] Starting to optimize 3 parameter(s) with '<OptimizerRandomSearch>' and '<TerminatorEvals> [n_evals=10, k=0]'
+#> INFO  [17:56:33.930] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [17:56:33.950] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [17:56:33.955] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [17:56:35.818] [mlr3] Finished benchmark
+#> INFO  [17:56:35.933] [bbotk] Result of batch 1:
+#> INFO  [17:56:35.934] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [17:56:35.934] [bbotk]            123        18       542   0.175093        0
+#> INFO  [17:56:35.934] [bbotk]  errors runtime_learners
+#> INFO  [17:56:35.934] [bbotk]       0             1.84
+#> INFO  [17:56:35.934] [bbotk]                                 uhash
+#> INFO  [17:56:35.934] [bbotk]  77313d9c-ddc2-4be9-94a9-4162fbf136b8
+#> INFO  [17:56:35.936] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [17:56:35.951] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [17:56:35.955] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [17:56:37.460] [mlr3] Finished benchmark
+#> INFO  [17:56:37.479] [bbotk] Result of batch 2:
+#> INFO  [17:56:37.480] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [17:56:37.480] [bbotk]            200        17       507  0.1726855        0
+#> INFO  [17:56:37.480] [bbotk]  errors runtime_learners
+#> INFO  [17:56:37.480] [bbotk]       0              1.5
+#> INFO  [17:56:37.480] [bbotk]                                 uhash
+#> INFO  [17:56:37.480] [bbotk]  a23aea70-c327-46df-b4f3-8aa511d984a3
+#> INFO  [17:56:37.482] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [17:56:37.497] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [17:56:37.502] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [17:56:38.922] [mlr3] Finished benchmark
+#> INFO  [17:56:38.941] [bbotk] Result of batch 3:
+#> INFO  [17:56:38.942] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [17:56:38.942] [bbotk]            120        11       508  0.1739987        0
+#> INFO  [17:56:38.942] [bbotk]  errors runtime_learners
+#> INFO  [17:56:38.942] [bbotk]       0             1.41
+#> INFO  [17:56:38.942] [bbotk]                                 uhash
+#> INFO  [17:56:38.942] [bbotk]  ca19ca7b-ad7f-47cc-b357-660b83795911
+#> INFO  [17:56:38.944] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [17:56:38.959] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [17:56:38.963] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [17:56:40.687] [mlr3] Finished benchmark
+#> INFO  [17:56:40.705] [bbotk] Result of batch 4:
+#> INFO  [17:56:40.706] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [17:56:40.706] [bbotk]             79        11       520  0.1755308        0
+#> INFO  [17:56:40.706] [bbotk]  errors runtime_learners
+#> INFO  [17:56:40.706] [bbotk]       0             1.71
+#> INFO  [17:56:40.706] [bbotk]                                 uhash
+#> INFO  [17:56:40.706] [bbotk]  a662fe50-8031-4a73-9df9-1a885055ef88
+#> INFO  [17:56:40.709] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [17:56:40.724] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [17:56:40.728] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [17:56:42.354] [mlr3] Finished benchmark
+#> INFO  [17:56:42.373] [bbotk] Result of batch 5:
+#> INFO  [17:56:42.374] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [17:56:42.374] [bbotk]            125        11       594  0.1739987        0
+#> INFO  [17:56:42.374] [bbotk]  errors runtime_learners
+#> INFO  [17:56:42.374] [bbotk]       0             1.61
+#> INFO  [17:56:42.374] [bbotk]                                 uhash
+#> INFO  [17:56:42.374] [bbotk]  e486eb05-eab9-48ca-affe-a17f8b271253
+#> INFO  [17:56:42.376] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [17:56:42.391] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [17:56:42.394] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [17:56:45.712] [mlr3] Finished benchmark
+#> INFO  [17:56:45.735] [bbotk] Result of batch 6:
+#> INFO  [17:56:45.736] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [17:56:45.736] [bbotk]            109        16       597  0.1748742        0
+#> INFO  [17:56:45.736] [bbotk]  errors runtime_learners
+#> INFO  [17:56:45.736] [bbotk]       0             3.31
+#> INFO  [17:56:45.736] [bbotk]                                 uhash
+#> INFO  [17:56:45.736] [bbotk]  a169b90b-f288-467c-9a87-90faaa6d92b3
+#> INFO  [17:56:45.739] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [17:56:45.754] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [17:56:45.758] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [17:56:46.622] [mlr3] Finished benchmark
+#> INFO  [17:56:46.642] [bbotk] Result of batch 7:
+#> INFO  [17:56:46.643] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [17:56:46.643] [bbotk]            124         4       580  0.1696214        0
+#> INFO  [17:56:46.643] [bbotk]  errors runtime_learners
+#> INFO  [17:56:46.643] [bbotk]       0             0.86
+#> INFO  [17:56:46.643] [bbotk]                                 uhash
+#> INFO  [17:56:46.643] [bbotk]  48228579-b350-449d-bb58-cbbddce28070
+#> INFO  [17:56:46.646] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [17:56:46.662] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [17:56:46.666] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [17:56:49.415] [mlr3] Finished benchmark
+#> INFO  [17:56:49.437] [bbotk] Result of batch 8:
+#> INFO  [17:56:49.438] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [17:56:49.438] [bbotk]             16        17       560  0.1792515        0
+#> INFO  [17:56:49.438] [bbotk]  errors runtime_learners
+#> INFO  [17:56:49.438] [bbotk]       0             2.73
+#> INFO  [17:56:49.438] [bbotk]                                 uhash
+#> INFO  [17:56:49.438] [bbotk]  0a50936a-48b7-4d5c-b13a-cb5fb81fb7a0
+#> INFO  [17:56:49.441] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [17:56:49.456] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [17:56:49.460] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [17:56:50.335] [mlr3] Finished benchmark
+#> INFO  [17:56:50.355] [bbotk] Result of batch 9:
+#> INFO  [17:56:50.356] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [17:56:50.356] [bbotk]             97         5       520  0.1696214        0
+#> INFO  [17:56:50.356] [bbotk]  errors runtime_learners
+#> INFO  [17:56:50.356] [bbotk]       0             0.88
+#> INFO  [17:56:50.356] [bbotk]                                 uhash
+#> INFO  [17:56:50.356] [bbotk]  de5f04ae-527e-4c86-82bb-9a73fd6bc766
+#> INFO  [17:56:50.358] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [17:56:50.374] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [17:56:50.377] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [17:56:52.997] [mlr3] Finished benchmark
+#> INFO  [17:56:53.021] [bbotk] Result of batch 10:
+#> INFO  [17:56:53.022] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [17:56:53.022] [bbotk]             42        20       560  0.1772817        0
+#> INFO  [17:56:53.022] [bbotk]  errors runtime_learners
+#> INFO  [17:56:53.022] [bbotk]       0             2.63
+#> INFO  [17:56:53.022] [bbotk]                                 uhash
+#> INFO  [17:56:53.022] [bbotk]  6d4145a5-a0dc-4d39-9696-39b02ac30073
+#> INFO  [17:56:53.028] [bbotk] Finished optimizing after 10 evaluation(s)
+#> INFO  [17:56:53.029] [bbotk] Result:
+#> INFO  [17:56:53.030] [bbotk]  min.node.size max.depth num.trees learner_param_vals
+#> INFO  [17:56:53.030] [bbotk]            124         4       580          <list[5]>
+#> INFO  [17:56:53.030] [bbotk]   x_domain classif.ce
+#> INFO  [17:56:53.030] [bbotk]  <list[3]>  0.1696214
 ```
 
 Now we can take a look at our best result
@@ -1006,11 +1089,11 @@ resamplings_bnch <- rsmp("holdout")
 # benchmark our designs
 #-----------------------------------------------------------------
 bmr = benchmark(design_bnch)
-#> INFO  [16:38:38.272] [mlr3] Running benchmark with 3 resampling iterations
-#> INFO  [16:38:38.281] [mlr3] Applying learner 'classif.xgboost' on task 'task_class2' (iter 1/1)
-#> INFO  [16:38:38.448] [mlr3] Applying learner 'classif.ranger' on task 'task_class2' (iter 1/1)
-#> INFO  [16:38:44.259] [mlr3] Applying learner 'classif.naive_bayes' on task 'task_class2' (iter 1/1)
-#> INFO  [16:38:45.082] [mlr3] Finished benchmark
+#> INFO  [17:56:54.709] [mlr3] Running benchmark with 3 resampling iterations
+#> INFO  [17:56:54.714] [mlr3] Applying learner 'classif.xgboost' on task 'task_class2' (iter 1/1)
+#> INFO  [17:56:55.019] [mlr3] Applying learner 'classif.ranger' on task 'task_class2' (iter 1/1)
+#> INFO  [17:56:57.946] [mlr3] Applying learner 'classif.naive_bayes' on task 'task_class2' (iter 1/1)
+#> INFO  [17:56:58.410] [mlr3] Finished benchmark
 ```
 
 We can take a look at the available measures with the following command:

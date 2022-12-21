@@ -142,11 +142,11 @@
 <li>calls represents the number of calls the rep made to a specific person</li>
 <li>revenue represents the amount of revenue generated from the specific customer.</li>
 </ul>
-<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Aggregated CRM data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
-<span><span class="va">ag_sales_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">aggregated_crm_data</span></span>
+<span><span class="va">ag_sales_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/aggregated_crm_data.html">aggregated_crm_data</a></span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
 <span><span class="va">agg_calls</span> <span class="op">&lt;-</span> </span>
@@ -229,14 +229,14 @@
 </tbody>
 </table></div>
 <p>Why are some salespeople more effective? Perhaps someone called in and bought six of the most expensive seats and it skews the results. Are the call numbers correlated to revenue? The <em>cor</em> function will give us the correlation coefficient.</p>
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Correlation coefficient</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">agg_calls</span><span class="op">$</span><span class="va">calls</span>,<span class="va">agg_calls</span><span class="op">$</span><span class="va">revenue</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.2589937</span></span></code></pre></div>
 <p>Overall, calls are only weakly correlated with revenue. why?</p>
-<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Box plots of revenue by sales rep</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -263,7 +263,7 @@ Figure 4.1: Boxplot of revenue by rep
 </p>
 </div>
 <p>We can see from the boxplots in figure <a href="chapter4.html#fig:chfourboxplotone">4.1</a> that average sales by customer is fairly equivalent. However, some reps have far fewer outliers. My supposition would be that the differences we are seeing between reps are being driven by a relatively small number of sales. You can get summary stats by rep by using <em>psych::describe.by(ag_sales_data$revenue,ag_sales_data$repID)</em>.</p>
-<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Cumulative revenue by rep by customer</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -304,7 +304,7 @@ Figure 4.2: Cumulative revenue by rep
 <li>Are certain reps more efficient with phone calls?</li>
 <li>Are certain reps more efficient with customers?</li>
 </ol>
-<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Failed calls and customers by rep</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -341,13 +341,13 @@ Figure 4.3: Cumulative revenue by rep
 </p>
 </div>
 <p>Overall, no rep stands out as being more or less efficient, although there are some differences at the top and bottom. Let’s take a closer look at the distribution of sales revenue. Instead of a density plot, let’s take a look at the summary statistics and make a couple of comparisons between the highest and lowest performers.</p>
-<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># quantiles of sales</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">quants</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">ag_sales_data</span><span class="op">$</span><span class="va">revenue</span>,</span>
 <span>                   probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>,<span class="fl">.75</span>,<span class="fl">.9</span>,<span class="fl">.95</span>,<span class="fl">.975</span>,<span class="fl">.99</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">quants</span>,caption <span class="op">=</span> <span class="st">'Aggregated sales data quantiles'</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
@@ -388,7 +388,7 @@ Figure 4.3: Cumulative revenue by rep
 </tbody>
 </table></div>
 <p>At least 50% of customers that we interacted with resulted in no revenue. The top 1% of sales resulted in over $10,000.00 in revenue and 25% of customers spend less than $2,924.00. Let’s use the <em>describe.by</em> function to isolate our top performer and bottom performer.</p>
-<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># description of sales</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -397,14 +397,14 @@ Figure 4.3: Cumulative revenue by rep
 <span><span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/describe.by.html">describe.by</a></span><span class="op">(</span></span>
 <span>  <span class="va">ag_sales_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ag_sales_data</span><span class="op">$</span><span class="va">repID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">ids</span><span class="op">)</span>,<span class="op">]</span><span class="op">$</span><span class="va">revenue</span>,</span>
 <span>  <span class="va">ag_sales_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ag_sales_data</span><span class="op">$</span><span class="va">repID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">ids</span><span class="op">)</span>,<span class="op">]</span><span class="op">$</span><span class="va">repID</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># description of sales</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">descriptives</span><span class="op">$</span><span class="va">`0LK62LATB8E3`</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">9</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#&gt;      mean      sd median trimmed      max</span></span>
 <span><span class="co">#&gt; X1 1400.9 2966.49      0 1036.41 54039.92</span></span></code></pre></div>
-<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># description of sales</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -412,7 +412,7 @@ Figure 4.3: Cumulative revenue by rep
 <span><span class="co">#&gt;       mean     sd median trimmed      max</span></span>
 <span><span class="co">#&gt; X1 2404.23 6747.1 963.96 1417.14 58428.16</span></span></code></pre></div>
 <p>The average sale for our top rep was over 50% higher than for our lowest performer. Additionally, the median sale was greater than zero, which means they had success more often. Let’s take a look at how much was generated by both reps at the upper end of the spectrum.</p>
-<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># quantiles of sales</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -501,24 +501,24 @@ Figure 4.3: Cumulative revenue by rep
 <p>Let’s talk about the two most popular languages for analytics. Differences between R and Python may make a distinction between which tool that you plan on using. This is especially true when we look to deploy results. R and Python are both highly extensible. There are libraries for almost everything and the need to write your own implementation is likely minimal. If you do have the need, it would probably be better to use another language such as C++.</p>
 <p>Many analytics projects in Python will use the same relatively small sets of libraries. Additionally, the code for one model will look almost exactly like the code for another. This won’t always be true in R and I consider this an advantage for Python users. Let’s look at an example.</p>
 <p>The code to hierarchically cluster a data set in python might look something like the following:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb90-1"><a href="chapter4.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------------------------------------------------</span></span>
-<span id="cb90-2"><a href="chapter4.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Clustering algorithm applied in python</span></span>
-<span id="cb90-3"><a href="chapter4.html#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------------------------------------------------</span></span>
-<span id="cb90-4"><a href="chapter4.html#cb90-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> AgglomerativeClustering</span>
-<span id="cb90-5"><a href="chapter4.html#cb90-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.sample(n<span class="op">=</span><span class="dv">1500</span>)</span>
-<span id="cb90-6"><a href="chapter4.html#cb90-6" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> AgglomerativeClustering(n_clusters<span class="op">=</span><span class="dv">6</span>, </span>
-<span id="cb90-7"><a href="chapter4.html#cb90-7" aria-hidden="true" tabindex="-1"></a>affinity<span class="op">=</span><span class="st">'euclidean'</span>, linkage<span class="op">=</span><span class="st">'ward'</span>)  </span>
-<span id="cb90-8"><a href="chapter4.html#cb90-8" aria-hidden="true" tabindex="-1"></a>cl <span class="op">=</span> py.DataFrame(cluster.fit_predict(data))</span></code></pre></div>
-<p>Every other method available in the module <em>sklearn</em> <span class="citation">(<a href="references.html#ref-scikit-learn" role="doc-biblioref">Pedregosa et al. 2011</a>)</span> will look like this example. This makes it easy and intuitive to run through several examples. For instance, if you wanted to cluster with the Kmeans algorithm in python, the code might look like this.</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="chapter4.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------------------------------------------------</span></span>
-<span id="cb91-2"><a href="chapter4.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="co"># kmeans algorithm applied in python</span></span>
+<span id="cb91-2"><a href="chapter4.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Clustering algorithm applied in python</span></span>
 <span id="cb91-3"><a href="chapter4.html#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------------------------------------------------</span></span>
-<span id="cb91-4"><a href="chapter4.html#cb91-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb91-4"><a href="chapter4.html#cb91-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> AgglomerativeClustering</span>
 <span id="cb91-5"><a href="chapter4.html#cb91-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.sample(n<span class="op">=</span><span class="dv">1500</span>)</span>
-<span id="cb91-6"><a href="chapter4.html#cb91-6" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">6</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb91-7"><a href="chapter4.html#cb91-7" aria-hidden="true" tabindex="-1"></a>cl <span class="op">=</span> py.DataFrame(cluster.fit_predict(data))</span></code></pre></div>
+<span id="cb91-6"><a href="chapter4.html#cb91-6" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> AgglomerativeClustering(n_clusters<span class="op">=</span><span class="dv">6</span>, </span>
+<span id="cb91-7"><a href="chapter4.html#cb91-7" aria-hidden="true" tabindex="-1"></a>affinity<span class="op">=</span><span class="st">'euclidean'</span>, linkage<span class="op">=</span><span class="st">'ward'</span>)  </span>
+<span id="cb91-8"><a href="chapter4.html#cb91-8" aria-hidden="true" tabindex="-1"></a>cl <span class="op">=</span> py.DataFrame(cluster.fit_predict(data))</span></code></pre></div>
+<p>Every other method available in the module <em>sklearn</em> <span class="citation">(<a href="references.html#ref-scikit-learn" role="doc-biblioref">Pedregosa et al. 2011</a>)</span> will look like this example. This makes it easy and intuitive to run through several examples. For instance, if you wanted to cluster with the Kmeans algorithm in python, the code might look like this.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb92-1"><a href="chapter4.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------------------------------------------------</span></span>
+<span id="cb92-2"><a href="chapter4.html#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="co"># kmeans algorithm applied in python</span></span>
+<span id="cb92-3"><a href="chapter4.html#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------------------------------------------------</span></span>
+<span id="cb92-4"><a href="chapter4.html#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb92-5"><a href="chapter4.html#cb92-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.sample(n<span class="op">=</span><span class="dv">1500</span>)</span>
+<span id="cb92-6"><a href="chapter4.html#cb92-6" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">6</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb92-7"><a href="chapter4.html#cb92-7" aria-hidden="true" tabindex="-1"></a>cl <span class="op">=</span> py.DataFrame(cluster.fit_predict(data))</span></code></pre></div>
 <p>It is almost identical. Let’s compare that to some R code that works with the same tools. The code to hierarchically cluster some data in R follows.</p>
-<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Hierarchical clustering algorithm applied in R</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -530,7 +530,7 @@ Figure 4.3: Cumulative revenue by rep
 <span><span class="va">cuts</span>         <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cutree.html">cutree</a></span><span class="op">(</span><span class="va">cl</span>, k <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
 <span><span class="va">data</span><span class="op">$</span><span class="va">cluster</span> <span class="op">&lt;-</span> <span class="va">cuts</span></span></code></pre></div>
 <p>Both languages begin by importing capabilities from libraries. The next code chuck uses the kmeans algorithm. It is housed in the <em>stats</em> library and works slightly differently. I find that R tends to feel more <em>procedural</em> than python.</p>
-<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># kmeans algorithm applied in R</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -656,7 +656,7 @@ Figure 4.4: Choosing the right technique
 <li>Ticket Prices could be automatically updated on a tight interval for optimizing sales or revenue.</li>
 </ol>
 <p>There are lots of applications. Additionally, you could always write a wrapper (in windows) within your system that runs a script using a simple batch script (A notepad file saved as .bat). The following example runs and R script called <em>YourRScript.R</em>.</p>
-<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Batch script for automation</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -718,8 +718,8 @@ Figure 4.4: Choosing the right technique
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io/blob/main/04-FramingProjects.md">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io/edit/main/04-FramingProjects.md">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io/blob/main/04-FramingProjects.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/Justin-Watkins/Justin-Watkins.github.io/edit/main/04-FramingProjects.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -731,7 +731,7 @@ Figure 4.4: Choosing the right technique
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-19.</p>
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-21.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
