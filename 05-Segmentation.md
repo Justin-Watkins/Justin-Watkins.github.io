@@ -118,6 +118,7 @@ Table: (\#tab:segdatasetnames2)structure of demographic data set
 |ethnicity     |character |w, w                                 |
 |children      |character |y, n                                 |
 |hhIncome      |double    |2866, 552                            |
+|county        |character |tennessee,wilson, kentucky,edmonson  |
 
 
 This table has 200,000 rows and 12 columns corresponding to standard demographic features. Latitude and longitude have already been processed into a distance metric. We'll pare this data down to the information that we think might be useful for processing. 

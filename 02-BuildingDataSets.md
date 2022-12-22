@@ -149,7 +149,7 @@ for(i in x){
 }
 )
 #>    user  system elapsed 
-#>    1.03    0.02    1.05
+#>    1.05    0.00    1.04
 
 line_value[1:3]
 #> [[1]]
@@ -180,7 +180,7 @@ while(i <= length(x)){
 }
 )
 #>    user  system elapsed 
-#>    0.92    0.05    0.97
+#>    0.94    0.00    0.94
 
 line_value[1:3]
 #> [[1]]
@@ -204,7 +204,7 @@ system.time(
 line_value <- lapply(1:length(x), function(i) x[i]*m + b)
 )
 #>    user  system elapsed 
-#>    0.85    0.03    0.87
+#>    0.83    0.07    0.90
 
 line_value[1:3]
 #> [[1]]
@@ -228,7 +228,7 @@ system.time(
 line_value <- purrr::imap(x,~ .x*m + b)
 )
 #>    user  system elapsed 
-#>    0.94    0.05    0.98
+#>       1       0       1
 
 line_value[1:3]
 #> [[1]]
@@ -325,9 +325,9 @@ This process is a little involved (see figure \@ref(fig:datacreationprocess)). W
 
 ### Building our function
 
-The following code creates a dataframe with nine columns and then assigns a list of names to each column. Think of a dataframe as an excel workbook. R uses <- for assignment, however you can use the equals sign. We then use the _sapply_ function to create a sequence of random letters and numbers to represent account ids. The apply functions are incredibly important. You can type '?sapply' into the console in R studio. 
+The following code creates a dataframe with nine columns and then assigns a list of names to each column. Think of a dataframe as an excel workbook. R uses `<-` for assignment, however you can use the equals sign. We then use the `sapply` function to create a sequence of random letters and numbers to represent account ids. The apply functions are incredibly important. You can type `?sapply` into the console in R studio. 
 
-This looks weird. _sth_data[,1]_ references the first column in the data frame data frame[row,column]. The first argument in sapply is giving the function a list of rows to traverse. The second argument uses something called an anonymous function, which is confusing. Look it up if you want a deeper understanding of it. It will begin to make sense as you play with it. _paste(sample(c(0:9, LETTERS), 12, replace=TRUE),collapse = ""))_ simply creates a random twelve digit alphanumeric string. We follow this up with assigning a season to the season column. 
+This looks weird. `sth_data[,1]` references the first column in the data frame data frame[row,column]. The first argument in sapply is giving the function a list of rows to traverse. The second argument uses something called an anonymous function, which is confusing. Look it up if you want a deeper understanding of it. It will begin to make sense as you play with it. `paste(sample(c(0:9, LETTERS), 12, replace=TRUE),collapse = ""))` simply creates a random twelve digit alphanumeric string. We follow this up with assigning a season to the season column. 
 
 
 ```r
@@ -346,7 +346,7 @@ This looks weird. _sth_data[,1]_ references the first column in the data frame d
   sth_data$season <- season
 ```
 
-Many season ticket accounts are owned by corporations. We'll build a list called _corporate_ and sample it in order to assign a "c" for corporate or "i" for individual to each account. We use the _set.seed()_ function for reproducibility. We'll use the sample function to sample a _c_ or an _i_ from the list at the rate of 20% corporations and 80% individuals. 
+Many season ticket accounts are owned by corporations. We'll build a list called _corporate_ and sample it in order to assign a "c" for corporate or "i" for individual to each account. We use the `set.seed()` function for reproducibility. We'll use the sample function to sample a _c_ or an _i_ from the list at the rate of 20% corporations and 80% individuals. 
 
 
 ```r
@@ -389,7 +389,7 @@ set.seed(seed)
                               prob = c(.60, .40)))
 ```
 
-To calculate the distance from the stadium we'll leverage the _rexp()_ function to give us an exponentially distributed list of numbers that we can modify and sample for each account. This density pattern is common in many urban areas where population density is much higher in certain centralized areas. We'll show you how to visualize this pattern in a subsequent chapter. The outcome here is that individuals will tend to live further away than corporations.
+To calculate the distance from the stadium we'll leverage the `rexp()` function to give us an exponentially distributed list of numbers that we can modify and sample for each account. This density pattern is common in many urban areas where population density is much higher in certain centralized areas. We'll show you how to visualize this pattern in a subsequent chapter. The outcome here is that individuals will tend to live further away than corporations.
 
 
 ```r
@@ -414,7 +414,7 @@ To calculate the distance from the stadium we'll leverage the _rexp()_ function 
                               replace = TRUE))
 ```
 
-Next, we'll build a list of numbers that will refer to the number of season tickets purchased by each account. We'll then assign a number of tickets based on the distributions denoted in the _prob_ argument of the _sample()_ function. Basically, we want corporations to purchase more tickets. 
+Next, we'll build a list of numbers that will refer to the number of season tickets purchased by each account. We'll then assign a number of tickets based on the distributions denoted in the `prob` argument of the `sample()` function. Basically, we want corporations to purchase more tickets. 
 
 
 ```r
@@ -435,9 +435,9 @@ Next, we'll build a list of numbers that will refer to the number of season tick
              prob = c(0,0,.10,.05,.40,.05,.30,.10))) 
 ```
   
-For tenure, if we set the _renew_ argument = TRUE, we leverage our _f_tenure_ function to assign the number of years based on a list of arguments that we have created within our main function. Flow control with conditions is really important to understand. A simple way to explain them is like this: "If(some condition == TRUE), then do something. If(condition == FALSE), then do something else". In R, == is used to compare things. = is used for assignment.
+For tenure, if we set the `renew` argument `= TRUE`, we leverage our `f_tenure` function to assign the number of years based on a list of arguments that we have created within our main function. Flow control with conditions is really important to understand. A simple way to explain them is like this: "If(some condition == TRUE), then do something. If(condition == FALSE), then do something else". In R, == is used to compare things. = is used for assignment.
 
-In this function we use _mapply_. It works like _sapply_, but it accepts multiple arguments. We also used a _with_ statement. With just means you have to type less. It tells R that everything within it belongs to one piece of data.
+In this function we use `mapply`. It works like `sapply`, but it accepts multiple arguments. We also used a `with` statement. With just means you have to type less. It tells R that everything within it belongs to one piece of data.
   
 
 ```r
@@ -457,7 +457,7 @@ In this function we use _mapply_. It works like _sapply_, but it accepts multipl
 
 ```
 
-The _f_calculate_tenure()_ function accepts four arguments. These arguments are constructed from the code chunks that we have been running. This function is simply a long if-else statement. We did it like this because we have specific patterns we would like to construct within the tenure column. 
+The `f_calculate_tenure()` function accepts four arguments. These arguments are constructed from the code chunks that we have been running. This function is simply a long if-else statement. We did it like this because we have specific patterns we would like to construct within the tenure column. 
 
 
 ```r
@@ -503,7 +503,7 @@ We based season ticket holder spend on tenure, plan-type, and the account type.
   sth_data$spend <- as.vector(spend) * sth_data$tickets
 ```
 
-The function _f_calculate_spend_ uses the _rnorm()_ function. This function accepts a mean and standard deviation argument that allows us to sample a number on a specific normal distribution. Once again, we could have generalized this function a little more, but since it's just a helper function with one purpose we hardcoded our numbers into it.
+The function `f_calculate_spend` uses the `rnorm()` function. This function accepts a mean and standard deviation argument that allows us to sample a number on a specific normal distribution. Once again, we could have generalized this function a little more, but since it's just a helper function with one purpose we hardcoded our numbers into it.
 
 
 ```r
@@ -554,7 +554,7 @@ Similarly to the previous examples, we are building ticket usage in a particular
   sth_data$ticketUsage <- as.vector(ticket_use)
 ```
 
-The function _f_calculate_ticket_use_ uses the _runif()_ function that produces a random number on a uniform distribution based on a minimum and maximum value. These numbers are also hardcoded so that we can produce specific patterns.
+The function `f_calculate_ticket_use` uses the `runif()` function that produces a random number on a uniform distribution based on a minimum and maximum value. These numbers are also hardcoded so that we can produce specific patterns.
 
 
 ```r
@@ -575,7 +575,7 @@ else{tu <- runif(1,min = .65, max = .95)}
 }
 ```
 
-Finally, we check the _renew_ argument and if (using an _if_ statement) it is true, we determine if the account renewed its tickets based on the values in the data frame _sth_data_. If _renew_ = _F_, we return our dataframe without a _renewed_ field.
+Finally, we check the `renew` argument and if (using an `if` statement) it is true, we determine if the account renewed its tickets based on the values in the data frame `sth_data`. If _renew_ = _F_, we return our dataframe without a _renewed_ field.
 
 
 ```r
