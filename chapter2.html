@@ -46,9 +46,9 @@
     }
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Feel free to skip this chapter. I considered not including it. However, it is an important chapter. It is important not because it is informative, but because it gives us the raw material from...">
-<meta property="og:description" content="Feel free to skip this chapter. I considered not including it. However, it is an important chapter. It is important not because it is informative, but because it gives us the raw material from...">
-<meta name="twitter:description" content="Feel free to skip this chapter. I considered not including it. However, it is an important chapter. It is important not because it is informative, but because it gives us the raw material from...">
+<meta name="description" content="Feel free to skip this chapter. I considered not including it. Although, it is an important chapter. It is important not because it is informative, but because it gives us the raw material from...">
+<meta property="og:description" content="Feel free to skip this chapter. I considered not including it. Although, it is an important chapter. It is important not because it is informative, but because it gives us the raw material from...">
+<meta name="twitter:description" content="Feel free to skip this chapter. I considered not including it. Although, it is an important chapter. It is important not because it is informative, but because it gives us the raw material from...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -94,8 +94,8 @@
 <h1>
 <span class="header-section-number">2</span> Constructing our data sets<a class="anchor" aria-label="anchor" href="#chapter2"><i class="fas fa-link"></i></a>
 </h1>
-<p>Feel free to skip this chapter. I considered not including it. However, it is an important chapter. It is important not because it is informative, but because it gives us the raw material from which we will divine our insights. Data is the fuel for analytics work, and your business strategy should be derived from some objective justifications arrived at through systematic evaluation. If you don’t have very much coding experience, it gives me an opportunity to familiarize you with data that you might encounter. It also lets me give some introduction to the R language which we use throughout the book. As I have said, this book is about <em>How</em> and <em>Why</em>. Understanding the <em>how</em> is important despite what I said about the <em>why</em>. We’ll cover the basics of exploring and analyzing a data set in the next chapter. For now, we’ll just cover some of what the data means, how to interpret sports data, and demonstrate some of the code that created it.</p>
-<p>Additionally, I am going to need to discuss coding. People are afraid of it. You shouldn’t be. You learn by doing. You can’t read a book on coding to learn it, you just have to dive in. Every piece of code in this book is available, should run on your machine, and can be hacked and adapted to similar problems. We will be using R and R Studio <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.rstudio.com/" class="uri"&gt;https://www.rstudio.com/&lt;/a&gt;&lt;/p&gt;'><sup>19</sup></a> as our primary analysis tool. R is a great choice for analyzing sports data. While I find R a bit idiosyncratic, you don’t have to dream in C++ to use it. If you like to script a little bit, but don’t want to be a full-on developer, R is your ticket. Additionally, R Studio is a great IDE for analysis. It has a ton of useful features that will make your life much easier. I highly recommend it.</p>
+<p>Feel free to skip this chapter. I considered not including it. Although, it is an important chapter. It is important not because it is informative, but because it gives us the raw material from which we will divine our insights. Data is the fuel for analytics work, and your business strategy should be derived from some objective justifications arrived at through systematic evaluation. If you don’t have very much coding experience, it gives me an opportunity to familiarize you with some code and with data that you might encounter. It also lets me give some introduction to the R language which we use throughout the book. As I have said, this book is about <em>How</em> and <em>Why</em>. Understanding the <em>how</em> is important despite what I said about the <em>why</em>. We’ll cover the basics of exploring and analyzing a data set in the next chapter. For now, we’ll just cover some of what the data means, how to interpret sports data, and demonstrate some of the code that created it.</p>
+<p>Unfortunalty, I am going to need to discuss coding. People are afraid of it. You shouldn’t be. You learn by doing. You can’t read a book on coding to understand it, you just have to dive in. Every piece of code in this book is available, should run on your machine, and can be hacked and adapted to similar problems. We will be using R and R Studio <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.rstudio.com/" class="uri"&gt;https://www.rstudio.com/&lt;/a&gt;&lt;/p&gt;'><sup>20</sup></a> as our primary analysis tool. R is a great choice for analyzing sports data. While I find R a bit idiosyncratic, you don’t have to dream in C++ to use it. If you like to script a little bit, but don’t want to be a full-on developer, R is your ticket. Additionally, R Studio is a great IDE for analysis. It has a ton of useful features that will make your life much easier. I highly recommend it.</p>
 <p>In this chapter we’ll cover a few subjects:</p>
 <ul>
 <li>Understanding common data sets in the context of professional sports</li>
@@ -103,16 +103,17 @@
 <li>Building an R package to reference these data sets throughout the rest of the book</li>
 </ul>
 <p>The particulars of ticketing datasets vary and a small number of companies dominate the sports industry. TicketMaster is common in pro sports. Paciolin is another player in this arena, but they are more common in college sports and other venues. Ultimately, the system won’t matter. You’ll have to transform the data into a format that will be useful for an analytics process.</p>
-<p>For our purposes, we’ll invent a professional baseball team, the Nashville Game Hens. The Game Hens were an expansion team in 2017 and play a typical baseball schedule of 162 games.</p>
+<p>For our purposes, we’ll invent a professional baseball team, the <em>Nashville Game Hens</em>. The Game Hens were an expansion team in 2017 and play a typical baseball schedule of 162 games.</p>
 <div id="some-basic-notes-on-the-r-language" class="section level2" number="2.1">
 <h2>
 <span class="header-section-number">2.1</span> Some basic notes on the R language<a class="anchor" aria-label="anchor" href="#some-basic-notes-on-the-r-language"><i class="fas fa-link"></i></a>
 </h2>
-<p>This chapter will introduce you to some R code if you aren’t familiar with it. Ultimately, it doesn’t matter what tool you use. Python, Julia, R, Stata, SAS, and Matlab all provide some similar functionality. However, being confronted with code can be a little overwhelming at first. We are leveraging code, particularly R for a few reasons.</p>
+<p>This chapter will introduce you to some R code. Ultimately, it doesn’t matter what tool you use. Python, Julia, R, Stata, SAS, and Matlab all provide some similar functionality. However, being confronted with code can be a little overwhelming at first. We are leveraging code, particularly R for a few reasons.</p>
 <ol style="list-style-type: decimal">
 <li>If your analysis is done in code each step is readily reproducible and documented</li>
 <li>R is free, easy to use, has a large user base, and has a great IDE</li>
 <li>R is massively extensible for smaller-scaled tasks</li>
+<li>It is a great tool for protyping something you might put into production in a more perfomant enviornment</li>
 </ol>
 <p>I have found that it is best to get good at one tool and to stick with it. However, I say this with a note of caution. Let’s consider a quote from a horrifying poem called “The Second Coming.”</p>
 <blockquote>
@@ -120,18 +121,18 @@
 <p>Willaim Butler Yeats, “The Second Coming”</p>
 </blockquote>
 <p>Technologies are doomed to obsolescence. While many legacy technologies have endured for decades (Fortran, Cobal, R, Python, C, C++), they have all evolved. Additionally, many technologies have been eclipsed by better tools. Tools tend to be fairly specialized. For instance, R isn’t the best tool to build large-scaled web applications. Don’t be so rigid that you devote your personal brand to a particular technology. You might find yourself on the scrap-pile with it… “Things fall apart.”</p>
-<p>We leveraged R for this book. It is relatively simplistic on the outside relative to many other languages. It has a more limited number of data structures, doesn’t use scalars, is single-threaded, and tends to avoid standard flow-control. It is a little idiosyncratic. If you have some programming experience with another language you might find yourself having a little difficulty with it. If you are new to programming, it is going to look weird. This book isn’t on programming. We are simply writing scripts that piggyback off of programmers that have done a fabulous job of creating a free tool that currently rivals any others in the analytics space <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Python is the currently the closest rival and is a great tool. Julia still hasn’t caught on, but has some compelling features&lt;/p&gt;"><sup>20</sup></a>.</p>
+<p>R is relatively simplistic on the outside relative to many other languages. It has a more limited number of data structures, doesn’t use scalars, is single-threaded, and tends to avoid standard flow-control. It is a little peculiar. If you have some programming experience with another language you might find yourself having a little difficulty with it. If you are new to programming, it is going to look weird. This book isn’t on programming. We are simply writing scripts that piggyback off of programmers that have done a fabulous job of creating a free tool that currently rivals any others in the analytics space <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Python is the currently the closest rival and is a great tool. Julia still hasn’t caught on, but has some compelling features&lt;/p&gt;"><sup>21</sup></a>.</p>
 <p>Additionally, I recommend using code instead of a point-and-click tool. Code demonstrates exactly what you have done and is easy to communicate to anyone with a knowledge of the language. It will make your life easier even if it makes it more difficult in the beginning. The best thing about R is that there has been a huge user base over the years and there are many resources that you can leverage to learn what it can do. Ultimately, the decision on what tool to use needs to be driven by what you want to get out it. Are you prototyping or do you need to operationalize your code? Are you dealing with huge datasets? Do you want something built for speed or comfort? I am not going to cover anything about the language in this book. There are just too many resources available that will do a better job than me. Here are my basic recommendations if you would like to use R:</p>
 <ol style="list-style-type: decimal">
-<li>Get and IDE that you like. RStudio is currently the best choice for R for a number of reasons.</li>
-<li>Download R <span class="citation">(<a href="references.html#ref-R-base" role="doc-biblioref">R Core Team 2022</a>)</span>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://posit.co/download/rstudio-desktop/" class="uri"&gt;https://posit.co/download/rstudio-desktop/&lt;/a&gt;&lt;/p&gt;'><sup>21</sup></a> It works on all major platforms and use your favorite search engine to find some free classes on how to use it. There are hundreds of how-tos available online. You can also purchase any number of books that will teach you how the language works. My favorite is “Advanced R” <span class="citation">(<a href="references.html#ref-Wickham2014" role="doc-biblioref">Wickham 2014</a>)</span> and I highly recommend it as a must-have reference book.</li>
-<li>Practice it! It doesn’t take long to get over-the-hump in terms of getting some functional fluency. I consider it similar to playing an instrument. “Flight of the bumblebee” <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Flight of the Bumblebee by Rimsky-Korsakov, 1900. If you aren’t familiar with this song, look it up&lt;/p&gt;"><sup>22</sup></a> doesn’t need to be the first song that you learn on piano. Start simple and build on your knowledge. You will eventually develop an intuitive understanding of what your tool can do.</li>
+<li>Get and IDE that you like. RStudio is currently the best choice for R by a wide margin.</li>
+<li>Download R <span class="citation">(<a href="references.html#ref-R-base" role="doc-biblioref">R Core Team 2022</a>)</span>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://posit.co/download/rstudio-desktop/" class="uri"&gt;https://posit.co/download/rstudio-desktop/&lt;/a&gt;&lt;/p&gt;'><sup>22</sup></a> It works on all major platforms and use your favorite search engine to find some free classes on how to use it. There are hundreds of how-tos available online. You can also purchase many books that will teach you how the language works. My favorite is “Advanced R” <span class="citation">(<a href="references.html#ref-Wickham2014" role="doc-biblioref">Wickham 2014</a>)</span> and I highly recommend it as a must-have reference book.</li>
+<li>Practice it! It doesn’t take long to get over-the-hump in terms of getting some functional fluency. I consider it similar to playing an instrument. “Flight of the bumblebee” <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Flight of the Bumblebee by Rimsky-Korsakov, 1900. If you aren’t familiar with this song, look it up&lt;/p&gt;"><sup>23</sup></a> doesn’t need to be the first song that you learn on piano. Start simple and build on your knowledge. You will eventually develop an intuitive understanding of what your tool can do.</li>
 </ol>
 <p>It is also important to consider that R does have some drawbacks.</p>
 <ol style="list-style-type: decimal">
-<li>A language won’t tell you what you should do. It only provides methods to execute functions. You still need to understand how to approach and solve your problem. R won’t help you there.</li>
-<li>R can be relatively slow if you don’t use it correctly. This has to do with how it was constructed <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;R was constructed by Mathematicians and not computer scientists. It was created to be easy, not fast.&lt;/p&gt;"><sup>23</sup></a>. However, there are ways to speed it up significantly. Rcpp <span class="citation">(<a href="references.html#ref-R-Rcpp" role="doc-biblioref">Eddelbuettel et al. 2022</a>)</span> is an almost seamless api to C++ that will allow you to build and leverage C++ functions in your R environment. It is a highly leveraged and important tool in R world.</li>
-<li>R may not be the best choice for operationalizing something that you have built. Many people prototype with R and then leverage another tool to put the work to use.</li>
+<li>A language won’t tell you what you should do. It only provides methods to execute functions. You still need to understand how to approach and solve your problem. R won’t help you there unlike statistical tools such as Minitab<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.minitab.com/en-us/" class="uri"&gt;https://www.minitab.com/en-us/&lt;/a&gt;&lt;/p&gt;'><sup>24</sup></a>.</li>
+<li>R can be relatively slow if you don’t use it correctly. This has to do with how it was constructed <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;R was constructed by Mathematicians and not computer scientists. It was created to be easy, not fast.&lt;/p&gt;"><sup>25</sup></a>. However, there are ways to speed it up significantly. Rcpp <span class="citation">(<a href="references.html#ref-R-Rcpp" role="doc-biblioref">Eddelbuettel et al. 2022</a>)</span> is an almost seamless api to C++ that will allow you to build and leverage C++ functions in your R environment. It is a highly leveraged and important tool in R world.</li>
+<li>R may not be the best choice for putting something into operation. Many people prototype with R and then leverage another tool to put the work to use. However, there are some great tools for smaller scale web deployments built on the <em>Shiny</em> framework.</li>
 <li>It’s user base may decline in favor of other tools. Python has become more popular in recent years. Languages tend to benefit from network effects where the more users that it has, the more features that are built for it. User-base size is very important.</li>
 </ol>
 <p>Some of the following sections will demonstrate how the datasets for this book were created. I think that this is important to do for a couple of different reasons.</p>
@@ -139,9 +140,9 @@
 <li>You may not be familiar with R. The code sections will get you familiar with how it looks.</li>
 <li>If you don’t work with data in sports, the data is going to be foreign to you. This is an opportunity to explain the data sets.</li>
 </ol>
-<p>One other comment I want to make is on coding in-general. It is easier to write code than to read somebody elses code. To that end, I like comments. While in many cases the code can act as the documentation, I like to add explicit descriptors. I don’t make them detailed. I just give you enough to know what the code block is doing. I’ll follow this practice throughout the book.</p>
+<p>One other comment I want to make is on coding in-general. It is easier to write code than to read somebody else’s code. To that end, I like comments. While in many cases the code can act as the documentation, I like to add explicit descriptors. I don’t make them detailed. I just give you enough to know what the code block is doing. I’ll follow this practice throughout the book.</p>
 <p>These data sets and the code used to create them are available in the R package <code>FOSBAAS</code> and are publicly available, so there is no reason to type any of the following sections, but suit yourself. You can download a file with all of the code in this book here: <a href="https://github.com/Justin-Watkins/FOSBAAS/blob/master/FOSBAAS_code.R" class="uri">https://github.com/Justin-Watkins/FOSBAAS/blob/master/FOSBAAS_code.R</a>.</p>
-<p>Additionally, this book will make use of a lot of libraries. you can run the following code to make sure that they are installed:</p>
+<p>Additionally, this book will make use of many of libraries. you can run the following code to make sure that they are installed:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Install libraries</span></span>
@@ -166,16 +167,17 @@
 <p>There are three main things we do with code in this book:</p>
 <ol style="list-style-type: decimal">
 <li>Write functions</li>
-<li>Appy those functions to data</li>
+<li>
+<em>Apply</em> those functions to data</li>
 <li>Graph the output</li>
 </ol>
-<p>The first data set that we will create will be related to building a model to estimate the likelihood that a season ticket holder will renew season tickets. This data is difficult to create because we need to build certain patterns into the data that build on each other. The goal of this section is to build build a function that will produce a data set on command. However, due to the fact that it builds on itself, it is difficult to generalize the function.</p>
+<p>The first data set that we will create will be related to building a model to estimate the likelihood that a season ticket holder will renew season tickets. This data is difficult to create because we need to build certain patterns into the data that build on each other. The goal of this section is to build a function that will produce a data set <em>on command</em>. Due to the fact that it builds on itself, it is difficult to generalize the function. To that end, it doesn’t demonstrate good programming practice, but it does have many elements that you will need to progress further.</p>
 <p>When we build a function, we will denote it with a prefix <em>f-underscore</em> and each word will be separated with an underscore. Columns in data sets will follow camel case (camelCase) where the first letter of each word is capitalized and there are no spaces between the words. You don’t have to do it like this, but I have found that it works for me. Whatever you do, choose one way of doing this. You’ll be glad that you did.</p>
 <p>We will begin by creating the function <code><a href="https://rdrr.io/pkg/FOSBAAS/man/f_create_lead_scoring_data.html">FOSBAAS::f_create_lead_scoring_data</a></code>. A best practice is to name a function in a way that tells you exactly what it does. If you aren’t familiar with building functions, they are easy to understand. a simple <em>function</em> that outputs a y in terms of x is a linear function where m = slope and b = the y intercept:</p>
 <p><span class="math display">\[\begin{equation}
 \ {y} = {m}{x} + {b}
 \end{equation}\]</span></p>
-<p>You can think of the functions that we will write to build our data sets in the same way. We will input a variable (or multiple variables) and the function will process the variables and output a value. An R function to output a y value for x based on a linear equation would look like this what we find here.</p>
+<p>You can think of the functions that we will write to build our data sets in the same way. We will input a variable (or multiple variables) and the function will process the variables and output a value. An R function to output a y value for x based on a linear equation would look like this.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Linear equation function</span></span>
@@ -193,7 +195,7 @@
 <span>                   slope      <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>                   yIntercept <span class="op">=</span> <span class="fl">7</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; [1] 27</span></span></code></pre></div>
-<p>Now we have a simple function that we can use to get the y value where x = 2, the slope of the line is 10, and the y intercept is 7. Input, process, output. Now that we have an understanding of the way a function works, you need a way to repetitively apply that function to data. You can do that in a lot of different ways. In most programming languages you’ll use a <code>For</code> loop. We wrapped each snippet in the <code><a href="https://rdrr.io/r/base/system.time.html">system.time()</a></code> to demonstrate differences in the speed of each operation.</p>
+<p>Now we have a simple function that we can use to get the y value where x = 2, the slope of the line is 10, and the y intercept is 7. Input, process, output. You now that you have an understanding of the way a function works, you need a way to repetitively apply that function to data. You can do that in a lot of different ways. In most programming languages you’ll use a <code>For</code> loop. We wrapped each folowing snippet in the <code><a href="https://rdrr.io/r/base/system.time.html">system.time()</a></code> function to demonstrate differences in the speed of each operation.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># fake data</span></span>
@@ -213,7 +215,7 @@
 <span><span class="op">}</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;    user  system elapsed </span></span>
-<span><span class="co">#&gt;    0.98    0.11    1.10</span></span>
+<span><span class="co">#&gt;    0.98    0.03    1.03</span></span>
 <span></span>
 <span><span class="va">line_value</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -224,7 +226,7 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[3]]</span></span>
 <span><span class="co">#&gt; [1] 37</span></span></code></pre></div>
-<p>A <code>while</code> loop does the same thing, but is open-ended and is generally used much less frequently. In python, while loops are typically discouraged.</p>
+<p>A <code>while</code> loop does the same thing, but is open-ended and is generally used much less frequently. In python, while loops are typically discouraged. However, I find them easier to read than other methods found here.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># 2. While Loop</span></span>
@@ -239,7 +241,7 @@
 <span><span class="op">}</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;    user  system elapsed </span></span>
-<span><span class="co">#&gt;    0.88    0.04    0.92</span></span>
+<span><span class="co">#&gt;    0.93    0.00    0.92</span></span>
 <span></span>
 <span><span class="va">line_value</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -250,7 +252,7 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[3]]</span></span>
 <span><span class="co">#&gt; [1] 37</span></span></code></pre></div>
-<p>A third approach, and the one that is preferred is to use an <code>apply</code> function. See <code><a href="https://rdrr.io/r/base/apply.html">?apply</a></code>. These functions might be more confusing at first, but they are useful and work much more quickly.</p>
+<p>A third approach, and the one that is preferred is to use an <code>apply</code> function. See <code><a href="https://rdrr.io/r/base/apply.html">?apply</a></code>. These functions might be more confusing at first, but they are useful and typically work much more quickly.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -260,7 +262,7 @@
 <span><span class="va">line_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="va">x</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">*</span><span class="va">m</span> <span class="op">+</span> <span class="va">b</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;    user  system elapsed </span></span>
-<span><span class="co">#&gt;    0.85    0.07    0.91</span></span>
+<span><span class="co">#&gt;    0.86    0.03    0.89</span></span>
 <span></span>
 <span><span class="va">line_value</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -281,7 +283,7 @@
 <span><span class="va">line_value</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/imap.html">imap</a></span><span class="op">(</span><span class="va">x</span>,<span class="op">~</span> <span class="va">.x</span><span class="op">*</span><span class="va">m</span> <span class="op">+</span> <span class="va">b</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;    user  system elapsed </span></span>
-<span><span class="co">#&gt;       1       0       1</span></span>
+<span><span class="co">#&gt;    0.99    0.00    0.99</span></span>
 <span></span>
 <span><span class="va">line_value</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -292,9 +294,9 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[3]]</span></span>
 <span><span class="co">#&gt; [1] 37</span></span></code></pre></div>
-<p>These are the basic tools that you will use for everything we are going to do going forward. There are also tradeoffs that you will have to consider. Speed and readability are important considerations. Ultimately, you can use whatever you feel most comfortable with.</p>
+<p>These are the basic tools that you will use for everything we are going to do going forward. There are also tradeoffs that you will nned to contemplate. Speed and readability are important considerations. Ultimately, you can use whatever you feel most comfortable with.</p>
 <p>The following sections will demonstrate the functions used to build some of the data sets that you will find in this book. We won’t go into full detail with every data set. Full documentation on them can be found in the help section of the FOSBAAS package. Additionally, we did something a little strange on this first function, we feed it other helper functions. One of the helper functions requires the use of a function as well. We won’t do this on the other data sets, but it is an important feature of R to understand. Everything you <em>do</em> in R can be based on a function, and you can use them in a similar way to <em>methods</em> in other languages.</p>
-<p>We have already built these functions. The first one simply creates data for lead scoring. Lead scoring means that we are going to use the data to predict which groups of people are more likely to purchase a ticket. We are not going to cover installing R or R studio. Use Google. It’s easy.</p>
+<p>We have already built these functions. The first one simply creates data for lead scoring. Lead scoring means that we are going to use the data to predict which groups of people are more likely to purchase a ticket.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Create lead scoring data</span></span>
@@ -311,13 +313,13 @@
 <span>                           renew <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <p>This function also accepts several arguments:</p>
 <ol style="list-style-type: decimal">
-<li>A seed variable that enables us to create reproducible data sets.</li>
+<li>A <code>seed</code> variable that enables us to create reproducible data sets.</li>
 <li>the number of rows that we want.</li>
 <li>Five functions that create tenure, spend, and ticket usage</li>
 <li>Two functions that help assign renewal</li>
 <li>A renewal argument that will produce a column indicating if the account renewed.</li>
 </ol>
-<p>If you want to see the code that this function uses, you can use the following command:</p>
+<p>If you want to see the code that this function uses, you can use the following command (Assuming you installed the package):</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># View your functions</span></span>
@@ -409,8 +411,8 @@ Figure 2.1: Data creation process
 <h3>
 <span class="header-section-number">2.2.1</span> Building our function<a class="anchor" aria-label="anchor" href="#building-our-function"><i class="fas fa-link"></i></a>
 </h3>
-<p>The following code creates a dataframe with nine columns and then assigns a list of names to each column. Think of a dataframe as an excel workbook. R uses <code>&lt;-</code> for assignment, however you can use the equals sign. We then use the <code>sapply</code> function to create a sequence of random letters and numbers to represent account ids. The apply functions are incredibly important. You can type <code><a href="https://rdrr.io/r/base/lapply.html">?sapply</a></code> into the console in R studio.</p>
-<p>This looks weird. <code>sth_data[,1]</code> references the first column in the data frame data frame[row,column]. The first argument in sapply is giving the function a list of rows to traverse. The second argument uses something called an anonymous function, which is confusing. Look it up if you want a deeper understanding of it. It will begin to make sense as you play with it. <code>paste(sample(c(0:9, LETTERS), 12, replace=TRUE),collapse = ""))</code> simply creates a random twelve digit alphanumeric string. We follow this up with assigning a season to the season column.</p>
+<p>The following code creates a <em>dataframe</em> with nine columns and then assigns a list of names to each column. Think of a dataframe as an excel workbook. R uses <code>&lt;-</code> for assignment, however you can use the <code>=</code> sign if you prefer. We then use the <code>sapply</code> function to create a sequence of random letters and numbers to represent account ids. The apply functions are incredibly important. You can type <code><a href="https://rdrr.io/r/base/lapply.html">?sapply</a></code> into the console in R studio if you want to learn more. I have said this twice. That is because it is important.</p>
+<p>This looks weird. <code>sth_data[,1]</code> references the first column in the data frame <code>dataframe[row,column]</code>. The first argument in <code>sapply</code> is giving the function a list of rows to traverse. The second argument uses something called an anonymous function, which is confusing. Look it up if you want a deeper understanding of it. It will begin to make sense as you play with it. <code>paste(sample(c(0:9, LETTERS), 12, replace=TRUE),collapse = ""))</code> simply creates a random twelve digit alphanumeric string. We follow this up with assigning a season to the season column.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="chapter2.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------------------------------------------------</span></span>
 <span id="cb17-2"><a href="chapter2.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Create a data frame to hold our data</span></span>
 <span id="cb17-3"><a href="chapter2.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------------------------------------------------</span></span>
@@ -424,7 +426,7 @@ Figure 2.1: Data creation process
 <span id="cb17-11"><a href="chapter2.html#cb17-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">collapse =</span> <span class="st">""</span>))</span>
 <span id="cb17-12"><a href="chapter2.html#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Assign a season year to the data </span></span>
 <span id="cb17-13"><a href="chapter2.html#cb17-13" aria-hidden="true" tabindex="-1"></a>  sth_data<span class="sc">$</span>season <span class="ot">&lt;-</span> season</span></code></pre></div>
-<p>Many season ticket accounts are owned by corporations. We’ll build a list called <em>corporate</em> and sample it in order to assign a “c” for corporate or “i” for individual to each account. We use the <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> function for reproducibility. We’ll use the sample function to sample a <em>c</em> or an <em>i</em> from the list at the rate of 20% corporations and 80% individuals.</p>
+<p>Many season ticket accounts are owned by corporations. We’ll build a list called <em>corporate</em> and sample it in order to assign a “c” for corporate or “i” for individual to each account. We use the <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> function for reproducibility. We’ll use the <code>sample</code> function to sample a <em>c</em> or an <em>i</em> from the list at the rate of 20% corporations and 80% individuals using the <code>prob</code> argument.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># 4. Assign corporate or individual to each account</span></span>
@@ -437,7 +439,7 @@ Figure 2.1: Data creation process
 <span>                            <span class="fl">1</span>, </span>
 <span>                            replace <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                            prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.20</span>, <span class="fl">.80</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Season ticket holders can purchase full or partial plans. The proportions change based on if they are a corporate or individual account. These statements could have been generalized and turned into a function. However, we only had to copy-and-paste once, so we left it alone. Always look for opportunities to generalize functions. This function operates exactly the same was as the previous one.</p>
+<p>Season ticket holders can purchase full or partial plans. The proportions change based on if they are a corporate or individual account. These statements could have been generalized and turned into a function. However, we only had to copy-and-paste once, so we left it alone. Always look for opportunities to generalize functions. This function operates exactly the same way as the previous one.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># 5. Assign a plan type to each account</span></span>
@@ -459,7 +461,7 @@ Figure 2.1: Data creation process
 <span>                              <span class="fl">1</span>, </span>
 <span>                              replace <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                              prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.60</span>, <span class="fl">.40</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>To calculate the distance from the stadium we’ll leverage the <code><a href="https://rdrr.io/r/stats/Exponential.html">rexp()</a></code> function to give us an exponentially distributed list of numbers that we can modify and sample for each account. This density pattern is common in many urban areas where population density is much higher in certain centralized areas. We’ll show you how to visualize this pattern in a subsequent chapter. The outcome here is that individuals will tend to live further away than corporations.</p>
+<p>To simulate a distance from the stadium we’ll leverage the <code><a href="https://rdrr.io/r/stats/Exponential.html">rexp()</a></code> function to give us an exponentially distributed list of numbers that we can modify and sample for each account. This density pattern is common in many urban areas where population density is much higher in certain centralized areas. We’ll show you how to visualize this pattern in a subsequent chapter. The outcome here is that individuals will tend to live further away than corporations.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># 6. Calculate the distance from the stadium</span></span>
@@ -497,8 +499,8 @@ Figure 2.1: Data creation process
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">sth_data</span><span class="op">$</span><span class="va">corporate</span> <span class="op">==</span> <span class="st">"i"</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span><span class="op">)</span>, </span>
 <span>           <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">tickets</span>, <span class="fl">1</span>, replace <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>             prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">.10</span>,<span class="fl">.05</span>,<span class="fl">.40</span>,<span class="fl">.05</span>,<span class="fl">.30</span>,<span class="fl">.10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
-<p>For tenure, if we set the <code>renew</code> argument <code>= TRUE</code>, we leverage our <code>f_tenure</code> function to assign the number of years based on a list of arguments that we have created within our main function. Flow control with conditions is really important to understand. A simple way to explain them is like this: “If(some condition == TRUE), then do something. If(condition == FALSE), then do something else”. In R, == is used to compare things. = is used for assignment.</p>
-<p>In this function we use <code>mapply</code>. It works like <code>sapply</code>, but it accepts multiple arguments. We also used a <code>with</code> statement. With just means you have to type less. It tells R that everything within it belongs to one piece of data.</p>
+<p>For tenure, if we set the <code>renew</code> argument <code>= TRUE</code>, we leverage our <code>f_tenure</code> function to assign the number of years based on a list of arguments that we have created within our main function. Flow control with conditions is really important to understand. A simple way to explain them is like this: “If(some condition == TRUE), then do something. If(condition == FALSE), then do something else”. In R, <code>==</code> is used to compare things. <code>=</code> is used for assignment.</p>
+<p>In this function we use <code>mapply</code>. It works like <code>sapply</code>, but it accepts multiple arguments. We also used a <code>with</code> statement. With just means you have to type less. It tells R that everything within it belongs to one frame of data.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># 8a. Assign years the account holder has had tickets</span></span>
@@ -551,7 +553,7 @@ Figure 2.1: Data creation process
 <span>                                <span class="va">tenure</span>,</span>
 <span>                                <span class="va">avgTenure</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="va">sth_data</span><span class="op">$</span><span class="va">spend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">spend</span><span class="op">)</span> <span class="op">*</span> <span class="va">sth_data</span><span class="op">$</span><span class="va">tickets</span></span></code></pre></div>
-<p>The function <code>f_calculate_spend</code> uses the <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> function. This function accepts a mean and standard deviation argument that allows us to sample a number on a specific normal distribution. Once again, we could have generalized this function a little more, but since it’s just a helper function with one purpose we hardcoded our numbers into it.</p>
+<p>The function <code>f_calculate_spend</code> uses the <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> function. This function accepts a mean and standard deviation argument that allows us to sample a number on a specific normal distribution. Once again, we could have generalized this function a little more, but since it’s just a helper function with one purpose we hard-coded our numbers into it.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># 9b. Function to calculate spend</span></span>
@@ -576,7 +578,7 @@ Figure 2.1: Data creation process
 <span><span class="kw">else</span><span class="op">{</span><span class="va">spend</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1</span>,mean <span class="op">=</span> <span class="fl">2500</span>,sd <span class="op">=</span> <span class="fl">300</span><span class="op">)</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">}</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">spend</span><span class="op">)</span> </span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>Ticket usage represents the percentage of tickets used:</p>
+<p><em>Ticket usage</em> represents the percentage of tickets used:</p>
 <p><span class="math display">\[\begin{equation}
 \ {ticketUsage} =  {totalTicketsUsed} / {totalTickets}
 \end{equation}\]</span></p>
@@ -609,7 +611,7 @@ Figure 2.1: Data creation process
 <span>                <span class="kw">else</span><span class="op">{</span><span class="va">tu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1</span>,min <span class="op">=</span> <span class="fl">.65</span>, max <span class="op">=</span> <span class="fl">.95</span><span class="op">)</span><span class="op">}</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">tu</span><span class="op">)</span> </span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>Finally, we check the <code>renew</code> argument and if (using an <code>if</code> statement) it is true, we determine if the account renewed its tickets based on the values in the data frame <code>sth_data</code>. If <em>renew</em> = <em>F</em>, we return our dataframe without a <em>renewed</em> field.</p>
+<p>Finally, we check the <code>renew</code> argument and if (using an <code>if</code> statement) it is true, we determine if the account renewed its tickets based on the values in the dataframe <code>sth_data</code>. If <code>renew_ = _F</code>, we return our dataframe without a <em>renewed</em> field.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># 11a.Return proper data frame</span></span>
@@ -626,7 +628,7 @@ Figure 2.1: Data creation process
 <span><span class="co">#----------------------------------------------------------------- </span></span>
 <span><span class="va">f_assign_renewal</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>,<span class="va">renew</span><span class="op">)</span><span class="op">{</span></span>
 <span>  </span>
-<span>  <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">10</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.99</span>,<span class="fl">.01</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
+<span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">10</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.99</span>,<span class="fl">.01</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
 <span>  <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">9</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.98</span>,<span class="fl">.02</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
 <span>   <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">8</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.95</span>,<span class="fl">.05</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
 <span>    <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">7</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.95</span>,<span class="fl">.05</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
@@ -638,8 +640,8 @@ Figure 2.1: Data creation process
 <span>          <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.25</span>,<span class="fl">.75</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
 <span>           <span class="kw">else</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">renew</span>,<span class="fl">1</span>,prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span>,<span class="fl">.5</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p><code><a href="https://rdrr.io/pkg/FOSBAAS/man/f_renewal_assignment.html">f_renewal_assignment()</a></code> accepts <code><a href="https://rdrr.io/pkg/FOSBAAS/man/f_assign_renewal.html">f_assign_renewal()</a></code> as an argument. It does a couple of things. First, it clusters <em>ticket_usage</em> and <em>distance</em> using the <code><a href="https://rdrr.io/r/stats/kmeans.html">kmeans()</a></code> function. We’ll cover some clustering exercises in chapter <a href="chapter4.html#chapter4">4</a>. The cluster assignments are added together and biased renewals are assigned based on how high or low the number is. Higher numbers are more likely to renew. we use a while loop instead of the <code><a href="https://rdrr.io/r/base/mapply.html">mapply()</a></code> function in this example. Vectorizing the loop with an <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code> function is a better method when using <em>R</em>.</p>
-<p>This function is more complex than the others and has a dependency <code>dplyr</code>. We also call a list() which is the most used data structure in R. A list is simply an indexed array. Dataframes are collections of lists.</p>
+<p><code><a href="https://rdrr.io/pkg/FOSBAAS/man/f_renewal_assignment.html">f_renewal_assignment()</a></code> accepts <code><a href="https://rdrr.io/pkg/FOSBAAS/man/f_assign_renewal.html">f_assign_renewal()</a></code> as an argument. It does a couple of things. First, it clusters <em>ticket_usage</em> and <em>distance</em> using the <code><a href="https://rdrr.io/r/stats/kmeans.html">kmeans()</a></code> function. We’ll cover some clustering exercises in chapter <a href="chapter4.html#chapter4">4</a>. The cluster assignments are added together and biased renewals are assigned based on how high or low the number is. Higher numbers are more likely to renew. We use a <code>while</code> loop instead of the <code><a href="https://rdrr.io/r/base/mapply.html">mapply()</a></code> function in this example. Vectorizing the loop with an <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code> function is a better method when using <em>R</em>.</p>
+<p>This function is more complex than the others and has a dependency <code>dplyr</code>. We also call a <code><a href="https://rdrr.io/r/base/list.html">list()</a></code> which is the most used data structure in R. A list is simply an indexed array. Dataframes are collections of lists.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># 11c.Calculate renewal percentage</span></span>
@@ -768,8 +770,8 @@ Figure 2.1: Data creation process
 </tr>
 </tbody>
 </table></div>
-<p>This is a typical data set that you would find in the wild. The data is also beautiful. This is not something that you typically find. We’ll discuss what to do with incomplete data and other problems further into the book.</p>
-<p>We can now use this function to produce as many different data sets as we would like.We’ll follow this same procedure of building helper functions to build our other data sets.</p>
+<p>This is a typical data set that you would find in the wild. The data is also beautiful. By beautiful I mean that it isn’t missing features and will be easy to prep for analysis. This is not something that you typically find. We’ll discuss what to do with incomplete data and other problems further into the book.</p>
+<p>We can now use this function to produce as many different data sets as we would like. We’ll follow this same procedure of building helper functions to build our other data sets.</p>
 </div>
 </div>
 <div id="simulating-operations-data" class="section level2" number="2.3">
@@ -781,7 +783,7 @@ Figure 2.1: Data creation process
 <h3>
 <span class="header-section-number">2.3.1</span> Ticket scans<a class="anchor" aria-label="anchor" href="#ticket-scans"><i class="fas fa-link"></i></a>
 </h3>
-<p>First we can build a simple function to help us build a parabola. This function builds a parabola that has an x intercept at x = 1 and x = 300. These points will refer to the number of observations that we will make in Chapter <a href="chapter10.html#chapter10">10</a>. All we are doing is building a quadratic function that spits out a y value for a value of x. This function takes the familiar form of a quadratic function:</p>
+<p>First we can build a simple function to help us build a parabola. This function builds a parabola that has an x intercept at <code>x = 1</code> and <code>x = 300</code>. These points will refer to the number of observations that we will make in Chapter <a href="chapter10.html#chapter10">10</a>. All we are doing is building a quadratic function that spits out a y value for a value of x. This function takes the familiar form of a quadratic function:</p>
 <p><span class="math display">\[\begin{equation}
 \ {f(x)} = {ax^2} + {bx} + c
 \end{equation}\]</span></p>
@@ -794,7 +796,7 @@ Figure 2.1: Data creation process
 <span>  <span class="va">z</span> <span class="op">&lt;-</span> <span class="va">a</span><span class="op">*</span><span class="op">(</span><span class="va">j</span><span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">301</span><span class="op">*</span><span class="va">j</span> <span class="op">+</span> <span class="fl">300</span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>We can then build a function to create any number of data sets. This function will calculate the number of scans per increment on a normal distribution.</p>
+<p>We can then build a function to create many different data sets. This function will calculate the number of scans per increment on a normal distribution.</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Function to return a scans data frame</span></span>
@@ -861,7 +863,7 @@ Figure 2.1: Data creation process
 </tr>
 </tbody>
 </table></div>
-<p>This tells you the number of scans that happened in one minute increments on a particular data.</p>
+<p>This tells you the number of scans that happened in one minute increments on a particular event.</p>
 </div>
 </div>
 <div id="simulating-and-understanding-ticketing-data-sets" class="section level2" number="2.4">
@@ -869,7 +871,7 @@ Figure 2.1: Data creation process
 <span class="header-section-number">2.4</span> Simulating and understanding ticketing data sets<a class="anchor" aria-label="anchor" href="#simulating-and-understanding-ticketing-data-sets"><i class="fas fa-link"></i></a>
 </h2>
 <p>Ticketing data seems like it should be relatively straight-forward. It isn’t. There is a lot of complexity. The environment is very dynamic, and in some cases we can get into big-data territory. For the context of this book, we stay away from big-data problems. Many big-data problems are nothing more than small-data problems in disguise. Because of the nature of sports, three years of data is likely enough to do everything that we will need.</p>
-<p>We’ll begin by simulating three seasons worth of data. For simplicities sake, we’ll transform the data into a format that will be useful for the applications we’ll be demonstrating throughout the book. There are four features of this data that are the most important:</p>
+<p>We’ll begin by simulating three seasons worth of data. For the sake of simplicity, we’ll transform the data into a format that will be useful for the applications we’ll be demonstrating throughout the book. There are four features of this data that are the most important:</p>
 <ul>
 <li>Customer details and demographics</li>
 <li>Ticket purchases (including secondary market purchases)</li>
@@ -887,7 +889,7 @@ Figure 2.1: Data creation process
 <h3>
 <span class="header-section-number">2.5.1</span> Function to manually bias our season data<a class="anchor" aria-label="anchor" href="#function-to-manually-bias-our-season-data"><i class="fas fa-link"></i></a>
 </h3>
-<p>This function (<em>f_simulate_sales</em>) modifies certain characteristics we’ll use to forecast sales later in the book. It is creating distributions of numbers that will be used to place our variables on a defined range of possibilities. Instead of walking through the code, I’ll just tell you what it does:</p>
+<p>This function <code>f_simulate_sales</code> modifies certain characteristics we’ll use to forecast sales later in the book. It is creating distributions of numbers that will be used to place our variables on a defined range of possibilities. Instead of walking through the code this time, I’ll just tell you what it does:</p>
 <ol style="list-style-type: decimal">
 <li>Creates a base attendance for each team. For instance, if we play BOS, CHC, NYY, LAD, or STL we get the highest sales base.</li>
 <li>If the day of the week falls on the weekend the sales base is higher than a weekday.</li>
@@ -897,7 +899,7 @@ Figure 2.1: Data creation process
 <li>If it is opening day, sales are higher.</li>
 <li>If there is a bobblehead, sales are higher</li>
 </ol>
-<p>This function that creates a pattern in the ticket sales data based on the averages of normal distributions. The entire function is a little complex, so instead of showing everything we’ll simply talk about it a little and show you the results. You can access the function through the FOSBAAS package.</p>
+<p>This function creates a pattern in the ticket sales data based on the averages of normal distributions. You can access the function through the FOSBAAS package.</p>
 <p>This function accepts several arguments. One of them is the function <code>f_simulate_sales</code>. It asks for three random numbers, three modifiers which are simply coefficients to bias the results further, and a season.</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1008,7 +1010,7 @@ Figure 2.1: Data creation process
 <li>the number of ticket sales</li>
 <li>the season year</li>
 </ul>
-<p>This is fine for a base package. When modeling you can obviously go much deeper and include statistics such as Las Vegas odds for the playoffs, more granular promotional data, and many others. We are ignoring the current divisional structure here for simplicities sake. Structuring a calendar is a complex task that involves many factors that we aren’t considering such as:</p>
+<p>This is fine for a base package. When modeling you can obviously go much deeper and include statistics such as <em>Las Vegas odds</em> for the playoffs, more granular promotional data, and many others. We are ignoring the current divisional structure here for the sake of simplicity. Structuring a calendar is a complex task that involves many factors that we aren’t considering such as:</p>
 <ul>
 <li>Travel time</li>
 <li>Restrictions based on the collective bargaining agreement</li>
@@ -1073,7 +1075,7 @@ Figure 2.1: Data creation process
 <h3>
 <span class="header-section-number">2.5.2</span> Simulating customer data<a class="anchor" aria-label="anchor" href="#simulating-customer-data"><i class="fas fa-link"></i></a>
 </h3>
-<p>Let’s begin by creating a customer data set. This data will be used throughout the book. This data set is simply a customer id and a name. We’ll make up some names for each id. We built our list of names from a couple of government websites <span class="citation">(<a href="references.html#ref-SSA2020" role="doc-biblioref">ssa 2020</a>)</span> and <span class="citation">(<a href="references.html#ref-Census2020" role="doc-biblioref">Census 2020</a>)</span>.</p>
+<p>This data set is simply a customer id and a name. We’ll make up some names for each id. We built our list of names from a couple of government websites <span class="citation">(<a href="references.html#ref-SSA2020" role="doc-biblioref">ssa 2020</a>)</span> and <span class="citation">(<a href="references.html#ref-Census2020" role="doc-biblioref">Census 2020</a>)</span>.</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">customer_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/customer_data.html">customer_data</a></span></span></code></pre></div>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
@@ -1158,7 +1160,7 @@ Figure 2.1: Data creation process
 <li>A modeled cluster field</li>
 <li>The price sold on the secondary market</li>
 </ul>
-<p>A completely clean data set like this is unlikely to be encountered outside of <em>the lab</em>. In reality, customer data will be fraught with duplication and other problems. This data is already transformed. In reality, you would have to join a few tables to produce a data set that looks like this.</p>
+<p>A completely clean data set like this is unlikely to be encountered outside of <em>the lab</em>. In reality, customer data will be fraught with duplication and other problems. This data is already transformed. In practice you would have to join a few tables to produce a data set that looks like this.</p>
 </div>
 </div>
 <div id="simulating-demographic-data" class="section level2" number="2.6">
@@ -1182,13 +1184,14 @@ Figure 2.1: Data creation process
 <li>marital status</li>
 <li>ethnicity</li>
 <li>children living in the household</li>
+<li>The county where the customer lives</li>
 </ul>
 </div>
 <div id="simulating-survey-data" class="section level2" number="2.7">
 <h2>
 <span class="header-section-number">2.7</span> Simulating survey data<a class="anchor" aria-label="anchor" href="#simulating-survey-data"><i class="fas fa-link"></i></a>
 </h2>
-<p>We’ll use an example of survey data to construct a specific segmentation scheme based on a factor analysis. We’ll base some of this analysis on an example from Chapman and Feit’s excellent”R for Marketing Research and Analytics” <span class="citation">(<a href="references.html#ref-Chapman-Feit2015" role="doc-biblioref">Chris Chapman 2015</a>)</span>. We’ll cover survey construction in a later chapter.</p>
+<p>We’ll use an example of survey data to construct a specific segmentation scheme based on a factor analysis. We’ll base some of this analysis on an example from Chapman and Feit’s excellent “R for Marketing Research and Analytics” <span class="citation">(<a href="references.html#ref-Chapman-Feit2015" role="doc-biblioref">Chris Chapman 2015</a>)</span>. We’ll cover survey construction in a later chapter.</p>
 <div id="perceptual-data" class="section level3" number="2.7.1">
 <h3>
 <span class="header-section-number">2.7.1</span> Perceptual data<a class="anchor" aria-label="anchor" href="#perceptual-data"><i class="fas fa-link"></i></a>
@@ -1299,7 +1302,7 @@ Figure 2.1: Data creation process
 <span><span class="va">vw_data</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">60</span>,<span class="fl">15</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span></span>
 <span><span class="va">vw_data</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">50</span>,<span class="fl">10</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span></span>
 <span><span class="va">vw_data</span><span class="op">[</span>,<span class="fl">6</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">160</span>,<span class="fl">20</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span></span></code></pre></div>
-<p>A Van Westendorp<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Van_Westendorp%27s_Price_Sensitivity_Meter" class="uri"&gt;https://en.wikipedia.org/wiki/Van_Westendorp%27s_Price_Sensitivity_Meter&lt;/a&gt;&lt;/p&gt;'><sup>24</sup></a> analysis asks the respondent to answer a series of questions about a product related to their perception of the price. The questions would take the following form:</p>
+<p>A Van Westendorp<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Van_Westendorp%27s_Price_Sensitivity_Meter" class="uri"&gt;https://en.wikipedia.org/wiki/Van_Westendorp%27s_Price_Sensitivity_Meter&lt;/a&gt;&lt;/p&gt;'><sup>26</sup></a> analysis asks the respondent to answer a series of questions about a product related to their perception of the price. The questions would take the following form:</p>
 <ol style="list-style-type: decimal">
 <li>At what price would you consider the product to be so expensive that you would not consider buying it? (Too expensive)</li>
 <li>At what price would you consider the product to be priced so low that you would feel the quality couldn’t be very good? (Too cheap)</li>
@@ -1384,13 +1387,13 @@ Figure 2.1: Data creation process
 <h2>
 <span class="header-section-number">2.8</span> Housing your data and functions in a package<a class="anchor" aria-label="anchor" href="#housing-your-data-and-functions-in-a-package"><i class="fas fa-link"></i></a>
 </h2>
-<p>While this book isn’t meant to be an expose on how to use the R language, R has some great features for analytic work that are worth exploring. They will make our lives easier as we move through the subsequent chapters. The data in this book can be found in the package FOSBAAS and is located here: <a href="https://github.com/Justin-Watkins/FOSBAAS_Package.git" class="uri">https://github.com/Justin-Watkins/FOSBAAS_Package.git</a>. Analyitical work tends to be repetitive and housing your functions in a package will make your life easier. There are many resources available that make building your own package easy and we’ll cover the basics here.</p>
-<p>There are two packages that will make your life building packages really simple: devtools <span class="citation">(<a href="references.html#ref-R-devtools" role="doc-biblioref">Wickham, Hester, et al. 2022</a>)</span> and roxygen <span class="citation">(<a href="references.html#ref-R-roxygen2" role="doc-biblioref">Wickham, Danenberg, et al. 2022</a>)</span>. There are also numerous resources on how to build your own package. Rstudio even has some built-in-tools that makes this process even easier. I want to demonstrate this process because it is really easy and is incredibly useful.</p>
+<p>While this book isn’t meant to be an expose on how to use the R language, R has some great features for analytic work that are worth exploring. They will make our lives easier as we move through the subsequent chapters. Analyitical work tends to be repetitive and housing your functions in a package will make your life easier and worth living. There are many resources available that make building your own package easy and we’ll cover the basics here.</p>
+<p>There are two packages that will make building packages really simple: <code>devtools</code> <span class="citation">(<a href="references.html#ref-R-devtools" role="doc-biblioref">Wickham, Hester, et al. 2022</a>)</span> and <code>roxygen</code> <span class="citation">(<a href="references.html#ref-R-roxygen2" role="doc-biblioref">Wickham, Danenberg, et al. 2022</a>)</span>. There are also numerous resources on how to build your own package. Rstudio even has some built-in-tools that makes this process even easier. I want to demonstrate this process because it is really easy and is incredibly useful.</p>
 <div id="building-a-simple-package" class="section level3" number="2.8.1">
 <h3>
 <span class="header-section-number">2.8.1</span> Building a simple package<a class="anchor" aria-label="anchor" href="#building-a-simple-package"><i class="fas fa-link"></i></a>
 </h3>
-<p>You’ll want to install RStudio and open a new R file. Creating a basic package only takes a few steps:</p>
+<p>You’ll want to open RStudio and create a new R file. Creating a basic package only takes a few steps:</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Step 1: Download the utility packages</span></span>
