@@ -1089,7 +1089,7 @@ freq_table$pred_gam <- predict(fit_gm)
 
 Keep in mind that if you fit a polynomial with more than three degrees you are asking for trouble. I am doing it here to demonstrate how good it might look, but it is a bad idea. You are asking for an unpredictable model. Don't do it. 
 
-To fit a logit curve we'll have to do something a little differently. We'll use the _SSlogis_ function from the _stats_ package to estimate starting points for our curve. This is a useful function, so keep it in mind.
+To fit a logit curve we'll have to do something a little differently. We'll use the `SSlogis` function from the `stats` package to estimate starting points for our curve. This is a useful function, so keep it in mind.
 
 
 ```r

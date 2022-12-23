@@ -62,7 +62,7 @@ graphics_theme_1 <- ggplot2::theme() +
                                          colour   = "grey99"))
 ```
 
-The object __graphics_theme_1__ will be used on all of our subsequent graphs. It will keep them looking consistent. You can easily adjust any element by simply adding it to your plot after the theme. That will override our graphics theme and illustrates some of the elegence of the paradigm.
+The object `graphics_theme_1` will be used on all of our subsequent graphs. It will keep them looking consistent. You can easily adjust any element by simply adding it to your plot after the theme. That will override our graphics theme and illustrates some of the elegance of the paradigm.
 
 
 ```r

@@ -1,7 +1,7 @@
 --- 
 title: "Fundamentals of Sports Business Analytics and Strategy"
 author: "Justin Watkins"
-date: "2022-12-22"
+date: "2022-12-23"
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: yes
@@ -52,7 +52,7 @@ Additionally, I hope to expose you to a lot of reading material and concepts. In
 
 Furthermore, I would like to teach you a little bit about the main business functions of a professional sports team. Sports is a unique business. It's fortunes are often outside of the control of most of the employees. Your strategies need to reflect this fact. If you don't think your efforts to sell tickets are going to be effective, why do them? This is where strategy comes into play. I don't believe sports teams should think in one-year increments, but that is often what happens. For instance, putting together a sales and marketing plan for one season ignores the inevitable perturbations in team performance. If you know that the team is going to be dismantled in a year, how does that change your strategy?  
 
-We are also going to frame business strategy in the context of a club's core business. Strategy means all kinds of different things. In the context of a club it could mean your plan to achieve a goal of \$x valuation. Sports clubs act a little differently than other assets. There are about 120 major professional sports teams in the United States. However, there are significantly more billionaires. Additionally, there has been a rapid proliferation of SPACs designed to invest directly into teams. Valuations are begining to reach such levels that a single owner may soon be a dinosaur. That will change the way these clubs are ran. A club is worth whatever some tech oligarch, hedge-fund managing pirate, or real-state heir, company, or consortium wants to pay. They are not necessarily worth a discounted cash flow based on revenue. 
+We are also going to frame business strategy in the context of a club's core business. Strategy means all kinds of different things. In the context of a club it could mean your plan to achieve a goal of \$x valuation. Sports clubs act a little differently than other assets. There are about 120 major professional sports teams in the United States. However, there are significantly more billionaires. Additionally, there has been a rapid proliferation of SPACs designed to invest directly into teams. Valuations are beginning to reach such levels that a single owner may soon be a dinosaur. That will change the way these clubs are ran. A club is worth whatever some tech oligarch, hedge-fund managing pirate, or real-state heir, company, or consortium wants to pay. They are not necessarily worth a discounted cash flow based on revenue. 
 
 Another important note is that although interesting, this book isn't about corporate _strategy_. We aren't going to talk about setting up shell companies, owning different parts of the value chain, human resources structure, shady finance and accounting, new business opportunities and extensions, or the agency agreements that make these businesses function. We are going to take a close look at the strategy that makes the wheels turn where dollars are exchanged between the club and its fans.
 

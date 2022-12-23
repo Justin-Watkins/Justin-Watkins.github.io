@@ -38,7 +38,7 @@ We leveraged R for this book. It is relatively simplistic on the outside relativ
 Additionally, I recommend using code instead of a point-and-click tool. Code demonstrates exactly what you have done and is easy to communicate to anyone with a knowledge of the language. It will make your life easier even if it makes it more difficult in the beginning. The best thing about R is that there has been a huge user base over the years and there are many resources that you can leverage to learn what it can do. Ultimately, the decision on what tool to use needs to be driven by what you want to get out it. Are you prototyping or do you need to operationalize your code? Are you dealing with huge datasets? Do you want something built for speed or comfort? I am not going to cover anything about the language in this book. There are just too many resources available that will do a better job than me. Here are my basic recommendations if you would like to use R:
 
 1. Get and IDE that you like. RStudio is currently the best choice for R for a number of reasons.
-2. Download R [@R-base]. It works on all major platforms and use your favorite search engine to find some free classes on how to use it. There are hundreds of how-tos available online. You can also purchase any number of books that will teach you how the language works. My favorite is "Advanced R" [@Wickham2014] and I highly recommend it as a must-have reference book. 
+2. Download R [@R-base].^[https://posit.co/download/rstudio-desktop/] It works on all major platforms and use your favorite search engine to find some free classes on how to use it. There are hundreds of how-tos available online. You can also purchase any number of books that will teach you how the language works. My favorite is "Advanced R" [@Wickham2014] and I highly recommend it as a must-have reference book. 
 3. Practice it! It doesn't take long to get over-the-hump in terms of getting some functional fluency. I consider it similar to playing an instrument. "Flight of the bumblebee" ^[Flight of the Bumblebee by Rimsky-Korsakov, 1900. If you aren't familiar with this song, look it up] doesn't need to be the first song that you learn on piano. Start simple and build on your knowledge. You will eventually develop an intuitive understanding of what your tool can do. 
 
 
@@ -56,7 +56,7 @@ Some of the following sections will demonstrate how the datasets for this book w
 
 One other comment I want to make is on coding in-general. It is easier to write code than to read somebody elses code. To that end, I like comments. While in many cases the code can act as the documentation, I like to add explicit descriptors. I don't make them detailed. I just give you enough to know what the code block is doing. I'll follow this practice throughout the book.
 
-These data sets and the code used to create them are available in the R package _FOSBAAS_ and are publicly available, so there is no reason to type any of the following sections, but suit yourself. You can download a file with all of the code in this book here: https://github.com/Justin-Watkins/FOSBAAS/blob/master/FOSBAAS_code.R. 
+These data sets and the code used to create them are available in the R package `FOSBAAS` and are publicly available, so there is no reason to type any of the following sections, but suit yourself. You can download a file with all of the code in this book here: https://github.com/Justin-Watkins/FOSBAAS/blob/master/FOSBAAS_code.R. 
 
 Additionally, this book will make use of a lot of libraries. you can run the following code to make sure that they are installed:
 
@@ -66,14 +66,13 @@ Additionally, this book will make use of a lot of libraries. you can run the fol
 # Install libraries
 #-----------------------------------------------------------------
 libraries <- 
-  c('ggplot2', 'dplyr','Hmisc','tidyverse','scales','stargazer',
-    'xtable','psych','Hmisc','RColorBrewer','knitr',
-    'shiny', 'Rcpp','rpart','rpart.plot','devtools','roxygen2',
-    'reticulate','caret','nnet','viridis','mlr','tidymodels',
-    'data.table','car','pROC','mice','lubridate','nFactors',
-    'GPArotation','mlr3','shiny','reshape2','data.table','ranger',
-    'rsample','pwr','AlgDesign','anacor','mgcv','forcats','pscl',
-    'plyr','tibble','scales','poLCA','pricesensitivitymeter')
+c('AlgDesign','anacor','car','caret','data.table','devtools','dplyr','forcats',
+  'ggplot2','GPArotation','Hmisc','knitr','lubridate','maps','mgcv','mice',
+  'mlr','mlr3','nFactors','nnet','plyr','poLCA','pricesensitivitymeter','pROC',
+  'pscl','psych','purrr','pwr','ranger','RColorBrewer','Rcpp','reshape2',
+  'reticulate','roxygen2','rpart','rpart.plot','rsample','scales','shiny',
+  'stargazer','stats','tibble','tidymodels','tidyr','tidyverse','viridis',
+  'xtable')
 
 install.packages(setdiff(libraries, 
                          rownames(installed.packages()))) 
@@ -94,7 +93,7 @@ The first data set that we will create will be related to building a model to es
 
 When we build a function, we will denote it with a prefix _f-underscore_ and each word will be separated with an underscore. Columns in data sets will follow camel case (camelCase) where the first letter of each word is capitalized and there are no spaces between the words. You don't have to do it like this, but I have found that it works for me. Whatever you do, choose one way of doing this. You'll be glad that you did. 
 
-We will begin by creating the function _FOSBAAS::f_create_lead_scoring_data_. A best practice is to name a function in a way that tells you exactly what it does. If you aren't familiar with building functions, they are easy to understand. a simple _function_ that outputs a y in terms of x is a linear function where m = slope and b = the y intercept:
+We will begin by creating the function `FOSBAAS::f_create_lead_scoring_data`. A best practice is to name a function in a way that tells you exactly what it does. If you aren't familiar with building functions, they are easy to understand. a simple _function_ that outputs a y in terms of x is a linear function where m = slope and b = the y intercept:
 
 \begin{equation}
 \ {y} = {m}{x} + {b}
@@ -127,7 +126,7 @@ f_linear_equation( x          = 2,
 ```
   
 
-Now we have a simple function that we can use to get the y value where x = 2, the slope of the line is 10, and the y intercept is 7. Input, process, output. Now that we have an understanding of the way a function works, you need a way to repetitively apply that function to data. You can do that in a lot of different ways. In most programming languages you'll use a _For_ loop. We wrapped each snippet in the _system.time()_ to demonstrate differences in the speed of each operation. 
+Now we have a simple function that we can use to get the y value where x = 2, the slope of the line is 10, and the y intercept is 7. Input, process, output. Now that we have an understanding of the way a function works, you need a way to repetitively apply that function to data. You can do that in a lot of different ways. In most programming languages you'll use a `For` loop. We wrapped each snippet in the `system.time()` to demonstrate differences in the speed of each operation. 
 
 
 ```r
@@ -149,7 +148,7 @@ for(i in x){
 }
 )
 #>    user  system elapsed 
-#>    1.05    0.00    1.04
+#>    0.98    0.11    1.10
 
 line_value[1:3]
 #> [[1]]
@@ -162,7 +161,7 @@ line_value[1:3]
 #> [1] 37
 ```
 
-A _while_ loop does the same thing, but is open-ended and is generally used much less frequently. In python, while loops are typically discouraged. 
+A `while` loop does the same thing, but is open-ended and is generally used much less frequently. In python, while loops are typically discouraged. 
 
 
 
@@ -180,7 +179,7 @@ while(i <= length(x)){
 }
 )
 #>    user  system elapsed 
-#>    0.94    0.00    0.94
+#>    0.88    0.04    0.92
 
 line_value[1:3]
 #> [[1]]
@@ -192,7 +191,7 @@ line_value[1:3]
 #> [[3]]
 #> [1] 37
 ```
-A third approach, and the one that is preferred is to use an _apply_ function. See _?apply_. These functions might be more confusing at first, but they are useful and work much more quickly. 
+A third approach, and the one that is preferred is to use an `apply` function. See `?apply`. These functions might be more confusing at first, but they are useful and work much more quickly. 
 
 
 ```r
@@ -204,7 +203,7 @@ system.time(
 line_value <- lapply(1:length(x), function(i) x[i]*m + b)
 )
 #>    user  system elapsed 
-#>    0.83    0.07    0.90
+#>    0.85    0.07    0.91
 
 line_value[1:3]
 #> [[1]]
@@ -216,7 +215,7 @@ line_value[1:3]
 #> [[3]]
 #> [1] 37
 ```
-The apply functions have even been improved upon in specific ways. The following snippet uses the _imap_ function from the _purrr_ [@R-purrr] package. 
+The apply functions have even been improved upon in specific ways. The following snippet uses the `imap` function from the `purrr` [@R-purrr] package. 
 
 
 ```r
@@ -554,7 +553,7 @@ Similarly to the previous examples, we are building ticket usage in a particular
   sth_data$ticketUsage <- as.vector(ticket_use)
 ```
 
-The function `f_calculate_ticket_use` uses the `runif()` function that produces a random number on a uniform distribution based on a minimum and maximum value. These numbers are also hardcoded so that we can produce specific patterns.
+The function `f_calculate_ticket_use` uses the `runif()` function that produces a random number on a uniform distribution based on a minimum and maximum value. These numbers are also hard-coded so that we can produce specific patterns.
 
 
 ```r
@@ -570,7 +569,7 @@ if(corporate == "c" & distance <= avgDist){
           tu <- runif(1,min = .65, max = .9)}
             else if(corporate == "i" & distance >= avgDist){
               tu <- runif(1,min = .55, max = .85)}
-else{tu <- runif(1,min = .65, max = .95)}
+                else{tu <- runif(1,min = .65, max = .95)}
   return(tu) 
 }
 ```
@@ -589,7 +588,7 @@ Finally, we check the `renew` argument and if (using an `if` statement) it is tr
   }else{ return(sth_data)}
 ```
 
-The following statement uses two functions: _f_assign_renewal()_ and _f_renewal_assignment()_, which is a little confusing. _f_assign_renewal()_ is a helper function that assigns a renewal value based on a cluster assignment designated in _f_renewal_assignment()_.
+The following statement uses two functions: `f_assign_renewal()` and `f_renewal_assignment()`, which is a little confusing. `f_assign_renewal()` is a helper function that assigns a renewal value based on a cluster assignment designated in `f_renewal_assignment()`.
 
 
 ```r
@@ -608,13 +607,13 @@ f_assign_renewal <- function(x,renew){
         else if(x == 3){sample(renew,1,prob = c(.80,.20))}
          else if(x == 2){sample(renew,1,prob = c(.30,.70))}
           else if(x == 1){sample(renew,1,prob = c(.25,.75))}
-   else{sample(renew,1,prob = c(.5,.5))}
+           else{sample(renew,1,prob = c(.5,.5))}
 }
 ```
 
-_f_renewal_assignment()_ accepts _f_assign_renewal()_ as an argument. It does a couple of things. First, it clusters _ticket_usage_ and _distance_ using the _kmeans()_ function. We'll cover some clustering exercises in chapter \@ref(chapter4). The cluster assignments are added together and biased renewals are assigned based on how high or low the number is. Higher numbers are more likely to renew. we use a while loop instead of the _mapply()_ function in this example. Vectorizing the loop with an _apply()_ function is a better method when using _R_. 
+`f_renewal_assignment()` accepts `f_assign_renewal()` as an argument. It does a couple of things. First, it clusters _ticket_usage_ and _distance_ using the `kmeans()` function. We'll cover some clustering exercises in chapter \@ref(chapter4). The cluster assignments are added together and biased renewals are assigned based on how high or low the number is. Higher numbers are more likely to renew. we use a while loop instead of the `mapply()` function in this example. Vectorizing the loop with an `apply()` function is a better method when using _R_. 
 
-This function is more complex than the others and has a dependency _dplyr_. We also call a list() which is the most used data structure in R. A list is simply an indexed array. Dataframes are collections of lists. 
+This function is more complex than the others and has a dependency `dplyr`. We also call a list() which is the most used data structure in R. A list is simply an indexed array. Dataframes are collections of lists. 
 
 
 
@@ -819,7 +818,7 @@ This function (_f_simulate_sales_) modifies certain characteristics we'll use to
 
 This function that creates a pattern in the ticket sales data based on the averages of normal distributions. The entire function is a little complex, so instead of showing everything we'll simply talk about it a little and show you the results. You can access the function through the FOSBAAS package.  
 
-This function accepts several arguments. One of them is the function _f_simulate_sales_. It asks for three random numbers, three modifiers which are simply coefficients to bias the results further, and a season.
+This function accepts several arguments. One of them is the function `f_simulate_sales`. It asks for three random numbers, three modifiers which are simply coefficients to bias the results further, and a season.
 
 
 ```r

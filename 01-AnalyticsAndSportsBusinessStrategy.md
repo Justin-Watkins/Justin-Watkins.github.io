@@ -238,7 +238,7 @@ The familiar linear equation takes the form:
 \ {y} = {m}{x} + {b}
 \end{equation}
 
-In this equation the Y is explained by x where m is equal to the slope of the line and b is equal to the y intercept. If we apply a list of x values (-5,-4,-3,-2,-1,0,1,2,3,4,5) to a linear equation with slope 2 and y-intercept of 5 we will get the graph in figure \@ref(fig:regressbb).
+In this equation the Y is explained by x where m is equal to the slope of the line and b is equal to the y intercept. If we apply a list of x values `(-5,-4,-3,-2,-1,0,1,2,3,4,5)` to a linear equation with slope 2 and y-intercept of 5 we will get the graph in figure \@ref(fig:regressbb).
 
 \begin{equation}
 \ {y} = {2}{x} + {5}
