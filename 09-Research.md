@@ -129,7 +129,7 @@ Table: (\#tab:chninespenddataview)t.test results
 |alternative |two.sided               |
 
 
-In this case we _reject the null hypothesis_ that the differences in means are zero. The alternative hypothesis is true. There are also alternatives to the base _t.test_. You also need to consider if the sample sizes are equal and that other assumptions that you are making are actually true. 
+In this case we _reject the null hypothesis_ that the differences in means are zero. The alternative hypothesis is true. There are also alternatives to the base `t.test`. You also need to consider if the sample sizes are equal and that other assumptions that you are making are actually true. 
 
 ### Sampling
 

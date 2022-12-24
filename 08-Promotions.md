@@ -338,7 +338,7 @@ This plot does a good job of discriminating between promotions. It appears that 
 
 As we have seen, regression takes some rigor to do correctly. It works best when you have a lot of data, which is a luxury that we don't tend to have in many cases. We'll go though another example, but we are going to look at our analysis in a slightly different way. We'll also use a different framework this time. Why? Why not? There are lots of ways to do the same thing in R and you will like certain ways better. 
 
-We'll use the tidymodels [@R-tidymodels] package for this exercise ^[https://www.tidymodels.org/].Tidymodels (like MLR3) It will make the preprocsssing and evaluation much simpler. We'll begin by installing our libraries and doing a little processing on the data.
+We'll use the `tidymodels` [@R-tidymodels] package for this exercise ^[https://www.tidymodels.org/]. `Tidymodels` (like MLR3) It will make the preprocsssing and evaluation much simpler. We'll begin by installing our libraries and doing a little processing on the data.
 
 
 ```r
@@ -357,7 +357,7 @@ data <- data[,c("gameNumber","team","month","weekEnd",
                 "daysSinceLastGame","promotion","ticketSales")]
 ```
 
-Again, We are going to build a linear regression model. We also know that we are interested in how much influence promotions have on ticket sales. We'll make one change to this data set with the function _f_change_order()_ to make our results easier to interpret when we complete this exercise.
+Again, We are going to build a linear regression model. We also know that we are interested in how much influence promotions have on ticket sales. We'll make one change to this data set with the function `f_change_order()` to make our results easier to interpret when we complete this exercise.
 
 
 ```r
@@ -372,7 +372,7 @@ data$promotion <- sapply(data$promotion,function(x)
                          f_change_order(x))
 ```
 
-We'll use the rsample library [@R-rsample] to build our training and test set. There are so many ways to partition data and we have used a different one every time. Find one that you like. We'll split the data with twenty-five percent going to our holdout sample. Be aware that if you try to use your model to predict sales and a value in the new data the model won't work. This can be frustrating. Just making you aware. It will happen. 
+We'll use the `rsample` library [@R-rsample] to build our training and test set. There are so many ways to partition data and we have used a different one every time. Find one that you like. We'll split the data with twenty-five percent going to our holdout sample. Be aware that if you try to use your model to predict sales and a value in the new data the model won't work. This can be frustrating. Just making you aware. It will happen. 
 
 
 ```r
@@ -385,7 +385,7 @@ train_data <- rsample::training(data_split)
 test_data  <- rsample::testing(data_split)
 ```
 
-Tidymodels leverages tidy principles and builds _recipes_ up in layers. I find this to be easier to work with than other frameworks. Pipes are just easier to read and to understand. However, programmers might find the procedural nature of them irritating. 
+`Tidymodels` leverages tidy principles and builds _recipes_ up in layers. I find this to be easier to work with than other frameworks. Pipes are just easier to read and to understand. However, programmers might find the procedural nature of them irritating. 
 
 
 
@@ -527,7 +527,7 @@ We covered a top down approach to forecasting in chapter \@ref(chapter6). How do
 - Maximizing ticket impact
 - Maximizing revenue impact 
 
-How do you know if you are making these takeoffs? Certain scenarios may make the correct decision unclear. Let's look at our example from chapter \@ref(chapter6). Now that we have confirmed that bobbleheads and concerts increase ticket sales, let's add another bobblehead. Where should we add this promotion? The event scores that we produced for the _season_2025_ data set may give us some clues. There are also many qualitative considerations that we will discuss. 
+How do you know if you are making these takeoffs? Certain scenarios may make the correct decision unclear. Let's look at our example from chapter \@ref(chapter6). Now that we have confirmed that bobbleheads and concerts increase ticket sales, let's add another bobblehead. Where should we add this promotion? The event scores that we produced for the `season_2025` data set may give us some clues. There are also many qualitative considerations that we will discuss. 
 
 Let's start by visualizing our data. Where do the boundaries exist between event scores? We clustered this data in section and will use these clusters to identify candidates for a promotion. 
 
@@ -565,7 +565,7 @@ es_box <-
 </div>
 
 
-If our goal is to maximize ticket sales we shouldn't plan one of these promotions on games where there is a possibility that the game sells out. If a sellout is within the confidence interval for a sellout it should be disqualified from consideration. Let's take a look at some candidate dates. We'll assume that we want to maximize sales. We decided to go this route because we believe the ancillary revenue associated with concessions and retail will make up for the ticket premium we are forgoing. However, we are also looking for games that have more potential in terms higher prices. Let's start by identifying the borders of our clusters. An easy way to do this is to use the _duplicated_ function. We'll reverse the output so that it makes more sense for our header.
+If our goal is to maximize ticket sales we shouldn't plan one of these promotions on games where there is a possibility that the game sells out. If a sellout is within the confidence interval for a sellout it should be disqualified from consideration. Let's take a look at some candidate dates. We'll assume that we want to maximize sales. We decided to go this route because we believe the ancillary revenue associated with concessions and retail will make up for the ticket premium we are forgoing. However, we are also looking for games that have more potential in terms higher prices. Let's start by identifying the borders of our clusters. An easy way to do this is to use the `duplicated` function. We'll reverse the output so that it makes more sense for our header.
 
 
 ```r

@@ -6,13 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 4 Structuring analytics projects | Fundamentals of Sports Business Analytics and Strategy</title>
 <meta name="author" content="Justin Watkins">
+<meta name="description" content="Framing projects tends to be an overlooked component of analytics exercises. I break these projects into six parts each of which each have several sub-components: Defining a measurable goal or...">
 <meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Chapter 4 Structuring analytics projects | Fundamentals of Sports Business Analytics and Strategy">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://justin-watkins.github.io/chapter4.html">
 <meta property="og:image" content="https://justin-watkins.github.io/images/cover.png">
+<meta property="og:description" content="Framing projects tends to be an overlooked component of analytics exercises. I break these projects into six parts each of which each have several sub-components: Defining a measurable goal or...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 4 Structuring analytics projects | Fundamentals of Sports Business Analytics and Strategy">
+<meta name="twitter:description" content="Framing projects tends to be an overlooked component of analytics exercises. I break these projects into six parts each of which each have several sub-components: Defining a measurable goal or...">
 <meta name="twitter:image" content="https://justin-watkins.github.io/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -46,9 +49,6 @@
     }
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Framing projects tends to be an overlooked component of analytics exercises. While we aren’t going to overlook it here, we are only going to give this subject a cursory nod. I break these projects...">
-<meta property="og:description" content="Framing projects tends to be an overlooked component of analytics exercises. While we aren’t going to overlook it here, we are only going to give this subject a cursory nod. I break these projects...">
-<meta name="twitter:description" content="Framing projects tends to be an overlooked component of analytics exercises. While we aren’t going to overlook it here, we are only going to give this subject a cursory nod. I break these projects...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -94,7 +94,7 @@
 <h1>
 <span class="header-section-number">4</span> Structuring analytics projects<a class="anchor" aria-label="anchor" href="#chapter4"><i class="fas fa-link"></i></a>
 </h1>
-<p>Framing projects tends to be an overlooked component of analytics exercises. While we aren’t going to overlook it here, we are only going to give this subject a cursory nod. I break these projects into six parts each of which each have several sub-components:</p>
+<p>Framing projects tends to be an overlooked component of analytics exercises. I break these projects into six parts each of which each have several sub-components:</p>
 <ol style="list-style-type: decimal">
 <li>Defining a measurable goal or hypothesis</li>
 <li>Data collection and management</li>
@@ -111,15 +111,14 @@
 <li>Strategy implementation</li>
 <li>Evaluation and control</li>
 </ul>
-<p>The basic premise is always the same. You create some objectives based on environmental considerations, build some programs to implement those objectives, and you monitor performance. Honestly, it isn’t difficult but nobody does it. Additionally, we are talking about strategic problem solving here.</p>
-<p>Corporate strategy involving organizational vision and mission is a separate problem. This sort of strategy is as much an exercise in politics and practicality as anything else. I consider it a separate field.</p>
+<p>The basic premise is always the same. You create some objectives based on environmental considerations, build some programs to implement those objectives, and you monitor performance. Honestly, it isn’t difficult but the process tends to be overlooked. Larger projects can smother and die under their own weight. A good plan can help keep them breathing.</p>
 <div id="defining-goals" class="section level2" number="4.1">
 <h2>
 <span class="header-section-number">4.1</span> Defining goals<a class="anchor" aria-label="anchor" href="#defining-goals"><i class="fas fa-link"></i></a>
 </h2>
-<p>Defining your goals can be easy or difficult. You’ll likely need to be able to translate your product into an operational tactic that can be understood and leveraged by a functional unit of the business. For instance, a Sales team may say that they want to <em>sell more tickets and they need more leads</em>. A marketing team may say that they want to understand <em>return on marketing investment</em>. How do you translate these statements into a practical solution? Each request contains a number of loaded questions.</p>
+<p>Defining your goals can be easy or difficult. You’ll likely need to be able to translate your product into an operational tactic that can be understood and leveraged by a functional unit of the business. For instance, a Sales team may say that they want to <em>sell more tickets and they need more leads</em>. A marketing team may say that they want to understand <em>return on marketing investment</em>. How do you translate these statements into a practical solution? Each request contains a number of questions.</p>
 <p><em>Why</em> is the most important question to answer. There are several management techniques that look for root causes. One being the aptly named “5 Whys” <span class="citation">(<a href="references.html#ref-Serrat2017" role="doc-biblioref">Serrat 2017</a>)</span>. These subjects are outside the scope of this book. The point here is that we need the context of why in order to devise a plan. You should consider this a critical component of defining a goal as a part of the <em>discovery process</em>. Let’s explore an example:</p>
-<p>Your ticket sales manager says “that they need more leads so that they can sell more season tickets.” What is this person asking? It could be any number of things and some of these <em>things</em> may have evolved from how that person is incentivized. In fact, it is interesting to think about how incentives guide behavior (see <em>Freakonomics: A rogue economist explores the hidden side of everything</em> <span class="citation">(<a href="references.html#ref-Levitt2005" role="doc-biblioref">Levitt 2005</a>)</span>. This subject is also outside the scope of this book, but it was worth mentioning. So, what might our sales manager really be saying?</p>
+<p>Your ticket sales manager says “that they need more leads so that they can sell more season tickets.” What is this person asking? It could be one of several things and some of these <em>things</em> may have evolved from how that person is incentivized. In fact, it is interesting to think about how incentives guide behavior (see <em>Freakonomics: A rogue economist explores the hidden side of everything</em> <span class="citation">(<a href="references.html#ref-Levitt2005" role="doc-biblioref">Levitt 2005</a>)</span>. What might our sales manager really be saying?</p>
 <ul>
 <li>I want to make more phone calls. The numbers of calls causes us to sell more tickets.</li>
 <li>Our current leads are not closing at the rate I need in order to hit <em>my</em> goals.</li>
@@ -127,11 +126,10 @@
 </ul>
 <p>When you put these thoughts into the context of what motivates your sales manager, this simple statement could actually be insidious:</p>
 <ul>
-<li>I need an excuse as to why I am not hitting numbers and you will be my scapegoat.</li>
-<li>I am out of ideas and because I am afraid I am going to make my guys work harder.</li>
+<li>I am out of ideas and I am going to make my guys work harder.</li>
 <li>I just want to execute my job. Just give me what I want.</li>
 </ul>
-<p>These attitudes exist in any sales organization and aren’t new. However, they are still prevelent everywhere. Let’s assume that the sales manager believes that the number of calls directly correlates to the number of tickets that are sold. Why do they think this and is this something that we can investigate? How could we do that? A simplistic method might be to look to see if the number of phone calls are correlated with sales in any particular way. There are formal and informal methods that we could use, but the easiest thing to do is to simply put this data into a couple of tables and graphs</p>
+<p>These attitudes exist in any sales organization and aren’t new. However, they are prevalent everywhere. Let’s assume that the sales manager believes that the number of calls directly correlates to the number of tickets that are sold. Why do they believe this and is this something that we can investigate? How could we do that? A simplistic method might be to look to see if the number of phone calls is correlated with sales in any particular way. There are formal and informal methods that we could use, but the easiest thing to do is to simply put this data into a couple of tables and graphs</p>
 <div id="identifying-goals" class="section level3" number="4.1.1">
 <h3>
 <span class="header-section-number">4.1.1</span> Identifying goals<a class="anchor" aria-label="anchor" href="#identifying-goals"><i class="fas fa-link"></i></a>
@@ -228,7 +226,7 @@
 </tr>
 </tbody>
 </table></div>
-<p>Why are some salespeople more effective? Perhaps someone called in and bought six of the most expensive seats and it skews the results. Are the call numbers correlated to revenue? The <em>cor</em> function will give us the correlation coefficient.</p>
+<p>Why are some salespeople more effective? Perhaps someone called in and bought six of the most expensive seats and it skews the results. Are the call numbers correlated to revenue? The <code>cor</code> function will give us the correlation coefficient.</p>
 <div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Correlation coefficient</span></span>
@@ -262,7 +260,7 @@
 Figure 4.1: Boxplot of revenue by rep
 </p>
 </div>
-<p>We can see from the boxplots in figure <a href="chapter4.html#fig:chfourboxplotone">4.1</a> that average sales by customer is fairly equivalent. However, some reps have far fewer outliers. My supposition would be that the differences we are seeing between reps are being driven by a relatively small number of sales. You can get summary stats by rep by using <em>psych::describe.by(ag_sales_data$revenue,ag_sales_data$repID)</em>.</p>
+<p>We can see from the boxplots in figure <a href="chapter4.html#fig:chfourboxplotone">4.1</a> that average sales by customer is fairly equivalent. However, some reps have far fewer outliers. My supposition would be that the differences we are seeing between reps are being driven by a relatively small number of sales. You can get summary stats by rep by using <code>psych::describe.by(ag_sales_data\$revenue,ag_sales_data\$repID)</code>.</p>
 <div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Cumulative revenue by rep by customer</span></span>
@@ -299,7 +297,7 @@ Figure 4.1: Boxplot of revenue by rep
 Figure 4.2: Cumulative revenue by rep
 </p>
 </div>
-<p>We can verify this without looking at the actual stats by looking at the jumps in these line graphs. However, we will want to take a look at some statistics to see if there is anything else we can understand. Let’s answer a few questions:</p>
+<p>We can verify this without looking at the actual stats by looking at the jumps in these line graphs. We will also want to take a look at some statistics to see if there is anything else we can understand. Let’s answer a few questions:</p>
 <ol style="list-style-type: decimal">
 <li>Are certain reps more efficient with phone calls?</li>
 <li>Are certain reps more efficient with customers?</li>
@@ -387,7 +385,7 @@ Figure 4.3: Cumulative revenue by rep
 </tr>
 </tbody>
 </table></div>
-<p>At least 50% of customers that we interacted with resulted in no revenue. The top 1% of sales resulted in over $10,000.00 in revenue and 25% of customers spend less than $2,924.00. Let’s use the <em>describe.by</em> function to isolate our top performer and bottom performer.</p>
+<p>At least 50% of customers that we interacted with resulted in no revenue. The top 1% of sales resulted in over $10,000.00 in revenue and 25% of customers spend less than $2,924.00. Let’s use the <code>describe.by</code> function to isolate our top performer and bottom performer.</p>
 <div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># description of sales</span></span>
@@ -432,35 +430,35 @@ Figure 4.3: Cumulative revenue by rep
 <ol style="list-style-type: decimal">
 <li>The number of phone calls per rep is only weakly correlated with revenue.</li>
 <li>Some reps are marginally more effective than others in terms of efficiency.</li>
-<li>Some reps sell many more high-end deals than others</li>
+<li>Some reps sell many more high-end deals than others.</li>
 </ol>
 <p>What else should we look for?</p>
 <ul>
 <li>Are more experienced reps better at closing sales?</li>
 <li>What is the origin of sales? Were these call-in?</li>
 <li>Perhaps females tend to have better luck given the demographic distribution of sales.</li>
-<li>How does seasonality impact these figures? Perhaps reps began at different times?</li>
-<li>Are there brokers hidden in these sales?</li>
+<li>How does seasonality impact these figures? Perhaps reps began working at different times?</li>
+<li>Are there professional resellers hidden in these sales?</li>
 </ul>
-<p>What have we established? If the number of calls that a rep makes is only weakly correlated to sales, your goal shouldn’t be to have the reps make more phone calls. It also shouldn’t be to add more sales reps unless perhaps the sales rep’s experience or another factor is impacting sales. These two solutions tend to be the most common solutions that you would hear, however technology is rapidly changing this mindset. A.I. technology is automating lead-warming where sales might be more about upsells than gauging or establishing interest.</p>
-<p>The point of this section is that to establish goals, you need some sort of objective justification or where those goals should be. Determine what is driving the desired outcomes before settling on a tactic. That sounds obvious, but it isn’t. The reasons could even be political.</p>
+<p>If the number of calls that a rep makes is only weakly correlated to sales, your goal shouldn’t be to have the reps make more phone calls. It also shouldn’t be to add more sales reps unless perhaps the sales rep’s experience or another factor is impacting sales. These two solutions tend to be the most common solutions that you would hear, however technology is rapidly changing this mindset. A.I. technology is automating lead-warming where sales might be more about upsells than gauging or establishing interest.</p>
+<p>The point of this section is that to establish goals, you need some sort of objective justification of what those goals should be. Determine what is driving the desired outcomes before settling on a tactic. That sounds obvious, but it isn’t. The reasons could be political. Look at what might be incentivizing the behavior.</p>
 </div>
 </div>
 <div id="collecting-data" class="section level2" number="4.2">
 <h2>
 <span class="header-section-number">4.2</span> Collecting data<a class="anchor" aria-label="anchor" href="#collecting-data"><i class="fas fa-link"></i></a>
 </h2>
-<p>There is a lot to understand about data collection. We’ll only cover a small portion here. However, you will always be forced to confront the questions of what data you need and how to acquire it. Some data is much easier to acquire than other data sets. For instance, transnational data will abound. You hopefully have access to several years of ticketing and CRM data. However, there may be problems with formatting and consistency. I would place data collection under a few headings:</p>
+<p>There is a lot to understand about data collection and you will always be forced to confront the questions of what data you need and how to acquire it. Some data is much easier to acquire than other data sets. For instance, transnational data will abound. You hopefully have access to several years of ticketing and CRM data. However, there may be problems with formatting and consistency. I would place data collection under a few headings:</p>
 <ul>
-<li>Transnational data from ticketing, CRM, or other internal systems</li>
-<li>Transnational data from external systems (perhaps you have an agency agreement for something like concessions)</li>
+<li>Transaction data from ticketing, CRM, or other internal systems</li>
+<li>Transaction data from external systems (perhaps you have an agency agreement for something like concessions)</li>
 <li>Third party data. This might include data from vendors such as Acxiom.</li>
 <li>Public data. This includes sources such as Census data or information from legal records.</li>
 <li>Internal research data. This category includes surveys and other initiatives such as competitive intelligence.</li>
 </ul>
-<p>This is also a good time to talk about how much data you may actually be lacking. A professional sports team isn’t Google, Facebook, or Amazon. These companies are able to build analytics capabilities around data in a far more sophisticated way than is possible along our vertical. What does this mean? It means that you will have to partner with these companies if you would like to take advantage of those capabilities.</p>
-<p>Additionally, there can be problems here. Each of these companies are walled-gardens. They don’t like to share. You’ll have to contend with this fact along a number of initiatives. You also need to think critically about how you are using these capabilities. If you spend money on SEM<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;search engine marketing&lt;/p&gt;"><sup>29</sup></a> you’ll want to ask yourself why. How does your market work? Are there multiple channels consumers can exploit to purchase tickets? It is easy to skew attribution. If I knew you were going to type “Game Hens tickets” into your search bar it makes it easy to attribute a sale. The question you have to ask yourself is if you should attribute that sale to your search-engine spend.</p>
-<p>Internal sources such as survey results, transaction data, interaction data through phone-calls or loyalty programs offer some degree of reliability. However, depending on your geography the legal environment may not allow you to leverage this data. In fact, there are numerous restrictions on leveraging, storing, and sharing data such as:</p>
+<p>This is also a good time to talk about how much data you may actually be lacking. A professional sports team isn’t Google, Facebook, or Amazon. These companies are able to build analytics capabilities around data in a far more sophisticated way than is possible along our vertical. You will have to partner with these companies or another third party if you would like to take advantage of those capabilities.</p>
+<p>Furthermore, each of these tech companies are walled-gardens. They don’t like to share. You’ll have to contend with this fact. You also need to think critically about how you are using these capabilities. If you spend money on SEM<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;search engine marketing&lt;/p&gt;"><sup>29</sup></a> you’ll want to ask yourself why. How does your market work? Are there multiple channels consumers can exploit to purchase tickets? It is easy to skew attribution. If I knew you were going to type “Game Hens tickets” into your search bar it makes it easy to attribute a sale to that activity. The question you have to ask yourself is if you should attribute that sale to your search-engine spend.</p>
+<p>Internal sources such as survey results, transaction data, interaction data through phone-calls, or loyalty programs offer some degree of reliability. However, depending on your geography the legal environment may not allow you to leverage this data. In fact, there are numerous restrictions on leveraging, storing, and sharing data such as:</p>
 <ul>
 <li>The California Consumer Privacy Act <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://oag.ca.gov/privacy/ccpa" class="uri"&gt;https://oag.ca.gov/privacy/ccpa&lt;/a&gt;&lt;/p&gt;'><sup>30</sup></a>
 </li>
@@ -471,8 +469,8 @@ Figure 4.3: Cumulative revenue by rep
 <li>The No-Call list <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.donotcall.gov/" class="uri"&gt;https://www.donotcall.gov/&lt;/a&gt;&lt;/p&gt;'><sup>33</sup></a>
 </li>
 </ul>
-<p>As long as you live in the United States, some or all of these laws might impact how you are able to leverage your or third party data. This list is not even comprehensive. GDRP (a European privacy law) is far reaching and does have some influence on what we are able to do in the United States. The future of commerce will undoubtedly make this arena more challenging to navigate as biometrics become more prolific.</p>
-<p>Additionally, Data is often not accurate. Where do third party data-brokers get their data? Sometimes they simply use a bank of names to determine if a person is male or female, or African American vs. Asian: Washington = African American, Yang = Asian, Lopez = LatinX. LatinX represents a special problem with culture and the notion of race. Third party brokers (such as Axiom) source their data from multiple sources and model components of it. Unless you are dealing with massive datasets (not common in sports), working with third party data can be difficult and frustrating.</p>
+<p>As long as you live in the United States, some or all of these laws might impact how you are able to leverage your or third party data. This list is not even comprehensive. GDRP (a European privacy law) is far reaching and does have some influence on what we are able to do in the United States. The future of commerce will undoubtedly make this arena more challenging to navigate as the use of biometrics become more prolific.</p>
+<p>Additionally, data is often not accurate. Where do third party data-brokers get their data? Sometimes they simply use a bank of names to determine if a person is male or female, or African American vs. Asian: Washington = African American, Wang = Asian, Lopez = LatinX. LatinX represents a special problem with culture and the notion of race. Third party brokers (such as Axiom) source their data from multiple sources and model components of it. Unless you are dealing with massive datasets (not common in sports), working with third party data can be difficult and frustrating.</p>
 <p>Internal research data may have required specific research instruments such as:</p>
 <ul>
 <li>IDI (in-depth interviews)</li>
@@ -483,7 +481,7 @@ Figure 4.3: Cumulative revenue by rep
 <li>Social listening</li>
 </ul>
 <p>These sources can become stale rather quickly. They can also be expensive to conduct and often require specialized software and skill sets.</p>
-<p>Operational data may not have a ready-made method for data collection. Let’s say that an Executive wants to understand the relationship to line-length at concession stands relative to attendance. How will you get it? Do you have cameras installed with A.I. that tracks line length? No? You’ll have to collect in manually leveraging some rubric that can be easily explained and executed by front-line staff. What might a data collection plan look like? When determining how to collect data it is useful to think about the problem inside-out. We’ll discuss this concept in more depth in chapter <a href="chapter9.html#chapter9">9</a>.</p>
+<p>Operational data may not have a ready-made method for data collection. Let’s say that an Executive wants to understand the relationship to line-length at concession stands relative to attendance. How will you get it? Do you have cameras installed with A.I. that tracks line length? No? You’ll have to collect in manually leveraging some rubric that can be easily explained and executed by front-line staff. What might a data collection plan look like? When determining how to collect data it is useful to think about the problem from inside-out. We’ll discuss this concept in more depth in chapter <a href="chapter9.html#chapter9">9</a>.</p>
 <p>The main gist is that you need to focus on a couple of things:</p>
 <ul>
 <li>What questions are you really trying to answer?</li>
@@ -491,14 +489,14 @@ Figure 4.3: Cumulative revenue by rep
 </ul>
 <p>This process can sprawl because you have to be concerned with consistency. That is where a rubric and training may come into play. We’ll give an example in chapter <a href="chapter10.html#chapter10">10</a>. Additionally, Public sources of data abound, but don’t typically offer the granularity needed to be useful for anything besides supplementary reporting. An example is census data. There are extensive APIs to access this data, but the results may not be practically useful outside of long-term planning exercises.</p>
 <p>Data collection might also involve <em>competitive intelligence</em>. An example here would be going to other venues and monitoring prices or operational tactics. Competitive intelligence may also take the form of monitoring other industries that operate in similar spaces. For instance, what can we learn about loyalty programs from a company like Starbucks? You might learn that they aren’t appropriate for you.</p>
-<p>We only touched some high-level concepts here. Just understand that data collection will require a combination of I.T. skill sets, research knowledge, and critical thinking exercises. Getting your data in the right spot will take the majority of your time. Don’t overlook it.</p>
+<p>We only touched some high-level concepts here. Just understand that data collection will require a combination of I.T. skill sets, research knowledge, and critical thinking exercises. Getting your data in the right spot will take the majority of your time. You won’t be able to overlook it.</p>
 </div>
 <div id="modeling-the-data" class="section level2" number="4.3">
 <h2>
 <span class="header-section-number">4.3</span> Modeling the data<a class="anchor" aria-label="anchor" href="#modeling-the-data"><i class="fas fa-link"></i></a>
 </h2>
-<p>Modeling the data is the fun part of working in analytics. We aren’t talking about <em>Modeling</em> data in the database sense, although structuring the data is a component of the process. We aren’t going into actually modeling the data here. I would like to speak about some of the tools. At the lower levels you will be leveraging at least two languages (SQL and some other programming language). Additionally, this space is becoming commoditized. I don’t know if there are large advantages to using one tool over the other. For instance, is there an advantage to using Google’s tools over Microsoft? Is there an advantage to using python over R. The answers probably vary. In some cases yes and in some cases no. Since this book is demonstrating fundamentals, we are going to look at a lot of code. Over time, you’ll see the reliance on code wane. However, it really helps to understand the underlying mechanisms.</p>
-<p>Let’s talk about the two most popular languages for analytics. Differences between R and Python may make a distinction between which tool that you plan on using. This is especially true when we look to deploy results. R and Python are both highly extensible. There are libraries for almost everything and the need to write your own implementation is likely minimal. If you do have the need, it would probably be better to use another language such as C++.</p>
+<p>Modeling the data is the fun part of working in analytics. We aren’t talking about <em>modeling</em> data in the database sense, although structuring the data is a component of the process. We also aren’t going into actually modeling the data here. I would like to speak about some of the tools. At the lower levels you will be leveraging at least two languages (SQL and some other programming language). Additionally, this space is becoming commoditized. I don’t know if there are large advantages to using one tool over the other. For instance, is there an advantage to using Google’s tools over Microsoft? Is there an advantage to using python over R. The answers probably vary. In some cases yes and in some cases no. Since this book is demonstrating fundamentals, we are going to look at a lot of code. Over time, you’ll see the reliance on code wane. However, it really helps to understand the underlying mechanisms.</p>
+<p>Let’s talk about the two most popular languages for analytics. Differences between R and Python may make a distinction between which tool that you plan on using. This is especially true when we look to deploy results. R and Python are both highly extensible. There are libraries for almost everything and the need to write your own implementation is likely minimal. If you do have the need, it would probably be better to use another language such as C++. However, C++ is significantly more difficult than many other languages you might encounter. (Practically speaking, R is C++ since it is written in it)</p>
 <p>Many analytics projects in Python will use the same relatively small sets of libraries. Additionally, the code for one model will look almost exactly like the code for another. This won’t always be true in R and I consider this an advantage for Python users. Let’s look at an example.</p>
 <p>The code to hierarchically cluster a data set in python might look something like the following:</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="chapter4.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------------------------------------------------</span></span>
@@ -509,7 +507,7 @@ Figure 4.3: Cumulative revenue by rep
 <span id="cb91-6"><a href="chapter4.html#cb91-6" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> AgglomerativeClustering(n_clusters<span class="op">=</span><span class="dv">6</span>, </span>
 <span id="cb91-7"><a href="chapter4.html#cb91-7" aria-hidden="true" tabindex="-1"></a>affinity<span class="op">=</span><span class="st">'euclidean'</span>, linkage<span class="op">=</span><span class="st">'ward'</span>)  </span>
 <span id="cb91-8"><a href="chapter4.html#cb91-8" aria-hidden="true" tabindex="-1"></a>cl <span class="op">=</span> py.DataFrame(cluster.fit_predict(data))</span></code></pre></div>
-<p>Every other method available in the module <em>sklearn</em> <span class="citation">(<a href="references.html#ref-scikit-learn" role="doc-biblioref">Pedregosa et al. 2011</a>)</span> will look like this example. This makes it easy and intuitive to run through several examples. For instance, if you wanted to cluster with the Kmeans algorithm in python, the code might look like this.</p>
+<p>Every other method available in the module <code>sklearn</code> <span class="citation">(<a href="references.html#ref-scikit-learn" role="doc-biblioref">Pedregosa et al. 2011</a>)</span> will look like this example. This makes it easy and intuitive to run through several algorithms. If you wanted to cluster with the Kmeans algorithm in python, the code might look like this.</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb92-1"><a href="chapter4.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------------------------------------------------</span></span>
 <span id="cb92-2"><a href="chapter4.html#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="co"># kmeans algorithm applied in python</span></span>
 <span id="cb92-3"><a href="chapter4.html#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------------------------------------------------</span></span>
@@ -517,7 +515,7 @@ Figure 4.3: Cumulative revenue by rep
 <span id="cb92-5"><a href="chapter4.html#cb92-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.sample(n<span class="op">=</span><span class="dv">1500</span>)</span>
 <span id="cb92-6"><a href="chapter4.html#cb92-6" aria-hidden="true" tabindex="-1"></a>cluster <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">6</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb92-7"><a href="chapter4.html#cb92-7" aria-hidden="true" tabindex="-1"></a>cl <span class="op">=</span> py.DataFrame(cluster.fit_predict(data))</span></code></pre></div>
-<p>It is almost identical. Let’s compare that to some R code that works with the same tools. The code to hierarchically cluster some data in R follows.</p>
+<p>It is almost identical. Let’s compare this code to some R code that work with the same tools. The code to hierarchically cluster some data in R follows.</p>
 <div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Hierarchical clustering algorithm applied in R</span></span>
@@ -529,7 +527,7 @@ Figure 4.3: Cumulative revenue by rep
 <span><span class="va">cl</span>           <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">mod_data</span>, method <span class="op">=</span> <span class="st">"ward.D"</span><span class="op">)</span></span>
 <span><span class="va">cuts</span>         <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cutree.html">cutree</a></span><span class="op">(</span><span class="va">cl</span>, k <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
 <span><span class="va">data</span><span class="op">$</span><span class="va">cluster</span> <span class="op">&lt;-</span> <span class="va">cuts</span></span></code></pre></div>
-<p>Both languages begin by importing capabilities from libraries. The next code chuck uses the kmeans algorithm. It is housed in the <em>stats</em> library and works slightly differently. I find that R tends to feel more <em>procedural</em> than python.</p>
+<p>Both languages begin by importing capabilities from libraries. The next code chuck uses the kmeans algorithm. It is housed in the <code>stats</code> library and works slightly differently. I find that R tends to feel more <em>procedural</em> than python.</p>
 <div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># kmeans algorithm applied in R</span></span>
@@ -538,21 +536,21 @@ Figure 4.3: Cumulative revenue by rep
 <span><span class="va">data</span>         <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">data</span>, <span class="fl">1500</span><span class="op">)</span></span>
 <span><span class="va">cl</span>           <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span><span class="va">data</span>, centers <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
 <span><span class="va">data</span><span class="op">$</span><span class="va">cluster</span> <span class="op">&lt;-</span> <span class="va">cl</span><span class="op">$</span><span class="va">cluster</span></span></code></pre></div>
-<p>This isn’t always the case. R, like Python, it has thousands of packages. However, in python there tends to be one <em>correct</em> way to do everything. It’s the <em>Pythonic</em> way. R is the wild west. Different algorithms often have different authors who approach writing the code and dealing with objects differently. However, developers in R have attempted to solve this problem.</p>
-<p>You can even run python from R using the <em>reticulate</em> <span class="citation">(<a href="references.html#ref-R-reticulate" role="doc-biblioref">Ushey, Allaire, and Tang 2022</a>)</span> package. Packages such as caret <span class="citation">(<a href="references.html#ref-R-caret" role="doc-biblioref">Kuhn 2022</a>)</span>, <em>mlr3</em> <span class="citation">(<a href="references.html#ref-R-mlr3" role="doc-biblioref">Lang et al. 2022</a>)</span>, and <em>tidymodels</em> <span class="citation">(<a href="references.html#ref-R-tidymodels" role="doc-biblioref">Kuhn and Wickham 2022</a>)</span> have attempted to create a standard api to many R functions. It means that a similar approach can be taken in terms of writing and understanding the code for many functions. The trade-off is often speed. However, I think it is incredibly useful to take advantage of one of these frameworks. They make it much easier to cover all steps of the modeling process. R and Python have learned from one another. At the end of the day, pick a tool and get good at it. I prefer R, but admire python. They both have their place and it really isn’t that difficult to switch between the two.</p>
-<p>lets consider the modeling process. We’ll refer to parts of this process in the subsequent chapter, chapter <a href="chapter5.html#chapter5">5</a>. Modeling data is a process with a few discreet (often iterative) steps.</p>
+<p>This code chunk looks similar, but that isn’t always the case. R, like Python, has thousands of packages. However, in python there tends to be one <em>correct</em> way to do everything. It’s the <em>Pythonic</em> way. R is the wild west. Different algorithms often have different authors who approach writing the code and dealing with objects differently. However, several developers in R have attempted to solve this problem.</p>
+<p>You can even run python from R using the <code>reticulate</code> <span class="citation">(<a href="references.html#ref-R-reticulate" role="doc-biblioref">Ushey, Allaire, and Tang 2022</a>)</span> package. Packages such as <code>caret</code> <span class="citation">(<a href="references.html#ref-R-caret" role="doc-biblioref">Kuhn 2022</a>)</span>, <em>mlr3</em> <span class="citation">(<a href="references.html#ref-R-mlr3" role="doc-biblioref">Lang et al. 2022</a>)</span>, and <code>tidymodels</code> <span class="citation">(<a href="references.html#ref-R-tidymodels" role="doc-biblioref">Kuhn and Wickham 2022</a>)</span> have attempted to create a standard api to many R functions. It means that a similar approach can be taken in terms of writing and understanding the code for many functions. The trade-off is often speed. Despite this tradeoff, I think it is incredibly useful to take advantage of one of these frameworks. They make it much easier to cover all steps of the modeling process. R and Python have learned from one another. At the end of the day, pick a tool and get good at it. I prefer R, but admire python. They both have their place and it really isn’t that difficult to switch between the two.</p>
+<p>Let’s move on to a more tangible example of the modeling process. We’ll refer to parts of this process in the chapter <a href="chapter5.html#chapter5">5</a>. Modeling data has a few discreet (often iterative) steps.</p>
 <ol style="list-style-type: decimal">
 <li>Evaluate your data</li>
 <li>Prepare your data</li>
 <li>Processing your data</li>
 <li>Validating your output</li>
 </ol>
-<p>You’ll get better this process as you gain experience. It will just become more intuitive. In reality, these projects tend to be repetitive in a number of ways. There are lots of questions that you need to be able to ask. Every problem doesn’t always manifest, but some problems always arise.</p>
+<p>You’ll get better at this process as you gain experience. It will just become more intuitive. In reality, these projects tend to be repetitive. You can encounter several problems with modeling your data. Every problem doesn’t always manifest, but some problems always arise.</p>
 <div id="evaldata" class="section level3" number="4.3.1">
 <h3>
 <span class="header-section-number">4.3.1</span> Evaluating your data<a class="anchor" aria-label="anchor" href="#evaldata"><i class="fas fa-link"></i></a>
 </h3>
-<p>This basically refers to understanding what you are looking at. How is the data structured and what am I trying to do with it. You can do this with several built-in features in R. For instance, you will want to understand scarcity and what data is relevant to answer your question. Typical questions might include:</p>
+<p>This refers to understanding what you are looking at. How is the data structured and what am I trying to do with it? You can do this with several built-in features in R. For example, you will want to understand data sparsity and what data is relevant to answer your question. Typical questions might include:</p>
 <ul>
 <li>What questions am I trying to answer with this data?</li>
 <li>Have we attempted to solve this problem before? What were the results?</li>
@@ -567,25 +565,25 @@ Figure 4.3: Cumulative revenue by rep
 <li>Are we dealing with differences in units or scale?</li>
 <li>What do I plan to do if I don’t find anything and how likely is this possibility?</li>
 </ul>
-<p>Taking some time to get familiar with your data and its structure is critical to getting accurate results. Additionally, understanding your question is important. An example might be <em>will current sales do the best job of predicting future sales at all times during the year?</em> What might work better? Frame your problem statement carefully.</p>
+<p>Taking some time to get familiar with your data and its structure is critical to getting accurate results. Really focus on the question at hand. An example might be <em>will current sales do the best job of predicting future sales at all times during the year?</em> What might work better? Frame your problem statement carefully.</p>
 <p>Furthermore, if there are deeply held beliefs as to what the answer might be you may have issues if your answer is antithetical to that belief. There are probably reasons why that belief is held. Honestly, most of the time the people have formed that belief are correct. Just use some extra discretion here if you determine another solution has merit.</p>
 </div>
 <div id="preparing-your-data" class="section level3" number="4.3.2">
 <h3>
 <span class="header-section-number">4.3.2</span> Preparing your data<a class="anchor" aria-label="anchor" href="#preparing-your-data"><i class="fas fa-link"></i></a>
 </h3>
-<p>This will generally take the most time. We’ll go into this process in some detail in chapter <a href="chapter5.html#chapter5">5</a>. If you have missing data you might have to consider imputation. If you are dealing with mixed data sets you’ll have to consider how to process it. Ordinal data might require you to approach the problem in a specific way. For instance, I could use the <em>Holt-Winters</em> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Triple exponential smoothing is a powerful tool for forecasting time-series data with trend and seasonality&lt;/p&gt;"><sup>34</sup></a> method for estimating some time-series data. However, it may not be applicable because of underling structure within the data. You can follow a process here as well.</p>
+<p>This will generally take the most time. We’ll go into this process in some detail in chapter <a href="chapter5.html#chapter5">5</a>. If you have missing data you might have to consider imputation. If you are dealing with mixed data sets you’ll have to consider how to process it. Ordinal data might require you to approach the problem in a specific way. An example here might be the <em>Holt-Winters</em> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Triple exponential smoothing is a powerful tool for forecasting time-series data with trend and seasonality&lt;/p&gt;"><sup>34</sup></a> method for estimating time-series data. However, it may not be applicable because of underling structure within the data. You can follow a process here as well.</p>
 <ul>
 <li>How will I deal with missing data?</li>
 <li>What methods do I plan on applying to this data?</li>
 </ul>
-<p><em>Missingness</em> is a huge problem. What do you do with NAs, NANs, inf? How sparse is OK? The answers here may vary. Additionally, if there is a systematic reason that the data is missing your results may be invalid. We’ll cover a full example of this process in chapter <a href="chapter5.html#chapter5">5</a>. However, take warning. Dealing with missing data is frustrating work.</p>
-<p>Furthermore, you’ll want to think about how you are prepping your data. Is this something that will have to be repeated? I recommend prepping your data with code. For some reason, you always need to repeat projects. Documenting your ETL work is crucial. I tend to start with SQL and push it to the point where it doesn’t make sense. I don’t duplicate information in SQL. For instance, I won’t dummy-code the data set in SQL. I will leave that for the analysis phase. Certain methods such as <em>Latent Class Regression</em> only accept discrete data. How you turn numerical data into discrete data will impact your results.</p>
+<p><em>Missingness</em> is a huge problem. What do you do with <code>NAs</code>, <code>NANs</code>, <code>inf</code>? How sparse is OK? The answers here may vary. Additionally, if there is a systematic reason that the data is missing your results may be invalid. Take warning, dealing with missing data is frustrating work.</p>
+<p>When you prepare your data always ask if this is this something that will have to be repeated? I recommend prepping your data with code. For some reason, you always need to repeat projects. Documenting your ETL work is crucial. I tend to start with SQL and push it to the point where it doesn’t make sense. I don’t duplicate information in SQL. For instance, I won’t dummy-code the data set in SQL. I will leave that for the analysis phase. This may or may not have merit. You have to think about where you can do this the most efficiently. Certain methods such as <em>Latent Class Regression</em> only accept discrete data. How you transform numerical data into discrete data can impact your results.</p>
 <div id="modelingdata" class="section level4" number="4.3.2.1">
 <h4>
 <span class="header-section-number">4.3.2.1</span> Selecting the appropriate technique for analyzing your data<a class="anchor" aria-label="anchor" href="#modelingdata"><i class="fas fa-link"></i></a>
 </h4>
-<p>Gone are the days of an expert having to use sound judgment to select the appropriate method for processing data. Hardware and software advances have removed a resource constraint that has delayed the analytics revolution that began in the early 2000s. The future is now. In the past a researcher may have to purchase time on a main-frame and therefore needed to have a good idea of what technique they would want to leverage to solve the problem. Analysts in these modern times can afford to be lazy. The modern analyst really only has a few considerations in terms of how they need to approach a problem. See figure <a href="chapter4.html#fig:modelingdatachfour">4.4</a>.</p>
+<p>Gone are the days of an expert having to use sound judgment to select the appropriate method for processing data. Hardware and software advances have removed a resource constraint that has delayed the analytics revolution that began in the early 2000s. The future is now. In the past a researcher may have had to purchase time on a main-frame and therefore needed to have a good idea of what technique they would want to leverage to solve the problem. Analysts in these modern times can afford to be lazy. The modern analyst really only has a few considerations in terms of how they need to approach a problem. See figure <a href="chapter4.html#fig:modelingdatachfour">4.4</a>.</p>
 <div class="figure">
 <span style="display:block;" id="fig:modelingdatachfour"></span>
 <img src="images/CH4_ML_Decision.png" alt="Choosing the right technique" width="100%"><p class="caption">
@@ -599,12 +597,12 @@ Figure 4.4: Choosing the right technique
 <h3>
 <span class="header-section-number">4.3.3</span> Processing your data<a class="anchor" aria-label="anchor" href="#processing-your-data"><i class="fas fa-link"></i></a>
 </h3>
-<p>Begin by looking for the simplest solution first. Stingy, parsimonious models tend to be the most forgiving and friendly. Always look for the simplest solution. This is especially important for interpretability, but also for durability. Simpler solutions tend to be more elegant and are just easier to deal with. However, you need to approach processing in an intelligent, procedural way. Let’s illustrate this with a brief example:</p>
+<p>Begin by looking for the simplest solution first. Stingy, parsimonious models tend to be the most forgiving and friendly. Always look for the simplest solution. This is especially important for interpretability, but also for durability. Simpler solutions tend to be more elegant and are just easier to deal with. Always approach processing in an intelligent, procedural way. Let’s illustrate this with a brief example:</p>
 <blockquote>
 <p>“The ticket sales manager wants to understand who are the most likely candidates in our system to purchase season tickets. They also want to understand who is most likely to spend more or to upgrade their seats.”</p>
 </blockquote>
-<p>How could you approach this problem once you have gathered and cleaned data that might be relevant? This sounds like a classification problem related to lead scoring. While OLS regression tends to be the best place to start and the gold standard for estimating numerical values, Logistic regression tends to be the best place to begin when trying to estimate classes. There are even special forms such as “multinominal logistic regression” <span class="citation">(<a href="references.html#ref-R-nnet" role="doc-biblioref">Ripley 2022</a>)</span> that can estimate several classes, not just binary classes. Logistic regression, like OLS regression are such good places to begin because of interpretability. They are much easier to understand than black-box methods such as Deep Learning.</p>
-<p>Over time you’ll learn that specific techniques tend to work better for specific problems. Techniques may also provide almost identical results. I’ve found that random forests and gradient boosting both tend to provide similar results. While they are less interpretable, they also don’t require as much rigor as regression. Regression forces you to think about all kinds of things like Heteroskedacity, Multicolinearity, Autocorrelation, etc. I always like to use multiple techniques and then compare the results. Getting more support for a conclusion is always a good thing. Unless you are dealing with huge amounts of data, there likely won’t be much of a penalty for taking this route. Also, as we have seen the tools make it easy.</p>
+<p>How could you approach this problem once you have gathered and the cleaned data? This sounds like a classification problem related to lead scoring. While OLS regression tends to be the best place to start and the gold standard for estimating numerical values, Logistic regression tends to be the best place to begin when trying to estimate classes. There are even special forms such as “multinominal logistic regression” <span class="citation">(<a href="references.html#ref-R-nnet" role="doc-biblioref">Ripley 2022</a>)</span> that can estimate several classes, not just binary classes.</p>
+<p>Over time you’ll learn that specific techniques tend to work better for specific problems. Techniques may also provide almost identical results. I’ve found that <em>random forests</em> and <em>gradient boosting</em> both tend to provide similar results. While they are less interpretable, they also don’t require as much rigor as regression. Regression forces you to think about all kinds of things like Heteroskedacity, Multicolinearity, Autocorrelation, etc. I always like to use multiple techniques and then compare the results. Getting more support for a conclusion is always a good thing. Unless you are dealing with huge amounts of data, there likely won’t be much of a penalty for taking this route. These tools make it easy.</p>
 <p>One more thing to keep in mind is how results are deployed. Regression is represented by a mathmatical formula. That means that results can be computed almost instantly and the model won’t change. Deep learning algorithms can be adaptive and can produce unexpected results if they aren’t monitored. There are lots of examples of chat-bots developing racist <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Tay_(bot)" class="uri"&gt;https://en.wikipedia.org/wiki/Tay_(bot)&lt;/a&gt;&lt;/p&gt;'><sup>35</sup></a> behaviors. Stick to the simplest solution unless you need higher degrees of precision or deployment requires a specific approach. Don’t fall into the rut of “I have a problem, let’s bludgeon it with Deep Learning.”</p>
 </div>
 </div>
@@ -612,42 +610,42 @@ Figure 4.4: Choosing the right technique
 <h2>
 <span class="header-section-number">4.4</span> Evaluating your results<a class="anchor" aria-label="anchor" href="#evaluating-your-results"><i class="fas fa-link"></i></a>
 </h2>
-<p>Evaluating results can be the best or the worst part of a project. Did you discover a solution? Regardless of whether you <em>solved</em> your problem, this stage of the process will give you some great information. Not finding a solution may tell you that there isn’t a solution in the data. It may also indicate that the problem is more nuanced and needs more sophisticated thought. Let’s consider an example.</p>
+<p>Evaluating results can be the best or the worst part of a project. Did you discover a solution? Regardless of whether you <em>solved</em> your problem, this stage of the process will give you some great information. Not finding a solution may tell you that there isn’t a solution in the data. It may also indicate that the problem is more nuanced and needs more sophisticated thought. Let’s examine an example.</p>
 <blockquote>
 <p>A marketing manager wants to understand if outreach efforts are having an impact on season ticket holder retention.</p>
 </blockquote>
-<p>You collect data from the CRM system such as the number of calls and emails, attendance regarding non-sport events, etc. You use this data to attempt to estimate a probability that season ticket holders will or will not renew tickets and find that outreach appears irrelevant (results are insignificant to the model). You find that ticket usage and tenure are the only variables that tend to matter (ignoring macro factors such as the economy and team performance). Does this mean that we shouldn’t call or email or clients? Of course not, but it does mean that we may need to take a closer look at how we incentive or client representatives. We also need to be careful about how we communicate this type of result. We’ll discuss this a little in the next section.</p>
-<p>There is also a technical component to evaluation. Different models can be compared against one another with an ANOVA <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Analysis of Varience&lt;/p&gt;"><sup>36</sup></a> or the BIC <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Baysien Information Criterion&lt;/p&gt;"><sup>37</sup></a>, or the AIC <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Akaike Information Criterion&lt;/p&gt;"><sup>38</sup></a>. You could estimate the efficacy of a call campaign with a lift chart represented by an ROC <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;receiver operating characteristic curve&lt;/p&gt;"><sup>39</sup></a> curve. OLS regression makes use of an F statistic, P-values, and R-squared values. Results can be cross-validated and compared to a control group or holdout sample. Logistic regression models will be concerned with Accuracy, precision, sensitivity, specificity, and overdispersion. There are many other diagnostic features that need to be evaluated to ensure that your model is doing what you want it to do. Ultimately, you’ll always want to compare results to a control group and make iterative improvements. A/B testing is often the best way to accomplish this goal once something is put into production.</p>
+<p>You collect data from the CRM system such as the number of calls and emails, attendance regarding non-sport events, etc. You use this data to attempt to estimate a probability that season ticket holders will or will not renew tickets. Unfortunately, you find that outreach appears irrelevant (results are insignificant to the model). You also discover that ticket usage and tenure are the only variables that appear significant (ignoring macro factors such as the economy and team performance). Does this mean that we shouldn’t call or email or clients? Of course not, but it does mean that we may need to more closely examine how we incentive our client representatives. We also need to be careful about how we communicate this type of result. We’ll discuss this a little in the next section.</p>
+<p>There is also a technical component to evaluation. Different models can be compared against one another with an <code>ANOVA</code> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Analysis of Varience&lt;/p&gt;"><sup>36</sup></a> or the <code>BIC</code> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Baysien Information Criterion&lt;/p&gt;"><sup>37</sup></a>, or the <code>AIC</code> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Akaike Information Criterion&lt;/p&gt;"><sup>38</sup></a>. You could estimate the efficacy of a call campaign with a lift chart represented by a <code>ROC</code> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;receiver operating characteristic curve&lt;/p&gt;"><sup>39</sup></a> curve. OLS regression makes use of an <code>F statistic</code>, <code>P-values</code>, and <code>R-squared</code> values. Results can be cross-validated and compared to a control group or holdout sample. Logistic regression models will be concerned with Accuracy, precision, sensitivity, specificity, and overdispersion. There are many other diagnostic features that need to be evaluated to ensure that your model is doing what you want it to do. Ultimately, you’ll always want to compare results to a control group and make iterative improvements. A/B testing is often the best way to accomplish this goal once something is put into production.</p>
 <p>Evaluating your results is an exercise that requires some technical rigor and some domain knowledge. You don’t have to find a solution, but you should always learn something. Think carefully about how you approach this component of modeling your data. This is the second most time-consuming component of the project and it has the biggest influence on whether the project will be a success or a failure.</p>
 </div>
 <div id="communicating-the-results" class="section level2" number="4.5">
 <h2>
 <span class="header-section-number">4.5</span> Communicating the results<a class="anchor" aria-label="anchor" href="#communicating-the-results"><i class="fas fa-link"></i></a>
 </h2>
-<p>Getting your research in the hands of Executives or Managers that need to understand the problem and potential solutions is more difficult than it sounds. Communicating the results of a project that may require more esoteric techniques is an art. You can also find myriad examples. Every large management consulting firm has frameworks around framing problems and by extension framing the results. You can often borrow from these folks. Keep in mind that results can be complex or involve difficult concepts and it isn’t always easy to ELI5 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Explain it like I’m five&lt;/p&gt;"><sup>40</sup></a>. As your credibility grows or as an organization matures, this process becomes easier. If your colleagues suffer from confirmation bias, exorcising that bias may be impossible. This is incredibly important to understand.</p>
+<p>Getting your research in the hands of Executives or Managers that need to understand the problem and potential solutions is more difficult than it sounds. Communicating the results of a project that may require more esoteric techniques is an art. Every large management consulting firm has frameworks around framing problems and by extension framing the results. You can often borrow from these folks. Keep in mind that results can be complex or involve difficult concepts and it isn’t always easy to ELI5 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Explain it like I’m five&lt;/p&gt;"><sup>40</sup></a>. As your credibility grows or as an organization matures, this process becomes easier. If your colleagues suffer from confirmation bias, exorcising that bias may be impossible. This is incredibly important to understand.</p>
 <blockquote>
 <p>“We often use reasoning not to find truth but to invent arguments to support our deep and intuitive beliefs.”</p>
 <p>— Johnathan Haidt, “The Happiness Hypothesis”</p>
 </blockquote>
-<p>This quote from Haidt <span class="citation">(<a href="references.html#ref-Haidt2006" role="doc-biblioref">Haidt 2006</a>)</span> hammers home the concept of confirmation bias. The results in this case may or may not be about winning an argument. This can be a frustrating phenomenon. It also has some merit. How much experience do you have with this problem? Are there strong beliefs as to the solution? Understanding how and why someone might interpret a solution (especially if that solution challenges preconceived notions) must be given some thought. If someone could be threatened by a solution, put some thought into how you present it. Even think about the words you use and how they are perceived by the recipients of your message.</p>
-<p>Additionally, there are certainly best practices that you can follow. For me, the higher someones title is, the more words and bullet points to include, the lower the title or the more technical in nature the audience is, the more graphs and explanation I include:</p>
+<p>This quote from Haidt <span class="citation">(<a href="references.html#ref-Haidt2006" role="doc-biblioref">Haidt 2006</a>)</span> hammers home the concept of confirmation bias. The results in this case may or may not be about winning an argument. This can be a frustrating phenomenon. It also has some merit. How much experience do you have with this problem? Are there strong beliefs as to the solution? Understanding how and why someone might interpret a solution (especially if that solution challenges preconceived notions) must be given some thought. If someone could be threatened by a solution, put some thought into how you present it. Even think about the words you use and how they are perceived by the recipients of your message. Could someone perceive your results as threatening or insulting? What happens if I am gas-lighted? Always take a step back and examine if your analysis is fair. Would it have really made a difference to do this another way? If something doesn’t really matter, don’t worry about communicating it.</p>
+<p>Additionally, there are best practices that you can follow. For me, the higher someones title is, the more words and bullet points to include, the lower the title or the more technical in nature the audience is, the more graphs and explanations I include:</p>
 <ul>
 <li>Executives: Bullet points that refer to the solution. Keep it terse. Get to the point.</li>
 <li>Managers: Include more specific explanations pertaining to their domain knowledge.</li>
 </ul>
 <p>Resist the urge to demonstrate your own domain knowledge. Typically, nobody cares how you did something. They don’t care about <em>Support Vectors</em>, <em>Eigenvalues</em>, or <em>Deep Learning</em>. They care about the results and in some cases, how you got there (especially if it contradicts their beliefs). Take a collaborative approach to demonstrating findings and ask questions. You’ll gain more credibility over the long term and have better success at having your solutions implemented.</p>
-<p>R also provides some great features for helping you communicate results and findings. R Markdown <span class="citation">(<a href="references.html#ref-Markdown12020" role="doc-biblioref">Allaire et al. 2020</a>)</span> makes it very easy to create publishable documents that include code, graphics, and mathematical formulas. This book was written using it. We discussed Shiny <span class="citation">(<a href="references.html#ref-R-shiny" role="doc-biblioref">Chang et al. 2022</a>)</span> earlier. These tools make R a great choice for building documents and dynamic web pages.</p>
+<p>R also provides some great features for helping you communicate results and findings. <code>R Markdown</code> <span class="citation">(<a href="references.html#ref-Markdown12020" role="doc-biblioref">Allaire et al. 2020</a>)</span> makes it very easy to create publishable documents that include code, graphics, and mathematical formulas. This book was written using it. We discussed <code>Shiny</code> <span class="citation">(<a href="references.html#ref-R-shiny" role="doc-biblioref">Chang et al. 2022</a>)</span> earlier. These tools make R a great choice for building documents and dynamic web pages.</p>
 </div>
 <div id="deploying-the-results" class="section level2" number="4.6">
 <h2>
 <span class="header-section-number">4.6</span> Deploying the results<a class="anchor" aria-label="anchor" href="#deploying-the-results"><i class="fas fa-link"></i></a>
 </h2>
-<p>Deployment could mean one of several things. One refers to people and one refers to systems.</p>
+<p>Deployment could mean different things. One refers to people and one refers to systems.</p>
 <ol style="list-style-type: decimal">
 <li>Communicating the results (The subject of the last section)</li>
 <li>Operationalizing the output (The automation component discussed in figure <a href="chapter1.html#fig:choneheirarh">1.1</a>.</li>
 </ol>
-<p>The second part of deploying results refers to automating a process and putting those solutions into production. There are lots of tools that make this possible. Although this tends to be where other languages have an advantage over R. Compiled languages such as C++ can be much faster than R and are more full-featured in some sense. Although there are some exceptions. SQL Server has supported an integration with R <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://docs.microsoft.com/en-us/sql/machine-learning/tutorials/r-tutorials?view=sql-server-ver15" class="uri"&gt;https://docs.microsoft.com/en-us/sql/machine-learning/tutorials/r-tutorials?view=sql-server-ver15&lt;/a&gt;&lt;/p&gt;'><sup>41</sup></a> and Python since 2016, although it isn’t clear how widespread its use has become. Google, Amazon, and Microsoft are all building analytics frameworks into their cloud-based DBMSs. They allow you to turn-up the computing power to make your models run much more quickly. Thinking about how to make something more efficient has probably already been done for you. At this stage, R may be used for protoyping and something else for the actual deployment.</p>
+<p>The second part of deploying results refers to automating a process and putting those solutions into production. There are multiple tools that make this possible. Although this tends to be where other languages have an advantage over R. Compiled languages such as C++ can be much faster than R and are more full-featured in some sense. Although there are some exceptions. SQL Server has supported an integration with R <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://docs.microsoft.com/en-us/sql/machine-learning/tutorials/r-tutorials?view=sql-server-ver15" class="uri"&gt;https://docs.microsoft.com/en-us/sql/machine-learning/tutorials/r-tutorials?view=sql-server-ver15&lt;/a&gt;&lt;/p&gt;'><sup>41</sup></a> and Python since 2016, although it isn’t clear how widespread its use has become. Google, Amazon, and Microsoft are all building analytics frameworks into their cloud-based DBMSs. They allow you to turn-up the computing power to make your models run much more quickly assuming you can take advantage of a technique such as multu-threading (Which R does not natively support). Thinking about how to make something more efficient has probably already been done for you. At this stage, R may be used for protoyping and something else for the actual deployment.</p>
 <p>Where is this valuable?</p>
 <ol style="list-style-type: decimal">
 <li>Forecasts on ticket sales could be made daily or by the minute that update a report.</li>
@@ -655,7 +653,7 @@ Figure 4.4: Choosing the right technique
 <li>The predicted vs. actual vs. expected results of a marketing campaign could be constantly evaluated for ROI.</li>
 <li>Ticket Prices could be automatically updated on a tight interval for optimizing sales or revenue.</li>
 </ol>
-<p>There are lots of applications. Additionally, you could always write a wrapper (in windows) within your system that runs a script using a simple batch script (A notepad file saved as .bat). The following example runs and R script called <em>YourRScript.R</em>.</p>
+<p>There are many applications. Additionally, you could always write a wrapper (in windows) within your system that runs a script using a simple batch script (A notepad file saved as .bat). The following example runs and R script called <em>YourRScript.R</em>.</p>
 <div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Batch script for automation</span></span>
@@ -665,7 +663,7 @@ Figure 4.4: Choosing the right technique
 <span></span>
 <span><span class="co"># "C:\Program Files\R\R-Version\bin\x64\R.exe" CMD BATCH </span></span>
 <span><span class="co">#  --vanilla --slave ""C:\locationOfScript\YourRScript.R"</span></span></code></pre></div>
-<p>If you are dealing with more complicated systems, you may need to rely on developers to automate your process. Your context and available skill sets will tell you what direction to take.</p>
+<p>You can write a similar <em>bash</em> script on a linux box.If you are dealing with more complicated systems, you may need to rely on developers to automate your process. Your context and available skill sets will tell you what direction to take.</p>
 </div>
 <div id="key-concepts-and-chapter-summary-3" class="section level2" number="4.7">
 <h2>
@@ -680,11 +678,11 @@ Figure 4.4: Choosing the right technique
 <li>Communicating the results</li>
 <li>Deploying the results</li>
 </ol>
-<p>You’ll work through these steps whether you mean to or not. They are simply the natural order of these projects.</p>
+<p>You’ll work through these steps whether you mean to or not. They are simply the natural order that these projects tend to take.</p>
 <ul>
 <li>Defining a goal tends to be the hardest part of an analytics project. It is also the most important. Even if you aren’t putting together a formal hypothesis test, you still have to be concerned with scope creep. Spend some time on this step and get it right.</li>
 <li>Data collection and management is typically the most time-consuming component of one of these projects. Getting quality data can be difficult or even impossible. If you have to collect the data yourself, be systematic about it. Document what you are doing for reproducibility.</li>
-<li>Modeling the data is the fun part of an analytics project. You have a lot of options, but start with the simplest method first. While deep-learning has been more prominent in recent years, it isn’t always the best tool to use. Interpretibility can be important here. Put some thought into why you are using one technique over another.</li>
+<li>Modeling the data is the fun part of an analytics project. You have lots of options, but start with the simplest method first. While deep-learning has been more prominent in recent years, it isn’t always the best tool to use. Interpretibility can be important here. Put some thought into why you are using one technique over another.</li>
 <li>Evaluating the results is a quantitative and qualitative exercise. It is never just about the data. Think about your output in the context of the exercise and give it a good smell-test. Are the results logical? Can you take action on them? Are they relevant to your goal?</li>
 <li>“Simplicity is the ultimate sophistication.” This quote is attributed to Leonardo Da Vinci. Only God knows where it actually came from. Keep it in mind. Use bullet points. Keep your results simple to understand.</li>
 <li>Deploying results can mean multiple things. There are lots of tools available to put your results in action.</li>
@@ -731,7 +729,7 @@ Figure 4.4: Choosing the right technique
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-23.</p>
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

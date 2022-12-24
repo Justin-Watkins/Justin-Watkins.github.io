@@ -147,7 +147,7 @@ for(i in x){
 }
 )
 #>    user  system elapsed 
-#>    0.98    0.03    1.03
+#>    1.02    0.05    1.07
 
 line_value[1:3]
 #> [[1]]
@@ -178,7 +178,7 @@ while(i <= length(x)){
 }
 )
 #>    user  system elapsed 
-#>    0.93    0.00    0.92
+#>    0.91    0.00    0.91
 
 line_value[1:3]
 #> [[1]]
@@ -202,7 +202,7 @@ system.time(
 line_value <- lapply(1:length(x), function(i) x[i]*m + b)
 )
 #>    user  system elapsed 
-#>    0.86    0.03    0.89
+#>    0.84    0.02    0.86
 
 line_value[1:3]
 #> [[1]]
@@ -226,7 +226,7 @@ system.time(
 line_value <- purrr::imap(x,~ .x*m + b)
 )
 #>    user  system elapsed 
-#>    0.99    0.00    0.99
+#>    1.00    0.03    1.04
 
 line_value[1:3]
 #> [[1]]

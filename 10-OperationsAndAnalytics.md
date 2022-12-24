@@ -365,7 +365,7 @@ While we can see a pattern in the data where line-length tends to peak at specif
 
 ### Analyzing the results
 
-We can analyze this data in much the same fashion as we have analyzed data in previous chapters. However, we'll introduce a new tool here called a _generalized additive model_. Be careful with this technique. While you might find that it is a silver bullet that can easily model many distributions, it is a little more difficult to work with than a math equation provided by regression. We'll use the _mgcv_ [@R-mgcv] library to access the _gam_ function. As is often the case, we'll need to do a little data preparation before applying our operation.   
+We can analyze this data in much the same fashion as we have analyzed data in previous chapters. However, we'll introduce a new tool here called a _generalized additive model_. Be careful with this technique. While you might find that it is a silver bullet that can easily model many distributions, it is a little more difficult to work with than a math equation provided by regression. We'll use the `mgcv` [@R-mgcv] library to access the `gam` function. As is often the case, we'll need to do a little data preparation before applying our operation.   
 
 
 
@@ -437,7 +437,7 @@ While we can see that the average fit to this data is fair, the predictive power
 
 ### Understanding wait times
 
-Now that we have some data on line-length we can take a closer look at what is driving wait-time. We can simulate some results from measuring the broader process. We built a function _f_get_wait_times()_ to provide us with some data. This function breaks wait-times into three parts:
+Now that we have some data on line-length we can take a closer look at what is driving wait-time. We can simulate some results from measuring the broader process. We built a function `f_get_wait_times()` to provide us with some data. This function breaks wait-times into three parts:
 
 - Order time: The amount of time it takes to place an order
 - Payment time: How long it took to fulfill payment after the order was placed
@@ -541,7 +541,7 @@ We can see from this graph that order times appear to have the widest variance. 
 
 ### Simulating a component of our process
 
-Like many of the topics we have discussed, simulation is a large and complicated topic. It is also incredibly useful for the problem that we are facing. We have already seen multiple ways to simulate data. We have used _rexp_ and _rnorm_ multiple times to create simulated data sets. This is what we are seeing in figure \@ref(fig:waittimesdista). We are creating random numbers based on parameters for exponential or normal distributions. What do we do if we simply have a data set and we want to simulate it under different conditions? How do we know what distribution to fit that will approximate the data? 
+Like many of the topics we have discussed, simulation is a large and complicated topic. It is also incredibly useful for the problem that we are facing. We have already seen multiple ways to simulate data. We have used `rexp` and `rnorm` multiple times to create simulated data sets. This is what we are seeing in figure \@ref(fig:waittimesdista). We are creating random numbers based on parameters for exponential or normal distributions. What do we do if we simply have a data set and we want to simulate it under different conditions? How do we know what distribution to fit that will approximate the data? 
 
 There are lots of software packages that will build simulations for you, but it is useful to understand how they might function at a base level. We'll build a couple of basic transaction simulations and then evaluate how well specific changes to our process might impact the overall system. This will give you an appreciation for how a software package might approach a problem. When possible, I have always found it useful to understand problems at their most basic level. It makes you a better decision maker.  
 
@@ -603,7 +603,7 @@ cor_long$order <- factor(cor_long$type,
                                   'Total Time'))
 ```
 
-We'll use the _forcats_ [@R-forcats] library to access the _fct_reorder_ function. This will help order our plot. 
+We'll use the `forcats` [@R-forcats] library to access the `fct_reorder` function. This will help order our plot. 
 
 
 ```r
@@ -724,7 +724,7 @@ As expected, the model appears to be almost perfect. We could use the equation t
 
 #### Building a simulation of our data
 
-Finally, let's build a simulation. This section will demonstrate some of the basics to get you started. However, the method that we follow is flexible and can be used in many different ways. We'll begin by accessing the _wait_times_distribution_ data. 
+Finally, let's build a simulation. This section will demonstrate some of the basics to get you started. However, the method that we follow is flexible and can be used in many different ways. We'll begin by accessing the `wait_times_distribution` data. 
 
 
 ```r
@@ -747,7 +747,7 @@ wait_sample <- wait_times_distribution %>%
                sample_frac(size = .7)
 ```
 
-Now we can begin to think about the distribution a little more carefully. We can use the _ecdf_ function to compute an _empirical cumulative distribution function_. You can think about this output as the inverse of the _quantile_ function.
+Now we can begin to think about the distribution a little more carefully. We can use the `ecdf` function to compute an _empirical cumulative distribution function_. You can think about this output as the inverse of the `quantile` function.
 
 
 ```r

@@ -6,13 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 6 Forcasting Sales and Setting Prices | Fundamentals of Sports Business Analytics and Strategy</title>
 <meta name="author" content="Justin Watkins">
+<meta name="description" content="Like segmentation, it would be easy to write an entire book on how to forecast and price tickets. There are innumerable considerations such as determining a willingness to pay, taking arbitrage...">
 <meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Chapter 6 Forcasting Sales and Setting Prices | Fundamentals of Sports Business Analytics and Strategy">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://justin-watkins.github.io/chapter6.html">
 <meta property="og:image" content="https://justin-watkins.github.io/images/cover.png">
+<meta property="og:description" content="Like segmentation, it would be easy to write an entire book on how to forecast and price tickets. There are innumerable considerations such as determining a willingness to pay, taking arbitrage...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 6 Forcasting Sales and Setting Prices | Fundamentals of Sports Business Analytics and Strategy">
+<meta name="twitter:description" content="Like segmentation, it would be easy to write an entire book on how to forecast and price tickets. There are innumerable considerations such as determining a willingness to pay, taking arbitrage...">
 <meta name="twitter:image" content="https://justin-watkins.github.io/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -46,9 +49,6 @@
     }
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="Like segmentation, it would be easy to write an entire book on how to forecast and price tickets. There are innumerable considerations such as determining a willingness to pay, taking arbitrage...">
-<meta property="og:description" content="Like segmentation, it would be easy to write an entire book on how to forecast and price tickets. There are innumerable considerations such as determining a willingness to pay, taking arbitrage...">
-<meta name="twitter:description" content="Like segmentation, it would be easy to write an entire book on how to forecast and price tickets. There are innumerable considerations such as determining a willingness to pay, taking arbitrage...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -266,7 +266,7 @@ Figure 6.1: Linear price response function
 Figure 6.2: Polynomial price response function
 </p>
 </div>
-<p>This curve approximates our line relatively well. We could go through the exercise of finding the line that produces the best fit, but it isn’t necessary at this stage. Now that we are happy that a simple polynomial does a reasonable job of approximating our curve, what do we do? R provides several ways to evaluate fits. In the following example we feed a polynomial function to the <em>lm</em> (linear model) function in R. We can then write a function ( <strong>f_get_Sales</strong> ) that we can use to return values from the line in figure <a href="chapter6.html#fig:prfb">6.2</a>. We’ll use the coefficients to complete our function.</p>
+<p>This curve approximates our line relatively well. We could go through the exercise of finding the line that produces the best fit, but it isn’t necessary at this stage. Now that we are happy that a simple polynomial does a reasonable job of approximating our curve, what do we do? R provides several ways to evaluate fits. In the following example we feed a polynomial function to the <code>lm</code> (linear model) function in R. We can then write a function <code>f_get_Sales</code> that we can use to return values from the line in figure <a href="chapter6.html#fig:prfb">6.2</a>. We’ll use the coefficients to complete our function.</p>
 <div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Function to return sales based on price</span></span>
@@ -279,8 +279,8 @@ Figure 6.2: Polynomial price response function
 <span> <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span></span>
 <span> <span class="op">}</span></span>
 <span> </span></code></pre></div>
-<p>We now have an <em>overfit</em> price response function that we can use to forecast sales at different price levels. Since this concept may be unfamiliar to you we’ll take a minute to explain what is going on here. <strong>fit &lt;- lm(sales<span class="math inline">\(sales~poly(sales\)</span>price,2,raw=TRUE))</strong> is using the <strong>lm</strong> function (linear model) to fit a line to our data points. We aren’t necessarily looking for the best fit in this example. The function <strong>f_get_sales()</strong> simply takes the coefficients generated by the model stored in <strong>fit</strong> and builds an equation that we can use to plug price values into the equation to give us sales values (y) in terms of price (x). This might look a little scary, but it is really just middle-school algebra at this stage.</p>
-<p>The equation in our function <strong>sales &lt;- coef(fit)[1] + (coef(fit)[2]<em>new_price + (coef(fit)[3] </em> new_price^2))</strong> is nothing more than a rearranged linear equation with a second degree exponent. A linear equation such as the equation that would fit the line in figure <a href="chapter6.html#fig:prfa">6.1</a> would take this familiar form:</p>
+<p>We now have an <em>overfit</em> price response function that we can use to forecast sales at different price levels. Since this concept may be unfamiliar to you we’ll take a minute to explain what is going on here. <code>fit &lt;- lm(sales$sales~poly(sales$price,2,raw=TRUE))</code> is using the <code>lm</code> function (linear model) to fit a line to our data points. We aren’t necessarily looking for the best fit in this example. The function <code>f_get_sales()</code> simply takes the coefficients generated by the model stored in <code>fit</code> and builds an equation that we can use to plug price values into the equation to give us sales values (y) in terms of price (x). This might look a little scary, but it is really just middle-school algebra at this stage.</p>
+<p>The equation in our function <code>sales &lt;- coef(fit)[1] + (coef(fit)[2]*new_price + (coef(fit)[3] * new_price^2))</code> is nothing more than a rearranged linear equation with a second degree exponent. A linear equation such as the equation that would fit the line in figure <a href="chapter6.html#fig:prfa">6.1</a> would take this familiar form:</p>
 <p><span class="math display">\[\begin{equation}
 \ {y} = {m}{x} + {b}
 \end{equation}\]</span></p>
@@ -823,7 +823,7 @@ Figure 6.3: Finding a local maximum
 <li>Multiple R-squared: How much variation is being explained by this model</li>
 <li>F-statistic: Is the model valid? Lower numbers here are bad</li>
 </ul>
-<p>About 60% of the variance in ticket sales is explained by this simple model. Is that good? Probably not especially when we consider the standard error. Is there anything we can do to improve it? Let’s take a look at some regression diagnostics to help us evaluate our results. Additionally, you can run <em>plot(ln_mod_bu)</em> to get a few standard diagnostic plots.</p>
+<p>About 60% of the variance in ticket sales is explained by this simple model. Is that good? Probably not especially when we consider the standard error. Is there anything we can do to improve it? Let’s take a look at some regression diagnostics to help us evaluate our results. Additionally, you can run <code>plot(ln_mod_bu)</code> to get a few standard diagnostic plots.</p>
 <p>we have cut the statistics down for brevity. That is why our summaries tend to look like this:</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
@@ -881,7 +881,7 @@ Figure 6.3: Finding a local maximum
 <span><span class="va">qq</span> <span class="op">&lt;-</span> <span class="fu">car</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/car/man/qqPlot.html">qqPlot</a></span><span class="op">(</span><span class="va">ln_mod_bu</span>, main<span class="op">=</span><span class="st">"QQ Plot"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="06-Pricing_files/figure-html/forecast7-1.png" width="672"></div>
 <p>For the most part, our points tend to fall on the line. A few points stray from it and we can see our outlier (48) at the bottom. Linear regression models can be highly influenced by extreme points. We’ll end up removing this point and rerunning the model.</p>
-<p>We can run an influence plot to combine several of the graphs we would see in You can see with <em>plot(ln_mod_bu)</em>. The bigger the circle, the larger <em>Cooks Distance</em>. Cooks distance has a mathematical definition, but just think of it as a way to identify influential points in the data.</p>
+<p>We can run an influence plot to combine several of the graphs we would see in You can see with <code>plot(ln_mod_bu)</code>. The bigger the circle, the larger <em>Cooks Distance</em>. Cooks distance has a mathematical definition, but just think of it as a way to identify influential points in the data.</p>
 <div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Influence plot</span></span>
@@ -1267,7 +1267,7 @@ Figure 6.3: Finding a local maximum
 <span>  num_con <span class="op">=</span> <span class="fl">3</span>, num_oth <span class="op">=</span> <span class="fl">7</span>, seed4 <span class="op">=</span> <span class="fl">366</span>, seed5  <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  mean_sales <span class="op">=</span> <span class="fl">0</span>, sd_sales <span class="op">=</span> <span class="fl">0</span></span>
 <span> <span class="op">)</span></span></code></pre></div>
-<p>Our new data uses seed2 = 714. If I type <em>View(f_build_season)</em> I can see that seed2 controls the teams that are selected for the schedule. What happens if use a different seed2? You might get factor levels that you didn’t anticipate. The model is unable to make a prediction on these values. What do you do here. The easiest thing to do is to remove the offending factor levels. You could also make them analogs and substitute in a like-factor.</p>
+<p>Our new data uses seed2 = 714. If I type <code>View(f_build_season)</code> I can see that seed2 controls the teams that are selected for the schedule. What happens if use a different seed2? You might get factor levels that you didn’t anticipate. The model is unable to make a prediction on these values. What do you do here. The easiest thing to do is to remove the offending factor levels. You could also make them analogs and substitute in a like-factor.</p>
 <div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Apply model output to new data set</span></span>
@@ -1490,7 +1490,7 @@ Figure 6.3: Finding a local maximum
 <span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
 <div class="inline-figure"><img src="images/ch6_line_est_es.png" width="100%"></div>
 <p>We can see that there are groupings of games that have similar levels of <em>attractiveness</em>. Although many games appear much more attractive than others, they may have also been priced higher. Based on this demand attractiveness, we can progressively price our games with the ones with the highest anticipated demand receiving higher prices.</p>
-<p>Let’s cluster like games together based on their event scores. We’ll use the <em>kmeans</em> function to group our games together. You’ll see kmeans getting used quite a bit. It is relatively simple to understand and does a good job of discriminating numerical data sets.</p>
+<p>Let’s cluster like games together based on their event scores. We’ll use the <code>kmeans</code> function to group our games together. You’ll see kmeans getting used quite a bit. It is relatively simple to understand and does a good job of discriminating numerical data sets.</p>
 <div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Kmeans clustering on event scores</span></span>
@@ -1692,7 +1692,7 @@ Figure 6.3: Finding a local maximum
 <span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Hmisc/man/Ecdf.html">Ecdf</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">notbargain</span>, pl<span class="op">=</span><span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Hmisc/man/Ecdf.html">Ecdf</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">notexpensive</span>,what <span class="op">=</span> <span class="st">"1-F"</span>, pl<span class="op">=</span><span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Hmisc/man/Ecdf.html">Ecdf</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">tooexpensive</span>,pl<span class="op">=</span><span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span></code></pre></div>
-<p>The Ecdf function from the Hmisc package will give you coordinates for the cumulative distribution. We’ll use the <em>reshape2</em> <span class="citation">(<a href="references.html#ref-R-reshape2" role="doc-biblioref">Wickham 2020</a>)</span> package to <em>melt</em> the data frame. This package helps pivot data and the results will be identical to using tools in the tidyr package that we have already seen.</p>
+<p>The <code>Ecdf</code> function from the <code>Hmisc</code> package will give you coordinates for the cumulative distribution. We’ll use the <code>reshape2</code> <span class="citation">(<a href="references.html#ref-R-reshape2" role="doc-biblioref">Wickham 2020</a>)</span> package to <code>melt</code> the data frame. This package helps pivot data and the results will be identical to using tools in the <code>tidyr</code> package that we have already seen.</p>
 <div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Build data set for creating graphic</span></span>
@@ -1751,7 +1751,7 @@ Figure 6.3: Finding a local maximum
 <span>               alpha <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>                        <span class="op">+</span></span>
 <span>    <span class="va">graphics_theme_1</span></span></code></pre></div>
 <div class="inline-figure"><img src="images/ch6_vw_gaphic.png" width="100%"></div>
-<p>We can also use the <em>pricesensitivitymeter</em> package to produce our analysis a little more quickly.</p>
+<p>We can also use the <code>pricesensitivitymeter</code> package to produce our analysis a little more quickly.</p>
 <div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Duplicate work with a library</span></span>
@@ -1865,7 +1865,7 @@ Figure 6.3: Finding a local maximum
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-23.</p>
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

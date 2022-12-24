@@ -42,11 +42,11 @@ Our example is going to be based on demographic data and qualitative data taken 
 
 Sometimes segmentation schemes can be too diffuse. For instance people-with-necks. That covers a pretty large swath of humans. Other segmentation schemes can be irrelevant to the problem. If you are selling dog-food, women with red hair may not be a relevant segment. They can also be too diffuse and irrelevant. An example here might be people with brown eyes.
 
-Our basic *goal* is to find groups of fans and potential customers that differ in observable ways associated with how we communicate, their content preference, and marketing response. Generally, we are looking for an answer to the question: __Who is our consumer and what do they want?__. By understanding these differences, we hope to make better strategic marketing decisions regarding pricing, market positioning, 
+Our basic goal is to find groups of fans and potential customers that differ in observable ways associated with how we communicate, their content preference, and marketing response. Generally, we are looking for an answer to the question: _Who is our consumer and what do they want?_. By understanding these differences, we hope to make better strategic marketing decisions regarding pricing, market positioning, 
 sales and sponsorship opportunities, and brand development. The analysis has two components:  
 
-* A __demographic segmentation__ derived from data collected from a third party.
-* A set of __behavioral archetypes__ derived from survey responses.
+* A _demographic segmentation_ derived from data collected from a third party.
+* A set of _behavioral archetypes_ derived from survey responses.
 
 Our demographic segments are overlaid on our customer's behavioral archetypes to paint a picture of how each demographic broadly behaves. The more segments that we have, the more specific they will be. Abstracting to fewer segments means that the edges of our segments will tend to be _fuzzy_. Additionally, the durability of our segments will have to be tested to ensure validity. 
 
@@ -125,7 +125,7 @@ This table has 200,000 rows and 12 columns corresponding to standard demographic
 
 ### Exploring the demographic data set
 
-We can sample the variables that we think might be useful for segmentation using the _select_ function from _dplyr_. 
+We can sample the variables that we think might be useful for segmentation using the `select` function from `dplyr`. 
 
 
 ```r
@@ -154,7 +154,7 @@ Table: (\#tab:seg_dataset_str2)Demograhic data
 |distance     |double   |48.34, 77.09              |
 |gender       |character|m, f                      |
 
-_hhIncome_ is a modeled indicator. It is common to run into this type of variable with purchased data sets. It is indexed at some value and has a discrete beginning and end. You'd need a data dictionary to explain what the numbers actually mean. In this case, the larger the number, the higher the income. Let's start by taking a look at our numerical data sets. We'll use the same graphics paradigm that we illustrated in chapter \@ref(chapter3). 
+`hhIncome` is a modeled indicator. It is common to run into this type of variable with purchased data sets. It is indexed at some value and has a discrete beginning and end. You'd need a data dictionary to explain what the numbers actually mean. In this case, the larger the number, the higher the income. Let's start by taking a look at our numerical data sets. We'll use the same graphics paradigm that we illustrated in chapter \@ref(chapter3). 
 
 #### Age of our customers
 
@@ -186,7 +186,7 @@ hist_age <-
 
 <img src="images/ch5_age_histogram.png" width="100%" />
 
-This distribution is clearly bimodal^[A distribution with two or more modes: multimodal]. As we think about describing the data we already know that an average age doesn't make much sense. We included gender to see if there were any obvious differences between men and women in the sample. Let's take a closer look using the _describe_ function from the psych package[@R-psych].:
+This distribution is clearly bimodal^[A distribution with two or more modes: multimodal]. As we think about describing the data we already know that an average age doesn't make much sense. We included gender to see if there were any obvious differences between men and women in the sample. Let's take a closer look using the `describe` function from the `psych` package[@R-psych].:
 
 
 
@@ -407,7 +407,7 @@ As a best practice, don't do things multiple times. If you can think of a way th
 
 #### Categorical variables
 
-There are myriad ways to analyze categorical data. We'll go through a few methods and describe what we are seeing. We can create a proportion table with the _prop.table_ function to take a look at how large our discrete groups are. 
+There are myriad ways to analyze categorical data. We'll go through a few methods and describe what we are seeing. We can create a proportion table with the `prop.table` function to take a look at how large our discrete groups are. 
 
 
 ```r
@@ -546,7 +546,7 @@ Table: (\#tab:missingdatae)New missing values
 |inf|  0   |
 
 
-Now we need to do something about these missing values. If only a small amount of data is missing it may be OK to simply delete the rows. How much is a small amount? I don't know. Let's look at this by rows to determine which rows have missing values. We'll use a simple _for_ loop to count the missing fields in each row and column. There are a few different ways to do this. 
+Now we need to do something about these missing values. If only a small amount of data is missing it may be OK to simply delete the rows. How much is a small amount? I don't know. Let's look at this by rows to determine which rows have missing values. We'll use a simple `for` loop to count the missing fields in each row and column. There are a few different ways to do this. 
 
 
 ```r
@@ -571,7 +571,6 @@ for(i in names(demo_data)){
 
 # A best practice is to use apply functions in R when possible
 ```
-
 
 
 It looks like about four-thousand entries are missing for each attribute. Since we know that these could overlap it may not be a great idea to simply delete all of these rows. How many rows have some missing data? We can use the complete cases function to determine how many rows are complete. 
@@ -601,7 +600,7 @@ Table: (\#tab:missingdatafff)Complete cases
 
 About thirty thousand rows are missing some data. That is more than enough to build a suitable model. How do we know? There are no hard and fast rules. If you sampled 10,000 rows of this data you would find that the distributions for each field would tend to look the same as the full data set. That is really what you are looking for. This will be the case until you reach some arbitrarily small number (perhaps 400-700 people). Some people call this the _law of large numbers_. This is really just an expression. There is no such law. However, this is where you might think about why the data is missing. More data is typically better, but you get penalized on process time.
 
-let's try a couple of different techniques to impute the missing data. For _ethnicity_ we know that the vast majority (80%) of our known values were "w." We can replace all NAs with a "w" and assume that we will be close to 80% accurate. This is easy to accomplish with the following code.
+let's try a couple of different techniques to impute the missing data. For _ethnicity_ we know that the vast majority (80%) of our known values were "w." We can replace all `NAs` with a "w" and assume that we will be close to 80% accurate. This is easy to accomplish with the following code.
 
 
 ```r
@@ -686,7 +685,7 @@ Let's take a slightly different approach to the rest of the data. For Customer I
 
 ##### Imputating with a package
 
-There are several packages for imputing numerical data. One of the more commonly used ones is _mice_ [@R-mice]. It is easy to use and works relatively quickly on smaller datasets. There are several parameters that can be adjusted in the _mice_ function. See the documentation to explain what what they indicate. For instance, we used _predictive mean matching_ as the method. However, there are more than a dozen options here. Some may be more appropriate than others under specific conditions.  
+There are several packages for imputing numerical data. One of the more commonly used ones is `mice` [@R-mice]. It is easy to use and works relatively quickly on smaller datasets. There are several parameters that can be adjusted in the `mice` function. See the documentation to explain what what they indicate. For instance, we used _predictive mean matching_ as the method. However, there are more than a dozen options here. Some may be more appropriate than others under specific conditions.  
 
 
 ```r
@@ -707,7 +706,7 @@ demo_data$hhIncome <- new_Data$V1
 demo_data$distance <- new_Data$V2
 ```
 
-Let's go ahead and delete rows where the customerid is missing. Use _na.omit_ to greedily remove all rows where any column is NA. You can be more subtle, but in this case _na.omit_ will get the job done. 
+Let's go ahead and delete rows where the customerid is missing. Use `na.omit` to greedily remove all rows where any column is `NA`. You can be more subtle, but in this case `na.omit` will get the job done. 
 
 
 
@@ -745,7 +744,7 @@ demo_data_discrete <- tibble(custID = demo_data$custID)
 
 #### Dummy coding our categorical variables
 
-Categorical variables have to be treated in a particular way to be useful in many segmentation exercises. To begin, we need to discretize our numerical variables. We'll do this with a function that we apply over numerical data sets. The following function represents a choice you'll have to make. How do we determine where and how to break our continuous data into discrete groups. In this case, we use familiar generational marketing groups. The package _lubridate_ [@R-lubridate] is used to make working with dates easier. Dates can be incredibly frustrating and along with _regular expressions_^[https://en.wikipedia.org/wiki/Regular_expression] are one of the most reviled parts of working with data. 
+Categorical variables have to be treated in a particular way to be useful in many segmentation exercises. To begin, we need to discretize our numerical variables. We'll do this with a function that we apply over numerical data sets. The following function represents a choice you'll have to make. How do we determine where and how to break our continuous data into discrete groups. In this case, we use familiar generational marketing groups. The package `lubridate` [@R-lubridate] is used to make working with dates easier. Dates can be incredibly frustrating and along with _regular expressions_^[https://en.wikipedia.org/wiki/Regular_expression] are one of the most reviled parts of working with data. 
 
 
 ```r
@@ -759,19 +758,19 @@ birthYear <- lubridate::year(Sys.Date()) -
 f_seg_generation_def <- function(birth_year){
   
   if(birth_year >= 1910 & birth_year <= 1924){'gen_Greatest'}
-  else if (birth_year >= 1925 & birth_year <= 1945){'gen_Silent'}
-  else if (birth_year >= 1946 & birth_year <= 1964){'gen_Boomer'}    
-  else if (birth_year >= 1965 & birth_year <= 1979){'gen_X'}     
-  else if (birth_year >= 1980 & birth_year <= 1994){'gen_Mill'}       
-  else if (birth_year >= 1995 & birth_year <= 2012){'gen_Y'}    
-  else if (birth_year >= 2013 & birth_year <= 2020){'gen_Alpha'}      
-  else{'Unknown'}
+   else if (birth_year >= 1925 & birth_year <= 1945){'gen_Silent'}
+    else if (birth_year >= 1946 & birth_year <= 1964){'gen_Boomer'}    
+     else if (birth_year >= 1965 & birth_year <= 1979){'gen_X'}     
+      else if (birth_year >= 1980 & birth_year <= 1994){'gen_Mill'}       
+       else if (birth_year >= 1995 & birth_year <= 2012){'gen_Y'}    
+        else if (birth_year >= 2013 & birth_year <= 2020){'gen_Alpha'}      
+         else{'Unknown'}
 }
 demo_data_discrete$generation <- 
   sapply(birthYear,f_seg_generation_def)
 ```
 
-Programmers thrive on criticizing this sort of function. There are often algorithmic methods for simplifying this sort of operation. The _switch_ function in R and other languages can sometimes be used. As long as you aren't dealing with massive data sets, who cares? This is readable and will get the job done. SQL joins are usually more efficient than an if-then statement and that is usually a good direction to begin with larger data sets.  
+Programmers thrive on criticizing this sort of function. There are often algorithmic methods for simplifying this sort of operation. The `switch` function in R and other languages can sometimes be used. As long as you aren't dealing with massive data sets, who cares? This is readable and will get the job done. SQL joins are usually more efficient than an if-then statement and that is usually a good direction to begin with larger data sets.  
 
 I tend to find that I prefer to have an individual's birth year over age. It helps keep the data evergreen. Keep this in mind when you build surveys. Now we have a discrete value representing specific generations. 
 
@@ -955,7 +954,7 @@ As we can see, there are several groups of fans that tend to cluster together. H
 
 ### Latent class regression
 
-Latent class regression is a powerful technique that produces durable clusters. It leverages discrete data, so continuous data will have to be discredited and dummy-coded prior to use. While we've already dummy-coded our data, we'll have to process it one more time so that it is accepted by the LCR function. This is another one of the quirks of R. It allows this to happen. In this case we'll simply make the zeros = 2. We can do this with an apply function and a simple _ifelse_ function. 
+Latent class regression is a powerful technique that produces durable clusters. It leverages discrete data, so continuous data will have to be discredited and dummy-coded prior to use. While we've already dummy-coded our data, we'll have to process it one more time so that it is accepted by the LCR function. This is another one of the quirks of R. It allows this to happen. In this case we'll simply make the zeros = 2. We can do this with an apply function and a simple `ifelse` function. 
 
 
 
@@ -1154,7 +1153,6 @@ Table: (\#tab:lcragecross)Age by segment
 |   5    |31.68118|  31  |
 
 
-
 Household income is also well differentiated with three distinct groups.
 
 
@@ -1280,7 +1278,7 @@ We'll link both forms to build psychographic profiles. This can go much deeper. 
 
 A factor analysis is a data reduction technique similar to a principle components analysis. We'll use it in a slightly different way to compress stated behaviors and use the patterns to create specific archetypes. 
 
-We can load some survey data using the _fa_survey_data_ data set in FOSBAAS. 
+We can load some survey data using the `fa_survey_data` data set in `FOSBAAS`. 
 
 
 ```r
@@ -1304,11 +1302,11 @@ Table: (\#tab:fab)Survey data
 
 This data set is based on asking individuals what they like to do at the ballpark. There is a list of predefined activities and fans are asked to rank from 0 to 10. Fans were also asked why they attended the game. 
 
-This data wasn't created with a person in mind. We can simply assign _customer_ids_ to this data set to simulate real people having taken the survey. We'll also need to process the data before we perform our factor analysis. We will use the _scale_ function to normalize the data. We haven't discussed this yet, but it can be important for mixed data sets. Make sure that the data is placed in a dataframe instead of a tibble.  
+This data wasn't created with a person in mind. We can simply assign _customer_ids_ to this data set to simulate real people having taken the survey. We'll also need to process the data before we perform our factor analysis. We will use the `scale` function to normalize the data. We haven't discussed this yet, but it can be important for mixed data sets. Make sure that the data is placed in a dataframe instead of a tibble.  
 
 
 
-Now that our data is prepared for analysis, we need to consider how many factors to create. There is a formulaic way to determine the number of factors. we'll use _nScree_ function in the nFactors [@R-nFactors] package to get an idea of how many factors are appropriate. There are ways to visualize this data. Try the _eigen(cor(survey_sc))_ function to access the eigenvalues.
+Now that our data is prepared for analysis, we need to consider how many factors to create. There is a formulaic way to determine the number of factors. we'll use `nScree` function in the `nFactors` [@R-nFactors] package to get an idea of how many factors are appropriate. There are ways to visualize this data. Try the `eigen(cor(survey_sc))` function to access the eigenvalues.
 
 
 
@@ -1330,7 +1328,7 @@ Table: (\#tab:fae)Number of Factors
 |nkaiser   |       5|
 
 
-Now that we have an idea of how many factors are appropriate, we can run our factor analysis. We'll use the GPArotation package [@R-GPArotation]  to add the rotation argument to the _factanal_ function from the stats [@R-stats] package. This will help us visualize the data.
+Now that we have an idea of how many factors are appropriate, we can run our factor analysis. We'll use the `GPArotation` package [@R-GPArotation]  to add the rotation argument to the `factanal` function from the stats [@R-stats] package. This will help us visualize the data.
 
 
 ```r
@@ -1412,7 +1410,7 @@ Consultants with marketing backgrounds will begin crafting stories about these g
 
 One of the problems with using this sort of analysis is that it is impossible to cast these segments across groups that have not taken the survey. Additionally, someone could belong to different segments on different days. Perhaps a father brings his children to a game one day and then goes out with some friends on another. _Belonginess_ can be mutable. However, if you have richer data on the data sample you might be able to predict their segment. You might also be able to create richer profiles by utilizing the demographic segments created earlier in this chapter. Let's begin by building a simple model to see if our factors can be used to predict the reason someone came to the game. Then we will combine some of this data and see what we can find.
 
-We'll use a function from the _nnet_  package and over-fit the model. We aren't going to be rigorous here because we are really just looking at this out of curiosity. We'll use the _multinom_ function from the nnet [@R-nnet] package to try to predict the classes.
+We'll use a function from the `nnet` [@R-nnet] package and over-fit the model. We aren't going to be rigorous here because we are really just looking at this out of curiosity. We'll use the `multinom` function to try to predict the classes.
 
 
 ```r
@@ -1500,7 +1498,7 @@ combined_classes <- as.data.frame(combined_classes)
 ```
 
 
-Now that we have combined these analyses we can look for patterns within the data. First, let's recode some of the data so that it is more approachable. Let's use the _switch_ function. The switch function is great, but not every language has it. Thanks R.
+Now that we have combined these analyses we can look for patterns within the data. First, let's recode some of the data so that it is more approachable. Let's use the `switch` function. The switch function is great, but not every language has it. Thanks R.
 
 
 ```r

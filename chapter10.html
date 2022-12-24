@@ -6,13 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 10 Operations and Analytics | Fundamentals of Sports Business Analytics and Strategy</title>
 <meta name="author" content="Justin Watkins">
+<meta name="description" content="If a sports team has two fundamental core competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
 <meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Chapter 10 Operations and Analytics | Fundamentals of Sports Business Analytics and Strategy">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://justin-watkins.github.io/chapter10.html">
 <meta property="og:image" content="https://justin-watkins.github.io/images/cover.png">
+<meta property="og:description" content="If a sports team has two fundamental core competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 10 Operations and Analytics | Fundamentals of Sports Business Analytics and Strategy">
+<meta name="twitter:description" content="If a sports team has two fundamental core competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
 <meta name="twitter:image" content="https://justin-watkins.github.io/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -46,9 +49,6 @@
     }
   </style>
 <link rel="stylesheet" href="style.css">
-<meta name="description" content="If a sports team has two fundamental core competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
-<meta property="og:description" content="If a sports team has two fundamental core competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
-<meta name="twitter:description" content="If a sports team has two fundamental core competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -553,7 +553,7 @@ Figure 10.3: Relationship between line length at a concession stand and scans
 <h3>
 <span class="header-section-number">10.3.3</span> Analyzing the results<a class="anchor" aria-label="anchor" href="#analyzing-the-results"><i class="fas fa-link"></i></a>
 </h3>
-<p>We can analyze this data in much the same fashion as we have analyzed data in previous chapters. However, we’ll introduce a new tool here called a <em>generalized additive model</em>. Be careful with this technique. While you might find that it is a silver bullet that can easily model many distributions, it is a little more difficult to work with than a math equation provided by regression. We’ll use the <em>mgcv</em> <span class="citation">(<a href="references.html#ref-R-mgcv" role="doc-biblioref">Wood 2022</a>)</span> library to access the <em>gam</em> function. As is often the case, we’ll need to do a little data preparation before applying our operation.</p>
+<p>We can analyze this data in much the same fashion as we have analyzed data in previous chapters. However, we’ll introduce a new tool here called a <em>generalized additive model</em>. Be careful with this technique. While you might find that it is a silver bullet that can easily model many distributions, it is a little more difficult to work with than a math equation provided by regression. We’ll use the <code>mgcv</code> <span class="citation">(<a href="references.html#ref-R-mgcv" role="doc-biblioref">Wood 2022</a>)</span> library to access the <code>gam</code> function. As is often the case, we’ll need to do a little data preparation before applying our operation.</p>
 <div class="sourceCode" id="cb280"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Generalized additive model</span></span>
@@ -638,7 +638,7 @@ Figure 10.4: GAM output on line length data
 <h3>
 <span class="header-section-number">10.3.4</span> Understanding wait times<a class="anchor" aria-label="anchor" href="#understanding-wait-times"><i class="fas fa-link"></i></a>
 </h3>
-<p>Now that we have some data on line-length we can take a closer look at what is driving wait-time. We can simulate some results from measuring the broader process. We built a function <em>f_get_wait_times()</em> to provide us with some data. This function breaks wait-times into three parts:</p>
+<p>Now that we have some data on line-length we can take a closer look at what is driving wait-time. We can simulate some results from measuring the broader process. We built a function <code><a href="https://rdrr.io/pkg/FOSBAAS/man/f_get_wait_times.html">f_get_wait_times()</a></code> to provide us with some data. This function breaks wait-times into three parts:</p>
 <ul>
 <li>Order time: The amount of time it takes to place an order</li>
 <li>Payment time: How long it took to fulfill payment after the order was placed</li>
@@ -774,7 +774,7 @@ Figure 10.5: Distribution of wait time components
 <h3>
 <span class="header-section-number">10.3.5</span> Simulating a component of our process<a class="anchor" aria-label="anchor" href="#simulating-a-component-of-our-process"><i class="fas fa-link"></i></a>
 </h3>
-<p>Like many of the topics we have discussed, simulation is a large and complicated topic. It is also incredibly useful for the problem that we are facing. We have already seen multiple ways to simulate data. We have used <em>rexp</em> and <em>rnorm</em> multiple times to create simulated data sets. This is what we are seeing in figure <a href="chapter10.html#fig:waittimesdista">10.5</a>. We are creating random numbers based on parameters for exponential or normal distributions. What do we do if we simply have a data set and we want to simulate it under different conditions? How do we know what distribution to fit that will approximate the data?</p>
+<p>Like many of the topics we have discussed, simulation is a large and complicated topic. It is also incredibly useful for the problem that we are facing. We have already seen multiple ways to simulate data. We have used <code>rexp</code> and <code>rnorm</code> multiple times to create simulated data sets. This is what we are seeing in figure <a href="chapter10.html#fig:waittimesdista">10.5</a>. We are creating random numbers based on parameters for exponential or normal distributions. What do we do if we simply have a data set and we want to simulate it under different conditions? How do we know what distribution to fit that will approximate the data?</p>
 <p>There are lots of software packages that will build simulations for you, but it is useful to understand how they might function at a base level. We’ll build a couple of basic transaction simulations and then evaluate how well specific changes to our process might impact the overall system. This will give you an appreciation for how a software package might approach a problem. When possible, I have always found it useful to understand problems at their most basic level. It makes you a better decision maker.</p>
 <p>Simulation is a daunting subject. Non-linear least squares fits can be frustrating and there are specialized programs that make it a lot easier. Like we saw in our chapter {#chapter6}, it is easy to get into some more complex math.</p>
 <div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
@@ -864,7 +864,7 @@ Figure 10.5: Distribution of wait time components
 <span>                                  <span class="st">'Payment Time'</span>,</span>
 <span>                                  <span class="st">'Order Time'</span>,</span>
 <span>                                  <span class="st">'Total Time'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>We’ll use the <em>forcats</em> <span class="citation">(<a href="references.html#ref-R-forcats" role="doc-biblioref">Wickham 2022a</a>)</span> library to access the <em>fct_reorder</em> function. This will help order our plot.</p>
+<p>We’ll use the <code>forcats</code> <span class="citation">(<a href="references.html#ref-R-forcats" role="doc-biblioref">Wickham 2022a</a>)</span> library to access the <code>fct_reorder</code> function. This will help order our plot.</p>
 <div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Correlation table </span></span>
@@ -1017,7 +1017,7 @@ Figure 10.7: Variance between components
 <h4>
 <span class="header-section-number">10.3.5.2</span> Building a simulation of our data<a class="anchor" aria-label="anchor" href="#building-a-simulation-of-our-data"><i class="fas fa-link"></i></a>
 </h4>
-<p>Finally, let’s build a simulation. This section will demonstrate some of the basics to get you started. However, the method that we follow is flexible and can be used in many different ways. We’ll begin by accessing the <em>wait_times_distribution</em> data.</p>
+<p>Finally, let’s build a simulation. This section will demonstrate some of the basics to get you started. However, the method that we follow is flexible and can be used in many different ways. We’ll begin by accessing the <code>wait_times_distribution</code> data.</p>
 <div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Access the distribution data</span></span>
@@ -1032,7 +1032,7 @@ Figure 10.7: Variance between components
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">755</span><span class="op">)</span></span>
 <span><span class="va">wait_sample</span> <span class="op">&lt;-</span> <span class="va">wait_times_distribution</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>               <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">.7</span><span class="op">)</span></span></code></pre></div>
-<p>Now we can begin to think about the distribution a little more carefully. We can use the <em>ecdf</em> function to compute an <em>empirical cumulative distribution function</em>. You can think about this output as the inverse of the <em>quantile</em> function.</p>
+<p>Now we can begin to think about the distribution a little more carefully. We can use the <code>ecdf</code> function to compute an <em>empirical cumulative distribution function</em>. You can think about this output as the inverse of the <code>quantile</code> function.</p>
 <div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Cumulative distribution function</span></span>
@@ -1804,7 +1804,7 @@ P_{n} = \rho_{n}/[k!k^{n-k}]P_{0}
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-23.</p>
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
