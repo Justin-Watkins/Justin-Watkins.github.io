@@ -1,7 +1,7 @@
 --- 
 title: "Fundamentals of Sports Business Analytics and Strategy"
 author: "Justin Watkins"
-date: "2022-12-24"
+date: "2022-12-27"
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: yes
