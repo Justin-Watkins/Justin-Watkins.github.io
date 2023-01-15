@@ -3,11 +3,9 @@
 
 
 
-This chapter will give you some background on my ideologies around analytics and sports business at the club level. I also want to separate the disciplines of strategy and analytics a little. Analytics serves strategy, but strategy is derived from analytics. This chapter will outline our approach to analytics. There are often many ways to approach a problem and some problems may not be worth solving for any number of reasons. Despite some inherent difficulties with sports, an analytic approach to problem solving should always be at the core of your business strategy. 
+This chapter will give you some background on my ideologies around analytics and sports business at the club level. I also want to separate the disciplines of strategy and analytics a little. Analytics serves strategy, but strategy is derived from analytics. This chapter will outline my approach to analytics. There are often many ways to approach a problem and some problems may not be worth solving for many reasons. Despite some inherent difficulties with sports, an analytic approach to problem solving should always be at the core of your business strategy. 
 
-Analytics is about reconciling opportunities. Many of the problems that we face are very old and have not yet been solved. This is especially true for Operations. I am convinced that there are unlimited applications for analytics within any industry or business. We should all demand objective justification for any value-statements not bound to empirical evidence. Our assertions must be tempered by the rigor of sound judgment and thoughtful analysis. Demand nothing less when outlining a strategy with colleagues.  
-
-Additionally, analytics can take many forms and could improve decision making in many functions that we have already mentioned:
+Analytics is about reconciling opportunities. Many of the problems that we face are very old and have not yet been solved. This is especially true for Operations. I am convinced that there are unlimited applications for analytics within any industry or business. Additionally, analytics can take many forms and could improve decision making in many functions that we have already mentioned:
 
 - Marketing: marketing mix, brand strategy, content, CRM, positioning, and pricing
 - Business Intelligence: descriptive and prescriptive reporting
@@ -17,7 +15,7 @@ Additionally, analytics can take many forms and could improve decision making in
 - Operations: ingress and egress, staffing, concessions
 - Technology: supporting these systems
 
-Analytics can even assist in tasks outside of core business functions such as human resources. For instance, you can optimize staffing or compensation packages. It can also mean many different things. Ad hoc analytic tasks typically involve nothing more than a simple spreadsheet that organizes the data. Techniques and application are varied and may include a number of techniques:
+Analytics can even assist in tasks outside of core business functions such as human resources. For instance, you can optimize staffing or compensation packages. Ad hoc analytic tasks typically involve nothing more than a simple spreadsheet that organizes the data. Techniques and application are varied and may include techniques such as:
 
 - Segmentation
 - Simulation
@@ -27,19 +25,19 @@ Analytics can even assist in tasks outside of core business functions such as hu
 - Programming
 - Designing experiments (DOE)
 
-These lists could be endlessly long. _Versatility_ is the hallmark of the strong analyst and strategist. You aren't going to find many books on general strategy. Strategy is an amalgam of knowledge focused on specific problems. People who are good at it understand the business at a fundamental level and understand how to structure problems so that they may be solved in intelligent ways. The strategist is never quixotic. The strategist looks to the future, but understands the past. The strategist provides a concise reasoning for a course of action. You are forging an alloy that will increase profitability while making your business more efficient and resilient. You may be criticized for for your elitist approach. Ignore the criticism.  
+These lists could be endlessly long. _Versatility_ is the hallmark of the strong analyst and strategist. You aren't going to find many books on general strategy. Strategy is an amalgam of knowledge focused on specific problems. People who are good at it understand the business at a fundamental level and understand how to structure problems so that they may be solved in intelligent ways. You are forging an alloy that will increase profitability, while making your business more efficient and resilient. 
 
 ## Understanding the meaning of strategy
 
-Strategy is a complex term, but it can really be boiled down to having a plan. A strategy has a goal and that goal can vary. Like most companies (especially public companies) driving firm valuations may be a goal. You typically drive valuation higher by increasing revenue or by reinforcing a strategic moat. For example, in the streaming wars Netflix, Disney, and others are in a race to produce content. Content is their strategic moat because the technology problems have been solved while consumer behavior has shifted. They play in a highly competitive space and are in a dog fight with every other competitor.
+Strategy is a complex term, but it can be distilled down to having a plan. A strategy has a goal and that goal can vary. Like most companies (especially public companies) driving firm valuations may be a goal. You typically drive valuation higher by increasing revenue or by reinforcing a strategic moat. For example, in the streaming wars Netflix, Disney, and others are in a race to produce content. Content is their strategic moat because the technology problems have been solved while consumer behavior has shifted. They play in a highly competitive space and are in a dog-fight with every other competitor.
 
-I have often heard people describe strategy as turning everyone's head in the right direction. I suppose that is a component of strategy. Strategy can be offensive or defensive and involve public relations or lobbying efforts. It can include manipulating market forces of supply and demand or structuring media rights deals. You can divest from under-performing assets or create entirely new asset classes. You can hedge against risks by diversifying your approach or through partnerships. This is a broad term that gets overused, is often confused for something else, and is simply an abstraction if it isn't framed around specific goals. 
+I have often heard people describe strategy as turning everyone's head in the right direction. I suppose that is a component of strategy. Strategy can be offensive or defensive and involve public relations or lobbying efforts. It can include manipulating market forces of supply and demand or structuring media rights deals. You can divest from under-performing assets or create entirely new asset classes. You can hedge against risks by diversifying your approach or through partnerships. It might mean evaluating capabilities. It's a broad term that gets overused, is often confused for something else, and is simply an abstraction if it isn't framed around specific goals. 
 
-Strategy is also about communication. This can't be stressed enough. If you want to learn about strategy I suggest that you take a negotiations course. You can also read a couple of key books. "How to win friends and influence people" [@Carnegie1981] is a good place to start. This classic was written in the nineteen-thirties and is as relevant today as it was then. Another great book you should consider is "Getting To Yes, Negotiating Agreement Without Giving In" [@Fisher2011]. This book is all about positioning arguments. This is a critical skill set. If you can't do this, you might as well not understand how addition works. Working with and understanding people, presentation skills, and understanding how to frame arguments without being condescending is critical to strategy. I can't stress the importance of soft skills enough. This is the most important paragraph in this book. Stop here if you have strong technical skill sets and take an etiquette course. 
+Strategy is also about communication. This can't be stressed enough. If you want to learn about strategy I suggest that you take a negotiations course. You can also read a couple of books that teach you how to talk to people. "How to win friends and influence people" [@Carnegie1981] is a good place to start. This classic was written in the nineteen-thirties and is as relevant today as it was then. Another great book you should consider is "Getting To Yes, Negotiating Agreement Without Giving In" [@Fisher2011]. This book is all about positioning arguments. This is a critical skill set. If you can't do it, you might as well not understand how addition works. Working with and understanding people, presentation skills, and understanding how to frame arguments without being condescending is critical to strategy. I can't stress the importance of soft skills enough. This is the most important paragraph in this book. Stop here if you have strong technical skill sets and take an etiquette course to learn how to act and a rhetoric course to learn how to think. The liberal-arts are under-appreciated in our field to the detriment of many practitioners.  
 
-From an academic standpoint, there are lot's of strategic frameworks. Harvard's Michael Porter descried firms as "a collection of activities that are performed to design, produce, market, deliver, and support products." [@Keller2003] That is exactly what we are doing. His most famous contribution to business strategy is likely "Porter's five forces." ^[https://en.wikipedia.org/wiki/Porter%27s_five_forces_analysis] What is interesting about this framework is that on the surface it doesn't appear imminently useful to a sports team. Where it does come in useful is when thinking about strategic problems such as _What Point-Of-Sale system should we use throughout our venue?_. In that case, this model can be used to consider who you might select based on those market forces. Will there be consolidation, what does that mean, what is our most powerful position in terms of negotiating. If the product is a commodity, the vendor will have to compete on price. Perhaps they are interested in marketing and are candidates for a sponsorship. Maybe you could purchase the company. You can get creative. 
+From an academic standpoint, there are lot's of strategic frameworks. Harvard's Michael Porter descried firms as "a collection of activities that are performed to design, produce, market, deliver, and support products." [@Keller2003] That is exactly what we are doing, but our product represents something more complex than a simple good or service. His most famous contribution to business strategy is likely "Porter's five forces." ^[https://en.wikipedia.org/wiki/Porter%27s_five_forces_analysis] What is interesting about this framework is that on the surface it doesn't appear imminently useful to a sports team. Where it does come in useful is when thinking about strategic problems such as _What Point-Of-Sale system should we use throughout our venue?_. In that case, this model can be used to consider who you might select based on those market forces. Will there be consolidation, what does that mean, what is our most powerful position in terms of negotiating? If the product is a commodity, the vendor will have to compete on price. Perhaps they are interested in marketing and are candidates for a sponsorship. Maybe you could purchase the company. It's the classic strategy problem: "Build, Buy, or Lease." You can get creative. 
 
-If you have ever messed around in the stock market you'll here a lot of talk about _fundamentals_. The type of analysis you might find on a trading platform is the illusion of analysis. Applying techniques like _triple exponential smoothing_^[https://en.wikipedia.org/wiki/Exponential_smoothing] or _moving averages_ to stocks looks great, but it probably doesn't matter. Does it make a novice a better trader? It might make them worse. Analysis is great if you understand it. It is contextual. If you don't understand the context it can be misleading or damaging. Data is not the solution. Perhaps it is. It depends. Keep that in mind and think critically about the problems we are going to cover. The mechanical part of analysis isn't the important part of it. It should be a commodity. Focus on the application and communication.
+If you have ever messed around in the stock market you'll here a lot of talk about _fundamentals_. The type of analysis you might find on a trading platform is the illusion of analysis. Applying techniques like _triple exponential smoothing_^[https://en.wikipedia.org/wiki/Exponential_smoothing] or _moving averages_ to stocks looks great, but it probably doesn't matter. Does it make a novice a better trader? It might make them worse. Analysis is great if you understand it. It is contextual. If you don't understand the context it can be misleading or damaging. Data is not the solution or perhaps it is. It depends. Keep that in mind and think critically about the problems we are going to cover. The mechanical part of analysis isn't the important part of it. It should be a commodity. Focus on the application and communication.
 
 ## Technologies place in strategy and analytics
 
@@ -54,13 +52,13 @@ As ridiculous as it may sound, you have to begin with data structure. You are bu
 
 Furthermore, I consider technology to be "a means to an end," and not "an end unto itself." This tends to be a common confusion. Your technology strategy should flow from a well-articulated business strategy. You could spend capital to allow fans to enter a park leveraging facial recognition, but what problem does that solve? Is scanning a ticket the bottleneck in that system that slows down the process? Do fans want it? Does the regulatory environment permit it? This sounds like a complex system more than a camera and a database. Focus on the system. The technology is probably the easy part to solve. While innovation is sometimes bred by throwing something at the wall to see if it sticks, I haven't found that to be the primary vehicle for technology adoption. When an organization takes a misguided technology-first approach, I have found the results to be painfully unremarkable. Determine what you want to accomplish and why you want to accomplish it before deploying a technology solution.
 
-Perhaps you want to _revolutionize_ your business. Very few problems are solved in revolutionary ways. The internet feels much the same as it did twenty years ago. We are now talking about web 3.0 and the metaverse. We already have a _metaverse_. It is called the internet. It isn't revolutionary. What it really represents is a platform that big tech wants you to use to transact. Maybe it will be a better way of doing things or maybe it is simply a worse way of doing everything. If you want to be an early mover, it could have amazing advantages, but you'll be taking a risk. The jury will be out for the next decade on the metaverse. Perhaps it is 3D television. Remember those? Of course you don't. Look for the business model that underlies these marketing schemes. If you understand the mechanism, you'll be able to plan for what comes next or intelligently take risks.
+Perhaps you want to _revolutionize_ your business. Very few problems are solved in revolutionary ways. The internet feels much the same as it did twenty years ago. We are now talking about web 3.0 and the metaverse. We already have a _metaverse_. It is called the internet. It isn't revolutionary. What it really represents is a platform that big tech wants you to use to transact. Maybe it will be a better way of doing things or maybe it is simply a worse way of doing everything. If you want to be an early mover, it could have amazing advantages, but you'll be taking a risk. The jury will be out for the next decade on the metaverse. Perhaps it is 3D television. Remember those? Of course you don't. Look for the business model that underlies these marketing schemes. Perhaps the metaverse is simply a way to help bolster _augmented reality_ products. If you understand the mechanism, you'll be able to plan for what comes next and intelligently take risks.
 
 We don't want to be disparaging toward Information Technology. Strong I.T. skill sets are incredibly useful. As your skills progress you'll be exposed to a myriad of technologies:
 
 - if you work on Windows or Apple, you'll still need some understanding of Linux^[https://www.linux.org/]
 - Shell scripting is a critical skill for any dev-ops task^[https://en.wikipedia.org/wiki/Bash_(Unix_shell)]
-- Start using git as a repository for your code^[https://github.com/]
+- Start using _git_ as a repository for your code^[https://github.com/]
 - Tools such as _docker_ allow you to package programs if you are doing web development^[https://www.docker.com/]
 - You don't need your own server. Google, Amazon, and Microsoft each have massive deployment platforms.
 
@@ -165,7 +163,58 @@ This data might begin to look confusing because the relationships are a little m
 
 What do we have here? It appears that Mr. Williams has created (or had created) more than one account and the accounts are not merged into one. This is a simple example, but it demonstrates a duplication problem that is constantly faced. I am going to guess that we have one Ted Williams, but the system is regarding him as two people. Business rules can mitigate some of these issues. For instance, the ticketing system could forbid users from using an email that is already in the system. While using email_address as a primary key does have some advantages, there are always downstream issues that you have to consider. Nothing is perfect. Someone may simply use a different email. Then you have one person, but it may be impossible to tell them apart. Your rules may make a problem worse. 
 
-Garbage-in, garbage-out. Without getting this data clean, you won't be able to effectively move to the next level of our hierarchy. 
+Garbage-in, garbage-out. Without getting this data clean, you won't be able to effectively move to the next level of our hierarchy. Before we take a look at B.I., I want to cover the most important simple query that you will ever need. It is the core of B.I. work. I have asked a similar question during interviews for years and almost everyone fails to answer it correctly despite its simplicity. Once you gain some proficiency in SQL, run this code in an engine. This is written in SQL server syntax and answers the question:
+
+> Can you create a list of Companies in each Industry ordered by revenue?
+
+It looks simple, but make sure you understand what is happening. Everyone fails this test because they fail to think through it and invariably try a`GROUP BY` before giving up with a confused look on their faces wishing they had access to Google.
+
+
+```sql
+------------------------------------------------------------------
+-- BI SQL example 
+------------------------------------------------------------------
+
+CREATE TABLE #company (
+	company VARCHAR(20),
+	industry VARCHAR(20)
+)
+CREATE TABLE #revenue (
+	company VARCHAR(20),
+	revenue NUMERIC(12,2)
+)
+
+INSERT INTO #company (company, industry) VALUES
+('Coca-Cola','Beverages'),
+('Home Depot','Retail'),
+('Lockheed Martin','Aerospace'),
+('Boeing','Aerospace'),
+('BOA','Banking'),
+('Wal-Mart','Retail'),
+('Amazon','Retail'),
+('Total Wine','Retail')
+
+INSERT INTO #revenue (company, revenue) VALUES
+('Coca-Cola','2000000'),
+('Home Depot','1500000'),
+('Lockheed Martin','3000000'),
+('Boeing','5000000'),
+('BOA','900000'),
+('Wal-Mart','8500000'),
+('Amazon','1425000'),
+('Total Wine','75000')
+
+SELECT 
+  RANK() OVER(PARTITION BY A.industry ORDER BY B.revenue DESC) [rank],
+  A.industry,
+  A.company,
+  B.revenue
+FROM #company A LEFT JOIN #revenue B ON A.company = B.company
+ORDER BY industry, [rank]
+
+```
+
+You'll constantly need to do this exercise and if you are working with large data sets leveraging SQL will be preferable to leveraging other methods since it is optimized for these sorts of data gymnastics. 
 
 ### Business Intelligence
 
@@ -194,8 +243,8 @@ Data structure for a BI system doesn't necessarily have to be any different than
 You can think of a _fact_ as something that will be aggregated. It is a number. _Dimensions_ are the features that you use to understand your numbers. Consider the diagram in figure \@ref(fig:chonedatafanddim). 
 
 <div class="figure" style="text-align: center">
-<img src="images/facts_dimensions.png" alt="CRM system data structure" width="100%" />
-<p class="caption">(\#fig:chonedatafanddim)CRM system data structure</p>
+<img src="images/facts_dimensions.png" alt="Business Intelligence data structure" width="100%" />
+<p class="caption">(\#fig:chonedatafanddim)Business Intelligence data structure</p>
 </div>
 
 These tables don't look much different than what you saw in figure \@ref(fig:chonedatacrm). The main difference is conceptual. In the earlier diagram no tables were necessarily prioritized over others. You might look at the tables and consider the customer as the central table with features radiating out from that specific customer. The customer has a rep, purchases tickets, may have a plan, etc. In this diagram the _Ticket_ is central. Since B.I. tools are at heart aggregation machines, this structure is extremely important. If you want to perform some math on a feature such as ticket price, you put it in the fact table. This allows you to perfromantly answer all kinds of questions such as:
@@ -287,7 +336,7 @@ That is as deep as I want to go here. We are going to use this tool a lot in sub
 
 #### Machine Learning
 
-Machine learning is a little different as a concept, but under the hood it is just statistics. This has been explained in many ways. At it's heart, we are looking for patterns in data to make predictions.
+Machine learning is a little different as a concept, but under the hood it is just statistics. This has been explained in many ways. At it's heart, we are looking for patterns in data to make predictions. Also, don't worry about A.I. taking you job. Worry about the person that knows how to use it taking you job. 
 
 There are three main types of machine learning:
 

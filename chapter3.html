@@ -149,7 +149,7 @@
 <span>                                         colour   <span class="op">=</span> <span class="st">"grey99"</span><span class="op">)</span>, </span>
 <span>        plot.background   <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill     <span class="op">=</span> <span class="st">"grey99"</span>, </span>
 <span>                                         colour   <span class="op">=</span> <span class="st">"grey99"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>The object <code>graphics_theme_1</code> will be used on all of our subsequent graphs. It will keep them looking consistent. You can easily adjust any element by simply adding it to your plot after the theme. That will override our graphics theme and illustrates some of the elegance of the paradigm.</p>
+<p>The object <code>graphics_theme_1</code> will be used on all of our subsequent graphs. It will keep them looking consistent. You can easily adjust any element by simply adding it to your plot after the theme. That will override our graphics theme and illustrates some of the elegance of the paradigm. Let’s pull down some data from the <code>FOSBAAS</code> package and take a look at it.</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># High level schedule data</span></span>
@@ -218,13 +218,13 @@
 </tr>
 </tbody>
 </table></div>
-<p>We’ve already talked about this data, so the next few sections will demonstrate the sorts of plots and exploratory analysis that you would typically perform to help you understand patterns in the data. This part of analysis is critical. It helps you understand the data so that you can perform more sophisticated modeling on it in later steps. It is also the best way to communicate patterns in the data to those with less experience with it. However, I also offer a word of warning. Most people do not think in distributions. Simple bar and line plots will get the most traction with folks. Don’t attempt to explain a box plot to someone in a meeting. You will lose the room.</p>
+<p>We’ve already talked about this data, so the next few sections will demonstrate the sorts of plots and exploratory analysis that you would typically perform to help you understand patterns in the data. If you want to review this data simply type <code><a href="https://rdrr.io/pkg/FOSBAAS/man/season_data.html">?FOSBAAS::season_data</a></code> into your <code>R</code> console. This part of analysis is critical. It helps you understand the data so that you can perform more sophisticated modeling on it in later steps. It is also the best way to communicate patterns in the data to those with less experience with it. I’ll also offer a word of warning. Most people do not think in distributions. Simple bar and line plots will get the most traction with folks. Don’t attempt to explain a box plot to someone in a meeting. You will lose the room.</p>
 </div>
 <div id="histograms-and-density-plots" class="section level2" number="3.2">
 <h2>
 <span class="header-section-number">3.2</span> Histograms and density plots<a class="anchor" aria-label="anchor" href="#histograms-and-density-plots"><i class="fas fa-link"></i></a>
 </h2>
-<p>Histograms and density plots are critical to understanding the underlying structure of data. Using a point estimate such as an average is a good way to misinterpret data. Learn to think in distributions. When you are at the DMV look at the line of customers and think about their height distribution. Do this everywhere else too. The following two graphs are called with simple commands: <code>geom_histogram</code> and <code>geom_density</code>.</p>
+<p>Histograms and density plots are critical to understanding the underlying structure of data. Using a point estimate such as an average is a good way to misinterpret data. Learn to think in distributions. When you are at the DMV look at the line of customers and think about their height distribution. When you watch the Olympics think of the distribution of times the athletes ran or swam. Do this everywhere else too. The following two graphs are called with simple commands: <code>geom_histogram</code> and <code>geom_density</code>.</p>
 <div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Histograms</span></span>
@@ -247,15 +247,15 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                        <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                       <span class="op">+</span></span>
 <span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
-<p>This code creates the graph in figure <a href="chapter3.html#fig:distributionticketsa">3.1</a>. Histograms are incredibly useful for understanding a data set’s structure. If you are unfamiliar with them, they demonstrate the count of a specific instance of something (in this case, ticket sales). We also included a <code>rug</code> at the bottom of the graph. This rug demonstrates where the data points actually lie on the graph. It may be unnecessary, but I find that it helps me interpret the graph a little more easily. This is especially true for density plots.</p>
-<p>The following diagram also layers different seasons on the diagram using colors. The colors that you use are important. While we aren’t going to cover design here, you should have a basic understanding of the “color wheel.”<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Color_wheel" class="uri"&gt;https://en.wikipedia.org/wiki/Color_wheel&lt;/a&gt;&lt;/p&gt;'><sup>27</sup></a> Google it. There are also several R packages that deal with color such as <code>RColorBrewer</code> <span class="citation">(<a href="references.html#ref-R-RColorBrewer" role="doc-biblioref">Neuwirth 2022</a>)</span>. This package was designed for maps, but demonstrates the point. Put some thought into the colors that you use and why you use them.</p>
+<p>This code creates the graph in figure <a href="chapter3.html#fig:distributionticketsa">3.1</a>. Histograms are incredibly useful for understanding a data set’s structure. If you are unfamiliar with them, they demonstrate the count of a specific instance of something (in this case, ticket sales). We also included a <code>rug</code> at the bottom of the graph. This rug demonstrates where the data points actually lie on the graph. It may be unnecessary, but I find that it helps me interpret the graph a little more easily when dealing with smaller data sets. This is especially true for density plots.</p>
+<p>The following diagram also layers different seasons on the diagram using colors. The colors that you use are important. While we aren’t going to cover design here, you should have a basic understanding of the <em>color wheel</em>.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Color_wheel" class="uri"&gt;https://en.wikipedia.org/wiki/Color_wheel&lt;/a&gt;&lt;/p&gt;'><sup>27</sup></a> Google it. There are also several R packages that deal with color such as <code>RColorBrewer</code> <span class="citation">(<a href="references.html#ref-R-RColorBrewer" role="doc-biblioref">Neuwirth 2022</a>)</span>. This package was designed for maps and demonstrates the point I am trying to make. Put some thought into the colors that you use and why you use them. It’ll give your graphics a polished and professional look.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:distributionticketsa"></span>
 <img src="images/ch3_sales_histogram.png" alt="Histogram of Ticket Sales" width="100%"><p class="caption">
 Figure 3.1: Histogram of Ticket Sales
 </p>
 </div>
-<p>How can we interpret this plot? Honestly, it is difficult to see much of a difference. IOt looks like 2024 had a higher percentage of sellouts. It also looks like there is a huge spike at around 31,000 tickets. Perhaps there are better ways to help us understand this data.</p>
+<p>How can we interpret this plot? Honestly, it is difficult to see much of a difference. It looks like 2024 had a higher percentage of sellouts. It also looks like there is a huge spike at around 31,000 tickets. Perhaps there are better ways to help us understand this data.</p>
 <p>With a small change, you can create a density plot. Density plots convey similar information as histograms, but they can be confusing for some individuals. Know your audience before choosing to use one over a more interpretable histogram. You can see this plot in figure <a href="chapter3.html#fig:distributionticketsdensity">3.2</a>.</p>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -278,14 +278,14 @@ Figure 3.1: Histogram of Ticket Sales
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                              <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                             <span class="op">+</span></span>
 <span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
-<p>A kernal density plot represents the density at a particular point. Think of it as how much area lives under the curve. The plot looks like this.</p>
+<p>A kernel density plot represents the density at a particular point. Think of it as how much area lives under the curve. The plot looks like this:</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:distributionticketsdensity"></span>
 <img src="images/ch3_sales_density.png" alt="Density Plot of Ticket Sales" width="100%"><p class="caption">
 Figure 3.2: Density Plot of Ticket Sales
 </p>
 </div>
-<p>This graph helps us visualize skew a little better than the histogram. We used an <em>alpha</em> argument to make the graphs transparent. It is much easier to see that 2024 skews to the right more than 2022 or 2023.</p>
+<p>This graph helps us visualize skew a little better than the histogram. We used an <code>alpha</code> argument to make the graphs transparent. It is much easier to see that 2024 skews to the right more than 2022 or 2023.</p>
 <p>How can we interpret the data under curve at a certain point? You can approximate it fairly easily. There are multiple methods to do this and you don’t necessarily have to integrate on the data. However, if you did have to use an integral R can help there too. Keep in mind that if you are actually doing calculus working for a club on the business side you are probably doing something wrong. In fact, if you are using calculus at all you are probably doing something wrong. Take a step back.</p>
 <p>You can use the density function to help you understand what is going on with these curves.</p>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
@@ -305,7 +305,7 @@ Figure 3.2: Density Plot of Ticket Sales
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">den</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="va">den</span><span class="op">$</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">40000</span><span class="op">]</span><span class="op">)</span> <span class="op">*</span> <span class="va">bin_size</span></span>
 <span><span class="co">#&gt; [1] 0.1337782</span></span></code></pre></div>
 <p>About thirteen percent of the area under the curve is at points above 40,000 tickets. We included these calculations for demonstrative purposes. It should make density plots easier to understand. We could perform these calculations for each density curve to help us understand the data in a little more granular fashion.</p>
-<p>Histograms and density plots are of particular use when you performing certain statistical analyses of data. We’ll use them frequently. Familiarize yourself with them. Learn to love them.</p>
+<p>Histograms and density plots are of particular use when performing certain statistical analyses of data. We’ll use them frequently. Familiarize yourself with them and learn to love them.</p>
 </div>
 <div id="box-faceted-and-scatter-plots" class="section level2" number="3.3">
 <h2>
@@ -337,8 +337,8 @@ Figure 3.2: Density Plot of Ticket Sales
 Figure 3.3: Faceted histogram
 </p>
 </div>
-<p>Notice how we restricted the graph to one color. Avoid multiple colors on graphs that split the data. You don’t need to have multiple ways to distinguish individual subsets of the data. One way will suffice.</p>
-<p>How can we interpret this graph? We get the same interpretation. 2024 is skewed to the right likely indicating higher average ticket sales. 2023 appears to have a few clusters of attendance while 2022 is fairly evenly distributed. Perhaps this is because of differences in the schedule.</p>
+<p>Notice how we restricted the graph to one color. Avoid multiple colors on graphs that split the data. You don’t need to have multiple ways to distinguish individual subsets of the data here. One way will suffice.</p>
+<p>We get the same interpretation from this graph as the preceeding one. 2024 is skewed to the right likely indicating higher average ticket sales. 2023 appears to have a few clusters of attendance, while 2022 is fairly evenly distributed. Perhaps this is because of differences in the schedule.</p>
 <p>Splitting graphs on various features is very useful and you’ll see it frequently. We can create box-plots by changing one argument. The following code produces the box-plot in figure <a href="chapter3.html#fig:chthreeboxplotexample">3.4</a>.</p>
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -367,7 +367,7 @@ Figure 3.3: Faceted histogram
 Figure 3.4: Segmented histogram and box-whisker plots
 </p>
 </div>
-<p>In this case, it is much easier to interpret the data. The IQR is skewed much higher and we clearly have a larger median value. Why use median instead of the mean? The median is a safer interpretation when you are looking at non-normal distributions (distributions with skew). It is actually best to look at both of them, but we will get to that.</p>
+<p>This data is easier to interpret in this fashion. The IQR is skewed much higher and we clearly have a larger median value. Why use median instead of the mean? The median is a safer interpretation when you are looking at non-normal distributions (distributions with skew). It is actually best to look at both of them, but we will get to that.</p>
 <p>We’ll explore one more type of basic plot. A violin plot will blend a density plot and boxplot. The following code produces the plot in figure <a href="chapter3.html#fig:chthreeticketsviolin">3.5</a>.</p>
 <div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -422,16 +422,16 @@ Figure 3.5: Segmented violin plot
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">y_label</span><span class="op">)</span>                                            <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                           <span class="op">+</span></span>
 <span>  <span class="va">graphics_theme_1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position   <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span></code></pre></div>
-<p>Line plots are a mainstay of analysis. They are typically leveraged to demonstrate change over time or some other series of data points. You should be pretty familiar with them.</p>
+<p>Line plots are a mainstay of analysis. They are typically leveraged to demonstrate change over time or some other series of data points. You should be pretty familiar with them. A word of warning is that they can become busy. Perhaps this plot would be better if the lines were placed on their own seperate graph.</p>
 <div class="figure">
 <span style="display:block;" id="fig:chthreeticketsline"></span>
 <img src="images/ch3_sales_line.png" alt="Line and Tile Plots" width="100%"><p class="caption">
 Figure 3.6: Line and Tile Plots
 </p>
 </div>
-<p>What are we seeing here? It appears that there is some degree of seasonality in the data. We can see that there are very few games with relatively low attendance during the middle of the season? Perhaps this is because school is out in the summer months and it helps bolster attendance. Additionally, are there other sports competing with baseball during these months?</p>
-<p>If you look past the sixtieth game you will notice that 2024 has a surge in attendance. Maybe this is because they were in a playoff race. Line graphs are also interesting because if you notice trend and seasonality you might be able to decompose those components using exponential smoothing or even a moving average. In practice, I have found limited use for these techniques in sports. However, it is something to think about and to be aware of.</p>
-<p>Tile plots (or heatmaps) add a level of dimensionality to data and can be extremely useful. This one is a little different. We need to do some aggregation on the data before visualizing it. We’ll use the <code>dplyr</code> for most transformations. It just makes life easier. This is very different than what you will tend to see in languages such as python. it uses the pipe <code>%&gt;%</code> to say the words <em>then do</em>. You’ll be seeing a lot more of it. Try it out on some data. In this case we are just picking some columns, grouping them, and then creating an aggregation. It feels similar to SQL. I wonder why?… This plot can be seen in figure <a href="chapter3.html#fig:chthreetileplotex">3.7</a>.</p>
+<p>It appears that there is some degree of seasonality in the data. We can see that there are very few games with relatively low attendance during the middle of the season. Perhaps this is because school is out in the summer months and it helps bolster attendance. Baseball also doesn’t have other major sports competing with them during these months.</p>
+<p>If you look past the sixtieth game you will notice that 2024 has a surge in attendance. Maybe this is because they were in a playoff race. Line graphs are also interesting because if you notice trend and seasonality you might be able to decompose those components using exponential smoothing or even a moving average. In practice, I have found limited use for these techniques in sports, but it is something to think about and to be aware of.</p>
+<p>Tile plots (or heatmaps) add a level of dimensionality to data and can be extremely useful. The next example is a little different. We need to do some aggregation on the data before visualizing it. We’ll use the <code>dplyr</code> for most transformations found in this book. It just makes life easier. This is very different than what you will tend to see in languages such as python (unless it has been ported). It uses the pipe <code>%&gt;%</code> to say the words <em>then do</em>. You’ll be seeing a lot more of it so try it out on some data. We are simply selecting some columns, grouping them, and then creating an aggregation. It feels similar to SQL. I wonder why?… This plot can be seen in figure <a href="chapter3.html#fig:chthreetileplotex">3.7</a>.</p>
 <div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Tile plot or heat map</span></span>
@@ -464,7 +464,7 @@ Figure 3.7: Tile Plots
 </p>
 </div>
 <p>How do we interpret this data? We can clearly see that Friday and Saturday tend to have higher average ticket sales. This shouldn’t be a surprise. It also looks like Sundays in March did well. Beware! That is likely an artifact from a reduced sample size. Overall, Heatmaps do a good job of visualizing correlations, but they can be misleading. Be careful with them and always consider sampling issues.</p>
-<p>You can also pump dplyr data directly into ggplot. See below.</p>
+<p>You can also pump <code>dplyr</code> data directly into <code>ggplot</code>. See below.</p>
 <div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span></span>
@@ -477,7 +477,7 @@ Figure 3.7: Tile Plots
 <span>                      y    <span class="op">=</span> <span class="va">month</span>,</span>
 <span>                      fill <span class="op">=</span> <span class="va">avgSales</span><span class="op">)</span><span class="op">)</span>   <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span><span class="op">)</span> </span></code></pre></div>
-<p>We can also look at a variation of a heatmap called a hex plot. It can be used in slightly different ways. You can see the hex plot in figure <a href="chapter3.html#fig:chthreehex">3.8</a>.</p>
+<p>Let’s also take a look at a variation of a heatmap called a hex plot. It can be used in slightly different ways. You can see an example of the hex plot in figure <a href="chapter3.html#fig:chthreehex">3.8</a>.</p>
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Hexplots</span></span>
@@ -503,13 +503,13 @@ Figure 3.7: Tile Plots
 Figure 3.8: Hex Plots
 </p>
 </div>
-<p>This heatmap is a little different. It demonstrates the number of games that fall into each bin. I tend to use these plots when I have continuous variables on the x and y axis and I am interested in the density at each point. Additionally, you can perceive some of the seasonality that is evident around game forty.</p>
+<p>This graphic is a little different from the heatmap. It demonstrates the number of games that fall into each bin. I tend to use these plots when I have continuous variables on the x and y axis and I am interested in the density at each point. If you pay attention you can perceive some of the seasonality that is evident around game forty.</p>
 </div>
 <div id="bar-plots" class="section level2" number="3.5">
 <h2>
 <span class="header-section-number">3.5</span> Bar plots<a class="anchor" aria-label="anchor" href="#bar-plots"><i class="fas fa-link"></i></a>
 </h2>
-<p>If you want to use a pie chart, don’t. Bar plots are almost always a better choice. Visualizing the relationships between area is simply easier in a bar plot. This are probably the most popular way to display data, but I find them lacking. Again, you really need to train yourself to think in distributions. Bar Plots are for counts. The basic bar plot produced by the following code can be seen in figure <a href="chapter3.html#fig:chthreebarexample">3.9</a>.</p>
+<p>If you want to use a pie chart, don’t. Bar plots are almost always a better choice. Visualizing the relationships between area is simply easier in a bar plot. Bar plos are probably the most popular way to display data, but I find them lacking. Again, you really need to train yourself to think in distributions. Bar Plots are for counts. The basic bar plot produced by the following code can be seen in figure <a href="chapter3.html#fig:chthreebarexample">3.9</a>.</p>
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Bar plot version one</span></span>
@@ -531,8 +531,8 @@ Figure 3.8: Hex Plots
 <span>  <span class="va">graphics_theme_1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position   <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:chthreebarexample"></span>
-<img src="images/ch3_sales_bar_pro.png" alt="Proportional of sales by day of week" width="100%"><p class="caption">
-Figure 3.9: Proportional of sales by day of week
+<img src="images/ch3_sales_bar_pro.png" alt="Proportion of sales by year and weekend" width="100%"><p class="caption">
+Figure 3.9: Proportion of sales by year and weekend
 </p>
 </div>
 <p>In this example we are looking at the percentages of tickets sold on the weekend vs. weekdays by season. This graph does a great job of it. We can clearly see that weekends make up a higher proportion of sales in 2024. We also know that weekdays make up the majority of sales.</p>
@@ -562,13 +562,13 @@ Figure 3.9: Proportional of sales by day of week
 Figure 3.10: Barplot of sales
 </p>
 </div>
-<p>We can see that 2022 and 2023 are almost identical and 2024 had significantly more ticket sales. This is the type of plot you might use for descriptive reporting. It is something accounting would want to see. They don’t need to know why? They typically just need the <em>what</em>.</p>
+<p>We can see that 2022 and 2023 are almost identical and 2024 had significantly more ticket sales. This is the type of plot you might use for descriptive reporting. This is something accounting would want to see. They don’t need to know <em>why</em> something happened, they typically just need the <em>what</em>. This is true in most cases that you will face. Make sure you clearly explain the <em>what</em>.</p>
 </div>
 <div id="a-final-word-on-graphics" class="section level2" number="3.6">
 <h2>
 <span class="header-section-number">3.6</span> A final word on graphics<a class="anchor" aria-label="anchor" href="#a-final-word-on-graphics"><i class="fas fa-link"></i></a>
 </h2>
-<p>Be cautious about how you represent data. We just covered the absolute rudiments or creating graphs and demonstrated some of the most commonly used instruments. Always think about the simplest way to illustrate the point that you are trying to make. Bar plots are usually fine. I like to follow a few rules when building graphs.</p>
+<p>Be cautious about how you represent data. We just covered the absolute rudiments or creating graphs and demonstrated some of the most commonly used instruments. Always think about the simplest way to illustrate the point that you are trying to make. Bar plots are usually fine. I like to follow a few rules when building graphs, but don’t take my word for it. Many people will tell you exactly the same things.</p>
 <ol style="list-style-type: decimal">
 <li>Never use a pie chart. They are more difficult to interpret than a bar plot</li>
 <li>Don’t use two Y axes. It is almost always better to use two graphs because the differences in scale or units can be confusing.</li>
@@ -576,14 +576,14 @@ Figure 3.10: Barplot of sales
 <li>Stick with a consistent font scheme</li>
 <li>Don’t put too much on one graph. Too many colors or shapes make graphs confusing. Always simplify.</li>
 </ol>
-<p>Additionally, we didn’t cover dynamic plots. R provides some interesting capabilities on this front. <code>Shiny</code> <span class="citation">(<a href="references.html#ref-R-shiny" role="doc-biblioref">Chang et al. 2022</a>)</span> allows you to build some cool interactive web apps. Furthermore, there are innumerable tools such as Tableau <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;These technologies are dynamic and constantly changing. At the time of writing, Tableau was the dominant tool in this space.&lt;/p&gt;"><sup>28</sup></a> and Looker that provide good business intelligence capability. Often, these tools are easier to use for quick ad hoc data exploration, but there is a lot of utility in putting everything into code. It automatically documents your work for those that can read it. It also gives you a readily available reference. You will find that this work can tend to be repetitive. You will use a lot of variations on the same theme. Most code is already written. You just need to adapt it.</p>
+<p>Additionally, we didn’t cover dynamic plots. R provides some interesting capabilities on this front. <code>Shiny</code> <span class="citation">(<a href="references.html#ref-R-shiny" role="doc-biblioref">Chang et al. 2022</a>)</span> allows you to build some cool interactive web apps. There are also innumerable tools such as Tableau <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;These technologies are dynamic and constantly changing. At the time of writing, Tableau was the dominant tool in this space.&lt;/p&gt;"><sup>28</sup></a> and Looker that provide good business intelligence capability. Often times these tools are easier to use for quick <em>ad hoc</em> data exploration, but there is a lot of utility in putting everything into code. It automatically documents your work for those that can read it. It also gives you a readily available reference. You will find that this work can tend to be repetitive. You will use a lot of variations on the same theme. Most code is already written. You just need to adapt it.</p>
 </div>
 <div id="summarizing-the-data" class="section level2" number="3.7">
 <h2>
 <span class="header-section-number">3.7</span> Summarizing the data<a class="anchor" aria-label="anchor" href="#summarizing-the-data"><i class="fas fa-link"></i></a>
 </h2>
-<p>We’ll make heavy use of an R package that we have already seen named <code>dplyr</code> <span class="citation">(<a href="references.html#ref-R-dplyr" role="doc-biblioref">Wickham, François, et al. 2022</a>)</span>. We’ll use <code>dplyr</code> because it is easy to read and is performant on most data sets that you will encounter. We’ll also reference a couple of other packages that are useful for summarizing data such as <code>psych</code> <span class="citation">(<a href="references.html#ref-R-psych" role="doc-biblioref">Revelle 2022</a>)</span>. Overall, summarizing data is an accouterment to graphs. You don’t always have to do it, but you will find yourself doing often.</p>
-<p>Let’s create simple summary of ticket sales using <code>dplyr</code>.</p>
+<p>This section will make heavy use of an R package that we have already seen named <code>dplyr</code> <span class="citation">(<a href="references.html#ref-R-dplyr" role="doc-biblioref">Wickham, François, et al. 2022</a>)</span>. We’ll use <code>dplyr</code> because it is easy to read and is performant on most data sets that you’ll encounter. We’ll also reference a couple of other packages that are useful for summarizing data such as <code>psych</code> <span class="citation">(<a href="references.html#ref-R-psych" role="doc-biblioref">Revelle 2022</a>)</span>. Summarizing data is often an accouterment to graphs. You don’t always have to do it, but you will find yourself doing often.</p>
+<p>Let’s create simple summary of ticket sales by the day of the week using <code>dplyr</code>.</p>
 <div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Creating a summary statistics table</span></span>
@@ -676,7 +676,7 @@ Figure 3.10: Barplot of sales
 <span><span class="va">quants</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt;     25% </span></span>
 <span><span class="co">#&gt; 26126.5</span></span></code></pre></div>
-<p>Turning data from long to wide format and vise-versa is something that is also a common task. Let’s look at one example. Perhaps you would like to see the Giants and Baltimore. This will be a little more complex, but it demonstrates how logically this system operates. We’ll use the <code>dplyr</code> <span class="citation">(<a href="references.html#ref-R-dplyr" role="doc-biblioref">Wickham, François, et al. 2022</a>)</span> and <code>tidyr</code> <span class="citation">(<a href="references.html#ref-R-tidyr" role="doc-biblioref">Wickham and Girlich 2022</a>)</span> libraries to achieve this result.</p>
+<p>Turning data from long to wide format and vise-versa is something that is also a common task. Perhaps you would like to see the Giants and Baltimore and you need to reformat the data. This will be a little more complex, but it demonstrates how logically this system operates. We’ll use the <code>dplyr</code> and <code>tidyr</code> <span class="citation">(<a href="references.html#ref-R-tidyr" role="doc-biblioref">Wickham and Girlich 2022</a>)</span> libraries to achieve this result. You can perform these tasks in SQL, but it won’t be as intuitive and user friendly to do so. Learn when to use SQL vs. R and vice-versa.</p>
 <div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Converting to wide format</span></span>
@@ -764,7 +764,7 @@ Figure 3.10: Barplot of sales
 </tr>
 </tbody>
 </table></div>
-<p>Now we have a table that tells us exactly what we want to know. In practice you will probably need this data in long format more often. Let’s pretend we want to graph this data. Because of the way ggplot works you will probably want to convert this data. It is simple to go back.</p>
+<p>We now have a table that tells us exactly what we want to know. In practice you will probably need this data in long format more often than wide format. Let’s pretend we want to graph this data. Because of the way ggplot works you will probably want to convert this data to long format like in the example below.</p>
 <div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Converting to long format</span></span>
@@ -824,7 +824,7 @@ Figure 3.10: Barplot of sales
 <h3>
 <span class="header-section-number">3.7.1</span> Getting statistical information<a class="anchor" aria-label="anchor" href="#getting-statistical-information"><i class="fas fa-link"></i></a>
 </h3>
-<p>We also thought it might be useful to mention a few ways to get statistical data without having to calculate it yourself. R excels here and several people have extended it’s capabilities. I’ll show you a couple of the ones I have used the most. The <code>psych</code> <span class="citation">(<a href="references.html#ref-R-psych" role="doc-biblioref">Revelle 2022</a>)</span> library contains lots of useful functions for manipulating data.</p>
+<p>I also thought it might be useful to mention a few ways to get statistical data without having to calculate it yourself. R excels here and several people have extended it’s capabilities. I’ll show you a couple of the ones I have used the most. The <code>psych</code> <span class="citation">(<a href="references.html#ref-R-psych" role="doc-biblioref">Revelle 2022</a>)</span> library contains many useful functions for manipulating and summarizing data. We’ll use <code>describe</code> here to get some basic statistical features of the data.</p>
 <div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Summary stats psych</span></span>
@@ -894,7 +894,7 @@ Figure 3.10: Barplot of sales
 </tr>
 </tbody>
 </table></div>
-<p>This gives you a good overview of what the structure of the ticket sales data looks like. This gives me a good opportunity to point out one of R’s quirks. The <code>psych</code> package and the <code>Hmisc</code> <span class="citation">(<a href="references.html#ref-R-Hmisc" role="doc-biblioref">Harrell 2022</a>)</span> package both have a function with the same name. They even do similar things. Be cautious with dependencies because they can cause problems.</p>
+<p>This gives you a good overview of what the structure of the ticket sales data looks like. It’s also a good opportunity to point out one of R’s quirks. The <code>psych</code> package and the <code>Hmisc</code> <span class="citation">(<a href="references.html#ref-R-Hmisc" role="doc-biblioref">Harrell 2022</a>)</span> package both have a function with the same name (<code>describe</code>). They even do similar things. Be cautious with dependencies because they can cause problems. When you load packages they can overwrite each other. To get around this issue you can always leverage the full namespace: <code><a href="https://rdrr.io/pkg/psych/man/describe.html">psych::describe</a></code> instead of <code>describe</code>.</p>
 <p>The following example uses the <code>Hmisc</code> package to display some summary statistics.</p>
 <div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -902,12 +902,8 @@ Figure 3.10: Barplot of sales
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">hmisc_desc</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu">Hmisc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Hmisc/man/describe.html">describe</a></span><span class="op">(</span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/season_data.html">season_data</a></span><span class="op">$</span><span class="va">ticketSales</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">hmisc_desc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">hmisc_desc</span><span class="op">$</span><span class="va">counts</span><span class="op">)</span></span>
-<span><span class="va">hmisc_desc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">hmisc_desc</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Unload a package</span></span>
-<span><span class="co"># unloadNamespace("Hmisc")</span></span>
-<span><span class="co"># detach("package:Hmisc")</span></span></code></pre></div>
-<p>You can remove libraries from your environment using the code from the previous code chuck.</p>
+<span><span class="va">hmisc_desc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">hmisc_desc</span><span class="op">)</span></span></code></pre></div>
+<p>You can remove libraries from your environment using a couple of different commands: (<code>unloadNamespace("Hmisc")</code> and <code>detach("package:Hmisc")</code>) Read the documentation to understand the differences.</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
 <span id="tab:hmiscshow">Table 3.6: </span>Summary Statistics using Hmisc</caption>
@@ -966,7 +962,7 @@ Figure 3.10: Barplot of sales
 </tr>
 </tbody>
 </table></div>
-<p>As you can see, somebody else has done the hard work for you. You just need to know where to look. Keep in mind, not all R packages are good. This software is user generated and provided for free. While there are lots of reputable packages, there are also lots that are poorly written. It is sometimes useful to look for provenance.</p>
+<p>As you can see, somebody else has done the hard work for you. You just need to know where to look. Keep in mind that not all R packages are high quality. This software is user-generated and provided for free. While there are lots of reputable packages, there are also lots that are poorly written. It is sometimes useful to look for provenance.</p>
 </div>
 <div id="building-models-and-basic-statistics" class="section level3" number="3.7.2">
 <h3>
@@ -977,8 +973,8 @@ Figure 3.10: Barplot of sales
 <h4>
 <span class="header-section-number">3.7.2.1</span> ANOVA<a class="anchor" aria-label="anchor" href="#anova"><i class="fas fa-link"></i></a>
 </h4>
-<p>An <em>analysis of variance</em> is a commonly used tool to gauge differences between groups. We are only going to take a cursory look at one version of <code>ANOVA</code>. There are lots of different types of ANOVA and you’ll want to put some time into understanding when and how to use them. Additionally, ANOVA output is equivalent to regression output. However, we are going to use it when we want to understand differences between groups. There are other ways to analyze the differences between groups such as a students T test. The following sections will walk you through a simple ANOVA example.</p>
-<p>This example is a <em>one-way</em> ANOVA with a covariate. We want to look at the differences in ticket sales by promotion by the day of the week. We can begin by looking at our samples</p>
+<p>An <em>analysis of variance</em> is a commonly used tool to gauge differences between groups. We are only going to take a cursory look at one version of <code>ANOVA</code>. There are lots of different types of ANOVA and you’ll want to put some time into understanding when and how to use them. Additionally, ANOVA output is equivalent to regression output. You’ll use it when you want to understand differences between groups. There are other ways to analyze the differences between groups such as a <em>students T test</em> and other non-parametric methods. .</p>
+<p>The following example is a <em>one-way</em> ANOVA with a <em>covariate</em>. We want to look at the differences in ticket sales by promotion by the day of the week. We can begin by building a fequency table.</p>
 <div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Build a frequency table</span></span>
@@ -987,7 +983,7 @@ Figure 3.10: Barplot of sales
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; bobblehead    concert       none      other </span></span>
 <span><span class="co">#&gt;         16          8        212          7</span></span></code></pre></div>
-<p>Each group has completely different representation. This is not a balanced design. Does that matter? It certainly could. We will test for group differences using the <code>aov</code> function.</p>
+<p>Each group has completely different representations which would indicate that this is not a balanced design. Does that matter? It certainly could. Test for group differences using by the <code>aov</code> function.</p>
 <div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># One Way ANOVA</span></span>
@@ -1033,7 +1029,7 @@ Figure 3.10: Barplot of sales
 </tr>
 </tbody>
 </table></div>
-<p>We’ll discuss designing experiments (DOE) in a later chapter. For now, we’ll simply walk through some of the output. We aren’t being rigorous here. Basically, our P Value looks good and we have an F statistic that isn’t super small. We can move forward. Let’s take a look at some statistics in a graph.</p>
+<p>We’ll discuss designing experiments (DOE) in a later chapter. For now, we’ll simply walk through some of the output. We aren’t being rigorous here. Basically, our <em>P Value</em> looks good and we have an <em>F statistic</em> that isn’t super small. We can move forward. Let’s take a look at these statistics in a graph.</p>
 <div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Viewing group means</span></span>
@@ -1073,10 +1069,10 @@ Figure 3.11: Group means and standard error by promotion and dow
 </p>
 </div>
 <p>This model output isn’t incredibly informative, but the graph gives you a lot of information. Once you have your model constructed you can access all the parts with a dollar sign: <code>mod$terms</code>. There is a lot of information to explore in these models when you begin making them more complex. In this case, we can see that we have some sample issues.</p>
-<p>We can see that certain promotions may be more effective than others and that the day of the week may have an impact on how effective the promotion might be in absolute terms.</p>
+<p>We can also see that certain promotions may be more effective than others and that the day of the week may have an impact on how effective the promotion might be in absolute terms. Let’s apply a <em>Tukey test</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Tukey%27s_range_test" class="uri"&gt;https://en.wikipedia.org/wiki/Tukey%27s_range_test&lt;/a&gt;&lt;/p&gt;'><sup>29</sup></a> to this data. This test will help us compare pairs of means and is based on the students t test. If you aren’t familiar with these tests, do a little research on them. They can be useful.</p>
 <div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
-<span><span class="co"># Summary stats psych</span></span>
+<span><span class="co"># Tukey test</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">tu_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
@@ -1134,7 +1130,7 @@ Figure 3.11: Group means and standard error by promotion and dow
 </tr>
 </tbody>
 </table></div>
-<p>In this case, the mean ticket sales for bobbleheads and concerts aren’t significantly different from each other. What does this mean? If your KPI is ticket sales and there are different marginal costs associated with concerts and bobbleheads then the less expensive option might be better. Let’s visualize these results.</p>
+<p>In this case, the mean ticket sales for bobbleheads and concerts aren’t significantly different from each other. What does this mean? If your KPI is ticket sales and there are different marginal costs associated with concerts and bobbleheads then the less expensive option might be preferable. Let’s visualize these results.</p>
 <div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Viewing group means</span></span>
@@ -1160,13 +1156,13 @@ Figure 3.11: Group means and standard error by promotion and dow
 Figure 3.12: Group means and standard error by promotion and dow
 </p>
 </div>
-<p>If an interval crosses zero, it isn’t significant. We can get a significant amount of information from this plot.</p>
+<p>If an interval crosses zero, it isn’t significant and we can potentially disregard the information as inconclusive.</p>
 </div>
 <div id="linear-regression" class="section level4" number="3.7.2.2">
 <h4>
 <span class="header-section-number">3.7.2.2</span> Linear Regression<a class="anchor" aria-label="anchor" href="#linear-regression"><i class="fas fa-link"></i></a>
 </h4>
-<p>We’ll go into regression in more detail in a later chapter. Functionally, the output is the same as an ANOVA.</p>
+<p>We’ll go into regression in more detail in several later chapter.. Functionally, the output is the same as an ANOVA.</p>
 <div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Creating a simple linear model</span></span>
@@ -1174,11 +1170,44 @@ Figure 3.12: Group means and standard error by promotion and dow
 <span><span class="va">ln_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">ticketSales</span> <span class="op">~</span> <span class="va">team</span><span class="op">+</span><span class="va">dayOfWeek</span><span class="op">+</span><span class="va">month</span><span class="op">+</span></span>
 <span>                           <span class="va">daysSinceLastGame</span><span class="op">+</span><span class="va">openingDay</span><span class="op">+</span><span class="va">promotion</span>,</span>
 <span>                           data <span class="op">=</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/season_data.html">season_data</a></span><span class="op">)</span></span>
-<span><span class="va">stats_ticket_sales</span> <span class="op">&lt;-</span> </span>
-<span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>st_error     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span>,</span>
-<span>               r_square     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod</span><span class="op">)</span><span class="op">[</span><span class="fl">8</span><span class="op">]</span><span class="op">)</span>,</span>
-<span>               adj_r_square <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod</span><span class="op">)</span><span class="op">[</span><span class="fl">9</span><span class="op">]</span><span class="op">)</span>,</span>
-<span>               f_stat       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ln_mod</span><span class="op">)</span><span class="op">$</span><span class="va">fstatistic</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<span></span>
+<span><span class="va">ln_mod</span> </span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; lm(formula = ticketSales ~ team + dayOfWeek + month + daysSinceLastGame + </span></span>
+<span><span class="co">#&gt;     openingDay + promotion, data = FOSBAAS::season_data)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;       (Intercept)            teamATL            teamBAL  </span></span>
+<span><span class="co">#&gt;          37993.73            -579.17            -612.86  </span></span>
+<span><span class="co">#&gt;           teamBOS            teamCHC            teamCIN  </span></span>
+<span><span class="co">#&gt;          10479.61            8873.01            -196.89  </span></span>
+<span><span class="co">#&gt;           teamCLE            teamCOL            teamCWS  </span></span>
+<span><span class="co">#&gt;          -1047.45            -488.43            1914.73  </span></span>
+<span><span class="co">#&gt;           teamDET            teamFLA            teamHOU  </span></span>
+<span><span class="co">#&gt;           -445.81           -1755.96            5301.38  </span></span>
+<span><span class="co">#&gt;           teamKAN            teamLAA            teamLAD  </span></span>
+<span><span class="co">#&gt;          -1729.86            4876.19           11798.00  </span></span>
+<span><span class="co">#&gt;           teamMIL            teamMIN            teamNYM  </span></span>
+<span><span class="co">#&gt;          -3877.18             330.59            4384.53  </span></span>
+<span><span class="co">#&gt;           teamNYY            teamOAK            teamPHI  </span></span>
+<span><span class="co">#&gt;           7362.71            1123.20            3590.36  </span></span>
+<span><span class="co">#&gt;            teamSD             teamSF             teamTB  </span></span>
+<span><span class="co">#&gt;          -1422.63            3995.62           -1543.36  </span></span>
+<span><span class="co">#&gt;           teamTEX            teamWAS       dayOfWeekMon  </span></span>
+<span><span class="co">#&gt;          -2309.79           -1107.37           -8998.56  </span></span>
+<span><span class="co">#&gt;      dayOfWeekSat       dayOfWeekSun       dayOfWeekThu  </span></span>
+<span><span class="co">#&gt;           -247.95           -8519.78           -8806.70  </span></span>
+<span><span class="co">#&gt;      dayOfWeekTue       dayOfWeekWed           monthAug  </span></span>
+<span><span class="co">#&gt;          -8724.49           -8947.95             -79.88  </span></span>
+<span><span class="co">#&gt;          monthJul           monthJun           monthMar  </span></span>
+<span><span class="co">#&gt;           5264.39            2986.79           -1522.76  </span></span>
+<span><span class="co">#&gt;          monthMay           monthOct           monthSep  </span></span>
+<span><span class="co">#&gt;            184.91           -1699.57           -1255.60  </span></span>
+<span><span class="co">#&gt; daysSinceLastGame     openingDayTRUE   promotionconcert  </span></span>
+<span><span class="co">#&gt;            279.20            3986.05            -929.53  </span></span>
+<span><span class="co">#&gt;     promotionnone     promotionother  </span></span>
+<span><span class="co">#&gt;          -4598.88           -2877.06</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
 <span id="tab:salesmodeltwo">Table 3.9: </span>Summary statistics</caption>
@@ -1195,7 +1224,7 @@ Figure 3.12: Group means and standard error by promotion and dow
 <td align="right">57.48835</td>
 </tr></tbody>
 </table></div>
-<p>You can use these coefficients to explain the impact of specific variables. How many tickets is the month of July worth? The coefficient (5264.39) represents this impact. July gives you a five-thousand ticket bump. You can also use the model to make predictions. This model is completely <em>overfit</em>, but that doesn’t matter at this point. We’ll look at ways to make sure you don’t overfit models in subsequent chapters. Let’s try it.</p>
+<p>You can use these coefficients to explain the impact of specific variables. How many tickets is the month of July worth? The coefficient (5264.39) represents this impact. July gives you a five-thousand ticket bump. You can also use the model to make predictions. This model is completely <em>overfit</em>, but that doesn’t matter at this point. We’ll look at ways to make sure you don’t overfit models in subsequent chapters. Let’s put these predictions on a graph.</p>
 <div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Using the regression output</span></span>
@@ -1226,7 +1255,7 @@ Figure 3.12: Group means and standard error by promotion and dow
 Figure 3.13: Prediction vs. acutal values
 </p>
 </div>
-<p>We can see that the model does a pretty good job of approximating sales.</p>
+<p>We can see that the model does a pretty good job of approximating sales. We’ll go through more complete examples later.</p>
 </div>
 </div>
 </div>
@@ -1238,13 +1267,12 @@ Figure 3.13: Prediction vs. acutal values
 <p>We covered several key concepts in this chapter:</p>
 <ul>
 <li>It is important to create a consistent design language for your graphs. Pay attention to colors.</li>
-<li>Certain graphs are better at representing specific data. You often don’t need exotic plots to convey information. You’ll use variations on a few different forms.</li>
-<li>Summarizing data can be done in multiple ways. There are multiple tools that you can use to reshape and summarize data. You can even implement your own methods relatively easily.</li>
+<li>Certain graphs are better at representing specific data. You often don’t need exotic plots to convey information. You’ll use variations on a few different themes.</li>
+<li>Summarizing data can be done in several ways. There are multiple tools that you can use to reshape and summarize data. You can even implement your own methods relatively easily.</li>
 <li>R makes it easy to explore and deploy a wide variety of statistical methods.</li>
-<li>When interpreting or communicating findings the simplest explanation is always the best. Most people will not care how you did something.</li>
+<li>When interpreting or communicating findings the simplest explanation is usually the best. Most people will not care how you did something. Let them ask you for more context.</li>
 </ul>
-<p>Think of this chapter as a reference. You just went through the basic Business Intelligence and analytics tools that you will use for basic data exploration. There are also different ways to accomplish everything that you just saw. In fact, there are multiple ways to accomplish each of these tasks in R. I just showed you one method.</p>
-<p>Additionally you can use Business Intelligence tools like Tableau to add additional dimensions to your illustrations. If you want to build custom websites R provides tools to accomplish this as well. You could even use javascript or python to accomplish the same thing.</p>
+<p>Think of this chapter as a reference. You just went through the basic Business Intelligence and analytics tools that you will use for data exploration. You can also use Business Intelligence tools like Tableau to add additional dimensions to your illustrations. If you want to build custom websites R provides tools to accomplish this as well. You could even use javascript or python to accomplish the same thing.</p>
 
 </div>
 </div>
@@ -1286,7 +1314,7 @@ Figure 3.13: Prediction vs. acutal values
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2022-12-27.</p>
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2023-01-15.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

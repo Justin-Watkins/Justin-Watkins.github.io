@@ -847,7 +847,7 @@ Table: (\#tab:discretizeaddtoframeheadzz)discretized data
 |RJ7CCATUH4Q1| gen_Mill |dist_Tertiary |income_med |    w    |   s   |
 |9GZT5Z5AOMKV|  gen_X   | dist_Primary |income_med |    w    |   m   |
 |S0Y0Y2454IU2|  gen_X   |dist_Tertiary |income_high|    w    |   m   |
-|YOZ51B6A2QMB| gen_Mill |dist_Secondary|income_med |    h    |   s   |
+|YOZ51B6A2QMB|  gen_Y   |dist_Secondary|income_med |    h    |   s   |
 
 
 Now that we have all discrete variables, we can take our preparation a step further and dummy-code our variables. Once again, there are several ways to do this. The psych package has a function that I tend to use. This is another frustrating thing about R. In Python, unless you implement your own encoder, you will likely always do this the exact same way every time. 
@@ -879,7 +879,7 @@ Table: (\#tab:moddatahead)Dummy coded data
 |RJ7CCATUH4Q1|       0        |         1         |       0        |
 |9GZT5Z5AOMKV|       1        |         0         |       0        |
 |S0Y0Y2454IU2|       1        |         0         |       0        |
-|YOZ51B6A2QMB|       0        |         1         |       0        |
+|YOZ51B6A2QMB|       0        |         0         |       1        |
 
 
 Now we have a dataframe that consists of only categorical data, we'll create one that has the mixed numerical and dummy-coded categorical data.
@@ -978,7 +978,7 @@ Table: (\#tab:lcr22)Data coded for LCR function
 |RJ7CCATUH4Q1|       2        |         1         |       2        |
 |9GZT5Z5AOMKV|       1        |         2         |       2        |
 |S0Y0Y2454IU2|       1        |         2         |       2        |
-|YOZ51B6A2QMB|       2        |         1         |       2        |
+|YOZ51B6A2QMB|       2        |         2         |       1        |
 
 
 A useful trick is to try to simplify the function that feeds the clustering function. It will make the function easier to read as you add parameters to it.
@@ -1040,11 +1040,11 @@ Table: (\#tab:lcrtablesix)Frequency table of segments
 
 |Var1|Freq |
 |:--:|:---:|
-| 1  |29327|
+| 1  |34191|
 | 2  |57541|
 | 3  |56972|
-| 4  |42906|
-| 5  |9281 |
+| 4  |39024|
+| 5  |8299 |
 
 
 It looks like our groups have a fairly large range. The smallest group contains over 10,000 people while the largest one contains over 56,000 individuals. 
@@ -1116,11 +1116,11 @@ Table: (\#tab:lcrdistcross)Distance by segment
 
 |lcrClass|avgDist |medDist|
 |:------:|:------:|:-----:|
-|   1    |109.8787| 66.65 |
+|   1    |109.3732| 65.93 |
 |   2    |110.5445| 66.65 |
 |   3    |110.1359| 66.29 |
-|   4    |107.3030| 64.00 |
-|   5    |118.3308| 78.02 |
+|   4    |107.7207| 64.50 |
+|   5    |118.2444| 77.75 |
 
 
 Age is much more interesting. There are three distinct groups that manifest when we arrange by our latent classes. 
@@ -1146,11 +1146,11 @@ Table: (\#tab:lcragecross)Age by segment
 
 |lcrClass| avgAge |medAge|
 |:------:|:------:|:----:|
-|   1    |26.61309|  26  |
+|   1    |25.45977|  26  |
 |   2    |51.99592|  52  |
 |   3    |52.04932|  52  |
-|   4    |31.68916|  31  |
-|   5    |31.68118|  31  |
+|   4    |33.12341|  32  |
+|   5    |32.66261|  32  |
 
 
 Household income is also well differentiated with three distinct groups.
@@ -1172,11 +1172,11 @@ Table: (\#tab:lcrhhicross)HHI by segment
 
 |lcrClass| avgHHI |medHHI|
 |:------:|:------:|:----:|
-|   1    |1350.691|1117.0|
+|   1    |1312.091|1093.0|
 |   2    |2429.860|2622.0|
 |   3    |2406.015|2629.5|
-|   4    |1512.979|1433.0|
-|   5    |1516.207|1431.0|
+|   4    |1562.102|1480.0|
+|   5    |1539.743|1449.0|
 
 Gender has two groups that are only male and female and three groups that are evenly split.
 
@@ -1201,11 +1201,11 @@ Table: (\#tab:lcrgencross)Gender by segment
 
 |lcrClass|  f  |  m  |
 |:------:|:---:|:---:|
-|   1    |14695|14632|
+|   1    |17115|17076|
 |   2    | NA  |57541|
 |   3    |56972| NA  |
-|   4    |21552|21354|
-|   5    |4628 |4653 |
+|   4    |19608|19416|
+|   5    |4152 |4147 |
 
 
 Ethnicity appears to be fairly well distributed across three groups. 

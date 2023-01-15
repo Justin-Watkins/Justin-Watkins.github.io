@@ -448,20 +448,22 @@ Table: (\#tab:forecast2)past seasons data
 |243|    81    |LAA |2024-10-06|   Sun   | Oct | FALSE |
 
 
-In this section, we are going to dive into regression in a little more rigorous fashion.Again, I highly recommend purchasing a book on regression and my current favorite is "An R Companion to Applied Regression." [@Fox2019] by John Fox and Sanford Weisberg. It is very practical and doesn't dwell on theory. There are lots of statistical terms you will need to be familiar with to really dig into it. These include:
+In this section, we are going to dive into regression in a little more rigorous fashion. Again, I highly recommend purchasing a book on regression and my current favorite is "An R Companion to Applied Regression." [@Fox2019] by John Fox and Sanford Weisberg. It is very practical and doesn't dwell on theory. There are also lots of statistical terms you will need to be familiar with to really gain some proficiency with regression. Often times, it is more important to understand the limitations of the tool you are using. A non-exhaustive list of terms you might run across might include:
 
-- Hypothesis testing
-- Normality
-- Independence
-- linearity
-- Validation
-- Homoskedacity vs Heteroskedacity
-- Autocorrelation
-- Multicolinearity
-- Interaction terms
-- Transformations
+- Hypothesis testing^[https://en.wikipedia.org/wiki/Statistical_hypothesis_testing]
+- Normality^[https://en.wikipedia.org/wiki/Normality_test]
+- Independence^[https://en.wikipedia.org/wiki/Independence_(probability_theory)]
+- linearity^[https://en.wikipedia.org/wiki/Linearity]
+- Validation^[https://en.wikipedia.org/wiki/Statistical_model_validation]
+- Homoskedacity vs Heteroskedacity^[https://en.wikipedia.org/wiki/Homoscedasticity_and_heteroscedasticity]
+- Autocorrelation^[https://en.wikipedia.org/wiki/Autocorrelation]
+- Multicolinearity^[https://en.wikipedia.org/wiki/Multicollinearity]
+- Interaction terms^[https://en.wikipedia.org/wiki/Interaction_(statistics)]
+- Omited Variable Bias^[https://en.wikipedia.org/wiki/Omitted-variable_bias]
+- Transformations^[https://en.wikipedia.org/wiki/Data_transformation_(statistics)]
+- Endogeneity^[https://en.wikipedia.org/wiki/Endogeneity_(econometrics)]
 
-An unfortunate fact about working with sports data is that you will be living in a non-parametric world where rank order might be what is important. Additionally, some of the critical underlying assumptions about your data may not be met. There are specific ways to deal with some of these problems. However, we are not doing a clinical study, so there is no need in going into going through every test in the world to make sure our model is durable. We will hit the high points and move on. You just need to make sure that you are aware of how deep the ocean goes. We won't get in over our heads. 
+An unfortunate fact about working with sports data is that you will be living in a _non-parametric_ world where rank order might be what is important. Additionally, some of the critical underlying assumptions about your data may not be met. There are specific ways to deal with some of these problems. However, we are not doing a clinical study, so there is no need in going into going through every test in the world to make sure our model is durable. We will hit the high points and move on. You just need to make sure that you are aware of how deep the ocean gets. We won't get in over our heads. 
 
 As we said, we can approach forecasting in several ways, but there are two main types of forecasting approaches that we typically deploy:
 

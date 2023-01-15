@@ -61,7 +61,7 @@ graphics_theme_1 <- ggplot2::theme() +
                                          colour   = "grey99"))
 ```
 
-The object `graphics_theme_1` will be used on all of our subsequent graphs. It will keep them looking consistent. You can easily adjust any element by simply adding it to your plot after the theme. That will override our graphics theme and illustrates some of the elegance of the paradigm.
+The object `graphics_theme_1` will be used on all of our subsequent graphs. It will keep them looking consistent. You can easily adjust any element by simply adding it to your plot after the theme. That will override our graphics theme and illustrates some of the elegance of the paradigm. Let's pull down some data from the `FOSBAAS` package and take a look at it.
 
 
 ```r
@@ -84,11 +84,11 @@ Table: (\#tab:fosbaasdataknitr)Example of schedule data
 |    5     |BAL |2022-04-06|   Wed   | Apr | FALSE |
 |    6     |BAL |2022-04-07|   Thu   | Apr | FALSE |
 
-We've already talked about this data, so the next few sections will demonstrate the sorts of plots and exploratory analysis that you would typically perform to help you understand patterns in the data. This part of analysis is critical. It helps you understand the data so that you can perform more sophisticated modeling on it in later steps. It is also the best way to communicate patterns in the data to those with less experience with it. However, I also offer a word of warning. Most people do not think in distributions. Simple bar and line plots will get the most traction with folks. Don't attempt to explain a box plot to someone in a meeting. You will lose the room. 
+We've already talked about this data, so the next few sections will demonstrate the sorts of plots and exploratory analysis that you would typically perform to help you understand patterns in the data. If you want to review this data simply type `?FOSBAAS::season_data` into your `R` console. This part of analysis is critical. It helps you understand the data so that you can perform more sophisticated modeling on it in later steps. It is also the best way to communicate patterns in the data to those with less experience with it. I'll also offer a word of warning. Most people do not think in distributions. Simple bar and line plots will get the most traction with folks. Don't attempt to explain a box plot to someone in a meeting. You will lose the room. 
 
 ## Histograms and density plots
 
-Histograms and density plots are critical to understanding the underlying structure of data. Using a point estimate such as an average is a good way to misinterpret data. Learn to think in distributions. When you are at the DMV look at the line of customers and think about their height distribution. Do this everywhere else too. The following two graphs are called with simple commands: `geom_histogram` and `geom_density`.
+Histograms and density plots are critical to understanding the underlying structure of data. Using a point estimate such as an average is a good way to misinterpret data. Learn to think in distributions. When you are at the DMV look at the line of customers and think about their height distribution. When you watch the Olympics think of the distribution of times the athletes ran or swam. Do this everywhere else too. The following two graphs are called with simple commands: `geom_histogram` and `geom_density`.
 
 
 ```r
@@ -116,9 +116,9 @@ hist_sales <-
 ```
 
 
-This code creates the graph in figure \@ref(fig:distributionticketsa). Histograms are incredibly useful for understanding a data set's structure. If you are unfamiliar with them, they demonstrate the count of a specific instance of something (in this case, ticket sales). We also included a `rug` at the bottom of the graph. This rug demonstrates where the data points actually lie on the graph. It may be unnecessary, but I find that it helps me interpret the graph a little more easily. This is especially true for density plots.
+This code creates the graph in figure \@ref(fig:distributionticketsa). Histograms are incredibly useful for understanding a data set's structure. If you are unfamiliar with them, they demonstrate the count of a specific instance of something (in this case, ticket sales). We also included a `rug` at the bottom of the graph. This rug demonstrates where the data points actually lie on the graph. It may be unnecessary, but I find that it helps me interpret the graph a little more easily when dealing with smaller data sets. This is especially true for density plots.
 
-The following diagram also layers different seasons on the diagram using colors. The colors that you use are important. While we aren't going to cover design here, you should have a basic understanding of the "color wheel."^[https://en.wikipedia.org/wiki/Color_wheel] Google it. There are also several R packages that deal with color such as `RColorBrewer` [@R-RColorBrewer]. This package was designed for maps, but demonstrates the point. Put some thought into the colors that you use and why you use them.  
+The following diagram also layers different seasons on the diagram using colors. The colors that you use are important. While we aren't going to cover design here, you should have a basic understanding of the _color wheel_.^[https://en.wikipedia.org/wiki/Color_wheel] Google it. There are also several R packages that deal with color such as `RColorBrewer` [@R-RColorBrewer]. This package was designed for maps and demonstrates the point I am trying to make. Put some thought into the colors that you use and why you use them. It'll give your graphics a polished and professional look.  
 
 
 <div class="figure" style="text-align: center">
@@ -126,7 +126,7 @@ The following diagram also layers different seasons on the diagram using colors.
 <p class="caption">(\#fig:distributionticketsa)Histogram of Ticket Sales</p>
 </div>
 
-How can we interpret this plot? Honestly, it is difficult to see much of a difference. IOt looks like 2024 had a higher percentage of sellouts. It also looks like there is a huge spike at around 31,000 tickets. Perhaps there are better ways to help us understand this data.
+How can we interpret this plot? Honestly, it is difficult to see much of a difference. It looks like 2024 had a higher percentage of sellouts. It also looks like there is a huge spike at around 31,000 tickets. Perhaps there are better ways to help us understand this data.
 
 With a small change, you can create a density plot. Density plots convey similar information as histograms, but they can be confusing for some individuals. Know your audience before choosing to use one over a more interpretable histogram. You can see this plot in figure \@ref(fig:distributionticketsdensity).
 
@@ -156,14 +156,14 @@ density_sales <-
 ```
 
 
-A kernal density plot represents the density at a particular point. Think of it as how much area lives under the curve. The plot looks like this.
+A kernel density plot represents the density at a particular point. Think of it as how much area lives under the curve. The plot looks like this:
 
 <div class="figure" style="text-align: center">
 <img src="images/ch3_sales_density.png" alt="Density Plot of Ticket Sales" width="100%" />
 <p class="caption">(\#fig:distributionticketsdensity)Density Plot of Ticket Sales</p>
 </div>
 
-This graph helps us visualize skew a little better than the histogram. We used an _alpha_ argument to make the graphs transparent. It is much easier to see that 2024 skews to the right more than 2022 or 2023. 
+This graph helps us visualize skew a little better than the histogram. We used an `alpha` argument to make the graphs transparent. It is much easier to see that 2024 skews to the right more than 2022 or 2023. 
 
 How can we interpret the data under curve at a certain point? You can approximate it fairly easily. There are multiple methods to do this and you don't necessarily have to integrate on the data. However, if you did have to use an integral R can help there too. Keep in mind that if you are actually doing calculus working for a club on the business side you are probably doing something wrong. In fact, if you are using calculus at all you are probably doing something wrong. Take a step back. 
 
@@ -194,7 +194,7 @@ sum(den$y[den$x >= 40000]) * bin_size
 
 About thirteen percent of the area under the curve is at points above 40,000 tickets. We included these calculations for demonstrative purposes. It should make density plots easier to understand. We could perform these calculations for each density curve to help us understand the data in a little more granular fashion.  
 
-Histograms and density plots are of particular use when you performing certain statistical analyses of data. We'll use them frequently. Familiarize yourself with them. Learn to love them. 
+Histograms and density plots are of particular use when performing certain statistical analyses of data. We'll use them frequently. Familiarize yourself with them and learn to love them. 
 
 ## Box, faceted, and scatter plots
 
@@ -229,9 +229,9 @@ histogram_sales_facet <-
 <p class="caption">(\#fig:distributionticketseightfacet)Faceted histogram</p>
 </div>
 
-Notice how we restricted the graph to one color. Avoid multiple colors on graphs that split the data. You don't need to have multiple ways to distinguish individual subsets of the data. One way will suffice.
+Notice how we restricted the graph to one color. Avoid multiple colors on graphs that split the data. You don't need to have multiple ways to distinguish individual subsets of the data here. One way will suffice.
 
-How can we interpret this graph? We get the same interpretation. 2024 is skewed to the right likely indicating higher average ticket sales. 2023 appears to have a few clusters of attendance while 2022 is fairly evenly distributed. Perhaps this is because of differences in the schedule.
+We get the same interpretation from this graph as the preceeding one. 2024 is skewed to the right likely indicating higher average ticket sales. 2023 appears to have a few clusters of attendance, while 2022 is fairly evenly distributed. Perhaps this is because of differences in the schedule.
 
 Splitting graphs on various features is very useful and you'll see it frequently. We can create box-plots by changing one argument. The following code produces the box-plot in figure \@ref(fig:chthreeboxplotexample).
 
@@ -267,7 +267,7 @@ Boxplots are my preferred method of looking at distributions. In this case, we b
 <p class="caption">(\#fig:chthreeboxplotexample)Segmented histogram and box-whisker plots</p>
 </div>
 
-In this case, it is much easier to interpret the data. The IQR is skewed much higher and we clearly have a larger median value. Why use median instead of the mean? The median is a safer interpretation when you are looking at non-normal distributions (distributions with skew). It is actually best to look at both of them, but we will get to that.
+This data is easier to interpret in this fashion. The IQR is skewed much higher and we clearly have a larger median value. Why use median instead of the mean? The median is a safer interpretation when you are looking at non-normal distributions (distributions with skew). It is actually best to look at both of them, but we will get to that.
 
 We'll explore one more type of basic plot. A violin plot will blend a density plot and boxplot. The following code produces the plot in figure \@ref(fig:chthreeticketsviolin).
 
@@ -332,7 +332,7 @@ line_sales <-
   graphics_theme_1 + theme(legend.position   = "bottom")
 ```
 
-Line plots are a mainstay of analysis. They are typically leveraged to demonstrate change over time or some other series of data points. You should be pretty familiar with them. 
+Line plots are a mainstay of analysis. They are typically leveraged to demonstrate change over time or some other series of data points. You should be pretty familiar with them. A word of warning is that they can become busy. Perhaps this plot would be better if the lines were placed on their own seperate graph. 
 
 
 <div class="figure">
@@ -341,11 +341,11 @@ Line plots are a mainstay of analysis. They are typically leveraged to demonstra
 </div>
 
 
-What are we seeing here? It appears that there is some degree of seasonality in the data. We can see that there are very few games with relatively low attendance during the middle of the season? Perhaps this is because school is out in the summer months and it helps bolster attendance. Additionally, are there other sports competing with baseball during these months? 
+It appears that there is some degree of seasonality in the data. We can see that there are very few games with relatively low attendance during the middle of the season. Perhaps this is because school is out in the summer months and it helps bolster attendance. Baseball also doesn't have other major sports competing with them during these months. 
 
-If you look past the sixtieth game you will notice that 2024 has a surge in attendance. Maybe this is because they were in a playoff race. Line graphs are also interesting because if you notice trend and seasonality you might be able to decompose those components using exponential smoothing or even a moving average. In practice, I have found limited use for these techniques in sports. However, it is something to think about and to be aware of.
+If you look past the sixtieth game you will notice that 2024 has a surge in attendance. Maybe this is because they were in a playoff race. Line graphs are also interesting because if you notice trend and seasonality you might be able to decompose those components using exponential smoothing or even a moving average. In practice, I have found limited use for these techniques in sports, but it is something to think about and to be aware of.
 
-Tile plots (or heatmaps) add a level of dimensionality to data and can be extremely useful. This one is a little different. We need to do some aggregation on the data before visualizing it. We'll use the `dplyr` for most transformations. It just makes life easier. This is very different than what you will tend to see in languages such as python. it uses the pipe `%>%` to say the words _then do_. You'll be seeing a lot more of it. Try it out on some data. In this case we are just picking some columns, grouping them, and then creating an aggregation. It feels similar to SQL. I wonder why?... This plot can be seen in figure \@ref(fig:chthreetileplotex).
+Tile plots (or heatmaps) add a level of dimensionality to data and can be extremely useful. The next example is a little different. We need to do some aggregation on the data before visualizing it. We'll use the `dplyr` for most transformations found in this book. It just makes life easier. This is very different than what you will tend to see in languages such as python (unless it has been ported). It uses the pipe `%>%` to say the words _then do_. You'll be seeing a lot more of it so try it out on some data. We are simply selecting some columns, grouping them, and then creating an aggregation. It feels similar to SQL. I wonder why?... This plot can be seen in figure \@ref(fig:chthreetileplotex).
 
 
 
@@ -385,7 +385,7 @@ tile_sales <-
 How do we interpret this data? We can clearly see that Friday and Saturday tend to have higher average ticket sales. This shouldn't be a surprise. It also looks like Sundays in March did well. Beware! That is likely an artifact from a reduced sample size. Overall, Heatmaps do a good job of visualizing correlations, but they can be misleading. Be careful with them and always consider sampling issues. 
 
 
-You can also pump dplyr data directly into ggplot. See below. 
+You can also pump `dplyr` data directly into `ggplot`. See below. 
 
 
 ```r
@@ -404,7 +404,7 @@ You can also pump dplyr data directly into ggplot. See below.
 ```
 
 
-We can also look at a variation of a heatmap called a hex plot. It can be used in slightly different ways. You can see the hex plot in figure \@ref(fig:chthreehex).  
+Let's also take a look at a variation of a heatmap called a hex plot. It can be used in slightly different ways. You can see an example of the hex plot in figure \@ref(fig:chthreehex).  
 
 
 
@@ -438,11 +438,11 @@ hex_sales <-
 </div>
 
 
-This heatmap is a little different. It demonstrates the number of games that fall into each bin. I tend to use these plots when I have continuous variables on the x and y axis and I am interested in the density at each point. Additionally, you can perceive some of the seasonality that is evident around game forty. 
+This graphic is a little different from the heatmap. It demonstrates the number of games that fall into each bin. I tend to use these plots when I have continuous variables on the x and y axis and I am interested in the density at each point. If you pay attention you can perceive some of the seasonality that is evident around game forty. 
 
 ## Bar plots
 
-If you want to use a pie chart, don't. Bar plots are almost always a better choice. Visualizing the relationships between area is simply easier in a bar plot. This are probably the most popular way to display data, but I find them lacking. Again, you really need to train yourself to think in distributions. Bar Plots are for counts. The basic bar plot produced by the following code can be seen in figure \@ref(fig:chthreebarexample). 
+If you want to use a pie chart, don't. Bar plots are almost always a better choice. Visualizing the relationships between area is simply easier in a bar plot. Bar plos are probably the most popular way to display data, but I find them lacking. Again, you really need to train yourself to think in distributions. Bar Plots are for counts. The basic bar plot produced by the following code can be seen in figure \@ref(fig:chthreebarexample). 
 
 
 ```r
@@ -468,8 +468,8 @@ bar_sales_pro <-
 
 
 <div class="figure" style="text-align: center">
-<img src="images/ch3_sales_bar_pro.png" alt="Proportional of sales by day of week" width="100%" />
-<p class="caption">(\#fig:chthreebarexample)Proportional of sales by day of week</p>
+<img src="images/ch3_sales_bar_pro.png" alt="Proportion of sales by year and weekend" width="100%" />
+<p class="caption">(\#fig:chthreebarexample)Proportion of sales by year and weekend</p>
 </div>
 
 In this example we are looking at the percentages of tickets sold on the weekend vs. weekdays by season. This graph does a great job of it. We can clearly see that weekends make up a higher proportion of sales in 2024. We also know that weekdays make up the majority of sales. 
@@ -505,11 +505,11 @@ bar_sales <-
 <p class="caption">(\#fig:chthreebarplottwo)Barplot of sales</p>
 </div>
 
-We can see that 2022 and 2023 are almost identical and 2024 had significantly more ticket sales. This is the type of plot you might use for descriptive reporting. It is something accounting would want to see. They don't need to know why? They typically just need the _what_.  
+We can see that 2022 and 2023 are almost identical and 2024 had significantly more ticket sales. This is the type of plot you might use for descriptive reporting. This is something accounting would want to see. They don't need to know _why_ something happened, they typically just need the _what_. This is true in most cases that you will face. Make sure you clearly explain the _what_.  
 
 ## A final word on graphics
 
-Be cautious about how you represent data. We just covered the absolute rudiments or creating graphs and demonstrated some of the most commonly used instruments. Always think about the simplest way to illustrate the point that you are trying to make. Bar plots are usually fine. I like to follow a few rules when building graphs.
+Be cautious about how you represent data. We just covered the absolute rudiments or creating graphs and demonstrated some of the most commonly used instruments. Always think about the simplest way to illustrate the point that you are trying to make. Bar plots are usually fine. I like to follow a few rules when building graphs, but don't take my word for it. Many people will tell you exactly the same things.
 
 1. Never use a pie chart. They are more difficult to interpret than a bar plot
 2. Don't use two Y axes. It is almost always better to use two graphs because the differences in scale or units can be confusing. 
@@ -517,14 +517,14 @@ Be cautious about how you represent data. We just covered the absolute rudiments
 4. Stick with a consistent font scheme
 5. Don't put too much on one graph. Too many colors or shapes make graphs confusing. Always simplify.  
 
-Additionally, we didn't cover dynamic plots. R provides some interesting capabilities on this front. `Shiny` [@R-shiny] allows you to build some cool interactive web apps. Furthermore, there are innumerable tools such as Tableau ^[These technologies are dynamic and constantly changing. At the time of writing, Tableau was the dominant tool in this space.] and Looker that provide good business intelligence capability. Often, these tools are easier to use for quick ad hoc data exploration, but there is a lot of utility in putting everything into code. It automatically documents your work for those that can read it. It also gives you a readily available reference. You will find that this work can tend to be repetitive. You will use a lot of variations on the same theme. Most code is already written. You just need to adapt it.
+Additionally, we didn't cover dynamic plots. R provides some interesting capabilities on this front. `Shiny` [@R-shiny] allows you to build some cool interactive web apps. There are also innumerable tools such as Tableau ^[These technologies are dynamic and constantly changing. At the time of writing, Tableau was the dominant tool in this space.] and Looker that provide good business intelligence capability. Often times these tools are easier to use for quick _ad hoc_ data exploration, but there is a lot of utility in putting everything into code. It automatically documents your work for those that can read it. It also gives you a readily available reference. You will find that this work can tend to be repetitive. You will use a lot of variations on the same theme. Most code is already written. You just need to adapt it.
 
 
 ## Summarizing the data
 
-We'll make heavy use of an R package that we have already seen named `dplyr` [@R-dplyr]. We'll use `dplyr` because it is easy to read and is performant on most data sets that you will encounter. We'll also reference a couple of other packages that are useful for summarizing data such as `psych` [@R-psych]. Overall, summarizing data is an accouterment to graphs. You don't always have to do it, but you will find yourself doing often. 
+This section will make heavy use of an R package that we have already seen named `dplyr` [@R-dplyr]. We'll use `dplyr` because it is easy to read and is performant on most data sets that you'll encounter. We'll also reference a couple of other packages that are useful for summarizing data such as `psych` [@R-psych]. Summarizing data is often an accouterment to graphs. You don't always have to do it, but you will find yourself doing often. 
 
-Let's create simple summary of ticket sales using `dplyr`.
+Let's create simple summary of ticket sales by the day of the week using `dplyr`.
 
 
 ```r
@@ -609,7 +609,7 @@ quants[3]
 #> 26126.5
 ```
 
-Turning data from long to wide format and vise-versa is something that is also a common task. Let's look at one example. Perhaps you would like to see the Giants and Baltimore. This will be a little more complex, but it demonstrates how logically this system operates. We'll use the `dplyr` [@R-dplyr] and `tidyr` [@R-tidyr] libraries to achieve this result.   
+Turning data from long to wide format and vise-versa is something that is also a common task. Perhaps you would like to see the Giants and Baltimore and you need to reformat the data. This will be a little more complex, but it demonstrates how logically this system operates. We'll use the `dplyr` and `tidyr` [@R-tidyr] libraries to achieve this result. You can perform these tasks in SQL, but it won't be as intuitive and user friendly to do so. Learn when to use SQL vs. R and vice-versa.    
 
 
 ```r
@@ -646,7 +646,7 @@ Table: (\#tab:widelonga)Median ticket sales by day of week
 |   Tue   |    26464.0    |   26233.0    |    3    |   1    |  231.0   |
 
 
-Now we have a table that tells us exactly what we want to know. In practice you will probably need this data in long format more often. Let's pretend we want to graph this data. Because of the way ggplot works you will probably want to convert this data. It is simple to go back.
+We now have a table that tells us exactly what we want to know. In practice you will probably need this data in long format more often than wide format. Let's pretend we want to graph this data. Because of the way ggplot works you will probably want to convert this data to long format like in the example below.
 
 
 ```r
@@ -682,7 +682,7 @@ This data will be much easier to use in `ggplot`. For the most part, these are t
 
 ### Getting statistical information
 
-We also thought it might be useful to mention a few ways to get statistical data without having to calculate it yourself. R excels here and several people have extended it's capabilities. I'll show you a couple of the ones I have used the most. The `psych` [@R-psych] library contains lots of useful functions for manipulating data.  
+I also thought it might be useful to mention a few ways to get statistical data without having to calculate it yourself. R excels here and several people have extended it's capabilities. I'll show you a couple of the ones I have used the most. The `psych` [@R-psych] library contains many useful functions for manipulating and summarizing data. We'll use `describe` here to get some basic statistical features of the data. 
 
 
 
@@ -717,7 +717,7 @@ Table: (\#tab:psychshow)Summary Statistics
 |se      |  421.9958351|
 
 
-This gives you a good overview of what the structure of the ticket sales data looks like. This gives me a good opportunity to point out one of R's quirks. The `psych` package and the `Hmisc` [@R-Hmisc] package both have a function with the same name. They even do similar things. Be cautious with dependencies because they can cause problems.
+This gives you a good overview of what the structure of the ticket sales data looks like. It's also a good opportunity to point out one of R's quirks. The `psych` package and the `Hmisc` [@R-Hmisc] package both have a function with the same name (`describe`). They even do similar things. Be cautious with dependencies because they can cause problems. When you load packages they can overwrite each other. To get around this issue you can always leverage the full namespace: `psych::describe` instead of `describe`.
 
 The following example uses the `Hmisc` package to display some summary statistics. 
 
@@ -730,12 +730,9 @@ hmisc_desc <- (Hmisc::describe(FOSBAAS::season_data$ticketSales))
 hmisc_desc <- unlist(hmisc_desc$counts)
 hmisc_desc <- as.data.frame(hmisc_desc)
 
-# Unload a package
-# unloadNamespace("Hmisc")
-# detach("package:Hmisc")
 ```
 
-You can remove libraries from your environment using the code from the previous code chuck. 
+You can remove libraries from your environment using a couple of different commands: (`unloadNamespace("Hmisc")` and `detach("package:Hmisc")`) Read the documentation to understand the differences. 
 
 
 Table: (\#tab:hmiscshow)Summary Statistics using Hmisc
@@ -757,7 +754,7 @@ Table: (\#tab:hmiscshow)Summary Statistics using Hmisc
 |.95     |43602|
 
 
-As you can see, somebody else has done the hard work for you. You just need to know where to look. Keep in mind, not all R packages are good. This software is user generated and provided for free. While there are lots of reputable packages, there are also lots that are poorly written. It is sometimes useful to look for provenance. 
+As you can see, somebody else has done the hard work for you. You just need to know where to look. Keep in mind that not all R packages are high quality. This software is user-generated and provided for free. While there are lots of reputable packages, there are also lots that are poorly written. It is sometimes useful to look for provenance. 
 
 
 ### Building models and basic statistics
@@ -767,9 +764,9 @@ We'll apply more rigor to our models as we progress through the ensuing chapters
 
 #### ANOVA
 
-An _analysis of variance_ is a commonly used tool to gauge differences between groups. We are only going to take a cursory look at one version of `ANOVA`. There are lots of different types of ANOVA and you'll want to put some time into understanding when and how to use them. Additionally, ANOVA output is equivalent to regression output. However, we are going to use it when we want to understand differences between groups. There are other ways to analyze the differences between groups such as a students T test. The following sections will walk you through a simple ANOVA example.
+An _analysis of variance_ is a commonly used tool to gauge differences between groups. We are only going to take a cursory look at one version of `ANOVA`. There are lots of different types of ANOVA and you'll want to put some time into understanding when and how to use them. Additionally, ANOVA output is equivalent to regression output. You'll use it when you want to understand differences between groups. There are other ways to analyze the differences between groups such as a _students T test_ and other non-parametric methods. .
 
-This example is a _one-way_ ANOVA with a covariate. We want to look at the differences in ticket sales by promotion by the day of the week. We can begin by looking at our samples 
+The following example is a _one-way_ ANOVA with a _covariate_. We want to look at the differences in ticket sales by promotion by the day of the week. We can begin by building a fequency table. 
 
 
 ```r
@@ -782,7 +779,7 @@ table(FOSBAAS::season_data$promotion)
 #>         16          8        212          7
 ```
 
-Each group has completely different representation. This is not a balanced design. Does that matter? It certainly could. We will test for group differences using the `aov` function.
+Each group has completely different representations which would indicate that this is not a balanced design. Does that matter? It certainly could. Test for group differences using by the `aov` function.
 
 
 ```r
@@ -804,7 +801,7 @@ Table: (\#tab:anova2)ANOVA results
 |Residuals|233|5477064783| 23506716|       NA|     NA|
 
 
-We'll discuss designing experiments (DOE) in a later chapter. For now, we'll simply walk through some of the output. We aren't being rigorous here. Basically, our P Value looks good and we have an F statistic that isn't super small. We can move forward. Let's take a look at some statistics in a graph.
+We'll discuss designing experiments (DOE) in a later chapter. For now, we'll simply walk through some of the output. We aren't being rigorous here. Basically, our _P Value_ looks good and we have an _F statistic_ that isn't super small. We can move forward. Let's take a look at these statistics in a graph.
 
 
 
@@ -851,13 +848,13 @@ ggplot(graph_table, aes(y=sales,
 This model output isn't incredibly informative, but the graph gives you a lot of information. Once you have your model constructed you can access all the parts with a dollar sign: `mod$terms`. There is a lot of information to explore in these models when you begin making them more complex. In this case, we can see that we have some sample issues.
 
 
-We can see that certain promotions may be more effective than others and that the day of the week may have an impact on how effective the promotion might be in absolute terms. 
+We can also see that certain promotions may be more effective than others and that the day of the week may have an impact on how effective the promotion might be in absolute terms. Let's apply a _Tukey test_^[https://en.wikipedia.org/wiki/Tukey%27s_range_test] to this data. This test will help us compare pairs of means and is based on the students t test. If you aren't familiar with these tests, do a little research on them. They can be useful.  
 
 
 
 ```r
 #-----------------------------------------------------------------
-# Summary stats psych
+# Tukey test
 #-----------------------------------------------------------------
 tu_test <- TukeyHSD(mod)
 ```
@@ -877,7 +874,7 @@ Table: (\#tab:anova4)Tukey Comparisons
 |other-none        |  795.8127| -4023.7710| 5615.396|0.9737610|
 
 
-In this case, the mean ticket sales for bobbleheads and concerts aren't significantly different from each other. What does this mean? If your KPI is ticket sales and there are different marginal costs associated with concerts and bobbleheads then the less expensive option might be better. Let's visualize these results.
+In this case, the mean ticket sales for bobbleheads and concerts aren't significantly different from each other. What does this mean? If your KPI is ticket sales and there are different marginal costs associated with concerts and bobbleheads then the less expensive option might be preferable. Let's visualize these results.
 
 
 
@@ -909,11 +906,11 @@ ggplot(tu_comp, aes(x=diff,
 </div>
 
 
-If an interval crosses zero, it isn't significant. We can get a significant amount of information from this plot. 
+If an interval crosses zero, it isn't significant and we can potentially disregard the information as inconclusive. 
 
 #### Linear Regression
 
-We'll go into regression in more detail in a later chapter. Functionally, the output is the same as an ANOVA. 
+We'll go into regression in more detail in several later chapter.. Functionally, the output is the same as an ANOVA. 
 
 
 ```r
@@ -923,11 +920,44 @@ We'll go into regression in more detail in a later chapter. Functionally, the ou
 ln_mod <- lm(ticketSales ~ team+dayOfWeek+month+
                            daysSinceLastGame+openingDay+promotion,
                            data = FOSBAAS::season_data)
-stats_ticket_sales <- 
-tibble::tibble(st_error     = unlist(summary(ln_mod)[6]),
-               r_square     = unlist(summary(ln_mod)[8]),
-               adj_r_square = unlist(summary(ln_mod)[9]),
-               f_stat       = summary(ln_mod)$fstatistic[1])
+
+ln_mod 
+#> 
+#> Call:
+#> lm(formula = ticketSales ~ team + dayOfWeek + month + daysSinceLastGame + 
+#>     openingDay + promotion, data = FOSBAAS::season_data)
+#> 
+#> Coefficients:
+#>       (Intercept)            teamATL            teamBAL  
+#>          37993.73            -579.17            -612.86  
+#>           teamBOS            teamCHC            teamCIN  
+#>          10479.61            8873.01            -196.89  
+#>           teamCLE            teamCOL            teamCWS  
+#>          -1047.45            -488.43            1914.73  
+#>           teamDET            teamFLA            teamHOU  
+#>           -445.81           -1755.96            5301.38  
+#>           teamKAN            teamLAA            teamLAD  
+#>          -1729.86            4876.19           11798.00  
+#>           teamMIL            teamMIN            teamNYM  
+#>          -3877.18             330.59            4384.53  
+#>           teamNYY            teamOAK            teamPHI  
+#>           7362.71            1123.20            3590.36  
+#>            teamSD             teamSF             teamTB  
+#>          -1422.63            3995.62           -1543.36  
+#>           teamTEX            teamWAS       dayOfWeekMon  
+#>          -2309.79           -1107.37           -8998.56  
+#>      dayOfWeekSat       dayOfWeekSun       dayOfWeekThu  
+#>           -247.95           -8519.78           -8806.70  
+#>      dayOfWeekTue       dayOfWeekWed           monthAug  
+#>          -8724.49           -8947.95             -79.88  
+#>          monthJul           monthJun           monthMar  
+#>           5264.39            2986.79           -1522.76  
+#>          monthMay           monthOct           monthSep  
+#>            184.91           -1699.57           -1255.60  
+#> daysSinceLastGame     openingDayTRUE   promotionconcert  
+#>            279.20            3986.05            -929.53  
+#>     promotionnone     promotionother  
+#>          -4598.88           -2877.06
 ```
 
 
@@ -940,7 +970,7 @@ Table: (\#tab:salesmodeltwo)Summary statistics
 
 
 
-You can use these coefficients to explain the impact of specific variables. How many tickets is the month of July worth? The coefficient (5264.39) represents this impact. July gives you a five-thousand ticket bump. You can also use the model to make predictions. This model is completely _overfit_, but that doesn't matter at this point. We'll look at ways to make sure you don't overfit models in subsequent chapters. Let's try it. 
+You can use these coefficients to explain the impact of specific variables. How many tickets is the month of July worth? The coefficient (5264.39) represents this impact. July gives you a five-thousand ticket bump. You can also use the model to make predictions. This model is completely _overfit_, but that doesn't matter at this point. We'll look at ways to make sure you don't overfit models in subsequent chapters. Let's put these predictions on a graph. 
 
 
 ```r
@@ -976,7 +1006,7 @@ ggplot(seasons, aes(x = ticketSales,
 </div>
 
 
-We can see that the model does a pretty good job of approximating sales. 
+We can see that the model does a pretty good job of approximating sales. We'll go through more complete examples later. 
 
 ## Key concepts and chapter summary
 
@@ -985,14 +1015,12 @@ Exploring your data is a fundamental component of analysis. You are looking for 
 We covered several key concepts in this chapter:
 
 - It is important to create a consistent design language for your graphs. Pay attention to colors.
-- Certain graphs are better at representing specific data. You often don't need exotic plots to convey information. You'll use variations on a few different forms.
-- Summarizing data can be done in multiple ways. There are multiple tools that you can use to reshape and summarize data. You can even implement your own methods relatively easily. 
+- Certain graphs are better at representing specific data. You often don't need exotic plots to convey information. You'll use variations on a few different themes.
+- Summarizing data can be done in several ways. There are multiple tools that you can use to reshape and summarize data. You can even implement your own methods relatively easily. 
 - R makes it easy to explore and deploy a wide variety of statistical methods.
-- When interpreting or communicating findings the simplest explanation is always the best. Most people will not care how you did something. 
+- When interpreting or communicating findings the simplest explanation is usually the best. Most people will not care how you did something. Let them ask you for more context.
 
-Think of this chapter as a reference. You just went through the basic Business Intelligence and analytics tools that you will use for basic data exploration. There are also different ways to accomplish everything that you just saw. In fact, there are multiple ways to accomplish each of these tasks in R. I just showed you one method.  
-
-Additionally you can use Business Intelligence tools like Tableau to add additional dimensions to your illustrations. If you want to build custom websites R provides tools to accomplish this as well. You could even use javascript or python to accomplish the same thing. 
+Think of this chapter as a reference. You just went through the basic Business Intelligence and analytics tools that you will use for data exploration. You can also use Business Intelligence tools like Tableau to add additional dimensions to your illustrations. If you want to build custom websites R provides tools to accomplish this as well. You could even use javascript or python to accomplish the same thing. 
 
 
 

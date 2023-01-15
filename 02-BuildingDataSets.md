@@ -147,7 +147,7 @@ for(i in x){
 }
 )
 #>    user  system elapsed 
-#>    0.97    0.02    1.01
+#>    0.97    0.01    1.02
 
 line_value[1:3]
 #> [[1]]
@@ -178,7 +178,7 @@ while(i <= length(x)){
 }
 )
 #>    user  system elapsed 
-#>    0.91    0.01    0.93
+#>    0.91    0.00    0.92
 
 line_value[1:3]
 #> [[1]]
@@ -202,7 +202,7 @@ system.time(
 line_value <- lapply(1:length(x), function(i) x[i]*m + b)
 )
 #>    user  system elapsed 
-#>    0.96    0.02    0.99
+#>    0.88    0.01    0.89
 
 line_value[1:3]
 #> [[1]]
@@ -226,7 +226,7 @@ system.time(
 line_value <- purrr::imap(x,~ .x*m + b)
 )
 #>    user  system elapsed 
-#>    0.95    0.02    1.05
+#>    0.98    0.00    0.98
 
 line_value[1:3]
 #> [[1]]
@@ -694,6 +694,7 @@ new_data <- f_create_lead_scoring_data(434,
 Calling this function will produce a data set that looks something like this: 
 
 
+
 Table: (\#tab:leadscorecreation4)customer renewal data
 
 |variable   |class    |first_values                        |
@@ -920,19 +921,6 @@ customer_data <- FOSBAAS::customer_data
 
 
 
-```r
-#--------------------------------------------------------------------
-#--------------------------------------------------------------------
-library(knitr)
-library(magrittr)
-custdata <- head(FOSBAAS::customer_data)
-data.frame(variable     = names(custdata),
-           class        = sapply(custdata, typeof),
-           first_values = sapply(custdata, function(x) paste0(head(x)[c(1,2)],  collapse = ", ")),
-           row.names = NULL) %>% 
-  kable(caption = 'Sample customer data',align = 'l',format = "markdown",padding = 0)
-
-```
 
 We'll use this data frame to simulate a transformed data set that could be pulled from a ticketing system. Now we can use this data to create a data set for purchases on the secondary market. 
 
