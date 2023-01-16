@@ -121,7 +121,7 @@
 </h2>
 <p>RFM scores have been described as a <em>poor-man’s</em> analytic technique. The basic premise is to score sales candidates along three dimensions and to build lists comprising cohorts with the highest aggregate scores. How might this work in practice?</p>
 <p>Let’s put together and ad hoc data set to demonstrate how RFM scores might work.</p>
-<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># RFM data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -203,7 +203,7 @@
 </tbody>
 </table></div>
 <p>There are many ways to apply scores here. We will take a similar approach to scoring events, but add one extra step. RFM scores are traditionally built from one to five with five being the highest score.</p>
-<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Function to calculate FRM scores</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -227,7 +227,7 @@
 <span>          <span class="kw">else</span><span class="op">{</span><span class="st">'5'</span><span class="op">}</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p>Now we can apply the function to our data set. We could generalize this more if we wanted. We could also use an apply function. For this sort of exercise, we aren’t concerned with extreme efficiency. We just want to demonstrate the mechanics. We’ll use lists and for loops to accomplish our task. If we had to repeat this exercise often, daisy chaining for loops is not a best practice. Try not to copy and paste more than three times. You’ll make errors.</p>
-<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Create final RFM values</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -260,7 +260,7 @@
 <span>                       <span class="va">demo_data</span><span class="op">$</span><span class="va">f_val</span>,</span>
 <span>                       <span class="va">demo_data</span><span class="op">$</span><span class="va">m_val</span>, sep <span class="op">=</span> <span class="st">''</span><span class="op">)</span></span></code></pre></div>
 <p>Now each customer has an RFM score that can be used to build campaigns. Let’s subset a group for a campaign. We’ll select customers that have interacted the most recently, the most frequently, and have tended to spend the most.</p>
-<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Create final RFM values</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -331,7 +331,7 @@
 <p>The ticket sales service manager would like a way to understand which accounts are less likely to renew their season tickets.</p>
 </blockquote>
 <p>We’ll use the mlr3 library <span class="citation">(<a href="references.html#ref-R-mlr" role="doc-biblioref">Bischl et al. 2021</a>)</span> to demonstrate a couple of different machine learning algorithms. The package mlr3 is similar to caret <span class="citation">(<a href="references.html#ref-R-caret" role="doc-biblioref">Kuhn 2022</a>)</span> which has been refactored into tidymodels <span class="citation">(<a href="references.html#ref-R-tidymodels" role="doc-biblioref">Kuhn and Wickham 2022</a>)</span>. Caret was a great library that sought to create a unifying API for scores of other R libraries. We’ll look tidymodels in the next chapter. To me, mlr3 is very reminiscent of scikit-learn in Python. If you like using python for analysis, mlr3 will feel familiar.</p>
-<p>While we can call our functions directly, this library makes the process much easier. The lack of consistent frameworks in R is one of the languages biggest drawbacks. Additionally, mlr3 has excellent documentation <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://mlr3book.mlr-org.com/train-predict.html" class="uri"&gt;https://mlr3book.mlr-org.com/train-predict.html&lt;/a&gt;&lt;/p&gt;'><sup>64</sup></a>.</p>
+<p>While we can call our functions directly, this library makes the process much easier. The lack of consistent frameworks in R is one of the languages biggest drawbacks. Additionally, mlr3 has excellent documentation <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://mlr3book.mlr-org.com/train-predict.html" class="uri"&gt;https://mlr3book.mlr-org.com/train-predict.html&lt;/a&gt;&lt;/p&gt;'><sup>66</sup></a>.</p>
 <p>Using a framework also comes with some issues.</p>
 <ol style="list-style-type: decimal">
 <li>You’ll have to learn it, which adds some complexity to the task.</li>
@@ -371,7 +371,7 @@
 <span class="header-section-number">7.2.1.2</span> Understanding the data set<a class="anchor" aria-label="anchor" href="#understanding-the-data-set"><i class="fas fa-link"></i></a>
 </h4>
 <p>Our data set includes several features including an account, whether they renewed, and several features related to their season tickets. The data is located in the <em>FOSBASS</em> package. You can see how the data is created in section <a href="chapter2.html#renewaldata">2.2</a>.</p>
-<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># access renewal data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -448,7 +448,7 @@
 </ol>
 <p>Question one is easy. We can refer to our chart in section <a href="chapter4.html#fig:modelingdatachfour">4.4</a>. This is clearly an example of calculating future, numerical values.</p>
 <p>For question two, different analysis techniques require different formats. We can see that a couple of columns are categorical. Let’s go ahead and create two data sets. We’ll dummy code our categorical data so that one data set only contains numerical values.</p>
-<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Dummy code and alter data frame for all numeric input</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -550,7 +550,7 @@
 </tbody>
 </table></div>
 <p>For question three, we can do a little preparation on our standard data set. We’ll get rid of a couple of columns that we won’t use and turn our response variable into a factor. We know there isn’t missing data, so we will skip that part. We have already covered how to deal with it.</p>
-<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Prepare the data for analysis</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -564,8 +564,8 @@
 <span class="header-section-number">7.2.1.2.1</span> Understanding geography and building maps<a class="anchor" aria-label="anchor" href="#understanding-geography-and-building-maps"><i class="fas fa-link"></i></a>
 </h5>
 <p>Geography plays a large role in selling tickets to sporting events. This is especially true for sports that have more games such as baseball. Coupling the digital and physical assets of the club may eventually make this less important holistically. However, for ticket sales geography is and will remain a critical point of consideration.</p>
-<p>R also isn’t the best way to do this, but it is an easy way to accomplish it in the same analysis platform. GIS is a large field unto itself that is outside the scope of this book. However, R has multiple libraries devoted to maps and it is a good choice if you aren’t looking for extremely high quality geographic graphics. This map was created using stamen maps<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://maps.stamen.com/#watercolor/12/37.7706/-122.3782" class="uri"&gt;http://maps.stamen.com/#watercolor/12/37.7706/-122.3782&lt;/a&gt;&lt;/p&gt;'><sup>65</sup></a>, an open source tool that can be used for a wide variety of projects.</p>
-<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
+<p>R also isn’t the best way to do this, but it is an easy way to accomplish it in the same analysis platform. GIS is a large field unto itself that is outside the scope of this book. However, R has multiple libraries devoted to maps and it is a good choice if you aren’t looking for extremely high quality geographic graphics. This map was created using stamen maps<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://maps.stamen.com/#watercolor/12/37.7706/-122.3782" class="uri"&gt;http://maps.stamen.com/#watercolor/12/37.7706/-122.3782&lt;/a&gt;&lt;/p&gt;'><sup>67</sup></a>, an open source tool that can be used for a wide variety of projects.</p>
+<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Using R to visualize geographic data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -589,9 +589,9 @@
 <span>             mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y <span class="op">=</span> <span class="va">latitude</span><span class="op">)</span>,</span>
 <span>             size <span class="op">=</span> <span class="fl">.2</span>,alpha <span class="op">=</span> <span class="fl">.5</span>, color<span class="op">=</span> <span class="st">'dodgerblue'</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="images/ch7_map_ex.png" width="100%"></div>
-<p>These maps aren’t the best, but they are easy to execute and can give you much of the same insight you would get from a more sophisticated product such as ArcGIS <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.esri.com/en-us/home" class="uri"&gt;https://www.esri.com/en-us/home&lt;/a&gt;&lt;/p&gt;'><sup>66</sup></a>. R also makes it easy to access google APIs that will allow you to Geocode addresses and perform many other interesting tasks with geographic data. You can find a multitude of informative demos online.</p>
+<p>These maps aren’t the best, but they are easy to execute and can give you much of the same insight you would get from a more sophisticated product such as ArcGIS <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.esri.com/en-us/home" class="uri"&gt;https://www.esri.com/en-us/home&lt;/a&gt;&lt;/p&gt;'><sup>68</sup></a>. R also makes it easy to access google APIs that will allow you to Geocode addresses and perform many other interesting tasks with geographic data. You can find a multitude of informative demos online.</p>
 <p>Using county names you can create maps that look like the following. This one took a lot of data wrangling and uses the maps <span class="citation">(<a href="references.html#ref-R-maps" role="doc-biblioref">Brownrigg 2021</a>)</span> package, but the output looks nice. The underlying data is identical.</p>
-<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Using R to visualize geographic data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -674,8 +674,8 @@
 <h4>
 <span class="header-section-number">7.2.1.3</span> Model the data<a class="anchor" aria-label="anchor" href="#model"><i class="fas fa-link"></i></a>
 </h4>
-<p>While we will use the mlr3 framework here, again it is important to understand that there is no need to use one of these frameworks. You can call functions directly. mlr3 is descended from mlr, <span class="citation">(<a href="references.html#ref-R-mlr" role="doc-biblioref">Bischl et al. 2021</a>)</span> but is built on a more modern framework. You’ll want to begin by downloading the library and poking around in it <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://mlr3book.mlr-org.com/train-predict.html" class="uri"&gt;https://mlr3book.mlr-org.com/train-predict.html&lt;/a&gt;&lt;/p&gt;'><sup>67</sup></a>.</p>
-<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<p>While we will use the mlr3 framework here, again it is important to understand that there is no need to use one of these frameworks. You can call functions directly. mlr3 is descended from mlr, <span class="citation">(<a href="references.html#ref-R-mlr" role="doc-biblioref">Bischl et al. 2021</a>)</span> but is built on a more modern framework. You’ll want to begin by downloading the library and poking around in it <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://mlr3book.mlr-org.com/train-predict.html" class="uri"&gt;https://mlr3book.mlr-org.com/train-predict.html&lt;/a&gt;&lt;/p&gt;'><sup>69</sup></a>.</p>
+<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Download and install the mlr3 libraries</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -685,13 +685,13 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mlr3tuning.mlr-org.com">"mlr3tuning"</a></span><span class="op">)</span>   <span class="co">#  install.packages("mlr3tuning")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://paradox.mlr-org.com">"paradox"</a></span><span class="op">)</span>      <span class="co">#  install.packages("paradox")</span></span></code></pre></div>
 <p>After downloading some of the packages that we will need we can go ahead get started on the task of modeling the data. We know that we want to determine how likely it is that a specific season ticket holder will renew. Make sure that your data set doesn’t contain any characters. You’ll need to dummy code or change them to factors.</p>
-<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Recode response to a factor</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">mod_data_numeric</span><span class="op">$</span><span class="va">renewed</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">mod_data_numeric</span><span class="op">$</span><span class="va">renewed</span><span class="op">)</span></span></code></pre></div>
 <p>This is a classification problem and mlr3 follows a specific pattern when you are building a model. The data is placed in an object called a task:</p>
-<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Build task</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -703,7 +703,7 @@
 <span><span class="va">mlr_tasks</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span><span class="st">"task_renew"</span>, <span class="va">task_mod_data</span><span class="op">)</span></span></code></pre></div>
 <p>The input here is straight forward. We name the object, tell it what data to use, give it a target column, and the result. In this case, “r” indicates that the account renewed in the past.</p>
 <p>After you have a task, you will want to select the <em>learner</em> that you would like to use. MLR works with several other libraries. In this case I would like to apply a random forest to this data and I am going to use the ranger <span class="citation">(<a href="references.html#ref-R-ranger" role="doc-biblioref">Wright, Wager, and Probst 2022</a>)</span> package. Ranger is a powerful library and it includes lots of tools that you can leverage to build random forest models. This is where you can add parameters from the ranger function to the library.</p>
-<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Define learner</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -714,7 +714,7 @@
 <span><span class="co"># Check parameters with this: learner_ranger_rf$param_set$ids()</span></span>
 <span><span class="co"># look at a list of learners: mlr3::mlr_learners</span></span></code></pre></div>
 <p>We can now build a test and training data set. As a reminder, we could also use a three-way data partition so that we would have a calibration data set. However, this isn’t really necessary.</p>
-<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Build test and training data set</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -724,14 +724,14 @@
 <span><span class="va">test_mod_data</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="va">task_mod_data</span><span class="op">$</span><span class="va">nrow</span><span class="op">)</span>, </span>
 <span>                          <span class="va">train_mod_data</span><span class="op">)</span></span></code></pre></div>
 <p>Training the model is simple. We’ll use our learner object and point it to our task with rows being identified with our training data set.</p>
-<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Train the model</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">learner_ranger_rf</span><span class="op">$</span><span class="fu">train</span><span class="op">(</span>task    <span class="op">=</span> <span class="va">task_mod_data</span>, </span>
 <span>                        row_ids <span class="op">=</span> <span class="va">train_mod_data</span><span class="op">)</span></span></code></pre></div>
 <p>The learner contains several useful pieces of data that were generated. You can access them in a few different ways.</p>
-<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Inspect the results</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -760,14 +760,14 @@
 </tr></tbody>
 </table></div>
 <p>This model doesn’t appear to do a great job judging by the prediction error. Let’s take a look at it on our holdout sample:</p>
-<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Evaluate holdout sample</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">prediction</span> <span class="op">&lt;-</span> <span class="va">learner_ranger_rf</span><span class="op">$</span><span class="fu">predict</span><span class="op">(</span><span class="va">task_mod_data</span>, </span>
 <span>                                        row_ids <span class="op">=</span> <span class="va">test_mod_data</span><span class="op">)</span></span></code></pre></div>
 <p>There are several ways to consider how accurate this model might be and interpretation can be confusing. The first thing to look at is a confusion matrix. A confusion matrix is a simple way to gauge how well your model predictions performed against known values.</p>
-<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Confusion matrix</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -777,7 +777,7 @@
 <span><span class="co">#&gt;       r  2662  508</span></span>
 <span><span class="co">#&gt;       nr  106  151</span></span></code></pre></div>
 <p>A confusion matrix demonstrates how often the model was correct and incorrect for each response. In this case, our model isn’t performing very well. Would it perform better than a random guess? There are many other metrics that you can extract from your model.</p>
-<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Evaluate holdout sample</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -787,7 +787,7 @@
 <span><span class="co">#&gt;   0.8208345</span></span></code></pre></div>
 <p>In this case, our model is 0.8208345 percent accurate. Let’s visualize some of the results.</p>
 <p>For simple models, the <em>mlr3::autoplot()</em> function includes several graphs and is built on ggplot2, which means you can apply your themes to them. First, let’s explore our data a little more. You can access the predictions with this command <em>learner_ranger_rf<span class="math inline">\(model\)</span>predictions</em>. The probabilities may come in useful depending on what you are doing.</p>
-<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Access model predictions</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -801,7 +801,7 @@
 <span><span class="co">#&gt; 5 0.9370835 0.06291653</span></span>
 <span><span class="co">#&gt; 6 0.9028345 0.09716551</span></span></code></pre></div>
 <p>We can compare models against one another in a couple of different ways. Here we will compare our random forest model to a model that simply predicts the classifier. It doesn’t use the parameters we fed to our model.</p>
-<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Evaluate holdout sample</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -815,7 +815,7 @@
 <span>                                         <span class="va">resampling</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># Use head(fortify(object)) to see the ce for the resamples</span></span></code></pre></div>
 <p>Our classification error is better with our random forest, but not by a large amount. These classification errors are from resampling and rerunning the models.</p>
-<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Boxplot of classification error</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -825,7 +825,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'dodgerblue'</span><span class="op">)</span> </span></code></pre></div>
 <div class="inline-figure"><img src="images/ch7_bxplot_model.png" width="100%"></div>
 <p>We can also see that we do generate some lift with the model by looking at the ROC curve.</p>
-<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># ROC curve for random forest model</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -855,7 +855,7 @@ Figure 7.1: Resampling concept
 </div>
 <p>A common method that you will find is 10-fold cross validation where the learning procedure is executed 10 times on different training sets (that overlap) and the 10 error estimates are averaged to yield an overall error estimate <span class="citation">(<a href="references.html#ref-Witten2011" role="doc-biblioref">Ian H. Witten 2011</a>)</span>. Leveraging a framework such as mlr3 makes these efforts (resampling and tuning) much easier. Let’s look at an example of cross validation in regards to the model that we have already constructed.</p>
 <p>The task object and learner objects are identical to what we saw in the previous sections.</p>
-<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Rebuild model</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -866,13 +866,13 @@ Figure 7.1: Resampling concept
 <span></span>
 <span><span class="va">learner_ranger_rf</span><span class="op">$</span><span class="fu">train</span><span class="op">(</span><span class="va">task_mod_data</span>, row_ids <span class="op">=</span> <span class="va">train_mod_data</span><span class="op">)</span></span></code></pre></div>
 <p>However, we will need to add a resampling object:</p>
-<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Add a resampliing parameter</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">resampling_mod_data</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">rsmp</a></span><span class="op">(</span><span class="st">"cv"</span><span class="op">)</span></span></code></pre></div>
 <p>We’ll then need to instantiate the resampling strategy. This just means that we are going to create it again.</p>
-<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Rebuild model</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -880,7 +880,7 @@ Figure 7.1: Resampling concept
 <span><span class="va">resampling_mod_data</span><span class="op">$</span><span class="va">iters</span></span>
 <span><span class="co">#&gt; [1] 10</span></span></code></pre></div>
 <p>We can now call the resample. This will take longer than what we have seen because we are building a model on multiple data sets.</p>
-<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># We can now call the resample object</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -888,18 +888,18 @@ Figure 7.1: Resampling concept
 <span>                   <span class="va">learner_ranger_rf</span>, </span>
 <span>                   <span class="va">resampling_mod_data</span>, </span>
 <span>                   store_models <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; INFO  [15:30:12.110] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/10)</span></span>
-<span><span class="co">#&gt; INFO  [15:30:15.880] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 2/10)</span></span>
-<span><span class="co">#&gt; INFO  [15:30:19.639] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 3/10)</span></span>
-<span><span class="co">#&gt; INFO  [15:30:23.360] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 4/10)</span></span>
-<span><span class="co">#&gt; INFO  [15:30:26.878] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 5/10)</span></span>
-<span><span class="co">#&gt; INFO  [15:30:30.584] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 6/10)</span></span>
-<span><span class="co">#&gt; INFO  [15:30:34.353] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 7/10)</span></span>
-<span><span class="co">#&gt; INFO  [15:30:38.371] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 8/10)</span></span>
-<span><span class="co">#&gt; INFO  [15:30:41.883] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 9/10)</span></span>
-<span><span class="co">#&gt; INFO  [15:30:45.745] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 10/10)</span></span></code></pre></div>
+<span><span class="co">#&gt; INFO  [18:58:02.982] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:06.734] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 2/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:10.488] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 3/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:14.328] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 4/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:17.828] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 5/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:21.593] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 6/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:25.384] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 7/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:28.812] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 8/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:32.349] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 9/10)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:36.206] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 10/10)</span></span></code></pre></div>
 <p>You now have a more confident way to evaluate your model.</p>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Rebuild model</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -915,7 +915,7 @@ Figure 7.1: Resampling concept
 </h5>
 <p>Many algorithms have parameters that can alter the performance of the model. For instance, a random forest can have different numbers of trees applied to the model. How do you know that you are tuning the algorithm appropriately?</p>
 <p>Let’s take a look at the different parameters available to the ranger package. There are 29 in all, but we will only look at the first few.</p>
-<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Parameter set</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -929,7 +929,7 @@ Figure 7.1: Resampling concept
 <span><span class="co">#&gt; 5                        importance</span></span>
 <span><span class="co">#&gt; 6                        keep.inbag</span></span></code></pre></div>
 <p>Let’s select a couple of parameters to tune</p>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Tuning parameters</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -939,7 +939,7 @@ Figure 7.1: Resampling concept
 <span>  <span class="va"><a href="https://paradox.mlr-org.com/reference/ParamInt.html">ParamInt</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="st">"num.trees"</span>,     lower <span class="op">=</span> <span class="fl">500</span>,  upper <span class="op">=</span> <span class="fl">600</span><span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>We will also have to consider a resampling strategy. Since cross-validated results demonstrated similar error rates, let’s use a holdout sample. We’ll use classification error as our measure.</p>
-<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># set resampling and eval parameters</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -947,7 +947,7 @@ Figure 7.1: Resampling concept
 <span><span class="va">measure_mod_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">msr</a></span><span class="op">(</span><span class="st">"classif.ce"</span><span class="op">)</span></span>
 <span><span class="va">evals_10</span>         <span class="op">&lt;-</span> <span class="fu"><a href="https://bbotk.mlr-org.com/reference/trm.html">trm</a></span><span class="op">(</span><span class="st">"evals"</span>, n_evals <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s put everything together into a tune instance that will pass our new criteria to the model.</p>
-<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Build a tuning instance</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -960,141 +960,141 @@ Figure 7.1: Resampling concept
 <span>  terminator   <span class="op">=</span> <span class="va">evals_10</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Now we have to determine how we search for different parameters to search. We’ll use a random search. This means that levels will be randomly searched within the parameters that we set.</p>
-<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Randomly select options within tuning min and max</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">tuner_rf</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3tuning.mlr-org.com/reference/tnr.html">tnr</a></span><span class="op">(</span><span class="st">"random_search"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Run the models</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">tuner</span> <span class="op">&lt;-</span> <span class="va">tuner_rf</span><span class="op">$</span><span class="fu">optimize</span><span class="op">(</span><span class="va">tune_instance</span><span class="op">)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:00.959] [bbotk] Starting to optimize 3 parameter(s) with '&lt;OptimizerRandomSearch&gt;' and '&lt;TerminatorEvals&gt; [n_evals=10, k=0]'</span></span>
-<span><span class="co">#&gt; INFO  [15:31:00.977] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:00.999] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [15:31:01.005] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:03.026] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [15:31:03.138] [bbotk] Result of batch 1:</span></span>
-<span><span class="co">#&gt; INFO  [15:31:03.140] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [15:31:03.140] [bbotk]            123        18       542   0.175093        0</span></span>
-<span><span class="co">#&gt; INFO  [15:31:03.140] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [15:31:03.140] [bbotk]       0                2</span></span>
-<span><span class="co">#&gt; INFO  [15:31:03.140] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [15:31:03.140] [bbotk]  d12a172d-a471-4be8-9fff-9cee76355261</span></span>
-<span><span class="co">#&gt; INFO  [15:31:03.142] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:03.158] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [15:31:03.162] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:04.683] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [15:31:04.702] [bbotk] Result of batch 2:</span></span>
-<span><span class="co">#&gt; INFO  [15:31:04.703] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [15:31:04.703] [bbotk]            200        17       507  0.1726855        0</span></span>
-<span><span class="co">#&gt; INFO  [15:31:04.703] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [15:31:04.703] [bbotk]       0             1.51</span></span>
-<span><span class="co">#&gt; INFO  [15:31:04.703] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [15:31:04.703] [bbotk]  62202846-afcf-4477-9613-fd912949f3f1</span></span>
-<span><span class="co">#&gt; INFO  [15:31:04.705] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:04.721] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [15:31:04.725] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:06.149] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [15:31:06.168] [bbotk] Result of batch 3:</span></span>
-<span><span class="co">#&gt; INFO  [15:31:06.169] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [15:31:06.169] [bbotk]            120        11       508  0.1739987        0</span></span>
-<span><span class="co">#&gt; INFO  [15:31:06.169] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [15:31:06.169] [bbotk]       0             1.42</span></span>
-<span><span class="co">#&gt; INFO  [15:31:06.169] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [15:31:06.169] [bbotk]  88a7bb6e-63fa-459f-b31f-57d23c9fa625</span></span>
-<span><span class="co">#&gt; INFO  [15:31:06.172] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:06.189] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [15:31:06.193] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:07.890] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [15:31:07.909] [bbotk] Result of batch 4:</span></span>
-<span><span class="co">#&gt; INFO  [15:31:07.910] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [15:31:07.910] [bbotk]             79        11       520  0.1755308        0</span></span>
-<span><span class="co">#&gt; INFO  [15:31:07.910] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [15:31:07.910] [bbotk]       0             1.68</span></span>
-<span><span class="co">#&gt; INFO  [15:31:07.910] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [15:31:07.910] [bbotk]  38738818-a80d-460e-990f-f75023f79dbd</span></span>
-<span><span class="co">#&gt; INFO  [15:31:07.913] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:07.930] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [15:31:07.934] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:09.563] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [15:31:09.584] [bbotk] Result of batch 5:</span></span>
-<span><span class="co">#&gt; INFO  [15:31:09.585] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [15:31:09.585] [bbotk]            125        11       594  0.1739987        0</span></span>
-<span><span class="co">#&gt; INFO  [15:31:09.585] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [15:31:09.585] [bbotk]       0             1.61</span></span>
-<span><span class="co">#&gt; INFO  [15:31:09.585] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [15:31:09.585] [bbotk]  a1ed946a-daed-4efe-a0d5-a3cf66a3a736</span></span>
-<span><span class="co">#&gt; INFO  [15:31:09.588] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:09.604] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [15:31:10.782] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:13.085] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [15:31:13.108] [bbotk] Result of batch 6:</span></span>
-<span><span class="co">#&gt; INFO  [15:31:13.109] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [15:31:13.109] [bbotk]            109        16       597  0.1748742        0</span></span>
-<span><span class="co">#&gt; INFO  [15:31:13.109] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [15:31:13.109] [bbotk]       0             2.28</span></span>
-<span><span class="co">#&gt; INFO  [15:31:13.109] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [15:31:13.109] [bbotk]  364a3e34-61b9-48f8-94ca-b645ba089b7f</span></span>
-<span><span class="co">#&gt; INFO  [15:31:13.112] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:13.128] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [15:31:13.132] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:14.022] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [15:31:14.045] [bbotk] Result of batch 7:</span></span>
-<span><span class="co">#&gt; INFO  [15:31:14.046] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [15:31:14.046] [bbotk]            124         4       580  0.1696214        0</span></span>
-<span><span class="co">#&gt; INFO  [15:31:14.046] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [15:31:14.046] [bbotk]       0             0.89</span></span>
-<span><span class="co">#&gt; INFO  [15:31:14.046] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [15:31:14.046] [bbotk]  4c44e39a-dfd7-4c4d-8ccf-da93c30e0812</span></span>
-<span><span class="co">#&gt; INFO  [15:31:14.049] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:14.066] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [15:31:14.070] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:16.909] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [15:31:16.931] [bbotk] Result of batch 8:</span></span>
-<span><span class="co">#&gt; INFO  [15:31:16.933] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [15:31:16.933] [bbotk]             16        17       560  0.1792515        0</span></span>
-<span><span class="co">#&gt; INFO  [15:31:16.933] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [15:31:16.933] [bbotk]       0             2.83</span></span>
-<span><span class="co">#&gt; INFO  [15:31:16.933] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [15:31:16.933] [bbotk]  a4581d71-24e8-4941-811c-898085bda1d9</span></span>
-<span><span class="co">#&gt; INFO  [15:31:16.935] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:16.951] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [15:31:16.955] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:17.838] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [15:31:17.860] [bbotk] Result of batch 9:</span></span>
-<span><span class="co">#&gt; INFO  [15:31:17.861] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [15:31:17.861] [bbotk]             97         5       520  0.1696214        0</span></span>
-<span><span class="co">#&gt; INFO  [15:31:17.861] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [15:31:17.861] [bbotk]       0             0.86</span></span>
-<span><span class="co">#&gt; INFO  [15:31:17.861] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [15:31:17.861] [bbotk]  a6d41bd6-038b-4433-b160-6eb91bf27aed</span></span>
-<span><span class="co">#&gt; INFO  [15:31:17.863] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:17.879] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [15:31:17.883] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:20.503] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [15:31:20.524] [bbotk] Result of batch 10:</span></span>
-<span><span class="co">#&gt; INFO  [15:31:20.525] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [15:31:20.525] [bbotk]             42        20       560  0.1772817        0</span></span>
-<span><span class="co">#&gt; INFO  [15:31:20.525] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [15:31:20.525] [bbotk]       0             2.63</span></span>
-<span><span class="co">#&gt; INFO  [15:31:20.525] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [15:31:20.525] [bbotk]  f7bc4ec0-695a-4b14-a52d-ac5b08b51852</span></span>
-<span><span class="co">#&gt; INFO  [15:31:20.530] [bbotk] Finished optimizing after 10 evaluation(s)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:20.530] [bbotk] Result:</span></span>
-<span><span class="co">#&gt; INFO  [15:31:20.531] [bbotk]  min.node.size max.depth num.trees learner_param_vals</span></span>
-<span><span class="co">#&gt; INFO  [15:31:20.531] [bbotk]            124         4       580          &lt;list[5]&gt;</span></span>
-<span><span class="co">#&gt; INFO  [15:31:20.531] [bbotk]   x_domain classif.ce</span></span>
-<span><span class="co">#&gt; INFO  [15:31:20.531] [bbotk]  &lt;list[3]&gt;  0.1696214</span></span></code></pre></div>
+<span><span class="co">#&gt; INFO  [18:58:51.369] [bbotk] Starting to optimize 3 parameter(s) with '&lt;OptimizerRandomSearch&gt;' and '&lt;TerminatorEvals&gt; [n_evals=10, k=0]'</span></span>
+<span><span class="co">#&gt; INFO  [18:58:51.381] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:51.412] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:58:51.421] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:53.374] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:58:53.490] [bbotk] Result of batch 1:</span></span>
+<span><span class="co">#&gt; INFO  [18:58:53.492] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:58:53.492] [bbotk]            123        18       542   0.175093        0</span></span>
+<span><span class="co">#&gt; INFO  [18:58:53.492] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:58:53.492] [bbotk]       0             1.92</span></span>
+<span><span class="co">#&gt; INFO  [18:58:53.492] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:58:53.492] [bbotk]  4824633d-7a8e-4283-9a99-59a01eb3d973</span></span>
+<span><span class="co">#&gt; INFO  [18:58:53.494] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:53.510] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:58:53.514] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:55.052] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:58:55.073] [bbotk] Result of batch 2:</span></span>
+<span><span class="co">#&gt; INFO  [18:58:55.074] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:58:55.074] [bbotk]            200        17       507  0.1726855        0</span></span>
+<span><span class="co">#&gt; INFO  [18:58:55.074] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:58:55.074] [bbotk]       0             1.53</span></span>
+<span><span class="co">#&gt; INFO  [18:58:55.074] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:58:55.074] [bbotk]  c114e338-a3be-4353-8b4a-d1f414e277ec</span></span>
+<span><span class="co">#&gt; INFO  [18:58:55.077] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:55.093] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:58:55.097] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:56.511] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:58:56.534] [bbotk] Result of batch 3:</span></span>
+<span><span class="co">#&gt; INFO  [18:58:56.535] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:58:56.535] [bbotk]            120        11       508  0.1739987        0</span></span>
+<span><span class="co">#&gt; INFO  [18:58:56.535] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:58:56.535] [bbotk]       0             1.41</span></span>
+<span><span class="co">#&gt; INFO  [18:58:56.535] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:58:56.535] [bbotk]  30e43ff7-ee04-4894-9cd2-def1e27400e6</span></span>
+<span><span class="co">#&gt; INFO  [18:58:56.538] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:56.557] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:58:56.561] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:58.256] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:58:58.276] [bbotk] Result of batch 4:</span></span>
+<span><span class="co">#&gt; INFO  [18:58:58.277] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:58:58.277] [bbotk]             79        11       520  0.1755308        0</span></span>
+<span><span class="co">#&gt; INFO  [18:58:58.277] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:58:58.277] [bbotk]       0             1.69</span></span>
+<span><span class="co">#&gt; INFO  [18:58:58.277] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:58:58.277] [bbotk]  7cbb1d8e-78b1-4c04-a3d1-fd60c9edbec1</span></span>
+<span><span class="co">#&gt; INFO  [18:58:58.279] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:58.297] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:58:58.301] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:59.952] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:58:59.973] [bbotk] Result of batch 5:</span></span>
+<span><span class="co">#&gt; INFO  [18:58:59.974] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:58:59.974] [bbotk]            125        11       594  0.1739987        0</span></span>
+<span><span class="co">#&gt; INFO  [18:58:59.974] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:58:59.974] [bbotk]       0             1.64</span></span>
+<span><span class="co">#&gt; INFO  [18:58:59.974] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:58:59.974] [bbotk]  4b6c323a-5972-465e-858e-88ffa184a099</span></span>
+<span><span class="co">#&gt; INFO  [18:58:59.976] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:58:59.993] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:59:01.182] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:59:03.325] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:59:03.347] [bbotk] Result of batch 6:</span></span>
+<span><span class="co">#&gt; INFO  [18:59:03.348] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:59:03.348] [bbotk]            109        16       597  0.1748742        0</span></span>
+<span><span class="co">#&gt; INFO  [18:59:03.348] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:59:03.348] [bbotk]       0             2.14</span></span>
+<span><span class="co">#&gt; INFO  [18:59:03.348] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:59:03.348] [bbotk]  01f938d1-fda5-4640-9655-772816d1f73c</span></span>
+<span><span class="co">#&gt; INFO  [18:59:03.351] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:59:03.367] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:59:03.371] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:59:04.257] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:59:04.281] [bbotk] Result of batch 7:</span></span>
+<span><span class="co">#&gt; INFO  [18:59:04.282] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:59:04.282] [bbotk]            124         4       580  0.1696214        0</span></span>
+<span><span class="co">#&gt; INFO  [18:59:04.282] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:59:04.282] [bbotk]       0             0.89</span></span>
+<span><span class="co">#&gt; INFO  [18:59:04.282] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:59:04.282] [bbotk]  c349c33a-2f48-4313-98db-7a007f3cb833</span></span>
+<span><span class="co">#&gt; INFO  [18:59:04.285] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:59:04.301] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:59:04.305] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:59:07.074] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:59:07.095] [bbotk] Result of batch 8:</span></span>
+<span><span class="co">#&gt; INFO  [18:59:07.096] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:59:07.096] [bbotk]             16        17       560  0.1792515        0</span></span>
+<span><span class="co">#&gt; INFO  [18:59:07.096] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:59:07.096] [bbotk]       0             2.77</span></span>
+<span><span class="co">#&gt; INFO  [18:59:07.096] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:59:07.096] [bbotk]  d6daeca8-8f7c-4306-93b6-bf572514891e</span></span>
+<span><span class="co">#&gt; INFO  [18:59:07.098] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:59:07.114] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:59:07.118] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:59:08.008] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:59:08.032] [bbotk] Result of batch 9:</span></span>
+<span><span class="co">#&gt; INFO  [18:59:08.033] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:59:08.033] [bbotk]             97         5       520  0.1696214        0</span></span>
+<span><span class="co">#&gt; INFO  [18:59:08.033] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:59:08.033] [bbotk]       0             0.87</span></span>
+<span><span class="co">#&gt; INFO  [18:59:08.033] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:59:08.033] [bbotk]  700d8805-9aec-4318-9f92-7fe4823f4819</span></span>
+<span><span class="co">#&gt; INFO  [18:59:08.036] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:59:08.053] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:59:08.057] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:59:10.684] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [18:59:10.704] [bbotk] Result of batch 10:</span></span>
+<span><span class="co">#&gt; INFO  [18:59:10.705] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [18:59:10.705] [bbotk]             42        20       560  0.1772817        0</span></span>
+<span><span class="co">#&gt; INFO  [18:59:10.705] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [18:59:10.705] [bbotk]       0             2.63</span></span>
+<span><span class="co">#&gt; INFO  [18:59:10.705] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [18:59:10.705] [bbotk]  15bd6df8-382d-498d-959b-cbc2a25ef879</span></span>
+<span><span class="co">#&gt; INFO  [18:59:10.711] [bbotk] Finished optimizing after 10 evaluation(s)</span></span>
+<span><span class="co">#&gt; INFO  [18:59:10.711] [bbotk] Result:</span></span>
+<span><span class="co">#&gt; INFO  [18:59:10.712] [bbotk]  min.node.size max.depth num.trees learner_param_vals</span></span>
+<span><span class="co">#&gt; INFO  [18:59:10.712] [bbotk]            124         4       580          &lt;list[5]&gt;</span></span>
+<span><span class="co">#&gt; INFO  [18:59:10.712] [bbotk]   x_domain classif.ce</span></span>
+<span><span class="co">#&gt; INFO  [18:59:10.712] [bbotk]  &lt;list[3]&gt;  0.1696214</span></span></code></pre></div>
 <p>Now we can take a look at our best result</p>
-<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Get the best parameters</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">best_params</span> <span class="op">&lt;-</span> <span class="va">tune_instance</span><span class="op">$</span><span class="va">result_learner_param_vals</span></span></code></pre></div>
 <p>The best results came from a minimum node size of <code>{r tune_instance$result_learner_param_vals$min.node.size</code> and max depth of 4.</p>
-<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Observe new classification error</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1102,7 +1102,7 @@ Figure 7.1: Resampling concept
 <span><span class="co">#&gt; classif.ce </span></span>
 <span><span class="co">#&gt;  0.1696214</span></span></code></pre></div>
 <p>Tuning has improved our model. 0.0097881 percent. Now we can apply this model back to our test data and observe the results.</p>
-<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Rerun model</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1110,14 +1110,14 @@ Figure 7.1: Resampling concept
 <span>  <span class="va">tune_instance</span><span class="op">$</span><span class="va">result_learner_param_vals</span></span>
 <span><span class="va">learner_ranger_rf</span><span class="op">$</span><span class="fu">train</span><span class="op">(</span><span class="va">task_mod_data</span><span class="op">)</span></span></code></pre></div>
 <p>This is where a three-part data partition is useful. We would use it to further calibrate these results. Let’s take a look at how the new predictions look.</p>
-<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Build a tuning instance</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">prediction_tuned</span> <span class="op">&lt;-</span> <span class="va">learner_ranger_rf</span><span class="op">$</span><span class="fu">predict</span><span class="op">(</span><span class="va">task_mod_data</span>, </span>
 <span>                                        row_ids <span class="op">=</span> <span class="va">test_mod_data</span><span class="op">)</span></span></code></pre></div>
 <p>The new model does a fair job of discriminating between those that renewed and did not renew.</p>
-<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Observe confusion matrix</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1126,7 +1126,7 @@ Figure 7.1: Resampling concept
 <span><span class="co">#&gt; response    r   nr</span></span>
 <span><span class="co">#&gt;       r  2714  504</span></span>
 <span><span class="co">#&gt;       nr   54  155</span></span></code></pre></div>
-<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Observe optimized classification</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1143,7 +1143,7 @@ Figure 7.1: Resampling concept
 </h4>
 <p>How do we know that the model that we constructed is the best model for our problem? We’ll have to try a few different ones. For these types of problems you are unlikely to have much success by altering your classification system. We will go through this for demonstration purposes.</p>
 <p>We can choose from available learners with the following command. We know that we are looking at classification problems:</p>
-<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Observe all learners</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1159,7 +1159,7 @@ Figure 7.1: Resampling concept
 <span><span class="co">#&gt;   regr.lm, regr.nnet, regr.ranger, regr.rpart,</span></span>
 <span><span class="co">#&gt;   regr.svm, regr.xgboost</span></span></code></pre></div>
 <p>Many algorithms will not accept certain data types. Numerical types are always safe. We’ll use the same data set that we have been using to test another algorithm.</p>
-<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Observe all learners</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1179,7 +1179,7 @@ Figure 7.1: Resampling concept
 <span><span class="va">test_mod_data_num</span>  <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="va">task_mod_data_num</span><span class="op">$</span><span class="va">nrow</span><span class="op">)</span>, <span class="va">train_mod_data_num</span><span class="op">)</span></span></code></pre></div>
 <p>Now we can build a new task consisting of a group of learners. We’ll use a gradient boosting algorithm, our random forest, and a naive bayes algorithm.</p>
-<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Build new task and learner</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1194,18 +1194,18 @@ Figure 7.1: Resampling concept
 <span>       <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span><span class="op">(</span><span class="st">"classif.naive_bayes"</span>, predict_type <span class="op">=</span> <span class="st">"prob"</span> <span class="op">)</span><span class="op">)</span>,</span>
 <span><span class="va">resamplings_bnch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">rsmp</a></span><span class="op">(</span><span class="st">"holdout"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># benchmark our designs</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">bmr</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/benchmark.html">benchmark</a></span><span class="op">(</span><span class="va">design_bnch</span><span class="op">)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:23.785] [mlr3] Running benchmark with 3 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [15:31:23.789] [mlr3] Applying learner 'classif.xgboost' on task 'task_class2' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:23.851] [mlr3] Applying learner 'classif.ranger' on task 'task_class2' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:26.826] [mlr3] Applying learner 'classif.naive_bayes' on task 'task_class2' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [15:31:27.250] [mlr3] Finished benchmark</span></span></code></pre></div>
+<span><span class="co">#&gt; INFO  [18:59:12.273] [mlr3] Running benchmark with 3 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [18:59:12.277] [mlr3] Applying learner 'classif.xgboost' on task 'task_class2' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:59:12.365] [mlr3] Applying learner 'classif.ranger' on task 'task_class2' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:59:17.435] [mlr3] Applying learner 'classif.naive_bayes' on task 'task_class2' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [18:59:17.871] [mlr3] Finished benchmark</span></span></code></pre></div>
 <p>We can take a look at the available measures with the following command:</p>
-<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Observe available measures</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1231,7 +1231,7 @@ Figure 7.1: Resampling concept
 <span><span class="co">#&gt;   selected_features, sim.jaccard, sim.phi, time_both,</span></span>
 <span><span class="co">#&gt;   time_predict, time_train</span></span></code></pre></div>
 <p>We can view the measures for each algorithm with the following command:</p>
-<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Compare the models</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1252,7 +1252,7 @@ Figure 7.1: Resampling concept
 <span class="header-section-number">7.2.1.5</span> Manually calling a logistic regression model<a class="anchor" aria-label="anchor" href="#manually-calling-a-logistic-regression-model"><i class="fas fa-link"></i></a>
 </h4>
 <p>Logistic regression is a form of regression that “builds a linear model based on a transformed target variable.” <span class="citation">(<a href="references.html#ref-Witten2011" role="doc-biblioref">Ian H. Witten 2011</a>)</span> This target variable will take the form of 1 or 0. Applied to our problem, <em>will renew</em> or <em>will not renew</em>. Let’s call a basic logistic regression model for fun.</p>
-<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Compare the models</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1295,7 +1295,7 @@ Figure 7.1: Resampling concept
 <span class="header-section-number">7.2.2</span> Measuring performance<a class="anchor" aria-label="anchor" href="#measuring-performance"><i class="fas fa-link"></i></a>
 </h3>
 <p>Measuring performance can be difficult. The measures themselves can be technical and confusing. If you are using holdout samples, you can ignore many of them to a degree. If you sampled and calibrated correctly, using “ce” or <em>classification error</em> with a visual inspection of the confusion matrix will often be enough. Let’s build a plot of the classification error to give us some additional insight into what is going on.</p>
-<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Compare the models</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1303,7 +1303,7 @@ Figure 7.1: Resampling concept
 <span><span class="va">mod_data_numeric</span><span class="op">$</span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">mod</span>,newdata <span class="op">=</span> <span class="va">mod_data_numeric</span>,</span>
 <span>                                 type <span class="op">=</span> <span class="st">'response'</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s look at a density plot of the renewal scores and classes.</p>
-<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Density plot of error</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1321,7 +1321,7 @@ Figure 7.1: Resampling concept
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>                                 <span class="op">+</span></span>
 <span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
 <div class="inline-figure"><img src="images/ch7_density.png" width="100%"></div>
-<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># ROC curve</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1353,7 +1353,7 @@ Figure 7.1: Resampling concept
 <span class="header-section-number">7.3.1</span> Building cumulative gains charts<a class="anchor" aria-label="anchor" href="#building-cumulative-gains-charts"><i class="fas fa-link"></i></a>
 </h3>
 <p>How do we know that our model has efficacy in practice? Let’s take a sample of our model data and pretend that it is a new group that we plan to deploy in a renewal campaign. Let’s begin by borrowing some data from our last analysis. Let’s pretend these individuals are new and we are trying to renew them.</p>
-<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Build data fro cumulative gains chart</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1395,7 +1395,7 @@ Figure 7.1: Resampling concept
 <span><span class="co">#&gt;   8   83 417</span></span>
 <span><span class="co">#&gt;   9  124 376</span></span>
 <span><span class="co">#&gt;   10 299 201</span></span></code></pre></div>
-<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Build data for cumulative gains chart</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1421,7 +1421,7 @@ Figure 7.1: Resampling concept
 <span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
 <div class="inline-figure"><img src="images/ch7_cgc.png" width="100%"></div>
 <p>What would this curve look like if the renewal rates differed more by group?</p>
-<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Build data for improved cumulative gains chart </span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>

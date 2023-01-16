@@ -3,7 +3,7 @@
 
 
 
-Framing projects tends to be an overlooked component of analytics exercises. I break these projects into six parts each of which each have several sub-components: 
+Framing projects tends to be an overlooked component of analytics exercises. These projects often begin _in medias res_. In an effort to get a result you simply cobble some of the data together and begin throwing models at it. I recommend creating a basic wireframe of your project before you begin. It'll help keep your scope in check and force you to project-manage your work. You can loosley break these analytics projects into six parts each of which each may have sub-components: 
 
 1. Defining a measurable goal or hypothesis
 2. Data collection and management
@@ -12,26 +12,19 @@ Framing projects tends to be an overlooked component of analytics exercises. I b
 5. Communicating the results
 6. Deploying the results
 
-This can often be a recursive or iterative process. There are numerous questions that you have to answer about what tools you will need, whether you have the internal resources, what is the return-on-investment, how long will this take, will anybody use it, have we done this before and if so, what were the results. 
+This can often be an iterative process. There could be numerous questions that you have to answer about what tools you will need, whether you have the internal resources, what is the return-on-investment, how long will this take, will anybody use it, have we done this before and if so, what were the results, etc. This process may also be more useful when you are just beginning to do this work. The seasoned analyst will have a good idea of where to begin on a project through experience.   
 
-We can move up a level in terms of how we are considering projects. Strategic frameworks tend to have one thing in common. They follow a process. This "process consists of four basic elements." [@Wheelen2008]
-
-- Environmental Scanning
-- Strategy formulation
-- Strategy implementation
-- Evaluation and control
-
-The basic premise is always the same. You create some objectives based on environmental considerations, build some programs to implement those objectives, and you monitor performance. Honestly, it isn't difficult but the process tends to be overlooked. Larger projects can smother and die under their own weight. A good plan can help keep them breathing. 
+The basic premise is always the same when working through one of these projects. You create some objectives based on environmental considerations, build some programs to implement those objectives, and you monitor performance. Honestly, it isn't difficult but the process tends to be overlooked. Larger projects can smother and die under their own weight if all of the considerations (including political considerations) aren't considered. A good plan can help keep them breathing. 
 
 ## Defining goals
 
-Defining your goals can be easy or difficult. You'll likely need to be able to translate your product into an operational tactic that can be understood and leveraged by a functional unit of the business. For instance, a Sales team may say that they want to _sell more tickets and they need more leads_. A marketing team may say that they want to understand _return on marketing investment_. How do you translate these statements into a practical solution? Each request contains a number of questions. 
+Defining your goals can be easy or difficult. You'll likely need to be able to translate your product into an operational tactic that can be understood and leveraged by a functional unit of the business. A Sales team may say that they want to _sell more tickets and they need more leads_. A marketing team may say that they want to understand _return on marketing investment_. How do you translate these statements into a practical solution? Each request contains a number of questions. 
 
-_Why_ is the most important question to answer. There are several management techniques that look for root causes. One being the aptly named "5 Whys" [@Serrat2017]. These subjects are outside the scope of this book. The point here is that we need the context of why in order to devise a plan. You should consider this a critical component of defining a goal as a part of the _discovery process_. Let's explore an example: 
+There are several management techniques that look for root causes. One being the aptly named "5 Whys" [@Serrat2017]. These subjects are outside the scope of this book. The point here is that we should seek to understand why you are doing something in order to devise a plan. It sounds obvious and you should consider this a critical component of defining a goal as a part of the _discovery process_. Let's explore an example: 
 
-Your ticket sales manager says "that they need more leads so that they can sell more season tickets." What is this person asking? It could be one of several things and some of these _things_ may have evolved from how that person is incentivized. In fact, it is interesting to think about how incentives guide behavior (see _Freakonomics: A rogue economist explores the hidden side of everything_ [@Levitt2005]. What might our sales manager really be saying? 
+Your ticket sales manager says "that they need more leads so that they can sell more season tickets." What is this person asking? It could be one of several things and some of these _things_ may have evolved from how that person is incentivized. In fact, it is always interesting to think about how incentives guide behavior (see _Freakonomics: A rogue economist explores the hidden side of everything_ [@Levitt2005]. What could our sales manager really be saying? 
 
-- I want to make more phone calls. The numbers of calls causes us to sell more tickets.
+- I want to make more phone calls. The numbers of calls _causes_ us to sell more tickets.
 - Our current leads are not closing at the rate I need in order to hit _my_ goals.
 - I don't have enough leads to keep my guys working.
 
@@ -40,11 +33,13 @@ When you put these thoughts into the context of what motivates your sales manage
 - I am out of ideas and I am going to make my guys work harder.
 - I just want to execute my job. Just give me what I want.
 
-These attitudes exist in any sales organization and aren't new. However, they are prevalent everywhere. Let's assume that the sales manager believes that the number of calls directly correlates to the number of tickets that are sold. Why do they believe this and is this something that we can investigate? How could we do that? A simplistic method might be to look to see if the number of phone calls is correlated with sales in any particular way. There are formal and informal methods that we could use, but the easiest thing to do is to simply put this data into a couple of tables and graphs 
+This shouldn't be viewed through a negative lens. Some jobs are about executing and it can get tedious. Look at your task as a way to escape the tedium and to help the sales team think more strategically. Help them escape the mire. 
+
+Let's assume that the sales manager believes that the number of calls directly correlates to the number of tickets that are sold. Why do they believe this and is this something that we can investigate? A simplistic method to investigate this conclusion might be to look to see if the number of phone calls is correlated with sales in any particular way. There are formal and informal methods that we could use, but the easiest thing to do is to simply put this data into a couple of tables and graphs.
 
 ### Identifying goals
 
-The data set _aggregated_crm_data_ has three fields and each row represents interactions with one customer:
+The data set `FOSBAAS::aggregated_crm_data` has three fields and each row represents interactions with one customer. See `?FOSBAAS::aggregated_crm_data`:
 
 - A repID corresponding to a specific rep
 - calls represents the number of calls the rep made to a specific person
@@ -95,7 +90,7 @@ cor(agg_calls$calls,agg_calls$revenue)
 #> [1] 0.2589937
 ```
 
-Overall, calls are only weakly correlated with revenue. why?
+Overall, calls are only weakly correlated with revenue (A higher number is better). why?
 
 
 ```r
@@ -172,7 +167,7 @@ ggplot(ag_sales_line, aes(y     = cumSum,
 </div>
 
 
-We can verify this without looking at the actual stats by looking at the jumps in these line graphs. We  will also want to take a look at some statistics to see if there is anything else we can understand. Let's answer a few questions:
+We can verify this without looking at the actual stats by looking at the jumps in these line graphs. We  will also want to take a look at some statistics to see if there is anything else we can understand. Let's answer a couple of questions:
 
 1. Are certain reps more efficient with phone calls?
 2. Are certain reps more efficient with customers?
@@ -216,12 +211,12 @@ bar_sales <-
 
 
 <div class="figure">
-<img src="images/ch4_bar_sales.png" alt="Cumulative revenue by rep" width="100%" />
-<p class="caption">(\#fig:chfourbarplotone)Cumulative revenue by rep</p>
+<img src="images/ch4_bar_sales.png" alt="Call failures" width="100%" />
+<p class="caption">(\#fig:chfourbarplotone)Call failures</p>
 </div>
 
 
-Overall, no rep stands out as being more or less efficient, although there are some differences at the top and bottom. Let's take a closer look at the distribution of sales revenue. Instead of a density plot, let's take a look at the summary statistics and make a couple of comparisons between the highest and lowest performers.
+Overall, no rep stands out as being more or less efficient, although there are some differences at the top and bottom. Let's take a closer look at the distribution of sales revenue. Instead of a density plot we'll use some summary statistics and make a couple of comparisons between the highest and lowest performers.
 
 
 ```r
@@ -230,12 +225,6 @@ Overall, no rep stands out as being more or less efficient, although there are s
 #-----------------------------------------------------------------
 quants <- quantile(ag_sales_data$revenue,
                    probs = c(.5,.75,.9,.95,.975,.99,1))
-```
-
-
-
-```r
-knitr::kable(quants,caption = 'Aggregated sales data quantiles')
 ```
 
 
@@ -308,7 +297,7 @@ ag_sales_data                                          %>%
 ```
 
 
-Our top performer generated nine times as much revenue from the top 1% of spenders. When you couple this with a tendency to be more successful, you have your answer as to the reason some reps do better. Now you have to answer why. What have we established?
+Our top performer generated nine times as much revenue from the top 1% of spenders. When you couple this with a tendency to be more successful, you have your answer as to the reason some reps do better. You have now answered one _why_. What have we established?
 
 1. The number of phone calls per rep is only weakly correlated with revenue. 
 2. Some reps are marginally more effective than others in terms of efficiency.
@@ -317,18 +306,18 @@ Our top performer generated nine times as much revenue from the top 1% of spende
 What else should we look for?
 
 - Are more experienced reps better at closing sales? 
-- What is the origin of sales? Were these call-in? 
-- Perhaps females tend to have better luck given the demographic distribution of sales.
+- What is the origin of sales? Were these sales called-in? 
+- Perhaps females tend to have better luck given the demographic distribution of purchasers.
 - How does seasonality impact these figures? Perhaps reps began working at different times?
 - Are there professional resellers hidden in these sales?
 
-If the number of calls that a rep makes is only weakly correlated to sales, your goal shouldn't be to have the reps make more phone calls. It also shouldn't be to add more sales reps unless perhaps the sales rep's experience or another factor is impacting sales. These two solutions tend to be the most common solutions that you would hear, however technology is rapidly changing this mindset. A.I. technology is automating lead-warming where sales might be more about upsells than gauging or establishing interest.
+If the number of calls that a rep makes is only weakly correlated to sales, your goal shouldn't be to have the reps make more phone calls. It also shouldn't be to add more sales reps unless perhaps the sales rep's experience or another factor is impacting sales. These two tactics tend to be the most common solutions that you would hear, however technology is rapidly changing this mindset. Artificial Intelligence is automating lead-warming where sales might be more about up-sells than gauging or establishing interest.
 
 The point of this section is that to establish goals, you need some sort of objective justification of what those goals should be. Determine what is driving the desired outcomes before settling on a tactic. That sounds obvious, but it isn't. The reasons could be political. Look at what might be incentivizing the behavior.
 
 ## Collecting data
 
-There is a lot to understand about data collection and you will always be forced to confront the questions of what data you need and how to acquire it. Some data is much easier to acquire than other data sets. For instance, transnational data will abound. You hopefully have access to several years of ticketing and CRM data. However, there may be problems with formatting and consistency. I would place data collection under a few headings:
+There is a lot to understand about data collection and you will always be forced to confront the question of what data you need and how to acquire it. Some data is much easier to acquire. For instance, transactional data will likely abound. You hopefully have access to several years of ticketing and CRM data. However, there may be problems with formatting and consistency. I would place data collection under a few headings:
 
 - Transaction data from ticketing, CRM, or other internal systems
 - Transaction data from external systems (perhaps you have an agency agreement for something like concessions)
@@ -347,7 +336,7 @@ Internal sources such as survey results, transaction data, interaction data thro
 - The Can-Spam Act ^[https://www.ftc.gov/tips-advice/business-center/guidance/can-spam-act-compliance-guide-business]
 - The No-Call list ^[https://www.donotcall.gov/]
 
-As long as you live in the United States, some or all of these laws might impact how you are able to leverage your or third party data. This list is not even comprehensive. GDRP (a European privacy law) is far reaching and does have some influence on what we are able to do in the United States. The future of commerce will undoubtedly make this arena more challenging to navigate as the use of biometrics become more prolific.  
+As long as you live in the United States, some or all of these laws might impact how you are able to leverage your first or third party data. This list is not even comprehensive. GDRP^[https://en.wikipedia.org/wiki/General_Data_Protection_Regulation] (a European privacy law) is far reaching and does have some influence on what we are able to do in the United States. The future of commerce will undoubtedly make this arena more challenging to navigate as the use of biometrics becomes more prolific.  
 
 Additionally, data is often not accurate. Where do third party data-brokers get their data? Sometimes they simply use a bank of names to determine if a person is male or female, or African American vs. Asian: Washington = African American, Wang = Asian, Lopez = LatinX. LatinX represents a special problem with culture and the notion of race. Third party brokers (such as Axiom) source their data from multiple sources and model components of it. Unless you are dealing with massive datasets (not common in sports), working with third party data can be difficult and frustrating. 
 
@@ -369,7 +358,7 @@ The main gist is that you need to focus on a couple of things:
 - What questions are you really trying to answer?
 - What data do you need to answer those questions?
 
-This process can sprawl because you have to be concerned with consistency. That is where a rubric and training may come into play. We'll give an example in chapter \@ref(chapter10). Additionally, Public sources of data abound, but don't typically offer the granularity needed to be useful for anything besides supplementary reporting. An example is census data. There are extensive APIs to access this data, but the results may not be practically useful outside of long-term planning exercises.
+This process can sprawl because you have to be concerned with consistency.  Public sources of data also abound, but don't typically offer the granularity needed to be useful for anything besides supplementary reporting. An example is census data. There are extensive APIs to access this data, but the results may not be practically useful outside of long-term planning exercises.
 
 Data collection might also involve _competitive intelligence_. An example here would be going to other venues and monitoring prices or operational tactics. Competitive intelligence may also take the form of monitoring other industries that operate in similar spaces. For instance, what can we learn about loyalty programs from a company like Starbucks? You might learn that they aren't appropriate for you.
 
@@ -378,11 +367,11 @@ We only touched some high-level concepts here. Just understand that data collect
 
 ## Modeling the data
 
-Modeling the data is the fun part of working in analytics. We aren't talking about _modeling_ data in the database sense, although structuring the data is a component of the process. We also aren't going into actually modeling the data here. I would like to speak about some of the tools. At the lower levels you will be leveraging at least two languages (SQL and some other programming language). Additionally, this space is becoming commoditized. I don't know if there are large advantages to using one tool over the other. For instance, is there an advantage to using Google's tools over Microsoft? Is there an advantage to using python over R. The answers probably vary. In some cases yes and in some cases no. Since this book is demonstrating fundamentals, we are going to look at a lot of code. Over time, you'll see the reliance on code wane. However, it really helps to understand the underlying mechanisms.
+Modeling the data is the fun part of working in analytics. We aren't talking about _modeling_ data in the database sense, although structuring the data is a component of the process. We also aren't going into actually modeling the data here. Instead we are going to speak about some of the tools that you will need. At the lower levels you will be leveraging at least two languages (SQL and some other programming language). Increasingly the modeling component of the data is becoming the easiest part as the tech giants seek to own this space. I don't know if there are large advantages to using one tool over the other. For instance, is there an advantage to using Google's tools over Microsoft? Is there an advantage to using python over R? The answers probably vary. In some cases yes and in some cases no. Over time I believe you'll see the reliance on code wane. 
 
-Let's talk about the two most popular languages for analytics. Differences between R and Python may make a distinction between which tool that you plan on using. This is especially true when we look to deploy results. R and Python are both highly extensible. There are libraries for almost everything and the need to write your own implementation is likely minimal. If you do have the need, it would probably be better to use another language such as C++. However, C++ is significantly more difficult than many other languages you might encounter. (Practically speaking, R is C++ since it is written in it) 
+Differences between R and Python may make a distinction between which tool that you plan on using. This is especially true when we look to deploy results. R and Python are both highly extensible. There are libraries for almost everything and the need to write your own implementations is likely minimal. If you do have the need, it would probably be better to use another language such as C++. However, C++ is significantly more difficult than many other languages you might encounter. (Practically speaking, R is C++ since it is written in it) 
 
-Many analytics projects in Python will use the same relatively small sets of libraries. Additionally, the code for one model will look almost exactly like the code for another. This won't always be true in R and I consider this an advantage for Python users. Let's look at an example.
+Many analytics projects in Python will use the same relatively small sets of libraries. This is a nice feature because the code for one model will look almost exactly like the code for another. This won't always be true in R and I consider this an advantage for Python users. Let's look at an example.
 
 The code to hierarchically cluster a data set in python might look something like the following:
 
@@ -398,7 +387,7 @@ affinity='euclidean', linkage='ward')
 cl = py.DataFrame(cluster.fit_predict(data))
 ```
 
-Every other method available in the module `sklearn` [@scikit-learn] will look like this example. This makes it easy and intuitive to run through several algorithms. If you wanted to cluster with the Kmeans algorithm in python, the code might look like this. 
+Every other method available in the module `sklearn` [@scikit-learn] will look like this example. This makes it easy and intuitive to run through several algorithms. As a demonstration, if you wanted to cluster with the `Kmeans` algorithm in python, the code might look like this. 
 
 
 ```python
@@ -411,7 +400,7 @@ cluster = KMeans(n_clusters=6, random_state=0)
 cl = py.DataFrame(cluster.fit_predict(data))
 ```
 
-It is almost identical. Let's compare this code to some R code that work with the same tools. The code to hierarchically cluster some data in R follows.
+It is almost identical. Let's compare this code to some R code that work with the same tool. The code to hierarchically cluster some data in R follows.
 
 
 ```r
@@ -427,7 +416,7 @@ cuts         <- cutree(cl, k = 6)
 data$cluster <- cuts
 ```
 
-Both languages begin by importing capabilities from libraries. The next code chuck uses the kmeans algorithm. It is housed in the `stats` library and works slightly differently. I find that R tends to feel more _procedural_ than python. 
+Both languages begin by importing capabilities from libraries. The next code chunk uses the `kmeans` algorithm. It is housed in the `stats` library and works slightly differently than a hierarchical algorithm. I find that R tends to feel more _procedural_ than python. 
 
 
 ```r
@@ -440,27 +429,28 @@ cl           <- stats::kmeans(data, centers = 6)
 data$cluster <- cl$cluster
 ```
 
-This code chunk looks similar, but that isn't always the case. R, like Python, has thousands of packages. However, in python there tends to be one _correct_ way to do everything. It's the _Pythonic_ way. R is the wild west. Different algorithms often have different authors who approach writing the code and dealing with objects differently. However, several developers in R have attempted to solve this problem. 
+This code chunk looks similar, but that isn't ussually the case. R, like Python, has thousands of packages. However, in python there tends to be one _correct_ way to do everything. It's the _Pythonic_ way. R is the wild west. Different algorithms often have different authors who approach writing the code and dealing with objects differently. Luckily, several developers in R have attempted to solve this problem through wrapper packages that work as an API to the other libraries and add additional functionality. 
 
-You can even run python from R using the `reticulate` [@R-reticulate] package. Packages such as `caret` [@R-caret], _mlr3_ [@R-mlr3], and `tidymodels` [@R-tidymodels] have attempted to create a standard api to many R functions. It means that a similar approach can be taken in terms of writing and understanding the code for many functions. The trade-off is often speed. Despite this tradeoff, I think it is incredibly useful to take advantage of one of these frameworks. They make it much easier to cover all steps of the modeling process. R and Python have learned from one another. At the end of the day, pick a tool and get good at it. I prefer R, but admire python. They both have their place and it really isn't that difficult to switch between the two. 
+You can even run python from R using the `reticulate` [@R-reticulate] package. Packages such as `caret` [@R-caret], `mlr3` [@R-mlr3], and `tidymodels` [@R-tidymodels] have attempted to create a standard API to many R functions. It means that a similar approach can be taken in terms of writing and understanding the code for many functions. The trade-off is often speed. Despite this tradeoff, I think it is incredibly useful to take advantage of one of these frameworks. They make it much easier to cover all steps of the modeling process. R and Python have learned from one another. At the end of the day, pick a tool and get good at it. I prefer R, but admire python. They both have their place and it really isn't that difficult to switch between the two for data analysis. 
 
-Let's move on to a more tangible example of the modeling process. We'll refer to parts of this process in the chapter \@ref(chapter5). Modeling data has a few discreet (often iterative) steps.
+TO end this section, the modeling process follows four discrete (often iterative) steps. We'll refer to parts of this process in the chapter \@ref(chapter5). 
 
-1. Evaluate your data
-2. Prepare your data
+1. Evaluating your data
+2. Preparing your data
 3. Processing your data
 4. Validating your output
 
-You'll get better at this process as you gain experience. It will just become more intuitive. In reality, these projects tend to be repetitive. You can encounter several problems with modeling your data. Every problem doesn't always manifest, but some problems always arise. 
+You'll get better at this process as you gain experience and it will become more intuitive. In reality, these projects tend to be repetitive and you can encounter several problems with modeling your data. Every problem doesn't always manifest, but some problems always arise. We'll see how to solve some of those problems in the forthcoming chapters. 
 
 ### Evaluating your data {#evaldata}
 
-This refers to understanding what you are looking at. How is the data structured and what am I trying to do with it? You can do this with several built-in features in R. For example, you will want to understand data sparsity and what data is relevant to answer your question. Typical questions might include:
+This refers to understanding what you are looking at. How is the data structured and what am I trying to do with it? You can occasionally do this with one of several built-in features in R. Other times, you'll have to put on your thinking cap. Typical questions might include:
 
 - What questions am I trying to answer with this data?
 - Have we attempted to solve this problem before? What were the results?
 - Are there deeply held beliefs as to what the solution might be?
 - How is the data formatted?
+- How sparse is this data?
 - How current is the data? Does it matter if it is stale?
 - What is this data's provenance? Can I trust it?
 - How much of it is missing and _why_ is it missing? The why here can be important.
@@ -470,36 +460,36 @@ This refers to understanding what you are looking at. How is the data structured
 - Are we dealing with differences in units or scale?
 - What do I plan to do if I don't find anything and how likely is this possibility?
 
-Taking some time to get familiar with your data and its structure is critical to getting accurate results. Really focus on the question at hand. An example might be _will current sales do the best job of predicting future sales at all times during the year?_ What might work better? Frame your problem statement carefully. 
+Taking some time to get familiar with your data and its structure is critical to getting accurate results. Focus on the question at hand. An example might be _will current sales do the best job of predicting future sales at all times during the year?_ What might work better? Frame your problem statement carefully. 
 
 Furthermore, if there are deeply held beliefs as to what the answer might be you may have issues if your answer is antithetical to that belief. There are probably reasons why that belief is held. Honestly, most of the time the people have formed that belief are correct. Just use some extra discretion here if you determine another solution has merit.
 
 ### Preparing your data 
 
-This will generally take the most time. We'll go into this process in some detail in chapter \@ref(chapter5). If you have missing data you might have to consider imputation. If you are dealing with mixed data sets you'll have to consider how to process it. Ordinal data might require you to approach the problem in a specific way. An example here might be the _Holt-Winters_ ^[Triple exponential smoothing is a powerful tool for forecasting time-series data with trend and seasonality] method for estimating time-series data. However, it may not be applicable because of underling structure within the data. You can follow a process here as well.
+Preparing your data will generally take the most time. We'll go into this process in some detail in chapter \@ref(chapter5). If you have missing data you might have to consider imputation. If you are dealing with mixed data sets you'll have to consider how to process it. Ordinal data might require you to approach the problem in a specific way. An example here might be the _Holt-Winters_ ^[Triple exponential smoothing is a powerful tool for forecasting time-series data with trend and seasonality] method for estimating time-series data. A particular method may also not be applicable because of underling structure within the data. When preparing your data it is also critical to think of the two most common questions that you will face.
 
 - How will I deal with missing data?
 - What methods do I plan on applying to this data?
 
 _Missingness_ is a huge problem. What do you do with `NAs`, `NANs`, `inf`? How sparse is OK? The answers here may vary. Additionally, if there is a systematic reason that the data is missing your results may be invalid. Take warning, dealing with missing data is frustrating work. 
 
-When you prepare your data always ask if this is this something that will have to be repeated? I recommend prepping your data with code. For some reason, you always need to repeat projects. Documenting your ETL work is crucial. I tend to start with SQL and push it to the point where it doesn't make sense. I don't duplicate information in SQL. For instance, I won't dummy-code the data set in SQL. I will leave that for the analysis phase. This may or may not have merit. You have to think about where you can do this the most efficiently. Certain methods such as _Latent Class Regression_ only accept discrete data. How you transform numerical data into discrete data can impact your results. 
+When you prepare your data always ask if this is this something that will have to be repeated? I recommend prepping your data with code. For some reason, you always need to repeat projects. Documenting your ETL work is crucial. I tend to start with SQL and push it to the point where it doesn't make sense. I don't duplicate information in SQL. For instance, I won't dummy-code the data set in SQL. I will leave that for the analysis phase. This is more of a judgement call. You have to think about where you can do this the most efficiently. Certain methods such as _Latent Class Regression_ only accept discrete data and how you transform numerical data into discrete data can impact your results. 
 
 
 #### Selecting the appropriate technique for analyzing your data {#modelingdata}
 
-Gone are the days of an expert having to use sound judgment to select the appropriate method for processing data. Hardware and software advances have removed a resource constraint that has delayed the analytics revolution that began in the early 2000s. The future is now. In the past a researcher may have had to purchase time on a main-frame and therefore needed to have a good idea of what technique they would want to leverage to solve the problem. Analysts in these modern times can afford to be lazy. The modern analyst really only has a few considerations in terms of how they need to approach a problem. See figure \@ref(fig:modelingdatachfour). 
+Gone are the days of an expert having to use sound judgment to select the appropriate method for processing data. Hardware and software advances have removed a resource constraint that has delayed the analytics revolution that began in the early 2000s. The future is now. In the past a researcher may have had to purchase time on a main-frame^[https://en.wikipedia.org/wiki/Mainframe_computer] (you may not even know what that term means) and therefore needed to have a good idea of what technique they would want to leverage to solve the problem. Analysts in these modern times can afford to be lazy. The modern analyst really only has a few considerations in terms of how they need to approach a problem. See figure \@ref(fig:modelingdatachfour). 
 
 <div class="figure">
 <img src="images/CH4_ML_Decision.png" alt="Choosing the right technique" width="100%" />
 <p class="caption">(\#fig:modelingdatachfour)Choosing the right technique</p>
 </div>
 
-I am exaggerating a little here. Many of these techniques require a high degree of rigor to validate the results. However, you have it much easier than analysts from twenty years ago. The surplus of methods has become a problem in and of itself. Additionally, it is easy to get in a rut. For instance, I like _deep learning_. I am going to use it for every problem. If all I like to use is a hammer I will use it to fix everything. We already discussed this. I just thought it might warrant being repeated. Sometimes you need a wrench. Keep that in mind.  
+I am exaggerating a little here. Many of these techniques require a high degree of rigor to validate the results. However, you have it much easier than analysts from twenty years ago. The surplus of methods has become a problem in and of itself. Additionally, it is easy to get in a rut. For instance, I like _deep learning_ so I am going to use it for every problem I face. If all I like to use is a hammer I will use it to fix everything. It's a variation on something we have already discussed and I thought it might warrant being repeated. Sometimes a wrench will make your life easier even if the hammer will work.
  
 ### Processing your data
 
-Begin by looking for the simplest solution first. Stingy, parsimonious models tend to be the most forgiving and friendly. Always look for the simplest solution. This is especially important for interpretability, but also for durability. Simpler solutions tend to be more elegant and are just easier to deal with. Always approach processing in an intelligent, procedural way. Let's illustrate this with a brief example:
+Begin by looking for the simplest solution first. Stingy, parsimonious models tend to be the most forgiving and friendly. Always look for the simplest solution. This is especially important for interpretability, but also for durability. Simpler solutions tend to be more elegant and are easier to deal with. Always approach processing in an intelligent, procedural way. Let's illustrate this with a brief example:
 
 > "The ticket sales manager wants to understand who are the most likely candidates in our system to purchase season tickets. They also want to understand who is most likely to spend more or to upgrade their seats."
 
@@ -524,7 +514,7 @@ Evaluating your results is an exercise that requires some technical rigor and so
 
 ## Communicating the results
 
-Getting your research in the hands of Executives or Managers that need to understand the problem and potential solutions is more difficult than it sounds. Communicating the results of a project that may require more esoteric techniques is an art. Every large management consulting firm has frameworks around framing problems and by extension framing the results. You can often borrow from these folks. Keep in mind that results can be complex or involve difficult concepts and it isn't always easy to ELI5 ^[Explain it like I'm five]. As your credibility grows or as an organization matures, this process becomes easier. If your colleagues suffer from confirmation bias, exorcising that bias may be impossible. This is incredibly important to understand. 
+Getting your research into the hands of Executives or Managers that need to understand the problem and potential solution is more difficult than it sounds. Communicating the results of a project that may require more esoteric techniques is an art. Every large management consulting firm has frameworks around problem solving and by extension framing the results. You can often borrow from these folks. Keep in mind that results can be complex or involve difficult concepts and it isn't always easy to ELI5 ^[Explain it like I'm five]. As your credibility grows or as an organization matures, this process becomes easier. If your colleagues suffer from confirmation bias, exorcising that bias may be impossible. This is incredibly important to understand. 
 
 > "We often use reasoning not to find truth but to invent arguments to support our deep and intuitive beliefs."
 >
@@ -548,7 +538,7 @@ Deployment could mean different things. One refers to people and one refers to s
 1. Communicating the results (The subject of the last section)
 2. Operationalizing the output (The automation component discussed in figure \@ref(fig:choneheirarh).
 
-The second part of deploying results refers to automating a process and putting those solutions into production. There are multiple tools that make this possible. Although this tends to be where other languages have an advantage over R. Compiled languages such as C++ can be much faster than R and are more full-featured in some sense. Although there are some exceptions. SQL Server has supported an integration with R ^[https://docs.microsoft.com/en-us/sql/machine-learning/tutorials/r-tutorials?view=sql-server-ver15] and Python since 2016, although it isn't clear how widespread its use has become. Google, Amazon, and Microsoft are all building analytics frameworks into their cloud-based DBMSs. They allow you to turn-up the computing power to make your models run much more quickly assuming you can take advantage of a technique such as multu-threading (Which R does not natively support). Thinking about how to make something more efficient has probably already been done for you. At this stage, R may be used for protoyping and something else for the actual deployment.
+The second part of deploying results refers to automating a process and putting those solutions into production. There are multiple tools that make this possible. Although this tends to be where other languages have an advantage over R. Compiled languages such as C++ can be much faster than R and are more full-featured in some sense. Although there are some exceptions. SQL Server has supported an integration with R ^[https://docs.microsoft.com/en-us/sql/machine-learning/tutorials/r-tutorials?view=sql-server-ver15] and Python since 2016, although it isn't clear how widespread its use has become. Google, Amazon, and Microsoft are all building analytics frameworks into their cloud-based DBMSs. They allow you to turn-up the computing power to make your models run much more quickly assuming you can take advantage of a technique such as multi-threading (Which R does not natively support). Thinking about how to make something more efficient has probably already been done for you. At this stage, R may be used for protoyping and something else for the actual deployment.
 
 Where is this valuable?
 
@@ -571,7 +561,7 @@ There are many applications. Additionally, you could always write a wrapper (in 
 #  --vanilla --slave ""C:\locationOfScript\YourRScript.R"
 ```
 
-You can write a similar _bash_ script on a linux box.If you are dealing with more complicated systems, you may need to rely on developers to automate your process. Your context and available skill sets will tell you what direction to take. 
+You can write a similar _bash_ script on a linux box. If you are dealing with more complicated systems, you may need to rely on developers to automate your process. Your context and available skill sets will tell you what direction to take. 
 
 ## Key concepts and chapter summary
 

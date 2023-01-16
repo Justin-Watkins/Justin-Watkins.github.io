@@ -111,7 +111,7 @@
 <li>Conflicting outcomes can confound application</li>
 <li>It isn’t always worth conducting</li>
 </ul>
-<p>One of the main difficulties with consumer research in a sports context is that <em>stated</em> and <em>observed</em> behavior can often be different. For instance, season-ticket-holders may not respond well to a survey that might indicate price increases yet still renew at high rates despite a negative survey response. People try to <em>game</em> surveys hoping that their responses can tilt Fortuna’s wheel <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;See Boethius: &lt;a href="https://en.wikipedia.org/wiki/Fortuna" class="uri"&gt;https://en.wikipedia.org/wiki/Fortuna&lt;/a&gt;&lt;/p&gt;'><sup>70</sup></a> in their favor.</p>
+<p>One of the main difficulties with consumer research in a sports context is that <em>stated</em> and <em>observed</em> behavior can often be different. For instance, season-ticket-holders may not respond well to a survey that might indicate price increases yet still renew at high rates despite a negative survey response. People try to <em>game</em> surveys hoping that their responses can tilt Fortuna’s wheel <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;See Boethius: &lt;a href="https://en.wikipedia.org/wiki/Fortuna" class="uri"&gt;https://en.wikipedia.org/wiki/Fortuna&lt;/a&gt;&lt;/p&gt;'><sup>72</sup></a> in their favor.</p>
 <p>Additionally, research methods may be combined with more advanced discovery like purchasing data from a data-broker such as Acxiom. We’ve spoken about the problems with third party data quite a bit. Research conducted by fellows at Deloitte found serious inaccuracies with data purchased from a well known data broker <span class="citation">(<a href="references.html#ref-Lucker2017" role="doc-biblioref">John Lucker and Bischof 2017</a>)</span>.</p>
 <blockquote>
 <p>“Our survey findings suggest that the data that brokers sell not only has serious accuracy problems, but may be less current or complete than data buyers expect or need.</p>
@@ -141,7 +141,7 @@
 <p>Hypothesis testing is confusing just because of the sentence structure that you will encounter. If you don’t have a statistics background, you need to take some time to understand hypothesis testing. The next couple of paragraphs are simply going to touch the high points. There are a few steps and a few statistics that you will want to consider. You begin by Specifying <em>an hypothesis</em>. Let’s use an example.</p>
 <p>I want to understand if season ticket holders spend more money on concessions than non season ticket holders. My <em>Null hypothesis</em> is that the mean spend of season ticket holders - the mean spend of non season ticket holders = 0. If I reject the null hypotheses it implies that the mean spend between these two populations is not equal to 0. Go ahead and reread that sentence. I know it doesn’t make any sense. Don’t blame me. I didn’t create this stuff.</p>
 <p>You begin by taking a sample from both groups. Let’s create some data.</p>
-<div class="sourceCode" id="cb268"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Create spend data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -210,7 +210,7 @@
 <li>The null hypothesis is false and you fail to reject it. This is called a type II error.</li>
 </ol>
 <p>The basic way to test an hypothesis is by using a student’s t test. Let’s apply it here and take a look at the output.</p>
-<div class="sourceCode" id="cb269"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb268"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># T Test</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -280,7 +280,7 @@
 </ul>
 <p>As you can imagine, this could get complex.</p>
 <p>From the preceding example, how do we know how many people to sample? We can use a <em>power analysis</em> to give us an idea. We’ll use the <code>pwr</code> <span class="citation">(<a href="references.html#ref-R-pwr" role="doc-biblioref">Champely 2020</a>)</span> package to evaluate our data. The following example is adapted from Kabacoff <span class="citation">(<a href="references.html#ref-Kabacoff2011" role="doc-biblioref">Kabacoff 2011</a>)</span>.</p>
-<div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb269"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Power analysis</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -322,7 +322,7 @@
 <h3>
 <span class="header-section-number">9.1.3</span> Experimental design<a class="anchor" aria-label="anchor" href="#experimental-design"><i class="fas fa-link"></i></a>
 </h3>
-<p>One common experiment design is called a factorial design. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Factorial_experiment" class="uri"&gt;https://en.wikipedia.org/wiki/Factorial_experiment&lt;/a&gt;&lt;/p&gt;'><sup>71</sup></a>. Factorial designs are common and similar to everything else, can spiral into complexity. The goal here is to make sure that you are testing each possible combination of factors against each test subject. As a note, a full factorial design isn’t always feasible because it comes with cost trade-offs. It may not be possible to deploy as many surveys as you would like. In this case a fractional factorial design may be used. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Fractional_factorial_design" class="uri"&gt;https://en.wikipedia.org/wiki/Fractional_factorial_design&lt;/a&gt;&lt;/p&gt;'><sup>72</sup></a> This section is going to cover a very simplified example. Honestly, you wouldn’t really use something like this in sports unless you were designing a conjoint or other formal experiment. There are also many other designs such as a <em>combinatorial design</em>. If you are interested in them, you’ll have to research these methods on your own. I just want you to be aware of them. If nothing else, you can impress a third party researcher that you are likely to encounter in the future.</p>
+<p>One common experiment design is called a factorial design. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Factorial_experiment" class="uri"&gt;https://en.wikipedia.org/wiki/Factorial_experiment&lt;/a&gt;&lt;/p&gt;'><sup>73</sup></a>. Factorial designs are common and similar to everything else, can spiral into complexity. The goal here is to make sure that you are testing each possible combination of factors against each test subject. As a note, a full factorial design isn’t always feasible because it comes with cost trade-offs. It may not be possible to deploy as many surveys as you would like. In this case a fractional factorial design may be used. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Fractional_factorial_design" class="uri"&gt;https://en.wikipedia.org/wiki/Fractional_factorial_design&lt;/a&gt;&lt;/p&gt;'><sup>74</sup></a> This section is going to cover a very simplified example. Honestly, you wouldn’t really use something like this in sports unless you were designing a conjoint or other formal experiment. There are also many other designs such as a <em>combinatorial design</em>. If you are interested in them, you’ll have to research these methods on your own. I just want you to be aware of them. If nothing else, you can impress a third party researcher that you are likely to encounter in the future.</p>
 <p>Let’s take a look at a basic factorial design for an experiment. We will use the <code>AlgDesign</code> <span class="citation">(<a href="references.html#ref-R-AlgDesign" role="doc-biblioref">Wheeler 2022</a>)</span> library to build our design. Let’s assume that we have two sections that we want to look at: <em>Dugout Seats</em> and <em>Homeplate seats</em>. We want to understand consumer preferences for each section based on a high, low, and medium price. Let’s say that we had three potential prices.</p>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
@@ -353,7 +353,7 @@
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Factorial Design</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -446,7 +446,7 @@
 <blockquote>
 <p>Which seat would you prefer at the indicated prices?</p>
 </blockquote>
-<p>In this case we would show a picture of the view from the seats. We are testing how fans value the view from these specific seats relative to one another. There may also be <em>mixed effects</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Mixed_model" class="uri"&gt;https://en.wikipedia.org/wiki/Mixed_model&lt;/a&gt;&lt;/p&gt;'><sup>73</sup></a> here. You have to be careful with these sorts of experiments. How would you analyze the results? There are a few ways. Let’s create some data to see what we would do.</p>
+<p>In this case we would show a picture of the view from the seats. We are testing how fans value the view from these specific seats relative to one another. There may also be <em>mixed effects</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Mixed_model" class="uri"&gt;https://en.wikipedia.org/wiki/Mixed_model&lt;/a&gt;&lt;/p&gt;'><sup>75</sup></a> here. You have to be careful with these sorts of experiments. How would you analyze the results? There are a few ways. Let’s create some data to see what we would do.</p>
 <p>Our survey responses look like this:</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
@@ -555,7 +555,7 @@ Figure 9.1: Perceptual map of Nashville Sports Properties
 </ul>
 <p>Referencing the first point, corporations may make a up a large portion of season tickets. Do we think demographic information is of any use here? Is there a distinction between someone who purchases tickets for their business versus a fan that purchases specifically to enjoy the game? What does enjoying the game actually mean? Individuals may consume through any number of formats and channels controlled by the club or not controlled by the club. There are many implicit and explicit signals that might imply fandom. Are we mainly concerned about ticket sales for this segmentation project?</p>
 <p>In our case, we will be concerned with ticket sales. We have seen some of these techniques. The factor analysis we conducted in section <a href="chapter5.html#factoranalysis">5.4</a> is an example of a potentially useful technique. The data here would have come from a survey asking why someone attends a game and what they do when they attend a game. The point here is that we had a plan for the data that we were collecting. We knew we were going to use a factor analysis to derive insight from the survey and we designed the survey to accommodate this fact.</p>
-<p>Ticket sales are typically public information with teams tending to announce sales <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.espn.com/mlb/attendance/_/year/2019" class="uri"&gt;http://www.espn.com/mlb/attendance/_/year/2019&lt;/a&gt;&lt;/p&gt;'><sup>74</sup></a>. Let’s take a moment to analyze some data from MLB in 2019.</p>
+<p>Ticket sales are typically public information with teams tending to announce sales <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.espn.com/mlb/attendance/_/year/2019" class="uri"&gt;http://www.espn.com/mlb/attendance/_/year/2019&lt;/a&gt;&lt;/p&gt;'><sup>76</sup></a>. Let’s take a moment to analyze some data from MLB in 2019.</p>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
 <th align="center">Club</th>
@@ -600,7 +600,7 @@ Figure 9.1: Perceptual map of Nashville Sports Properties
 <li>Emailed surveys</li>
 <li>Third party research</li>
 </ul>
-<p>Observational research could be as simple as walking onto the concourse during the game and writing down what you see. Technologies could also be deployed here. Facial recognition technologies <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://aws.amazon.com/rekognition" class="uri"&gt;https://aws.amazon.com/rekognition&lt;/a&gt;&lt;/p&gt;'><sup>75</sup></a> can even automate this procedure to a large extent.</p>
+<p>Observational research could be as simple as walking onto the concourse during the game and writing down what you see. Technologies could also be deployed here. Facial recognition technologies <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://aws.amazon.com/rekognition" class="uri"&gt;https://aws.amazon.com/rekognition&lt;/a&gt;&lt;/p&gt;'><sup>77</sup></a> can even automate this procedure to a large extent.</p>
 <p>How would we get the information in number 2? Number two also looks like a combination of techniques:</p>
 <ul>
 <li>Emailed surveys</li>
@@ -652,7 +652,7 @@ Figure 9.1: Perceptual map of Nashville Sports Properties
 <li>Don’t survey too much or too often.</li>
 <li>Pay attention to survey burden in terms of length</li>
 </ol>
-<p>Some surveys may be very focused and will be looking to uncover just one or a few pieces of insight. Other surveys may be very broad and be more more exploratory in nature. <span class="citation">(<a href="references.html#ref-Blair2014" role="doc-biblioref">Johnny Blair 2014</a>)</span> Luckily, there are many research tools that can help you design effective surveys. Products such as Qualtrics<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.qualtrics.com/" class="uri"&gt;https://www.qualtrics.com/&lt;/a&gt;&lt;/p&gt;'><sup>76</sup></a> or Survey Monkey<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.surveymonkey.com/" class="uri"&gt;https://www.surveymonkey.com/&lt;/a&gt;&lt;/p&gt;'><sup>77</sup></a> will even automatically analyze your survey in terms of burden. They also contain banks of questions that you can use as a resource.</p>
+<p>Some surveys may be very focused and will be looking to uncover just one or a few pieces of insight. Other surveys may be very broad and be more more exploratory in nature. <span class="citation">(<a href="references.html#ref-Blair2014" role="doc-biblioref">Johnny Blair 2014</a>)</span> Luckily, there are many research tools that can help you design effective surveys. Products such as Qualtrics<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.qualtrics.com/" class="uri"&gt;https://www.qualtrics.com/&lt;/a&gt;&lt;/p&gt;'><sup>78</sup></a> or Survey Monkey<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.surveymonkey.com/" class="uri"&gt;https://www.surveymonkey.com/&lt;/a&gt;&lt;/p&gt;'><sup>79</sup></a> will even automatically analyze your survey in terms of burden. They also contain banks of questions that you can use as a resource.</p>
 <p>Often times you’ll break a larger survey into specific sections:</p>
 <ul>
 <li>Demographics</li>
@@ -666,7 +666,7 @@ Figure 9.1: Perceptual map of Nashville Sports Properties
 <h3>
 <span class="header-section-number">9.2.4</span> Qualifying your sample<a class="anchor" aria-label="anchor" href="#qualifying-your-sample"><i class="fas fa-link"></i></a>
 </h3>
-<p>It is often critical to qualify your sample. Qualifying your sample will make the results more relevant and may reduce the costs <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;If you are administering a survey through an agency and are incentivizing respondents&lt;/p&gt;"><sup>78</sup></a> of deploying the survey. These questions may be behavioral or demographic. This section might ask questions such as:</p>
+<p>It is often critical to qualify your sample. Qualifying your sample will make the results more relevant and may reduce the costs <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;If you are administering a survey through an agency and are incentivizing respondents&lt;/p&gt;"><sup>80</sup></a> of deploying the survey. These questions may be behavioral or demographic. This section might ask questions such as:</p>
 <blockquote>
 <ol style="list-style-type: decimal">
 <li>What is your gender?</li>
@@ -676,7 +676,7 @@ Figure 9.1: Perceptual map of Nashville Sports Properties
 <li>Female</li>
 </ul>
 </blockquote>
-<p>This is important because you might have a quota. A sample that is 85% male may not be desirable. There are also guides about how to ask questions that are increasingly becoming controversial. Inclusivity is also something to consider. You can find any number of guides on writing inclusive surveys<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.surveymonkey.com/mp/diversity-and-inclusion-survey-templates" class="uri"&gt;https://www.surveymonkey.com/mp/diversity-and-inclusion-survey-templates&lt;/a&gt;&lt;/p&gt;'><sup>79</sup></a>. Be consistnet. Additionally, you might have quota limits on specific ethnicities.</p>
+<p>This is important because you might have a quota. A sample that is 85% male may not be desirable. There are also guides about how to ask questions that are increasingly becoming controversial. Inclusivity is also something to consider. You can find any number of guides on writing inclusive surveys<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.surveymonkey.com/mp/diversity-and-inclusion-survey-templates" class="uri"&gt;https://www.surveymonkey.com/mp/diversity-and-inclusion-survey-templates&lt;/a&gt;&lt;/p&gt;'><sup>81</sup></a>. Be consistnet. Additionally, you might have quota limits on specific ethnicities.</p>
 <blockquote>
 <ol start="2" style="list-style-type: decimal">
 <li>What is your ethnicity?</li>
@@ -901,8 +901,8 @@ Figure 9.1: Perceptual map of Nashville Sports Properties
 <h2>
 <span class="header-section-number">9.3</span> Brand affinity<a class="anchor" aria-label="anchor" href="#brand-affinity"><i class="fas fa-link"></i></a>
 </h2>
-<p>Gauging brand avidity is difficult. We’ll explore a tool to take a look at one component of brand avidity called a perceptual map. We’ll use the library <code>anacor</code> <span class="citation">(<a href="references.html#ref-R-anacor" role="doc-biblioref">Mair and De Leeuw 2022</a>)</span> to accomplish a part of this task. This package is build to assist with correspondence analysis<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Correspondence_analysis" class="uri"&gt;https://en.wikipedia.org/wiki/Correspondence_analysis&lt;/a&gt;&lt;/p&gt;'><sup>80</sup></a>. Do a little research on this topic.</p>
-<div class="sourceCode" id="cb272"><pre class="downlit sourceCode r">
+<p>Gauging brand avidity is difficult. We’ll explore a tool to take a look at one component of brand avidity called a perceptual map. We’ll use the library <code>anacor</code> <span class="citation">(<a href="references.html#ref-R-anacor" role="doc-biblioref">Mair and De Leeuw 2022</a>)</span> to accomplish a part of this task. This package is build to assist with correspondence analysis<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Correspondence_analysis" class="uri"&gt;https://en.wikipedia.org/wiki/Correspondence_analysis&lt;/a&gt;&lt;/p&gt;'><sup>82</sup></a>. Do a little research on this topic.</p>
+<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Calculating scores for perceptual data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -956,7 +956,7 @@ Figure 9.1: Perceptual map of Nashville Sports Properties
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb273"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb272"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Create perceptual map</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
