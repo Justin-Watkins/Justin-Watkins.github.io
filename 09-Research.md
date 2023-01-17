@@ -3,27 +3,27 @@
 
 
 
-Consumer research takes many forms and is leveraged in different ways and in different contexts. This chapter will discuss different research techniques within the context of a sports team looking to leverage that research to understand their customers a little better. This would be an easy chapter to skip because most people hate research. They claim they they like research, but in the darkness of their heart, they despise it. I forgive them because most people don't like surveys. They don't like taking them and they would like thinking about how to design them even less. Analyzing them is tedious and painful and it is typically repetitive in nature. Research is just difficult and unless you have a PhD (This is what PHDs do) or worked in the research industry, it is unlikely that you have extensive experience with it.
+This chapter will discuss different research techniques within the context of a sports team looking to leverage that research to better understand their customers. Most people hate research yet they claim that they love it. Normal people should hate research. If you don't, I hope you do after you read this chapter. It is tedious, painful, is typically repetitive in nature, and opens you up to scrutiny. Research is difficult and unless you have a PhD or worked in the research industry, it is unlikely that you have extensive experience with it. Unfortunately, you need to understand it. 
 
-Additionally, results are often only considered in a cursory fashion. The person who understands the results the best will be the designer and analyst. This is partly because many of the internal consumers will only be interested in a narrow band of concerns. This can be discouraging.
+One of the main issues that you will face with it is that results from research projects are often only considered in a cursory fashion. The person who understands the results the best will be the designer and analyst. This is partly because many of the internal consumers will only be interested in a narrow band of concerns. This can be discouraging.
 
-Furthermore, proper research is a very large topic. In chapters \@ref(chapter5) and \@ref(chapter6) we mention that it would be easy to write an entire book on pricing and segmentation. It would be easy to fill multiple volumes on consumer research and these topics clearly overlap. You can find any number of these tomes on ebay or on other market sites being traded at a significant discount. It would be useful to purchase a few of them to add to your library. We'll discuss a few of the books I have used over the years if you continue to read. These topics are old and well understood. Having a few references is advised. This chapter will discuss two main topics:
+Furthermore, proper research is an enormous topic. In chapters \@ref(chapter5) and \@ref(chapter6) we mention that it would be easy to write an entire book on pricing and segmentation. It would be easy to fill multiple volumes on consumer research. You can find any number of these tomes on _ebay_ or on other market sites being traded at a significant discount. It would be wise to purchase a few of them to add to your library. We'll discuss a few of the books I have used over the years if you continue to read through this chapter. Basic research techniques haven't changed very much in a long time and having a few references is advised. This chapter will discuss two main topics:
 
 1. The basics of experiment design and hypothesis testing
 2. Planning and designing surveys
 
-We'll only be able to cover a sliver of topics and techniques that you will likely face at some point in your career. We have already discussed `ANOVA` and a few other mechanisms to analyze experiments, but we didn't discuss how those experiments need to be designed in order to validate our techniques. This is where the term _statistical significance_ gets thrown around. The concept of statistical significance is often not well understood. It is used in a narrow context around hypothesis testing and is a mathematical artifact. It doesn't mean that a survey isn't good or useful. We'll discuss it in some detail a little later. 
+We'll only be able to cover a sliver of topics and techniques that you will likely face at some point in your career. We have already discussed `ANOVA` and other mechanisms to analyze experiments, but we didn't discuss how those experiments need to be designed in order to validate our techniques. This is where the term _statistical significance_ gets thrown around. The concept of statistical significance is often not well understood. It is used in a narrow context around hypothesis testing and is a mathematical artifact. It doesn't mean that a survey isn't good or useful. We'll discuss it in some detail a little later. 
 
 I included experiment design here because it is a topic where most people lack any experience. Indeed, many business leaders aren't well versed in research in any practical way and have a difficult time navigating and consuming it. I'd like you to come away from this chapter with a few key pieces of knowledge that will help you grasp research. This might read a little cynically, but here is some food for thought. 
 
-- You can't always trust it
+- You can't always trust research
 - Different techniques can lead to more practical outcomes
 - Sampling is difficult and involved
 - Analyzing results takes some special care
 - Conflicting outcomes can confound application
 - It isn't always worth conducting
 
-One of the main difficulties with consumer research in a sports context is that _stated_ and _observed_ behavior can often be different. For instance, season-ticket-holders may not respond well to a survey that might indicate price increases yet still renew at high rates despite a negative survey response. People try to _game_ surveys hoping that their responses can tilt Fortuna's wheel ^[See Boethius: https://en.wikipedia.org/wiki/Fortuna] in their favor. 
+One of the main difficulties with consumer research in sports is that _stated_ and _observed_ behavior can often be different. This is always true, but it can be more true for sports. For instance, season-ticket-holders may not respond well to a survey that might indicate price increases, yet still renew at high rates. People try to _game_ surveys hoping that their responses can tilt Fortuna's wheel ^[See Boethius: https://en.wikipedia.org/wiki/Fortuna] in their favor. 
 
 Additionally, research methods may be combined with more advanced discovery like purchasing data from a data-broker such as Acxiom. We've spoken about the problems with third party data quite a bit. Research conducted by fellows at Deloitte found serious inaccuracies with data purchased from a well known data broker [@Lucker2017].
 
@@ -47,17 +47,17 @@ Since the most common research method that you will likely employ will be the em
 
 There are many ways to design an experiment and this is also an extremely deep subject. Additionally, nothing will give you a case of _impostor syndrome_ faster than trying to become an expert on clinical experiment design. This stuff is full of confusing statistics jargon and combines multiple knowledge bases. Since putting together specific designs (say a fractional factorial design) is fairly mechanical, you can follow a recipe and do it correctly. Making sure the underlying assumptions regarding your analysis plan are fulfilled can be much more challenging. Luckily, you aren't going to subject to some peer review mechanism by people who conduct research as a profession. We'll try to hit the high points and demonstrate a couple of practical examples. In terms of a framework for discussion, we used "Designing experiments and analyzing data" [@Maxwell1990] by Maxwell and Delaney and "Applied Survey Data Analysis" [@Heeringa2014] by Heeringa, West, and Berglund as a high level reference. 
 
-Experiment design is really about validity. You are concerned about your results having merit in real-world applications. There are also multiple types of validity such as _statistical conclusion validity_ and _construct validity_. Much of the analysis we have covered to date has been on _statistical conclusion validity_. That is, do your results meet specific criteria related to testing your hypothesis. _Construct validity_ refers to drawing the correct conclusions from that analysis. There are many other potential problems with the validity of an experiment. Always keep this in the back of your mind. 
+Experiment design is really about validity. You are concerned about your results having merit in real-world applications. There are also multiple types of validity such as _statistical conclusion validity_^[https://en.wikipedia.org/wiki/Statistical_conclusion_validity] and _construct validity_^[https://en.wikipedia.org/wiki/Construct_validity]. Much of the analysis we have covered to date has been on _statistical conclusion validity_. That is, do your results meet specific criteria related to testing your hypothesis. _Construct validity_ refers to drawing the correct conclusions from that analysis. There are many other potential problems with the validity of an experiment. Always keep this in the back of your mind. 
 
 You'll also hear a lot of common terminology when designing an experiment. The most common terms you will hear are likely calls for a _Treatment_ and _Control_ group. This is the basic structure you will need for an _A/B_ ^ [https://en.wikipedia.org/wiki/A/B_testing] test.  This sounds straight-forward enough. One group receives a stimulus (perhaps a specific advertising mechanism) and another group doesn't. You use this fact to test whether the stimulus had a measurable impact on a specific outcome such as a purchase intent. The designs of these tests can be simple such as in the case of an A/B test or very complex. Ultimately, you hope to subject the findings on your tested groups to some statistical tests.You are looking for some level of assuredness in answering the question as to whether there are valid differences between individuals in two or more populations. Afterward, you simply have to interpret everything correctly. With any luck, you'll be able to build some causal models using the results. 
 
 ### Hypothesis testing
 
-Hypothesis testing is confusing just because of the sentence structure that you will encounter. If you don't have a statistics background, you need to take some time to understand hypothesis testing. The next couple of paragraphs are simply going to touch the high points. There are a few steps and a few statistics that you will want to consider. You begin by Specifying _an hypothesis_. Let's use an example. 
+Hypothesis testing is confusing just because of the sentence structure that you will encounter. If you don't have a statistics background, you need to take some time to understand hypothesis testing. The next couple of paragraphs are simply going to touch the high points. There are a few steps and a few statistics that you will want to consider. You start by pecifying _an hypothesis_. Let's use an example. 
 
 I want to understand if season ticket holders spend more money on concessions than non season ticket holders. My _Null hypothesis_ is that the mean spend of season ticket holders - the mean spend of non season ticket holders = 0. If I reject the null hypotheses it implies that the mean spend between these two populations is not equal to 0. Go ahead and reread that sentence. I know it doesn't make any sense. Don't blame me. I didn't create this stuff. 
 
-You begin by taking a sample from both groups. Let's create some data.
+Let's take a sample from both groups. We'll create some fake data here for this exercise.
 
 
 ```r
@@ -141,7 +141,7 @@ This brings up another major consideration in experiment design. The validity of
 
 As you can imagine, this could get complex. 
 
-From the preceding example, how do we know how many people to sample? We can use a _power analysis_ to give us an idea. We'll use the `pwr` [@R-pwr] package to evaluate our data. The following example is adapted from Kabacoff [@Kabacoff2011].
+From the preceding example, how do we know how many people to sample? We can use a _power analysis_^[https://en.wikipedia.org/wiki/Power_of_a_test] to give us an idea. We'll use the `pwr` [@R-pwr] package to evaluate our data. The following example is adapted from Kabacoff [@Kabacoff2011].
 
 
 ```r
@@ -176,7 +176,7 @@ This is an extremely simplistic example. There are a number of potential issues 
 
 ### Experimental design
 
-One common experiment design is called a factorial design. ^[https://en.wikipedia.org/wiki/Factorial_experiment]. Factorial designs are common and similar to everything else, can spiral into complexity. The goal here is to make sure that you are testing each possible combination of factors against each test subject. As a note, a full factorial design isn't always feasible because it comes with cost trade-offs. It may not be possible to deploy as many surveys as you would like. In this case a fractional factorial design may be used.  ^[https://en.wikipedia.org/wiki/Fractional_factorial_design] This section is going to cover a very simplified example. Honestly, you wouldn't really use something like this in sports unless you were designing a conjoint or other formal experiment. There are also many other designs such as a _combinatorial design_. If you are interested in them, you'll have to research these methods on your own. I just want you to be aware of them. If nothing else, you can impress a third party researcher that you are likely to encounter in the future.  
+One common experiment design is called a factorial design. ^[https://en.wikipedia.org/wiki/Factorial_experiment]. Factorial designs are common and similar to everything else, can spiral into complexity. The goal here is to make sure that you are testing each possible combination of factors against each test subject. As a note, a full factorial design isn't always feasible because it comes with cost trade-offs. It may not be possible to deploy as many surveys as you would like. In this case a fractional factorial design may be used.  ^[https://en.wikipedia.org/wiki/Fractional_factorial_design] This section is going to cover a very simplified example. Honestly, you wouldn't really use something like this in sports unless you were designing a conjoint or other formal experiment. There are also many other designs such as a _combinatorial design_^[https://en.wikipedia.org/wiki/Combinatorial_design]. If you are interested in them, you'll have to research these methods on your own. I just want you to be aware of them. If nothing else, you can impress a third party researcher that you are likely to encounter in the future.  
 
 Let's take a look at a basic factorial design for an experiment. We will use the `AlgDesign` [@R-AlgDesign] library to build our design. Let's assume that we have two sections that we want to look at: _Dugout Seats_ and _Homeplate seats_. We want to understand consumer preferences for each section based on a high, low, and medium price. Let's say that we had three potential prices.
 
@@ -368,10 +368,10 @@ A sports team may have several needs from a consumer or brand-equity perspective
 
 Different needs have different requirements in terms of research. There are also multiple types of surveys that are designed for specific tasks. These specialty surveys must be designed in a particular way and require some knowledge to interpret. Examples include:
 
-- Conjoint experiments
-- Van Westendorp
-- Max-Diff
-- Predictive market studies
+- Conjoint experiments^[https://en.wikipedia.org/wiki/Conjoint_analysis]
+- Van Westendorp^[https://en.wikipedia.org/wiki/Van_Westendorp%27s_Price_Sensitivity_Meter]
+- Max-Diff^[https://en.wikipedia.org/wiki/MaxDiff]
+- Predictive market studies^[https://en.wikipedia.org/wiki/Prediction_market]
 
 While there is significant variation within techniques, relatively few techniques are commonly deployed. Different techniques also have strengths and weaknesses. A Van Westendorp survey may demonstrate how prices for certain products (like a seating section) are perceived, but it doesn't inform us on willingness-to-pay (covered in chapter \@ref(chapter6). A conjoint experiment might give you a better indication of willingness to pay. You could also design formal field experiments to accomplish the same thing. 
 

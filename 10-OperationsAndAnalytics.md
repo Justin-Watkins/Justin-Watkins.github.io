@@ -3,7 +3,7 @@
 
 
 
-If a sports team has two fundamental core competencies they should be _events management_ and _selling tickets_. These two efforts are where most of the work takes place. Additionally, a smooth operation is critical to brand perception. It is a pillar of our product and should be treated as such. This is a detail-oriented business.   
+If a sports team has two fundamental core-competencies they should be _events management_ and _selling tickets_. These two efforts are where most of the work takes place. Additionally, a smooth operation is critical to brand perception. It is a pillar of our product in a details-oriented business.   
 
 The overarching umbrella of operations in the club context covers getting fans into, around, and out of the facility safely, quickly, and conveniently. There are design, system, and technology components that must be constructed. There are also optimization considerations such as the cost and number of point-of-sale units for concessions and retail, labor optimization for security, food production, the number of seats in particular sections, the number of bathrooms, etc. The list is extensive. Operations as an academic discipline is about studying systems We'll apply some techniques from the overlapping academic fields of Operations Research, Industrial Engineering, and Operations Management to analyze and solve a couple of ubiquitous _operations_ problems. 
 
