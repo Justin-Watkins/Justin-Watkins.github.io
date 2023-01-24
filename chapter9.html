@@ -353,6 +353,7 @@
 </tr>
 </tbody>
 </table></div>
+<p>Use the <code>gen.factorial</code> function to produce a factorial design based on the preceding options.</p>
 <div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Factorial Design</span></span>
@@ -447,6 +448,50 @@
 <p>Which seat would you prefer at the indicated prices?</p>
 </blockquote>
 <p>In this case we would show a picture of the view from the seats. We are testing how fans value the view from these specific seats relative to one another. There may also be <em>mixed effects</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Mixed_model" class="uri"&gt;https://en.wikipedia.org/wiki/Mixed_model&lt;/a&gt;&lt;/p&gt;'><sup>79</sup></a> here. You have to be careful with these sorts of experiments. How would you analyze the results? There are a few ways. Let’s create some data to see what we would do.</p>
+<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Survey Responses</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">survey_responses</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>dugout    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">fd</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,<span class="fl">1000</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                 homePlate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">fd</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,<span class="fl">1000</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                 selection <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">survey_responses</span><span class="op">$</span><span class="va">dugout</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">survey_responses</span><span class="op">$</span><span class="va">dugout</span>, </span>
+<span>                                  <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/switch.html">switch</a></span><span class="op">(</span><span class="va">x</span>,<span class="st">'-1'</span> <span class="op">=</span> <span class="st">'75'</span>,</span>
+<span>                                                        <span class="st">'0'</span> <span class="op">=</span> <span class="st">'85'</span>,</span>
+<span>                                                        <span class="st">'1'</span> <span class="op">=</span> <span class="st">'95'</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">survey_responses</span><span class="op">$</span><span class="va">homePlate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">survey_responses</span><span class="op">$</span><span class="va">homePlate</span>, </span>
+<span>                              <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/switch.html">switch</a></span><span class="op">(</span><span class="va">x</span>,<span class="st">'-1'</span> <span class="op">=</span> <span class="st">'75'</span>,</span>
+<span>                                                    <span class="st">'0'</span> <span class="op">=</span> <span class="st">'85'</span>,</span>
+<span>                                                    <span class="st">'1'</span> <span class="op">=</span> <span class="st">'95'</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">survey_responses</span><span class="op">$</span><span class="va">respondent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">'sth'</span>,<span class="fl">4500</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">'sin'</span>,<span class="fl">4500</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">selection</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">x</span>         <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">755</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">while</span><span class="op">(</span><span class="va">x</span> <span class="op">&lt;=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">survey_responses</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="va">s1</span> <span class="op">&lt;-</span> <span class="va">survey_responses</span><span class="op">[</span><span class="va">x</span>,<span class="fl">1</span><span class="op">]</span> </span>
+<span>  <span class="va">s2</span> <span class="op">&lt;-</span> <span class="va">survey_responses</span><span class="op">[</span><span class="va">x</span>,<span class="fl">2</span><span class="op">]</span></span>
+<span>  </span>
+<span>  <span class="va">selection_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">s1</span>,<span class="va">s2</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="va">selection</span><span class="op">[</span><span class="va">x</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">selection_list</span>, </span>
+<span>                       size <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>                       prob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.2</span>,<span class="fl">.8</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span>  </span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">survey_responses</span><span class="op">$</span><span class="va">selection</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">selection</span><span class="op">)</span></span>
+<span><span class="va">survey_responses</span><span class="op">$</span><span class="va">section</span>  <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">survey_responses</span><span class="op">$</span><span class="va">selection</span> <span class="op">==</span> <span class="va">survey_responses</span><span class="op">$</span><span class="va">dugout</span>,</span>
+<span>         <span class="st">'dugout'</span>,</span>
+<span>         <span class="st">'homePlate'</span><span class="op">)</span></span></code></pre></div>
 <p>Our survey responses look like this:</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
@@ -504,10 +549,34 @@
 </tbody>
 </table></div>
 <p>We can create an interaction plot with the following code.</p>
+<div class="sourceCode" id="cb272"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="co"># Interaction Plot</span></span>
+<span><span class="co">#-----------------------------------------------------------------</span></span>
+<span><span class="va">ip_data</span> <span class="op">&lt;-</span> <span class="va">survey_responses</span>             <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>           <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">respondent</span>,<span class="va">section</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>           <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>meanSelection <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">selection</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">g_xlab</span>  <span class="op">&lt;-</span> <span class="st">'Respondent Type'</span>                     </span>
+<span><span class="va">g_ylab</span>  <span class="op">&lt;-</span> <span class="st">'Mean Price'</span>                         </span>
+<span><span class="va">g_title</span> <span class="op">&lt;-</span> <span class="st">'Interaction Plot, respondents and location'</span></span>
+<span></span>
+<span><span class="va">ip_plot</span> <span class="op">&lt;-</span> </span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">ip_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">respondent</span>,</span>
+<span>                y <span class="op">=</span> <span class="va">meanSelection</span>,</span>
+<span>                color <span class="op">=</span> <span class="va">section</span>,</span>
+<span>                group <span class="op">=</span> <span class="va">section</span><span class="op">)</span><span class="op">)</span>                 <span class="op">+</span></span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>shape<span class="op">=</span><span class="fl">2</span>, size<span class="op">=</span><span class="fl">3</span><span class="op">)</span>                <span class="op">+</span></span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1.1</span><span class="op">)</span>                      <span class="op">+</span></span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/dollar_format.html">dollar</a></span><span class="op">)</span> <span class="op">+</span></span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">palette</span><span class="op">)</span>       <span class="op">+</span></span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="va">g_xlab</span><span class="op">)</span>                               <span class="op">+</span> </span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="va">g_ylab</span><span class="op">)</span>                               <span class="op">+</span> </span>
+<span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">g_title</span><span class="op">)</span>                           <span class="op">+</span></span>
+<span>       <span class="va">graphics_theme_1</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:chnineintplot"></span>
-<img src="images/ch9_interaction_plot.png" alt="Perceptual map of Nashville Sports Properties" width="100%"><p class="caption">
-Figure 9.1: Perceptual map of Nashville Sports Properties
+<img src="images/ch9_interaction_plot.png" alt="Interaction plot of survey results" width="100%"><p class="caption">
+Figure 9.1: Interaction plot of survey results
 </p>
 </div>
 <p>This plot suggest that the effect of the <em>view</em> based on seating location is not consistent between single game ticket buyers and season ticket holders. While season ticket holders tend to value the views as equivalent, single game buyers may be willing to pay more for home plate seats when given the choice between home plate and dugout seats. You can see how complex these designs could potentially become. This is a very simple example, but it gives you the basics of how to design an experiment and produce a basic analysis.</p>
@@ -906,7 +975,7 @@ Figure 9.1: Perceptual map of Nashville Sports Properties
 <span class="header-section-number">9.3</span> Brand affinity<a class="anchor" aria-label="anchor" href="#brand-affinity"><i class="fas fa-link"></i></a>
 </h2>
 <p>Gauging brand avidity is difficult. We’ll explore a tool to take a look at one component of brand avidity called a perceptual map. We’ll use the library <code>anacor</code> <span class="citation">(<a href="references.html#ref-R-anacor" role="doc-biblioref">Mair and De Leeuw 2022</a>)</span> to accomplish a part of this task. This package is build to assist with correspondence analysis<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Correspondence_analysis" class="uri"&gt;https://en.wikipedia.org/wiki/Correspondence_analysis&lt;/a&gt;&lt;/p&gt;'><sup>90</sup></a>. Do a little research on this topic.</p>
-<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb273"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Calculating scores for perceptual data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -960,7 +1029,7 @@ Figure 9.1: Perceptual map of Nashville Sports Properties
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb272"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb274"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Create perceptual map</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1098,7 +1167,7 @@ Figure 9.2: Perceptual map of Nashville Sports Properties
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2023-01-16.</p>
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2023-01-23.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
