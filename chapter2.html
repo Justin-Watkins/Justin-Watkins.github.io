@@ -151,14 +151,14 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'AlgDesign'</span>,<span class="st">'anacor'</span>,<span class="st">'car'</span>,<span class="st">'caret'</span>,<span class="st">'data.table'</span>,<span class="st">'devtools'</span>,<span class="st">'dplyr'</span>,<span class="st">'forcats'</span>,</span>
 <span>  <span class="st">'ggplot2'</span>,<span class="st">'GPArotation'</span>,<span class="st">'Hmisc'</span>,<span class="st">'knitr'</span>,<span class="st">'lubridate'</span>,<span class="st">'maps'</span>,<span class="st">'mgcv'</span>,<span class="st">'mice'</span>,</span>
 <span>  <span class="st">'mlr'</span>,<span class="st">'mlr3'</span>,<span class="st">'nFactors'</span>,<span class="st">'nnet'</span>,<span class="st">'plyr'</span>,<span class="st">'poLCA'</span>,<span class="st">'pricesensitivitymeter'</span>,<span class="st">'pROC'</span>,</span>
-<span>  <span class="st">'pscl'</span>,<span class="st">'psych'</span>,<span class="st">'purrr'</span>,<span class="st">'pwr'</span>,<span class="st">'ranger'</span>,<span class="st">'RColorBrewer'</span>,<span class="st">'Rcpp'</span>,<span class="st">'reshape2'</span>,</span>
+<span>  <span class="st">'pscl'</span>,<span class="st">'psych'</span>,<span class="st">'purrr'</span>,<span class="st">'pwr'</span>,<span class="st">'ranger'</span>,<span class="st">'RColorBrewer'</span>,<span class="st">'renv'</span>,<span class="st">'reprex'</span>,<span class="st">'Rcpp'</span>,<span class="st">'reshape2'</span>,</span>
 <span>  <span class="st">'reticulate'</span>,<span class="st">'roxygen2'</span>,<span class="st">'rpart'</span>,<span class="st">'rpart.plot'</span>,<span class="st">'rsample'</span>,<span class="st">'scales'</span>,<span class="st">'shiny'</span>,</span>
 <span>  <span class="st">'stargazer'</span>,<span class="st">'stats'</span>,<span class="st">'tibble'</span>,<span class="st">'tidymodels'</span>,<span class="st">'tidyr'</span>,<span class="st">'tidyverse'</span>,<span class="st">'viridis'</span>,</span>
 <span>  <span class="st">'xtable'</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="va">libraries</span>, </span>
 <span>                         <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
-<p>Keep in mind that certain functions will deprecate over time. Additionally, you can end up with problems if certain functions have the same names as functions in other packages. Although there are ways to make sure that you are using the same library version that I used, we are going to ignore them for now. I expect them to slowly fail. Furthermore, these packages will download a long list of dependencies. Installing all of these libraries at once may take a minute. Just a warning.</p>
+<p>Keep in mind that certain functions will deprecate over time. Additionally, you can end up with problems if certain functions have the same names as functions in other packages. R is so dependent on packages that you’ll want to look into a way to keep your environments stable. The <code>renv</code> <span class="citation">(<a href="references.html#ref-R-renv" role="doc-biblioref">Ushey 2022</a>)</span> package will handle some of this work for you. There is an older package called <code>Packrat</code> that does the same thing. I also included the <code>reprex</code> <span class="citation">(<a href="references.html#ref-R-reprex" role="doc-biblioref">Bryan et al. 2022</a>)</span> package in this list. <code>reprex</code> produces <em>reproducible examples</em> and you’ll want to use it if you are asking for help on a piece of code. It is really useful, so check it out.</p>
 </div>
 <div id="renewaldata" class="section level2" number="2.2">
 <h2>
@@ -195,7 +195,7 @@
 <span>                   slope      <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>                   yIntercept <span class="op">=</span> <span class="fl">7</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; [1] 27</span></span></code></pre></div>
-<p>Now we have a simple function that we can use to get the y value where x = 2, the slope of the line is 10, and the y intercept is 7. Input, process, output. You now that you have an understanding of the way a function works, you need a way to repetitively apply that function to data. You can do that in a lot of different ways. In most programming languages you’ll use a <code>For</code> loop. We wrapped each folowing snippet in the <code><a href="https://rdrr.io/r/base/system.time.html">system.time()</a></code> function to demonstrate differences in the speed of each operation.</p>
+<p>Now we have a simple function that we can use to get the y value where x = 2, the slope of the line is 10, and the y intercept is 7. Input, process, output. You now that you have an understanding of the way a function works, you need a way to repetitively apply that function to data. You can do that in a lot of different ways. In most programming languages you’ll use a <code>For</code> loop. We wrapped each following snippet in the <code><a href="https://rdrr.io/r/base/system.time.html">system.time()</a></code> function to demonstrate differences in the speed of each operation.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># fake data</span></span>
@@ -215,7 +215,7 @@
 <span><span class="op">}</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;    user  system elapsed </span></span>
-<span><span class="co">#&gt;    0.99    0.04    1.03</span></span>
+<span><span class="co">#&gt;    0.97    0.02    1.01</span></span>
 <span></span>
 <span><span class="va">line_value</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -241,7 +241,7 @@
 <span><span class="op">}</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;    user  system elapsed </span></span>
-<span><span class="co">#&gt;    0.92    0.03    1.03</span></span>
+<span><span class="co">#&gt;    0.87    0.05    0.92</span></span>
 <span></span>
 <span><span class="va">line_value</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -262,7 +262,7 @@
 <span><span class="va">line_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="va">x</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">*</span><span class="va">m</span> <span class="op">+</span> <span class="va">b</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;    user  system elapsed </span></span>
-<span><span class="co">#&gt;    0.86    0.05    0.91</span></span>
+<span><span class="co">#&gt;    0.86    0.00    0.88</span></span>
 <span></span>
 <span><span class="va">line_value</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -283,7 +283,7 @@
 <span><span class="va">line_value</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/imap.html">imap</a></span><span class="op">(</span><span class="va">x</span>,<span class="op">~</span> <span class="va">.x</span><span class="op">*</span><span class="va">m</span> <span class="op">+</span> <span class="va">b</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;    user  system elapsed </span></span>
-<span><span class="co">#&gt;    1.01    0.00    1.02</span></span>
+<span><span class="co">#&gt;    0.98    0.03    1.01</span></span>
 <span></span>
 <span><span class="va">line_value</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -1485,7 +1485,7 @@ Figure 2.1: Data creation process
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2023-01-16.</p>
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2023-03-18.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

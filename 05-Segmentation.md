@@ -641,14 +641,6 @@ demo_data$maritalStatus[is.na(demo_data$maritalStatus)] <-
 We have now imputed three variables and can see how tedious of an exercise this can be. There are several packages that can help automate some of this task. 
 
 
-```r
-
-knitr::kable(head(as.data.frame(demo_data[,1:6])),caption = 'Customer data set',
-             align = 'c',format = "markdown",padding = 0)
-```
-
-
-
 Table: (\#tab:missingdatagd)Customer data set
 
 |   custID   |ethnicity|age|maritalStatus|children|hhIncome|

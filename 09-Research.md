@@ -187,6 +187,8 @@ Let's take a look at a basic factorial design for an experiment. We will use the
 | Low | 75 |  75 |
 |...| ... | ... |
 
+Use the `gen.factorial` function to produce a factorial design based on the preceding options. 
+
 
 ```r
 #-----------------------------------------------------------------
@@ -235,6 +237,51 @@ The survey would give the respondent the option to purchase either seat at each 
 In this case we would show a picture of the view from the seats. We are testing how fans value the view from these specific seats relative to one another. There may also be _mixed effects_^[https://en.wikipedia.org/wiki/Mixed_model] here. You have to be careful with these sorts of experiments. How would you analyze the results? There are a few ways. Let's create some data to see what we would do. 
 
 
+```r
+#-----------------------------------------------------------------
+# Survey Responses
+#-----------------------------------------------------------------
+survey_responses <- 
+  tibble::tibble(dugout    = factor(unlist(rep(fd[1],1000))),
+                 homePlate = factor(unlist(rep(fd[2],1000))),
+                 selection = NA)
+
+survey_responses$dugout <- sapply(survey_responses$dugout, 
+                                  function(x) switch(x,'-1' = '75',
+                                                        '0' = '85',
+                                                        '1' = '95'))
+
+survey_responses$homePlate <- sapply(survey_responses$homePlate, 
+                              function(x) switch(x,'-1' = '75',
+                                                    '0' = '85',
+                                                    '1' = '95'))
+
+survey_responses$respondent <- c(rep('sth',4500), rep('sin',4500))
+
+selection <- list()
+x         <- 1
+set.seed(755)
+
+while(x <= nrow(survey_responses)){
+  
+  s1 <- survey_responses[x,1] 
+  s2 <- survey_responses[x,2]
+  
+  selection_list <- c(s1,s2)
+  
+selection[x] <- sample(selection_list, 
+                       size = 1, 
+                       prob = c(.2,.8))
+x <- x + 1
+  
+}
+
+survey_responses$selection <- unlist(selection)
+survey_responses$section  <- 
+  ifelse(survey_responses$selection == survey_responses$dugout,
+         'dugout',
+         'homePlate')
+```
 
 Our survey responses look like this:
 
@@ -254,13 +301,39 @@ Table: (\#tab:chninesurveyresponse)Factorial design for survey
 We can create an interaction plot with the following code.
 
 
+```r
+#-----------------------------------------------------------------
+# Interaction Plot
+#-----------------------------------------------------------------
+ip_data <- survey_responses             %>%
+           group_by(respondent,section) %>%
+           summarise(meanSelection = mean(as.numeric(selection)))
+
+g_xlab  <- 'Respondent Type'                     
+g_ylab  <- 'Mean Price'                         
+g_title <- 'Interaction Plot, respondents and location'
+
+ip_plot <- 
+ggplot(ip_data, aes(x = respondent,
+                y = meanSelection,
+                color = section,
+                group = section))                 +
+       geom_point(shape=2, size=3)                +
+       geom_line(size = 1.1)                      +
+       scale_y_continuous(label = scales::dollar) +
+       scale_color_manual(values = palette)       +
+       xlab(g_xlab)                               + 
+       ylab(g_ylab)                               + 
+       ggtitle(g_title)                           +
+       graphics_theme_1
+```
 
 
 
 
 <div class="figure">
-<img src="images/ch9_interaction_plot.png" alt="Perceptual map of Nashville Sports Properties" width="100%" />
-<p class="caption">(\#fig:chnineintplot)Perceptual map of Nashville Sports Properties</p>
+<img src="images/ch9_interaction_plot.png" alt="Interaction plot of survey results" width="100%" />
+<p class="caption">(\#fig:chnineintplot)Interaction plot of survey results</p>
 </div>
 
 

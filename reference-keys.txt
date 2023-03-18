@@ -139,6 +139,9 @@ tab:chtenmeanchart
 fig:chtenverifyb
 tab:mck
 fig:chtenfreqtablegraphz
+fig:chtensecondaryprices
+fig:chtensimulateddistribution
+fig:chtencombineddistribution
 fig:chtenfitsgraph
 tab:anovaa
 fig:chtenfitsgraphb

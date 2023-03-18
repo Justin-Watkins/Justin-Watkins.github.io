@@ -357,7 +357,7 @@ data <- data[,c("gameNumber","team","month","weekEnd",
                 "daysSinceLastGame","promotion","ticketSales")]
 ```
 
-Again, We are going to build a linear regression model. We also know that we are interested in how much influence promotions have on ticket sales. We'll make one change to this data set with the function `f_change_order()` to make our results easier to interpret when we complete this exercise.
+Again, We are going to build a linear regression model. We also know that we are interested in how much influence promotions have on ticket sales. We'll make one change to this data set with the function `f_change_order()` to make our results easier to interpret when we complete this exercise. This has to do with regression diagnostics are output. 
 
 
 ```r
@@ -371,6 +371,19 @@ f_change_order <- function(x){
 data$promotion <- sapply(data$promotion,function(x) 
                          f_change_order(x))
 ```
+
+This is a sloppy way to approach the issue that we are trying to solve, but you'll often resort to doing strange things while working with data. You'll see what I mean in the following sections. If you are wanting to reorder factor levels for a graph, you can do it with the `factor` function.
+
+
+```r
+#-----------------------------------------------------------------
+# Alter factor levels 
+#-----------------------------------------------------------------
+data$promotion <- 
+  factor(data$promotion, 
+         levels=c('none', 'bobblehead', 'concert', 'other'))
+```
+
 
 We'll use the `rsample` library [@R-rsample] to build our training and test set. There are so many ways to partition data and we have used a different one every time. Find one that you like. We'll split the data with twenty-five percent going to our holdout sample. Be aware that if you try to use your model to predict sales and a value in the new data the model won't work. This can be frustrating. Just making you aware. It will happen. 
 

@@ -1066,10 +1066,6 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span><span class="va">demo_data</span><span class="op">$</span><span class="va">maritalStatus</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">demo_data</span><span class="op">$</span><span class="va">maritalStatus</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'m'</span>,<span class="st">'s'</span><span class="op">)</span>, size<span class="op">=</span><span class="va">l</span>, prob<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.6</span>,<span class="fl">.4</span><span class="op">)</span>, replace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>We have now imputed three variables and can see how tedious of an exercise this can be. There are several packages that can help automate some of this task.</p>
-<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">demo_data</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>,caption <span class="op">=</span> <span class="st">'Customer data set'</span>,</span>
-<span>             align <span class="op">=</span> <span class="st">'c'</span>,format <span class="op">=</span> <span class="st">"markdown"</span>,padding <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
 <span id="tab:missingdatagd">Table 5.12: </span>Customer data set</caption>
@@ -1133,7 +1129,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 </tbody>
 </table></div>
 <p>We can approach <em>children</em> and <em>gender</em> in much the same way as our other categorical data.</p>
-<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Impute remaining values based on a proportion</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1153,7 +1149,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span class="header-section-number">5.2.3.0.1</span> Imputating with a package<a class="anchor" aria-label="anchor" href="#imputating-with-a-package"><i class="fas fa-link"></i></a>
 </h5>
 <p>There are several packages for imputing numerical data. One of the more commonly used ones is <code>mice</code> <span class="citation">(<a href="references.html#ref-R-mice" role="doc-biblioref">van Buuren and Groothuis-Oudshoorn 2021</a>)</span>. It is easy to use and works relatively quickly on smaller datasets. There are several parameters that can be adjusted in the <code>mice</code> function. See the documentation to explain what what they indicate. For instance, we used <em>predictive mean matching</em> as the method. However, there are more than a dozen options here. Some may be more appropriate than others under specific conditions.</p>
-<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Impute numerical values using the mice package</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1201,7 +1197,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 </h4>
 <p>Many operations (such as <em>latent class regression</em>) require discreet data. There is some art to this part of the exercise. However, there are several ways to approach it. We’ll do it in a couple of different ways. We’ll start by creating a couple of different data structures that are appropriate for our segmentation methods.</p>
 <p>Let’s begin by creating a new data frame to work with. We’ll use data frames and tibbles interchangeably. We haven’t spoken about tibbles. Tibbles are a Wickham construct for working in the tidyverse. They functionally act like data frames, but have some features that generally make them a little friendlier to work with. However certain legacy packages require data frames. This is one of the peculiarities of R that you won’t find in Python. This can also be frustrating.</p>
-<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Create a new dataframe to work with</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1212,7 +1208,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span class="header-section-number">5.2.3.2</span> Dummy coding our categorical variables<a class="anchor" aria-label="anchor" href="#dummy-coding-our-categorical-variables"><i class="fas fa-link"></i></a>
 </h4>
 <p>Categorical variables have to be treated in a particular way to be useful in many segmentation exercises. To begin, we need to discretize our numerical variables. We’ll do this with a function that we apply over numerical data sets. The following function represents a choice you’ll have to make. How do we determine where and how to break our continuous data into discrete groups. In this case, we use familiar generational marketing groups. The package <code>lubridate</code> <span class="citation">(<a href="references.html#ref-R-lubridate" role="doc-biblioref">Spinu, Grolemund, and Wickham 2021</a>)</span> is used to make working with dates easier. Dates can be incredibly frustrating and along with <em>regular expressions</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Regular_expression" class="uri"&gt;https://en.wikipedia.org/wiki/Regular_expression&lt;/a&gt;&lt;/p&gt;'><sup>48</sup></a> are one of the most reviled parts of working with data.</p>
-<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Calculate birth year and assign to a generation</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1237,7 +1233,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <p>I tend to find that I prefer to have an individual’s birth year over age. It helps keep the data evergreen. Keep this in mind when you build surveys. Now we have a discrete value representing specific generations.</p>
 <p>Distance represents another nuanced problem. How do we select where to create the breaks? Distance can often be approximated using zipcode centroids and the Haversine <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Haversine_formula" class="uri"&gt;https://en.wikipedia.org/wiki/Haversine_formula&lt;/a&gt;&lt;/p&gt;'><sup>49</sup></a> formula.You can also use Google’s APIs to calculate the latitude and longitude based on address and then estimate drive time. This could be important for certain urban or suburban areas.</p>
 <p>In our case, we have already calculated the distance. We’ll use quantiles to place 60% of our customers in one of four buckets.</p>
-<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Assign a discrete value to distance</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1255,7 +1251,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span><span class="va">demo_data_discrete</span><span class="op">$</span><span class="va">marketLoc</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">demo_data</span><span class="op">$</span><span class="va">distance</span>,<span class="va">f_seg_dist_def</span><span class="op">)</span></span></code></pre></div>
 <p>We can discretize household income in the same way. In this case, we’ll only use three buckets. Keep in mind that the more categories that you have, the more columns you will have in your final data set. it can be problematic if you get too many.</p>
-<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Assign a discrete value to household Income</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1272,7 +1268,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span><span class="va">demo_data_discrete</span><span class="op">$</span><span class="va">income</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">demo_data</span><span class="op">$</span><span class="va">hhIncome</span>,<span class="va">f_seg_hhInc_def</span><span class="op">)</span></span></code></pre></div>
 <p>Finally, we’ll add these variables to our dataframe.</p>
-<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Add columns to demo_data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1343,7 +1339,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 </tbody>
 </table></div>
 <p>Now that we have all discrete variables, we can take our preparation a step further and dummy-code our variables. Once again, there are several ways to do this. The psych package has a function that I tend to use. This is another frustrating thing about R. In Python, unless you implement your own encoder, you will likely always do this the exact same way every time.</p>
-<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Dummy code (One Hot encoding) for model consumption</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1404,7 +1400,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 </tbody>
 </table></div>
 <p>Now we have a dataframe that consists of only categorical data, we’ll create one that has the mixed numerical and dummy-coded categorical data.</p>
-<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Combine data frames</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1482,7 +1478,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 </h3>
 <p>Hierarchical clustering is seductive because its results are so easily illustrated. However, the drawback here is that for simple models, this technique may tell you what you already know. A more precise explanation would be “The constraint that the structure is hierarchical corresponds to the fact that, although subsets can include one another, they cannot intersect.” <span class="citation">(<a href="references.html#ref-Witten2011" role="doc-biblioref">Ian H. Witten 2011</a>)</span> This technique could also be problematic for larger data sets.</p>
 <p>Let’s take a look at an example. We’ll have to start by creating a dissimilarity matrix.</p>
-<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Prepared data for hierarchical clustering</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1494,12 +1490,12 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span><span class="co"># Create dissimilarity matrix</span></span>
 <span><span class="va">mod_dist</span> <span class="op">&lt;-</span> <span class="fu">cluster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/cluster/man/daisy.html">daisy</a></span><span class="op">(</span><span class="va">mod_data_samp</span><span class="op">)</span></span></code></pre></div>
 <p>We can now use this dissimilarity matrix to cluster our data. Keep in mind that dissimilarity matrices get large fast. Take a look at it and you will understand why. In many cases, this is why sampling data to approximate large data sets is key. Most big data problems are simply small data problems in disguise. In this case we only sampled twenty-five individuals.</p>
-<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Apply heirarchical clustering method</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">mod_HC</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/hclust.html">hclust</a></span><span class="op">(</span><span class="va">mod_dist</span>, method <span class="op">=</span> <span class="st">"centroid"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Apply hierarchical clustering method</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1512,7 +1508,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span class="header-section-number">5.2.5</span> Latent class regression<a class="anchor" aria-label="anchor" href="#latent-class-regression"><i class="fas fa-link"></i></a>
 </h3>
 <p>Latent class regression is a powerful technique that produces durable clusters. It leverages discrete data, so continuous data will have to be discredited and dummy-coded prior to use. While we’ve already dummy-coded our data, we’ll have to process it one more time so that it is accepted by the LCR function. This is another one of the quirks of R. It allows this to happen. In this case we’ll simply make the zeros = 2. We can do this with an apply function and a simple <code>ifelse</code> function.</p>
-<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Latent Class regression</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1568,7 +1564,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 </tbody>
 </table></div>
 <p>A useful trick is to try to simplify the function that feeds the clustering function. It will make the function easier to read as you add parameters to it.</p>
-<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Latent Class regression formula</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1585,7 +1581,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span>             <span class="va">ethnicity.a</span>,<span class="va">married.m</span>,<span class="va">married.s</span>,<span class="va">gender.f</span>,</span>
 <span>             <span class="va">gender.m</span><span class="op">)</span><span class="op">~</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <p>We are going to choose five classes to include in this data. While there are formal methods for determining the number of classes to include, keep in mind that for these classes to be useful and understandable you will probably have to abstract them into relatively few groups. This can also be problematic since the behaviors exhibited by the group can become diffuse.</p>
-<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Latent Class regression</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1594,10 +1590,10 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span><span class="va">seg_LCR_5</span> <span class="op">&lt;-</span> <span class="fu">poLCA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/poLCA/man/poLCA.html">poLCA</a></span><span class="op">(</span><span class="va">formula</span>, data <span class="op">=</span> <span class="va">mod_data_LC</span>, </span>
 <span>                          nclass <span class="op">=</span> <span class="fl">5</span>, verbose <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
 <p>You can also save your model to import and apply back to new data in the future.</p>
-<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="va">seg_LCR_5</span>, file<span class="op">=</span><span class="st">"CH5_LCR_5_Model.Rdata"</span><span class="op">)</span></span></code></pre></div>
 <p>Now we can look to see how many groups were created by our machine-learning algorithm.</p>
-<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Evaluating the results</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1633,7 +1629,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 </tbody>
 </table></div>
 <p>It looks like our groups have a fairly large range. The smallest group contains over 10,000 people while the largest one contains over 56,000 individuals.</p>
-<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Attaching to the data frame</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1642,7 +1638,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span><span class="va">mod_results</span><span class="op">$</span><span class="va">custID</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">mod_data_LC</span><span class="op">)</span></span>
 <span><span class="va">mod_results</span><span class="op">$</span><span class="va">lcrClass</span> <span class="op">&lt;-</span> <span class="va">seg_LCR_5</span><span class="op">$</span><span class="va">predclass</span></span></code></pre></div>
 <p>We can now create a list of ids with the class to apply to our original data set.</p>
-<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># View segments</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1668,7 +1664,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Attaching to the data frame</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1676,7 +1672,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">demo_data</span>,<span class="va">mod_results</span>, by <span class="op">=</span> <span class="st">"custID"</span><span class="op">)</span></span></code></pre></div>
 <p>Once they are joined, you can create some interesting crosstabs to look for differences between the groups.</p>
 <p>In general, distance is fairly similar with one group being slightly further away on average.</p>
-<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Distance cross tab</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1723,7 +1719,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 </tbody>
 </table></div>
 <p>Age is much more interesting. There are three distinct groups that manifest when we arrange by our latent classes.</p>
-<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Age cross tab</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1771,7 +1767,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 </tbody>
 </table></div>
 <p>Household income is also well differentiated with three distinct groups.</p>
-<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Household income cross tab</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1817,7 +1813,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 </tbody>
 </table></div>
 <p>Gender has two groups that are only male and female and three groups that are evenly split.</p>
-<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Gender cross tab</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1865,7 +1861,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 </tbody>
 </table></div>
 <p>Ethnicity appears to be fairly well distributed across three groups.</p>
-<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Ethnicity tab</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1877,7 +1873,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span>                     values_from <span class="op">=</span> <span class="va">n</span><span class="op">)</span></span>
 <span>                    </span></code></pre></div>
 <p>This one is a little more complex. We can use a heat map to visualize the relationships. We will exponentially diminish the differences between the colors by using the log function in the fill argument. This is a useful technique. Keep it in mind. Logarithms are great at compressing data that isn’t easy to visualize because of the distribution.</p>
-<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co">#  Visualize ethnicity</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1921,7 +1917,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 </h2>
 <p>A factor analysis is a data reduction technique similar to a principle components analysis. We’ll use it in a slightly different way to compress stated behaviors and use the patterns to create specific archetypes.</p>
 <p>We can load some survey data using the <code>fa_survey_data</code> data set in <code>FOSBAAS</code>.</p>
-<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># access the survey data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1991,7 +1987,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <p>This data set is based on asking individuals what they like to do at the ballpark. There is a list of predefined activities and fans are asked to rank from 0 to 10. Fans were also asked why they attended the game.</p>
 <p>This data wasn’t created with a person in mind. We can simply assign <em>customer_ids</em> to this data set to simulate real people having taken the survey. We’ll also need to process the data before we perform our factor analysis. We will use the <code>scale</code> function to normalize the data. We haven’t discussed this yet, but it can be important for mixed data sets. Make sure that the data is placed in a dataframe instead of a tibble.</p>
 <p>Now that our data is prepared for analysis, we need to consider how many factors to create. There is a formulaic way to determine the number of factors. we’ll use <code>nScree</code> function in the <code>nFactors</code> <span class="citation">(<a href="references.html#ref-R-nFactors" role="doc-biblioref">Raiche and Magis 2020</a>)</span> package to get an idea of how many factors are appropriate. There are ways to visualize this data. Try the <code>eigen(cor(survey_sc))</code> function to access the eigenvalues.</p>
-<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># access the survey data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -2023,7 +2019,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 </tbody>
 </table></div>
 <p>Now that we have an idea of how many factors are appropriate, we can run our factor analysis. We’ll use the <code>GPArotation</code> package <span class="citation">(<a href="references.html#ref-R-GPArotation" role="doc-biblioref">Bernaards and Jennrich 2022</a>)</span> to add the rotation argument to the <code>factanal</code> function from the stats <span class="citation">(<a href="#ref-R-stats" role="doc-biblioref"><strong>R-stats?</strong></a>)</span> package. This will help us visualize the data.</p>
-<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># run a factor analysis</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -2033,7 +2029,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span>                         rotation <span class="op">=</span> <span class="st">"oblimin"</span>,</span>
 <span>                         scores   <span class="op">=</span> <span class="st">"Bartlett"</span><span class="op">)</span></span></code></pre></div>
 <p>We’ll have to restructure the data to prepare it for visualization.</p>
-<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Restructure the data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -2053,7 +2049,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span><span class="va">fa_data_p</span><span class="op">$</span><span class="va">Order</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">fa_data_p</span><span class="op">$</span><span class="va">Selection</span>,<span class="va">fa_data_p</span><span class="op">$</span><span class="va">Loading</span>,<span class="va">sum</span><span class="op">)</span></span></code></pre></div>
 <p>Now that are data is processed into a format we can graph, we can take a look at it.</p>
-<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Visualize the factors</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -2088,7 +2084,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <p>Consultants with marketing backgrounds will begin crafting stories about these groups. Supplemental analysis is necessary to get more granular behavioral profiles. We won’t take this fake exercise that far. You get the point.</p>
 <p>One of the problems with using this sort of analysis is that it is impossible to cast these segments across groups that have not taken the survey. Additionally, someone could belong to different segments on different days. Perhaps a father brings his children to a game one day and then goes out with some friends on another. <em>Belonginess</em> can be mutable. However, if you have richer data on the data sample you might be able to predict their segment. You might also be able to create richer profiles by utilizing the demographic segments created earlier in this chapter. Let’s begin by building a simple model to see if our factors can be used to predict the reason someone came to the game. Then we will combine some of this data and see what we can find.</p>
 <p>We’ll use a function from the <code>nnet</code> <span class="citation">(<a href="references.html#ref-R-nnet" role="doc-biblioref">Ripley 2022</a>)</span> package and over-fit the model. We aren’t going to be rigorous here because we are really just looking at this out of curiosity. We’ll use the <code>multinom</code> function to try to predict the classes.</p>
-<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># predict classes</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -2113,7 +2109,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span><span class="va">tile_data</span> <span class="op">&lt;-</span> </span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">survey_sc_ob_scores</span><span class="op">$</span><span class="va">Reason</span>,</span>
 <span>                    <span class="va">pred_survey_sc_ob_scores</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Visualize the factors</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -2147,7 +2143,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span class="header-section-number">5.4.1</span> Casting segments onto other groups<a class="anchor" aria-label="anchor" href="#casting-segments-onto-other-groups"><i class="fas fa-link"></i></a>
 </h3>
 <p>Can we use our demographic factors to estimate someone’s <em>factor</em> group? If we could, it would be easy to cast these segments onto broader groups of people. Let’s assign our survey respondents to individuals in our customer table</p>
-<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Apply classes to individuals</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -2162,7 +2158,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span>                                     <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">combined_classes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">combined_classes</span><span class="op">)</span></span></code></pre></div>
 <p>Now that we have combined these analyses we can look for patterns within the data. First, let’s recode some of the data so that it is more approachable. Let’s use the <code>switch</code> function. The switch function is great, but not every language has it. Thanks R.</p>
-<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># recode the factors and classes</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -2187,7 +2183,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span class="header-section-number">5.5</span> Psychographic segmentation<a class="anchor" aria-label="anchor" href="#psychographic-segmentation"><i class="fas fa-link"></i></a>
 </h2>
 <p>Psychographic augmentations tend to be more abstract, although they appear to simplify a combination of behavioral and demographic schemes. You see these schemes often. Segments that have alliterative names such as “Jets fan Jeff” or “Torpid Tina.” We can use our behavioral and demographic segmentation schemes to build psychographic schemes.</p>
-<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Visualize the results</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -2218,7 +2214,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <span>                                   color <span class="op">=</span> <span class="st">"grey10"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="images/ch5_tile_segment.png" width="100%"></div>
 <p>We can see that our demographic segments and factor segments cluster into specific groups. We can now analyze these groups to create specific psychographic profiles.</p>
-<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Scale the results and average</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -2237,7 +2233,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <li>The factored segments don’t seem to be influenced by age or distance.</li>
 <li>Clusters are well differentiated on distance and age.</li>
 </ol>
-<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Observe differences between the segments</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -2342,7 +2338,7 @@ sales and sponsorship opportunities, and brand development. The analysis has two
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2023-01-16.</p>
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2023-03-18.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -982,12 +982,6 @@ freq_table  <- FOSBAAS::freq_table_data
 
 
 
-```r
-knitr::kable(head(freq_table),caption = 'Frequency table order time')
-```
-
-
-
 Table: (\#tab:mck)Frequency table order time
 
 | variable| Freq|      prob|
@@ -1004,6 +998,9 @@ This frequency table represents a histogram. Let's take a look at the graph.
 
 
 ```r
+#-----------------------------------------------------------------
+# Graph frequency table data
+#-----------------------------------------------------------------
 freq_table$cumprob <- cumsum(freq_table$prob)
 freq_table_graph <- 
   ggplot(freq_table,aes(x = variable,y=cumprob)) +
@@ -1016,14 +1013,139 @@ freq_table_graph <-
 ```
 
 <div class="figure">
-<img src="images/ch10_freq_table_graph.png" alt="The ecdf" width="1750" />
+<img src="images/ch10_freq_table_graph.png" alt="The ecdf" width="100%" />
 <p class="caption">(\#fig:chtenfreqtablegraphz)The ecdf</p>
 </div>
 
 
-This gives us the cumulative distribution graph that we looked at earlier. 
+This gives us the cumulative distribution graph that we looked at earlier. The ecdf is useful and there are lots of ways to simulate data. First, let's look at sampling strategies to build distributions. The following function will build a frequency table for us and return a specified number of simulated values.
 
-The following sections will cover fitting different models to data. There are libraries that will do much of this work for you if you are so inclined. Let's look at a few different potential fits for our data and begin with three common options:
+
+```r
+#-----------------------------------------------------------------
+# Function to build frequency table
+#-----------------------------------------------------------------
+f_get_prices <- function(roundedPrice,n){
+  
+  freq_table <- as.data.frame(prop.table(table(roundedPrice)))
+  as.numeric(as.character(sample(freq_table$roundedPrice, 
+                                 n, 
+                                 prob=freq_table$Freq, 
+                                 TRUE)))
+  
+}
+
+```
+
+We can use the function to simulate 1,000 ticket sales.
+
+
+```r
+#-----------------------------------------------------------------
+# Access secondary market data
+#-----------------------------------------------------------------
+price_data  <- FOSBAAS::secondary_data
+price_table <- f_get_prices(price_data$price,1000)
+
+```
+
+We can observe the full distribution with the following code.
+
+
+```r
+#-----------------------------------------------------------------
+# Actual secondary prices
+#-----------------------------------------------------------------
+x_label  <- ('\n Ticket Prices')
+y_label  <- ('Count \n')
+title    <- ('Distribution of Secondary Ticket Prices')
+hist_sales <- 
+  ggplot2::ggplot(data = price_data,
+                  aes(x = price))                      +
+  geom_histogram(binwidth = 5, fill = 'steelblue')     +
+  geom_rug(color = 'coral')                            +
+  scale_x_continuous(label = scales::dollar)           +
+  scale_y_continuous(label = scales::comma)            +
+  xlab(x_label)                                        + 
+  ylab(y_label)                                        + 
+  ggtitle(title)                                       +
+  graphics_theme_1
+```
+
+
+<div class="figure">
+<img src="images/ch10_secondary_prices.png" alt="Secondary Prices" width="100%" />
+<p class="caption">(\#fig:chtensecondaryprices)Secondary Prices</p>
+</div>
+
+The simulated distribution follows the exact same pattern. 
+
+
+```r
+#-----------------------------------------------------------------
+# Simulated secondary prices
+#-----------------------------------------------------------------
+price_table <- as.data.frame(price_table)
+
+x_label  <- ('\n Simulated Ticket Prices')
+y_label  <- ('Count \n')
+title    <- ('Simulated Distribution: n = 1,000')
+hist_sales <- 
+  ggplot2::ggplot(data = price_table,
+                  aes(x = price_table))                +
+  geom_histogram(binwidth = 5, fill = 'steelblue')     +
+  geom_rug(color = 'coral')                            +
+  scale_x_continuous(label = scales::dollar)           +
+  scale_y_continuous(label = scales::comma)            +
+  xlab(x_label)                                        + 
+  ylab(y_label)                                        + 
+  ggtitle(title)                                       +
+  graphics_theme_1
+
+```
+
+
+
+
+<div class="figure">
+<img src="images/ch10_simulated_distribution.png" alt="Simulated prices" width="100%" />
+<p class="caption">(\#fig:chtensimulateddistribution)Simulated prices</p>
+</div>
+
+You can also simulate data with several built-in distributions. The following code produces a distribution that combines a beta, exponetial, and normal distribution.
+
+
+
+```r
+#-----------------------------------------------------------------
+# Simulated combined distribution
+#-----------------------------------------------------------------
+dist <- c(rbeta(600, 0.5, 5, ncp = 2),
+          rexp(300,.57),
+          rnorm(100,.2,.05)) 
+
+x_label  <- ('\n Values')
+y_label  <- ('Count \n')
+title    <- ('Simulated Combined Distribution: n = 1,000')
+hist_sales <- 
+  ggplot2::ggplot(data = dist_table,
+                  aes(x = dist))                       +
+  geom_histogram(binwidth = .5, fill = 'steelblue')    +
+  geom_rug(color = 'coral')                            +
+  scale_x_continuous(label = scales::comma)            +
+  scale_y_continuous(label = scales::comma)            +
+  xlab(x_label)                                        + 
+  ylab(y_label)                                        + 
+  ggtitle(title)                                       +
+  graphics_theme_1
+```
+
+<div class="figure">
+<img src="images/ch10_distribution.png" alt="Simulated prices" width="100%" />
+<p class="caption">(\#fig:chtencombineddistribution)Simulated prices</p>
+</div>
+
+As you can see, It is easy to simulate distributions in R. You can use these tools to construct _Monte Carlo_ simulations for sophisticated what-if analysis. The following sections will cover fitting different models to data. There are libraries that will do much of this work for you if you are so inclined. Let's look at a few different potential fits for our data and begin with three common options:
 
 - An exponential fit
 - A polynomial fit
@@ -1174,6 +1296,29 @@ f_get_fifth_degree_fit <- function(new_var,dist_fit){
   return(var)
 }
 ```
+
+This is a bad function. Do you know why? It would be better to generalize it by doing something like this:
+
+
+```r
+#-----------------------------------------------------------------
+# Generalized polynomial fit
+#-----------------------------------------------------------------
+f_get_poly_fit <- function(new_var,dist_fit){
+
+  len_poly   <- length(dist_fit$coefficients)
+  exponents  <- seq(1:(len_poly-1))
+  value_list <- list()
+
+  for(i in 1:length(exponents)){
+    value_list[i] <- coef(dist_fit)[i+1] * new_var^exponents[i]
+  }
+  sum(do.call(sum, value_list),coef(dist_fit)[1])
+}
+```
+
+You could do better, but you get the idea. This function will work for a polynomial function of any length, but is less readable than the hard-coded version. Functions aren't worth too much if you are going to hard code them. 
+
 
 If we plug in our result from earlier we get:
 

@@ -69,7 +69,7 @@ libraries <-
 c('AlgDesign','anacor','car','caret','data.table','devtools','dplyr','forcats',
   'ggplot2','GPArotation','Hmisc','knitr','lubridate','maps','mgcv','mice',
   'mlr','mlr3','nFactors','nnet','plyr','poLCA','pricesensitivitymeter','pROC',
-  'pscl','psych','purrr','pwr','ranger','RColorBrewer','Rcpp','reshape2',
+  'pscl','psych','purrr','pwr','ranger','RColorBrewer','renv','reprex','Rcpp','reshape2',
   'reticulate','roxygen2','rpart','rpart.plot','rsample','scales','shiny',
   'stargazer','stats','tibble','tidymodels','tidyr','tidyverse','viridis',
   'xtable')
@@ -78,7 +78,8 @@ install.packages(setdiff(libraries,
                          rownames(installed.packages()))) 
 ```
 
-Keep in mind that certain functions will deprecate over time. Additionally, you can end up with problems if certain functions have the same names as functions in other packages. Although there are ways to make sure that you are using the same library version that I used, we are going to ignore them for now. I expect them to slowly fail. Furthermore, these packages will download a long list of dependencies. Installing all of these libraries at once may take a minute. Just a warning. 
+
+Keep in mind that certain functions will deprecate over time. Additionally, you can end up with problems if certain functions have the same names as functions in other packages. R is so dependent on packages that you'll want to look into a way to keep your environments stable. The `renv` [@R-renv] package will handle some of this work for you. There is an older package called `Packrat` that does the same thing. I also included the `reprex` [@R-reprex] package in this list. `reprex` produces _reproducible examples_ and you'll want to use it if you are asking for help on a piece of code. It is really useful, so check it out.  
 
 ## Simulating customer renewal data {#renewaldata}
 
@@ -125,7 +126,7 @@ f_linear_equation( x          = 2,
 ```
   
 
-Now we have a simple function that we can use to get the y value where x = 2, the slope of the line is 10, and the y intercept is 7. Input, process, output. You now that you have an understanding of the way a function works, you need a way to repetitively apply that function to data. You can do that in a lot of different ways. In most programming languages you'll use a `For` loop. We wrapped each folowing snippet in the `system.time()` function to demonstrate differences in the speed of each operation. 
+Now we have a simple function that we can use to get the y value where x = 2, the slope of the line is 10, and the y intercept is 7. Input, process, output. You now that you have an understanding of the way a function works, you need a way to repetitively apply that function to data. You can do that in a lot of different ways. In most programming languages you'll use a `For` loop. We wrapped each following snippet in the `system.time()` function to demonstrate differences in the speed of each operation. 
 
 
 ```r
@@ -147,7 +148,7 @@ for(i in x){
 }
 )
 #>    user  system elapsed 
-#>    0.99    0.04    1.03
+#>    0.97    0.02    1.01
 
 line_value[1:3]
 #> [[1]]
@@ -178,7 +179,7 @@ while(i <= length(x)){
 }
 )
 #>    user  system elapsed 
-#>    0.92    0.03    1.03
+#>    0.87    0.05    0.92
 
 line_value[1:3]
 #> [[1]]
@@ -202,7 +203,7 @@ system.time(
 line_value <- lapply(1:length(x), function(i) x[i]*m + b)
 )
 #>    user  system elapsed 
-#>    0.86    0.05    0.91
+#>    0.86    0.00    0.88
 
 line_value[1:3]
 #> [[1]]
@@ -226,7 +227,7 @@ system.time(
 line_value <- purrr::imap(x,~ .x*m + b)
 )
 #>    user  system elapsed 
-#>    1.01    0.00    1.02
+#>    0.98    0.03    1.01
 
 line_value[1:3]
 #> [[1]]

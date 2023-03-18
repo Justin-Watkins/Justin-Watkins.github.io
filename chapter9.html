@@ -141,7 +141,7 @@
 <p>Hypothesis testing is confusing just because of the sentence structure that you will encounter. If you don’t have a statistics background, you need to take some time to understand hypothesis testing. The next couple of paragraphs are simply going to touch the high points. There are a few steps and a few statistics that you will want to consider. You start by pecifying <em>an hypothesis</em>. Let’s use an example.</p>
 <p>I want to understand if season ticket holders spend more money on concessions than non season ticket holders. My <em>Null hypothesis</em> is that the mean spend of season ticket holders - the mean spend of non season ticket holders = 0. If I reject the null hypotheses it implies that the mean spend between these two populations is not equal to 0. Go ahead and reread that sentence. I know it doesn’t make any sense. Don’t blame me. I didn’t create this stuff.</p>
 <p>Let’s take a sample from both groups. We’ll create some fake data here for this exercise.</p>
-<div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb268"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Create spend data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -210,7 +210,7 @@
 <li>The null hypothesis is false and you fail to reject it. This is called a type II error.</li>
 </ol>
 <p>The basic way to test an hypothesis is by using a student’s t test. Let’s apply it here and take a look at the output.</p>
-<div class="sourceCode" id="cb268"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb269"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># T Test</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -280,7 +280,7 @@
 </ul>
 <p>As you can imagine, this could get complex.</p>
 <p>From the preceding example, how do we know how many people to sample? We can use a <em>power analysis</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Power_of_a_test" class="uri"&gt;https://en.wikipedia.org/wiki/Power_of_a_test&lt;/a&gt;&lt;/p&gt;'><sup>75</sup></a> to give us an idea. We’ll use the <code>pwr</code> <span class="citation">(<a href="references.html#ref-R-pwr" role="doc-biblioref">Champely 2020</a>)</span> package to evaluate our data. The following example is adapted from Kabacoff <span class="citation">(<a href="references.html#ref-Kabacoff2011" role="doc-biblioref">Kabacoff 2011</a>)</span>.</p>
-<div class="sourceCode" id="cb269"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Power analysis</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -354,7 +354,7 @@
 </tbody>
 </table></div>
 <p>Use the <code>gen.factorial</code> function to produce a factorial design based on the preceding options.</p>
-<div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Factorial Design</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -448,7 +448,7 @@
 <p>Which seat would you prefer at the indicated prices?</p>
 </blockquote>
 <p>In this case we would show a picture of the view from the seats. We are testing how fans value the view from these specific seats relative to one another. There may also be <em>mixed effects</em><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Mixed_model" class="uri"&gt;https://en.wikipedia.org/wiki/Mixed_model&lt;/a&gt;&lt;/p&gt;'><sup>79</sup></a> here. You have to be careful with these sorts of experiments. How would you analyze the results? There are a few ways. Let’s create some data to see what we would do.</p>
-<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb272"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Survey Responses</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -549,7 +549,7 @@
 </tbody>
 </table></div>
 <p>We can create an interaction plot with the following code.</p>
-<div class="sourceCode" id="cb272"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb273"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Interaction Plot</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -976,7 +976,7 @@ Figure 9.1: Interaction plot of survey results
 <span class="header-section-number">9.3</span> Brand affinity<a class="anchor" aria-label="anchor" href="#brand-affinity"><i class="fas fa-link"></i></a>
 </h2>
 <p>Gauging brand avidity is difficult. We’ll explore a tool to take a look at one component of brand avidity called a perceptual map. We’ll use the library <code>anacor</code> <span class="citation">(<a href="references.html#ref-R-anacor" role="doc-biblioref">Mair and De Leeuw 2022</a>)</span> to accomplish a part of this task. This package is build to assist with correspondence analysis<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Correspondence_analysis" class="uri"&gt;https://en.wikipedia.org/wiki/Correspondence_analysis&lt;/a&gt;&lt;/p&gt;'><sup>90</sup></a>. Do a little research on this topic.</p>
-<div class="sourceCode" id="cb273"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb274"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Calculating scores for perceptual data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1030,7 +1030,7 @@ Figure 9.1: Interaction plot of survey results
 </tr>
 </tbody>
 </table></div>
-<div class="sourceCode" id="cb274"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb275"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Create perceptual map</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1168,7 +1168,7 @@ Figure 9.2: Perceptual map of Nashville Sports Properties
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2023-01-28.</p>
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2023-03-18.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
