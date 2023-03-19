@@ -7,7 +7,7 @@ This chapter will give you some background on my ideologies around analytics and
 
 Analytics is about reconciling opportunities. Many of the problems that we face are very old and have not yet been solved. This is especially true for Operations. I am convinced that there are unlimited applications for analytics within any industry or business. Additionally, analytics can take many forms and could improve decision making in many functions that we have already mentioned:
 
-- Marketing: marketing mix, brand strategy, content, CRM, positioning, and pricing
+- Marketing: marketing mix, brand strategy, content, CRM, brand positioning, and pricing
 - Business Intelligence: descriptive and prescriptive reporting
 - Finance: capital expenditure, forecasting, corporate finance
 - Sales: lead scoring, sales strategy, customer journey mapping
@@ -21,42 +21,42 @@ Analytics can even assist in tasks outside of core business functions such as hu
 - Simulation
 - Statistics
 - Optimization
-- Cognitive Science and behavioral economics
+- Cognitive science and behavioral economics
 - Programming
 - Designing experiments (DOE)
 
 These lists could be endlessly long. _Versatility_ is the hallmark of the strong analyst and strategist. You aren't going to find many books on general strategy. Strategy is an amalgam of knowledge focused on specific problems. People who are good at it understand the business at a fundamental level and understand how to structure problems so that they may be solved in intelligent ways. You are forging an alloy that will increase profitability, while making your business more efficient and resilient. 
 
-## Understanding the meaning of strategy
+## Understanding our definition of strategy
 
 Strategy is a complex term, but it can be distilled down to having a plan. A strategy has a goal and that goal can vary. Like most companies (especially public companies) driving firm valuations may be a goal. You typically drive valuation higher by increasing revenue or by reinforcing a strategic moat. For example, in the streaming wars Netflix, Disney, and others are in a race to produce content. Content is their strategic moat because the technology problems have been solved while consumer behavior has shifted. They play in a highly competitive space and are in a dog-fight with every other competitor.
 
-I have often heard people describe strategy as turning everyone's head in the right direction. I suppose that is a component of strategy. Strategy can be offensive or defensive and involve public relations or lobbying efforts. It can include manipulating market forces of supply and demand or structuring media rights deals. You can divest from under-performing assets or create entirely new asset classes. You can hedge against risks by diversifying your approach or through partnerships. It might mean evaluating capabilities. It's a broad term that gets overused, is often confused for something else, and is simply an abstraction if it isn't framed around specific goals. 
+I have often heard people describe strategy as turning everyone's head in the right direction. I suppose that is a component of strategy. Strategy can be offensive or defensive and involve public relations or lobbying efforts. It can include manipulating market forces of supply and demand or structuring media rights deals. You can divest from under-performing assets or create entirely new asset classes. You can hedge against risks by diversifying your approach or through partnerships. It might mean evaluating capabilities. It's a broad term that gets overused, is often confused for something else, and can become an abstraction if it isn't framed around specific goals. 
 
-Strategy is also about communication. This can't be stressed enough. If you want to learn about strategy I suggest that you take a negotiations course. You can also read a couple of books that teach you how to talk to people. "How to win friends and influence people" [@Carnegie1981] is a good place to start. This classic was written in the nineteen-thirties and is as relevant today as it was then. Another great book you should consider is "Getting To Yes, Negotiating Agreement Without Giving In" [@Fisher2011]. This book is all about positioning arguments. This is a critical skill set. If you can't do it, you might as well not understand how addition works. Working with and understanding people, presentation skills, and understanding how to frame arguments without being condescending is critical to strategy. I can't stress the importance of soft skills enough. This is the most important paragraph in this book. Stop here if you have strong technical skill sets and take an etiquette course to learn how to act and a rhetoric course to learn how to think. The liberal-arts are under-appreciated in our field to the detriment of many practitioners.  
+Strategy is also about communication. This can't be stressed enough. If you want to learn about strategy I suggest that you take a negotiations course. You can also read a couple of books that teach you how to talk to people. "How to win friends and influence people" [@Carnegie1981] is a good place to start. This classic was written in the nineteen-thirties and is as relevant today as it was then. Another great book you should consider is "Getting To Yes, Negotiating Agreement Without Giving In" [@Fisher2011]. This book is about positioning arguments. This is a critical skill set. If you can't do it, you might as well not understand how addition works. Working with and understanding people, presentation skills, and understanding how to frame arguments without being condescending is critical to strategy. I can't stress the importance of soft skills enough. Stop reading here if you have strong technical skill sets and take an etiquette course to learn how to act and a rhetoric course to learn how to think. The liberal-arts are under-appreciated in our field to the detriment of many practitioners.  
 
-From an academic standpoint, there are lot's of strategic frameworks. Harvard's Michael Porter descried firms as "a collection of activities that are performed to design, produce, market, deliver, and support products." [@Keller2003] That is exactly what we are doing, but our product represents something more complex than a simple good or service. His most famous contribution to business strategy is likely "Porter's five forces." ^[https://en.wikipedia.org/wiki/Porter%27s_five_forces_analysis] What is interesting about this framework is that on the surface it doesn't appear imminently useful to a sports team. Where it does come in useful is when thinking about strategic problems such as _What Point-Of-Sale system should we use throughout our venue?_. In that case, this model can be used to consider who you might select based on those market forces. Will there be consolidation, what does that mean, what is our most powerful position in terms of negotiating? If the product is a commodity, the vendor will have to compete on price. Perhaps they are interested in marketing and are candidates for a sponsorship. Maybe you could purchase the company. It's the classic strategy problem: "Build, Buy, or Lease." You can get creative. 
+From an academic standpoint, there are lot's of strategic frameworks. Harvard's Michael Porter descried firms as "a collection of activities that are performed to design, produce, market, deliver, and support products." [@Keller2003] That is exactly what we are doing, but our product represents something more complex than a simple good or service. His most famous contribution to business strategy is likely "Porter's five forces." ^[https://en.wikipedia.org/wiki/Porter%27s_five_forces_analysis] What is interesting about this framework is that on the surface it doesn't appear imminently useful to a sports team. Where it does come in useful is when thinking about strategic problems such as _What Point-Of-Sale system should we use throughout our venue?_. In that case, this model can be used to consider who you might select based on those market forces. Will there be consolidation, what does that mean, what is our most powerful position in terms of negotiating? If the product is a commodity, the vendor will have to compete on price. Perhaps they are interested in marketing and are candidates for a sponsorship. Perhaps you could purchase the company. It's the classic strategy problem: "Build, Buy, or Lease." You can get creative. 
 
-If you have ever messed around in the stock market you'll here a lot of talk about _fundamentals_. The type of analysis you might find on a trading platform is the illusion of analysis. Applying techniques like _triple exponential smoothing_^[https://en.wikipedia.org/wiki/Exponential_smoothing] or _moving averages_ to stocks looks great, but it probably doesn't matter. Does it make a novice a better trader? It might make them worse. Analysis is great if you understand it. It is contextual. If you don't understand the context it can be misleading or damaging. Data is not the solution or perhaps it is. It depends. Keep that in mind and think critically about the problems we are going to cover. The mechanical part of analysis isn't the important part of it. It should be a commodity. Focus on the application and communication.
+If you have ever messed around in the stock market you'll here a lot of talk about _fundamentals_. The type of analysis you might find on a trading platform is the illusion of analysis. Applying techniques like _triple exponential smoothing_^[https://en.wikipedia.org/wiki/Exponential_smoothing] or _moving averages_ to stocks looks great, but it probably doesn't matter. Does it make a novice a better trader? It might make them worse. Analysis is great if you understand it and it is always contextual. If you don't understand the context it can be misleading or damaging. Keep in mind that data is not always the solution to every problem and think critically about the mechanics of why a problem exists. The mechanical part of analysis isn't the important part of it. It should be a commodity. Focus on the application and communication.
 
 ## Technologies place in strategy and analytics
 
 I consider the application of technology in analytics along five ordered dimensions. While you can jump around to a degree, each step is generally built on the step below it. As you ascend the steps, execution tends to become more difficult and complex. Execution is where your strategy will fall apart. Read that last sentence again. Additionally, your strategy should flow from the top down. This means you keep your destination in mind as you move up each of your steps. 
 
-As ridiculous as it may sound, you have to begin with data structure. You are building an engine and you have to have all of the correct parts. Data is invariably messy. So much effort goes into cleaning, structuring, and storing data for use that it represents the bulk of time spent across the spectrum of analytics. You must begin there. Additionally, there are probably multiple levels of maturity on this front. For instance, ticketing data may be very well structured while CRM data may be lacking. I view analytics within the structure proposed in figure \@ref(fig:choneheirarh). 
+As ridiculous as it may sound, you have to begin with data structure. You are building an engine and you need to have all of the correct parts. Data is invariably messy. So much effort goes into cleaning, structuring, and storing data for use that it represents the bulk of time spent across the spectrum of analytics. You must begin there. Additionally, there are probably multiple levels of maturity on this front. For instance, ticketing data may be very well structured while CRM data may be lacking. I view analytics within the structure proposed in figure \@ref(fig:choneheirarh). 
 
 <div class="figure" style="text-align: center">
 <img src="images/CH1_ML_Heirarchy.png" alt="Data strategy heirarchy of needs" width="100%" />
 <p class="caption">(\#fig:choneheirarh)Data strategy heirarchy of needs</p>
 </div>
 
-Furthermore, I consider technology to be "a means to an end," and not "an end unto itself." This tends to be a common confusion. Your technology strategy should flow from a well-articulated business strategy. You could spend capital to allow fans to enter a park leveraging facial recognition, but what problem does that solve? Is scanning a ticket the bottleneck in that system that slows down the process? Do fans want it? Does the regulatory environment permit it? This sounds like a complex system more than a camera and a database. Focus on the system. The technology is probably the easy part to solve. While innovation is sometimes bred by throwing something at the wall to see if it sticks, I haven't found that to be the primary vehicle for technology adoption. When an organization takes a misguided technology-first approach, I have found the results to be painfully unremarkable. Determine what you want to accomplish and why you want to accomplish it before deploying a technology solution.
+Furthermore, I consider technology to be a means to an end and not"an end unto itself. This tends to be a common confusion. Your technology strategy should flow from a well-articulated business strategy. You could spend capital to allow fans to enter a park leveraging facial recognition, but what problem does that solve? Is scanning a ticket the bottleneck in that system that slows down the process? Do fans want it? Does the regulatory environment permit it? This sounds like a complex system more than a camera and a database. Focus on the system. The technology is probably the easy part to solve. While innovation is sometimes bred by throwing something at the wall to see if it sticks, I haven't found that to be the primary vehicle for technology adoption. When an organization takes a misguided technology-first approach, I have found the results to be painfully unremarkable. Keep in mind that some sports teams have made their brand focused on adopting technology. This is a counter to what I just outlined and is valid if executed correctly. The same rule applies to both directions. Determine what you want to accomplish and why you want to accomplish it before deploying a technology solution.
 
 Perhaps you want to _revolutionize_ your business. Very few problems are solved in revolutionary ways. The internet feels much the same as it did twenty years ago. We are now talking about web 3.0 and the metaverse. We already have a _metaverse_. It is called the internet. It isn't revolutionary. What it really represents is a platform that big tech wants you to use to transact. Maybe it will be a better way of doing things or maybe it is simply a worse way of doing everything. If you want to be an early mover, it could have amazing advantages, but you'll be taking a risk. The jury will be out for the next decade on the metaverse. Perhaps it is 3D television. Remember those? Of course you don't. Look for the business model that underlies these marketing schemes. Perhaps the metaverse is simply a way to help bolster _augmented reality_ products. If you understand the mechanism, you'll be able to plan for what comes next and intelligently take risks.
 
 We don't want to be disparaging toward Information Technology. Strong I.T. skill sets are incredibly useful. As your skills progress you'll be exposed to a myriad of technologies:
 
-- if you work on Windows or Apple, you'll still need some understanding of Linux^[https://www.linux.org/]
+- If you work on Windows or Apple, you'll still need some understanding of Linux^[https://www.linux.org/]
 - Shell scripting is a critical skill for any dev-ops task^[https://en.wikipedia.org/wiki/Bash_(Unix_shell)]
 - Start using _git_ as a repository for your code^[https://github.com/]
 - Tools such as _docker_ allow you to package programs if you are doing web development^[https://www.docker.com/]
@@ -68,7 +68,7 @@ The main difference between the internet today and twenty years ago is that peop
 
 ### Data
 
-Getting the foundational elements of data in place is critical to all other components of the hierarchy. While we won't discus _Master Data Management_ or specific technologies such as _Customer Data Platforms_, we will talk about the foundations of data and what we mean when we use the word. Most organizations have solved portions of their data management, but it's a never-ending problem. There will always be newer and better systems and there will always be a need to incorporate new data into your sales and marketing infrastructure. This process is accelerating as Google, Amazon, and others vie to own the cloud. Amazon Web Services and the Google Cloud Platform are disruptive in the sense that they can deliver capabilities that would be financially unfeasible for many firms trying to build them in house. The on-prem DBMS will slowly go extinct^[This isn't quite true. There are certain instances where having a captive instance is useful or necessary]. This is also an old battle. If this was twenty five years ago our discussion may have been on Thin-client vs. Fat-Client computing. This isn't much different. 
+Getting the foundational elements of data in place is critical to all other components of the hierarchy. While we won't discus _Master Data Management_ or specific technologies such as _Customer Data Platforms_, we will talk about the foundations of data and what we mean when we use the word. Most organizations have solved portions of their data management, but it's a never-ending problem. There will always be newer and better systems and there will always be a need to incorporate new data into your sales and marketing infrastructure. This process is accelerating as Google, Amazon, and others vie to own the cloud. Amazon Web Services and the Google Cloud Platform are disruptive in the sense that they can deliver capabilities that would be financially unfeasible for many firms trying to build them in house. The on-prem DBMS will slowly go extinct^[This isn't quite true. There are certain instances where having a captive instance is useful or necessary]. This is also an old battle. If this was twenty five years ago our discussion may have been on Thin-client vs. Fat-Client computing. This isn't fundamentally much different. 
 
 Let's go ahead an make the assumption that your sports team doesn't have their data in a perfect spot. Getting your data in a useful position may take a number of varied techniques and has its own considerations:
 
@@ -92,7 +92,7 @@ You'll encounter numerous data structures working in sports, but none are more i
 </div>
 
 
-What are we looking at? While there are many different database systems ^[https://en.wikipedia.org/wiki/Database] available, the venerable relational database is the one you will encounter the most. AWS and Google have improved and optimized some of these models, but the basic concept is going to look familiar across most platforms. We'll ignore even high-level discourse of the technical parts of database construction such as _cardinality_ and _normal forms_ and discuss this stuff through examples.
+What are we looking at? While there are many different database systems ^[https://en.wikipedia.org/wiki/Database] available, the venerable _relational database_ is the one you will encounter the most. AWS and Google have improved and optimized some of these models, but the basic concept is going to look familiar across most platforms. We'll ignore even high-level discourse of the technical parts of database construction such as _cardinality_ and _normal forms_ and discuss this stuff through examples.
 
 Think of a database as a collection of excel workbooks that are formally linked with an ID column. We'll call these workbooks tables. These tables will allow you to get information on transactions, historical purchase data, customer service rep data, ticketing information, and more. You can read the "crow's-foot" as "Many", the cross as "one." For example, one customer can have many plans. These relationships can be much more complicated, but at a basic level data that you encounter will look something like this. if the database is relational (More than likely), basic SQL statements can be used to retrieve your information: 
 
@@ -128,14 +128,14 @@ The integration between the CRM and ticketing systems is incredibly important. O
 - How will the ETL be constructed? API, direct database connection, etc.
 - How are parity checks considered?
 
-These are all heavy I.T. tasks. Although the end-product will be the most important component to an analyst, understanding how some of this stuff works is important. It will make you better. Get good at SQL, you don't have a choice if you want to be good and analysis in a business setting. 
+These are all heavy I.T. tasks. Although the end-product will be the most important component to an analyst, understanding how some of this stuff works is important. It will make you better. Practice SQL, you don't have a choice if you want to be good and analysis in a business setting. 
 
 <div class="figure" style="text-align: center">
 <img src="images/CH1_ML_Decision_crm_structure.png" alt="CRM system data structure" width="100%" />
 <p class="caption">(\#fig:chonedatacrm)CRM system data structure</p>
 </div>
 
-The data in figure \@ref(fig:chonedatacrm) look a little different. Different CRM systems may also have different ways of querying the data. Salesforce uses SOQL which looks similar SQL, but it forces you to traverse relationships a little differently. Let's take a look at this data.
+The data in figure \@ref(fig:chonedatacrm) looks a little different. Different CRM systems may also have different ways of querying the data. Salesforce uses SOQL which looks similar SQL, but it forces you to traverse relationships a little differently. Let's take a look at this data.
 
 
 ```sql
@@ -220,25 +220,25 @@ You'll constantly need to do this exercise and if you are working with large dat
 
 Business Intelligence is a loaded phrase and can mean many different things. Enabling a B.I. capability is possible once you've established some good data structure. This portion of the chapter will discuss B.I. at a high level and discuss some of the differences in data structure that enables more sophisticated reporting. 
 
-I usually place it under two categories: 
+I usually place Business Intelligence under two categories: 
 
 - Reporting
 - Research
 
-A component of Customer Relationship Management (CRM) also falls under this Business Intelligence umbrella in practice at clubs. There are many reasons for this, the biggest is simply legacy. Another reason is that the CRM system typically houses much of the data that may be used for reporting. It's a natural match in a company that is relatively small and people need to wear multiple hats. Reporting systems such as Tableau, Qlik, Looker, Business Objects, etc. depend on having well structured data. Be cautions on tools as well. You can easily abuse them and not get the results you are looking for. Philosophy of use is important. Once you have your data in a good spot you are ready to tell people about it. Gathering insight from your data can take many forms, but it is often placed in one of four categories seen in figure \@ref(fig:chonedatabi).  
+A component of Customer Relationship Management (CRM) also typically falls under this Business Intelligence umbrella in practice at clubs. There are many reasons for this, the biggest is simply legacy. Another reason is that the CRM system typically houses much of the data that may be used for reporting. It's a natural match in a company that is relatively small and people need to wear multiple hats. Reporting systems such as Tableau, Qlik, Looker, Business Objects, etc. depend on having well structured data. Be cautions on tools as well. You can easily abuse them and not get the results you are looking for. Philosophy of use is important. Once you have your data in a good spot you are ready to tell people about it. Gathering insight from your data can take many forms, but it is often placed in one of four categories seen in figure \@ref(fig:chonedatabi).  
 
 <div class="figure" style="text-align: center">
 <img src="images/CH1_BI_Insight.png" alt="Four categories of reporting" width="100%" />
 <p class="caption">(\#fig:chonedatabi)Four categories of reporting</p>
 </div>
 
-The first stop is reactive reporting  _Description_ and _Diagnosis_. Once you have your data structured appropriately, you'll be able to produce backwards looking reports. These reports are likely the bread-and-butter of a Business Intelligence department. You are answering questions about how much a rep sold or how many tickets were sold during a specific time frame. 
+The first stop is reactive reporting  _Description_ and _Diagnosis_. Once you have your data structured appropriately, you'll be able to produce backwards looking reports. These reports are typically the bread-and-butter of a Business Intelligence department. You are answering questions about how much a rep sold or how many tickets were sold during a specific time frame. 
 
 _Prediction_ and _Perscription_ are forward looking. You might integrate predictive models into your reporting that indicate whether or not sales goals are likely to be met. We'll talk about how that might be accomplished in the next section. _Prescriptive_ reports might tell you what you should do about a problem once it has been diagnosed. In our context, a prescriptive report might enable a manager to reroute marketing dollars to more efficient channels. For instance, the report could identify diminishing returns on marketing spend through a particular social channel and suggest one with demonstrably greater efficiency. 
 
 #### Business Intelligence data structure
 
-Data structure for a BI system doesn't necessarily have to be any different than what you may find in a typical relational database. You can plug a system such as Tableau ^[https://www.tableau.com/] into your database and likely get some good capability. However, in practice the data is usually restructured into _facts and dimensions_. Additionally, data structures can also take more complex forms such as data cubes ^[https://en.wikipedia.org/wiki/Data_cube], JSON-like hierarchical data, or other more exotic forms that can handle array-like data within specific database fields. We'll focus on the simple fact and dimension. 
+Data structure for a BI system doesn't necessarily have to be any different than what you may find in a typical relational database. You can plug a system such as Tableau ^[https://www.tableau.com/] into your database and likely get some good capability. However, in practice the data is most efficiently restructured into _facts and dimensions_. Additionally, data structures can also take more complex forms such as data cubes ^[https://en.wikipedia.org/wiki/Data_cube], JSON-like hierarchical data, or other more exotic forms that can handle array-like data within specific database fields. We'll focus on the simple fact and dimension. 
 
 You can think of a _fact_ as something that will be aggregated. It is a number. _Dimensions_ are the features that you use to understand your numbers. Consider the diagram in figure \@ref(fig:chonedatafanddim). 
 
@@ -262,7 +262,7 @@ There are also some pitfalls that you should be aware of. You can sometimes work
 
 The term analytics is at least as broad as business intelligence. In our context, I distinguish it from business intelligence because it is less concerned with displaying information and more concerned with interpretation. Additionally, it is usually easier to get your base B.I. functionality running than to begin applying analytic techniques to your data. Ultimately, business intelligence and analytics are going to work together and form the backbone of your (antiquated but valid term) decision support systems. 
 
-Analytics refers to applying some operation to your data and gaining some additional insight from that modification. Obviously, getting data structured appropriately is critical. I typically put analytics tools into one of two categories:
+Analytics refers to applying some operation to your data and gaining some additional insight from that modification. Obviously, getting data structured appropriately is critical. I typically put analytics tools into one of two categories despite there being many more including simple spreadsheets:
 
 - Regression
 - Machine learning 
@@ -279,7 +279,7 @@ Examine the following meme I created with an online meme generator:
 <img src="images/linear_regression.jpg" alt="Your future thoughts on regression" width="100%" />
 <p class="caption">(\#fig:stupidmeme)Your future thoughts on regression</p>
 </div>
-This is an incredibly reductive meme. Obviously you can't use linear regression for generative art or computer vision. However, you are going to use it a lot and it has lots of advantages. Make sure you understand it. Eventually, you will agree with the meme when working on most of the problems you will face. The following section explains how I like to think about it. 
+This is an incredibly reductive meme. Obviously you can't use linear regression for generative art or computer vision. However, you are going to use it a lot and it has lots of advantages. Make sure you understand it. Eventually, I think you will agree with the meme when working on most of the problems you will face. The following section explains how I like to think about it. 
 
 The familiar linear equation takes the form:
 
@@ -330,7 +330,7 @@ The actual form is typically denoted similarly to the following equation:
 \ \hat{y} = \alpha + \beta_1 x_1 + \beta_2 x_2 + \epsilon
 \end{equation}
 
-A definition might read like this "The idea is to express the class as a linear combination of the attributes with predetermined weights." [@Witten2011] I just think about it as finding the best _average_ line through your data where x explains y. The standard error represents a normal distribution that is split by the line. Once again, I don't want to push reading too much here, but I would highly recommend picking up any book on statistics or Googling multiple-linear-regression if you aren't fairly familiar with it. You'll use it a lot as an analyst. Additionally, familiarize yourself with the different forms of regression. Orthoganal, Poissan, Ridge, etc. There are lots of problems that can be solved if you apply the correct technique. 
+A definition might read like this "The idea is to express the class as a linear combination of the attributes with predetermined weights." [@Witten2011] I just think about it as finding the best _average_ line through your data where x explains y. The standard error represents a normal distribution that is split by the line. Once again, I don't want to push statistics reading too much here, but I would highly recommend picking up any book on statistics or Googling multiple-linear-regression if you aren't fairly familiar with it. You'll use it a lot as an analyst. Additionally, familiarize yourself with the different forms of regression. Orthoganal, Poissan, Ridge, etc. There are lots of problems that can be solved if you apply the correct technique. 
 
 That is as deep as I want to go here. We are going to use this tool a lot in subsequent chapters and will go into more detail. I'd like to take the same simple approach to explaining Machine Learning. 
 
@@ -344,7 +344,7 @@ There are three main types of machine learning:
 - Supervised Learning
 - Reinforcement Learning
 
-Each of these variations are useful for solving different types of problems. We'll cover them in more detail in subsequent chapters. Additionally, there are any of a number of techniques that fall under the machine learning umbrella including:
+Each of these variations are useful for solving different types of problems. We'll also cover them in more detail in subsequent chapters. Additionally, there are any of a number of techniques that fall under the machine learning umbrella including:
 
 - Decision Trees
 - Random forests
@@ -380,7 +380,7 @@ Type the name of the package into your editor and the multiple functions and dat
 ```
 
 
-A decision tree is simply an organized set of cascading questions and answers and are simple to understand at a high level. Let's consider a simple data set:
+A decision tree is simply an organized set of cascading questions and answers that are simple to understand at a high level. Let's consider a simple data set:
 
 
 ```r
@@ -429,11 +429,11 @@ rpart.plot::rpart.plot(d_tree,
 </div>
 
 
-This tree (figure \@ref(fig:chonedecisiontree)) is simple to read. In the top node, there are 2,564 people that did not renew (nr) and over 11,300 that did renew. The first split separates people that live more than 49 miles from the park. Of those people, 906 did not renew and 663 did renew. The third split separates people who live more than 67 miles from the park. Of those that live more than 67 miles from the park, 515 did not renew.  
+This tree (figure \@ref(fig:chonedecisiontree)) is simple to read. In the top node, there are 2,564 people that did not renew (nr) and over 11,300 that did renew. The first split separates people that live more than 49 miles from the venue. Of those people, 906 did not renew and 663 did renew. The third split separates people who live more than 67 miles from the park. Of those that live more than 67 miles from the park, 515 did not renew.  
 
 A decision tree performs splits in one of multiple ways and there are lots of resources that can illustrate the methods. At this stage, the main thing to understand is that the nodes are more similar to each other than to other nodes. Each node is more homogeneous.
 
-This is machine learning at its most simple form. A set of cascading questions split in formulaic ways classifies a response variable. While methods differ, at their heart many machine learning processes are very similar. 
+This is machine learning at its most simple form. A set of cascading questions split in formulaic ways classifies a response variable. While methods differ, at their heart many machine learning processes are functionally very similar despite using wildly diverging methods. 
 
 ### Automation and Integration
 
@@ -456,8 +456,7 @@ Integration refers to two elements:
 - Integrating solutions across your organization
 - Integrating with third parties to extend capabilities
 
-Interestingly, integrating with third parties is the easy part. Integrating solutions internally is much more difficult. This typically requires change management and a sponsor in the upper levels of management. 
-
+Interestingly, integrating with third parties is the easy part relative to integrating solutions internally. Integrating solutions internally is much more difficult. This typically requires change management and a sponsor in the upper levels of management. For example, perhaps your organization introduces a productivity suite such as Slack^[https://en.wikipedia.org/wiki/Slack_(software)] or Teams^[https://en.wikipedia.org/wiki/Microsoft_Teams]. Will simply introducing and deploying this technology cure an addiction to email? The answer is "no." How might you increase adoption?  
 
 Figure \@ref(fig:dataautomation) demonstrates a simplified version of the entire process from data sources all the way to the feedback loop you are creating with your marketing channel partners. When we refer to marketing channel partners, we could be referring to Google's add network, Facebook, or many others. 
 
@@ -471,9 +470,9 @@ While these features used to be fairly distinct, new technologies are making it 
 
 ## Key Performance Indicators
 
-This section will explain an application of a KPI. This piece of feedback is critical for understanding how well you are performing (typically against some arbitrary or historic benchmark). I'll also refer back to an earlier paragraph when we talked about the stock market. Analytics is contextual. What is a KPI? A KPI is a figure that links business performance to some desired outcome. In Baseball the number of walks a player takes is a KPI that will likely help predict on-base-percentage. Analytics groups might be able to establish a causal link between On-base-percentage and wins^[See the film Moneyball]. If you are in the market for a player, you might weight walks more heavily than other metrics. on-base-percentage might be a KPI and walks might be the key to increasing on-base-percentage leading to more wins. The following paragraphs will discuss and criticize the most commonly used KPI at clubs: Percap, or average price paid per ticket.  
+This section will explain an application of a KPI. This piece of feedback is critical for understanding how well you are performing (typically against some arbitrary or historic benchmark). I'll also refer back to an earlier paragraph when we talked about the stock market. Analytics is contextual. What is a KPI? A KPI is a figure that links business performance to some desired outcome. In Baseball the number of walks a player takes is a KPI that will likely help predict on-base-percentage. Analytics groups might be able to establish a causal link between On-base-percentage and wins^[See the film Moneyball]. If you are in the market for a player, you might weight walks more heavily than other metrics. On-base-percentage might be a KPI and walks might be the key to increasing on-base-percentage leading to more wins. The following paragraphs will discuss and criticize the most commonly used KPI at clubs: Percap, or average price paid per ticket.  
 
-Analytics work must be tempered with industry knowledge; it must be put into the correct context. I'll say that a million times if I have to. It is easy to make incorrect judgments when armed with the blunt instrument of data. __Per-Cap__ (or average ticket price) is likely the worst. Per-Cap is a commonly used KPI that is used for comparing the effectiveness of sales and pricing strategy: 
+It is easy to make incorrect judgments when armed with the blunt instrument of data. __Per-Cap__ (or average ticket price) is likely the worst. Per-Cap is a commonly used KPI that is used for comparing the effectiveness of sales and pricing strategy: 
 
 \begin{equation} TotalTicketRevenue / NumberOfSeatsSold \end{equation}
 
@@ -494,7 +493,7 @@ Yield is more intuitive and increases with every sale since it isn't penalized b
 \begin{equation} \$1,400,000 Ticket Revenue / 40,000 Available Tickets = \$35.00 \end{equation}
 \begin{equation} \$1,600,000 Ticket Revenue / 40,000 Available Tickets = \$40.00 \end{equation}
 
-Yield is higher when revenue is higher now that we hold the denominator constant. Hopefully, this indicates that we were more efficient at selling our seats or perhaps demand at higher prices buoyed up revenue. This number is much easier to interpret and to leverage for hypothesis testing. The easiest way to consider this metric is to visualize it. A simple scatter plot (figure \@ref(fig:chonepercapgraph)) does the trick. In a real life scenario average ticket price isn't highly correlated to overall revenue until games begin to approach a sellout and percap approximates yield.    
+Yield is higher when revenue is higher now that we hold the denominator constant. Hopefully, this indicates that we were more efficient at selling our seats or perhaps demand at higher prices buoyed up revenue. This number is much easier to interpret and to leverage for hypothesis testing. The easiest way to consider this metric is to visualize it. A simple scatter plot (figure \@ref(fig:chonepercapgraph)) does the trick. In a real life scenario average ticket price isn't tightly correlated to overall revenue until games begin to approach a sellout and percap approximates yield.    
 
 
 
@@ -547,7 +546,7 @@ There certainly appears to be some relationship between the average salary of a 
 
 This is an obtuse example, but it demonstrates the point. There are underlying mechanisms that likely do a reasonable job of explaining ticket sales. We didn't even cover bottom-up forecasting elements such as marketing efforts! 
 
-The point of this section should now be clear. Performance is dictated by any number of factors. Some are within your control, some are not. Running a team is similar to running a hedge fund. Sometimes it's up, sometimes it's down. However, you need to understand why it's up or down so that you can make smarter decisions. Bad KPIs don't help you make smarter decisions. Leveraging appropriate KPIs has many salutary impacts and good analytics always looks for the underlying mechanism at work.  
+The point of this section should now be clear. Performance is dictated by many factors. Some are within your control, some are not. Running a team is similar to running a hedge fund. Sometimes it's up, sometimes it's down. However, you need to understand why it's up or down so that you can make smarter decisions. Bad KPIs don't help you make smarter decisions. Leveraging appropriate KPIs has many salutary impacts and good analytics always looks for the underlying mechanism at work.  
 
 ## Why do people buy tickets to sporting events?
 
@@ -557,7 +556,7 @@ Sports fandom is irrational. This irrationality can make sports challenging and 
 >
 >--- Johnathan Haidt, "The Riteous Mind"
 
-This is an interesting quote from "The Righteous Mind" [@Haidt2012]. Humans are programmed to participate in groups. Maybe some people buy tickets because they are lonely, or bored. If these mechanisms such as the "need to belong" are driving some sports fandom, perhaps they can be manipulated. Perhaps they are being manipulated. Ultimately, there are many reasons why someone might buy tickets to a sporting event:
+This is an interesting quote from "The Righteous Mind" [@Haidt2012]. Humans are programmed to participate in groups. Maybe some people buy tickets because they are lonely or bored. If these mechanisms such as the "need to belong" are driving some sports fandom, perhaps they can be manipulated. Perhaps they are being manipulated. Ultimately, there are many reasons why someone might buy tickets to a sporting event:
 
 - They buy them for their business
 - They just want something to do
@@ -569,7 +568,7 @@ This is an interesting quote from "The Righteous Mind" [@Haidt2012]. Humans are 
 
 There are also brand components associated with history and logos. This one is interesting. We've recently seen some teams abandon logos and nicknames in response to societal or corporate pressure. ^[https://www.espn.com/mlb/story/_/id/31868331/cleveland-changing-name-indians-guardians] What does this mean in an analytics context? How much is a brand worth? Obviously, brand equity must be pondered. This is at least partially what drives corporate sponsorship. Borrowed equity by associating your brand with another brand with a positive image is fundamental to a major revenue driver for clubs. Brand value might be calculated using one of several techniques such as the _Royalty Relief Method_. ^[https://en.wikipedia.org/wiki/Brand_valuation] The main idea here is that brands have tremendous value. 
 
-There could be any number of answers to the question of why someone might purchase tickets to a baseball, football, basketball, hockey, or soccer game. People in the United States and across the world have complex emotional relationships with sports and brands. These emotions may do a better job of explaining their behavior than a model predicting likelihood to purchase. 
+There could be many answers to the question of why someone might purchase tickets to a baseball, football, basketball, hockey, or soccer game. People in the United States and across the world have complex emotional relationships with sports and brands. These emotions may do a better job of explaining their behavior than a model predicting likelihood to purchase. 
 
 This side of sports marketing is often overlooked and under-served. Behavioral economics is a huge field. At least one technique we use later in the book has some of its roots in behavioral economics and there is a lot of literature on these subjects. "The Power of Moments" [@Heath2017] is an outstanding book that is imminently useful if one was to consider how specific mechanisms engender loyalty. Major themes such as _pride_ and _connection_ are almost instantly accessible to marketers at the club level. How can an analyst help drive the desired outcomes? The answer may depend on solutions that may not be in the wheelhouse of a data scientist or business analyst. 
 
@@ -588,7 +587,7 @@ This chapter explains some rationale for how to approach analytics and strategy 
 Ultimately, this chapter only serves to give a very high-level overview of your potential musings on _analytics_ and business strategy:
 
 - Technology isn't analytics. It is a tool that serves it and other business functions. Don't consider technology in a vacuum. 
-- You now understand some basics about data structure and databases. You have to start here. Without good data, your project is going nowhere. You'll want to acquire some knowledge of SQL or you are going to be limited in your capability.
+- You now understand some basics about data structure and databases. Without good data, your project is going nowhere. You'll want to acquire some knowledge of SQL or you are going to be limited in your capability.
 - Business Intelligence tends to focus on reporting and research. You'll likely begin with descriptive reports and as your organization matures become more forward looking by incorporating analytics functions.
 - Analytics mostly focuses on trying to guess future outcomes. There are a variety of regression and machine learning tools at your disposal. These tools have been commoditized over the past couple of decades. This world is much easier to navigate than it was even ten years ago.
 - Automating tasks is a force-multiplier. There is currently an arms race going on between big-tech companies as they continue to bolster their analytics and database systems. The Google Cloud Platform and Amazon Web Services are two key examples. They have hundreds of tools between them for consuming, manipulating, and deploying data.
