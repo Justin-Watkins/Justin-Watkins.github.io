@@ -1,5 +1,5 @@
 
-# Structuring analytics projects {#chapter4}
+# Structuring projects {#chapter4}
 
 
 
