@@ -1,9 +1,9 @@
 
-# Analytics and sports business strategy {#chapter1}
+# Analytics and strategy {#chapter1}
 
 
 
-This chapter will give you some background on my ideologies around analytics and sports business at the club level. I also want to separate the disciplines of strategy and analytics a little. Analytics serves strategy, but strategy is derived from analytics. This chapter will outline my approach to analytics. There are often many ways to approach a problem and some problems may not be worth solving for many reasons. Despite some inherent difficulties with sports, an analytic approach to problem solving should always be at the core of your business strategy. 
+This chapter will give you some background on my ideologies around analytics and sports business at the club level. I also want to separate the disciplines of strategy and analytics. Analytics serves strategy, but strategy is derived from analytics. This chapter will outline my approach to analytics. There are often many ways to approach a problem and some problems may not be worth solving for many reasons. Despite some inherent difficulties with sports, an analytic approach to problem solving should always be at the core of your business strategy. 
 
 Analytics is about reconciling opportunities. Many of the problems that we face are very old and have not yet been solved. This is especially true for Operations. I am convinced that there are unlimited applications for analytics within any industry or business. Additionally, analytics can take many forms and could improve decision making in many functions that we have already mentioned:
 
