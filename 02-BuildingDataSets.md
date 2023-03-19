@@ -1,14 +1,17 @@
 
-# Constructing our data sets {#chapter2}
+# Using code and sports data {#chapter2}
 
 
 
-Feel free to skip this chapter. I considered not including it. Although, it is an important chapter. It is important not because it is informative, but because it gives us the raw material from which we will divine our insights. Data is the fuel for analytics work, and your business strategy should be derived from some objective justifications arrived at through systematic evaluation. If you don't have very much coding experience, it gives me an opportunity to familiarize you with some code and with data that you might encounter. It also lets me give some introduction to the R language which we use throughout the book. As I have said, this book is about _How_ and _Why_. Understanding the _how_ is important despite what I said about the _why_. We'll cover the basics of exploring and analyzing a data set in the next chapter. For now, we'll just cover some of what the data means, how to interpret sports data, and demonstrate some of the code that created it. 
+Feel free to skip this chapter if you already know some R or have some familiarity with sports data. This chapter is mostly included for completeness and I considered not including it. It is important not because it is necessarily informative, but because it gives us the raw material from which we will divine our insights. 
 
-Unfortunalty, I am going to need to discuss coding. People are afraid of it. You shouldn't be. You learn by doing. You can't read a book on coding to understand it, you just have to dive in. Every piece of code in this book is available, should run on your machine, and can be hacked and adapted to similar problems. We will be using R and R Studio ^[https://www.rstudio.com/] as our primary analysis tool. R is a great choice for analyzing sports data. While I find R a bit idiosyncratic, you don't have to dream in C++ to use it. If you like to script a little bit, but don't want to be a full-on developer, R is your ticket. Additionally, R Studio is a great IDE for analysis. It has a ton of useful features that will make your life much easier. I highly recommend it. 
+Data is the fuel for analytics work, and your business strategy should be derived from some objective justifications. Every piece of code in this book is available, should run on your machine, and can be hacked and adapted to similar problems. We will be using R and R Studio ^[https://www.rstudio.com/] as our primary analysis tool. R is a great choice for analyzing sports data. While I find R a bit idiosyncratic, you don't have to dream in C++ to use it. If you like to script a little bit, but don't want to be a full-on developer, R is your ticket. Additionally, R Studio is a great IDE for analysis. It has a ton of useful features that will make your life much easier.
 
-In this chapter we'll cover a few subjects:
+If you don't have very much coding experience, this chapter gives me an opportunity to familiarize you with some code and with the data that you will encounter. We'll cover the basics of exploring and analyzing a data set in the next chapter. 
 
+In this chapter we'll cover several subjects:
+
+- The main building blocks of scripting for analysis
 - Understanding common data sets in the context of professional sports
 - Constructing some sample data sets to mimic these data sets
 - Building an R package to reference these data sets throughout the rest of the book  
@@ -19,46 +22,46 @@ For our purposes, we'll invent a professional baseball team, the _Nashville Game
 
 ## Some basic notes on the R language
 
-This chapter will introduce you to some R code. Ultimately, it doesn't matter what tool you use. Python, Julia, R, Stata, SAS, and Matlab all provide some similar functionality. However, being confronted with code can be a little overwhelming at first. We are leveraging code, particularly R for a few reasons. 
+This chapter will introduce you to some R code. Ultimately, it doesn't matter what tool you use. Python, Julia, R, Stata, SAS, and Matlab all provide some similar functionality. However, being confronted with code can be a little overwhelming at first. We are leveraging code (particularly R) for a few reasons. 
 
 1. If your analysis is done in code each step is readily reproducible and documented
 2. R is free, easy to use, has a large user base, and has a great IDE 
 3. R is massively extensible for smaller-scaled tasks
-4. It is a great tool for protyping something you might put into production in a more perfomant enviornment
+4. It is a great tool for protyping something you might put into production in a more perfomant environment
 
-I have found that it is best to get good at one tool and to stick with it. However, I say this with a note of caution. Let's consider a quote from a horrifying poem called "The Second Coming."
+I have found that it is best to get good at one tool and to stick with it. However, I say this with a note of caution. Let's consider a quote from a famous poem.
 
 > "Things fall apart; the center cannot hold" 
 >
 > Willaim Butler Yeats, "The Second Coming" 
 
-Technologies are doomed to obsolescence. While many legacy technologies have endured for decades (Fortran, Cobal, R, Python, C, C++), they have all evolved. Additionally, many technologies have been eclipsed by better tools. Tools tend to be fairly specialized. For instance, R isn't the best tool to build large-scaled web applications. Don't be so rigid that you devote your personal brand to a particular technology. You might find yourself on the scrap-pile with it... "Things fall apart." 
+Technologies are doomed to obsolescence. While many legacy technologies have endured for decades (Fortran, Cobal, R, Python, C, C++), they have all evolved. Technologies are doomed to be eclipsed by better tools. For instance, R isn't the best tool to build large-scale web applications. Don't be so rigid that you devote your personal brand to a particular technology. You might find yourself on the scrap-pile with it... "Things fall apart." 
 
-R is relatively simplistic on the outside relative to many other languages. It has a more limited number of data structures, doesn't use scalars, is single-threaded, and tends to avoid standard flow-control. It is a little peculiar. If you have some programming experience with another language you might find yourself having a little difficulty with it. If you are new to programming, it is going to look weird. This book isn't on programming. We are simply writing scripts that piggyback off of programmers that have done a fabulous job of creating a free tool that currently rivals any others in the analytics space ^[Python is the currently the closest rival and is a great tool. Julia still hasn't caught on, but has some compelling features]. 
+R is relatively simplistic on the outside relative to many other languages. It has a more limited number of data structures, doesn't use scalars, is single-threaded, and tends to avoid standard flow-control. It is a little peculiar. If you have some programming experience with another language you might find yourself having a little difficulty with it. If you are new to programming, it is going to look weird. R has been extended by thousands of developers and we are simply writing scripts that piggyback off of other programmer's' work. Many of them have done a fabulous job of creating a free tool that currently rivals any others in the analytics space ^[Python is the currently the closest rival and is a great tool. Julia still hasn't caught on, but has some compelling features]. 
 
-Additionally, I recommend using code instead of a point-and-click tool. Code demonstrates exactly what you have done and is easy to communicate to anyone with a knowledge of the language. It will make your life easier even if it makes it more difficult in the beginning. The best thing about R is that there has been a huge user base over the years and there are many resources that you can leverage to learn what it can do. Ultimately, the decision on what tool to use needs to be driven by what you want to get out it. Are you prototyping or do you need to operationalize your code? Are you dealing with huge datasets? Do you want something built for speed or comfort? I am not going to cover anything about the language in this book. There are just too many resources available that will do a better job than me. Here are my basic recommendations if you would like to use R:
+Additionally, I recommend using code instead of a point-and-click tool. Code demonstrates exactly what you have done and is easy to communicate to anyone with a knowledge of the language. It will make your life easier even if it makes it more difficult in the beginning. The best thing about R is that there has been a huge user base over the years and there are many resources that you can leverage to learn what it can do. Ultimately, the decision on what tool to use needs to be driven by what you want to get out it. Are you prototyping or do you need to operationalize your code? Are you dealing with huge datasets? Do you want something built for speed or comfort? I am not going to cover very much about the language in this book. There are just too many resources available that will do a better job than me. Here are my basic recommendations if you would like to use R:
 
-1. Get and IDE that you like. RStudio is currently the best choice for R by a wide margin.
-2. Download R [@R-base].^[https://posit.co/download/rstudio-desktop/] It works on all major platforms and use your favorite search engine to find some free classes on how to use it. There are hundreds of how-tos available online. You can also purchase many books that will teach you how the language works. My favorite is "Advanced R" [@Wickham2014] and I highly recommend it as a must-have reference book. 
+1. Get an IDE that you like. RStudio is currently the best choice for R by a wide margin.
+2. Download R [@R-base].^[https://posit.co/download/rstudio-desktop/] It works on all major platforms and find some free classes on how to use it. There are hundreds of how-tos available online. You can also purchase many books that will teach you how the language works. My favorite is "Advanced R" [@Wickham2014] and I highly recommend it as a must-have reference book. 
 3. Practice it! It doesn't take long to get over-the-hump in terms of getting some functional fluency. I consider it similar to playing an instrument. "Flight of the bumblebee" ^[Flight of the Bumblebee by Rimsky-Korsakov, 1900. If you aren't familiar with this song, look it up] doesn't need to be the first song that you learn on piano. Start simple and build on your knowledge. You will eventually develop an intuitive understanding of what your tool can do. 
 
 It is also important to consider that R does have some drawbacks. 
 
-1. A language won't tell you what you should do. It only provides methods to execute functions. You still need to understand how to approach and solve your problem. R won't help you there unlike statistical tools such as Minitab^[https://www.minitab.com/en-us/].
+1. A language won't tell you what you should do. It only provides methods to execute functions. You still need to understand how to approach and solve your problem. R won't help you here unlike specialized statistical tools such as Minitab^[https://www.minitab.com/en-us/].
 2. R can be relatively slow if you don't use it correctly. This has to do with how it was constructed ^[R was constructed by Mathematicians and not computer scientists. It was created to be easy, not fast.]. However, there are ways to speed it up significantly. Rcpp [@R-Rcpp] is an almost seamless api to C++ that will allow you to build and leverage C++ functions in your R environment. It is a highly leveraged and important tool in R world. 
 3. R may not be the best choice for putting something into operation. Many people prototype with R and then leverage another tool to put the work to use. However, there are some great tools for smaller scale web deployments built on the _Shiny_ framework. 
 4. It's user base may decline in favor of other tools. Python has become more popular in recent years. Languages tend to benefit from network effects where the more users that it has, the more features that are built for it. User-base size is very important.
 
 Some of the following sections will demonstrate how the datasets for this book were created. I think that this is important to do for a couple of different reasons. 
 
-1. You may not be familiar with R. The code sections will get you familiar with how it looks.
+1. You may not be familiar with R. The code sections will get you familiar with how it looks and works.
 2. If you don't work with data in sports, the data is going to be foreign to you. This is an opportunity to explain the data sets.
 
 One other comment I want to make is on coding in-general. It is easier to write code than to read somebody else's code. To that end, I like comments. While in many cases the code can act as the documentation, I like to add explicit descriptors. I don't make them detailed. I just give you enough to know what the code block is doing. I'll follow this practice throughout the book.
 
 These data sets and the code used to create them are available in the R package `FOSBAAS` and are publicly available, so there is no reason to type any of the following sections, but suit yourself. You can download a file with all of the code in this book here: https://github.com/Justin-Watkins/FOSBAAS/blob/master/FOSBAAS_code.R. 
 
-Additionally, this book will make use of many of libraries. you can run the following code to make sure that they are installed:
+Additionally, this book will make use of many libraries. You can run the following code to make sure that most of them are installed:
 
 
 ```r
@@ -69,31 +72,31 @@ libraries <-
 c('AlgDesign','anacor','car','caret','data.table','devtools','dplyr','forcats',
   'ggplot2','GPArotation','Hmisc','knitr','lubridate','maps','mgcv','mice',
   'mlr','mlr3','nFactors','nnet','plyr','poLCA','pricesensitivitymeter','pROC',
-  'pscl','psych','purrr','pwr','ranger','RColorBrewer','renv','reprex','Rcpp','reshape2',
-  'reticulate','roxygen2','rpart','rpart.plot','rsample','scales','shiny',
-  'stargazer','stats','tibble','tidymodels','tidyr','tidyverse','viridis',
-  'xtable')
+  'pscl','psych','purrr','pwr','ranger','RColorBrewer','renv','reprex','Rcpp',
+  'reshape2','reticulate','roxygen2','rpart','rpart.plot','rsample','scales',
+  'shiny','stargazer','stats','tibble','tidymodels','tidyr','tidyverse',
+  'viridis','xtable')
 
 install.packages(setdiff(libraries, 
                          rownames(installed.packages()))) 
 ```
 
 
-Keep in mind that certain functions will deprecate over time. Additionally, you can end up with problems if certain functions have the same names as functions in other packages. R is so dependent on packages that you'll want to look into a way to keep your environments stable. The `renv` [@R-renv] package will handle some of this work for you. There is an older package called `Packrat` that does the same thing. I also included the `reprex` [@R-reprex] package in this list. `reprex` produces _reproducible examples_ and you'll want to use it if you are asking for help on a piece of code. It is really useful, so check it out.  
+Keep in mind that certain functions will deprecate over time. Additionally, you can end up with problems if certain functions have the same names as functions in other packages. R is so dependent on packages that you'll want to look into a way to keep your environments stable. The `renv` [@R-renv] package will handle some of this work for you. As you begin writing more complex code you'll want to use one of these _dockering_ programs. There is an older package called `Packrat` that does the same thing. I also included the `reprex` [@R-reprex] package in this list. `reprex` produces _reproducible examples_ and you'll want to use it if you are asking for help on a piece of code. It is really useful, so check it out.  
 
 ## Simulating customer renewal data {#renewaldata}
 
-There are three main things we do with code in this book:
+The code in this book typically does three things over and over again:
 
 1. Write functions
 2. _Apply_ those functions to data
 3. Graph the output
 
-The first data set that we will create will be related to building a model to estimate the likelihood that a season ticket holder will renew season tickets. This data is difficult to create because we need to build certain patterns into the data that build on each other. The goal of this section is to build a function that will produce a data set _on command_. Due to the fact that it builds on itself, it is difficult to generalize the function. To that end, it doesn't demonstrate good programming practice, but it does have many elements that you will need to progress further.   
+The first data set that we will create will be related to building a model to estimate the likelihood that a season ticket holder will renew season tickets. This data is difficult to create because we need to build certain patterns into the data that build on each other. The goal of this section is to build a function that will produce a data set _on command_. Due to the fact that it builds on itself, it is difficult to generalize the function. To that end it doesn't demonstrate good programming practice, but it does have many elements that you will need to progress further.   
 
 When we build a function, we will denote it with a prefix _f-underscore_ and each word will be separated with an underscore. Columns in data sets will follow camel case (camelCase) where the first letter of each word is capitalized and there are no spaces between the words. You don't have to do it like this, but I have found that it works for me. Whatever you do, choose one way of doing this. You'll be glad that you did. 
 
-We will begin by creating the function `FOSBAAS::f_create_lead_scoring_data`. A best practice is to name a function in a way that tells you exactly what it does. If you aren't familiar with building functions, they are easy to understand. a simple _function_ that outputs a y in terms of x is a linear function where m = slope and b = the y intercept:
+We will begin by creating the function `FOSBAAS::f_create_lead_scoring_data`. A best practice is to name a function in a way that tells you exactly what it does. If you aren't familiar with building functions, they are easy to understand. We already looked at an example. A simple _function_ that outputs a y in terms of x is a linear function where m = slope and b = the y intercept:
 
 \begin{equation}
 \ {y} = {m}{x} + {b}
@@ -112,7 +115,7 @@ f_linear_equation <- function(x,slope,yIntercept){
 }
 ```
 
-You will input values for x, the slope, and the y-intercept, and the function will return a value for y. This is a very simplistic example, but it demonstrates functions well. Let's try it.
+You will input values for x, the slope, and the y-intercept, and the function will return a value for y. This is a very simplistic example, but it demonstrates functions very well. Let's try it.
 
 
 ```r
@@ -125,8 +128,7 @@ f_linear_equation( x          = 2,
 #> [1] 27
 ```
   
-
-Now we have a simple function that we can use to get the y value where x = 2, the slope of the line is 10, and the y intercept is 7. Input, process, output. You now that you have an understanding of the way a function works, you need a way to repetitively apply that function to data. You can do that in a lot of different ways. In most programming languages you'll use a `For` loop. We wrapped each following snippet in the `system.time()` function to demonstrate differences in the speed of each operation. 
+Now we have a simple function that we can use to get the y value where x = 2, the slope of the line is 10, and the y intercept is 7. Input, process, output. You now that you have an understanding of the way a function works, you need a way to repetitively apply that function to data. You can do that in many different ways. In most programming languages you'll use a `For` loop. We wrapped each following snippet in the `system.time()` function to demonstrate differences in the speed of each operation. 
 
 
 ```r
@@ -148,7 +150,7 @@ for(i in x){
 }
 )
 #>    user  system elapsed 
-#>    0.97    0.02    1.01
+#>    1.01    0.03    1.04
 
 line_value[1:3]
 #> [[1]]
@@ -161,7 +163,7 @@ line_value[1:3]
 #> [1] 37
 ```
 
-A `while` loop does the same thing, but is open-ended and is generally used much less frequently. In python, while loops are typically discouraged. However, I find them easier to read than other methods found here.
+A `while` loop does the same thing, but is open-ended and is generally used much less frequently. In python, while loops are typically discouraged. However, I find them easier to read than other methods found here. What you choose to use should consider how fast it might run and readability. Just work with what you find most comfortable if you aren't working with large data sets.
 
 
 
@@ -179,7 +181,7 @@ while(i <= length(x)){
 }
 )
 #>    user  system elapsed 
-#>    0.87    0.05    0.92
+#>    0.93    0.00    0.93
 
 line_value[1:3]
 #> [[1]]
@@ -203,7 +205,7 @@ system.time(
 line_value <- lapply(1:length(x), function(i) x[i]*m + b)
 )
 #>    user  system elapsed 
-#>    0.86    0.00    0.88
+#>    0.85    0.07    0.92
 
 line_value[1:3]
 #> [[1]]
@@ -227,7 +229,7 @@ system.time(
 line_value <- purrr::imap(x,~ .x*m + b)
 )
 #>    user  system elapsed 
-#>    0.98    0.03    1.01
+#>    0.98    0.01    1.00
 
 line_value[1:3]
 #> [[1]]
@@ -240,7 +242,7 @@ line_value[1:3]
 #> [1] 37
 ```
 
-These are the basic tools that you will use for everything we are going to do going forward. There are also tradeoffs that you will nned to contemplate. Speed and readability are important considerations. Ultimately, you can use whatever you feel most comfortable with. 
+These are the basic tools that you will use for everything we are going to do going forward. As I said, there are tradeoffs that you will need to contemplate. Speed and readability are important considerations. Ultimately, you can use whatever you feel most comfortable with. 
 
 The following sections will demonstrate the functions used to build some of the data sets that you will find in this book. We won't go into full detail with every data set. Full documentation on them can be found in the help section of the FOSBAAS package. Additionally, we did something a little strange on this first function, we feed it other helper functions. One of the helper functions requires the use of a function as well. We won't do this on the other data sets, but it is an important feature of R to understand. Everything you _do_ in R can be based on a function, and you can use them in a similar way to _methods_ in other languages. 
 
@@ -313,7 +315,7 @@ This data set includes several columns:
 8. Distance from the ballpark
 9. Did the account renew at the end of the season
 
-This process is a little involved (see figure \@ref(fig:datacreationprocess)). We'll walk through it step by step.
+This process is a little involved (see figure \@ref(fig:datacreationprocess)). Let's walk through it step by step.
 
 <div class="figure">
 <img src="images/ch2_data_creation_process.png" alt="Data creation process" width="100%" />
@@ -322,7 +324,7 @@ This process is a little involved (see figure \@ref(fig:datacreationprocess)). W
 
 ### Building our function
 
-The following code creates a _dataframe_ with nine columns and then assigns a list of names to each column. Think of a dataframe as an excel workbook. R uses `<-` for assignment, however you can use the `=` sign if you prefer. We then use the `sapply` function to create a sequence of random letters and numbers to represent account ids. The apply functions are incredibly important. You can type `?sapply` into the console in R studio if you want to learn more. I have said this twice. That is because it is important.  
+The following code creates a _dataframe_ with nine columns and then assigns a list of names to each column. Think of a dataframe as an excel workbook. R uses `<-` for assignment, however you can use the `=` sign if you prefer. We then use the `sapply` function to create a sequence of random letters and numbers to represent account ids. The apply functions are incredibly important. You can type `?sapply` into the console in R studio if you want to learn more. 
 
 This looks weird. `sth_data[,1]` references the first column in the data frame `dataframe[row,column]`. The first argument in `sapply` is giving the function a list of rows to traverse. The second argument uses something called an anonymous function, which is confusing. Look it up if you want a deeper understanding of it. It will begin to make sense as you play with it. `paste(sample(c(0:9, LETTERS), 12, replace=TRUE),collapse = ""))` simply creates a random twelve digit alphanumeric string. We follow this up with assigning a season to the season column. 
 
@@ -609,7 +611,7 @@ f_assign_renewal <- function(x,renew){
 }
 ```
 
-`f_renewal_assignment()` accepts `f_assign_renewal()` as an argument. It does a couple of things. First, it clusters _ticket_usage_ and _distance_ using the `kmeans()` function. We'll cover some clustering exercises in chapter \@ref(chapter4). The cluster assignments are added together and biased renewals are assigned based on how high or low the number is. Higher numbers are more likely to renew. We use a `while` loop instead of the `mapply()` function in this example. Vectorizing the loop with an `apply()` function is a better method when using _R_. 
+`f_renewal_assignment()` accepts `f_assign_renewal()` as an argument. It does a couple of things. First, it clusters _ticket_usage_ and _distance_ using the `kmeans()` function. We'll cover some clustering exercises in chapter \@ref(chapter4). The cluster assignments are added together and biased renewals are assigned based on how high or low the number is. Higher numbers are more likely to renew. We use a `while` loop instead of the `mapply()` function in this example. Vectorizing the loop with an `apply()` function is typically a better method when using _R_. 
 
 This function is more complex than the others and has a dependency `dplyr`. We also call a `list()` which is the most used data structure in R. A list is simply an indexed array. Dataframes are collections of lists. 
 
@@ -716,7 +718,7 @@ We can now use this function to produce as many different data sets as we would 
 
 ## Simulating Operations data
 
-Operations data might include any number of data sets. We'll cover building a ballpark ingress scans table here. However, there could be many others such as line length at a concessions stand or the number of transactions for F&B. 
+Operations data includes many different data sets. We'll cover building a ballpark ingress scans table here. However, there could be many others such as line length at a concessions stand or the number of transactions for F&B. 
 
 ### Ticket scans
 
@@ -797,7 +799,7 @@ We'll begin by simulating three seasons worth of data. For the sake of simplicit
 - Plan purchases
 - Qualitative data obtained through surveys
 
-From a macro-level, elements of the season will be important. Some of our analysis will cover a top-down approach to forecasting sales and revenue. 
+Elements of the season will be important from a macro level. Some of our analysis will cover a top-down approach to forecasting sales and revenue. 
 
 ## Simulating season data
 
@@ -805,7 +807,7 @@ Professional baseball teams typically play 81 games. We'll be simulating three s
 
 ### Function to manually bias our season data
 
-This function `f_simulate_sales` modifies certain characteristics we'll use to forecast sales later in the book. It is creating distributions of numbers that will be used to place our variables on a defined range of possibilities. Instead of walking through the code this time, I'll just tell you what it does:
+This function `f_simulate_sales` modifies certain characteristics we'll use to forecast sales. It is creating distributions of numbers that will be used to place our variables on a defined range of possibilities. Instead of walking through the code this time, I'll just tell you what it does:
 
 1. Creates a base attendance for each team. For instance, if we play BOS, CHC, NYY, LAD, or STL we get the highest sales base.
 2. If the day of the week falls on the weekend the sales base is higher than a weekday.
@@ -1046,7 +1048,7 @@ Table: (\#tab:customerdataframesurveydata2)Perceptual data
 
 ### Pricing survey data
 
-This data will be used to perform a van Westendorp analysis and to demonstrate the basics of qualitative pricing analytics. You'll want this data in a specific format. 
+This data will be used to perform a Van Westendorp analysis and to demonstrate the basics of qualitative pricing analytics. You'll want this data in a specific format. 
 
 
 ```r
@@ -1092,7 +1094,7 @@ These data sets represent the main top-line data that you would tend to use work
 
 ## Housing your data and functions in a package
 
-While this book isn't meant to be an expose on how to use the R language, R has some great features for analytic work that are worth exploring. They will make our lives easier as we move through the subsequent chapters. Analyitical work tends to be repetitive and housing your functions in a package will make your life easier and worth living. There are many resources available that make building your own package easy and we'll cover the basics here.
+While this book isn't meant to be an expose on how to use the R language, R has some great features for analytics work that are worth exploring. They will make our lives easier as we move through the subsequent chapters. Analytically focused work tends to be repetitive and housing your functions in a package will make your life easier and worth living. There are many resources available that make building your own package easy and we'll cover the basics here.
 
 There are two packages that will make building packages really simple: `devtools` [@R-devtools] and `roxygen` [@R-roxygen2]. There are also numerous resources on how to build your own package. Rstudio even has some built-in-tools that makes this process even easier. I want to demonstrate this process because it is really easy and is incredibly useful. 
 
