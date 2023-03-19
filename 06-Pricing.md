@@ -1,5 +1,5 @@
 
-# Pricing and forecasting {#chapter6}
+# Pricing and Forecasting {#chapter6}
 
 Like _segmentation_, it would be easy to write an entire book on how to forecast and price tickets. There are innumerable considerations such as determining a _willingness to pay_, taking _arbitrage_ into account, _cannibalizing your sales_, _margins_, _marketing channel_, _product suite_, _brand considerations_, and _competing internal goals_. This chapter also immediately follows some examples on how you might potentially segment a market. This is purposeful. Pricing is a dynamic exercise and in certain circumstances products may be worth more or less money. However, pricing isn't always a deliberate exercise. Consider this quote found in Robert Phillips' book "Revenue and Pricing Optimization" [@Phillips2005]
 

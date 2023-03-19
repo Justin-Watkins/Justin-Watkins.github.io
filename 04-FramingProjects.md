@@ -1,5 +1,5 @@
 
-# Structuring projects {#chapter4}
+# Structuring Projects {#chapter4}
 
 
 

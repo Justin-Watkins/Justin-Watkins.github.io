@@ -1,5 +1,5 @@
 
-# Exploring your data {#chapter3}
+# Data Exploration {#chapter3}
 
 R makes it easy to do exploratory work on your data. There are numerous packages and functions that make it simple to visualize and tabulate your data. We'll leverage many packages outlined in the book "R For Data Science" [@Wickham2017] and our graphics will be created with an excellent graphics package called `ggplot2` [@R-ggplot2]. `ggplot2` makes it easy to look at data in many different ways.
 

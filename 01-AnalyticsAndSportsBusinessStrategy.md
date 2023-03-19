@@ -1,5 +1,5 @@
 
-# Analytics and strategy {#chapter1}
+# Analytics and Strategy {#chapter1}
 
 
 

@@ -1,5 +1,5 @@
 
-# Marketing promotions {#chapter8}
+# Promotions {#chapter8}
 
 
 

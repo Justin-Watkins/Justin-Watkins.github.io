@@ -1,5 +1,5 @@
 
-# Using code and sports data {#chapter2}
+# Code and Data {#chapter2}
 
 
 
@@ -150,7 +150,7 @@ for(i in x){
 }
 )
 #>    user  system elapsed 
-#>    1.01    0.03    1.04
+#>    1.01    0.03    1.05
 
 line_value[1:3]
 #> [[1]]
@@ -181,7 +181,7 @@ while(i <= length(x)){
 }
 )
 #>    user  system elapsed 
-#>    0.93    0.00    0.93
+#>    0.92    0.00    0.93
 
 line_value[1:3]
 #> [[1]]
@@ -205,7 +205,7 @@ system.time(
 line_value <- lapply(1:length(x), function(i) x[i]*m + b)
 )
 #>    user  system elapsed 
-#>    0.85    0.07    0.92
+#>    0.86    0.03    0.89
 
 line_value[1:3]
 #> [[1]]
@@ -229,7 +229,7 @@ system.time(
 line_value <- purrr::imap(x,~ .x*m + b)
 )
 #>    user  system elapsed 
-#>    0.98    0.01    1.00
+#>       1       0       1
 
 line_value[1:3]
 #> [[1]]

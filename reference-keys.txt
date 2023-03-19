@@ -150,7 +150,7 @@ book-liscense
 code-liscense
 contact-information
 chapter1
-understanding-the-meaning-of-strategy
+understanding-our-definition-of-strategy
 technologies-place-in-strategy-and-analytics
 data
 understanding-data-structures

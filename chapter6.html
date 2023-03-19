@@ -4,17 +4,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 6 Pricing and forecasting | Fundamentals of Sports Business Analytics and Strategy</title>
+<title>Chapter 6 Pricing and Forecasting | Fundamentals of Sports Business Analytics and Strategy</title>
 <meta name="author" content="Justin Watkins">
 <meta name="description" content="Like segmentation, it would be easy to write an entire book on how to forecast and price tickets. There are innumerable considerations such as determining a willingness to pay, taking arbitrage...">
 <meta name="generator" content="bookdown 0.28 with bs4_book()">
-<meta property="og:title" content="Chapter 6 Pricing and forecasting | Fundamentals of Sports Business Analytics and Strategy">
+<meta property="og:title" content="Chapter 6 Pricing and Forecasting | Fundamentals of Sports Business Analytics and Strategy">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://justin-watkins.github.io/chapter6.html">
 <meta property="og:image" content="https://justin-watkins.github.io/images/cover.png">
 <meta property="og:description" content="Like segmentation, it would be easy to write an entire book on how to forecast and price tickets. There are innumerable considerations such as determining a willingness to pay, taking arbitrage...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 6 Pricing and forecasting | Fundamentals of Sports Business Analytics and Strategy">
+<meta name="twitter:title" content="Chapter 6 Pricing and Forecasting | Fundamentals of Sports Business Analytics and Strategy">
 <meta name="twitter:description" content="Like segmentation, it would be easy to write an entire book on how to forecast and price tickets. There are innumerable considerations such as determining a willingness to pay, taking arbitrage...">
 <meta name="twitter:image" content="https://justin-watkins.github.io/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -71,16 +71,16 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">Abstract and forward</a></li>
-<li><a class="" href="chapter1.html"><span class="header-section-number">1</span> Analytics and sports business strategy</a></li>
-<li><a class="" href="chapter2.html"><span class="header-section-number">2</span> Using code and sports data</a></li>
-<li><a class="" href="chapter3.html"><span class="header-section-number">3</span> Exploring your data</a></li>
-<li><a class="" href="chapter4.html"><span class="header-section-number">4</span> Structuring projects</a></li>
+<li><a class="" href="chapter1.html"><span class="header-section-number">1</span> Analytics and Strategy</a></li>
+<li><a class="" href="chapter2.html"><span class="header-section-number">2</span> Code and Data</a></li>
+<li><a class="" href="chapter3.html"><span class="header-section-number">3</span> Data Exploration</a></li>
+<li><a class="" href="chapter4.html"><span class="header-section-number">4</span> Structuring Projects</a></li>
 <li><a class="" href="chapter5.html"><span class="header-section-number">5</span> Segmentation</a></li>
-<li><a class="active" href="chapter6.html"><span class="header-section-number">6</span> Pricing and forecasting</a></li>
+<li><a class="active" href="chapter6.html"><span class="header-section-number">6</span> Pricing and Forecasting</a></li>
 <li><a class="" href="chapter7.html"><span class="header-section-number">7</span> Lead Scoring</a></li>
-<li><a class="" href="chapter8.html"><span class="header-section-number">8</span> Marketing promotions</a></li>
-<li><a class="" href="chapter9.html"><span class="header-section-number">9</span> Consumer Research</a></li>
-<li><a class="" href="chapter10.html"><span class="header-section-number">10</span> Operations and Analytics</a></li>
+<li><a class="" href="chapter8.html"><span class="header-section-number">8</span> Promotions</a></li>
+<li><a class="" href="chapter9.html"><span class="header-section-number">9</span> Research</a></li>
+<li><a class="" href="chapter10.html"><span class="header-section-number">10</span> Operations</a></li>
 <li><a class="" href="Chapter11.html"><span class="header-section-number">11</span> Epilogue</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -92,7 +92,7 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="chapter6" class="section level1" number="6">
 <h1>
-<span class="header-section-number">6</span> Pricing and forecasting<a class="anchor" aria-label="anchor" href="#chapter6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6</span> Pricing and Forecasting<a class="anchor" aria-label="anchor" href="#chapter6"><i class="fas fa-link"></i></a>
 </h1>
 <p>Like <em>segmentation</em>, it would be easy to write an entire book on how to forecast and price tickets. There are innumerable considerations such as determining a <em>willingness to pay</em>, taking <em>arbitrage</em> into account, <em>cannibalizing your sales</em>, <em>margins</em>, <em>marketing channel</em>, <em>product suite</em>, <em>brand considerations</em>, and <em>competing internal goals</em>. This chapter also immediately follows some examples on how you might potentially segment a market. This is purposeful. Pricing is a dynamic exercise and in certain circumstances products may be worth more or less money. However, pricing isn’t always a deliberate exercise. Consider this quote found in Robert Phillips’ book “Revenue and Pricing Optimization” <span class="citation">(<a href="references.html#ref-Phillips2005" role="doc-biblioref">Phillips 2005</a>)</span></p>
 <blockquote>
@@ -1867,7 +1867,7 @@ Figure 6.3: Finding a local maximum
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#chapter6"><span class="header-section-number">6</span> Pricing and forecasting</a></li>
+<li><a class="nav-link" href="#chapter6"><span class="header-section-number">6</span> Pricing and Forecasting</a></li>
 <li><a class="nav-link" href="#understanding-your-inventory"><span class="header-section-number">6.1</span> Understanding your inventory</a></li>
 <li><a class="nav-link" href="#understanding-pricing-mechanisms"><span class="header-section-number">6.2</span> Understanding pricing mechanisms</a></li>
 <li>
