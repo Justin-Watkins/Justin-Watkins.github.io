@@ -910,7 +910,7 @@ If an interval crosses zero, it isn't significant and we can potentially disrega
 
 #### Linear Regression
 
-We'll go into regression in more detail in several later chapter.. Functionally, the output is the same as an ANOVA. 
+We'll go into regression in more detail in several later chapters. Functionally, the output is the same as an ANOVA. 
 
 
 ```r
@@ -1021,6 +1021,8 @@ We covered several key concepts in this chapter:
 - When interpreting or communicating findings the simplest explanation is usually the best. Most people will not care how you did something. Let them ask you for more context.
 
 Think of this chapter as a reference. You just went through the basic Business Intelligence and analytics tools that you will use for data exploration. You can also use Business Intelligence tools like Tableau to add additional dimensions to your illustrations. If you want to build custom websites R provides tools to accomplish this as well. You could even use javascript or python to accomplish the same thing. 
+
+
 
 
 
