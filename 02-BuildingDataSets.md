@@ -150,7 +150,7 @@ for(i in x){
 }
 )
 #>    user  system elapsed 
-#>    1.01    0.03    1.05
+#>    1.02    0.00    1.02
 
 line_value[1:3]
 #> [[1]]
@@ -205,7 +205,7 @@ system.time(
 line_value <- lapply(1:length(x), function(i) x[i]*m + b)
 )
 #>    user  system elapsed 
-#>    0.86    0.03    0.89
+#>    0.92    0.00    0.93
 
 line_value[1:3]
 #> [[1]]
@@ -229,7 +229,7 @@ system.time(
 line_value <- purrr::imap(x,~ .x*m + b)
 )
 #>    user  system elapsed 
-#>       1       0       1
+#>    0.95    0.01    0.98
 
 line_value[1:3]
 #> [[1]]
@@ -1176,6 +1176,40 @@ This chapter was written to introduce you to a little code in R and to explain o
 Additionally, we covered the basics of how to build a package in R. Analysis tends to be repetitive. Housing some of your specific functions in a package is a very simple way to document what those functions do and to easily access them. R's extensibility is one of its best features and makes it an incredibly flexible tool (especially when coupled with RStudio). 
 
 In Chapter \@ref(chapter3) will delve into what to do with this data by creating graphics and summarizing some data. Subsequent chapters will explore additional functionality and will delve into solving more specific problems. They will also spend a significant amount of time explaining how to think about those problems and how to solve them. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
