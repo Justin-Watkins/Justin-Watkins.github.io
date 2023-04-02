@@ -331,7 +331,7 @@
 <p>The ticket sales service manager would like a way to understand which accounts are less likely to renew their season tickets.</p>
 </blockquote>
 <p>We’ll use the mlr3 library <span class="citation">(<a href="references.html#ref-R-mlr" role="doc-biblioref">Bischl et al. 2021</a>)</span> to demonstrate a couple of different machine learning algorithms. The package mlr3 is similar to caret <span class="citation">(<a href="references.html#ref-R-caret" role="doc-biblioref">Kuhn 2022</a>)</span> which has been refactored into tidymodels <span class="citation">(<a href="references.html#ref-R-tidymodels" role="doc-biblioref">Kuhn and Wickham 2022</a>)</span>. Caret was a great library that sought to create a unifying API for scores of other R libraries. We’ll look tidymodels in the next chapter. To me, mlr3 is very reminiscent of scikit-learn in Python. If you like using python for analysis, mlr3 will feel familiar.</p>
-<p>While we can call our functions directly, this library makes the process much easier. The lack of consistent frameworks in R is one of the languages biggest drawbacks. Additionally, mlr3 has excellent documentation <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://mlr3book.mlr-org.com/train-predict.html" class="uri"&gt;https://mlr3book.mlr-org.com/train-predict.html&lt;/a&gt;&lt;/p&gt;'><sup>67</sup></a>.</p>
+<p>While we can call our functions directly, this library makes the process much easier. The lack of consistent frameworks in R is one of the languages biggest drawbacks. Additionally, mlr3 has excellent documentation <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://mlr3book.mlr-org.com/train-predict.html" class="uri"&gt;https://mlr3book.mlr-org.com/train-predict.html&lt;/a&gt;&lt;/p&gt;'><sup>66</sup></a>.</p>
 <p>Using a framework also comes with some issues.</p>
 <ol style="list-style-type: decimal">
 <li>You’ll have to learn it, which adds some complexity to the task.</li>
@@ -564,7 +564,7 @@
 <span class="header-section-number">7.2.1.2.1</span> Understanding geography and building maps<a class="anchor" aria-label="anchor" href="#understanding-geography-and-building-maps"><i class="fas fa-link"></i></a>
 </h5>
 <p>Geography plays a large role in selling tickets to sporting events. This is especially true for sports that have more games such as baseball. Coupling the digital and physical assets of the club may eventually make this less important holistically. However, for ticket sales geography is and will remain a critical point of consideration.</p>
-<p>R also isn’t the best way to do this, but it is an easy way to accomplish it in the same analysis platform. GIS is a large field unto itself that is outside the scope of this book. However, R has multiple libraries devoted to maps and it is a good choice if you aren’t looking for extremely high quality geographic graphics. This map was created using stamen maps<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://maps.stamen.com/#watercolor/12/37.7706/-122.3782" class="uri"&gt;http://maps.stamen.com/#watercolor/12/37.7706/-122.3782&lt;/a&gt;&lt;/p&gt;'><sup>68</sup></a>, an open source tool that can be used for a wide variety of projects.</p>
+<p>R also isn’t the best way to do this, but it is an easy way to accomplish it in the same analysis platform. GIS is a large field unto itself that is outside the scope of this book. However, R has multiple libraries devoted to maps and it is a good choice if you aren’t looking for extremely high quality geographic graphics. This map was created using stamen maps<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://maps.stamen.com/#watercolor/12/37.7706/-122.3782" class="uri"&gt;http://maps.stamen.com/#watercolor/12/37.7706/-122.3782&lt;/a&gt;&lt;/p&gt;'><sup>67</sup></a>, an open source tool that can be used for a wide variety of projects.</p>
 <div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Using R to visualize geographic data</span></span>
@@ -589,7 +589,7 @@
 <span>             mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y <span class="op">=</span> <span class="va">latitude</span><span class="op">)</span>,</span>
 <span>             size <span class="op">=</span> <span class="fl">.2</span>,alpha <span class="op">=</span> <span class="fl">.5</span>, color<span class="op">=</span> <span class="st">'dodgerblue'</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="images/ch7_map_ex.png" width="100%"></div>
-<p>These maps aren’t the best, but they are easy to execute and can give you much of the same insight you would get from a more sophisticated product such as ArcGIS <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.esri.com/en-us/home" class="uri"&gt;https://www.esri.com/en-us/home&lt;/a&gt;&lt;/p&gt;'><sup>69</sup></a>. R also makes it easy to access google APIs that will allow you to Geocode addresses and perform many other interesting tasks with geographic data. You can find a multitude of informative demos online.</p>
+<p>These maps aren’t the best, but they are easy to execute and can give you much of the same insight you would get from a more sophisticated product such as ArcGIS <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.esri.com/en-us/home" class="uri"&gt;https://www.esri.com/en-us/home&lt;/a&gt;&lt;/p&gt;'><sup>68</sup></a>. R also makes it easy to access google APIs that will allow you to Geocode addresses and perform many other interesting tasks with geographic data. You can find a multitude of informative demos online.</p>
 <p>Using county names you can create maps that look like the following. This one took a lot of data wrangling and uses the maps <span class="citation">(<a href="references.html#ref-R-maps" role="doc-biblioref">Brownrigg 2021</a>)</span> package, but the output looks nice. The underlying data is identical.</p>
 <div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -675,7 +675,7 @@
 <h4>
 <span class="header-section-number">7.2.1.3</span> Model the data<a class="anchor" aria-label="anchor" href="#model"><i class="fas fa-link"></i></a>
 </h4>
-<p>While we will use the mlr3 framework here, again it is important to understand that there is no need to use one of these frameworks. You can call functions directly. mlr3 is descended from mlr, <span class="citation">(<a href="references.html#ref-R-mlr" role="doc-biblioref">Bischl et al. 2021</a>)</span> but is built on a more modern framework. You’ll want to begin by downloading the library and poking around in it <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://mlr3book.mlr-org.com/train-predict.html" class="uri"&gt;https://mlr3book.mlr-org.com/train-predict.html&lt;/a&gt;&lt;/p&gt;'><sup>70</sup></a>.</p>
+<p>While we will use the mlr3 framework here, again it is important to understand that there is no need to use one of these frameworks. You can call functions directly. mlr3 is descended from mlr, <span class="citation">(<a href="references.html#ref-R-mlr" role="doc-biblioref">Bischl et al. 2021</a>)</span> but is built on a more modern framework. You’ll want to begin by downloading the library and poking around in it <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://mlr3book.mlr-org.com/train-predict.html" class="uri"&gt;https://mlr3book.mlr-org.com/train-predict.html&lt;/a&gt;&lt;/p&gt;'><sup>69</sup></a>.</p>
 <div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Download and install the mlr3 libraries</span></span>
@@ -889,16 +889,16 @@ Figure 7.1: Resampling concept
 <span>                   <span class="va">learner_ranger_rf</span>, </span>
 <span>                   <span class="va">resampling_mod_data</span>, </span>
 <span>                   store_models <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; INFO  [18:06:11.563] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/10)</span></span>
-<span><span class="co">#&gt; INFO  [18:06:15.480] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 2/10)</span></span>
-<span><span class="co">#&gt; INFO  [18:06:19.316] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 3/10)</span></span>
-<span><span class="co">#&gt; INFO  [18:06:23.131] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 4/10)</span></span>
-<span><span class="co">#&gt; INFO  [18:06:26.745] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 5/10)</span></span>
-<span><span class="co">#&gt; INFO  [18:06:30.570] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 6/10)</span></span>
-<span><span class="co">#&gt; INFO  [18:06:34.522] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 7/10)</span></span>
-<span><span class="co">#&gt; INFO  [18:06:37.987] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 8/10)</span></span>
-<span><span class="co">#&gt; INFO  [18:06:41.709] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 9/10)</span></span>
-<span><span class="co">#&gt; INFO  [18:06:45.665] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 10/10)</span></span></code></pre></div>
+<span><span class="co">#&gt; INFO  [22:05:59.682] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/10)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:03.593] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 2/10)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:07.453] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 3/10)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:11.317] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 4/10)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:14.918] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 5/10)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:18.765] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 6/10)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:22.701] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 7/10)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:26.151] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 8/10)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:29.732] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 9/10)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:33.646] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 10/10)</span></span></code></pre></div>
 <p>You now have a more confident way to evaluate your model.</p>
 <div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -971,123 +971,123 @@ Figure 7.1: Resampling concept
 <span><span class="co"># Run the models</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">tuner</span> <span class="op">&lt;-</span> <span class="va">tuner_rf</span><span class="op">$</span><span class="fu">optimize</span><span class="op">(</span><span class="va">tune_instance</span><span class="op">)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:00.705] [bbotk] Starting to optimize 3 parameter(s) with '&lt;OptimizerRandomSearch&gt;' and '&lt;TerminatorEvals&gt; [n_evals=10, k=0]'</span></span>
-<span><span class="co">#&gt; INFO  [18:07:00.717] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:00.736] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [18:07:00.740] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:02.640] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [18:07:02.762] [bbotk] Result of batch 1:</span></span>
-<span><span class="co">#&gt; INFO  [18:07:02.763] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [18:07:02.763] [bbotk]            123        18       542   0.175093        0</span></span>
-<span><span class="co">#&gt; INFO  [18:07:02.763] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [18:07:02.763] [bbotk]       0             1.88</span></span>
-<span><span class="co">#&gt; INFO  [18:07:02.763] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [18:07:02.763] [bbotk]  08bef95b-8e95-4033-b223-fc504835ac8a</span></span>
-<span><span class="co">#&gt; INFO  [18:07:02.766] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:02.782] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [18:07:02.787] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:04.357] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [18:07:04.379] [bbotk] Result of batch 2:</span></span>
-<span><span class="co">#&gt; INFO  [18:07:04.380] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [18:07:04.380] [bbotk]            200        17       507  0.1726855        0</span></span>
-<span><span class="co">#&gt; INFO  [18:07:04.380] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [18:07:04.380] [bbotk]       0             1.56</span></span>
-<span><span class="co">#&gt; INFO  [18:07:04.380] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [18:07:04.380] [bbotk]  183d0944-08f5-4dcc-a34e-d9fe754902a4</span></span>
-<span><span class="co">#&gt; INFO  [18:07:04.382] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:04.400] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [18:07:04.404] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:05.870] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [18:07:05.891] [bbotk] Result of batch 3:</span></span>
-<span><span class="co">#&gt; INFO  [18:07:05.892] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [18:07:05.892] [bbotk]            120        11       508  0.1739987        0</span></span>
-<span><span class="co">#&gt; INFO  [18:07:05.892] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [18:07:05.892] [bbotk]       0             1.47</span></span>
-<span><span class="co">#&gt; INFO  [18:07:05.892] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [18:07:05.892] [bbotk]  6e661880-a312-49da-a2a0-69f5fbf4cd1c</span></span>
-<span><span class="co">#&gt; INFO  [18:07:05.894] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:05.911] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [18:07:05.915] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:07.631] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [18:07:07.651] [bbotk] Result of batch 4:</span></span>
-<span><span class="co">#&gt; INFO  [18:07:07.653] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [18:07:07.653] [bbotk]             79        11       520  0.1755308        0</span></span>
-<span><span class="co">#&gt; INFO  [18:07:07.653] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [18:07:07.653] [bbotk]       0             1.71</span></span>
-<span><span class="co">#&gt; INFO  [18:07:07.653] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [18:07:07.653] [bbotk]  ba5a652c-e2b9-4a0c-90bc-448c25a07919</span></span>
-<span><span class="co">#&gt; INFO  [18:07:07.655] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:07.672] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [18:07:07.676] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:09.350] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [18:07:09.372] [bbotk] Result of batch 5:</span></span>
-<span><span class="co">#&gt; INFO  [18:07:09.373] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [18:07:09.373] [bbotk]            125        11       594  0.1739987        0</span></span>
-<span><span class="co">#&gt; INFO  [18:07:09.373] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [18:07:09.373] [bbotk]       0             1.65</span></span>
-<span><span class="co">#&gt; INFO  [18:07:09.373] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [18:07:09.373] [bbotk]  d17e7c28-b5a6-413b-880c-b6704b8895ea</span></span>
-<span><span class="co">#&gt; INFO  [18:07:09.375] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:09.393] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [18:07:10.599] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:15.290] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [18:07:15.312] [bbotk] Result of batch 6:</span></span>
-<span><span class="co">#&gt; INFO  [18:07:15.313] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [18:07:15.313] [bbotk]            109        16       597  0.1748742        0</span></span>
-<span><span class="co">#&gt; INFO  [18:07:15.313] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [18:07:15.313] [bbotk]       0             4.69</span></span>
-<span><span class="co">#&gt; INFO  [18:07:15.313] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [18:07:15.313] [bbotk]  1c6e6850-5653-48e7-ae8b-c368fdf5048c</span></span>
-<span><span class="co">#&gt; INFO  [18:07:15.316] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:15.332] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [18:07:15.336] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:16.274] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [18:07:16.297] [bbotk] Result of batch 7:</span></span>
-<span><span class="co">#&gt; INFO  [18:07:16.298] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [18:07:16.298] [bbotk]            124         4       580  0.1696214        0</span></span>
-<span><span class="co">#&gt; INFO  [18:07:16.298] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [18:07:16.298] [bbotk]       0             0.94</span></span>
-<span><span class="co">#&gt; INFO  [18:07:16.298] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [18:07:16.298] [bbotk]  30ad9f39-4b9f-475f-8909-5c741fcfc9fd</span></span>
-<span><span class="co">#&gt; INFO  [18:07:16.300] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:16.317] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [18:07:16.321] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:19.162] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [18:07:19.184] [bbotk] Result of batch 8:</span></span>
-<span><span class="co">#&gt; INFO  [18:07:19.185] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [18:07:19.185] [bbotk]             16        17       560  0.1792515        0</span></span>
-<span><span class="co">#&gt; INFO  [18:07:19.185] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [18:07:19.185] [bbotk]       0             2.83</span></span>
-<span><span class="co">#&gt; INFO  [18:07:19.185] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [18:07:19.185] [bbotk]  56616a83-bfb6-4a04-97f2-72fff7714be2</span></span>
-<span><span class="co">#&gt; INFO  [18:07:19.187] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:19.203] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [18:07:19.207] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:20.105] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [18:07:20.130] [bbotk] Result of batch 9:</span></span>
-<span><span class="co">#&gt; INFO  [18:07:20.131] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [18:07:20.131] [bbotk]             97         5       520  0.1696214        0</span></span>
-<span><span class="co">#&gt; INFO  [18:07:20.131] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [18:07:20.131] [bbotk]       0             0.89</span></span>
-<span><span class="co">#&gt; INFO  [18:07:20.131] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [18:07:20.131] [bbotk]  216dae34-ab4b-4f7f-bc05-07a5ce811381</span></span>
-<span><span class="co">#&gt; INFO  [18:07:20.135] [bbotk] Evaluating 1 configuration(s)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:20.153] [mlr3] Running benchmark with 1 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [18:07:20.158] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:22.771] [mlr3] Finished benchmark</span></span>
-<span><span class="co">#&gt; INFO  [18:07:22.793] [bbotk] Result of batch 10:</span></span>
-<span><span class="co">#&gt; INFO  [18:07:22.794] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
-<span><span class="co">#&gt; INFO  [18:07:22.794] [bbotk]             42        20       560  0.1772817        0</span></span>
-<span><span class="co">#&gt; INFO  [18:07:22.794] [bbotk]  errors runtime_learners</span></span>
-<span><span class="co">#&gt; INFO  [18:07:22.794] [bbotk]       0             2.59</span></span>
-<span><span class="co">#&gt; INFO  [18:07:22.794] [bbotk]                                 uhash</span></span>
-<span><span class="co">#&gt; INFO  [18:07:22.794] [bbotk]  77f82b13-8b0f-4aa7-9a7c-92cbd112b075</span></span>
-<span><span class="co">#&gt; INFO  [18:07:22.800] [bbotk] Finished optimizing after 10 evaluation(s)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:22.800] [bbotk] Result:</span></span>
-<span><span class="co">#&gt; INFO  [18:07:22.801] [bbotk]  min.node.size max.depth num.trees learner_param_vals</span></span>
-<span><span class="co">#&gt; INFO  [18:07:22.801] [bbotk]            124         4       580          &lt;list[5]&gt;</span></span>
-<span><span class="co">#&gt; INFO  [18:07:22.801] [bbotk]   x_domain classif.ce</span></span>
-<span><span class="co">#&gt; INFO  [18:07:22.801] [bbotk]  &lt;list[3]&gt;  0.1696214</span></span></code></pre></div>
+<span><span class="co">#&gt; INFO  [22:06:48.560] [bbotk] Starting to optimize 3 parameter(s) with '&lt;OptimizerRandomSearch&gt;' and '&lt;TerminatorEvals&gt; [n_evals=10, k=0]'</span></span>
+<span><span class="co">#&gt; INFO  [22:06:48.573] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:48.594] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [22:06:48.598] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:50.482] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [22:06:50.617] [bbotk] Result of batch 1:</span></span>
+<span><span class="co">#&gt; INFO  [22:06:50.619] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [22:06:50.619] [bbotk]            123        18       542   0.175093        0</span></span>
+<span><span class="co">#&gt; INFO  [22:06:50.619] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [22:06:50.619] [bbotk]       0             1.88</span></span>
+<span><span class="co">#&gt; INFO  [22:06:50.619] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [22:06:50.619] [bbotk]  e570af96-2cbe-4c70-a1e2-2f9b553ca937</span></span>
+<span><span class="co">#&gt; INFO  [22:06:50.622] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:50.643] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [22:06:50.649] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:52.418] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [22:06:52.439] [bbotk] Result of batch 2:</span></span>
+<span><span class="co">#&gt; INFO  [22:06:52.440] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [22:06:52.440] [bbotk]            200        17       507  0.1726855        0</span></span>
+<span><span class="co">#&gt; INFO  [22:06:52.440] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [22:06:52.440] [bbotk]       0             1.77</span></span>
+<span><span class="co">#&gt; INFO  [22:06:52.440] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [22:06:52.440] [bbotk]  26a0c90f-5e90-4e0e-82c8-0ba163d44982</span></span>
+<span><span class="co">#&gt; INFO  [22:06:52.443] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:52.459] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [22:06:52.464] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:54.044] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [22:06:54.065] [bbotk] Result of batch 3:</span></span>
+<span><span class="co">#&gt; INFO  [22:06:54.066] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [22:06:54.066] [bbotk]            120        11       508  0.1739987        0</span></span>
+<span><span class="co">#&gt; INFO  [22:06:54.066] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [22:06:54.066] [bbotk]       0             1.57</span></span>
+<span><span class="co">#&gt; INFO  [22:06:54.066] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [22:06:54.066] [bbotk]  7aa7858c-9de2-4257-ab5d-3872b4cacbd3</span></span>
+<span><span class="co">#&gt; INFO  [22:06:54.068] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:54.085] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [22:06:54.090] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:55.935] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [22:06:55.957] [bbotk] Result of batch 4:</span></span>
+<span><span class="co">#&gt; INFO  [22:06:55.958] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [22:06:55.958] [bbotk]             79        11       520  0.1755308        0</span></span>
+<span><span class="co">#&gt; INFO  [22:06:55.958] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [22:06:55.958] [bbotk]       0             1.84</span></span>
+<span><span class="co">#&gt; INFO  [22:06:55.958] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [22:06:55.958] [bbotk]  6ebaa93b-79bc-414e-ba4a-ca361055c4de</span></span>
+<span><span class="co">#&gt; INFO  [22:06:55.961] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:55.979] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [22:06:55.984] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:57.706] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [22:06:57.727] [bbotk] Result of batch 5:</span></span>
+<span><span class="co">#&gt; INFO  [22:06:57.728] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [22:06:57.728] [bbotk]            125        11       594  0.1739987        0</span></span>
+<span><span class="co">#&gt; INFO  [22:06:57.728] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [22:06:57.728] [bbotk]       0             1.71</span></span>
+<span><span class="co">#&gt; INFO  [22:06:57.728] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [22:06:57.728] [bbotk]  647166f6-e0d2-451d-bf74-da87cac452ce</span></span>
+<span><span class="co">#&gt; INFO  [22:06:57.731] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [22:06:57.746] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [22:06:58.935] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [22:07:01.152] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [22:07:01.175] [bbotk] Result of batch 6:</span></span>
+<span><span class="co">#&gt; INFO  [22:07:01.177] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [22:07:01.177] [bbotk]            109        16       597  0.1748742        0</span></span>
+<span><span class="co">#&gt; INFO  [22:07:01.177] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [22:07:01.177] [bbotk]       0             2.22</span></span>
+<span><span class="co">#&gt; INFO  [22:07:01.177] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [22:07:01.177] [bbotk]  6c4a994c-aaf3-4b59-a26e-14a8fda87c69</span></span>
+<span><span class="co">#&gt; INFO  [22:07:01.179] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [22:07:01.195] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [22:07:01.199] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [22:07:02.113] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [22:07:02.137] [bbotk] Result of batch 7:</span></span>
+<span><span class="co">#&gt; INFO  [22:07:02.138] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [22:07:02.138] [bbotk]            124         4       580  0.1696214        0</span></span>
+<span><span class="co">#&gt; INFO  [22:07:02.138] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [22:07:02.138] [bbotk]       0             0.92</span></span>
+<span><span class="co">#&gt; INFO  [22:07:02.138] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [22:07:02.138] [bbotk]  6cd3818d-b5be-40d4-b5eb-96ad4c000968</span></span>
+<span><span class="co">#&gt; INFO  [22:07:02.141] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [22:07:02.161] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [22:07:02.165] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [22:07:04.955] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [22:07:04.976] [bbotk] Result of batch 8:</span></span>
+<span><span class="co">#&gt; INFO  [22:07:04.977] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [22:07:04.977] [bbotk]             16        17       560  0.1792515        0</span></span>
+<span><span class="co">#&gt; INFO  [22:07:04.977] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [22:07:04.977] [bbotk]       0             2.78</span></span>
+<span><span class="co">#&gt; INFO  [22:07:04.977] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [22:07:04.977] [bbotk]  7a89501f-b719-44bd-a945-b7e793db42dd</span></span>
+<span><span class="co">#&gt; INFO  [22:07:04.979] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [22:07:04.995] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [22:07:04.999] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [22:07:05.944] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [22:07:05.969] [bbotk] Result of batch 9:</span></span>
+<span><span class="co">#&gt; INFO  [22:07:05.970] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [22:07:05.970] [bbotk]             97         5       520  0.1696214        0</span></span>
+<span><span class="co">#&gt; INFO  [22:07:05.970] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [22:07:05.970] [bbotk]       0             0.93</span></span>
+<span><span class="co">#&gt; INFO  [22:07:05.970] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [22:07:05.970] [bbotk]  c7036e8d-3512-4477-87c5-ef3cdeb7d524</span></span>
+<span><span class="co">#&gt; INFO  [22:07:05.972] [bbotk] Evaluating 1 configuration(s)</span></span>
+<span><span class="co">#&gt; INFO  [22:07:05.990] [mlr3] Running benchmark with 1 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [22:07:05.994] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [22:07:08.657] [mlr3] Finished benchmark</span></span>
+<span><span class="co">#&gt; INFO  [22:07:08.678] [bbotk] Result of batch 10:</span></span>
+<span><span class="co">#&gt; INFO  [22:07:08.679] [bbotk]  min.node.size max.depth num.trees classif.ce warnings</span></span>
+<span><span class="co">#&gt; INFO  [22:07:08.679] [bbotk]             42        20       560  0.1772817        0</span></span>
+<span><span class="co">#&gt; INFO  [22:07:08.679] [bbotk]  errors runtime_learners</span></span>
+<span><span class="co">#&gt; INFO  [22:07:08.679] [bbotk]       0             2.66</span></span>
+<span><span class="co">#&gt; INFO  [22:07:08.679] [bbotk]                                 uhash</span></span>
+<span><span class="co">#&gt; INFO  [22:07:08.679] [bbotk]  dcbf5824-e463-4d6c-9d75-f8a71951df7e</span></span>
+<span><span class="co">#&gt; INFO  [22:07:08.685] [bbotk] Finished optimizing after 10 evaluation(s)</span></span>
+<span><span class="co">#&gt; INFO  [22:07:08.686] [bbotk] Result:</span></span>
+<span><span class="co">#&gt; INFO  [22:07:08.687] [bbotk]  min.node.size max.depth num.trees learner_param_vals</span></span>
+<span><span class="co">#&gt; INFO  [22:07:08.687] [bbotk]            124         4       580          &lt;list[5]&gt;</span></span>
+<span><span class="co">#&gt; INFO  [22:07:08.687] [bbotk]   x_domain classif.ce</span></span>
+<span><span class="co">#&gt; INFO  [22:07:08.687] [bbotk]  &lt;list[3]&gt;  0.1696214</span></span></code></pre></div>
 <p>Now we can take a look at our best result</p>
 <div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1200,11 +1200,11 @@ Figure 7.1: Resampling concept
 <span><span class="co"># benchmark our designs</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">bmr</span> <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/benchmark.html">benchmark</a></span><span class="op">(</span><span class="va">design_bnch</span><span class="op">)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:24.460] [mlr3] Running benchmark with 3 resampling iterations</span></span>
-<span><span class="co">#&gt; INFO  [18:07:24.464] [mlr3] Applying learner 'classif.xgboost' on task 'task_class2' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:24.527] [mlr3] Applying learner 'classif.ranger' on task 'task_class2' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:27.621] [mlr3] Applying learner 'classif.naive_bayes' on task 'task_class2' (iter 1/1)</span></span>
-<span><span class="co">#&gt; INFO  [18:07:28.063] [mlr3] Finished benchmark</span></span></code></pre></div>
+<span><span class="co">#&gt; INFO  [22:07:10.289] [mlr3] Running benchmark with 3 resampling iterations</span></span>
+<span><span class="co">#&gt; INFO  [22:07:10.293] [mlr3] Applying learner 'classif.xgboost' on task 'task_class2' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [22:07:10.359] [mlr3] Applying learner 'classif.ranger' on task 'task_class2' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [22:07:13.612] [mlr3] Applying learner 'classif.naive_bayes' on task 'task_class2' (iter 1/1)</span></span>
+<span><span class="co">#&gt; INFO  [22:07:14.042] [mlr3] Finished benchmark</span></span></code></pre></div>
 <p>We can take a look at the available measures with the following command:</p>
 <div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
@@ -1515,7 +1515,7 @@ Figure 7.1: Resampling concept
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2023-03-19.</p>
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2023-04-01.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
