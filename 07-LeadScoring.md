@@ -3,7 +3,7 @@
 
 
 
-What if I told you that I would pay you \$50,000 if you sold four season tickets to someone in the next twenty-four hours? What would you do? The first thing I would do is ask how much the tickets cost. If it is less than \$50,000 I know that I could always just buy the tickets myself and collect the surplus. What are some ways that I could increase the likelihood that I sold those four season tickets?
+What if I told you I would pay you \$50,000 if you sold four season tickets to someone in the next twenty-four hours? What would you do? How much do the tickets cost? If it is less than \$50,000, I can always buy the tickets and collect the surplus. How could I increase the likelihood that I sold those four season tickets?
 
 - I could call a ticket broker and ask them to buy tickets.
 - I could look for lapsed purchasers
@@ -11,27 +11,27 @@ What if I told you that I would pay you \$50,000 if you sold four season tickets
 - I could call individuals who have yet to renew season tickets
 - I could beg family and friends to purchase
 
-There are lots of tactics you could deploy to make sure that you are picking all the low-hanging fruit. It is unlikely that you ever get to the point where you simply pick up a telephone and begin calling phone numbers. Is there a way for us to approach this problem more analytically?
+There are lots of tactics you could deploy to make sure that you are picking all the low-hanging fruit. However, it is unlikely that you ever get to the point where you pick up a telephone and begin calling phone numbers. So can we approach this problem more analytically?
 
-Lead scoring is fundamental to sales campaigns. Qualifying leads can be done in many ways, but the goal is always the same. You are ordering your leads in a more efficient way so that your sales efforts can maintain some greater level of efficiency. Warm leads are critical and if someone hasn't interacted with your brand, they are likely a less efficient use of your time. Working in marketing always reminds me of this one-hundred and thirty year old quote:  
+Lead scoring is fundamental to sales campaigns. You can qualify leads in many ways, but the goal is always the same. You are ordering your leads more efficiently so that your sales efforts can maintain greater efficiency. Warm leads are critical, and if someone has yet to interact with your brand, they are likely a less efficient use of your time. Working in marketing always reminds me of this one-hundred-and-thirty-year-old quote:  
 
 > “Half the money I spend on advertising is wasted; the trouble is I don't know which half.”
 > 
-> --- John Wannamker
+> --- John Wanamaker
 
-Lead scoring should assist you in evaluating your direct sales efforts and help to maximize ROI in that context. However, there are several considerations. How do we evaluate a lead?
+Lead scoring should assist you in evaluating your direct sales efforts and help to maximize ROI in that context. However, there are several considerations. First, how do we assess a lead?
 
-- Customer lifetime Value?
-- The likelihood to purchase during this sales cycle
+- Customer Lifetime Value?
+- The likelihood of purchasing during this sales cycle
 - Recent, frequency, monetary value
 
-This might also be a judgment call that is predicated on how sales and marketing teams are incentivized. Always consider compensation packages. Compensation is designed to incentivize behavior. However, it may not be optimized in terms of achieving organizational goals.  
+Accessing a lead is also a judgment call predicated on how sales and marketing teams are incentivized. Always consider compensation packages. Compensation is designed to incentivize behavior. However, it may need to be optimized to achieve organizational goals.  
 
 ## Recency, frequency, and monetary value
 
-RFM scores have been described as a _poor-man's_ analytic technique. The basic premise is to score sales candidates along three dimensions and to build lists comprising cohorts with the highest aggregate scores. How might this work in practice? 
+RFM scores are often described as a _poor-man's_ analytic technique. The basic premise is to score sales candidates along three dimensions and to build lists comprising cohorts with the highest aggregate scores. How might this work in practice? 
 
-Let's put together and ad hoc data set to demonstrate how RFM scores might work.
+Let's assemble an ad hoc data set to demonstrate how RFM scores might work.
 
 
 ```r
@@ -52,7 +52,7 @@ lifetimeSpend   = abs(round(rnorm(nrow(demo_data),10000,7000),0))
 We have added three columns to the customer file:
 
 - How long the last interaction happened in days
-- How many interaction have happened
+- How many interactions have happened
 - How much has been spent by the customer
 
 
@@ -69,7 +69,7 @@ Table: (\#tab:lsrfmb)Prepped RFM data
 |S0Y0Y2454IU2|Nicole Barry |      10       |       8       |    9259     |
 
 
-There are many ways to apply scores here. We will take a similar approach to scoring events, but add one extra step. RFM scores are traditionally built from one to five with five being the highest score.
+There are many ways to apply scores here. We will take a similar approach to score events but add one extra step. RFM scores are traditionally built from one to five, with five being the highest.
 
 
 
@@ -98,7 +98,7 @@ f_create_rfm <- function(quantList,number){
 }
 ```
 
-Now we can apply the function to our data set. We could generalize this more if we wanted. We could also use an apply function. For this sort of exercise, we aren't concerned with extreme efficiency. We just want to demonstrate the mechanics. We'll use lists and for loops to accomplish our task. If we had to repeat this exercise often, daisy chaining for loops is not a best practice. Try not to copy and paste more than three times. You'll make errors. 
+Now we can apply the function to our data set. We could generalize this more. We could also use an apply function. For this sort of exercise, we aren't concerned with extreme efficiency. We want to demonstrate the mechanics. We'll use lists and for loops to accomplish our task. If we had to repeat this exercise often, there are better practices than daisy chaining for loops. Try to copy and paste at most three times. You'll make errors. 
 
 
 ```r
@@ -135,7 +135,7 @@ demo_data$RFM <- paste(demo_data$r_val,
                        demo_data$m_val, sep = '')
 ```
 
-Now each customer has an RFM score that can be used to build campaigns. Let's subset a group for a campaign. We'll select customers that have interacted the most recently, the most frequently, and have tended to spend the most.
+Now each customer has an RFM score that can be used to build campaigns. First, let's subset a group for a campaign. We'll select customers that have interacted the most recently, the most frequently and have tended to spend the most.
 
 
 ```r
@@ -160,35 +160,35 @@ Table: (\#tab:rfmc)Top prospects for campaign
 
 
 
-RFM scores can be useful for some segmentation schemes and for lead scoring. However, there are better ways to accomplish the same goal. Lead scoring is as close as we get in this book to discussing _Customer Relationship Management_ (CRM). It is also a fundamental component of CRM. The following examples will take you through a more sophisticated example and will take advantage of an analytics framework that will make regression and machine learning easier. 
+RFM scores can be helpful for some segmentation schemes and lead scoring. However, there are better ways to accomplish the same goal. Lead scoring is as close as we get to discussing _Customer Relationship Management_ (CRM) in this book. It is also a fundamental component of CRM. The following examples will take you through a more sophisticated example and use an analytics framework that will make regression and machine learning easier. 
 
-## Scoring season ticket holders on their liklihood to renew
+## Scoring season ticket holders on their likelihood to renew
 
-With advancements in hardware and software, the art of lead scoring has become a bit of a commodity. You can leverage several techniques including: _random forests_, _gradient boosting_, _logistic regression_, or even _deep learning_ with a tool such as Tensorflow without getting penalized because of time and costs. Take a minute to appreciate this fact. It is amazing. Amazon, Google, and others are making this process even better through AWS and GCP. This example will demonstrate how machine-learning is applied to a real world problem. We'll frame this problem around a common question that is asked every year and every club in sports. 
+With advancements in hardware and software, lead scoring has become a commodity. You can leverage several techniques, including _random forests_, _gradient boosting_, _logistic regression_, or even _deep learning_ with a tool such as Tensorflow, without getting penalized because of time and costs. Take a minute to appreciate this fact. It is amazing. Amazon, Google, and others are improving this process through AWS and GCP. This example will demonstrate how machine learning is applied to real-world problems. We'll frame this problem around a common question that is asked every year and in every club in sports. 
 
-> The ticket sales service manager would like a way to understand which accounts are less likely to renew their season tickets. 
+> The ticket sales service manager wants to understand which accounts are less likely to renew their season tickets. 
 
-We'll use the mlr3 library [@R-mlr] to demonstrate a couple of different machine learning algorithms.  The package mlr3 is similar to caret [@R-caret] which has been refactored into tidymodels [@R-tidymodels]. Caret was a great library that sought to create a unifying API for scores of other R libraries. We'll look tidymodels in the next chapter. To me, mlr3 is very reminiscent of scikit-learn in Python. If you like using python for analysis, mlr3 will feel familiar.  
+We'll use the mlr3 library [@R-mlr] to demonstrate several machine-learning algorithms. The package mlr3 is similar to caret [@R-caret], which has been refactored into tidymodels [@R-tidymodels]. Caret was a great library that sought to create a unifying API for scores of other R libraries. We'll look at tidymodels in the next chapter. Mlr3 is reminiscent of scikit-learn in Python. If you like using Python for analysis, mlr3 will feel familiar.  
 
-While we can call our functions directly, this library makes the process much easier. The lack of consistent frameworks in R is one of the languages biggest drawbacks. Additionally, mlr3 has excellent documentation ^[https://mlr3book.mlr-org.com/train-predict.html]. 
+While we can call our functions directly, this library makes the process much easier. The lack of consistent frameworks in R is one of the language's biggest drawbacks. Additionally, mlr3 has excellent documentation ^[https://mlr3book.mlr-org.com/train-predict.html]. 
 
 Using a framework also comes with some issues. 
 
-1. You'll have to learn it, which adds some complexity to the task.
-2. Errors (especially in beta versions) can be frustrating to trouble-shoot
+1. You'll have to learn it, which adds complexity to the task.
+2. Errors (especially in beta versions) can be frustrating to troubleshoot
 3. They can work more slowly than the libraries that are used for the task
 
-However, I believe that you'll be better off in the long run to leverage a framework. They tend to make the basic tasks of machine-learning much more systematic and repeatable, especially when it comes to benchmarking. 
+However, you'll be better off leveraging a framework in the long run. This is because frameworks make the essential tasks of machine learning much more systematic and repeatable, especially when it comes to benchmarking. 
 
-Let's also discuss the package data.table [@R-data.table] here. data.table is a powerful tool that underlies many popular packages. While it has many uses, it can be more confusing to work with as opposed to dplyr [@R-dplyr]. It can softly be considered one of the pillars that holds up much of the R universe. If you have been using python, datatable will remind you of pandas [@reback2020pandas]. If you are working with really large data sets, datatable will be useful to learn.
+Let's also discuss the package data.table [@R-data.table] here. data.table is a powerful tool that underlies many popular packages. While it has many uses, it can be more confusing than dplyr [@R-dplyr]. Nevertheless, it is one of the pillars that holds up much of the R universe. If you have been using Python, datatable will remind you of pandas [@reback2020pandas]. If you are working with large data sets, datatable will be helpful to learn.
 
-### Implementing a lead scoring project
+### Implementing a lead-scoring project
 
-A random forest is an excellent tool for classification and can forecast more than two classes. Logistic regression is typically used for binary classes (renewed, did not renew) and should probably be your first step. There are forms of logistic regression that will handle multi-class problems. We'll take a look at both tools. In practice, a random forest tends to handle a wide variety of problems you will be faced with at a club very well. 
+A random forest is an excellent tool for classification and can forecast more than two classes. Logistic regression is typically used for binary classes (renewed, did not renew) and should probably be your first step. However, there are forms of logistic regression that will handle multi-class problems. We'll take a look at both tools. In practice, a random forest handles a wide variety of the issues you will face at a club very well. 
 
-Missing data or orphan cases can make these tasks extremely frustrating. There is no guarantee that your model will converge. We stated earlier that most of your time will be spent putting your data in order. You'll be much happier if you put the hours into getting your data in the proper spot. The fun part of these exercises is the modeling. However, it ends up being the part you spend the smallest amount of time working on. I hope the high is worth the lows to you.  
+Missing data or orphan cases can make these tasks extremely frustrating. There is no guarantee that your model will converge. We stated earlier that most of your time would be spent organizing your data. You'll be much happier if you put the hours into getting your data in the proper spot. The fun part of these exercises is the modeling. However, it ends up being the part you spend the shortest time working on. I hope the high is worth the lows to you.  
 
-Additionally, we should follow the process that we outlined in chapter \@ref(chapter4). We'll do this to demonstrate that it isn't managerial B.S. Structuring projects is critical when you are working in teams or working in a distributed fashion. Let's remind ourselves of the basic steps we want to follow:
+Additionally, we should follow the process outlined in chapter \@ref(chapter4). We'll do this to demonstrate that it isn't managerial B.S. Structuring projects is critical when working in teams or in a distributed fashion. Let's remind ourselves of the basic steps we want to follow:
 
 1. Define a measurable goal or hypothesis
 2. Data collection 
@@ -201,16 +201,16 @@ Additionally, we should follow the process that we outlined in chapter \@ref(cha
 
 We are going to use multiple years of season ticket holder renewal data. We also have a problem statement:
 
-> We don't understand how to identify season ticket accounts that are less likely to renew.
+> We need to identify season ticket accounts that are less likely to renew.
 
-Our output will be a score that can be used to compare customers against one another. We'll need to look for features that might predict whether or not someone is likely to renew their tickets. This might be ticket usage or tenure. We don't know. 
+Our output will be a score that can be used to compare customers against one another. We'll need to look for features that predict whether someone will likely renew their tickets. This feature might be ticket usage or tenure. We don't know. 
 
-The rub here is that we don't know if we can help improve the prospects that someone might renew. What levers can we pull? It is one thing to build a useful model that predicts renewals for finance, but we are trying to impact renewals for sales. We'll need to think carefully about the insight that we gather. Perhaps we will find something that we didn't know we were looking for. From that perspective, success can be gauged in several ways. 
+The rub here is that we can't help improve the prospects that someone might renew. So what levers can we pull? Building a helpful model that predicts renewals for finance is one thing, but we are trying to impact renewals for sales. We'll need to think carefully about the insight that we gather. We may find something that we didn't know we were looking for. From that perspective, success can be gauged in several ways. 
 
 
 #### Understanding the data set
 
-Our data set includes several features including an account, whether they renewed, and several features related to their season tickets. The data is located in the _FOSBASS_ package. You can see how the data is created in section \@ref(renewaldata).
+Our data set includes several features, including an account, whether they renewed, and several traits related to their season tickets. The data is located in the _FOSBASS_ package. You can see how the data is created in section \@ref(renewaldata).
 
 
 ```r
@@ -222,7 +222,7 @@ library(dplyr)
 mod_data <- FOSBAAS::customer_renewals
 ```
 
-This data set contains several years of data. It looks like something that you would find at a club and is going to behave appropriately. Let's take a look at the structure of this data:
+This data set contains several years of data. It looks like something you would find at a club, and will behave appropriately. Let's take a look at the structure of this data:
 
 
 Table: (\#tab:leadscoredata2)Dataset for evaluating likelihood to renew
@@ -240,15 +240,15 @@ Table: (\#tab:leadscoredata2)Dataset for evaluating likelihood to renew
 |distance   |double   |61.6614648674555 |
 |renewed    |character|nr               |
 
-This data isn't particularly complex. We can see that we have several columns that appear useful. This data set is also already clean, but let's refer to  section \@ref(evaldata) in chapter \@ref(chapter4) to make sure that we are covering all of our bases. We know that this data is in good shape, we still have to deal with major issues that you face when running some operation on your data.
+This data is relatively simple. We have several columns that appear helpful. This data set is also already clean, but let's refer to section \@ref(evaldata) in chapter \@ref(chapter4) to ensure we cover all of our bases. We know this data is in good shape, but we still have to deal with significant issues you face when running some operation on your data.
 
-1. What sort of analysis mechanism will be useful to solve this problem?
-2. Is this data structured and formatted in a way that I can use it?
-3. Are there missing values or other systematic issues that will cause a problem?
+1. What sort of analysis mechanism will be helpful to solve this problem?
+2. Is this data structured and formatted so I can use it?
+3. Will missing values or other systematic issues cause a problem?
 
-Question one is easy. We can refer to our chart in section \@ref(fig:modelingdatachfour). This is clearly an example of calculating future, numerical values. 
+Question one is easy. We can refer to our chart in section \@ref(fig:modelingdatachfour). This is an example of calculating future numerical values. 
 
-For question two, different analysis techniques require different formats. We can see that a couple of columns are categorical. Let's go ahead and create two data sets. We'll dummy code our categorical data so that one data set only contains numerical values.
+For question two, different analysis techniques require other formats. We can see that a couple of columns are categorical. Let's go ahead and create two data sets. We'll dummy code our categorical data so that one data set only contains numerical values.
 
 
 ```r
@@ -276,7 +276,7 @@ Table: (\#tab:leadscoredata4)Numeric data set for regression
 |0.9836147  |5     |19800|8      |19.028667|r      |0  |1  |0  |1  |
 |0.9032806  |3     |6640 |4      |15.584057|r      |1  |0  |1  |0  |
 
-For question three, we can do a little preparation on our standard data set. We'll get rid of a couple of columns that we won't use and turn our response variable into a factor. We know there isn't missing data, so we will skip that part. We have already covered how to deal with it.
+For question three, we can do a little preparation on our standard data set. We'll eliminate a few columns we won't use and turn our response variable into a factor. We know there isn't missing data, so that we will skip that part. We have already covered how to deal with it.
 
 
 ```r
@@ -288,16 +288,16 @@ mod_data$accountID <- NULL
 mod_data$season    <- NULL
 ```
 
-In terms of prep work, we are ready to go. No need to dwell on it. This chapter is designed to cover data modeling in more detail, so it isn't important anyway. We also didn't have to really worry about data collection. What other data might be interesting to have here? 
+In terms of prep work, we are ready to go. This chapter is designed to cover data modeling in more detail, so it is optional anyway. We also didn't have to worry about data collection. What other data might be interesting to have here? 
 
-Additionally, I would like to briefly cover a special topic that deserves a lot more attention than we are about to give. Maps. Geography is important for sales, marketing, corporate sponsorship groups, and others. In this context, we'll see how geography will impact sales and marketing strategy further along in this chapter. 
+Additionally, I would like to briefly cover a topic that deserves more attention than we are about to give. Maps. Geography is essential for sales, marketing, and corporate sponsorship groups. In this context, we'll see how geography will further impact sales and marketing strategy in this chapter. 
 
 
 ##### Understanding geography and building maps
 
-Geography plays a large role in selling tickets to sporting events. This is especially true for sports that have more games such as baseball. Coupling the digital and physical assets of the club may eventually make this less important holistically. However, for ticket sales geography is and will remain a critical point of consideration.
+Geography plays a prominent role in selling tickets to sporting events. The importance of this role is especially true for sports with more games, such as baseball. Coupling the digital and physical assets of the club may make this less critical holistically. However, geography is and will remain a crucial point of consideration for ticket sales.
 
-R also isn't the best way to do this, but it is an easy way to accomplish it in the same analysis platform. GIS is a large field unto itself that is outside the scope of this book. However, R has multiple libraries devoted to maps and it is a good choice if you aren't looking for extremely high quality geographic graphics. This map was created using stamen maps^[http://maps.stamen.com/#watercolor/12/37.7706/-122.3782], an open source tool that can be used for a wide variety of projects. 
+R isn't the best way to do this, but it is easy to accomplish it in the same analysis platform. GIS is a large field that is outside this book's scope. However, R has multiple libraries devoted to maps, and it is a good choice if you are looking for something other than very high-quality graphics. This map was created using stamen maps^[http://maps.stamen.com/#watercolor/12/37.7706/-122.3782], an open-source tool that can be used for various projects. 
 
 
 ```r
@@ -329,9 +329,9 @@ geographic_vis <-
 
 <img src="images/ch7_map_ex.png" width="100%" />
 
-These maps aren't the best, but they are easy to execute and can give you much of the same insight you would get from a more sophisticated product such as ArcGIS ^[https://www.esri.com/en-us/home]. R also makes it easy to access google APIs that will allow you to Geocode addresses and perform many other interesting tasks with geographic data. You can find a multitude of informative demos online. 
+These maps could be better, but they are easy to execute and can give you much of the same insight you would get from a more sophisticated product such as ArcGIS ^[https://www.esri.com/en-us/home]. R also makes it easy to access google APIs, allowing you to Geocode addresses and perform many other interesting tasks with geographic data. You can find a multitude of informative demos online. 
 
-Using county names you can create maps that look like the following. This one took a lot of data wrangling and uses the maps [@R-maps] package, but the output looks nice. The underlying data is identical. 
+Using county names you can create maps that look like the following. This one took a lot of data wrangling and used the maps [@R-maps] package, but the output looks nice. The underlying data is identical. 
 
 
 ```r
@@ -419,7 +419,7 @@ region_map <-
 
 #### Model the data {#model}
 
-While we will use the mlr3 framework here, again it is important to understand that there is no need to use one of these frameworks. You can call functions directly. mlr3 is descended from mlr, [@R-mlr] but is built on a more modern framework. You'll want to begin by downloading the library and poking around in it ^[https://mlr3book.mlr-org.com/train-predict.html]. 
+While we will use the mlr3 framework here, it is essential to understand that there is no need to use one of these frameworks. You can call functions directly. mlr3 descends from mlr, [@R-mlr] but is built on a more modern framework. You'll want to begin by downloading the library and poking around in it ^[https://mlr3book.mlr-org.com/train-predict.html]. 
 
 
 ```r
@@ -433,7 +433,7 @@ library("mlr3tuning")   #  install.packages("mlr3tuning")
 library("paradox")      #  install.packages("paradox")
 ```
 
-After downloading some of the packages that we will need we can go ahead get started on the task of modeling the data. We know that we want to determine how likely it is that a specific season ticket holder will renew. Make sure that your data set doesn't contain any characters. You'll need to dummy code or change them to factors.
+After downloading some of the packages that we will need, we can go ahead and get started on the task of modeling the data. We want to determine how likely a specific season ticket holder will renew. Make sure that your data set doesn't contain any characters. You'll need to dummy code or change them to factors.
 
 
 ```r
@@ -444,7 +444,7 @@ mod_data_numeric$renewed <- factor(mod_data_numeric$renewed)
 ```
 
 
-This is a classification problem and mlr3 follows a specific pattern when you are building a model. The data is placed in an object called a task:
+This is a classification problem, and mlr3 follows a specific pattern when building a model. The data is placed in an object called a task:
 
 
 ```r
@@ -455,13 +455,13 @@ task_mod_data <- TaskClassif$new(id       = "task_renew",
                                  backend  = mod_data_numeric, 
                                  target   = "renewed", 
                                  positive = "r")
-# Add task to the task dictionary
+# Add a task to the task dictionary
 mlr_tasks$add("task_renew", task_mod_data)
 ```
 
-The input here is straight forward. We name the object, tell it what data to use, give it a target column, and the result. In this case, "r" indicates that the account renewed in the past. 
+The input here is straightforward. We name the object, tell it what data to use, give it a target column, and a result. In this case, "r" indicates that the account was renewed in the past. 
 
-After you have a task, you will want to select the _learner_ that you would like to use. MLR works with several other libraries. In this case I would like to apply a random forest to this data and I am going to use the ranger [@R-ranger] package. Ranger is a powerful library and it includes lots of tools that you can leverage to build random forest models. This is where you can add parameters from the ranger function to the library.
+After you have a task, you will want to select the _learner_ you wish to use. MLR works with several other libraries. In this case, I would like to apply a random forest to this data and use the ranger [@R-ranger] package. Ranger is a powerful library that includes lots of tools you can leverage to build random forest models. You can add parameters from the ranger function to the library in the following code chunk.
 
 
 
@@ -477,7 +477,7 @@ learner_ranger_rf <- lrn("classif.ranger",
 # look at a list of learners: mlr3::mlr_learners
 ```
 
-We can now build a test and training data set. As a reminder, we could also use a three-way data partition so that we would have a calibration data set. However, this isn't really necessary. 
+We can now build a test and training data set. As a reminder, we could also use a three-way data partition to have a calibration data set. However, this is optional. We'll see a better way to do this in a following chapter.
 
 
 
@@ -492,7 +492,7 @@ test_mod_data  <- setdiff(seq_len(task_mod_data$nrow),
                           train_mod_data)
 ```
 
-Training the model is simple. We'll use our learner object and point it to our task with rows being identified with our training data set.
+Training the model is simple. First, we'll use our learner object and point it to our task with rows identified with our training data set.
 
 
 ```r
@@ -503,7 +503,7 @@ learner_ranger_rf$train(task    = task_mod_data,
                         row_ids = train_mod_data)
 ```
 
-The learner contains several useful pieces of data that were generated. You can access them in a few different ways. 
+The learner contains several valuable pieces of data that were generated. You can access them in a few different ways. 
 
 
 ```r
@@ -529,7 +529,7 @@ Table: (\#tab:mlr6eval)Learner output
 |500     |3   |10279  |0.1391261|
 
 
-This model doesn't appear to do a great job judging by the prediction error. Let's take a look at it on our holdout sample:
+This model doesn't do a great job judging by the prediction error. Let's take a look at it on our holdout sample:
 
 
 ```r
@@ -540,7 +540,7 @@ prediction <- learner_ranger_rf$predict(task_mod_data,
                                         row_ids = test_mod_data)
 ```
 
-There are several ways to consider how accurate this model might be and interpretation can be confusing. The first thing to look at is a confusion matrix. A confusion matrix is a simple way to gauge how well your model predictions performed against known values.
+There are several ways to consider this model's accuracy, and interpretation can be confusing. The first thing to look at is a confusion matrix. A confusion matrix is a simple way to gauge how well your model predictions performed against known values.
 
 
 ```r
@@ -554,7 +554,7 @@ prediction$confusion
 #>       nr  106  151
 ```
 
-A confusion matrix demonstrates how often the model was correct and incorrect for each response. In this case, our model isn't performing very well. Would it perform better than a random guess? There are many other metrics that you can extract from your model.
+A confusion matrix demonstrates how often the model was correct and incorrect for each response. In this case, our model could be performing better. Would it serve better than a random guess? There are many other metrics that you can extract from your model.
 
 
 ```r
@@ -567,10 +567,10 @@ prediction$score(measure)
 #>   0.8208345
 ```
 
-In this case, our model is 0.8208345 percent accurate. Let's visualize some of the results.
+In this case, our model is 0.8208345 percent accurate. But, first, let's visualize some of the results.
 
 
-For simple models, the _mlr3::autoplot()_ function includes several graphs and is built on ggplot2, which means you can apply your themes to them. First, let's explore our data a little more. You can access the predictions with this command _learner_ranger_rf$model$predictions_. The probabilities may come in useful depending on what you are doing. 
+For simple models, the _mlr3::autoplot()_ function includes several graphs and is built on ggplot2, which means you can apply your themes to them. But first, let's explore our data a little more. You can access the predictions with this command _learner_ranger_rf$model$predictions_. The probabilities may be helpful depending on what you are doing. 
 
 
 ```r
@@ -588,7 +588,7 @@ head(probs)
 #> 6 0.9028345 0.09716551
 ```
 
-We can compare models against one another in a couple of different ways. Here we will compare our random forest model to a model that simply predicts the classifier. It doesn't use the parameters we fed to our model.
+We can compare models against one another in a couple of different ways. Here we will compare our random forest model to a model that predicts the classifier. It doesn't use the parameters we fed to our model.
 
 
 ```r
@@ -606,7 +606,7 @@ object       <- benchmark(benchmark_grid(tasks,
 # Use head(fortify(object)) to see the ce for the resamples
 ```
 
-Our classification error is better with our random forest, but not by a large amount. These classification errors are from resampling and rerunning the models. 
+Our classification error is better with our random forest, but not by a significant amount. These classification errors are from resampling and rerunning the models. 
 
 
 ```r
@@ -622,7 +622,7 @@ autoplot(object)   +
 
 <img src="images/ch7_bxplot_model.png" width="100%" />
 
-We can also see that we do generate some lift with the model by looking at the ROC curve. 
+We can also see that we generate some lift with the model by looking at the ROC curve. 
 
 
 ```r
@@ -639,7 +639,7 @@ autoplot(object$filter(task_ids = "task_renew"),
 
 <img src="images/ch7_roc_model.png" width="100%" />
 
-So what do we do with this data? We can now use our model to predict how likely a person is to renew their ticket. However, we can see that the model doesn't perform as well as we would like. We have a few options in terms of proceding:
+So what do we do with this data? We can now use our model to predict how likely a person is to renew their ticket. However, we can see that the model doesn't perform as well as we would like. We have a few options in terms of proceeding:
 
 - Tune the model parameters to try to improve it
 - Try a different model
@@ -649,16 +649,16 @@ Let's try a couple of different models and attempt to tune the models to improve
 
 ##### Resampling
 
-Conceptually, our last model was validated on one _training_ set of data and one _test_ set of data. Occasionally you'll see a three-way partition of data such as _train_, _test_, and _calibration_ set, but often times it is just a _train_ and _test_ set that were randomly sampled from the entire data set. In many cases this is OK, but it could lead you to having more confidence in your model than is warranted. Resampling strategies will help to calibrate your model and give you more confidence in its accuracy. We can visualize what we mean by resampling in figure \@ref(fig:resamplefig).
+Conceptually, our last model was validated on one _training_ set of data and one _test_ set of data. Occasionally you'll see a three-way partition of data such as _train_, _test_, and _calibration_ set, but often it is just a _train_ and _test_ set randomly sampled from the entire data set. In many cases, this is OK, but it could give you more confidence in your model than warranted. Resampling strategies will help to calibrate your model and give you more confidence in its accuracy. We can visualize what we mean by resampling in figure \@ref(fig:resamplefig).
 
 <div class="figure">
 <img src="images/ch7_resample.png" alt="Resampling concept" width="100%" />
 <p class="caption">(\#fig:resamplefig)Resampling concept</p>
 </div>
 
-A common method that you will find is 10-fold cross validation where the learning procedure is executed 10 times on different training sets (that overlap) and the 10 error estimates are averaged to yield an overall error estimate [@Witten2011]. Leveraging a framework such as mlr3 makes these efforts (resampling and tuning) much easier. Let's look at an example of cross validation in regards to the model that we have already constructed. 
+A standard method you will find is 10-fold cross-validation. The learning procedure is executed ten times on different training sets (that overlap), and the ten error estimates are averaged to yield an overall error estimate [@Witten2011]. Leveraging a framework such as mlr3 makes these efforts (resampling and tuning) much more manageable. Let's look at an example of cross-validation regarding our already constructed model. 
 
-The task object and learner objects are identical to what we saw in the previous sections.
+The task and learner objects are identical to what we saw in the previous sections.
 
 
 ```r
@@ -678,13 +678,13 @@ However, we will need to add a resampling object:
 
 ```r
 #-----------------------------------------------------------------
-# Add a resampliing parameter
+# Add a resampling parameter
 #-----------------------------------------------------------------
 resampling_mod_data  <- rsmp("cv")
 ```
 
 
-We'll then need to instantiate the resampling strategy. This just means that we are going to create it again.
+We'll then need to instantiate the resampling strategy. This means that we are going to create it again.
 
 
 ```r
@@ -696,7 +696,7 @@ resampling_mod_data$iters
 #> [1] 10
 ```
 
-We can now call the resample. This will take longer than what we have seen because we are building a model on multiple data sets.
+We can now call the resample. This will take longer than we have seen because we are building a model on multiple data sets.
 
 
 ```r
@@ -707,19 +707,19 @@ resamp <- resample(task_mod_data,
                    learner_ranger_rf, 
                    resampling_mod_data, 
                    store_models = TRUE)
-#> INFO  [22:05:59.682] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/10)
-#> INFO  [22:06:03.593] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 2/10)
-#> INFO  [22:06:07.453] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 3/10)
-#> INFO  [22:06:11.317] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 4/10)
-#> INFO  [22:06:14.918] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 5/10)
-#> INFO  [22:06:18.765] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 6/10)
-#> INFO  [22:06:22.701] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 7/10)
-#> INFO  [22:06:26.151] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 8/10)
-#> INFO  [22:06:29.732] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 9/10)
-#> INFO  [22:06:33.646] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 10/10)
+#> INFO  [09:36:16.430] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/10)
+#> INFO  [09:36:20.271] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 2/10)
+#> INFO  [09:36:24.783] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 3/10)
+#> INFO  [09:36:28.740] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 4/10)
+#> INFO  [09:36:32.308] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 5/10)
+#> INFO  [09:36:36.085] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 6/10)
+#> INFO  [09:36:39.890] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 7/10)
+#> INFO  [09:36:43.397] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 8/10)
+#> INFO  [09:36:46.996] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 9/10)
+#> INFO  [09:36:50.841] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 10/10)
 ```
 
-You now have a more confident way to evaluate your model.
+You now have a more sure way to evaluate your model.
 
 
 ```r
@@ -732,14 +732,14 @@ resamp$aggregate(msr("classif.ce"))
 # Look at scores from the models: resamp$score(msr("classif.ce"))
 ```
 
-Our classification error has improved. That is great! How do we improve further. 
+Our classification error has improved. That is great! How do we improve further? 
 
 
 ##### Optimizing your model
 
-Many algorithms have parameters that can alter the performance of the model. For instance, a random forest can have different numbers of trees applied to the model. How do you know that you are tuning the algorithm appropriately? 
+Many algorithms have parameters that can alter the performance of the model. For instance, a random forest can have different numbers of trees applied to the model. So how are you tuning the algorithm appropriately? 
 
-Let's take a look at the different parameters available to the ranger package. There are 29 in all, but we will only look at the first few.
+Let's look at the different parameters available to the ranger package. There are 29, but we will only look at the first few.
 
 
 ```r
@@ -771,7 +771,7 @@ tune_rf_params <- ParamSet$new(list(
 ))
 ```
 
-We will also have to consider a resampling strategy. Since cross-validated results demonstrated similar error rates, let's use a holdout sample. We'll use classification error as our measure.
+We will also have to consider a resampling strategy. Since cross-validated results demonstrated similar error rates, let's use a holdout sample. Again, we'll use classification error as our measure.
 
 
 
@@ -784,7 +784,7 @@ measure_mod_data <- msr("classif.ce")
 evals_10         <- trm("evals", n_evals = 10)
 ```
 
-Let's put everything together into a tune instance that will pass our new criteria to the model. 
+Let's combine everything into a tune instance that will pass our new criteria to the model. 
 
 
 ```r
@@ -801,7 +801,7 @@ tune_instance <- TuningInstanceSingleCrit$new(
 )
 ```
 
-Now we have to determine how we search for different parameters to search. We'll use a random search. This means that levels will be randomly searched within the parameters that we set.
+Now we have to determine how we search for different parameters to search. First, we'll use a random search. A random search means that levels will be randomly searched within our set parameters.
 
 
 ```r
@@ -819,126 +819,126 @@ tuner_rf = tnr("random_search")
 # Run the models
 #-----------------------------------------------------------------
 tuner <- tuner_rf$optimize(tune_instance)
-#> INFO  [22:06:48.560] [bbotk] Starting to optimize 3 parameter(s) with '<OptimizerRandomSearch>' and '<TerminatorEvals> [n_evals=10, k=0]'
-#> INFO  [22:06:48.573] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [22:06:48.594] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [22:06:48.598] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [22:06:50.482] [mlr3] Finished benchmark
-#> INFO  [22:06:50.617] [bbotk] Result of batch 1:
-#> INFO  [22:06:50.619] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [22:06:50.619] [bbotk]            123        18       542   0.175093        0
-#> INFO  [22:06:50.619] [bbotk]  errors runtime_learners
-#> INFO  [22:06:50.619] [bbotk]       0             1.88
-#> INFO  [22:06:50.619] [bbotk]                                 uhash
-#> INFO  [22:06:50.619] [bbotk]  e570af96-2cbe-4c70-a1e2-2f9b553ca937
-#> INFO  [22:06:50.622] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [22:06:50.643] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [22:06:50.649] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [22:06:52.418] [mlr3] Finished benchmark
-#> INFO  [22:06:52.439] [bbotk] Result of batch 2:
-#> INFO  [22:06:52.440] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [22:06:52.440] [bbotk]            200        17       507  0.1726855        0
-#> INFO  [22:06:52.440] [bbotk]  errors runtime_learners
-#> INFO  [22:06:52.440] [bbotk]       0             1.77
-#> INFO  [22:06:52.440] [bbotk]                                 uhash
-#> INFO  [22:06:52.440] [bbotk]  26a0c90f-5e90-4e0e-82c8-0ba163d44982
-#> INFO  [22:06:52.443] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [22:06:52.459] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [22:06:52.464] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [22:06:54.044] [mlr3] Finished benchmark
-#> INFO  [22:06:54.065] [bbotk] Result of batch 3:
-#> INFO  [22:06:54.066] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [22:06:54.066] [bbotk]            120        11       508  0.1739987        0
-#> INFO  [22:06:54.066] [bbotk]  errors runtime_learners
-#> INFO  [22:06:54.066] [bbotk]       0             1.57
-#> INFO  [22:06:54.066] [bbotk]                                 uhash
-#> INFO  [22:06:54.066] [bbotk]  7aa7858c-9de2-4257-ab5d-3872b4cacbd3
-#> INFO  [22:06:54.068] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [22:06:54.085] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [22:06:54.090] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [22:06:55.935] [mlr3] Finished benchmark
-#> INFO  [22:06:55.957] [bbotk] Result of batch 4:
-#> INFO  [22:06:55.958] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [22:06:55.958] [bbotk]             79        11       520  0.1755308        0
-#> INFO  [22:06:55.958] [bbotk]  errors runtime_learners
-#> INFO  [22:06:55.958] [bbotk]       0             1.84
-#> INFO  [22:06:55.958] [bbotk]                                 uhash
-#> INFO  [22:06:55.958] [bbotk]  6ebaa93b-79bc-414e-ba4a-ca361055c4de
-#> INFO  [22:06:55.961] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [22:06:55.979] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [22:06:55.984] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [22:06:57.706] [mlr3] Finished benchmark
-#> INFO  [22:06:57.727] [bbotk] Result of batch 5:
-#> INFO  [22:06:57.728] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [22:06:57.728] [bbotk]            125        11       594  0.1739987        0
-#> INFO  [22:06:57.728] [bbotk]  errors runtime_learners
-#> INFO  [22:06:57.728] [bbotk]       0             1.71
-#> INFO  [22:06:57.728] [bbotk]                                 uhash
-#> INFO  [22:06:57.728] [bbotk]  647166f6-e0d2-451d-bf74-da87cac452ce
-#> INFO  [22:06:57.731] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [22:06:57.746] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [22:06:58.935] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [22:07:01.152] [mlr3] Finished benchmark
-#> INFO  [22:07:01.175] [bbotk] Result of batch 6:
-#> INFO  [22:07:01.177] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [22:07:01.177] [bbotk]            109        16       597  0.1748742        0
-#> INFO  [22:07:01.177] [bbotk]  errors runtime_learners
-#> INFO  [22:07:01.177] [bbotk]       0             2.22
-#> INFO  [22:07:01.177] [bbotk]                                 uhash
-#> INFO  [22:07:01.177] [bbotk]  6c4a994c-aaf3-4b59-a26e-14a8fda87c69
-#> INFO  [22:07:01.179] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [22:07:01.195] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [22:07:01.199] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [22:07:02.113] [mlr3] Finished benchmark
-#> INFO  [22:07:02.137] [bbotk] Result of batch 7:
-#> INFO  [22:07:02.138] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [22:07:02.138] [bbotk]            124         4       580  0.1696214        0
-#> INFO  [22:07:02.138] [bbotk]  errors runtime_learners
-#> INFO  [22:07:02.138] [bbotk]       0             0.92
-#> INFO  [22:07:02.138] [bbotk]                                 uhash
-#> INFO  [22:07:02.138] [bbotk]  6cd3818d-b5be-40d4-b5eb-96ad4c000968
-#> INFO  [22:07:02.141] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [22:07:02.161] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [22:07:02.165] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [22:07:04.955] [mlr3] Finished benchmark
-#> INFO  [22:07:04.976] [bbotk] Result of batch 8:
-#> INFO  [22:07:04.977] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [22:07:04.977] [bbotk]             16        17       560  0.1792515        0
-#> INFO  [22:07:04.977] [bbotk]  errors runtime_learners
-#> INFO  [22:07:04.977] [bbotk]       0             2.78
-#> INFO  [22:07:04.977] [bbotk]                                 uhash
-#> INFO  [22:07:04.977] [bbotk]  7a89501f-b719-44bd-a945-b7e793db42dd
-#> INFO  [22:07:04.979] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [22:07:04.995] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [22:07:04.999] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [22:07:05.944] [mlr3] Finished benchmark
-#> INFO  [22:07:05.969] [bbotk] Result of batch 9:
-#> INFO  [22:07:05.970] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [22:07:05.970] [bbotk]             97         5       520  0.1696214        0
-#> INFO  [22:07:05.970] [bbotk]  errors runtime_learners
-#> INFO  [22:07:05.970] [bbotk]       0             0.93
-#> INFO  [22:07:05.970] [bbotk]                                 uhash
-#> INFO  [22:07:05.970] [bbotk]  c7036e8d-3512-4477-87c5-ef3cdeb7d524
-#> INFO  [22:07:05.972] [bbotk] Evaluating 1 configuration(s)
-#> INFO  [22:07:05.990] [mlr3] Running benchmark with 1 resampling iterations
-#> INFO  [22:07:05.994] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
-#> INFO  [22:07:08.657] [mlr3] Finished benchmark
-#> INFO  [22:07:08.678] [bbotk] Result of batch 10:
-#> INFO  [22:07:08.679] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
-#> INFO  [22:07:08.679] [bbotk]             42        20       560  0.1772817        0
-#> INFO  [22:07:08.679] [bbotk]  errors runtime_learners
-#> INFO  [22:07:08.679] [bbotk]       0             2.66
-#> INFO  [22:07:08.679] [bbotk]                                 uhash
-#> INFO  [22:07:08.679] [bbotk]  dcbf5824-e463-4d6c-9d75-f8a71951df7e
-#> INFO  [22:07:08.685] [bbotk] Finished optimizing after 10 evaluation(s)
-#> INFO  [22:07:08.686] [bbotk] Result:
-#> INFO  [22:07:08.687] [bbotk]  min.node.size max.depth num.trees learner_param_vals
-#> INFO  [22:07:08.687] [bbotk]            124         4       580          <list[5]>
-#> INFO  [22:07:08.687] [bbotk]   x_domain classif.ce
-#> INFO  [22:07:08.687] [bbotk]  <list[3]>  0.1696214
+#> INFO  [09:37:06.035] [bbotk] Starting to optimize 3 parameter(s) with '<OptimizerRandomSearch>' and '<TerminatorEvals> [n_evals=10, k=0]'
+#> INFO  [09:37:06.049] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [09:37:06.069] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [09:37:06.074] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [09:37:08.071] [mlr3] Finished benchmark
+#> INFO  [09:37:08.189] [bbotk] Result of batch 1:
+#> INFO  [09:37:08.191] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [09:37:08.191] [bbotk]            123        18       542   0.175093        0
+#> INFO  [09:37:08.191] [bbotk]  errors runtime_learners
+#> INFO  [09:37:08.191] [bbotk]       0             1.97
+#> INFO  [09:37:08.191] [bbotk]                                 uhash
+#> INFO  [09:37:08.191] [bbotk]  e4c17dd7-0df0-4393-b617-8c6cede89322
+#> INFO  [09:37:08.193] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [09:37:08.209] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [09:37:08.212] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [09:37:09.720] [mlr3] Finished benchmark
+#> INFO  [09:37:09.740] [bbotk] Result of batch 2:
+#> INFO  [09:37:09.741] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [09:37:09.741] [bbotk]            200        17       507  0.1726855        0
+#> INFO  [09:37:09.741] [bbotk]  errors runtime_learners
+#> INFO  [09:37:09.741] [bbotk]       0             1.48
+#> INFO  [09:37:09.741] [bbotk]                                 uhash
+#> INFO  [09:37:09.741] [bbotk]  031bd80e-d498-491d-ac96-001b1d83bd31
+#> INFO  [09:37:09.743] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [09:37:09.758] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [09:37:09.762] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [09:37:11.267] [mlr3] Finished benchmark
+#> INFO  [09:37:11.288] [bbotk] Result of batch 3:
+#> INFO  [09:37:11.290] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [09:37:11.290] [bbotk]            120        11       508  0.1739987        0
+#> INFO  [09:37:11.290] [bbotk]  errors runtime_learners
+#> INFO  [09:37:11.290] [bbotk]       0              1.5
+#> INFO  [09:37:11.290] [bbotk]                                 uhash
+#> INFO  [09:37:11.290] [bbotk]  8f774356-506a-49a2-b5cc-fbc1ffc048a1
+#> INFO  [09:37:11.292] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [09:37:11.310] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [09:37:11.314] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [09:37:12.984] [mlr3] Finished benchmark
+#> INFO  [09:37:13.004] [bbotk] Result of batch 4:
+#> INFO  [09:37:13.005] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [09:37:13.005] [bbotk]             79        11       520  0.1755308        0
+#> INFO  [09:37:13.005] [bbotk]  errors runtime_learners
+#> INFO  [09:37:13.005] [bbotk]       0             1.64
+#> INFO  [09:37:13.005] [bbotk]                                 uhash
+#> INFO  [09:37:13.005] [bbotk]  d4f68f6d-0ade-4a2a-a250-1843c32cd02c
+#> INFO  [09:37:13.007] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [09:37:13.023] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [09:37:13.026] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [09:37:14.658] [mlr3] Finished benchmark
+#> INFO  [09:37:14.679] [bbotk] Result of batch 5:
+#> INFO  [09:37:14.680] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [09:37:14.680] [bbotk]            125        11       594  0.1739987        0
+#> INFO  [09:37:14.680] [bbotk]  errors runtime_learners
+#> INFO  [09:37:14.680] [bbotk]       0             1.64
+#> INFO  [09:37:14.680] [bbotk]                                 uhash
+#> INFO  [09:37:14.680] [bbotk]  ceaf93ab-9153-4451-8a1a-e0d15e9f12ab
+#> INFO  [09:37:14.682] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [09:37:14.698] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [09:37:15.911] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [09:37:18.067] [mlr3] Finished benchmark
+#> INFO  [09:37:18.087] [bbotk] Result of batch 6:
+#> INFO  [09:37:18.088] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [09:37:18.088] [bbotk]            109        16       597  0.1748742        0
+#> INFO  [09:37:18.088] [bbotk]  errors runtime_learners
+#> INFO  [09:37:18.088] [bbotk]       0             2.14
+#> INFO  [09:37:18.088] [bbotk]                                 uhash
+#> INFO  [09:37:18.088] [bbotk]  a2cdee09-7e39-4c0c-8f46-72093b405bd5
+#> INFO  [09:37:18.091] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [09:37:18.107] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [09:37:18.110] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [09:37:18.987] [mlr3] Finished benchmark
+#> INFO  [09:37:19.008] [bbotk] Result of batch 7:
+#> INFO  [09:37:19.009] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [09:37:19.009] [bbotk]            124         4       580  0.1696214        0
+#> INFO  [09:37:19.009] [bbotk]  errors runtime_learners
+#> INFO  [09:37:19.009] [bbotk]       0             0.88
+#> INFO  [09:37:19.009] [bbotk]                                 uhash
+#> INFO  [09:37:19.009] [bbotk]  ad8bc47a-cbec-482c-9299-ef28b222f00d
+#> INFO  [09:37:19.012] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [09:37:19.028] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [09:37:19.033] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [09:37:21.847] [mlr3] Finished benchmark
+#> INFO  [09:37:21.867] [bbotk] Result of batch 8:
+#> INFO  [09:37:21.868] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [09:37:21.868] [bbotk]             16        17       560  0.1792515        0
+#> INFO  [09:37:21.868] [bbotk]  errors runtime_learners
+#> INFO  [09:37:21.868] [bbotk]       0             2.82
+#> INFO  [09:37:21.868] [bbotk]                                 uhash
+#> INFO  [09:37:21.868] [bbotk]  92ffc01e-61ea-4ff2-a956-9b22bec2a8be
+#> INFO  [09:37:21.871] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [09:37:21.887] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [09:37:21.891] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [09:37:22.774] [mlr3] Finished benchmark
+#> INFO  [09:37:22.795] [bbotk] Result of batch 9:
+#> INFO  [09:37:22.796] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [09:37:22.796] [bbotk]             97         5       520  0.1696214        0
+#> INFO  [09:37:22.796] [bbotk]  errors runtime_learners
+#> INFO  [09:37:22.796] [bbotk]       0             0.86
+#> INFO  [09:37:22.796] [bbotk]                                 uhash
+#> INFO  [09:37:22.796] [bbotk]  d451aae6-26fb-4df6-9cc5-c750734c63f7
+#> INFO  [09:37:22.798] [bbotk] Evaluating 1 configuration(s)
+#> INFO  [09:37:22.815] [mlr3] Running benchmark with 1 resampling iterations
+#> INFO  [09:37:22.818] [mlr3] Applying learner 'classif.ranger' on task 'task_renew' (iter 1/1)
+#> INFO  [09:37:25.447] [mlr3] Finished benchmark
+#> INFO  [09:37:25.469] [bbotk] Result of batch 10:
+#> INFO  [09:37:25.470] [bbotk]  min.node.size max.depth num.trees classif.ce warnings
+#> INFO  [09:37:25.470] [bbotk]             42        20       560  0.1772817        0
+#> INFO  [09:37:25.470] [bbotk]  errors runtime_learners
+#> INFO  [09:37:25.470] [bbotk]       0             2.64
+#> INFO  [09:37:25.470] [bbotk]                                 uhash
+#> INFO  [09:37:25.470] [bbotk]  50969fa7-6a5b-4aae-9a65-b6c50ea79bd0
+#> INFO  [09:37:25.476] [bbotk] Finished optimizing after 10 evaluation(s)
+#> INFO  [09:37:25.476] [bbotk] Result:
+#> INFO  [09:37:25.477] [bbotk]  min.node.size max.depth num.trees learner_param_vals
+#> INFO  [09:37:25.477] [bbotk]            124         4       580          <list[5]>
+#> INFO  [09:37:25.477] [bbotk]   x_domain classif.ce
+#> INFO  [09:37:25.477] [bbotk]  <list[3]>  0.1696214
 ```
 
-Now we can take a look at our best result
+Now we can take a look at our best result.
 
 
 ```r
@@ -962,7 +962,7 @@ tune_instance$result_y
 #>  0.1696214
 ```
 
-Tuning has improved our model. 0.0097881 percent. Now we can apply this model back to our test data and observe the results.
+Tuning has improved our model. 0.0097881 percent. We can apply this model to our test data and observe the results.
 
 
 ```r
@@ -974,7 +974,7 @@ learner_ranger_rf$param_set$values =
 learner_ranger_rf$train(task_mod_data)
 ```
 
-This is where a three-part data partition is useful. We would use it to further calibrate these results. Let's take a look at how the new predictions look.
+This is where a three-part data partition is useful. We would use it to calibrate these results further. But first, let's look at how the new predictions look.
 
 
 ```r
@@ -1010,11 +1010,11 @@ prediction_tuned$score(measure)
 #>   0.8371754
 ```
 
-We certainly improved the accuracy. Now let's take a look at comparing our model produced with a random forest to a model produced with a different algorithm.
+We certainly improved the accuracy. Now let's compare our model produced with a random forest to one built with a different algorithm.
 
 #### Comparing the results of different model types
 
-How do we know that the model that we constructed is the best model for our problem? We'll have to try a few different ones. For these types of problems you are unlikely to have much success by altering your classification system. We will go through this for demonstration purposes. 
+How do we know that the model that we constructed is the best model for our problem? We'll have to try a few different ones. You will likely have little success with these problems by altering your classification system. We will go through this for demonstration purposes. 
 
 We can choose from available learners with the following command. We know that we are looking at classification problems:
 
@@ -1061,7 +1061,7 @@ test_mod_data_num  <-
 ```
 
 
-Now we can build a new task consisting of a group of learners. We'll use a gradient boosting algorithm, our random forest, and a naive bayes algorithm. 
+Now we can build a new task consisting of a group of learners. We'll use a gradient-boosting algorithm, a random forest, and a naive Bayes algorithm. 
 
 
 
@@ -1090,11 +1090,11 @@ resamplings_bnch <- rsmp("holdout")
 # benchmark our designs
 #-----------------------------------------------------------------
 bmr = benchmark(design_bnch)
-#> INFO  [22:07:10.289] [mlr3] Running benchmark with 3 resampling iterations
-#> INFO  [22:07:10.293] [mlr3] Applying learner 'classif.xgboost' on task 'task_class2' (iter 1/1)
-#> INFO  [22:07:10.359] [mlr3] Applying learner 'classif.ranger' on task 'task_class2' (iter 1/1)
-#> INFO  [22:07:13.612] [mlr3] Applying learner 'classif.naive_bayes' on task 'task_class2' (iter 1/1)
-#> INFO  [22:07:14.042] [mlr3] Finished benchmark
+#> INFO  [09:37:27.103] [mlr3] Running benchmark with 3 resampling iterations
+#> INFO  [09:37:27.108] [mlr3] Applying learner 'classif.xgboost' on task 'task_class2' (iter 1/1)
+#> INFO  [09:37:27.203] [mlr3] Applying learner 'classif.ranger' on task 'task_class2' (iter 1/1)
+#> INFO  [09:37:30.367] [mlr3] Applying learner 'classif.naive_bayes' on task 'task_class2' (iter 1/1)
+#> INFO  [09:37:30.789] [mlr3] Finished benchmark
 ```
 
 We can take a look at the available measures with the following command:
@@ -1146,12 +1146,12 @@ measure_list[,c(6,11,12)]
 #> 3 classif.naive_bayes 0.6735490 0.2061720
 ```
 
-Our _xgboost_ model performed slightly better than the random forest. Perhaps we should use it instead. 
+Our _xgboost_ model performed slightly better than the random forest. So we should use it instead. 
 
 
 #### Manually calling a logistic regression model
 
-Logistic regression is a form of regression that "builds a linear model based on a transformed target variable." [@Witten2011] This target variable will take the form of 1 or 0. Applied to our problem, _will renew_ or _will not renew_. Let's call a basic logistic regression model for fun. 
+Logistic regression is a form of regression that "builds a linear model based on a transformed target variable." [@Witten2011] This target variable will be 1 or 0. Applied to our problem, _will renew_ or _will not renew_. Let's call a basic logistic regression model for fun. 
 
 
 ```r
@@ -1182,11 +1182,11 @@ Table: (\#tab:chsevenmodoutpu)Summary stats for logistic model
 |11746.19|  13211.17   |11756.19|   13701   |0.1108893|
 
 
-This output looks slightly different than the other regression outputs that we have seen. We won't cover logistic regression here, but I wanted to make you aware of it. It generally performs well and is a great place to start if you are predicting two possible outcomes. Additionally, you need to be careful with these models. We estimated a pseudoRSquared, but there are multiple ways to do it. Try the function _pscl::pR2(mod)_ [@pscl2008] to see different methods. 
+This output looks slightly different than the other regression outputs that we have seen. We won't cover logistic regression here, but I wanted to inform you. It performs well and is a great place to start if you predict two possible outcomes. Additionally, it would be best if you were careful with these models. We estimated a pseudoRSquared, but there are multiple ways to do it. Try the function _pscl::pR2(mod)_ [@pscl2008] to see different methods. 
 
 ### Measuring performance
 
-Measuring performance can be difficult. The measures themselves can be technical and confusing. If you are using holdout samples, you can ignore many of them to a degree. If you sampled and calibrated correctly, using "ce" or _classification error_ with a visual inspection of the confusion matrix will often be enough. Let's build a plot of the classification error to give us some additional insight into what is going on.
+Measuring performance can be complex. The measures themselves can be technical and confusing. If you are using holdout samples, you can ignore many of them to a degree. On the other hand, if you sampled and calibrated correctly, using "ce" or _classification error_ with a visual inspection of the confusion matrix will often be enough. Let's build a plot of the classification error to give us additional insight into what is happening.
 
 
 ```r
@@ -1249,22 +1249,22 @@ ggroc(roc_object,colour = 'dodgerblue',size = 1.2) +
 
 <img src="images/ch7_roc.png" width="100%" />
 
-It looks like our ROC curve demonstrates that we can be more efficient by targeting certain groups.
+Our ROC curve demonstrates that targeting certain groups can be more efficient.
 
 ## Using this data
 
-Lead scores are __EASY__ to use. Qualifying leads is likely the most important analytics exercise that can be quickly and easily deployed. This is thinking strategically at its simplest and finest. We simply need to apply our preferred model to new data. All of the algorithms performed in a similar way (which isn't uncommon). So what do you do with it. Scored data is typically placed into quantiles and then deployed in order based on what we desire to happen. 
+Lead scores are __EASY__ to use. Qualifying leads is the most important analytics exercise that can be quickly and easily deployed. This is thinking strategically at its simplest and finest. First, we need to apply our preferred model to new data. Scored data is typically placed into quantiles and then deployed in order based on what we desire to happen. 
 
 
 ### Building cumulative gains charts
 
-How do we know that our model has efficacy in practice? Let's take a sample of our model data and pretend that it is a new group that we plan to deploy in a renewal campaign. Let's begin by borrowing some data from our last analysis. Let's pretend these individuals are new and we are trying to renew them. 
+How do we know that our model has efficacy in practice? Let's take a sample of our model data and pretend it is a new group we plan to deploy in a renewal campaign. Let's begin by borrowing some data from our last analysis. Let's pretend these individuals are new, and we are trying to renew them. 
 
 
 
 ```r
 #-----------------------------------------------------------------
-# Build data fro cumulative gains chart
+# Build data from cumulative gains chart
 #-----------------------------------------------------------------
 mod_data_sample <- 
   mod_data_numeric                                      %>% 
@@ -1378,28 +1378,36 @@ ggplot(mod_data_gain,aes(y=gain,x=group))                  +
 
 <img src="images/ch7_roc_im.png" width="100%" />
 
-We can see that the curve is pushed out in the middle. A the curve begins to flatten, your campaign is less efficient. These problems are complex. Your data isn't perfect and it can be difficult to get the amazing results you see in texts.  
+We can see that the curve bulges in the middle. As the curve begins to flatten, your campaign is less efficient. These problems are complex. Your data could be better, and getting the fantastic results you see in texts can be challenging.  
 
 ## Key concepts and chapter summary
 
-Systematically interacting with your potential customers is a core component of direct marketing. We covered a few major concepts:
+Systematically interacting with your potential customers is a core component of direct marketing. We covered a few primary concepts:
 
 - RFM scores
 - Lead scoring with a random forest
 - Cross Validation
-- Model optimization
+- Model Optimization
 - Model comparisons
 - Evaluating your model for efficacy
 - How to use these models in practice
 
-These subjects cover specific techniques for lead scoring, but also cover model construction in some depth. 
+These subjects cover some depth of specific techniques for lead scoring and model construction. 
 
-- Recency, Frequency, and Monetary Value scores are relatively simple to construct and have been referred to as "poor man's analytics." They are easy to interpret and simple to use. 
-- A random forest is a great tool when your data is short-and-wide. The results are easy to interpret and tend to work as well as a logistic regression. This is bread-and-butter machine learning.
-- Cross validating results is an important part of the analytics process that is sometimes overlooked when building a model.
+- Recency, Frequency, and Monetary Value scores are relatively simple to construct and have been called "poor man's analytics." However, they are easy to interpret and simple to use. 
+- A random forest is a great tool when your data is short-and-wide. The results are easy to interpret and work, as well as logistic regression. This is bread-and-butter machine learning.
+- Cross-validating results is an integral part of the analytics process that should be considered when building a model.
 - Models can be optimized in different ways depending on the model. This includes regression models and machine learning models.
-- There are readily-available tools that you can use to compare models against each other. It is always best to try a couple of different things.
-- Leveraging lead-scores is simple and makes your salespeople more effective. 
+- You can use readily-available tools to compare models against each other. It is always best to try a couple of different things.
+- Leveraging lead scores is simple and makes your salespeople more effective. 
+
+
+
+
+
+
+
+
 
 
 
