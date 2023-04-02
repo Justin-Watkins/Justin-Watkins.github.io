@@ -27,7 +27,7 @@ html-document:
 
 # Abstract and forward {-}
 
-<img src="images/cover.png" style="float: right;" class="cover" width="262" height="350"/> If you want to get straight to work, skip the first few chapters and go directly to chapter \@ref(chapter5). The work content of this book is all contained in the back half. The first few chapters will familiarize you with the data we'll examine the tools we'll use to explore it, and how to contextualize your projects. Then, if you continue reading this chapter, I will explain why I put this project together and what it contains. 
+<img src="images/cover.png" style="float: right;" class="cover" width="262" height="350"/> If you want to get straight to work, skip the first few chapters and go directly to chapter \@ref(chapter5). The work content of this book is all contained in the back half. The first few chapters will familiarize you with the data, we'll examine the tools we'll use to explore it, and explain how to contextualize your projects. Then, if you continue reading this chapter, I will explain why I put this project together and what it contains. 
 
 This book was primarily conceived as a resource for a young person who wants to work in sports business under an analytics group, strategy function, and to a lesser extent, an I.T. team. These skill sets blend together and complement one another. However, this book could be helpful to almost anyone that wants to get a deeper understanding of how analytics is functionally used in a club setting. 
 
