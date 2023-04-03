@@ -1,7 +1,7 @@
 
 # Pricing and Forecasting {#chapter6}
 
-Like _segmentation_, writing an entire book on forecasting and price tickets would be easy due to the breadth of the subjects. There are innumerable considerations, such as determining a _willingness to pay_, taking _arbitrage_ into account, _cannibalizing your sales_, _margins_, _marketing channel_, _product suite_, _brand considerations_, and _competing internal goals_. This chapter also immediately follows some examples of segmenting a market. This order is deliberate. Pricing is dynamic; in certain circumstances, products may be worth more or less money. However, pricing is only sometimes a deliberate exercise. Consider this quote found in Robert Phillips' book "Revenue and Pricing Optimization" [@Phillips2005]
+Like _segmentation_, writing an entire book on forecasting and pricing tickets would be easy due to the breadth of the subjects. There are innumerable considerations, such as determining a _willingness to pay_, taking _arbitrage_ into account, _cannibalizing your sales_, _margins_, _marketing channel_, _product suite_, _brand considerations_, and _competing internal goals_. This chapter also immediately follows some examples of segmenting a market. This order is deliberate. Pricing is dynamic; in certain circumstances, products may be worth more or less money. However, pricing is only sometimes a deliberate exercise. Consider this quote found in Robert Phillips' book "Revenue and Pricing Optimization" [@Phillips2005]
 
 > "In many cases, the prices charged to customers are the result of a large number of uncoordinate and arbitrary decisions." 
 >

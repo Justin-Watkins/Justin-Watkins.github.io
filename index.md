@@ -1,7 +1,7 @@
 --- 
 title: "Fundamentals of Sports Business Analytics and Strategy"
 author: "Justin Watkins"
-date: "2023-04-01"
+date: "2023-04-03"
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: yes
@@ -49,7 +49,7 @@ This is the famous _Law of the Instrument_^[https://en.wikipedia.org/wiki/Law_of
 
 While technology has democratized analytics, analytics is still a black box to many managers. These people should depend on these tools. Instead, they will often retreat from them. Consider this quote: "Expert Power is influence wielded as a result of expertise, special skill, or knowledge." [@Robbins2012] Understanding these tools and techniques gives you a degree of expert power. However, as a manager without this knowledge, the idiom "the tail wags the dog" applies. If you don't understand these concepts but want to use them, you can lose credibility with your employees or look less competent than those you manage. 
 
-While you don't need to know how to script or code to leverage this book, some programming/scripting knowledge will be an enormous benefit. You will want to understand some basic scripting to fully use this text. You will be heavily exposed to it, and I need you to learn to have a working knowledge of it. It is still a necessary prerequisite to work on implementing solutions in this field. The code that you'll find in this book is written in R [@R-base]. In fact, this entire book was written using R libraries using free software. We'll mostly follow best practices as defined in "Advanced R" [@Wickham2014]. While Python has become more prevalent recently, I find R more suitable for non-programmers. 
+While you don't need to know how to script or code to leverage this book, some programming/scripting knowledge will be an enormous benefit. You will want to understand some basic scripting to fully use this text. You will be heavily exposed to it, and I need you to learn to have a working knowledge of it. It is still a necessary prerequisite to work on implementing solutions in this field. The code that you'll find in this book is written in R [@R-base]. In fact, this entire book was written using R libraries using free software. It was edited using a software called Grammarly^[https://www.grammarly.com/]. We'll mostly follow best practices as defined in "Advanced R" [@Wickham2014]. While Python has become more prevalent recently, I find R more suitable for non-programmers. 
 
 R is excellent in some ways and unusual in others. It has some idiosyncrasies that make it operate differently than many programming languages. The most noticeable difference is in flow control, where _for_ and _while_ loops are avoided in favor of a suite of vectorized functions. These functions have also been expanded and improved by generous developers. If you don't know what this means, you will learn it, so don't worry. Our examples will use common constructs when we aren't penalized on run-time. From a data-science perspective, Python uses many packages duplicating R's advantages (Pandas and Numpy). You'll come away with an appreciation for the language whether you want that appreciation or not.   
 

@@ -220,7 +220,7 @@ dealing-with-missing-data
 imputating-with-a-package
 discretizing-our-numerical-variables
 dummy-coding-our-categorical-variables
-hiearchical-clustering
+hierarchical-clustering
 latent-class-regression
 a-benefits-sought-approach-to-segmentation
 factoranalysis
@@ -241,7 +241,7 @@ implementing-revenue-management-strategies-in-sports
 key-concepts-and-chapter-summary-5
 chapter7
 recency-frequency-and-monetary-value
-scoring-season-ticket-holders-on-their-liklihood-to-renew
+scoring-season-ticket-holders-on-their-likelihood-to-renew
 implementing-a-lead-scoring-project
 defining-our-goal
 understanding-the-data-set
@@ -270,8 +270,8 @@ sampling
 experimental-design
 planning-and-design
 understanding-the-makeup-of-a-clubs-fans
-selecting-the-right-research-method
-building-and-designing-the-questionaire
+selecting-the-correct-research-method
+building-and-designing-the-questionnaire
 qualifying-your-sample
 typical-survey-questions
 avidity-questions
@@ -279,12 +279,12 @@ brand-affinity
 other-topics
 key-concepts-and-chapter-summary-8
 chapter10
-understanding-basic-issues-with-ingress
+understanding-fundamental-issues-with-ingress
 reducing-wait-times-at-concessions
 establishing-objectives
 understanding-our-problem
 defining-our-problem-and-establishing-goals
-measurment-and-analysis
+measurement-and-analysis
 data-audit-and-capture
 line-length-and-total-scans
 analyzing-the-results
