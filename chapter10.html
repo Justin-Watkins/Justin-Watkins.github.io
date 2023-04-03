@@ -6,16 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 10 Operations | Fundamentals of Sports Business Analytics and Strategy</title>
 <meta name="author" content="Justin Watkins">
-<meta name="description" content="If a sports team has two fundamental core-competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
+<meta name="description" content="If a sports team has two fundamental core competencies, they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
 <meta name="generator" content="bookdown 0.28 with bs4_book()">
 <meta property="og:title" content="Chapter 10 Operations | Fundamentals of Sports Business Analytics and Strategy">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://justin-watkins.github.io/chapter10.html">
 <meta property="og:image" content="https://justin-watkins.github.io/images/cover.png">
-<meta property="og:description" content="If a sports team has two fundamental core-competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
+<meta property="og:description" content="If a sports team has two fundamental core competencies, they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 10 Operations | Fundamentals of Sports Business Analytics and Strategy">
-<meta name="twitter:description" content="If a sports team has two fundamental core-competencies they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
+<meta name="twitter:description" content="If a sports team has two fundamental core competencies, they should be events management and selling tickets. These two efforts are where most of the work takes place. Additionally, a smooth...">
 <meta name="twitter:image" content="https://justin-watkins.github.io/images/cover.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -94,9 +94,9 @@
 <h1>
 <span class="header-section-number">10</span> Operations<a class="anchor" aria-label="anchor" href="#chapter10"><i class="fas fa-link"></i></a>
 </h1>
-<p>If a sports team has two fundamental core-competencies they should be <em>events management</em> and <em>selling tickets</em>. These two efforts are where most of the work takes place. Additionally, a smooth operation is critical to brand perception. It is a pillar of our product in a details-oriented business.</p>
-<p>The overarching umbrella of operations in the club context covers getting fans into, around, and out of the facility safely, quickly, and conveniently. There are design, system, and technology components that must be constructed. There are also optimization considerations such as the cost and number of point-of-sale units for concessions and retail, labor optimization for security, food production, the number of seats in particular sections, the number of bathrooms, etc. The list is extensive. Operations as an academic discipline is about studying systems We’ll apply some techniques from the overlapping academic fields of Operations Research, Industrial Engineering, and Operations Management to analyze and solve a couple of ubiquitous <em>operations</em> problems.</p>
-<p>Many constraints that you find in a ballpark or arena are byproducts of cost optimization. Your square footage or campus size have a big influence on what you are able to accomplish. Venues are now being designed with more advanced capabilities in mind. These capabilities might include:</p>
+<p>If a sports team has two fundamental core competencies, they should be <em>events management</em> and <em>selling tickets</em>. These two efforts are where most of the work takes place. Additionally, a smooth operation is critical to brand perception. It is a pillar of our product in a details-oriented business.</p>
+<p>The overarching umbrella of operations in the club context covers getting fans into, around, and out of the facility safely, quickly, and conveniently. There are design, system, and technology components that must be constructed. There are also optimization considerations such as the cost and number of point-of-sale units for concessions and retail, labor optimization for security, food production, the number of seats in particular sections, the number of bathrooms, etc. The list is extensive. Operations as an academic discipline is about studying systems. We’ll apply techniques from the overlapping academic fields of Operations Research, Industrial Engineering, and Operations Management to analyze and solve some ubiquitous <em>operations</em> problems.</p>
+<p>Many constraints in a ballpark or arena are byproducts of cost optimization. Your square footage or campus size significantly influences what you can accomplish. Venues are now being designed with more advanced capabilities in mind. These capabilities might include the following:</p>
 <ul>
 <li>Ordering food and beverages from your phone</li>
 <li>More expansive automated options for F&amp;B</li>
@@ -106,29 +106,29 @@
 <li>Integrated commerce systems and loyalty mechanisms</li>
 <li>Integrated public transit</li>
 </ul>
-<p>While these systems help to solve existing problems, they can exacerbate other issues. For instance, attempting food delivery without considering kitchen locations could lead to quality control issues. Never consider technology solutions without carefully examining the underlying execution capability. Businesses are littered with the withered husks of technology solutions that failed to deliver, were an ill fit, were a pet project of some inept executive, or simply faded away from an internal or external inability to manage the solution.</p>
-<p>Despite advances in technology, venues will always be faced with optimization problems around moving large numbers of people through their systems in a short amount of time. There are also additive factors such as parking or public transit, nearby entertainment districts, game day promotional items, food an beverage service, and security screenings that all must be considered. The following sections will analyzing some of these problems in detail.</p>
-<div id="understanding-basic-issues-with-ingress" class="section level2" number="10.1">
+<p>While these systems help to solve existing problems, they can exacerbate other issues. For instance, attempting food delivery without considering kitchen locations could lead to quality control issues. Only consider technology solutions after carefully examining the underlying execution capability. Businesses are littered with the withered husks of technology solutions that failed to deliver, were an ill fit, were a pet project of some inept executive, or faded away from an internal or external inability to manage the solution.</p>
+<p>Despite technological advances, venues will always be faced with optimization problems around moving large numbers of people through their systems quickly. In addition, additive factors such as parking or public transit, nearby entertainment districts, game day promotional items, food and beverage service, and security screenings must be considered. The following sections will analyze some of these problems in detail.</p>
+<div id="understanding-fundamental-issues-with-ingress" class="section level2" number="10.1">
 <h2>
-<span class="header-section-number">10.1</span> Understanding basic issues with ingress<a class="anchor" aria-label="anchor" href="#understanding-basic-issues-with-ingress"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.1</span> Understanding fundamental issues with ingress<a class="anchor" aria-label="anchor" href="#understanding-fundamental-issues-with-ingress"><i class="fas fa-link"></i></a>
 </h2>
-<p>Capacity constraints are obvious and unavoidable with ingress. If you have 30,000 to 400,000 people trying to get to the same place at the same time, lines are unavoidable. The Romans certainly understood these issues well. The Colosseum of Rome was designed with 76 vomitoria that would accommodate over 50,000 people<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Colosseum" class="uri"&gt;https://en.wikipedia.org/wiki/Colosseum&lt;/a&gt;&lt;/p&gt;'><sup>92</sup></a>. Ironically, the Colosseum was likely more efficient at ingress and egress than a modern stadium. Many venues require a security check involving a magnetometer. Bags must be checked, tickets may need to be scanned, building and fire codes create constraints, and internal space is taken up by concessions and mechanical infrastructure. The Romans didn’t have to worry about running electricity or HVAC throughout their venues. These issues also extend outside of the building and apply to road traffic, ADA considerations, public transit, and ride-sharing partnerships.</p>
-<p>Eliyahu Goldratt published a book in 1984 called <em>The Goal</em> <span class="citation">(<a href="references.html#ref-Goldratt2004" role="doc-biblioref">Goldratt 2004</a>)</span> which introduces us to the <em>Theory of Constraints</em>. This book gives us a simple framework for approaching a problem such as Ingress. If you are interested in Operations, it is a must-read book. Your may not appreciated the depressing narrative, but the content is outstanding. In <em>The Goal</em>, Goldratt introduces the five-step <em>Process Of On-Going Improvement</em>:</p>
+<p>Capacity constraints are obvious and unavoidable with ingress. Lines are inevitable if 30,000 to 400,000 people are trying to get to the same place simultaneously. The Romans certainly understood these issues well. The Colosseum of Rome was designed with 76 vomitoria to accommodate over 50,000 people<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Colosseum" class="uri"&gt;https://en.wikipedia.org/wiki/Colosseum&lt;/a&gt;&lt;/p&gt;'><sup>92</sup></a>. Ironically, the Colosseum was more efficient at ingress and egress than a modern stadium. Many venues require a security check involving a magnetometer. Bags must be checked, tickets must be scanned, building and fire codes create constraints, and concessions and mechanical infrastructure take up internal space. The Romans didn’t have to worry about running electricity or HVAC throughout their venues. These issues extend outside the building and apply to road traffic, ADA considerations, public transit, and ride-sharing partnerships.</p>
+<p>Eliyahu Goldratt published a book in 1984 called <em>The Goal</em> <span class="citation">(<a href="references.html#ref-Goldratt2004" role="doc-biblioref">Goldratt 2004</a>)</span>, which introduces us to the <em>Theory of Constraints</em>. This book gives us a simple framework for approaching a problem such as ingress. If you are interested in Operations, it is a must-read book. You may not appreciate the depressing narrative, but the content is outstanding. In <em>The Goal</em>, Goldratt introduces the five-step <em>Process Of On-Going Improvement</em>:</p>
 <ol style="list-style-type: decimal">
 <li>Identify the system’s bottlenecks</li>
 <li>Decide how to exploit those bottlenecks</li>
-<li>Subordinate every other decision to ‘step two decisions’</li>
+<li>Subordinate every other decision to ‘step two decisions.’</li>
 <li>Elevate the systems bottlenecks</li>
 <li>if, in a previous step, a bottleneck has been broken, go back to the beginning.</li>
 </ol>
-<p>A system can only have one bottleneck<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;It is more accurate to say that this system can only have one bottleneck at a time&lt;/p&gt;"><sup>93</sup></a>. That is what makes this process iterative. If you replace the weakest link in a chain with a stronger one, some other link will become the weakest. Let’s outline an ingress process and look at some data. An Ingress process is probably going to look fairly similar at virtually every venue in the world. A typical flowchart for and ingress procedure can be studied in figure <a href="chapter10.html#fig:chtengate">10.1</a>.</p>
+<p>A system can only have one bottleneck<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;It is more accurate to say that this system can only have one bottleneck at a time&lt;/p&gt;"><sup>93</sup></a>. That is what makes this process iterative. If you replace the weakest link in a chain with a stronger one, another link will become the weakest. Let’s outline an ingress process and look at some data. An Ingress process will look similar at virtually every venue worldwide. A typical flowchart for an ingress procedure can be studied in figure <a href="chapter10.html#fig:chtengate">10.1</a>.</p>
 <div class="figure">
 <span style="display:block;" id="fig:chtengate"></span>
 <img src="images/ch10_gate_process.png" alt="Typical gate entry process" width="100%"><p class="caption">
 Figure 10.1: Typical gate entry process
 </p>
 </div>
-<p>Figure <a href="chapter10.html#fig:chtengate">10.1</a> demonstrates a typical gate procedure. Although recent advances in technology have made such a process faster, this basic process is followed at most event venues. What sort of data could we extract from this process? You would typically have scan data from the ticketing process and perhaps magnetometer passes and failures. You’ll know how many people come through each gate at each point of entry and when they passed through security. let’s take a look at some aggregated data.</p>
+<p>Figure <a href="chapter10.html#fig:chtengate">10.1</a> demonstrates a typical gate procedure. Although recent technological advances have made such a process faster, this fundamental process is followed at most event venues. What sort of data could we extract from this process? You would typically have scan data from the ticketing process and magnetometer passes and failures. In addition, you’ll know how many people enter each gate at each entry point and when they pass through security. Let’s take a look at some aggregated data.</p>
 <div class="sourceCode" id="cb276"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Access scan data</span></span>
@@ -182,7 +182,7 @@ Figure 10.1: Typical gate entry process
 </tr>
 </tbody>
 </table></div>
-<p>This data is aggregated by the number of scans by minute and is summed and bucketed. The distribution of scans can be seeing in figure <a href="chapter10.html#fig:chtenscansgraphicb">10.2</a>. Can you think of other information that might be useful here?</p>
+<p>This data is aggregated by the number of scans by minute and is summed and bucketed. The distribution of scans can be seen in figure <a href="chapter10.html#fig:chtenscansgraphicb">10.2</a>. What other information might be helpful here?</p>
 <div class="sourceCode" id="cb277"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Scans</span></span>
@@ -212,8 +212,8 @@ Figure 10.1: Typical gate entry process
 Figure 10.2: Distribution of ticket scans at the gates
 </p>
 </div>
-<p>In general, ticket scans will typically follow a specific cadence for identical events. Our ballpark has four points of entry for fans and each point of entry has four scanners. We can tell that our entry process is slightly probabilistic. Not all scans will take the same amount of time because a failure requires adjustments or an additional scan and people move at different paces. <em>What is the maximum capacity of this system?</em></p>
-<p>This question is actually difficult to answer because we know that some gates are likely to be busier than others at different times. We are looking for the gate with the maximum throughput under duress. You will need multiple days of observation to get a good average figure.</p>
+<p>In general, ticket scans will typically follow a specific cadence for similar events. Our ballpark has four points of entry for fans, and each point of entry has four scanners. Our entry process is slightly probabilistic. Not all scans will take the same time because a failure requires adjustments or an additional scan, and people move at different paces. <em>What is the maximum capacity of this system?</em></p>
+<p>This question is difficult to answer because we know that some gates are likely to be busier than others at different times. We are looking for the entrance with the maximum throughput under duress. This gate will represent your maximum theoretical throughput potential. You will need multiple days of observation to get a good average figure.</p>
 <div class="sourceCode" id="cb278"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Scans</span></span>
@@ -259,8 +259,8 @@ Figure 10.2: Distribution of ticket scans at the gates
 </tr>
 </tbody>
 </table></div>
-<p>The highest observed average number of scans per scanner is about thirteen scans per minute across each ingress point. This means that a person went through the system every four and a half seconds for one minute. However, this average may mean that some scans took ten seconds and many more took one second. We can’t tell from this data. In a subsequent section we will discuss queuing theory and how to analyze wait-time by looking at service times, inter-arrival times, line-length, and queuing discipline. We are illustrating a broader point with this example.</p>
-<p>We can see that we are missing some key data. We can also begin to see that this problem sprawls and becomes very complex. What data are we missing? I would prefer to see:</p>
+<p>The highest observed average number of scans per scanner is about thirteen per minute across each ingress point. This means a person went through the system every four and a half seconds for one minute. However, this average may mean that some scans took ten seconds and others took one second. We can’t tell from this data. In a subsequent section, we will discuss queuing theory and how to analyze wait time by looking at service times, inter-arrival times, line length, and queuing discipline. We are illustrating a broader point with this example.</p>
+<p>We can see that we still need some critical data. We can also see that this problem sprawls and becomes very complex. What data do we need? I would prefer to see the following:</p>
 <ol style="list-style-type: decimal">
 <li>The process components split and timed</li>
 <li>Information on line-length</li>
@@ -269,26 +269,26 @@ Figure 10.2: Distribution of ticket scans at the gates
 <li>Information on staffing numbers and procedure</li>
 <li>True positives and false positive numbers for scanner alarms</li>
 </ol>
-<p>Can we identify a bottleneck? Judging by our diagram it seems that if a magnetometer is triggered than an individual is asked to walk back through it. Perhaps we could change the process so that we add staff to wand guests that triggered the gate. We could also eliminate bags or alter the magnetometer settings and then measure the differences. Not all solutions require much diligence. We’ll expand on this example and look at an analogous project in a little more depth. Reducing wait times at concession stands.</p>
+<p>Can we identify a bottleneck? Judging by our diagram, if a magnetometer is triggered, an individual is asked to walk back through it. We could change the process to add staff to wand guests that triggered the gate. We could also eliminate bags or alter the magnetometer settings and then measure the differences. Not all solutions require much diligence. We’ll expand on this example and examine an analogous project more deeply; Reducing wait times at concession stands.</p>
 </div>
 <div id="reducing-wait-times-at-concessions" class="section level2" number="10.2">
 <h2>
 <span class="header-section-number">10.2</span> Reducing wait times at concessions<a class="anchor" aria-label="anchor" href="#reducing-wait-times-at-concessions"><i class="fas fa-link"></i></a>
 </h2>
-<p>Everyone has spent time standing in line for food and beverage at a sporting event. If you asked someone what is wrong with the system they might give you a couple of predictable responses such as “There are too many people” or “These people just don’t know what they are doing.” In reality, this is a complex problem that has many components:</p>
+<p>Everyone has spent time standing in line for food and beverage at a sporting event. If you ask someone what is wrong with the system, they might give you a couple of predictable responses such as “There are too many people” or “These people just don’t know what they are doing.” In reality, this is a complex problem that has many components:</p>
 <ul>
-<li>System constraints (number of grills, points-of-sale, etc)</li>
+<li>System constraints (number of grills, points-of-sale, etc.)</li>
 <li>Labor (experience, training, motivation)</li>
 <li>Back-of-house systems (buffering demand, menu design)</li>
 <li>Front-of-house systems (Queuing discipline, ordering, and payment systems)</li>
 </ul>
-<p>The interesting thing here is that you don’t really have to acknowledge that there is a problem. Perhaps there isn’t. You can look at this system and simply state that <em>we don’t have enough points of sale. That is why lines are long</em>. If we had more points of sale that would spread out the lines and the lines would be shorter. Of course, that is an incredibly reductive point of view. Let’s be a little more realistic and begin by constructing a narrative:</p>
+<p>The interesting thing here is that you don’t have to acknowledge that there is a problem. Perhaps there isn’t. You can look at this system and state that <em>we don’t have enough points of sale</em>. That is why the lines are long_. If we had more points of sale, that would spread out the lines, and the lines would be shorter. But, of course, that is an incredibly reductive point of view. So let’s be a little more realistic and begin by constructing a narrative:</p>
 <blockquote>
-<p><em>Executives for the Nashville Game Hens have noticed long lines at concession stands during games. Lines tend to get noticably worse on the weekends when more fans are in the building. Additionally, customer satisfaction surveys indicate that time spent waiting in line at concession stands is a major source of dissatisfaction. The concessions manager says that “the problem is that we don’t have enough points-of-sale to deal with capacity once we reach about 30,000 fans.” She poses a solution that will require a large capital investment to add more points of sale. You are approached by an executive and asked if that is good idea…</em></p>
+<p><em>Executives for the Nashville Game Hens have noticed long lines at concession stands during games. Lines tend to get noticeably worse on the weekends when more fans are in the building. Additionally, customer satisfaction surveys indicate that waiting in line at concession stands is a significant source of dissatisfaction. The concessions manager says, “the problem is that we don’t have enough points-of-sale to deal with capacity once we reach about 30,000 fans.” She poses a solution that will require a significant capital investment to add more points of sale. You are approached by an executive and asked if that is a good idea…</em></p>
 </blockquote>
-<p>You might begin to solve this problem by making some observations yourself. You might also look for any data that you have available. We’ll assume you don’t have anything. You talk to the concessions manager and she tells you that her standard is for orders to be filled in less than ninety seconds. This is an industry standard and that she achieves it <em>on average</em>.</p>
-<p>Without any data, this project will to have to proceed in stages. You can also take some cues from the nature of the problem itself to help devise a plan for approaching a solution. At least three of the identified project components involve some degree of process improvement. Since we are looking at process improvement, let’s see if we can simply apply DMAIC to this problem. DMAIC stands for <em>Define, Measure, Analyze, Implement, and Control.</em> It comes to us from Six Sigma<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Six_Sigma" class="uri"&gt;https://en.wikipedia.org/wiki/Six_Sigma&lt;/a&gt;&lt;/p&gt;'><sup>94</sup></a>, a process improvement protocol that has been adapted to a number of business problems. While Six Sigma has it’s roots in manufacturing, we can appropriate some of its tools here.</p>
-<p>If you are going to use a framework you might as well go all the way and produce a project charter that lays out a full project plan. A project plan needs to include a few components. The two that we will concern ourselves with here include:</p>
+<p>You can solve this problem by making some observations yourself. Look for any data that you have available. We’ll assume you don’t have anything. You talk to the concessions manager, who tells you that her standard is to fill orders in less than ninety seconds. This is an industry standard, and she achieves it <em>on average</em>.</p>
+<p>Without any data, this project will have to proceed in stages. However, you can also take some cues from the nature of the problem itself to help devise a plan for approaching a solution. At least three of the identified project components involve some process improvement. Since we are looking at process improvement, let’s see if we can apply DMAIC to this problem. DMAIC stands for <em>Define, Measure, Analyze, Implement, and Control.</em> It comes to us from Six Sigma<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Six_Sigma" class="uri"&gt;https://en.wikipedia.org/wiki/Six_Sigma&lt;/a&gt;&lt;/p&gt;'><sup>94</sup></a>, a process improvement protocol adapted to many business problems. While Six Sigma has its roots in manufacturing, we can appropriate some of its tools here.</p>
+<p>You could produce a project charter laying out a complete project plan using a framework. A project plan needs to include a few components. The two that we will concern ourselves with here include:</p>
 <ul>
 <li>Project objectives</li>
 <li>Specific goals</li>
@@ -300,15 +300,15 @@ Figure 10.2: Distribution of ticket scans at the gates
 <li>Stakeholders</li>
 <li>Potential problems</li>
 </ul>
-<p>I wanted to point this seemingly irrelevant step out for a couple of reasons. The first reason is that a project plan forces you to think about how to solve a problem. This is often the most difficult part. It also forces you to create some documentation around the project. If you do not create some basic documentation around your projects it will eventually be used against you and not to your benefit. The problem will have a tendency to sprawl. Make a habit of building project charters for any projects involving multiple stakeholders or external groups. It will make scoping projects much easier and help keep everyone on task and on budget.</p>
+<p>I am pointing this seemingly irrelevant step out for several reasons. The first reason is that a project plan forces you to think about how to solve a problem. This is often the most challenging part. It also forces you to create some documentation around the project. If you do not create some essential documentation around your projects, it will eventually be used against you and not to your benefit. The problem will tend to sprawl. Make a habit of building project charters for any projects involving multiple stakeholders or external groups. It will make scoping projects much more manageable and help keep everyone on task and budget.</p>
 <div id="establishing-objectives" class="section level3" number="10.2.1">
 <h3>
 <span class="header-section-number">10.2.1</span> Establishing objectives<a class="anchor" aria-label="anchor" href="#establishing-objectives"><i class="fas fa-link"></i></a>
 </h3>
-<p>Objectives can be a little vague, but they derive from the <em>business case</em> and <em>problem statement</em>. Let’s take a stab at establishing some objectives. We’ll use some concepts from “Six Sigma” <span class="citation">(<a href="references.html#ref-Campe2007" role="doc-biblioref">Campe 2007</a>)</span> for this example.</p>
-<p>The business case is simply a statement that indicates the importance of the project. It should demonstrate why the project needs to be addressed:</p>
+<p>Objectives can be vague but derive from the <em>business case</em> and <em>problem statement</em>. Let’s take a stab at establishing some goals. We’ll use some concepts from “Six Sigma” <span class="citation">(<a href="references.html#ref-Campe2007" role="doc-biblioref">Campe 2007</a>)</span> for this example.</p>
+<p>The business case is simply a statement indicating the project’s importance. It should demonstrate why the project needs to be addressed:</p>
 <blockquote>
-<p>Customer satisfaction has been linked to repeat purchases and has a demonstrable impact on year-over-year revenue. Additionally, customer satisfaction scores predicibly degrade once attendance exceeds 30,000. Surveys have concluded that improving these scores can be best achieved by decreasing the wait time at concessions throughout our venue. With over 100 games left in the season, we have an opportuinty to demonstably impact season ticket renewals. Additionally, our capital budgets must be completed in the next sixty days.</p>
+<p>Customer satisfaction has been linked to repeat purchases and demonstrably impacts year-over-year revenue. Additionally, customer satisfaction scores predictably degrade once attendance exceeds 30,000. Surveys have concluded that improving these scores can be best achieved by decreasing the wait time at concessions throughout our venue. We can demonstrably impact season ticket renewals with over 100 games left in the season. Additionally, our capital budgets must be completed in the next sixty days.</p>
 </blockquote>
 <p>What does this statement establish?</p>
 <ol style="list-style-type: decimal">
@@ -321,50 +321,50 @@ Figure 10.2: Distribution of ticket scans at the gates
 <h3>
 <span class="header-section-number">10.2.2</span> Understanding our problem<a class="anchor" aria-label="anchor" href="#understanding-our-problem"><i class="fas fa-link"></i></a>
 </h3>
-<p>We’ll need a little data to begin to understand our problem and we have a goal with collecting exploratory data. We are looking for something to help build our problem statement. In this case, perhaps we can simply go out and look at line-length at a particular concept.</p>
-<p>A typical concept has eight to fifteen items on the menu. Items are purchased at differential rates and have varying prep times. Most items can be stored for about twenty minutes before quality begins to degrade. The number of points of sale vary, but most concepts have between four and twelve points of sale. Customers enter the queue and wait until a point of sale becomes available. They place their order, pay, and then wait at the point-of-sale for the order to be fulfilled before exiting the system.</p>
-<p>Queuing systems are a fascinating topic. A more detailed analysis of queuing systems will be covered later in this chapter within section <a href="chapter10.html#queuing">10.5</a>. However, if you are unfamiliar with how queuing systems are analyzed, I recommend spending a little time covering <em>Queuing Theory</em> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Queueing_theory" class="uri"&gt;https://en.wikipedia.org/wiki/Queueing_theory&lt;/a&gt;&lt;/p&gt;'><sup>95</sup></a>. Queuing theory can be extremely complex and has many applications across a variety of disciplines. To simplify it, just think of your goal as to design systems so that the outcomes are more deterministic.</p>
-<p>The Game Hens’ concession concepts typically follow a <em>multi-channel, single phase (MCSP)</em> queuing discipline. In a MCSP system we have a one-step (single phase) serving process where the register handles the complete transaction and there are multiple points-of-sale (channels) serving the queue. Additionally, the process follows a FIFO (first-in, first out) queue discipline where the customer waiting the longest amount of time is serviced first.</p>
+<p>We’ll need a little data to begin to understand our problem, and we aim to collect exploratory data. We are looking for something to help build our problem statement. In this case, we can look at the line length of a particular concept.</p>
+<p>A typical concept has eight to fifteen items on the menu. Items are purchased at differential rates and have varying prep times. Most items can be stored for about twenty minutes before quality begins to degrade. The number of points of sale varies, but most concepts have between four and twelve points of purchase. Customers enter the queue and wait until a point of sale becomes available. They place their order, pay, and then wait at the point of purchase for the order to be fulfilled before exiting the system.</p>
+<p>Queuing systems are a fascinating topic. A more detailed analysis of queuing systems will be covered in this chapter within section <a href="chapter10.html#queuing">10.5</a>. However, if you are unfamiliar with how queuing systems are analyzed, I recommend spending a little time covering <em>Queuing theory</em> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Queueing_theory" class="uri"&gt;https://en.wikipedia.org/wiki/Queueing_theory&lt;/a&gt;&lt;/p&gt;'><sup>95</sup></a>. Queuing theory can be highly complex and has many applications across various disciplines. To simplify it, consider your goal in designing systems so that the outcomes are more deterministic.</p>
+<p>The Game Hens’ concession concepts typically follow a <em>multi-channel, single-phase (MCSP)</em> queuing discipline. In an MCSP system, we have a one-step (single phase) serving process where the register handles the complete transaction, and there are multiple points-of-sale (channels) serving the queue. Additionally, the process follows a FIFO (first-in, first-out) queue discipline where the customer waiting the most extended amount of time is serviced first.</p>
 <p>Let’s extract the key elements of this system:</p>
 <ul>
 <li>Process follows a FIFO queue discipline and does not function asynchronously</li>
 <li>Ordering, payment, and fulfillment happen at the point-of-sale</li>
 <li>Fulfillment is difficult to buffer due to differential storage times and demand levels</li>
 </ul>
-<p>Now that we have a little bit of detail, we can construct a plan for capturing some measurements for analysis.</p>
+<p>Now that we have some detail, we can construct a plan for capturing some measurements for analysis.</p>
 </div>
 <div id="defining-our-problem-and-establishing-goals" class="section level3" number="10.2.3">
 <h3>
 <span class="header-section-number">10.2.3</span> Defining our problem and establishing goals<a class="anchor" aria-label="anchor" href="#defining-our-problem-and-establishing-goals"><i class="fas fa-link"></i></a>
 </h3>
-<p>Most strategically oriented projects tend to sprawl when you begin to think about them. This one is no different. There are lots of considerations. Let’s create a problem statement that unambiguously explains this project.</p>
+<p>Most strategically oriented projects tend to sprawl when you think about them. This one is no different. There are lots of considerations. Let’s create a problem statement that unambiguously explains this project.</p>
 <blockquote>
-<p>Problem statement: Wait times for concessions services across the ballpark consistently recieve low relative satisfaction scores (less than 10% of fans give the highest rating) from our season ticket holders. Low satisfaction scores are correlelated with a higher likelihood for a specific fan to not renew their season membership. While industry standards for service times have been quoted by our vendor at ninety seconds per transaction, observed wait times often exceed this figure by over 100%.</p>
+<p>Problem statement: Wait times for concessions services across the ballpark consistently receive low relative satisfaction scores (less than 10% of fans give the highest rating) from our season ticket holders. Low satisfaction scores are correlated with a higher likelihood for a specific fan not to renew their season membership. While our vendor has quoted industry standards for service times at ninety seconds per transaction, observed wait times often exceed this figure by over 100%.</p>
 </blockquote>
-<p>Goals are more precise than objectives. Since we don’t have any hard data on our process, we will have to wait to establish firm goals. The initial goal will be to collect the necessary data with the hopes that we can reduce wait times. At this stage, we have no idea how much it may be possible to reduce wait times. Although there is an industry standard, we don’t know if this figure has any merit.</p>
+<p>Goals are more precise than objectives. Since we don’t have any data on our process, we will have to wait to establish firm goals. The initial goal will be to collect the necessary data with the hopes that we can reduce wait times. We have yet to determine how much it may be possible to reduce wait times. Although there is an industry standard, we must determine if this figure has merit.</p>
 </div>
 </div>
-<div id="measurment-and-analysis" class="section level2" number="10.3">
+<div id="measurement-and-analysis" class="section level2" number="10.3">
 <h2>
-<span class="header-section-number">10.3</span> Measurment and analysis<a class="anchor" aria-label="anchor" href="#measurment-and-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.3</span> Measurement and analysis<a class="anchor" aria-label="anchor" href="#measurement-and-analysis"><i class="fas fa-link"></i></a>
 </h2>
-<p>You almost never have all the data that you need. In this case, we’ll need to take note of what we do have and create a plan on gathering what we don’t have. Sine we will have to take live measurements, we’ll need a ruberic and a budget. Additionally, our timeline will be impacted by the fact that we will need to take measurements during the game.</p>
+<p>You seldom have all the data that you need. In this case, we’ll need to take note of what we have and create a plan to gather what we don’t. Since we will have to take live measurements, we’ll need a rubric and a budget. Additionally, our timeline will be impacted by the fact that we must take measurements during the game.</p>
 <div id="data-audit-and-capture" class="section level3" number="10.3.1">
 <h3>
 <span class="header-section-number">10.3.1</span> Data audit and capture<a class="anchor" aria-label="anchor" href="#data-audit-and-capture"><i class="fas fa-link"></i></a>
 </h3>
-<p>You’ll want to be careful about how you capture data. You’ll also want to be consistent and as thorough as possible. Spend some time thinking about this phase of the project. In this case, we know that we are going to have to capture observational data. Additionally, this data might make someone look bad. Since you have been quoted ninety seconds as the number that is being met, what happens if your measurements differ? Keep these sorts of political impediments in mind as you build your rubric.</p>
+<p>You’ll want to be careful about how you capture data. You’ll also want to be consistent and as thorough as possible. Spend some time thinking about this phase of the project. In this case, we know we must capture observational data. Additionally, this data might make someone look bad. Since you have been quoted ninety seconds as the number being met, what happens if your measurements differ? Keep these sorts of political impediments in mind as you build your rubric.</p>
 <p>There are many ways to collect data in this context, but the fundamental components of that plan will be almost identical. Just google <em>data collection plan</em>. The frameworks are all very similar. You start with a specific question that you are trying to answer and then lay out the specifics of:</p>
 <ul>
 <li>Data types</li>
-<li>What is being measured</li>
-<li>How the data is to be measured</li>
-<li>How the data is to be captured</li>
-<li>How you ensure consistency</li>
+<li>What data is being measured?</li>
+<li>How is the data to be measured?</li>
+<li>How is the data to be captured?</li>
+<li>How do you ensure consistency?</li>
 </ul>
-<p>The initial goal of our analysis is to identify a bottleneck. We should be able to gather some data from our information systems. We know that scan data is being captured at the gates so we know how many people are in the park at any given time. That information may be useful.</p>
-<p>Leveraging the points-of-sale to estimate wait times might not be possible. Perhaps if we had cameras installed at each concept, we could use A.I. to track and clock customers. However, we don’t and this means using people with stopwatches observing the concept. This seems barbaric, but if we set firm rules around what constitutes a measurement, and you collect enough data, you should be able to get reliable estimates.</p>
-<p>Additionally, your concept of what information is actually needed from a business perspective will mature over time. While you would probably love to be able to track every customer through your venue at all times, is it necessary? Would you spend money here if you understood every other competing expense throughout your business? How would you use this data? CEOs and other executives have to make these decisions. Think about these problems from their broader perspective when you are confronted with them. You have to make a distinction between ideal and practical.</p>
+<p>The initial goal of our analysis is to identify a bottleneck. Next, we should gather some data from our information systems. For example, scan data is being captured at the gates, so we know how many people are in the park at any time. That information may be helpful.</p>
+<p>Leveraging the points of sale to estimate wait times might not be possible. We could use A.I. to track and clock customers if cameras were installed at each concept. However, we don’t, which means using people with stopwatches to observe the concept. This seems barbaric, but if we set firm rules around what constitutes a measurement and you collect enough data, you should be able to get reliable estimates.</p>
+<p>Additionally, your concept of what information is needed from a business perspective will mature over time. While you would love to be able to track every customer through your venue at all times, is it necessary? Would you spend money here if you understood every other competing expense throughout your business? How would you use this data? CEOs and other executives have to make these decisions. Think about these problems from their broader perspective when confronted with them. You have to make a distinction between ideal and practical.</p>
 </div>
 <div id="line-length-and-total-scans" class="section level3" number="10.3.2">
 <h3>
@@ -428,10 +428,10 @@ Figure 10.2: Distribution of ticket scans at the gates
 </tr>
 </tbody>
 </table></div>
-<p>Line-length data looks a little different than scan data. This data would have been collected manually by counting the number of people in line every minute. This data is also confounded by the fact that while four people may be in line, only one may order. Likewise, one person may be ordering for more than one person. When data has quirks, try to write them down. You’ll have to explain them to someone at some point.</p>
+<p>Line-length data looks different than scan data. It looks different because this data would have been collected manually by counting the number of people in line every minute. This data is also confounded by the fact that while four people may be in line, only one may order. Likewise, one person may be ordering for more than one person. When data has quirks, try to write them down. You’ll have to explain them to someone at some point.</p>
 <div class="sourceCode" id="cb280"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
-<span><span class="co"># Create line length data</span></span>
+<span><span class="co"># Create line-length data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">line_length_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_get_line_length.html">f_get_line_length</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">755</span>,</span>
 <span>                                   n    <span class="op">=</span> <span class="fl">300</span>,</span>
@@ -489,7 +489,7 @@ Figure 10.2: Distribution of ticket scans at the gates
 </tr>
 </tbody>
 </table></div>
-<p>Let’s take a look to see if line-length has any relationship to scans. We are looking to see if the number of people coming into the building influences line-length. The following code produces the graph in figure <a href="chapter10.html#fig:linelengthb">10.3</a>.</p>
+<p>Let’s look to see if line length has any relationship to scans. First, we are looking to see if the number of people entering the building influences line length. The following code produces the graph in figure <a href="chapter10.html#fig:linelengthb">10.3</a>.</p>
 <div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Line length and scans</span></span>
@@ -529,13 +529,13 @@ Figure 10.2: Distribution of ticket scans at the gates
 Figure 10.3: Relationship between line length at a concession stand and scans
 </p>
 </div>
-<p>While we can see a pattern in the data where line-length tends to peak at specific times, the relationship to cumulative scans isn’t very tight. It appears that fans that enter early tend to rush concession stands and fans that come in near the begining of the game take a seat and go to concession stands later. There is a lot of variability in this data.</p>
+<p>While we can see a pattern in the data where line length peaks at specific times, the relationship to cumulative scans isn’t very tight; it appears that fans that enter early tend to rush concession stands and fans that come in near the beginning of the game take a seat and go to concession stands later. So there is a lot of variability in this data.</p>
 </div>
 <div id="analyzing-the-results" class="section level3" number="10.3.3">
 <h3>
 <span class="header-section-number">10.3.3</span> Analyzing the results<a class="anchor" aria-label="anchor" href="#analyzing-the-results"><i class="fas fa-link"></i></a>
 </h3>
-<p>We can analyze this data in much the same fashion as we have analyzed data in previous chapters. However, we’ll introduce a new tool here called a <em>generalized additive model</em>. Be careful with this technique. While you might find that it is a silver bullet that can easily model many distributions, it is a little more difficult to work with than a math equation provided by regression. We’ll use the <code>mgcv</code> <span class="citation">(<a href="references.html#ref-R-mgcv" role="doc-biblioref">Wood 2022</a>)</span> library to access the <code>gam</code> function. As is often the case, we’ll need to do a little data preparation before applying our tool.</p>
+<p>We can analyze this data in much the same fashion as we have analyzed data in previous chapters. However, we’ll introduce a new tool here called a <em>generalized additive model</em>. Be careful with this technique. While you might find it a silver bullet that can easily model many distributions, it is a little more challenging than a math equation provided by regression. We’ll use the <code>mgcv</code> <span class="citation">(<a href="references.html#ref-R-mgcv" role="doc-biblioref">Wood 2022</a>)</span> library to access the <code>gam</code> function. As is often the case, we’ll need data preparation before applying our tool.</p>
 <div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Generalized additive model</span></span>
@@ -573,7 +573,7 @@ Figure 10.3: Relationship between line length at a concession stand and scans
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">'Line-Length'</span><span class="op">)</span>                                         <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">'Results of GAM on Line-Length Data'</span><span class="op">)</span>               <span class="op">+</span></span>
 <span>  <span class="va">graphics_theme_1</span>   </span></code></pre></div>
-<p>We can access a summary of our <code>gam</code> model to look at some of the standard statistics:</p>
+<p>We can access a summary of our <code>game</code> model to look at some of the standard statistics:</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
 <span id="tab:chtenbroommod">Table 10.4: </span>gam model output</caption>
@@ -615,19 +615,19 @@ Figure 10.3: Relationship between line length at a concession stand and scans
 Figure 10.4: GAM output on line length data
 </p>
 </div>
-<p>While we can see that the average fit to this data is fair, the predictive power won’t be very good at any given point on the graph. Ultimately, there isn’t a good relationship between line-length and scans into the ballpark. However, we do see that the data appears multi-modal. Lines decrease near the start of the gameh. This makes sense as early arrivers place their orders and take their seats.</p>
+<p>While the average fit to this data is fair, the predictive power won’t be very good at any given point on the graph. Ultimately, there isn’t a good relationship between line length and scans into the ballpark. However, we do see that the data appears multi-modal. For example, lines decrease near the start of the game. This decrease in line length at first pitch makes sense as early arrivers place their orders and take their seats.</p>
 </div>
 <div id="understanding-wait-times" class="section level3" number="10.3.4">
 <h3>
 <span class="header-section-number">10.3.4</span> Understanding wait times<a class="anchor" aria-label="anchor" href="#understanding-wait-times"><i class="fas fa-link"></i></a>
 </h3>
-<p>Now that we have some data on line-length we can take a closer look at what is driving wait-time. We can simulate some results from measuring the broader process. We built a function <code><a href="https://rdrr.io/pkg/FOSBAAS/man/f_get_wait_times.html">f_get_wait_times()</a></code> to provide us with some data. This function breaks wait-times into three parts:</p>
+<p>Now that we have some data on line length, we can closely examine what drives wait time. We can simulate some results by measuring the broader process. We built a function <code><a href="https://rdrr.io/pkg/FOSBAAS/man/f_get_wait_times.html">f_get_wait_times()</a></code> to provide us with some data. This function breaks wait times into three parts:</p>
 <ul>
 <li>Order time: The amount of time it takes to place an order</li>
 <li>Payment time: How long it took to fulfill payment after the order was placed</li>
 <li>fulfillment time: How long it took to fulfill the order after payment</li>
 </ul>
-<p>This is all information that we would have had to capture through direct measurements. We include the function that creates the data here so that you can see that we used simple exponentially distributed data on the components of the process. This may or may not be true in practice, but we have seen similar patterns in actual data.</p>
+<p>We would have had to capture this information through direct measurements. We include the function that creates the data here so that you can see that we used simple, exponentially distributed data on the process components. This may or may not be true in practice, but we have seen similar patterns in actual data.</p>
 <div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Simulate wait times function</span></span>
@@ -650,7 +650,7 @@ Figure 10.4: GAM output on line length data
 <span><span class="va">wait_times</span><span class="op">[</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">wait_times</span>,<span class="fl">2</span>,<span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">x</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">wait_times</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>This function will produce as many results as you want with order, payment, and fulfillment times being represented by exponentially distributed times in seconds.</p>
+<p>This function will produce as many results as you want, with order, payment and fulfillment times being represented by exponentially distributed times in seconds.</p>
 <div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Create wait times data set</span></span>
@@ -715,12 +715,12 @@ Figure 10.4: GAM output on line length data
 </tr>
 </tbody>
 </table></div>
-<p>We can use this data to build a simulation that allows us to deconstruct total-time as we change some of the inputs. This will allow us to demonstrate the impact of an initiative such as mobile ordering. Mobile ordering in theory would allow you to effectively decouple orders and possibly payment from fulfillment. Be careful not to think about technology first here. We just stated that mobile ordering may help you decouple orders and payment from fulfillment. Are there other ways to accomplish this goal? Additionally, it might help demonstrate the merits of a more effective buffering system or a simplified menu.</p>
+<p>We can use this data to build a simulation to deconstruct the total time as we change some inputs. Deconstructing the entire time will allow us to demonstrate the impact of an initiative such as mobile ordering. Mobile ordering would enable you to decouple orders and payment from fulfillment effectively. Be careful not to think about technology first here. Mobile ordering may help you decouple orders and payments from fulfillment. Are there other ways to accomplish this goal? Additionally, it might help demonstrate the merits of a more effective buffering system or a simplified menu.</p>
 <div id="analyzing-the-distributions-of-wait-time-components" class="section level4" number="10.3.4.1">
 <h4>
 <span class="header-section-number">10.3.4.1</span> analyzing the distributions of wait time components<a class="anchor" aria-label="anchor" href="#analyzing-the-distributions-of-wait-time-components"><i class="fas fa-link"></i></a>
 </h4>
-<p>Variance between these processes could be a problem depending on your queuing discipline. Let’s take a look at the distribution of these wait times.</p>
+<p>The variance between these processes could be problematic depending on your queuing discipline. First, let’s look at the distribution of these wait times.</p>
 <div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Simulate wait times function</span></span>
@@ -731,7 +731,7 @@ Figure 10.4: GAM output on line length data
 <span>    <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'orderTimes'</span>,</span>
 <span>                                 <span class="st">'paymentTimes'</span>,</span>
 <span>                                 <span class="st">'fulfillTimes'</span><span class="op">)</span>,</span>
-<span>                        names_to <span class="op">=</span> <span class="st">"measurment"</span>,</span>
+<span>                        names_to <span class="op">=</span> <span class="st">"measurement"</span>,</span>
 <span>                        values_to <span class="op">=</span> <span class="st">"seconds"</span><span class="op">)</span>            <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>                   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>scale_seconds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">seconds</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -750,16 +750,16 @@ Figure 10.4: GAM output on line length data
 Figure 10.5: Distribution of wait time components
 </p>
 </div>
-<p>We can see from this graph that order times appear to have the widest variance. There is a long tail extending toward the 200 second mark. Variance kills interdependent processes. This is the enemy that we were looking to find. If we could reduce this variance, we could make the entire process more deterministic and improve wait times.</p>
+<p>We can see from this graph that order times appear to have the widest variance. There is a long tail extending toward the 200-second mark. Variance kills interdependent processes. Variance is the enemy that we were looking to find. If we reduce this variance, we could make the entire process more deterministic and improve wait times.</p>
 </div>
 </div>
 <div id="simulating-a-component-of-our-process" class="section level3" number="10.3.5">
 <h3>
 <span class="header-section-number">10.3.5</span> Simulating a component of our process<a class="anchor" aria-label="anchor" href="#simulating-a-component-of-our-process"><i class="fas fa-link"></i></a>
 </h3>
-<p>Like many of the topics we have discussed, simulation is a large and complicated topic. It is also incredibly useful for the problem that we are facing. We have already looked at a coupld of ways to simulate data. We have used <code>rexp</code> and <code>rnorm</code> multiple times to create simulated data sets. This is what we are seeing in figure <a href="chapter10.html#fig:waittimesdista">10.5</a>. We are creating random numbers based on parameters for exponential or normal distributions. What do we do if we simply have a data set and we want to simulate it under different conditions? How do we know what distribution to fit to approximate the data?</p>
-<p>There are many software packages that will build simulations for you, but it is useful to understand how they might function at a base level. We’ll build a couple of basic transaction simulations and then evaluate how well specific changes to our process might impact the overall system. This will give you an appreciation for how a software package might help you solve a problem. Having the underlying knowledge makes you a better decision maker.</p>
-<p>Simulation is a daunting subject. Non-linear least squares fits can be frustrating. Like we saw in our chapter {#chapter6}, it is easy to get into some more complex math.</p>
+<p>Like many of the topics we have discussed, simulation is a large and complicated topic. However, it is also beneficial for the problem that we are facing. We have already looked at a couple of ways to simulate data. We have used <code>rexp</code> and <code>rnorm</code> multiple times to create simulated data sets. This is what we see in figure <a href="chapter10.html#fig:waittimesdista">10.5</a>. We are creating random numbers based on parameters for exponential or normal distributions. What do we do if we have a data set and want to simulate it under different conditions? How do we know what distribution to fit to approximate the data?</p>
+<p>Many software packages will build simulations for you, but it is helpful to understand how they might function at a base level. We’ll create a couple of basic transaction simulations and then evaluate how well specific changes to our process might impact the overall system. This will show you how a software package might help you solve a problem. Having the underlying knowledge makes you a better decision-maker.</p>
+<p>Simulation is a daunting subject. Non-linear least squares fits can be frustrating. As we saw in chapter {#chapter6}, getting into some more complex math is easy.</p>
 <div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Simulate wait times function</span></span>
@@ -820,7 +820,7 @@ Figure 10.5: Distribution of wait time components
 </tr>
 </tbody>
 </table></div>
-<p>Let’s begin by looking at correlations between each process component. We are looking to see if any particular component is more closely correlated with the total-time. There are a few packages that will build correlation tables for you, but we will go ahead and build this manually.</p>
+<p>Let’s begin by looking at correlations between each process component. We want to see if any particular component correlates more closely with the total time. A few packages will build correlation tables for you, but we will go ahead and build this manually.</p>
 <div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Build correlation table</span></span>
@@ -837,7 +837,7 @@ Figure 10.5: Distribution of wait time components
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">wt_cor_result</span>,</span>
 <span>                      cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Order Time'</span>,<span class="st">'Payment Time'</span>, </span>
 <span>                               <span class="st">'Fulfillment Time'</span>,<span class="st">'Total Time'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>We’ll reorder the factors so that our graph will give us the aesthetic we are looking for.</p>
+<p>We’ll reorder the factors so that our graph will give us the aesthetic we seek.</p>
 <div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Build correlation table</span></span>
@@ -874,30 +874,29 @@ Figure 10.5: Distribution of wait time components
 Figure 10.6: Correlation table
 </p>
 </div>
-<p>Order time is the component most highly correlated with <em>Total-Time</em>. The other factors don’t appear to be correlated with each other at all. You could infer all sorts of things from this data. Perhaps order time is most highly correlated with total-time because no other work can take place during the order. Fulfillment time may be the least correlated with total time because we have done a good job buffering inventory. We are ooking to see if there is a basic relationship between these variables. The fact that order time is the most highly correlated variable is important and we’ll likely base our solution around mitigating long order times because it would likely have the most impact.</p>
+<p>Order time is the component most highly correlated with <em>Total-Time</em>. The other factors are not correlated with each other at all. You could infer all sorts of things from this data. Order time is most highly associated with total time because no other work can occur during the order. Fulfillment time may be the least correlated with total time because we have done an excellent job buffering inventory. We are looking for a fundamental relationship between these variables. The fact that order time is the most highly correlated variable is important. We’ll likely base our solution around mitigating long order times because it would have the most impact.</p>
 <div id="analyzing-the-variance-between-wait-time-components" class="section level4" number="10.3.5.1">
 <h4>
 <span class="header-section-number">10.3.5.1</span> Analyzing the Variance between wait time components<a class="anchor" aria-label="anchor" href="#analyzing-the-variance-between-wait-time-components"><i class="fas fa-link"></i></a>
 </h4>
-<p>Variance is our enemy. These system components are linked and depend on each other, but are not correlated. There is also a wide amount of variance.</p>
-<div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
-<span><span class="co"># Box plot of wait times</span></span>
-<span><span class="co">#-----------------------------------------------------------------</span></span>
-<span><span class="va">wait_long</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="va">wait_times</span>,cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'orderTimes'</span>,</span>
-<span>                                          <span class="st">'paymentTimes'</span>, </span>
-<span>                                          <span class="st">'fulfillTimes'</span>,</span>
-<span>                                          <span class="st">'totalTime'</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">wait_box</span> <span class="op">&lt;-</span> </span>
-<span><span class="va">wait_long</span>                                             <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>name <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html">fct_reorder</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">value</span>, .fun<span class="op">=</span><span class="st">'sum'</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">name</span>, y <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">'dodgerblue'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">'\n Transaction component'</span><span class="op">)</span>                              <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">'Wait time in seconds'</span><span class="op">)</span>                                  <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">'Variance of transaction times'</span><span class="op">)</span>                      <span class="op">+</span></span>
-<span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
+<p>Variance is our enemy. These system components are linked and depend on each other but are not correlated. As a result, there is also a vast amount of variance.</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="chapter10.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------------------------------------------------</span></span>
+<span id="cb290-2"><a href="chapter10.html#cb290-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Box plot of wait times</span></span>
+<span id="cb290-3"><a href="chapter10.html#cb290-3" aria-hidden="true" tabindex="-1"></a><span class="co">#-----------------------------------------------------------------</span></span>
+<span id="cb290-4"><a href="chapter10.html#cb290-4" aria-hidden="true" tabindex="-1"></a>wait_long <span class="ot">&lt;-</span> </span>
+<span id="cb290-5"><a href="chapter10.html#cb290-5" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(wait_times,<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">'orderTimes'</span>,</span>
+<span id="cb290-6"><a href="chapter10.html#cb290-6" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'paymentTimes'</span>, </span>
+<span id="cb290-7"><a href="chapter10.html#cb290-7" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'fulfillTimes'</span>,</span>
+<span id="cb290-8"><a href="chapter10.html#cb290-8" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">'totalTime'</span>))</span>
+<span id="cb290-9"><a href="chapter10.html#cb290-9" aria-hidden="true" tabindex="-1"></a>wait_box <span class="ot">&lt;-</span> </span>
+<span id="cb290-10"><a href="chapter10.html#cb290-10" aria-hidden="true" tabindex="-1"></a>wait_long                                             <span class="sc">%&gt;%</span></span>
+<span id="cb290-11"><a href="chapter10.html#cb290-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> <span class="fu">fct_reorder</span>(name, value, <span class="at">.fun=</span><span class="st">'sum'</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb290-12"><a href="chapter10.html#cb290-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb290-13"><a href="chapter10.html#cb290-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">'dodgerblue'</span>) <span class="sc">+</span></span>
+<span id="cb290-14"><a href="chapter10.html#cb290-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">'</span><span class="sc">\n</span><span class="st"> Transaction component'</span>)                              <span class="sc">+</span> </span>
+<span id="cb290-15"><a href="chapter10.html#cb290-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">'Wait time in seconds)                                  + </span></span>
+<span id="cb290-16"><a href="chapter10.html#cb290-16" aria-hidden="true" tabindex="-1"></a><span class="st">  ggtitle('</span>Variance of transaction times<span class="st">')                      +</span></span>
+<span id="cb290-17"><a href="chapter10.html#cb290-17" aria-hidden="true" tabindex="-1"></a><span class="st">  graphics_theme_1</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:mch"></span>
 <img src="images/ch10_wait_box.png" alt="Variance between components" width="100%"><p class="caption">
@@ -961,8 +960,8 @@ Figure 10.7: Variance between components
 </tr>
 </tbody>
 </table></div>
-<p>Twenty-five percent of orders take forty two seconds or more. This appears to be the biggest <em>problem</em>. It would be more accurate to say that this is the process component that likely causes the most variance in the system. Let’s construct our simulation by looking at a probability table of the observations. We can build a function to create a table with a little extra information. It would also be beneficial to have a little more data. One day of transactions could certainly create some sample-size issues. Let’s simulate a few thousand results. We’ll pretend that we have been collecting information for a couple of weeks. Keep in mind that this could also cause other problems. If you were using regression here you might want to consider a <em>mixed effects</em> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Mixed_model" class="uri"&gt;https://en.wikipedia.org/wiki/Mixed_model&lt;/a&gt;&lt;/p&gt;'><sup>96</sup></a> model.</p>
-<p>Since total time is composed of the three process components, we can be sure that a regression should work pretty well in terms of explaining variance. If we regressed on this data the model should look amazing. Let’s try it.</p>
+<p>Twenty-five percent of orders take forty-two seconds or more. These long order times appear to be the biggest <em>problem</em>. It would be more accurate to say that this process component likely causes the most variance in the system. Let’s construct our simulation by looking at a probability table of the observations. We can build a function to create a table with a little extra information. It would also be beneficial to have more data. One day of transactions could undoubtedly create some sample-size issues. Let’s simulate a few thousand results. We’ll pretend that we have been collecting information for weeks. Keep in mind that this could also cause other problems. If you were using regression here, you might want to consider a <em>mixed effects</em> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Mixed_model" class="uri"&gt;https://en.wikipedia.org/wiki/Mixed_model&lt;/a&gt;&lt;/p&gt;'><sup>96</sup></a> model.</p>
+<p>Since total time comprises the three numerical process components, regression should explain variance well. If we regressed on this data, the model should look amazing. Let’s try it.</p>
 <div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Simple linear model for total times</span></span>
@@ -993,20 +992,20 @@ Figure 10.7: Variance between components
 <td align="center">492180.3</td>
 </tr></tbody>
 </table></div>
-<p>As expected, the model appears to be almost perfect. We could use the equation to estimate total wait times almost perfectly. If you see results like this, there is probably something wrong.</p>
+<p>As expected, the model is almost perfect. We could use the equation to estimate total wait times almost perfectly. If you see results like this, there is probably something wrong.</p>
 </div>
 <div id="building-a-simulation-of-our-data" class="section level4" number="10.3.5.2">
 <h4>
 <span class="header-section-number">10.3.5.2</span> Building a simulation of our data<a class="anchor" aria-label="anchor" href="#building-a-simulation-of-our-data"><i class="fas fa-link"></i></a>
 </h4>
-<p>Finally, let’s build a simulation. This section will demonstrate some of the basics to get you started. However, the method that we follow is flexible and can be used in many different ways. We’ll begin by accessing the <code>wait_times_distribution</code> data.</p>
+<p>Finally, let’s build a simulation. This section will demonstrate some of the basics to get you started. The method that we follow is flexible and can be used in many different ways. We’ll begin by accessing the <code>wait_times_distribution</code> data.</p>
 <div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Access the distribution data</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Justin-Watkins/FOSBAAS">FOSBAAS</a></span><span class="op">)</span></span>
 <span><span class="va">wait_times_distribution</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va">wait_times_distribution_data</span></span></code></pre></div>
-<p>let’s take a sample of these wait times that we can use as a basis for our simulated data.</p>
+<p>Let’s sample these wait times as a basis for our simulated data.</p>
 <div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Get a sample of the data</span></span>
@@ -1014,7 +1013,7 @@ Figure 10.7: Variance between components
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">755</span><span class="op">)</span></span>
 <span><span class="va">wait_sample</span> <span class="op">&lt;-</span> <span class="va">wait_times_distribution</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>               <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">.7</span><span class="op">)</span></span></code></pre></div>
-<p>Now we can begin to think about the distribution a little more carefully. We can use the <code>ecdf</code> function to compute an <em>empirical cumulative distribution function</em>. You can think about this output as the inverse of the <code>quantile</code> function.</p>
+<p>Now we can think about the distribution more carefully. We can use the <code>ecdf</code> function to compute an <em>empirical cumulative distribution function</em>. This output is the inverse of the <code>quantile</code> function.</p>
 <div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Cumulative distribution function</span></span>
@@ -1042,7 +1041,7 @@ Figure 10.7: Variance between components
 <td align="center">50.22143</td>
 </tr></tbody>
 </table></div>
-<p>About 78 percent of the observations are less than 50 seconds. It is simple to plot this function to visualize what we just did.</p>
+<p>About 78 percent of the observations are less than 50 seconds. Therefore, plotting this function to visualize what we just did is simple.</p>
 <div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Cumulative distribution function plot</span></span>
@@ -1084,7 +1083,7 @@ Figure 10.8: Order time ecdf
 <span><span class="va">hist_tab_long</span> <span class="op">&lt;-</span> <span class="va">hist_tab</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>                 <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'sim_data'</span>,</span>
 <span>                                              <span class="st">'actual_data'</span><span class="op">)</span>,</span>
-<span>                                     names_to <span class="op">=</span> <span class="st">"measurment"</span>,</span>
+<span>                                     names_to <span class="op">=</span> <span class="st">"measurement"</span>,</span>
 <span>                                     values_to <span class="op">=</span> <span class="st">"seconds"</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="va">hist_comp</span> <span class="op">&lt;-</span> </span>
@@ -1101,7 +1100,7 @@ Figure 10.8: Order time ecdf
 Figure 10.9: Simulated vs. actual results
 </p>
 </div>
-<p>Our simulated data approximates the actual data very well. It should, we know that we used an exponential distribution to fit the data.</p>
+<p>Our simulated data approximates the actual data very well. It should; we know we used an exponential distribution to fit the data.</p>
 <p>You can’t trust the results of one simulation. You’ll want to create many simulations and then average the results. Let’s go ahead and put together a code base that will allow us to produce a reproducible experiment. First, let’s ask ourselves a question that we want to answer:</p>
 <blockquote>
 <p>If we decreased order times by fifty percent, how would it change the average wait time?</p>
@@ -1156,12 +1155,12 @@ Figure 10.9: Simulated vs. actual results
 <td align="center">56.52353</td>
 </tr></tbody>
 </table></div>
-<p>The total average time is almost identical to what we observed. If we can reduce order time by fifteen seconds it will get the total time down to about 41 seconds. However, as we have seen this only tells part of the story. The real problem is the variance. However, with our distributions and the fact that payment, fulfillment, and orders are not correlated, the variance is unlikely to hurt us very often.</p>
-<p>Let’s use our simulation to calculate some stats on how many orders could be fulfilled over specific time frames per point-of-sale under duress. This means that the queue is always full. Let’s ask a question and answer it in different ways.</p>
+<p>The total average time is almost identical to what we observed. If we can reduce order time by fifteen seconds, the total time will reduce to about 41 seconds. However, as we have seen, this only tells part of the story. The real problem is the variance. However, with our distributions and the fact that payment, fulfillment, and orders are not correlated, the variance is unlikely to hurt us very often.</p>
+<p>Let’s use our simulation to calculate how many orders could be fulfilled over specific time frames per point-of-sale under duress. Duress means that the queue is always full. Let’s ask a question and answer it in different ways.</p>
 <blockquote>
 <p>During one hour, how much additional throughput would a register be able to process if order taking was reduced by 50%?</p>
 </blockquote>
-<p>if our average wait time is fifty six seconds it means that we can fulfill about sixty four orders per register per hour (60 seconds/56 seconds) * 60 minutes. What does this number look like if we use samples from our simulation?</p>
+<p>If our average wait time is fifty-six seconds, we can fulfill about sixty-four orders per register per hour (60 seconds/56 seconds) * 60 minutes. What does this number look like if we use samples from our simulation?</p>
 <div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Results with variance</span></span>
@@ -1183,7 +1182,7 @@ Figure 10.9: Simulated vs. actual results
 <span>    <span class="op">}</span></span>
 <span>  <span class="va">count_list</span><span class="op">[</span><span class="va">j</span><span class="op">]</span>   <span class="op">&lt;-</span> <span class="va">count</span> <span class="op">-</span> <span class="fl">1</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>Let’s graph the results of our count list to see how many orders we were able to fulfill for thirty simulated hours.</p>
+<p>Let’s graph the results of our count list to see how many orders we fulfilled for thirty simulated hours.</p>
 <div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Observe variance in fans serviced per hour</span></span>
@@ -1206,7 +1205,7 @@ Figure 10.9: Simulated vs. actual results
 Figure 10.10: Simulated vs. actual results
 </p>
 </div>
-<p>Of the thirty simulations, eight fell below the level of our average service time. When you compound this analysis with multiple registers, inter-arrival times, and different line-lengths, we can see how reducing variance is the key to consistently maximizing throughput. We also didn’t talk about slack time between orders, fatigued employees, or other factors that add variance to the process.</p>
+<p>Of the thirty simulations, eight fell below the level of our average service time. When you compound this analysis with multiple registers, inter-arrival times, and different line lengths, we can see how reducing variance is the key to consistently maximizing throughput. We also should have discussed the slack time between orders, fatigued employees, or other factors that add variance to the process.</p>
 </div>
 </div>
 </div>
@@ -1214,7 +1213,7 @@ Figure 10.10: Simulated vs. actual results
 <h2>
 <span class="header-section-number">10.4</span> Fitting distributions<a class="anchor" aria-label="anchor" href="#fitting-distributions"><i class="fas fa-link"></i></a>
 </h2>
-<p>Let’s take a look at some other ways to fit distributions to data. We’ll begin by building a helper function to give us a frequency table of values.</p>
+<p>Let’s look at other ways to fit distributions to data. First, we’ll build a helper function to give us a frequency table of values.</p>
 <div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Function to build a frequency table</span></span>
@@ -1277,7 +1276,7 @@ Figure 10.10: Simulated vs. actual results
 </tr>
 </tbody>
 </table></div>
-<p>This frequency table represents a histogram. Let’s take a look at the graph.</p>
+<p>This frequency table represents a histogram. First, let’s take a look at the graph.</p>
 <div class="sourceCode" id="cb306"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Graph frequency table data</span></span>
@@ -1296,7 +1295,7 @@ Figure 10.10: Simulated vs. actual results
 Figure 10.11: The ecdf
 </p>
 </div>
-<p>This gives us the cumulative distribution graph that we looked at earlier. The ecdf is useful and there are lots of ways to simulate data. First, let’s look at sampling strategies to build distributions. The following function will build a frequency table for us and return a specified number of simulated values.</p>
+<p>This code gives us the cumulative distribution graph that we looked at earlier. The ecdf is helpful, and there are many ways to simulate data. First, let’s look at sampling strategies to build distributions. The following function will produce a frequency table for us and return a specified number of simulated values.</p>
 <div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Function to build frequency table</span></span>
@@ -1317,7 +1316,7 @@ Figure 10.11: The ecdf
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">price_data</span>  <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/secondary_data.html">secondary_data</a></span></span>
 <span><span class="va">price_table</span> <span class="op">&lt;-</span> <span class="fu">f_get_prices</span><span class="op">(</span><span class="va">price_data</span><span class="op">$</span><span class="va">price</span>,<span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
-<p>We can observe the full distribution with the following code.</p>
+<p>We can observe the whole distribution with the following code.</p>
 <div class="sourceCode" id="cb309"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Actual secondary prices</span></span>
@@ -1369,7 +1368,7 @@ Figure 10.12: Secondary Prices
 Figure 10.13: Simulated prices
 </p>
 </div>
-<p>You can also simulate data with several built-in distributions. The following code produces a distribution that combines a beta, exponetial, and normal distribution.</p>
+<p>You can also simulate data with several built-in distributions. For example, the following code produces a distribution that combines a beta, exponential, and normal distribution.</p>
 <div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Simulated combined distribution</span></span>
@@ -1398,7 +1397,7 @@ Figure 10.13: Simulated prices
 Figure 10.14: Simulated prices
 </p>
 </div>
-<p>As you can see, It is easy to simulate distributions in R. You can use these tools to construct <em>Monte Carlo</em> simulations for sophisticated what-if analysis. The following sections will cover fitting different models to data. There are libraries that will do much of this work for you if you are so inclined. Let’s look at a few different potential fits for our data and begin with three common options:</p>
+<p>As you can see, It is easy to simulate distributions in R. You can use these tools to construct <em>Monte Carlo</em> simulations for sophisticated what-if analysis. The following sections will cover fitting different models to data. Some libraries will do much of this work. Let’s look at a few other potential fits for our data and begin with three standard options:</p>
 <ul>
 <li>An exponential fit</li>
 <li>A polynomial fit</li>
@@ -1427,8 +1426,8 @@ Figure 10.14: Simulated prices
 <span><span class="va">fit_gm</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu">mgcv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam</a></span><span class="op">(</span><span class="va">variable</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span><span class="op">(</span><span class="va">cumprob</span><span class="op">)</span>,data <span class="op">=</span> <span class="va">freq_table</span><span class="op">)</span></span>
 <span><span class="va">freq_table</span><span class="op">$</span><span class="va">pred_gam</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit_gm</span><span class="op">)</span></span></code></pre></div>
-<p>Keep in mind that if you fit a polynomial with more than three degrees you are asking for trouble. I am doing it here to demonstrate how good it might look, but it is a bad idea. You are asking for an unpredictable model. Don’t do it.</p>
-<p>To fit a logit curve we’ll have to do something a little differently. We’ll use the <code>SSlogis</code> function from the <code>stats</code> package to estimate starting points for our curve. This is a useful function, so keep it in mind.</p>
+<p>Remember that if you fit a polynomial with more than three degrees, you are asking for trouble. I am doing it here to demonstrate how good it might look, but it is a bad idea. You are asking for an unpredictable model. So please don’t do it.</p>
+<p>We’ll have to do something a little differently to fit a logit curve. We’ll use the <code>SSlogis</code> function from the <code>stats</code> package to estimate starting points for our curve. This is a valuable function, so keep it in mind.</p>
 <div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Apply logit fit</span></span>
@@ -1441,14 +1440,14 @@ Figure 10.14: Simulated prices
 <span>           data <span class="op">=</span> <span class="va">freq_table</span>,  </span>
 <span>           start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>A <span class="op">=</span> <span class="va">cof</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,I<span class="op">=</span> <span class="va">cof</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,S <span class="op">=</span> <span class="op">-</span><span class="va">cof</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span>, </span>
 <span>           control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>maxiter  <span class="op">=</span>  <span class="fl">10000</span><span class="op">)</span>, trace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>We get an error. Why? Basically, a logit curve is a poor fit for this data set. This is a common problem. What do you do if you can’t fit a common distribution very well? You have a few options. We included a fifth degree polynomial fit (again, a terrible practice), a generalized additive model, and we’ll introduce one more. Let’s fit a spline<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Spline_interpolation" class="uri"&gt;https://en.wikipedia.org/wiki/Spline_interpolation&lt;/a&gt;&lt;/p&gt;'><sup>97</sup></a>.</p>
+<p>We get an error. Why? A logit curve is a poor fit for this data set. Bad fits are a common problem. What do you do if you can’t fit a typical distribution well? You have a few options. We included a fifth-degree polynomial fit (again, a terrible practice) and a generalized additive model, and we’ll introduce one more. Let’s fit a spline<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Spline_interpolation" class="uri"&gt;https://en.wikipedia.org/wiki/Spline_interpolation&lt;/a&gt;&lt;/p&gt;'><sup>97</sup></a>.</p>
 <div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Spline fit</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">fit_sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">freq_table</span>, <span class="fu"><a href="https://rdrr.io/r/stats/smooth.spline.html">smooth.spline</a></span><span class="op">(</span><span class="va">cumprob</span>, <span class="va">variable</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">freq_table</span><span class="op">$</span><span class="va">pred_sp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit_sp</span><span class="op">)</span><span class="op">$</span><span class="va">y</span></span></code></pre></div>
-<p>Now that we have fit a few models, how can we judge which one is the best? You can start by looking at how well they fit the data.</p>
+<p>Now that we have fit a few models, how can we judge which is best? You can start by looking at how well they fit the data.</p>
 <div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Observe fit data</span></span>
@@ -1475,7 +1474,7 @@ Figure 10.14: Simulated prices
 Figure 10.15: Variance between components
 </p>
 </div>
-<p>The models seem to fit the cumulative data pretty well with the exception of the exponential fit and polynomial fit. There are several ways to evaluate models against one another. For linear models, ANOVA is typically your first stop. for non linear models, AIC <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Akaike_information_criterion" class="uri"&gt;https://en.wikipedia.org/wiki/Akaike_information_criterion&lt;/a&gt;&lt;/p&gt;'><sup>98</sup></a> and BIC are typically used.</p>
+<p>The models fit the cumulative data well, except for the exponential and polynomial fit. There are several ways to evaluate models against one another. For linear models, ANOVA is typically your first stop. for non linear models, AIC <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Akaike_information_criterion" class="uri"&gt;https://en.wikipedia.org/wiki/Akaike_information_criterion&lt;/a&gt;&lt;/p&gt;'><sup>98</sup></a> and BIC are typically used.</p>
 <div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Compare fits</span></span>
@@ -1525,8 +1524,8 @@ Figure 10.15: Variance between components
 </tr>
 </tbody>
 </table></div>
-<p>The exponential line isn’t the best fit. Plus, if you select random numbers for frequency and plug them into our equation the simulated distribution won’t approximate our data very well. Let’s simulate some results using our polynomial fit.</p>
-<p>We can write a function that will spit-out a new value based on our polynomial model.</p>
+<p>The exponential line isn’t the best fit. Plus, if you select random numbers for frequency and plug them into our equation the simulated distribution won’t approximate our data very well. So let’s simulate some results using our polynomial fit.</p>
+<p>We can write a function that will spit out a new value based on our polynomial model.</p>
 <div class="sourceCode" id="cb317"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># get fit</span></span>
@@ -1556,8 +1555,8 @@ Figure 10.15: Variance between components
 <span>  <span class="op">}</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/do.call.html">do.call</a></span><span class="op">(</span><span class="va">sum</span>, <span class="va">value_list</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">dist_fit</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p>You could do better, but you get the idea. This function will work for a polynomial function of any length, but is less readable than the hard-coded version. Functions aren’t worth too much if you are going to hard code them.</p>
-<p>If we plug in our result from earlier we get:</p>
+<p>You could do better, but you get the idea. This function will work for a polynomial function of any length but is less readable than the hard-coded version. Functions aren’t worth too much if you are going to hard-code them.</p>
+<p>If we plug in our result from earlier, we get the following:</p>
 <div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># Equation output</span></span>
@@ -1565,7 +1564,7 @@ Figure 10.15: Variance between components
 <span><span class="fu">f_get_fifth_degree_fit</span><span class="op">(</span><span class="fl">.7785714</span>,<span class="va">fit_py</span><span class="op">)</span></span>
 <span><span class="co">#&gt; (Intercept) </span></span>
 <span><span class="co">#&gt;    45.59297</span></span></code></pre></div>
-<p>This is pretty close to the 50 we got from the ecdf function. Let’s simulate some values and graph them.</p>
+<p>This is close to the 50 we got from the ecdf function. Let’s simulate some values and graph them.</p>
 <div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># get fit</span></span>
@@ -1584,33 +1583,33 @@ Figure 10.15: Variance between components
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">'Order time in seconds'</span><span class="op">)</span>              <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">'Simulated order times'</span><span class="op">)</span>           <span class="op">+</span> </span>
 <span>  <span class="va">graphics_theme_1</span></span></code></pre></div>
-<p>Wow. Figure <a href="chapter10.html#fig:chtenfitsgraphb">10.16</a> demonstrates a horrible fit! This is one reason why you don’t use high order polynomials for modeling data.</p>
+<p>Wow. Figure <a href="chapter10.html#fig:chtenfitsgraphb">10.16</a> demonstrates a horrible fit! This is one reason you don’t use high-order polynomials for modeling data.</p>
 <div class="figure">
 <span style="display:block;" id="fig:chtenfitsgraphb"></span>
 <img src="images/ch10_poly_graph.png" alt="Polynomial fit" width="100%"><p class="caption">
 Figure 10.16: Polynomial fit
 </p>
 </div>
-<p>We just covered the basics of fitting distributions. You now have the basic tools necessary to explain y in terms of x in a variety of ways. The main takeaway here is that you have to be careful about what you fit. Some methods will work better than others and if you aren’t careful you can do some things that might make you look silly.</p>
+<p>We just covered the basics of fitting distributions. You now have the tools to explain y in terms of x in various ways. The main takeaway is that you must be careful about what you fit. Some methods will work better than others; if you aren’t careful, you can do things that might make you look silly.</p>
 </div>
 <div id="queuing" class="section level2" number="10.5">
 <h2>
 <span class="header-section-number">10.5</span> Understanding queuing systems<a class="anchor" aria-label="anchor" href="#queuing"><i class="fas fa-link"></i></a>
 </h2>
-<p>Queuing is a huge and complicated field of study and it’s principles can be applied to many problems from Computer Engineering to queuing systems at amusement parks and airports. You will face them in sports. Queuing systems typically have three parts as described in “Operations Management” by Heizer and Rendee: <span class="citation">(<a href="references.html#ref-Heizer2014" role="doc-biblioref">Jay Heizer 2014</a>)</span></p>
+<p>Queuing is a vast and complicated field of study, and its principles can be applied to many problems, from Computer Engineering to queuing systems at amusement parks and airports. You will face them in sports. Queuing systems typically have three parts as described in “Operations Management” by Heizer and Rendee: <span class="citation">(<a href="references.html#ref-Heizer2014" role="doc-biblioref">Jay Heizer 2014</a>)</span></p>
 <ul>
 <li>Arrivals or inputs into the system</li>
 <li>Queue discipline, or the waiting line itself</li>
 <li>The service facility</li>
 </ul>
-<p>Each of these components have specific characteristics. For instance, arrivals will consider:</p>
+<p>Each of these components has specific characteristics. For instance, arrivals will consider the following:</p>
 <ul>
 <li>The size of the arrival population</li>
 <li>The behavior of arrivals</li>
 <li>The pattern of arrivals</li>
 </ul>
-<p>Analyzing queuing models tends to make heavy use of simulation and requires some specific forms of data collection. However, if you have your underlying assumptions correct, analyzing this data becomes an exercise in plugging good data into some equations. We’ll adapt some examples from “Fundamentals of Queuing Systems” <span class="citation">(<a href="references.html#ref-Thomopoulos2012" role="doc-biblioref">Thomopoulos 2012</a>)</span>.</p>
-<p>Let’s imagine a concessions concept with six points of sale and queuing space that can accommodate 50 people. In queuing parlance, this represents an (M/M/k/N) queue which represents a multi-server, finite capacity system. 1/lambda represents the <em>average time between arriving customers</em> and 1/mu represents <em>the average service times</em>. We are assuming exponentially distributed inter-arrival times and service times. In reality, you’ll have to make some observations to determine the distribution of service time and inter-arrival times. Let’s begin by defining some terms and then we’ll work through a problem using R.</p>
+<p>Analyzing queuing models tends to make heavy use of simulation and requires some specific forms of data collection. However, if your underlying assumptions are correct, analyzing this data becomes an exercise in plugging good data into some equations. We’ll adapt some examples from “Fundamentals of Queuing Systems” <span class="citation">(<a href="references.html#ref-Thomopoulos2012" role="doc-biblioref">Thomopoulos 2012</a>)</span>.</p>
+<p>Let’s imagine a concessions concept with six points of sale and queuing space that can accommodate 50 people. In queuing parlance, this represents an (M/M/k/N) queue representing a multi-server, finite capacity system. 1/lambda represents the <em>average time between arriving customers</em> and 1/mu represents <em>the average service times</em>. We are assuming exponentially distributed inter-arrival times and service times. In reality, you’ll have to make some observations to determine the distribution of service time and inter-arrival times. Let’s begin by defining some terms, and then we’ll work through a problem using R.</p>
 <p>Average time between arrivals:
 <span class="math display">\[\begin{equation}
 \tau_{a} = {1}/{\lambda}
@@ -1627,7 +1626,7 @@ Figure 10.16: Polynomial fit
 <span class="math display">\[\begin{equation}
 \mu
 \end{equation}\]</span></p>
-<p>Number of service facilities:
+<p>number of service facilities:
 <span class="math display">\[\begin{equation}
 k
 \end{equation}\]</span></p>
@@ -1635,7 +1634,7 @@ k
 <span class="math display">\[\begin{equation}
 \rho = \tau_{a}/\tau_{s} = \lambda/\mu \text{ : } \rho/k \text{&lt; 1 is needed to ensure the system is in equilibrium}
 \end{equation}\]</span></p>
-<p>Number of units in the system:
+<p>number of units in the system:
 <span class="math display">\[\begin{equation}
 n \text{ : n} \geq \text{0}
 \end{equation}\]</span></p>
@@ -1652,29 +1651,29 @@ n \text{ : n} \geq \text{0}
 <span><span class="va">tau_s</span>  <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="va">mu</span>        <span class="co"># Average service time: 90 seconds</span></span>
 <span><span class="va">rho</span>    <span class="op">&lt;-</span> <span class="va">tau_a</span><span class="op">/</span><span class="va">tau_s</span> <span class="co"># Utilization ratio</span></span>
 <span><span class="va">n</span>                     <span class="co"># Units in the system</span></span></code></pre></div>
-<p>Let’s imagine a concession concept with six points of sale and space for 50 people in line. It takes about 60 seconds to service a customer and a customer arrives in line every 110 seconds.</p>
+<p>Imagine a concession concept with six points of sale and space for 50 people in line. It takes about 60 seconds to service a customer, and a customer arrives in line every 110 seconds.</p>
 <div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># M/M/k/N Queue Inputs</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
-<span><span class="va">k</span>        <span class="op">=</span> <span class="fl">2</span>          <span class="co"># Number of points of sale at concept</span></span>
+<span><span class="va">k</span>        <span class="op">=</span> <span class="fl">2</span>          <span class="co"># Number of points of sale at the concept</span></span>
 <span><span class="va">N</span>        <span class="op">=</span> <span class="fl">5</span>          <span class="co"># Number of people the queue can accommodate</span></span>
 <span><span class="va">tau_a</span>    <span class="op">=</span> <span class="fl">10</span>         <span class="co"># time between arrivals: 40 seconds/60</span></span>
 <span><span class="va">tau_s</span>    <span class="op">=</span> <span class="fl">8</span>          <span class="co"># Service time: 90 seconds/60 = 1.5</span></span>
 <span><span class="va">lambda</span>   <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="va">tau_a</span>    <span class="co"># Customer Arrivals per minute</span></span>
 <span><span class="va">mu</span>       <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="va">tau_s</span>    <span class="co"># Serviced customers per minute</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
-<span><span class="co"># Translate to per hour figures</span></span>
+<span><span class="co"># Translate to per-hour figures</span></span>
 <span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="va">lambda_h</span> <span class="op">=</span> <span class="fl">60</span><span class="op">/</span><span class="va">tau_a</span>   <span class="co"># Per hour</span></span>
 <span><span class="va">mu_h</span>     <span class="op">=</span> <span class="fl">60</span><span class="op">/</span><span class="va">tau_s</span>   <span class="co"># Per hour</span></span>
 <span><span class="va">rho</span>      <span class="op">=</span> <span class="va">lambda</span><span class="op">/</span><span class="va">mu</span>  <span class="co"># Utilization ratio</span></span></code></pre></div>
-<p>R has several tricks that you can use to make calculations easier. Since variables are vectorized, adding sequences is easy. You will not need a loop. The first thing we will need to do is to calculate the probability that <code>n</code> (defined above) equals 0. This is given by the slightly alarming-looking equation:</p>
+<p>R has several tricks that you can use to make calculations easier. Since variables are vectorized, adding sequences is easy. You will not need a loop. First, we will need to calculate the probability that <code>n</code> (defined above) equals 0. This is given by the slightly alarming-looking equation:</p>
 <p>Probability that n = 0:
 <span class="math display">\[\begin{equation}
 P_{0} = 1/\{\sum_{n=0}^{k-1} \rho^n/n! + \rho^k/k![(k^{N-k+1} - \rho^{N-k+1})/(k - \rho)k^{N-k}]\}
 \end{equation}\]</span></p>
-<p>Pay attention to order of operations. The only difficult part of translating this equation is getting the parenthesis in the correct places.</p>
+<p>Pay attention to the order of operations. The only tricky part of translating this equation is getting the parenthesis in the correct places.</p>
 <div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#-----------------------------------------------------------------</span></span>
 <span><span class="co"># M/M/k/N Calculating the Probability that n = 0</span></span>
@@ -1685,7 +1684,7 @@ P_{0} = 1/\{\sum_{n=0}^{k-1} \rho^n/n! + \rho^k/k![(k^{N-k+1} - \rho^{N-k+1})/(k
 <span><span class="va">P0</span> <span class="op">&lt;-</span> </span>
 <span> <span class="fl">1</span><span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="op">(</span><span class="va">rho</span><span class="op">^</span><span class="va">n</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="op">(</span><span class="va">rho</span><span class="op">^</span><span class="va">k</span><span class="op">)</span><span class="op">/</span></span>
 <span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="va">k</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="op">(</span><span class="va">k</span><span class="op">^</span><span class="op">(</span><span class="va">N</span><span class="op">-</span><span class="va">k</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="va">rho</span><span class="op">^</span><span class="op">(</span><span class="va">N</span><span class="op">-</span><span class="va">k</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="op">(</span><span class="va">k</span><span class="op">-</span><span class="va">rho</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="va">k</span><span class="op">^</span><span class="op">(</span><span class="va">N</span><span class="op">-</span><span class="va">k</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>After running this code, we can see that <code>P0</code> = 0.4305395. We complete this exercise by calculating the probability of n units in the system with two equations for different levels of n. </p>
+<p>After running this code, we see that <code>P0</code> = 0.4305395. We complete this exercise by calculating the probability of n units in the system with two equations for different levels of n. </p>
 <p>For n = (0,k)
 <span class="math display">\[\begin{equation}
 P_{n} = \rho_{n}/n!P_0
@@ -1786,7 +1785,7 @@ P_{n} = \rho_{n}/[k!k^{n-k}]P_{0}
 <span>  <span class="va">frame</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">7</span>,ncol <span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">frame</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Metric'</span>,<span class="st">'Value'</span><span class="op">)</span></span>
 <span>  </span>
-<span>  <span class="va">metric</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Servers:'</span>,<span class="st">'System Capacity:'</span>,<span class="st">'Time between arrivals:'</span>,</span>
+<span>  <span class="va">metric</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Servers:'</span>,<span class="st">'System Capacity:'</span>,<span class="st">' time between arrivals:'</span>,</span>
 <span>              <span class="st">'Average service time:'</span>,<span class="st">'Minutes in service:'</span>,</span>
 <span>              <span class="st">'Minutes in queue:'</span>,<span class="st">'Minutes in system:'</span><span class="op">)</span></span>
 <span>  <span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">k</span>,<span class="va">N</span>,<span class="va">ta</span>,<span class="va">ts</span>,<span class="va">Ws</span>,<span class="va">Wq</span>,<span class="va">W</span><span class="op">)</span></span>
@@ -1841,20 +1840,20 @@ P_{n} = \rho_{n}/[k!k^{n-k}]P_{0}
 </tr>
 </tbody>
 </table></div>
-<p>We now have a basic understanding of how to analyze queues. This stuff can get complex and there are a multitude of software packages that can take care of this for you. However, if you are simply plugging information into equations, the difficult part is just getting good data and choosing the correct models that accommodate it. There is lots of variation, for instance inter-arrival times may be normally distributed instead of exponentially distributed. You’ll have to adapt your model to accommodate this variation.</p>
+<p>We now have a basic understanding of how to analyze queues. This stuff can get complex, and there is a multitude of software packages that can take care of this for you. However, if you are plugging information into equations, the difficult part is getting good data and choosing the correct models that accommodate it. There is lots of variation; for instance, inter-arrival times may be normally distributed instead of exponentially distributed. You’ll have to adapt your model to accommodate this variation.</p>
 </div>
 <div id="key-concepts-and-chapter-summary-9" class="section level2" number="10.6">
 <h2>
 <span class="header-section-number">10.6</span> Key concepts and chapter summary<a class="anchor" aria-label="anchor" href="#key-concepts-and-chapter-summary-9"><i class="fas fa-link"></i></a>
 </h2>
-<p>Analytic techniques can be applied to a wide variety operations problems. Additionally, <em>Operations</em> is a broad field of study that covers many different arenas. This chapter covered two major subjects: Simulation and Queuing. Both examples covered increasing throughput for concessions. While we only scratched the surface, we were introduced to a number of topics:</p>
+<p>Analytic techniques can be applied to a wide variety of operations problems. Additionally, <em>Operations</em> is a broad field of study that covers many different arenas. This chapter covered two major subjects: Simulation and Queuing. Both examples covered increasing throughput for concessions. While we only scratched the surface, we were introduced to several topics:</p>
 <ul>
-<li>Simulation: Monte Carlo simulations are relatively simple to create and are incredibly useful for evaluating a very wide variety of topics.</li>
+<li>Simulation: Monte Carlo simulations are relatively simple to create and incredibly useful for evaluating various topics.</li>
 <li>Distribution fitting: Leveraging distributions is critical to simulation. Learn to think in distributions, not point estimates. Distributions are everywhere.</li>
-<li>Queuing analysis: Queues exist everywhere from electrical circuits to concession stands. Analyzing a queuing system can give you insight into how to improve it.</li>
-<li>Some basic project management tips</li>
+<li>Queuing analysis: Queues exist everywhere, from electrical circuits to concession stands. Analyzing a queuing system can give you insight into how to improve it.</li>
+<li>Some essential project management tips</li>
 </ul>
-<p>We also learned how to think about these problems. It is easy to be intellectually lazy and not take the time to truly evaluate a problem. Operations is about critical thinking in terms of a system with many interrelated components. It is also a widely studied field, so if you can conceptualize a problem correctly, you should be able to find a way to analyze and improve it.</p>
+<p>We also learned how to think about these problems. It is easy to be intellectually lazy and not take the time to evaluate a situation honestly. Operations is about critical thinking regarding a system with many interrelated components. It is also a widely studied field, so if you can conceptualize a problem correctly, you should be able to find a way to analyze and improve it.</p>
 
 </div>
 </div>
@@ -1866,7 +1865,7 @@ P_{n} = \rho_{n}/[k!k^{n-k}]P_{0}
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#chapter10"><span class="header-section-number">10</span> Operations</a></li>
-<li><a class="nav-link" href="#understanding-basic-issues-with-ingress"><span class="header-section-number">10.1</span> Understanding basic issues with ingress</a></li>
+<li><a class="nav-link" href="#understanding-fundamental-issues-with-ingress"><span class="header-section-number">10.1</span> Understanding fundamental issues with ingress</a></li>
 <li>
 <a class="nav-link" href="#reducing-wait-times-at-concessions"><span class="header-section-number">10.2</span> Reducing wait times at concessions</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#establishing-objectives"><span class="header-section-number">10.2.1</span> Establishing objectives</a></li>
@@ -1875,7 +1874,7 @@ P_{n} = \rho_{n}/[k!k^{n-k}]P_{0}
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#measurment-and-analysis"><span class="header-section-number">10.3</span> Measurment and analysis</a><ul class="nav navbar-nav">
+<a class="nav-link" href="#measurement-and-analysis"><span class="header-section-number">10.3</span> Measurement and analysis</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#data-audit-and-capture"><span class="header-section-number">10.3.1</span> Data audit and capture</a></li>
 <li><a class="nav-link" href="#line-length-and-total-scans"><span class="header-section-number">10.3.2</span> Line length and total scans</a></li>
 <li><a class="nav-link" href="#analyzing-the-results"><span class="header-section-number">10.3.3</span> Analyzing the results</a></li>
@@ -1903,7 +1902,7 @@ P_{n} = \rho_{n}/[k!k^{n-k}]P_{0}
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2023-03-19.</p>
+    <p>"<strong>Fundamentals of Sports Business Analytics and Strategy</strong>" was written by Justin Watkins. It was last built on 2023-04-03.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

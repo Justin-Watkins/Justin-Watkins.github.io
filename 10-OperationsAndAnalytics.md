@@ -3,11 +3,11 @@
 
 
 
-If a sports team has two fundamental core-competencies they should be _events management_ and _selling tickets_. These two efforts are where most of the work takes place. Additionally, a smooth operation is critical to brand perception. It is a pillar of our product in a details-oriented business.   
+If a sports team has two fundamental core competencies, they should be _events management_ and _selling tickets_. These two efforts are where most of the work takes place. Additionally, a smooth operation is critical to brand perception. It is a pillar of our product in a details-oriented business.   
 
-The overarching umbrella of operations in the club context covers getting fans into, around, and out of the facility safely, quickly, and conveniently. There are design, system, and technology components that must be constructed. There are also optimization considerations such as the cost and number of point-of-sale units for concessions and retail, labor optimization for security, food production, the number of seats in particular sections, the number of bathrooms, etc. The list is extensive. Operations as an academic discipline is about studying systems We'll apply some techniques from the overlapping academic fields of Operations Research, Industrial Engineering, and Operations Management to analyze and solve a couple of ubiquitous _operations_ problems. 
+The overarching umbrella of operations in the club context covers getting fans into, around, and out of the facility safely, quickly, and conveniently. There are design, system, and technology components that must be constructed. There are also optimization considerations such as the cost and number of point-of-sale units for concessions and retail, labor optimization for security, food production, the number of seats in particular sections, the number of bathrooms, etc. The list is extensive. Operations as an academic discipline is about studying systems. We'll apply techniques from the overlapping academic fields of Operations Research, Industrial Engineering, and Operations Management to analyze and solve some ubiquitous _operations_ problems. 
 
-Many constraints that you find in a ballpark or arena are byproducts of cost optimization. Your square footage or campus size have a big influence on what you are able to accomplish. Venues are now being designed with more advanced capabilities in mind. These capabilities might include:
+Many constraints in a ballpark or arena are byproducts of cost optimization. Your square footage or campus size significantly influences what you can accomplish. Venues are now being designed with more advanced capabilities in mind. These capabilities might include the following:
 
 - Ordering food and beverages from your phone 
 - More expansive automated options for F&B
@@ -17,23 +17,23 @@ Many constraints that you find in a ballpark or arena are byproducts of cost opt
 - Integrated commerce systems and loyalty mechanisms
 - Integrated public transit
 
-While these systems help to solve existing problems, they can exacerbate other issues. For instance, attempting food delivery without considering kitchen locations could lead to quality control issues. Never consider technology solutions without carefully examining the underlying execution capability. Businesses are littered with the withered husks of technology solutions that failed to deliver, were an ill fit, were a pet project of some inept executive, or simply faded away from an internal or external inability to manage the solution. 
+While these systems help to solve existing problems, they can exacerbate other issues. For instance, attempting food delivery without considering kitchen locations could lead to quality control issues. Only consider technology solutions after carefully examining the underlying execution capability. Businesses are littered with the withered husks of technology solutions that failed to deliver, were an ill fit, were a pet project of some inept executive, or faded away from an internal or external inability to manage the solution. 
 
-Despite advances in technology, venues will always be faced with optimization problems around moving large numbers of people through their systems in a short amount of time. There are also additive factors such as parking or public transit, nearby entertainment districts, game day promotional items, food an beverage service, and security screenings that all must be considered. The following sections will analyzing some of these problems in detail. 
+Despite technological advances, venues will always be faced with optimization problems around moving large numbers of people through their systems quickly. In addition, additive factors such as parking or public transit, nearby entertainment districts, game day promotional items, food and beverage service, and security screenings must be considered. The following sections will analyze some of these problems in detail. 
 
-## Understanding basic issues with ingress
+## Understanding fundamental issues with ingress
 
-Capacity constraints are obvious and unavoidable with ingress. If you have 30,000 to 400,000 people trying to get to the same place at the same time, lines are unavoidable. The Romans certainly understood these issues well. The Colosseum of Rome was designed with 76 vomitoria that would accommodate over 50,000 people^[https://en.wikipedia.org/wiki/Colosseum]. Ironically, the Colosseum was likely more efficient at ingress and egress than a modern stadium. Many venues require a security check involving a magnetometer. Bags must be checked, tickets may need to be scanned, building and fire codes create constraints, and internal space is taken up by concessions and mechanical infrastructure. The Romans didn't have to worry about running electricity or HVAC throughout their venues. These issues also extend outside of the building and apply to road traffic, ADA considerations, public transit, and ride-sharing partnerships. 
+Capacity constraints are obvious and unavoidable with ingress. Lines are inevitable if 30,000 to 400,000 people are trying to get to the same place simultaneously. The Romans certainly understood these issues well. The Colosseum of Rome was designed with 76 vomitoria to accommodate over 50,000 people^[https://en.wikipedia.org/wiki/Colosseum]. Ironically, the Colosseum was more efficient at ingress and egress than a modern stadium. Many venues require a security check involving a magnetometer. Bags must be checked, tickets must be scanned, building and fire codes create constraints, and concessions and mechanical infrastructure take up internal space. The Romans didn't have to worry about running electricity or HVAC throughout their venues. These issues extend outside the building and apply to road traffic, ADA considerations, public transit, and ride-sharing partnerships. 
 
-Eliyahu Goldratt published a book in 1984 called _The Goal_ [@Goldratt2004] which introduces us to the _Theory of Constraints_. This book gives us a simple framework for approaching a problem such as Ingress. If you are interested in Operations, it is a must-read book. Your may not appreciated the depressing narrative, but the content is outstanding. In _The Goal_, Goldratt introduces the five-step _Process Of On-Going Improvement_:  
+Eliyahu Goldratt published a book in 1984 called _The Goal_ [@Goldratt2004], which introduces us to the _Theory of Constraints_. This book gives us a simple framework for approaching a problem such as ingress. If you are interested in Operations, it is a must-read book. You may not appreciate the depressing narrative, but the content is outstanding. In _The Goal_, Goldratt introduces the five-step _Process Of On-Going Improvement_:  
 
 1. Identify the system’s bottlenecks
 2. Decide how to exploit those bottlenecks
-3. Subordinate every other decision to 'step two decisions'
+3. Subordinate every other decision to 'step two decisions.'
 4. Elevate the systems bottlenecks
 5. if, in a previous step, a bottleneck has been broken, go back to the beginning.
 
-A system can only have one bottleneck^[It is more accurate to say that this system can only have one bottleneck at a time]. That is what makes this process iterative. If you replace the weakest link in a chain with a stronger one, some other link will become the weakest. Let's outline an ingress process and look at some data. An Ingress process is probably going to look fairly similar at virtually every venue in the world. A typical flowchart for and ingress procedure can be studied in figure \@ref(fig:chtengate).
+A system can only have one bottleneck^[It is more accurate to say that this system can only have one bottleneck at a time]. That is what makes this process iterative. If you replace the weakest link in a chain with a stronger one, another link will become the weakest. Let's outline an ingress process and look at some data. An Ingress process will look similar at virtually every venue worldwide. A typical flowchart for an ingress procedure can be studied in figure \@ref(fig:chtengate).
 
 
 <div class="figure">
@@ -42,7 +42,7 @@ A system can only have one bottleneck^[It is more accurate to say that this syst
 </div>
 
 
-Figure \@ref(fig:chtengate) demonstrates a typical gate procedure. Although recent advances in technology have made such a process faster, this basic process is followed at most event venues. What sort of data could we extract from this process? You would typically have scan data from the ticketing process and perhaps magnetometer passes and failures. You'll know how many people come through each gate at each point of entry and when they passed through security. let's take a look at some aggregated data. 
+Figure \@ref(fig:chtengate) demonstrates a typical gate procedure. Although recent technological advances have made such a process faster, this fundamental process is followed at most event venues. What sort of data could we extract from this process? You would typically have scan data from the ticketing process and magnetometer passes and failures. In addition, you'll know how many people enter each gate at each entry point and when they pass through security. Let's take a look at some aggregated data. 
 
 
 ```r
@@ -65,7 +65,7 @@ Table: (\#tab:chteningressdatatab)Aggregated scan data
 |5           |10   |61440 secs |4/1/2024|
 |6           |11   |61500 secs |4/1/2024|
 
-This data is aggregated by the number of scans by minute and is summed and bucketed. The distribution of scans can be seeing in figure \@ref(fig:chtenscansgraphicb). Can you think of other information that might be useful here?
+This data is aggregated by the number of scans by minute and is summed and bucketed. The distribution of scans can be seen in figure \@ref(fig:chtenscansgraphicb). What other information might be helpful here?
 
 
 
@@ -100,9 +100,9 @@ scan_point <-
 <p class="caption">(\#fig:chtenscansgraphicb)Distribution of ticket scans at the gates</p>
 </div>
 
-In general, ticket scans will typically follow a specific cadence for identical events. Our ballpark has four points of entry for fans and each point of entry has four scanners. We can tell that our entry process is slightly probabilistic. Not all scans will take the same amount of time because a failure requires adjustments or an additional scan and people move at different paces. _What is the maximum capacity of this system?_
+In general, ticket scans will typically follow a specific cadence for similar events. Our ballpark has four points of entry for fans, and each point of entry has four scanners. Our entry process is slightly probabilistic. Not all scans will take the same time because a failure requires adjustments or an additional scan, and people move at different paces. _What is the maximum capacity of this system?_
 
-This question is actually difficult to answer because we know that some gates are likely to be busier than others at different times. We are looking for the gate with the maximum throughput under duress. You will need multiple days of observation to get a good average figure.
+This question is difficult to answer because we know that some gates are likely to be busier than others at different times. We are looking for the entrance with the maximum throughput under duress. This gate will represent your maximum theoretical throughput potential. You will need multiple days of observation to get a good average figure.
 
 
 ```r
@@ -129,9 +129,9 @@ Table: (\#tab:chteningressthroughputmax)Maximum observed throughput
 |4/3/2024|212     |13.2500     |125.0167 |139        |
 
 
-The highest observed average number of scans per scanner is about thirteen scans per minute across each ingress point. This means that a person went through the system every four and a half seconds for one minute. However, this average may mean that some scans took ten seconds and many more took one second. We can't tell from this data. In a subsequent section we will discuss queuing theory and how to analyze wait-time by looking at service times, inter-arrival times, line-length, and queuing discipline. We are illustrating a broader point with this example. 
+The highest observed average number of scans per scanner is about thirteen per minute across each ingress point. This means a person went through the system every four and a half seconds for one minute. However, this average may mean that some scans took ten seconds and others took one second. We can't tell from this data. In a subsequent section, we will discuss queuing theory and how to analyze wait time by looking at service times, inter-arrival times, line length, and queuing discipline. We are illustrating a broader point with this example. 
 
-We can see that we are missing some key data. We can also begin to see that this problem sprawls and becomes very complex. What data are we missing? I would prefer to see:
+We can see that we still need some critical data. We can also see that this problem sprawls and becomes very complex. What data do we need? I would prefer to see the following:
 
 1. The process components split and timed
 2. Information on line-length 
@@ -140,26 +140,26 @@ We can see that we are missing some key data. We can also begin to see that this
 5. Information on staffing numbers and procedure
 6. True positives and false positive numbers for scanner alarms
 
-Can we identify a bottleneck? Judging by our diagram it seems that if a magnetometer is triggered than an individual is asked to walk back through it. Perhaps we could change the process so that we add staff to wand guests that triggered the gate. We could also eliminate bags or alter the magnetometer settings and then measure the differences. Not all solutions require much diligence. We'll expand on this example and look at an analogous project in a little more depth. Reducing wait times at concession stands.
+Can we identify a bottleneck? Judging by our diagram, if a magnetometer is triggered, an individual is asked to walk back through it. We could change the process to add staff to wand guests that triggered the gate. We could also eliminate bags or alter the magnetometer settings and then measure the differences. Not all solutions require much diligence. We'll expand on this example and examine an analogous project more deeply; Reducing wait times at concession stands.
 
 ## Reducing wait times at concessions
 
-Everyone has spent time standing in line for food and beverage at a sporting event. If you asked someone what is wrong with the system they might give you a couple of predictable responses such as "There are too many people" or "These people just don't know what they are doing." In reality, this is a complex problem that has many components:
+Everyone has spent time standing in line for food and beverage at a sporting event. If you ask someone what is wrong with the system, they might give you a couple of predictable responses such as "There are too many people" or "These people just don't know what they are doing." In reality, this is a complex problem that has many components:
 
-- System constraints (number of grills, points-of-sale, etc)
+- System constraints (number of grills, points-of-sale, etc.)
 - Labor (experience, training, motivation)
 - Back-of-house systems (buffering demand, menu design)
 - Front-of-house systems (Queuing discipline, ordering, and payment systems)
 
-The interesting thing here is that you don't really have to acknowledge that there is a problem. Perhaps there isn't. You can look at this system and simply state that _we don't have enough points of sale. That is why lines are long_. If we had more points of sale that would spread out the lines and the lines would be shorter. Of course, that is an incredibly reductive point of view. Let's be a little more realistic and begin by constructing a narrative:
+The interesting thing here is that you don't have to acknowledge that there is a problem. Perhaps there isn't. You can look at this system and state that _we don't have enough points of sale_. That is why the lines are long_. If we had more points of sale, that would spread out the lines, and the lines would be shorter. But, of course, that is an incredibly reductive point of view. So let's be a little more realistic and begin by constructing a narrative:
 
-> _Executives for the Nashville Game Hens have noticed long lines at concession stands during games. Lines tend to get noticably worse on the weekends when more fans are in the building. Additionally, customer satisfaction surveys indicate that time spent waiting in line at concession stands is a major source of dissatisfaction. The concessions manager says that "the problem is that we don't have enough points-of-sale to deal with capacity once we reach about 30,000 fans." She poses a solution that will require a large capital investment to add more points of sale. You are approached by an executive and asked if that is good idea..._  
+> _Executives for the Nashville Game Hens have noticed long lines at concession stands during games. Lines tend to get noticeably worse on the weekends when more fans are in the building. Additionally, customer satisfaction surveys indicate that waiting in line at concession stands is a significant source of dissatisfaction. The concessions manager says, "the problem is that we don't have enough points-of-sale to deal with capacity once we reach about 30,000 fans." She poses a solution that will require a significant capital investment to add more points of sale. You are approached by an executive and asked if that is a good idea..._  
 
-You might begin to solve this problem by making some observations yourself. You might also look for any data that you have available. We'll assume you don't have anything. You talk to the concessions manager and she tells you that her standard is for orders to be filled in less than ninety seconds. This is an industry standard and that she achieves it _on average_.   
+You can solve this problem by making some observations yourself. Look for any data that you have available. We'll assume you don't have anything. You talk to the concessions manager, who tells you that her standard is to fill orders in less than ninety seconds. This is an industry standard, and she achieves it _on average_.   
 
-Without any data, this project will to have to proceed in stages. You can also take some cues from the nature of the problem itself to help devise a plan for approaching a solution. At least three of the identified project components involve some degree of process improvement. Since we are looking at process improvement, let's see if we can simply apply DMAIC to this problem. DMAIC stands for _Define, Measure, Analyze, Implement, and Control._ It comes to us from Six Sigma^[https://en.wikipedia.org/wiki/Six_Sigma], a process improvement protocol that has been adapted to a number of business problems. While Six Sigma has it's roots in manufacturing, we can appropriate some of its tools here.
+Without any data, this project will have to proceed in stages. However, you can also take some cues from the nature of the problem itself to help devise a plan for approaching a solution. At least three of the identified project components involve some process improvement. Since we are looking at process improvement, let's see if we can apply DMAIC to this problem. DMAIC stands for _Define, Measure, Analyze, Implement, and Control._ It comes to us from Six Sigma^[https://en.wikipedia.org/wiki/Six_Sigma], a process improvement protocol adapted to many business problems. While Six Sigma has its roots in manufacturing, we can appropriate some of its tools here.
 
-If you are going to use a framework you might as well go all the way and produce a project charter that lays out a full project plan. A project plan needs to include a few components. The two that we will concern ourselves with here include:
+You could produce a project charter laying out a complete project plan using a framework. A project plan needs to include a few components. The two that we will concern ourselves with here include:
 
 - Project objectives
 - Specific goals
@@ -171,15 +171,15 @@ Other components that a charter should cover include:
 - Stakeholders
 - Potential problems
 
-I wanted to point this seemingly irrelevant step out for a couple of reasons. The first reason is that a project plan forces you to think about how to solve a problem. This is often the most difficult part. It also forces you to create some documentation around the project. If you do not create some basic documentation around your projects it will eventually be used against you and not to your benefit. The problem will have a tendency to sprawl. Make a habit of building project charters for any projects involving multiple stakeholders or external groups. It will make scoping projects much easier and help keep everyone on task and on budget.
+I am pointing this seemingly irrelevant step out for several reasons. The first reason is that a project plan forces you to think about how to solve a problem. This is often the most challenging part. It also forces you to create some documentation around the project. If you do not create some essential documentation around your projects, it will eventually be used against you and not to your benefit. The problem will tend to sprawl. Make a habit of building project charters for any projects involving multiple stakeholders or external groups. It will make scoping projects much more manageable and help keep everyone on task and budget.
 
 ### Establishing objectives
 
-Objectives can be a little vague, but they derive from the _business case_ and _problem statement_. Let's take a stab at establishing some objectives. We'll use some concepts from "Six Sigma" [@Campe2007] for this example. 
+Objectives can be vague but derive from the _business case_ and _problem statement_. Let's take a stab at establishing some goals. We'll use some concepts from "Six Sigma" [@Campe2007] for this example. 
 
-The business case is simply a statement that indicates the importance of the project. It should demonstrate why the project needs to be addressed: 
+The business case is simply a statement indicating the project's importance. It should demonstrate why the project needs to be addressed: 
 
-> Customer satisfaction has been linked to repeat purchases and has a demonstrable impact on year-over-year revenue. Additionally, customer satisfaction scores predicibly degrade once attendance exceeds 30,000. Surveys have concluded that improving these scores can be best achieved by decreasing the wait time at concessions throughout our venue. With over 100 games left in the season, we have an opportuinty to demonstably impact season ticket renewals. Additionally, our capital budgets must be completed in the next sixty days. 
+> Customer satisfaction has been linked to repeat purchases and demonstrably impacts year-over-year revenue. Additionally, customer satisfaction scores predictably degrade once attendance exceeds 30,000. Surveys have concluded that improving these scores can be best achieved by decreasing the wait time at concessions throughout our venue. We can demonstrably impact season ticket renewals with over 100 games left in the season. Additionally, our capital budgets must be completed in the next sixty days. 
 
 What does this statement establish?
 
@@ -189,13 +189,13 @@ What does this statement establish?
 
 ### Understanding our problem
 
-We'll need a little data to begin to understand our problem and we have a goal with collecting exploratory data. We are looking for something to help build our problem statement. In this case, perhaps we can simply go out and look at line-length at a particular concept.  
+We'll need a little data to begin to understand our problem, and we aim to collect exploratory data. We are looking for something to help build our problem statement. In this case, we can look at the line length of a particular concept.  
 
-A typical concept has eight to fifteen items on the menu. Items are purchased at differential rates and have varying prep times. Most items can be stored for about twenty minutes before quality begins to degrade. The number of points of sale vary, but most concepts have between four and twelve points of sale. Customers enter the queue and wait until a point of sale becomes available. They place their order, pay, and then wait at the point-of-sale for the order to be fulfilled before exiting the system.
+A typical concept has eight to fifteen items on the menu. Items are purchased at differential rates and have varying prep times. Most items can be stored for about twenty minutes before quality begins to degrade. The number of points of sale varies, but most concepts have between four and twelve points of purchase. Customers enter the queue and wait until a point of sale becomes available. They place their order, pay, and then wait at the point of purchase for the order to be fulfilled before exiting the system.
 
-Queuing systems are a fascinating topic. A more detailed analysis of queuing systems will be covered later in this chapter within section \@ref(queuing). However, if you are unfamiliar with how queuing systems are analyzed, I recommend spending a little time covering _Queuing Theory_ ^[https://en.wikipedia.org/wiki/Queueing_theory]. Queuing theory can be extremely complex and has many applications across a variety of disciplines. To simplify it, just think of your goal as to design systems so that the outcomes are more deterministic. 
+Queuing systems are a fascinating topic. A more detailed analysis of queuing systems will be covered in this chapter within section \@ref(queuing). However, if you are unfamiliar with how queuing systems are analyzed, I recommend spending a little time covering _Queuing theory_ ^[https://en.wikipedia.org/wiki/Queueing_theory]. Queuing theory can be highly complex and has many applications across various disciplines. To simplify it, consider your goal in designing systems so that the outcomes are more deterministic. 
 
-The Game Hens' concession concepts typically follow a _multi-channel, single phase (MCSP)_ queuing discipline. In a MCSP system we have a one-step (single phase) serving process where the register handles the complete transaction and there are multiple points-of-sale (channels) serving the queue. Additionally, the process follows a FIFO (first-in, first out) queue discipline where the customer waiting the longest amount of time is serviced first.
+The Game Hens' concession concepts typically follow a _multi-channel, single-phase (MCSP)_ queuing discipline. In an MCSP system, we have a one-step (single phase) serving process where the register handles the complete transaction, and there are multiple points-of-sale (channels) serving the queue. Additionally, the process follows a FIFO (first-in, first-out) queue discipline where the customer waiting the most extended amount of time is serviced first.
 
 Let's extract the key elements of this system:
 
@@ -203,37 +203,37 @@ Let's extract the key elements of this system:
 - Ordering, payment, and fulfillment happen at the point-of-sale
 - Fulfillment is difficult to buffer due to differential storage times and demand levels
 
-Now that we have a little bit of detail, we can construct a plan for capturing some measurements for analysis. 
+Now that we have some detail, we can construct a plan for capturing some measurements for analysis. 
 
 ### Defining our problem and establishing goals
 
-Most strategically oriented projects tend to sprawl when you begin to think about them. This one is no different. There are lots of considerations. Let's create a problem statement that unambiguously explains this project.
+Most strategically oriented projects tend to sprawl when you think about them. This one is no different. There are lots of considerations. Let's create a problem statement that unambiguously explains this project.
 
-> Problem statement: Wait times for concessions services across the ballpark consistently recieve low relative satisfaction scores (less than 10% of fans give the highest rating) from our season ticket holders. Low satisfaction scores are correlelated with a higher likelihood for a specific fan to not renew their season membership. While industry standards for service times have been quoted by our vendor at ninety seconds per transaction, observed wait times often exceed this figure by over 100%. 
+> Problem statement: Wait times for concessions services across the ballpark consistently receive low relative satisfaction scores (less than 10% of fans give the highest rating) from our season ticket holders. Low satisfaction scores are correlated with a higher likelihood for a specific fan not to renew their season membership. While our vendor has quoted industry standards for service times at ninety seconds per transaction, observed wait times often exceed this figure by over 100%. 
 
-Goals are more precise than objectives. Since we don't have any hard data on our process, we will have to wait to establish firm goals. The initial goal will be to collect the necessary data with the hopes that we can reduce wait times. At this stage, we have no idea how much it may be possible to reduce wait times. Although there is an industry standard, we don't know if this figure has any merit. 
+Goals are more precise than objectives. Since we don't have any data on our process, we will have to wait to establish firm goals. The initial goal will be to collect the necessary data with the hopes that we can reduce wait times. We have yet to determine how much it may be possible to reduce wait times. Although there is an industry standard, we must determine if this figure has merit. 
 
-## Measurment and analysis 
+## Measurement and analysis 
 
-You almost never have all the data that you need. In this case, we'll need to take note of what we do have and create a plan on gathering what we don't have. Sine we will have to take live measurements, we'll need a ruberic and a budget. Additionally, our timeline will be impacted by the fact that we will need to take measurements during the game.  
+You seldom have all the data that you need. In this case, we'll need to take note of what we have and create a plan to gather what we don't. Since we will have to take live measurements, we'll need a rubric and a budget. Additionally, our timeline will be impacted by the fact that we must take measurements during the game.  
 
 ### Data audit and capture
 
-You'll want to be careful about how you capture data. You'll also want to be consistent and as thorough as possible. Spend some time thinking about this phase of the project. In this case, we know that we are going to have to capture observational data. Additionally, this data might make someone look bad. Since you have been quoted ninety seconds as the number that is being met, what happens if your measurements differ? Keep these sorts of political impediments in mind as you build your rubric. 
+You'll want to be careful about how you capture data. You'll also want to be consistent and as thorough as possible. Spend some time thinking about this phase of the project. In this case, we know we must capture observational data. Additionally, this data might make someone look bad. Since you have been quoted ninety seconds as the number being met, what happens if your measurements differ? Keep these sorts of political impediments in mind as you build your rubric. 
 
 There are many ways to collect data in this context, but the fundamental components of that plan will be almost identical. Just google _data collection plan_. The frameworks are all very similar. You start with a specific question that you are trying to answer and then lay out the specifics of:
 
 - Data types
-- What is being measured
-- How the data is to be measured
-- How the data is to be captured
-- How you ensure consistency
+- What data is being measured?
+- How is the data to be measured?
+- How is the data to be captured?
+- How do you ensure consistency?
 
-The initial goal of our analysis is to identify a bottleneck. We should be able to gather some data from our information systems. We know that scan data is being captured at the gates so we know how many people are in the park at any given time. That information may be useful.
+The initial goal of our analysis is to identify a bottleneck. Next, we should gather some data from our information systems. For example, scan data is being captured at the gates, so we know how many people are in the park at any time. That information may be helpful.
 
-Leveraging the points-of-sale to estimate wait times might not be possible. Perhaps if we had cameras installed at each concept, we could use A.I. to track and clock customers. However, we don't and this means using people with stopwatches observing the concept. This seems barbaric, but if we set firm rules around what constitutes a measurement, and you collect enough data, you should be able to get reliable estimates. 
+Leveraging the points of sale to estimate wait times might not be possible. We could use A.I. to track and clock customers if cameras were installed at each concept. However, we don't, which means using people with stopwatches to observe the concept. This seems barbaric, but if we set firm rules around what constitutes a measurement and you collect enough data, you should be able to get reliable estimates. 
 
-Additionally, your concept of what information is actually needed from a business perspective will mature over time. While you would probably love to be able to track every customer through your venue at all times, is it necessary? Would you spend money here if you understood every other competing expense throughout your business? How would you use this data? CEOs and other executives have to make these decisions. Think about these problems from their broader perspective when you are confronted with them. You have to make a distinction between ideal and practical.  
+Additionally, your concept of what information is needed from a business perspective will mature over time. While you would love to be able to track every customer through your venue at all times, is it necessary? Would you spend money here if you understood every other competing expense throughout your business? How would you use this data? CEOs and other executives have to make these decisions. Think about these problems from their broader perspective when confronted with them. You have to make a distinction between ideal and practical.  
 
 ### Line length and total scans
 
@@ -264,12 +264,12 @@ Table: (\#tab:scansashow)scan data example
 |            5|     8|17:04       |4/1/2024 |
 |            6|     9|17:05       |4/1/2024 |
 
-Line-length data looks a little different than scan data. This data would have been collected manually by counting the number of people in line every minute. This data is also confounded by the fact that while four people may be in line, only one may order. Likewise, one person may be ordering for more than one person. When data has quirks, try to write them down. You'll have to explain them to someone at some point.  
+Line-length data looks different than scan data. It looks different because this data would have been collected manually by counting the number of people in line every minute. This data is also confounded by the fact that while four people may be in line, only one may order. Likewise, one person may be ordering for more than one person. When data has quirks, try to write them down. You'll have to explain them to someone at some point.  
 
 
 ```r
 #-----------------------------------------------------------------
-# Create line length data
+# Create line-length data
 #-----------------------------------------------------------------
 line_length_a <- f_get_line_length(seed = 755,
                                    n    = 300,
@@ -295,7 +295,7 @@ Table: (\#tab:line_length_a)line length data
            6            4  17:05         4/1/2024 
 
 
-Let's take a look to see if line-length has any relationship to scans. We are looking to see if the number of people coming into the building influences line-length. The following code produces the graph in figure \@ref(fig:linelengthb).
+Let's look to see if line length has any relationship to scans. First, we are looking to see if the number of people entering the building influences line length. The following code produces the graph in figure \@ref(fig:linelengthb).
 
 
 
@@ -340,11 +340,11 @@ line_length <-
 <p class="caption">(\#fig:linelengthb)Relationship between line length at a concession stand and scans</p>
 </div>
 
-While we can see a pattern in the data where line-length tends to peak at specific times, the relationship to cumulative scans isn't very tight. It appears that fans that enter early tend to rush concession stands and fans that come in near the begining of the game take a seat and go to concession stands later. There is a lot of variability in this data. 
+While we can see a pattern in the data where line length peaks at specific times, the relationship to cumulative scans isn't very tight; it appears that fans that enter early tend to rush concession stands and fans that come in near the beginning of the game take a seat and go to concession stands later. So there is a lot of variability in this data. 
 
 ### Analyzing the results
 
-We can analyze this data in much the same fashion as we have analyzed data in previous chapters. However, we'll introduce a new tool here called a _generalized additive model_. Be careful with this technique. While you might find that it is a silver bullet that can easily model many distributions, it is a little more difficult to work with than a math equation provided by regression. We'll use the `mgcv` [@R-mgcv] library to access the `gam` function. As is often the case, we'll need to do a little data preparation before applying our tool.   
+We can analyze this data in much the same fashion as we have analyzed data in previous chapters. However, we'll introduce a new tool here called a _generalized additive model_. Be careful with this technique. While you might find it a silver bullet that can easily model many distributions, it is a little more challenging than a math equation provided by regression. We'll use the `mgcv` [@R-mgcv] library to access the `gam` function. As is often the case, we'll need data preparation before applying our tool.   
 
 
 
@@ -387,7 +387,7 @@ gr <-
   graphics_theme_1   
 ```
 
-We can access a summary of our `gam` model to look at some of the standard statistics: 
+We can access a summary of our `game` model to look at some of the standard statistics: 
 
 
 
@@ -413,17 +413,17 @@ We can see that the data will defy an accurate fit by looking at figure \@ref(fi
 <p class="caption">(\#fig:gamdiagram)GAM output on line length data</p>
 </div>
 
-While we can see that the average fit to this data is fair, the predictive power won't be very good at any given point on the graph. Ultimately, there isn't a good relationship between line-length and scans into the ballpark. However, we do see that the data appears multi-modal. Lines decrease near the start of the gameh. This makes sense as early arrivers place their orders and take their seats. 
+While the average fit to this data is fair, the predictive power won't be very good at any given point on the graph. Ultimately, there isn't a good relationship between line length and scans into the ballpark. However, we do see that the data appears multi-modal. For example, lines decrease near the start of the game. This decrease in line length at first pitch makes sense as early arrivers place their orders and take their seats. 
 
 ### Understanding wait times
 
-Now that we have some data on line-length we can take a closer look at what is driving wait-time. We can simulate some results from measuring the broader process. We built a function `f_get_wait_times()` to provide us with some data. This function breaks wait-times into three parts:
+Now that we have some data on line length, we can closely examine what drives wait time. We can simulate some results by measuring the broader process. We built a function `f_get_wait_times()` to provide us with some data. This function breaks wait times into three parts:
 
 - Order time: The amount of time it takes to place an order
 - Payment time: How long it took to fulfill payment after the order was placed
 - fulfillment time: How long it took to fulfill the order after payment
 
-This is all information that we would have had to capture through direct measurements. We include the function that creates the data here so that you can see that we used simple exponentially distributed data on the components of the process. This may or may not be true in practice, but we have seen similar patterns in actual data.
+We would have had to capture this information through direct measurements. We include the function that creates the data here so that you can see that we used simple, exponentially distributed data on the process components. This may or may not be true in practice, but we have seen similar patterns in actual data.
 
 
 ```r
@@ -450,7 +450,7 @@ return(wait_times)
 }
 ```
 
-This function will produce as many results as you want with order, payment, and fulfillment times being represented by exponentially distributed times in seconds.
+This function will produce as many results as you want, with order, payment and fulfillment times being represented by exponentially distributed times in seconds.
 
 
 ```r
@@ -478,11 +478,11 @@ Table: (\#tab:simulatewaittimesb)Wait time data
 |           5|          4|           38|           10|        52|
 |           6|          4|           37|            6|        47|
   
-We can use this data to build a simulation that allows us to deconstruct total-time as we change some of the inputs. This will allow us to demonstrate the impact of an initiative such as mobile ordering. Mobile ordering in theory would allow you to effectively decouple orders and possibly payment from fulfillment. Be careful not to think about technology first here. We just stated that mobile ordering may help you decouple orders and payment from fulfillment. Are there other ways to accomplish this goal? Additionally, it might help demonstrate the merits of a more effective buffering system or a simplified menu.
+We can use this data to build a simulation to deconstruct the total time as we change some inputs. Deconstructing the entire time will allow us to demonstrate the impact of an initiative such as mobile ordering. Mobile ordering would enable you to decouple orders and payment from fulfillment effectively. Be careful not to think about technology first here. Mobile ordering may help you decouple orders and payments from fulfillment. Are there other ways to accomplish this goal? Additionally, it might help demonstrate the merits of a more effective buffering system or a simplified menu.
 
 #### analyzing the distributions of wait time components
 
-Variance between these processes could be a problem depending on your queuing discipline. Let's take a look at the distribution of these wait times.  
+The variance between these processes could be problematic depending on your queuing discipline. First, let's look at the distribution of these wait times.  
 
 
 ```r
@@ -495,7 +495,7 @@ wait_dist <-
     tidyr::pivot_longer(cols = c('orderTimes',
                                  'paymentTimes',
                                  'fulfillTimes'),
-                        names_to = "measurment",
+                        names_to = "measurement",
                         values_to = "seconds")            %>%
                    mutate(scale_seconds = scale(seconds))
 
@@ -517,15 +517,15 @@ w_dist <-
 </div>
 
 
-We can see from this graph that order times appear to have the widest variance. There is a long tail extending toward the 200 second mark. Variance kills interdependent processes. This is the enemy that we were looking to find. If we could reduce this variance, we could make the entire process more deterministic and improve wait times. 
+We can see from this graph that order times appear to have the widest variance. There is a long tail extending toward the 200-second mark. Variance kills interdependent processes. Variance is the enemy that we were looking to find. If we reduce this variance, we could make the entire process more deterministic and improve wait times. 
 
 ### Simulating a component of our process
 
-Like many of the topics we have discussed, simulation is a large and complicated topic. It is also incredibly useful for the problem that we are facing. We have already looked at a coupld of ways to simulate data. We have used `rexp` and `rnorm` multiple times to create simulated data sets. This is what we are seeing in figure \@ref(fig:waittimesdista). We are creating random numbers based on parameters for exponential or normal distributions. What do we do if we simply have a data set and we want to simulate it under different conditions? How do we know what distribution to fit to approximate the data? 
+Like many of the topics we have discussed, simulation is a large and complicated topic. However, it is also beneficial for the problem that we are facing. We have already looked at a couple of ways to simulate data. We have used `rexp` and `rnorm` multiple times to create simulated data sets. This is what we see in figure \@ref(fig:waittimesdista). We are creating random numbers based on parameters for exponential or normal distributions. What do we do if we have a data set and want to simulate it under different conditions? How do we know what distribution to fit to approximate the data? 
 
-There are many software packages that will build simulations for you, but it is useful to understand how they might function at a base level. We'll build a couple of basic transaction simulations and then evaluate how well specific changes to our process might impact the overall system. This will give you an appreciation for how a software package might help you solve a problem. Having the underlying knowledge makes you a better decision maker.  
+Many software packages will build simulations for you, but it is helpful to understand how they might function at a base level. We'll create a couple of basic transaction simulations and then evaluate how well specific changes to our process might impact the overall system. This will show you how a software package might help you solve a problem. Having the underlying knowledge makes you a better decision-maker.  
 
-Simulation is a daunting subject. Non-linear least squares fits can be frustrating. Like we saw in our chapter {#chapter6}, it is easy to get into some more complex math. 
+Simulation is a daunting subject. Non-linear least squares fits can be frustrating. As we saw in chapter {#chapter6}, getting into some more complex math is easy. 
 
 
 ```r
@@ -548,7 +548,7 @@ Table: (\#tab:mcab)Simulated wait times data
 |           6|          4|           37|            6|        47|
 
 
-Let's  begin by looking at correlations between each process component. We are looking to see if any particular component is more closely correlated with the total-time. There are a few packages that will build correlation tables for you, but we will go ahead and build this manually.
+Let's begin by looking at correlations between each process component. We want to see if any particular component correlates more closely with the total time. A few packages will build correlation tables for you, but we will go ahead and build this manually.
 
 
 ```r
@@ -569,7 +569,7 @@ cor_long <-
                                'Fulfillment Time','Total Time'))
 ```
 
-We'll reorder the factors so that our graph will give us the aesthetic we are looking for.
+We'll reorder the factors so that our graph will give us the aesthetic we seek.
 
 
 ```r
@@ -613,11 +613,11 @@ ggplot(aes(x = order, y = name,fill = value))            +
 <p class="caption">(\#fig:mcf)Correlation table</p>
 </div>
 
-Order time is the component most highly correlated with _Total-Time_. The other factors don't appear to be correlated with each other at all. You could infer all sorts of things from this data. Perhaps order time is most highly correlated with total-time because no other work can take place during the order. Fulfillment time may be the least correlated with total time because we have done a good job buffering inventory. We are ooking to see if there is a basic relationship between these variables. The fact that order time is the most highly correlated variable is important and we'll likely base our solution around mitigating long order times because it would likely have the most impact.
+Order time is the component most highly correlated with _Total-Time_. The other factors are not correlated with each other at all. You could infer all sorts of things from this data. Order time is most highly associated with total time because no other work can occur during the order. Fulfillment time may be the least correlated with total time because we have done an excellent job buffering inventory. We are looking for a fundamental relationship between these variables. The fact that order time is the most highly correlated variable is important. We'll likely base our solution around mitigating long order times because it would have the most impact.
 
 #### Analyzing the Variance between wait time components
 
-Variance is our enemy. These system components are linked and depend on each other, but are not correlated. There is also a wide amount of variance.
+Variance is our enemy. These system components are linked and depend on each other but are not correlated. As a result, there is also a vast amount of variance.
 
 
 ```r
@@ -635,7 +635,7 @@ wait_long                                             %>%
   ggplot(aes(x = name, y = value)) +
   geom_boxplot(fill = 'dodgerblue') +
   xlab('\n Transaction component')                              + 
-  ylab('Wait time in seconds')                                  + 
+  ylab('Wait time in seconds)                                  + 
   ggtitle('Variance of transaction times')                      +
   graphics_theme_1
 ```
@@ -669,9 +669,9 @@ Table: (\#tab:quantiles2)quantiles for wait times
 |75% |         42|         23.0|          8.0|        70|
 |90% |         81|         39.1|         14.0|       107|
 
-Twenty-five percent of orders take forty two seconds or more. This appears to be the biggest _problem_. It would be more accurate to say that this is the process component that likely causes the most variance in the system. Let's construct our simulation by looking at a probability table of the observations. We can build a function to create a table with a little extra information. It would also be beneficial to have a little more data. One day of transactions could certainly create some sample-size issues. Let's simulate a few thousand results. We'll pretend that we have been collecting information for a couple of weeks. Keep in mind that this could also cause other problems. If you were using regression here you might want to consider a _mixed effects_ ^[https://en.wikipedia.org/wiki/Mixed_model] model. 
+Twenty-five percent of orders take forty-two seconds or more. These long order times appear to be the biggest _problem_. It would be more accurate to say that this process component likely causes the most variance in the system. Let's construct our simulation by looking at a probability table of the observations. We can build a function to create a table with a little extra information. It would also be beneficial to have more data. One day of transactions could undoubtedly create some sample-size issues. Let's simulate a few thousand results. We'll pretend that we have been collecting information for weeks. Keep in mind that this could also cause other problems. If you were using regression here, you might want to consider a _mixed effects_ ^[https://en.wikipedia.org/wiki/Mixed_model] model. 
 
-Since total time is composed of the three process components, we can be sure that a regression should work pretty well in terms of explaining variance. If we regressed on this data the model should look amazing. Let's try it.
+Since total time comprises the three numerical process components, regression should explain variance well. If we regressed on this data, the model should look amazing. Let's try it.
 
 
 ```r
@@ -698,11 +698,11 @@ Table: (\#tab:chtentotalregression)Summary stats for time model
 |0.5570309|0.9997996| 0.9997975  |492180.3|
 
 
-As expected, the model appears to be almost perfect. We could use the equation to estimate total wait times almost perfectly. If you see results like this, there is probably something wrong. 
+As expected, the model is almost perfect. We could use the equation to estimate total wait times almost perfectly. If you see results like this, there is probably something wrong. 
 
 #### Building a simulation of our data
 
-Finally, let's build a simulation. This section will demonstrate some of the basics to get you started. However, the method that we follow is flexible and can be used in many different ways. We'll begin by accessing the `wait_times_distribution` data. 
+Finally, let's build a simulation. This section will demonstrate some of the basics to get you started. The method that we follow is flexible and can be used in many different ways. We'll begin by accessing the `wait_times_distribution` data. 
 
 
 ```r
@@ -713,7 +713,7 @@ library(FOSBAAS)
 wait_times_distribution <- FOSBAAS::wait_times_distribution_data
 ```
 
-let's take a sample of these wait times that we can use as a basis for our simulated data.
+Let's sample these wait times as a basis for our simulated data.
 
 
 ```r
@@ -725,7 +725,7 @@ wait_sample <- wait_times_distribution %>%
                sample_frac(size = .7)
 ```
 
-Now we can begin to think about the distribution a little more carefully. We can use the `ecdf` function to compute an _empirical cumulative distribution function_. You can think about this output as the inverse of the `quantile` function.
+Now we can think about the distribution more carefully. We can use the `ecdf` function to compute an _empirical cumulative distribution function_. This output is the inverse of the `quantile` function.
 
 
 ```r
@@ -757,7 +757,7 @@ Table: (\#tab:chtendisplayedcf)Demonstrating the relationship between quantiles 
 |0.7785714|    50.22143    |
 
 
-About 78 percent of the observations are less than 50 seconds. It is simple to plot this function to visualize what we just did. 
+About 78 percent of the observations are less than 50 seconds. Therefore, plotting this function to visualize what we just did is simple. 
 
 
 ```r
@@ -811,7 +811,7 @@ hist_tab <-
 hist_tab_long <- hist_tab %>% 
                  tidyr::pivot_longer(cols = c('sim_data',
                                               'actual_data'),
-                                     names_to = "measurment",
+                                     names_to = "measurement",
                                      values_to = "seconds") 
 
 hist_comp <- 
@@ -830,7 +830,7 @@ ggplot(hist_tab_long , aes(seconds))     +
 <p class="caption">(\#fig:chtenhistcomp)Simulated vs. actual results</p>
 </div>
 
-Our simulated data approximates the actual data very well. It should, we know that we used an exponential distribution to fit the data.
+Our simulated data approximates the actual data very well. It should; we know we used an exponential distribution to fit the data.
 
 You can't trust the results of one simulation. You'll want to create many simulations and then average the results. Let's go ahead and put together a code base that will allow us to produce a reproducible experiment. First, let's ask ourselves a question that we want to answer:
 
@@ -886,13 +886,13 @@ Table: (\#tab:chtenmeanchart)Reducing The impact of order times
 |33.31705|16.80299|6.403494|56.52353|
 
 
-The total average time is almost identical to what we observed. If we can reduce order time by fifteen seconds it will get the total time down to about 41 seconds. However, as we have seen this only tells part of the story. The real problem is the variance. However, with our distributions and the fact that payment, fulfillment, and orders are not correlated, the variance is unlikely to hurt us very often.   
+The total average time is almost identical to what we observed. If we can reduce order time by fifteen seconds, the total time will reduce to about 41 seconds. However, as we have seen, this only tells part of the story. The real problem is the variance. However, with our distributions and the fact that payment, fulfillment, and orders are not correlated, the variance is unlikely to hurt us very often.   
 
-Let's use our simulation to calculate some stats on how many orders could be fulfilled over specific time frames per point-of-sale under duress. This means that the queue is always full. Let's ask a question and answer it in different ways.
+Let's use our simulation to calculate how many orders could be fulfilled over specific time frames per point-of-sale under duress. Duress means that the queue is always full. Let's ask a question and answer it in different ways.
 
 > During one hour, how much additional throughput would a register be able to process if order taking was reduced by 50%?
 
-if our average wait time is fifty six seconds it means that we can fulfill about sixty four orders per register per hour (60 seconds/56 seconds) * 60 minutes. What does this number look like if we use samples from our simulation?
+If our average wait time is fifty-six seconds, we can fulfill about sixty-four orders per register per hour (60 seconds/56 seconds) * 60 minutes. What does this number look like if we use samples from our simulation?
 
 
 ```r
@@ -918,7 +918,7 @@ for(j in 1:30){
 }
 ```
 
-Let's graph the results of our count list to see how many orders we were able to fulfill for thirty simulated hours. 
+Let's graph the results of our count list to see how many orders we fulfilled for thirty simulated hours. 
 
 
 ```r
@@ -946,11 +946,11 @@ ggplot(counts , aes(x = simulation,
 <p class="caption">(\#fig:chtenverifyb)Simulated vs. actual results</p>
 </div>
 
-Of the thirty simulations, eight fell below the level of our average service time. When you compound this analysis with multiple registers, inter-arrival times, and different line-lengths, we can see how reducing variance is the key to consistently maximizing throughput. We also didn't talk about slack time between orders, fatigued employees, or other factors that add variance to the process. 
+Of the thirty simulations, eight fell below the level of our average service time. When you compound this analysis with multiple registers, inter-arrival times, and different line lengths, we can see how reducing variance is the key to consistently maximizing throughput. We also should have discussed the slack time between orders, fatigued employees, or other factors that add variance to the process. 
 
 ## Fitting distributions
 
-Let's take a look at some other ways to fit distributions to data. We'll begin by building a helper function to give us a frequency table of values. 
+Let's look at other ways to fit distributions to data. First, we'll build a helper function to give us a frequency table of values. 
 
 
 ```r
@@ -994,7 +994,7 @@ Table: (\#tab:mck)Frequency table order time
 |        5|   49| 0.0233333|
   
 
-This frequency table represents a histogram. Let's take a look at the graph.
+This frequency table represents a histogram. First, let's take a look at the graph.
 
 
 ```r
@@ -1018,7 +1018,7 @@ freq_table_graph <-
 </div>
 
 
-This gives us the cumulative distribution graph that we looked at earlier. The ecdf is useful and there are lots of ways to simulate data. First, let's look at sampling strategies to build distributions. The following function will build a frequency table for us and return a specified number of simulated values.
+This code gives us the cumulative distribution graph that we looked at earlier. The ecdf is helpful, and there are many ways to simulate data. First, let's look at sampling strategies to build distributions. The following function will produce a frequency table for us and return a specified number of simulated values.
 
 
 ```r
@@ -1049,7 +1049,7 @@ price_table <- f_get_prices(price_data$price,1000)
 
 ```
 
-We can observe the full distribution with the following code.
+We can observe the whole distribution with the following code.
 
 
 ```r
@@ -1112,7 +1112,7 @@ hist_sales <-
 <p class="caption">(\#fig:chtensimulateddistribution)Simulated prices</p>
 </div>
 
-You can also simulate data with several built-in distributions. The following code produces a distribution that combines a beta, exponetial, and normal distribution.
+You can also simulate data with several built-in distributions. For example, the following code produces a distribution that combines a beta, exponential, and normal distribution.
 
 
 
@@ -1145,7 +1145,7 @@ hist_sales <-
 <p class="caption">(\#fig:chtencombineddistribution)Simulated prices</p>
 </div>
 
-As you can see, It is easy to simulate distributions in R. You can use these tools to construct _Monte Carlo_ simulations for sophisticated what-if analysis. The following sections will cover fitting different models to data. There are libraries that will do much of this work for you if you are so inclined. Let's look at a few different potential fits for our data and begin with three common options:
+As you can see, It is easy to simulate distributions in R. You can use these tools to construct _Monte Carlo_ simulations for sophisticated what-if analysis. The following sections will cover fitting different models to data. Some libraries will do much of this work. Let's look at a few other potential fits for our data and begin with three standard options:
 
 - An exponential fit
 - A polynomial fit
@@ -1178,9 +1178,9 @@ fit_gm <-
 freq_table$pred_gam <- predict(fit_gm)
 ```
 
-Keep in mind that if you fit a polynomial with more than three degrees you are asking for trouble. I am doing it here to demonstrate how good it might look, but it is a bad idea. You are asking for an unpredictable model. Don't do it. 
+Remember that if you fit a polynomial with more than three degrees, you are asking for trouble. I am doing it here to demonstrate how good it might look, but it is a bad idea. You are asking for an unpredictable model. So please don't do it. 
 
-To fit a logit curve we'll have to do something a little differently. We'll use the `SSlogis` function from the `stats` package to estimate starting points for our curve. This is a useful function, so keep it in mind.
+We'll have to do something a little differently to fit a logit curve. We'll use the `SSlogis` function from the `stats` package to estimate starting points for our curve. This is a valuable function, so keep it in mind.
 
 
 ```r
@@ -1198,7 +1198,7 @@ fit <- nls(variable ~ A/(1 + exp(((-I+cumprob)/S))),
 
 ```
 
-We get an error. Why? Basically, a logit curve is a poor fit for this data set. This is a common problem. What do you do if you can't fit a common distribution very well? You have a few options. We included a fifth degree polynomial fit (again, a terrible practice), a generalized additive model, and we'll introduce one more. Let's fit a spline^[https://en.wikipedia.org/wiki/Spline_interpolation].  
+We get an error. Why? A logit curve is a poor fit for this data set. Bad fits are a common problem. What do you do if you can't fit a typical distribution well? You have a few options. We included a fifth-degree polynomial fit (again, a terrible practice) and a generalized additive model, and we'll introduce one more. Let's fit a spline^[https://en.wikipedia.org/wiki/Spline_interpolation].  
 
 
 ```r
@@ -1209,7 +1209,7 @@ fit_sp <- with(freq_table, smooth.spline(cumprob, variable))
 freq_table$pred_sp <- predict(fit_sp)$y
 ```
 
-Now that we have fit a few models, how can we judge which one is the best? You can start by looking at how well they fit the data. 
+Now that we have fit a few models, how can we judge which is best? You can start by looking at how well they fit the data. 
 
 
 ```r
@@ -1239,7 +1239,7 @@ ggplot(freq_table,aes(y = cumprob,x = variable))            +
 <p class="caption">(\#fig:chtenfitsgraph)Variance between components</p>
 </div>
 
-The models seem to fit the cumulative data pretty well with the exception of the exponential fit and polynomial fit. There are several ways to evaluate models against one another. For linear models, ANOVA is typically your first stop. for non linear models, AIC ^[https://en.wikipedia.org/wiki/Akaike_information_criterion] and BIC are typically used. 
+The models fit the cumulative data well, except for the exponential and polynomial fit. There are several ways to evaluate models against one another. For linear models, ANOVA is typically your first stop. for non linear models, AIC ^[https://en.wikipedia.org/wiki/Akaike_information_criterion] and BIC are typically used. 
 
 
 ```r
@@ -1277,9 +1277,9 @@ Table: (\#tab:anovaa)Model Comparisons
 |poly  | 1401.360| 1422.930|
 |gam   | 1378.366| 1411.593|
 
-The exponential line isn't the best fit. Plus, if you select random numbers for frequency and plug them into our equation the simulated distribution won't approximate our data very well. Let's simulate some results using our polynomial fit.
+The exponential line isn't the best fit. Plus, if you select random numbers for frequency and plug them into our equation the simulated distribution won't approximate our data very well. So let's simulate some results using our polynomial fit.
 
-We can write a function that will spit-out a new value based on our polynomial model. 
+We can write a function that will spit out a new value based on our polynomial model. 
 
 
 ```r
@@ -1317,10 +1317,10 @@ f_get_poly_fit <- function(new_var,dist_fit){
 }
 ```
 
-You could do better, but you get the idea. This function will work for a polynomial function of any length, but is less readable than the hard-coded version. Functions aren't worth too much if you are going to hard code them. 
+You could do better, but you get the idea. This function will work for a polynomial function of any length but is less readable than the hard-coded version. Functions aren't worth too much if you are going to hard-code them. 
 
 
-If we plug in our result from earlier we get:
+If we plug in our result from earlier, we get the following:
 
 
 ```r
@@ -1332,7 +1332,7 @@ f_get_fifth_degree_fit(.7785714,fit_py)
 #>    45.59297
 ```
 
-This is pretty close to the 50 we got from the ecdf function. Let's simulate some values and graph them.
+This is close to the 50 we got from the ecdf function. Let's simulate some values and graph them.
 
 
 ```r
@@ -1355,7 +1355,7 @@ ggplot(poly_values,aes(x=x,y=y))             +
   graphics_theme_1
 ```
 
-Wow. Figure \@ref(fig:chtenfitsgraphb) demonstrates a horrible fit! This is one reason why you don't use high order polynomials for modeling data. 
+Wow. Figure \@ref(fig:chtenfitsgraphb) demonstrates a horrible fit! This is one reason you don't use high-order polynomials for modeling data. 
 
 <div class="figure">
 <img src="images/ch10_poly_graph.png" alt="Polynomial fit" width="100%" />
@@ -1363,25 +1363,25 @@ Wow. Figure \@ref(fig:chtenfitsgraphb) demonstrates a horrible fit! This is one 
 </div>
 
 
-We just covered the basics of fitting distributions. You now have the basic tools necessary to explain y in terms of x in a variety of ways. The main takeaway here is that you have to be careful about what you fit. Some methods will work better than others and if you aren't careful you can do some things that might make you look silly. 
+We just covered the basics of fitting distributions. You now have the tools to explain y in terms of x in various ways. The main takeaway is that you must be careful about what you fit. Some methods will work better than others; if you aren't careful, you can do things that might make you look silly. 
 
 ## Understanding queuing systems {#queuing}
 
-Queuing is a huge and complicated field of study and it's principles can be applied to many problems from Computer Engineering to queuing systems at amusement parks and airports. You will face them in sports. Queuing systems typically have three parts as described in "Operations Management" by Heizer and Rendee: [@Heizer2014]
+Queuing is a vast and complicated field of study, and its principles can be applied to many problems, from Computer Engineering to queuing systems at amusement parks and airports. You will face them in sports. Queuing systems typically have three parts as described in "Operations Management" by Heizer and Rendee: [@Heizer2014]
 
 - Arrivals or inputs into the system
 - Queue discipline, or the waiting line itself
 - The service facility
 
-Each of these components have specific characteristics. For instance, arrivals will consider:
+Each of these components has specific characteristics. For instance, arrivals will consider the following:
 
 - The size of the arrival population
 - The behavior of arrivals
 - The pattern of arrivals
 
-Analyzing queuing models tends to make heavy use of simulation and requires some specific forms of data collection. However, if you have your underlying assumptions correct, analyzing this data becomes an exercise in plugging good data into some equations. We'll adapt some examples from "Fundamentals of Queuing Systems" [@Thomopoulos2012]. 
+Analyzing queuing models tends to make heavy use of simulation and requires some specific forms of data collection. However, if your underlying assumptions are correct, analyzing this data becomes an exercise in plugging good data into some equations. We'll adapt some examples from "Fundamentals of Queuing Systems" [@Thomopoulos2012]. 
 
-Let's imagine a concessions concept with six points of sale and queuing space that can accommodate 50 people. In queuing parlance, this represents an (M/M/k/N) queue which represents a multi-server, finite capacity system. 1/lambda represents the _average time between arriving customers_ and 1/mu represents _the average service times_. We are assuming exponentially distributed inter-arrival times and service times. In reality, you'll have to make some observations to determine the distribution of service time and inter-arrival times. Let's begin by defining some terms and then we'll work through a problem using R. 
+Let's imagine a concessions concept with six points of sale and queuing space that can accommodate 50 people. In queuing parlance, this represents an (M/M/k/N) queue representing a multi-server, finite capacity system. 1/lambda represents the _average time between arriving customers_ and 1/mu represents _the average service times_. We are assuming exponentially distributed inter-arrival times and service times. In reality, you'll have to make some observations to determine the distribution of service time and inter-arrival times. Let's begin by defining some terms, and then we'll work through a problem using R. 
 
 
 \noindent Average time between arrivals:
@@ -1404,7 +1404,7 @@ Let's imagine a concessions concept with six points of sale and queuing space th
 \mu 
 \end{equation}
 
-\noindent Number of service facilities:
+\noindent number of service facilities:
 \begin{equation}
 k 
 \end{equation}
@@ -1414,7 +1414,7 @@ k
 \rho = \tau_{a}/\tau_{s} = \lambda/\mu \text{ : } \rho/k \text{< 1 is needed to ensure the system is in equilibrium}
 \end{equation}
 
-\noindent Number of units in the system:
+\noindent number of units in the system:
 \begin{equation}
 n \text{ : n} \geq \text{0}
 \end{equation}
@@ -1436,35 +1436,35 @@ rho    <- tau_a/tau_s # Utilization ratio
 n                     # Units in the system
 ```
 
-Let's imagine a concession concept with six points of sale and space for 50 people in line. It takes about 60 seconds to service a customer and a customer arrives in line every 110 seconds. 
+Imagine a concession concept with six points of sale and space for 50 people in line. It takes about 60 seconds to service a customer, and a customer arrives in line every 110 seconds. 
 
 
 ```r
 #-----------------------------------------------------------------
 # M/M/k/N Queue Inputs
 #-----------------------------------------------------------------
-k        = 2          # Number of points of sale at concept
+k        = 2          # Number of points of sale at the concept
 N        = 5          # Number of people the queue can accommodate
 tau_a    = 10         # time between arrivals: 40 seconds/60
 tau_s    = 8          # Service time: 90 seconds/60 = 1.5
 lambda   = 1/tau_a    # Customer Arrivals per minute
 mu       = 1/tau_s    # Serviced customers per minute
 #-----------------------------------------------------------------
-# Translate to per hour figures
+# Translate to per-hour figures
 #-----------------------------------------------------------------
 lambda_h = 60/tau_a   # Per hour
 mu_h     = 60/tau_s   # Per hour
 rho      = lambda/mu  # Utilization ratio
 ```
 
-R has several tricks that you can use to make calculations easier. Since variables are vectorized, adding sequences is easy. You will not need a loop. The first thing we will need to do is to calculate the probability that `n` (defined above) equals 0. This is given by the slightly alarming-looking equation:
+R has several tricks that you can use to make calculations easier. Since variables are vectorized, adding sequences is easy. You will not need a loop. First, we will need to calculate the probability that `n` (defined above) equals 0. This is given by the slightly alarming-looking equation:
 
 \noindent Probability that n = 0:
 \begin{equation}
 P_{0} = 1/\{\sum_{n=0}^{k-1} \rho^n/n! + \rho^k/k![(k^{N-k+1} - \rho^{N-k+1})/(k - \rho)k^{N-k}]\}
 \end{equation}
 
-Pay attention to order of operations. The only difficult part of translating this equation is getting the parenthesis in the correct places. 
+Pay attention to the order of operations. The only tricky part of translating this equation is getting the parenthesis in the correct places. 
 
 
 ```r
@@ -1479,7 +1479,7 @@ P0 <-
 (factorial(k)*((k^(N-k+1)) - (rho^(N-k+1))/((k-rho)*(k^(N-k)))))))
 ```
 
-After running this code, we can see that `P0` = 0.4305395. We complete this exercise by calculating the probability of n units in the system with two equations for different levels of n. 
+After running this code, we see that `P0` = 0.4305395. We complete this exercise by calculating the probability of n units in the system with two equations for different levels of n. 
 
 \noindent For n = (0,k)
 \begin{equation}
@@ -1592,7 +1592,7 @@ f_get_MMKN <- function(k,N,ta,ts){
   frame <- data.frame(matrix(nrow = 7,ncol =2))
   names(frame) <- c('Metric','Value')
   
-  metric <- c('Servers:','System Capacity:','Time between arrivals:',
+  metric <- c('Servers:','System Capacity:',' time between arrivals:',
               'Average service time:','Minutes in service:',
               'Minutes in queue:','Minutes in system:')
   values <- c(k,N,ta,ts,Ws,Wq,W)
@@ -1630,18 +1630,18 @@ Minutes in service:        8.000000
 Minutes in queue:          1.267664
 Minutes in system:         9.267664
 
-We now have a basic understanding of how to analyze queues. This stuff can get complex and there are a multitude of software packages that can take care of this for you. However, if you are simply plugging information into equations, the difficult part is just getting good data and choosing the correct models that accommodate it. There is lots of variation, for instance inter-arrival times may be normally distributed instead of exponentially distributed. You'll have to adapt your model to accommodate this variation. 
+We now have a basic understanding of how to analyze queues. This stuff can get complex, and there is a multitude of software packages that can take care of this for you. However, if you are plugging information into equations, the difficult part is getting good data and choosing the correct models that accommodate it. There is lots of variation; for instance, inter-arrival times may be normally distributed instead of exponentially distributed. You'll have to adapt your model to accommodate this variation. 
 
 ## Key concepts and chapter summary
 
-Analytic techniques can be applied to a wide variety operations problems. Additionally, _Operations_ is a broad field of study that covers many different arenas. This chapter covered two major subjects: Simulation and Queuing. Both examples covered increasing throughput for concessions. While we only scratched the surface, we were introduced to a number of topics:
+Analytic techniques can be applied to a wide variety of operations problems. Additionally, _Operations_ is a broad field of study that covers many different arenas. This chapter covered two major subjects: Simulation and Queuing. Both examples covered increasing throughput for concessions. While we only scratched the surface, we were introduced to several topics:
 
-- Simulation: Monte Carlo simulations are relatively simple to create and are incredibly useful for evaluating a very wide variety of topics. 
+- Simulation: Monte Carlo simulations are relatively simple to create and incredibly useful for evaluating various topics. 
 - Distribution fitting: Leveraging distributions is critical to simulation. Learn to think in distributions, not point estimates. Distributions are everywhere. 
-- Queuing analysis: Queues exist everywhere from electrical circuits to concession stands. Analyzing a queuing system can give you insight into how to improve it.
-- Some basic project management tips
+- Queuing analysis: Queues exist everywhere, from electrical circuits to concession stands. Analyzing a queuing system can give you insight into how to improve it.
+- Some essential project management tips
 
-We also learned how to think about these problems. It is easy to be intellectually lazy and not take the time to truly evaluate a problem. Operations is about critical thinking in terms of a system with many interrelated components. It is also a widely studied field, so if you can conceptualize a problem correctly, you should be able to find a way to analyze and improve it.   
+We also learned how to think about these problems. It is easy to be intellectually lazy and not take the time to evaluate a situation honestly. Operations is about critical thinking regarding a system with many interrelated components. It is also a widely studied field, so if you can conceptualize a problem correctly, you should be able to find a way to analyze and improve it.   
 
 
 
