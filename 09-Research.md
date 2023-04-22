@@ -3,7 +3,7 @@
 
 
 
-This chapter will discuss different research techniques to understand consumer preferences and composition. Ordinary people should recoil from research. It is tedious, painful, typically repetitive, and opens you up to scrutiny. Moreover, research is complex, and you must have worked in the research industry to have extensive experience. Finally, it is a vast subject; you must understand it to be a complete analyst. 
+This chapter will discuss different research techniques to understand consumer preferences and composition. Ordinary people should recoil from research. It is tedious, painful, typically repetitive, and opens you up to scrutiny. Moreover, research is complex, and extensive experience in the field is difficult to acquire. Finally, it is a vast subject; you must understand it to be a complete analyst. 
 
 One of the main issues that you will face with it is that results from research projects are often only considered in a cursory fashion. The person who understands the results the best will be the designer and analyst. This is partly because many internal consumers are only interested in a narrow band of concerns. It can be discouraging when so much work goes into a project that can easily be disregarded.
 
