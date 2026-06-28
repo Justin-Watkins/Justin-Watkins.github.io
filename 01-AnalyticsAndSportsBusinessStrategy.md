@@ -2,7 +2,7 @@
 
 
 
-This chapter will give some background on my ideologies around analytics and sports business at the club level. I also want to separate the disciplines of strategy and analytics. Analytics serves strategy, but the process derives from analytics. This chapter will outline my approach to analytics. There are often many ways to approach a problem, and some issues may not be worth solving for many reasons. Despite some inherent difficulties with sports, an analytic approach to problem-solving should always be at the core of your business strategy. 
+This chapter gives some background on my perspective on analytics and sports business at the club level. I also want to separate the disciplines of strategy and analytics. Analytics serves strategy, but good strategy often depends on an analytical process. This chapter outlines my approach to that process. There are often many ways to approach a problem, and some issues may not be worth solving for practical, political, or economic reasons. Despite the inherent difficulties of working in sports, an analytic approach to problem-solving should always sit near the core of your business strategy.
 
 Analytics is about reconciling opportunities. Many of our problems are very old and still need to be solved. This statement is especially true for Operations. There are unlimited applications for analytics within any industry or business. Additionally, analytics can take many forms and could improve decision-making in many functions that we have already mentioned:
 
@@ -24,7 +24,7 @@ Analytics can even assist in tasks outside core business functions such as human
 - Programming
 - Designing experiments (DOE)
 
-These lists could be endlessly long. _Versatility_ is the hallmark of a strong analyst and strategist. You will find few books on general strategy. Strategy is an amalgam of knowledge focused on specific problems. People who are good at it understand the business at a fundamental level and understand how to structure problems to solve them intelligently. You are forging an alloy that will increase profitability while making your business more efficient and resilient. 
+These lists could be endlessly long. _Versatility_ is the hallmark of a strong analyst and strategist. You will find few useful books on general strategy because strategy is an amalgam of knowledge applied to specific problems. People who are good at it understand the business at a fundamental level and know how to structure problems so they can be solved intelligently. You are forging an alloy that should increase profitability while making your business more efficient and resilient.
 
 ## Understanding our definition of strategy
 
@@ -38,7 +38,7 @@ From an academic standpoint, there are many strategic frameworks. Harvard's Mich
 
 If you have ever messed around in the stock market, you'll hear much talk about _fundamentals_. The type of analysis you might find on a trading platform is the illusion of analysis. Applying techniques like _triple exponential smoothing_^[https://en.wikipedia.org/wiki/Exponential_smoothing] or _moving averages_ to stocks looks excellent, but it probably doesn't matter. Does it make a novice a better trader? It might make them worse. An analysis is great if you understand it and is always contextual. It can be misleading or damaging if you need help understanding the context. Remember that data is not always the solution to every problem, and think critically about why a problem exists. The mechanical part of analysis isn't the critical part of it. It should be a commodity. Focus on application and communication.
 
-## Technologies place in strategy and analytics
+## Technology's place in strategy and analytics
 
 I consider the application of technology in analytics along five ordered dimensions. While you can jump around to a degree, each step is generally built on the stage below. As you ascend the steps, execution becomes more difficult and complex. Execution is where your strategy will fall apart. Read that last sentence again. Additionally, your system should flow from the top down. Keep your destination in mind as you move up each step. 
 
@@ -47,23 +47,23 @@ As ridiculous as it may sound, you must begin with the data structure. You are b
 Additionally, there are multiple levels of maturity on this front. For instance, ticketing data may be very well structured, while CRM data may be lacking. Therefore, I view analytics within the structure proposed in figure \@ref(fig:choneheirarh). 
 
 <div class="figure" style="text-align: center">
-<img src="images/CH1_ML_Heirarchy.png" alt="Data strategy heirarchy of needs" width="100%" />
-<p class="caption">(\#fig:choneheirarh)Data strategy heirarchy of needs</p>
+<img src="images/CH1_ML_Heirarchy.png" alt="Data strategy hierarchy of needs" width="100%" />
+<p class="caption">(\#fig:choneheirarh)Data strategy hierarchy of needs</p>
 </div>
 
-Furthermore, I consider technology a means to an end, not "an end unto itself. This needs to be clarified. Your technology strategy should flow from a well-articulated business strategy. You could spend capital to allow fans to enter a park leveraging facial recognition, but what problem does that solve? Is scanning a ticket the bottleneck in that system that slows the process? Do fans want it? Does the regulatory environment permit it? This sounds like a complex system more than a camera and a database. Focus on the system. Technology is the easy part to solve. While innovation is sometimes bred by throwing something at the wall to see if it sticks, I haven't found that to be the primary vehicle for technology adoption. When an organization takes a misguided technology-first approach, I have found the results to be painfully unremarkable. Remember that some sports teams have made their brand focused on adopting technology. This contradicts what I just outlined and is valid if executed correctly. The same rule applies to both directions. Determine what you want to accomplish and why you want to achieve it before deploying a technology solution.
+Furthermore, I consider technology a means to an end, not an end unto itself. This distinction matters. Your technology strategy should flow from a well-articulated business strategy. You could spend capital to allow fans to enter a park using facial recognition, but what problem does that solve? Is ticket scanning the bottleneck that slows entry? Do fans want it? Does the regulatory environment permit it? This is a complex operating system, not just a camera and a database. Focus on the system. Technology is the easy part to buy and the hard part to operationalize. While innovation is sometimes bred by throwing something at the wall to see if it sticks, I have not found that to be the primary vehicle for successful technology adoption. When an organization takes a misguided technology-first approach, the results are often painfully unremarkable. Some sports teams have made technology adoption part of their brand. That can be valid if executed correctly. The same rule applies in either direction: determine what you want to accomplish and why before deploying a technology solution.
 
-Perhaps you want to _revolutionize_ your business. Few problems in business are solved in revolutionary ways. The internet feels much the same as it did twenty years ago. We are now talking about web 3.0 and the metaverse. We already have a _metaverse_. It is called the internet. It isn't revolutionary. It represents a platform that big tech wants you to use to transact. It may be a better way of doing things or a worse way of doing everything. It could have tremendous advantages if you want to be an early mover, but you'll take a risk. The jury will be out for the next decade on the metaverse. It may be 3D television. Remember those? Of course you don't. Look for the business model that underlies these marketing schemes. Perhaps the metaverse is simply a way to help bolster _augmented reality_ products. If you understand the mechanism, you can plan for what comes next and intelligently take risks.
+Perhaps you want to _revolutionize_ your business. Few business problems are solved in revolutionary ways. The internet feels much the same as it did twenty years ago, even as we now talk about web 3.0, virtual worlds, and augmented reality. We already have a _metaverse_. It is called the internet. The packaging changes, but the underlying platform remains a place where large technology companies want people to transact. These technologies may offer advantages if you want to be an early mover, but they also carry risk. Look for the business model underneath the marketing language. If you understand the mechanism, you can plan for what comes next and take risks intelligently.
 
 We don't want to be disparaging toward Information Technology. Strong I.T. skill sets are beneficial. As your skills progress, you'll be exposed to a myriad of technologies:
 
 - If you work on Windows or Apple, you'll still need some understanding of Linux^[https://www.linux.org/]
 - Shell scripting is a critical skill for any dev-ops task^[https://en.wikipedia.org/wiki/Bash_(Unix_shell)]
-- Start using _git_ as a repository for your code^[https://github.com/]
+- Start using _git_ to manage and version your code^[https://github.com/]
 - Tools such as _docker_ allow you to package programs if you are doing web development^[https://www.docker.com/]
 - You don't need a server. Google, Amazon, and Microsoft each have massive deployment platforms.
 
-Be bold in spending the time to get familiar with these technology components. You'll be rewarded and highly regarded for it. 
+Be willing to spend time getting familiar with these technology components. You'll be rewarded and highly regarded for it.
 
 The main difference between the internet today and twenty years ago is that people mostly use a phone to access and browse it. Incremental improvements over time are the way changes take place. Core business procedures can continuously be improved. Most rich people didn't get there through some brilliant product or idea. They did the same things other rich people did, executed correctly, and were lucky. Think of analytics and business strategy in the same way. We'll walk through each component in figure \@ref(fig:choneheirarh) and discuss it in more detail.
 
@@ -71,7 +71,7 @@ The main difference between the internet today and twenty years ago is that peop
 
 Getting the foundational data elements in place is critical to all other hierarchy components. While we won't discuss _Master Data Management_ or specific technologies such as _Customer Data Platforms_, we will talk about the foundations of data and what we mean when we use the word. Most organizations have solved portions of their data management, but it's a never-ending problem. There will always be newer and better systems, and there will always be a need to incorporate new data into your sales and marketing infrastructure. This process is accelerating as Google, Amazon, and others vie to own the cloud. Amazon Web Services and the Google Cloud Platform are disruptive because they can deliver capabilities that would be financially unfeasible for many firms trying to build them in-house. As a result, the on-prem DBMS will slowly go extinct^[This isn't entirely true. There are certain instances where having a captive instance is useful or necessary]. This is also an old battle. If this was twenty-five years ago, our discussion might have been on Thin-client vs. Fat-Client computing. This discussion is fundamentally the same. 
 
-Let's go ahead and make the assumption that your sports team needs to have their data in a better spot. Getting your data in a helpful position may take several varied techniques and has its considerations:
+Let's assume your sports team needs its data in a better spot. Getting your data into a useful position may require several techniques and raises several considerations:
 
 - What systems are the most important to incorporate?
 - Is the data "Big," meaning is it an engineering challenge to hold the data, or does its velocity necessitate a unique approach?
@@ -97,7 +97,7 @@ You'll encounter numerous data structures working in sports, but none are more c
 
 What are we looking at? While many different database systems ^[https://en.wikipedia.org/wiki/Database] are available, the venerable _relational database_ is the one you will encounter the most. AWS and Google have improved and optimized some of these models, but the basic concept will look familiar across most platforms. We'll ignore even high-level discourse on the technical parts of database construction, such as _cardinality_ and _normal forms_ and discuss this stuff through examples.
 
-Consider a database as a collection of excel workbooks formally linked with an I.D. column. We'll call these workbooks tables. These tables will allow you to get information on transactions, historical purchase data, customer service rep data, ticketing information, and more. You can read the "crow's foot" as "Many" and the cross as "one." For example, one customer can have many plans. These relationships can be much more complicated, but at a basic level, the data you encounter will look like this. If the database is relational (More than likely), basic SQL statements can be used to retrieve your information: 
+Consider a database as a collection of Excel workbooks formally linked with an ID column. We'll call these workbooks tables. These tables allow you to retrieve information on transactions, historical purchases, customer service reps, ticketing, and more. You can read the "crow's foot" as "many" and the cross as "one." For example, one customer can have many plans. These relationships can be much more complicated, but at a basic level, the data you encounter will look like this. If the database is relational, which is more than likely, basic SQL statements can be used to retrieve your information:
 
 
 
@@ -122,7 +122,7 @@ The output from this query might look something like this:
 |1940-2349-1243|Ted.Williams\@someserver.com|23455 |3200.00|  
 |1959-9909-4567|Ted.Williams\@someserver.com|61545 |2500.00|   
 
-For some reason, I fear typing SQL that isn't in all caps. It isn't case-sensitive, and it doesn't matter. While the data will be more complex, this example demonstrates a basic table structure you will encounter. As you can see, it appears that Ted has multiple accounts. Duplication is the bane of the database engineer. It always confounds analysis in one way or another.  
+For some reason, I fear typing SQL that isn't in all caps. It isn't case-sensitive, and it doesn't matter. While real data will be more complex, this example demonstrates a basic table structure you will encounter. As you can see, it appears that Ted has multiple accounts. Duplication is the bane of the database engineer. It always confounds analysis in one way or another.
 
 Let's take a quick aside to discuss _Structured Query Language_, or SQL. SQL is the _lingua-Franca_ of the database world. Although many technologies use "Not Only" SQL, you'll get the most mileage from SQL, and it is a prerequisite if you want to work with data in almost any capacity. The good news is that learning at a basic level is relatively simple, and functional fluency can be achieved relatively easily. There are also plenty of free resources available to learn and practice it. W3 schools is an excellent one. ^[https://www.w3schools.com/]
 
@@ -131,7 +131,7 @@ The integration between the CRM and ticketing systems is critical. Once again, t
 - How will the ETL be constructed? API, direct database connection, etc.
 - How are parity checks considered?
 
-These are all heavy I.T. tasks. Although the end product will be the most crucial component to an analyst, understanding how some of this stuff works is important. It will make you better. Practice SQL; you don't have a choice if you want to be good and analysis in a business setting. 
+These are all heavy I.T. tasks. Although the end product will be the most crucial component to an analyst, understanding how some of this works is important. It will make you better. Practice SQL; you don't have a choice if you want to be good at analysis in a business setting.
 
 <div class="figure" style="text-align: center">
 <img src="images/CH1_ML_Decision_crm_structure.png" alt="CRM system data structure" width="100%" />
@@ -164,13 +164,13 @@ This data may need clarification because the relationships are more complex than
 |pp3w-232e-k54r-ww3b  |1959-9909-4567|3245 |y567-3f25-6h78-234p|  
 
 
-What do we have here? Mr. Williams has created (or has created) more than one account, and the accounts are not merged into one. This is a simple example of a problem you are likely to encounter and duplication problems are constantly faced. We have one Ted Williams, but the system regards him as two people. Business rules can mitigate some of these issues. For instance, the ticketing system could forbid users from using an email that is already in the system. While using email_address as a primary key has some advantages, there are always downstream issues that you must consider. Nothing is perfect. Someone may use a different email. Then you have one person, but it may be impossible to tell them apart. Your rules may make a problem worse. 
+What do we have here? Mr. Williams has created more than one account, and the accounts are not merged into one. This is a simple example of a problem you are likely to encounter. We have one Ted Williams, but the system regards him as two people. Business rules can mitigate some of these issues. For instance, the ticketing system could forbid users from using an email that is already in the system. While using `email_address` as a primary key has some advantages, there are always downstream issues to consider. Nothing is perfect. Someone may use a different email. Then you have one person, but it may be impossible to tell that the records refer to the same person. Your rules may make a problem worse.
 
 Garbage-in, garbage-out. You must clean this data to move to the next level of our hierarchy. Before we look at B.I., I want to cover an essential simple query. It is the core of B.I. work. I have asked a similar question during interviews for years, and almost everyone fails to answer it correctly despite its simplicity. Once you gain some proficiency in SQL, run this code in an engine. This is written in SQL server syntax and answers the question:
 
 > Can you create a list of Companies in each Industry ordered by revenue?
 
-It looks simple, but make sure you understand what is happening. Everyone fails this test because they fail to think through it and invariably try a`GROUP BY` before giving up with a confused look on their faces wishing they had access to Google.
+It looks simple, but make sure you understand what is happening. People often fail this test because they do not think through the shape of the desired result and invariably try a `GROUP BY` before giving up with a confused look on their faces, wishing they had access to Google.
 
 
 ```sql
@@ -235,9 +235,9 @@ A Customer Relationship Management (CRM) component also typically falls under th
 <p class="caption">(\#fig:chonedatabi)Four categories of reporting</p>
 </div>
 
-The first stop is reactive reporting  _Description_ and _Diagnosis_. Once you have your data structured appropriately, you can produce backward-looking reports. These reports are typically the bread and butter of a Business Intelligence department. For example, you are answering questions about how much a rep sold or how many tickets were sold during a specific time frame. 
+The first stop is reactive reporting: _Description_ and _Diagnosis_. Once you have your data structured appropriately, you can produce backward-looking reports. These reports are typically the bread and butter of a Business Intelligence department. For example, you are answering questions about how much a rep sold or how many tickets were sold during a specific time frame.
 
-_Prediction_ and _Perscription_ are forward looking. You might integrate predictive models into your reporting that indicate whether sales goals will likely be met. We'll talk about how that might be accomplished in the next section. _Prescriptive_ reports might tell you what you should do about a problem once it has been diagnosed. In our context, a prescriptive report might enable a manager to reroute marketing dollars to more efficient channels. For instance, the report could identify diminishing returns on marketing spend through a particular social channel and suggest one with demonstrably greater efficiency. 
+_Prediction_ and _Prescription_ are forward-looking. You might integrate predictive models into your reporting that indicate whether sales goals will likely be met. We'll talk about how that might be accomplished in the next section. _Prescriptive_ reports might tell you what you should do about a problem once it has been diagnosed. In our context, a prescriptive report might enable a manager to reroute marketing dollars to more efficient channels. For instance, the report could identify diminishing returns on marketing spend through a particular social channel and suggest one with demonstrably greater efficiency.
 
 #### Business Intelligence data structure
 
@@ -250,13 +250,13 @@ You can think of a _fact_ as something that will be aggregated. It is a number. 
 <p class="caption">(\#fig:chonedatafanddim)Business Intelligence data structure</p>
 </div>
 
-These tables look similar to what you saw in figure \@ref(fig:chonedatacrm). The main difference is conceptual. In the earlier diagram, no tables were necessarily prioritized over others. Look at the tables and consider the customer the central table with features radiating from that specific customer. The customer has a rep, purchases tickets, may have a plan, etc. In this diagram, the _Ticket_ is central. Since B.I. tools are at heart aggregation machines, this structure is fundamental. If you want to perform some math on a feature such as ticket price, you put it in the fact table. This allows you to perfromantly answer all kinds of questions such as:
+These tables look similar to what you saw in figure \@ref(fig:chonedatacrm). The main difference is conceptual. In the earlier diagram, no tables were necessarily prioritized over others. Look at the tables and consider the customer the central table with features radiating from that specific customer. The customer has a rep, purchases tickets, may have a plan, etc. In this diagram, the _Ticket_ is central. Since B.I. tools are at heart aggregation machines, this structure is fundamental. If you want to perform some math on a feature such as ticket price, you put it in the fact table. This allows you to answer all kinds of questions efficiently, such as:
 
 - How much did customer A spend on tickets in 2018?
 - How much was spent on tickets in 2021?
 - How many customers does rep A have, and how much did they spend in 2019?
 
-As a rule, I prefer to structure the data how I would want it within the database. While this isn't always feasible or efficient, it does have some advantages. It can be efficient because flattening the relationships into fewer tables can make your software run more quickly. You have removed the need to traverse a relationship. It also means that you are less dependent on learning all the capabilities of the B.I. platform. It makes things more straightforward from that perspective. This works well when the person doing the B.I. work is also the data engineer. The problem is that it needs to be more scaleable and can get confusing. It could lead you to build custom systems where you aren't constrained in the same ways.
+As a rule, I prefer to structure the data how I would want it within the database. While this isn't always feasible or efficient, it does have some advantages. It can be efficient because flattening the relationships into fewer tables can make your software run more quickly. You have removed the need to traverse a relationship. It also means that you are less dependent on learning all the capabilities of the B.I. platform. It makes things more straightforward from that perspective. This works well when the person doing the B.I. work is also the data engineer. The problem is that it needs to be more scalable and can get confusing. It could lead you to build custom systems where you are not constrained in the same ways.
 
 There are also some pitfalls that you should be aware of. You can work around these issues. However, you can also encounter problems with Cartesian joins ^[https://en.wikipedia.org/wiki/Cartesian_product]. This means that you can double-count a value if you aren't careful. This is common if you have constructed a snowflake schema for your facts and dimensions tables. 
 
@@ -270,7 +270,7 @@ Analytics refers to applying an operation to your data and gaining additional in
 - Regression
 - Machine learning 
 
-Let's take a minute to explain these terms because there is some overlap. You may or may need to become more familiar with regression. Regression can get very technical, and regression analysis is dogmatic and rigorous. We'll use it heavily, and you will need to understand how it works. I recommend getting a reference book on the subject. There are many. My favorite is "An R Companion to Applied Regression." [@Fox2019] Let's try a quick explanation of _ordinary least squares_ regression to demonstrate its power. We will build this explanation in R but wait to show you much code until the next chapter.
+Let's take a minute to explain these terms because there is some overlap. You may or may not already be familiar with regression. Regression can get very technical, and regression analysis is both dogmatic and rigorous. We'll use it heavily, and you will need to understand how it works. I recommend getting a reference book on the subject. There are many. My favorite is "An R Companion to Applied Regression." [@Fox2019] Let's try a quick explanation of _ordinary least squares_ regression to demonstrate its power. We will build this explanation in R but wait to show you much code until the next chapter.
 
 I am going to explain regression here in the simplest way possible. I am not a mathematician, and you don't have to be one to leverage regression. Also, we aren't working with clinical trials of a drug. We are working with fuzzy business problems. So exacting rigor isn't as necessary. The following section will take you through a simple explanation of the most basic form of regression and explain how I think about it. 
 
@@ -290,7 +290,7 @@ The familiar linear equation takes the form:
 \ {y} = {m}{x} + {b}
 \end{equation}
 
-In this equation, the Y is explained by x, where m is equal to the slope of the line and b is equal to the y-intercept. If we apply a list of x values `(-5,-4,-3,-2,-1,0,1,2,3,4,5)` to a linear equation with slope two and y-intercept of five, we will get the graph in figure \@ref(fig:regressbb).
+In this equation, `y` is explained by `x`, where `m` is equal to the slope of the line and `b` is equal to the y-intercept. If we apply a list of x values `(-5,-4,-3,-2,-1,0,1,2,3,4,5)` to a linear equation with a slope of two and a y-intercept of five, we get the graph in figure \@ref(fig:regressbb).
 
 \begin{equation}
 \ {y} = {2}{x} + {5}
@@ -310,7 +310,7 @@ In this equation, the Y is explained by x, where m is equal to the slope of the 
 
 
 
-Your data points may not fit a perfect linear equation. Regression is looking for the line through these points that minimizes the _sum of squared errors_ (see figure \@ref(fig:regresscc). The sum of squared errors represents ( _SSE_ ) the distance between each point and the line. Look up the word _orthogonal_ to see how this can vary. You square the errors so that negative numbers don't impact the results. 
+Your data points may not fit a perfect linear equation. Regression looks for the line through these points that minimizes the _sum of squared errors_ (see figure \@ref(fig:regresscc)). The sum of squared errors (_SSE_) represents the distance between each point and the line. Look up the word _orthogonal_ to see how this can vary. You square the errors so that negative numbers do not cancel out positive numbers.
 
 
 
@@ -335,13 +335,13 @@ The basic form is denoted similarly to the following equation:
 
 A definition might read, "The idea is to express the class as a linear combination of the attributes with predetermined weights." [@Witten2011] I just think about it as finding the best _average_ line through your data where x explains y. The standard error represents a normal distribution that is split by the line. Once again, I don't want to push statistics reading too much here. Still, I recommend picking up any book on statistics or Googling multiple-linear regression if you aren't reasonably familiar with it. You'll use it a lot as an analyst.
 
-Additionally, familiarize yourself with the different forms of regression; Orthogonal, Poissan, Ridge, etc. There are lots of problems that can be solved if you apply the correct technique. 
+Additionally, familiarize yourself with the different forms of regression: orthogonal, Poisson, ridge, and others. There are lots of problems that can be solved if you apply the correct technique.
 
 That is as deep as I want to go here. We will use this tool often in subsequent chapters and go into more detail. I want to take the same simple approach to explain Machine Learning. 
 
 #### Machine Learning
 
-Machine learning is different as a concept, but under the hood, it is just statistics. This has been explained in many ways. At its heart, we are looking for patterns in data to make predictions. Also, don't worry about A.I. taking your job. Worry about the person that knows how to use it taking your job. 
+Machine learning is different as a concept, but under the hood, it is just statistics. This has been explained in many ways. At its heart, we are looking for patterns in data to make predictions. Also, don't worry about A.I. taking your job. Worry about the person who knows how to use it taking your job.
 
 There are three main types of machine learning:
 
@@ -357,9 +357,9 @@ Each of these variations is useful for solving different types of problems. We'l
 - Support vector machines
 - Neural networks
 
-You can also use ensemble techniques. I typically explain machine learning through a basic explanation of a completed decision tree. An in-depth explanation of decision trees gets mathy. This basic explanation comes from the book "Data Mining" [@Witten2011]. This book utilizes a program called WEKA, but most or all of the concepts have implementations in R or Python.
+You can also use ensemble techniques. I typically explain machine learning through a basic explanation of a completed decision tree. An in-depth explanation of decision trees gets mathy. This basic explanation comes from the book "Data Mining" [@Witten2011]. That book uses a program called WEKA, but most or all of the concepts have implementations in R or Python.
 
-We are going to begin looking at some of our data. If you are digging into code, now is the time to install R and R studio. We will talk more about that in the next chapter. You can install the FOSBASS library that accompanies this book using the following command:
+We are going to begin looking at some of our data. If you are digging into code, now is the time to install R and RStudio. We will talk more about that in the next chapter. You can install the FOSBAAS library that accompanies this book using the following command:
 
 
 ```r
@@ -444,7 +444,7 @@ This is machine learning at its simplest. A set of cascading questions split in 
 
 After you have developed some basic B.I. and analytics capabilities, you'll quickly want to find ways to put them to work. Ad hoc analytics has its place, but to truly reap the rewards of your work, you will need to build an engine that allows you to automate some of the storytelling. This is where analytics intersects I.T. work. Operationalizing your analytics procedures requires a little different knowledge set. There are also other approaches.
 
-AWS and Google have taken considerable strides in building frameworks that natively integrate analytics into your DBMS. Gone are the days of writing SQL wrappers for some R or python script sitting on some server in the basement. Let's take the same simple approach to explain what I mean here. 
+AWS and Google have taken considerable strides in building frameworks that natively integrate analytics into your DBMS. Gone are the days when the default approach was writing SQL wrappers for an R or Python script sitting on a server in the basement. Let's take the same simple approach to explain what I mean here.
 
 These two functions (Automation and Integration) are self-explanatory. Automation refers to removing human interaction. Integration refers to operationalizing your outputs by extending your data into commerce engines. 
 
@@ -463,7 +463,7 @@ Integration refers to two elements:
 
 Interestingly, integrating with third parties is the easy part relative to integrating solutions internally. Integrating solutions internally is much more difficult. This typically requires change management and a sponsor in the upper levels of management. For example, perhaps your organization introduces a productivity suite such as Slack^[https://en.wikipedia.org/wiki/Slack_(software)] or Teams^[https://en.wikipedia.org/wiki/Microsoft_Teams]. Will simply introducing and deploying this technology cure an addiction to email? The answer is "no." How might you increase adoption?  
 
-Figure \@ref(fig:dataautomation) demonstrates a simplified version of the entire process from data sources to the feedback loop you are creating with your marketing channel partners. Of course, when we refer to marketing channel partners, we could be referring to Google's add network, Facebook, or many others. 
+Figure \@ref(fig:dataautomation) demonstrates a simplified version of the entire process from data sources to the feedback loop you are creating with your marketing channel partners. Of course, when we refer to marketing channel partners, we could be referring to Google's ad network, Facebook, or many others.
 
 
 <div class="figure" style="text-align: center">
@@ -475,7 +475,7 @@ While these features used to be reasonably distinct, new technologies are making
 
 ## Key Performance Indicators
 
-This section will explain an application of a KPI. This piece of feedback is critical for understanding how well you are performing (typically against some arbitrary or historic benchmark). I'll also refer back to an earlier paragraph about the stock market. Analytics is contextual. What is a KPI? A KPI is a figure that links business performance to some desired outcome. For example, in Baseball, the number of walks a player takes is a KPI that will likely predict on-base-percentage. Analytics groups can establish a causal link between On-base-percentage and wins^[See the film Moneyball]. If you are in the market for a player, you might weigh walks more heavily than other metrics. On-base-percentage might be a KPI, and walks might be the key to increasing on-base-percentage leading to more wins. The following paragraphs will discuss and criticize the most commonly used KPI at clubs: Percap, or average price paid per ticket.  
+This section explains an application of a KPI. This piece of feedback is critical for understanding how well you are performing, typically against some arbitrary or historical benchmark. I'll also refer back to an earlier paragraph about the stock market. Analytics is contextual. What is a KPI? A KPI is a figure that links business performance to some desired outcome. For example, in baseball, the number of walks a player takes is a KPI that will likely predict on-base percentage. Analytics groups can establish a causal link between on-base percentage and wins.^[See the film Moneyball.] If you are in the market for a player, you might weigh walks more heavily than other metrics. On-base percentage might be a KPI, and walks might be the key to increasing on-base percentage, leading to more wins. The following paragraphs discuss and criticize the most commonly used KPI at clubs: per-cap, or average price paid per ticket.
 
 It is easy to make incorrect judgments when armed with the blunt instrument of data. __Per-Cap__ (or average ticket price) is likely the worst. Per-Cap is a commonly used KPI that is used for comparing the effectiveness of sales and pricing strategy: 
 
@@ -533,21 +533,21 @@ scatter_percap <-
 <p class="caption">(\#fig:chonepercapgraph)Scatterplot of revenue and percap</p>
 </div>
 
-Another metric that could be used better is __Sales on or by date__. This metric asks how many sales I had on a particular date in the previous year. This metric may be the biggest liar out of any commonly used KPI. It can be fraught with distortion in Baseball because of the schedule. It likely has more validity when a sport has fewer games or has a higher FSE base. FSE stands for _Full Season Equivalent_ and represents the number of tickets sold to individuals on a season (or modified season) basis. 
+Another metric that could be used better is __Sales on or by date__. This metric asks how many sales I had on a particular date in the previous year. It may be the biggest liar among commonly used KPIs. It can be fraught with distortion in baseball because of the schedule. It likely has more validity when a sport has fewer games or has a higher FSE base. FSE stands for _Full Season Equivalent_ and represents the number of tickets sold to individuals on a season or modified-season basis.
 
 _Sales by date_ is problematic for a few different reasons:
 
 1. If you compare yourself to a different team, it doesn't consider the admixture of tickets. A team with 20,000 FSEs will look dramatically different than a team with 6,000 FSEs. 
 2. Once your schedule has begun, the admixture of games will significantly influence the outcomes. What does this mean?
 
-We'll see in chapter \@ref(chapter6) which elements will most influence ticket sales. Sales-by-date doesn't consider game dates, opponents, on-field success, seasonality, game times, etc. Additionally, people purchase tickets at different times and for various reasons. Because of these differences, sales of a specific ticket class may look great after the first twenty games but could be better after the first forty games. Look at the line graph in chapter \@ref(chapter3) \@ref(fig:chthreeticketsline). If you built a cumulative line for each line, the results would look very different. Refrain from benchmarking off of sales-by-date. Instead, leverage forecasts that consider the underlying elements of the schedule. Consider a simple example (figure: \@ref(fig:salary)). This illustration was created with publicly available data, and we'll demonstrate how to make it a little later. 
+We'll see in chapter \@ref(chapter6) which elements will most influence ticket sales. Sales-by-date doesn't consider game dates, opponents, on-field success, seasonality, game times, etc. Additionally, people purchase tickets at different times and for various reasons. Because of these differences, sales of a specific ticket class may look great after the first twenty games but could be better after the first forty games. Look at the line graph in chapter \@ref(chapter3) \@ref(fig:chthreeticketsline). If you built a cumulative line for each line, the results would look very different. Refrain from benchmarking off of sales-by-date. Instead, leverage forecasts that consider the underlying elements of the schedule. Consider a simple example (figure \@ref(fig:salary)). This illustration was created with publicly available data, and we'll demonstrate how to make it a little later.
 
 <div class="figure" style="text-align: center">
 <img src="images/CH1_salary.png" alt="Relationship to avg salary and ticket sales" width="100%" />
 <p class="caption">(\#fig:salary)Relationship to avg salary and ticket sales</p>
 </div>
 
-There certainly appears to be some relationship between the average salary of a player and the total number of tickets sold. The relationship might even be more substantial for teams in larger markets. Why is this the case? This top-down approach to forecasting demonstrates that the amount that players are paid (or if a few players are paid a lot of money) that ticket sales tend to be higher. We don't see tight clusters based on market size. Higher pay may demonstrate better performance. Better performance might translate into more wins. More wins attract more earned media and fans, and your ticket sales increase.
+There certainly appears to be some relationship between the average salary of a player and the total number of tickets sold. The relationship might even be more substantial for teams in larger markets. Why is this the case? This top-down approach to forecasting suggests that when players are paid more, or when a few players are paid a lot of money, ticket sales tend to be higher. We don't see tight clusters based on market size. Higher pay may indicate better performance. Better performance might translate into more wins. More wins attract more earned media and fans, and ticket sales increase.
 
 This is an obtuse example, but it demonstrates the point. There are underlying mechanisms that likely do a reasonable job of explaining ticket sales. We didn't even cover bottom-up forecasting elements such as marketing efforts! 
 
@@ -555,7 +555,7 @@ The point of this section should now be clear. Many factors dictate performance.
 
 ## Why do people buy tickets to sporting events?
 
-Sports fandom is irrational. This irrationality can make sports challenging and infuriating to work with from an analytics standpoint. How can we determine if our marketing efforts are making a difference? Are we simply slaves to the whims and fancy of the mob? The answer is complex, and we will explore it a little in our chapter on forecasting and pricing, chapter \@ref(chapter6). Additionally, the answer may (to a degree) exist in our genes. 
+Sports fandom is irrational. This irrationality can make sports challenging and infuriating to work with from an analytics standpoint. How can we determine if our marketing efforts are making a difference? Are we simply slaves to the whims and fancy of the crowd? The answer is complex, and we will explore it a little in our chapter on forecasting and pricing, chapter \@ref(chapter6). Additionally, the answer may, to a degree, exist in our genes.
 
 > "We have the ability (Under special conditions) to transcend self-interest and lose ourselves (temporarily and ecstatically) in something larger than ourselves."
 >
@@ -575,7 +575,7 @@ There are also brand components associated with history and logos. This one is i
 
 There could be many answers to why someone might purchase tickets to a baseball, football, basketball, hockey, or soccer game. People in the United States and worldwide have complex emotional relationships with sports and brands. These emotions better explain their behavior than a model predicting the likelihood to purchase. 
 
-This side of sports marketing is often overlooked and under-served. Behavioral economics is a vast field. At least one technique we use later in the book has some of its roots in behavioral economics, and there is much literature on these subjects. "The Power of Moments" [@Heath2017] is an outstanding book that is imminently useful if one is to consider how specific mechanisms engender loyalty. Central themes such as _pride_ and _connection_ are almost instantly accessible to marketers at the club level. How can an analyst help drive the desired outcomes? The answer may depend on solutions outside the wheelhouse of a data scientist or business analyst. 
+This side of sports marketing is often overlooked and underserved. Behavioral economics is a vast field. At least one technique we use later in the book has some of its roots in behavioral economics, and there is extensive literature on these subjects. "The Power of Moments" [@Heath2017] is an outstanding book that is immediately useful if one is considering how specific mechanisms engender loyalty. Central themes such as _pride_ and _connection_ are almost instantly accessible to marketers at the club level. How can an analyst help drive the desired outcomes? The answer may depend on solutions outside the wheelhouse of a data scientist or business analyst.
 
 ## Key concepts and chapter summary
 
