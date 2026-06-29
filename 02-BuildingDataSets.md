@@ -1,108 +1,51 @@
 
-# Code and Data {#chapter2}
+# Building Data Sets {#chapter2}
 
 
 
-Feel free to skip this chapter if you already know some R or have some familiarity with sports data. This chapter is mostly included for completeness and I considered not including it. It is important not because it is necessarily informative, but because it gives us the raw material from which we will divine our insights. 
+Most analytics assignments begin before the analysis itself. You must identify the records you need, organize them into a usable data set, and check that each row and column has a clear meaning. This chapter demonstrates that work with simulated data from a fictional professional baseball club, the _Nashville Game Hens_.
 
-Data is the fuel for analytics work, and your business strategy should be derived from some objective justifications. Every piece of code in this book is available, should run on your machine, and can be hacked and adapted to similar problems. We will be using R and R Studio ^[https://www.rstudio.com/] as our primary analysis tool. R is a great choice for analyzing sports data. While I find R a bit idiosyncratic, you don't have to dream in C++ to use it. If you like to script a little bit, but don't want to be a full-on developer, R is your ticket. Additionally, R Studio is a great IDE for analysis. It has a ton of useful features that will make your life much easier.
+By the end of the chapter, you will be able to:
 
-If you don't have very much coding experience, this chapter gives me an opportunity to familiarize you with some code and with the data that you will encounter. We'll cover the basics of exploring and analyzing a data set in the next chapter. 
+- recognize the main data sets used by a sports business analyst;
+- read the R code used throughout this book;
+- create repeatable simulated data for renewals, ticket scans, sales, customers, demographics, and surveys; and
+- store reusable data and functions in an R package.
 
-In this chapter we'll cover several subjects:
+The examples use simulated data because actual customer and ticketing records are private and vary by vendor. The same working rule applies to any source system: convert the source records into a documented table that fits the business question.
 
-- The main building blocks of scripting for analysis
-- Understanding common data sets in the context of professional sports
-- Constructing some sample data sets to mimic these data sets
-- Building an R package to reference these data sets throughout the rest of the book  
+The examples are available in the `FOSBAAS` package. You may run the code to see how each data set is constructed, or use the packaged data and continue to Chapter \@ref(chapter3). The code is also available at https://github.com/Justin-Watkins/FOSBAAS/blob/master/FOSBAAS_code.R.
 
-The particulars of ticketing datasets vary and a small number of companies dominate the sports industry. TicketMaster is common in pro sports. Paciolin is another player in this arena, but they are more common in college sports and other venues. Ultimately, the system won't matter. You'll have to transform the data into a format that will be useful for an analytics process.  
+## Prepare your R environment
 
-For our purposes, we'll invent a professional baseball team, the _Nashville Game Hens_. The Game Hens were an expansion team in 2017 and play a typical baseball schedule of 162 games. 
+This book uses R [@R-base] and RStudio. Install both before running the examples.^[Download RStudio Desktop and R from https://posit.co/download/rstudio-desktop/.] RStudio is the application in which you will write and run the code; R performs the calculations.
 
-## Some basic notes on the R language
+You do not need to master R before continuing. For now, recognize four patterns:
 
-This chapter will introduce you to some R code. Ultimately, it doesn't matter what tool you use. Python, Julia, R, Stata, SAS, and Matlab all provide some similar functionality. However, being confronted with code can be a little overwhelming at first. We are leveraging code (particularly R) for a few reasons. 
+1. `<-` assigns a value to an object.
+2. `function(...)` defines a reusable procedure.
+3. `data[row, column]` selects part of a data frame.
+4. `package::function()` identifies the package that supplies a function.
 
-1. If your analysis is done in code each step is readily reproducible and documented
-2. R is free, easy to use, has a large user base, and has a great IDE 
-3. R is massively extensible for smaller-scaled tasks
-4. It is a great tool for protyping something you might put into production in a more perfomant environment
+Code makes the work reproducible: another analyst can review the steps, rerun them, and modify them without rebuilding the process by hand.
 
-I have found that it is best to get good at one tool and to stick with it. However, I say this with a note of caution. Let's consider a quote from a famous poem.
+Install a package once with `install.packages("package_name")`. Load it in a new R session with `library(package_name)`, or call one function directly with `package_name::function_name()`. Install packages as they are introduced instead of installing a large collection you may not use.
 
-> "Things fall apart; the center cannot hold" 
->
-> Willaim Butler Yeats, "The Second Coming" 
+As your projects become more important, use `renv` [@R-renv] to record package versions. This reduces the risk that an update changes a previously working analysis.
 
-Technologies are doomed to obsolescence. While many legacy technologies have endured for decades (Fortran, Cobal, R, Python, C, C++), they have all evolved. Technologies are doomed to be eclipsed by better tools. For instance, R isn't the best tool to build large-scale web applications. Don't be so rigid that you devote your personal brand to a particular technology. You might find yourself on the scrap-pile with it... "Things fall apart." 
+## Build customer renewal data {#renewaldata}
 
-R is relatively simplistic on the outside relative to many other languages. It has a more limited number of data structures, doesn't use scalars, is single-threaded, and tends to avoid standard flow-control. It is a little peculiar. If you have some programming experience with another language you might find yourself having a little difficulty with it. If you are new to programming, it is going to look weird. R has been extended by thousands of developers and we are simply writing scripts that piggyback off of other programmer's' work. Many of them have done a fabulous job of creating a free tool that currently rivals any others in the analytics space ^[Python is the currently the closest rival and is a great tool. Julia still hasn't caught on, but has some compelling features]. 
+A renewal model needs historical account records and a known outcome: whether each account renewed. Because those records are not available for the fictional club, we will simulate them. The result will contain one row per account and the customer characteristics used later in the book.
 
-Additionally, I recommend using code instead of a point-and-click tool. Code demonstrates exactly what you have done and is easy to communicate to anyone with a knowledge of the language. It will make your life easier even if it makes it more difficult in the beginning. The best thing about R is that there has been a huge user base over the years and there are many resources that you can leverage to learn what it can do. Ultimately, the decision on what tool to use needs to be driven by what you want to get out it. Are you prototyping or do you need to operationalize your code? Are you dealing with huge datasets? Do you want something built for speed or comfort? I am not going to cover very much about the language in this book. There are just too many resources available that will do a better job than me. Here are my basic recommendations if you would like to use R:
+The examples use two naming conventions. Function names begin with `f_` and use underscores, such as `f_calculate_spend`. Column names use camel case, such as `ticketUsage`. A consistent convention makes code easier to scan and maintain.
 
-1. Get an IDE that you like. RStudio is currently the best choice for R by a wide margin.
-2. Download R [@R-base].^[https://posit.co/download/rstudio-desktop/] It works on all major platforms and find some free classes on how to use it. There are hundreds of how-tos available online. You can also purchase many books that will teach you how the language works. My favorite is "Advanced R" [@Wickham2014] and I highly recommend it as a must-have reference book. 
-3. Practice it! It doesn't take long to get over-the-hump in terms of getting some functional fluency. I consider it similar to playing an instrument. "Flight of the bumblebee" ^[Flight of the Bumblebee by Rimsky-Korsakov, 1900. If you aren't familiar with this song, look it up] doesn't need to be the first song that you learn on piano. Start simple and build on your knowledge. You will eventually develop an intuitive understanding of what your tool can do. 
-
-It is also important to consider that R does have some drawbacks. 
-
-1. A language won't tell you what you should do. It only provides methods to execute functions. You still need to understand how to approach and solve your problem. R won't help you here unlike specialized statistical tools such as Minitab^[https://www.minitab.com/en-us/].
-2. R can be relatively slow if you don't use it correctly. This has to do with how it was constructed ^[R was constructed by Mathematicians and not computer scientists. It was created to be easy, not fast.]. However, there are ways to speed it up significantly. Rcpp [@R-Rcpp] is an almost seamless api to C++ that will allow you to build and leverage C++ functions in your R environment. It is a highly leveraged and important tool in R world. 
-3. R may not be the best choice for putting something into operation. Many people prototype with R and then leverage another tool to put the work to use. However, there are some great tools for smaller scale web deployments built on the _Shiny_ framework. 
-4. It's user base may decline in favor of other tools. Python has become more popular in recent years. Languages tend to benefit from network effects where the more users that it has, the more features that are built for it. User-base size is very important.
-
-Some of the following sections will demonstrate how the datasets for this book were created. I think that this is important to do for a couple of different reasons. 
-
-1. You may not be familiar with R. The code sections will get you familiar with how it looks and works.
-2. If you don't work with data in sports, the data is going to be foreign to you. This is an opportunity to explain the data sets.
-
-One other comment I want to make is on coding in-general. It is easier to write code than to read somebody else's code. To that end, I like comments. While in many cases the code can act as the documentation, I like to add explicit descriptors. I don't make them detailed. I just give you enough to know what the code block is doing. I'll follow this practice throughout the book.
-
-These data sets and the code used to create them are available in the R package `FOSBAAS` and are publicly available, so there is no reason to type any of the following sections, but suit yourself. You can download a file with all of the code in this book here: https://github.com/Justin-Watkins/FOSBAAS/blob/master/FOSBAAS_code.R. 
-
-Additionally, this book will make use of many libraries. You can run the following code to make sure that most of them are installed:
-
-
-```r
-#-----------------------------------------------------------------
-# Install libraries
-#-----------------------------------------------------------------
-libraries <- 
-c('AlgDesign','anacor','car','caret','data.table','devtools','dplyr','forcats',
-  'ggplot2','GPArotation','Hmisc','knitr','lubridate','maps','mgcv','mice',
-  'mlr','mlr3','nFactors','nnet','plyr','poLCA','pricesensitivitymeter','pROC',
-  'pscl','psych','purrr','pwr','ranger','RColorBrewer','renv','reprex','Rcpp',
-  'reshape2','reticulate','roxygen2','rpart','rpart.plot','rsample','scales',
-  'shiny','stargazer','stats','tibble','tidymodels','tidyr','tidyverse',
-  'viridis','xtable')
-
-install.packages(setdiff(libraries, 
-                         rownames(installed.packages()))) 
-```
-
-
-Keep in mind that certain functions will deprecate over time. Additionally, you can end up with problems if certain functions have the same names as functions in other packages. R is so dependent on packages that you'll want to look into a way to keep your environments stable. The `renv` [@R-renv] package will handle some of this work for you. As you begin writing more complex code you'll want to use one of these _dockering_ programs. There is an older package called `Packrat` that does the same thing. I also included the `reprex` [@R-reprex] package in this list. `reprex` produces _reproducible examples_ and you'll want to use it if you are asking for help on a piece of code. It is really useful, so check it out.  
-
-## Simulating customer renewal data {#renewaldata}
-
-The code in this book typically does three things over and over again:
-
-1. Write functions
-2. _Apply_ those functions to data
-3. Graph the output
-
-The first data set that we will create will be related to building a model to estimate the likelihood that a season ticket holder will renew season tickets. This data is difficult to create because we need to build certain patterns into the data that build on each other. The goal of this section is to build a function that will produce a data set _on command_. Due to the fact that it builds on itself, it is difficult to generalize the function. To that end it doesn't demonstrate good programming practice, but it does have many elements that you will need to progress further.   
-
-When we build a function, we will denote it with a prefix _f-underscore_ and each word will be separated with an underscore. Columns in data sets will follow camel case (camelCase) where the first letter of each word is capitalized and there are no spaces between the words. You don't have to do it like this, but I have found that it works for me. Whatever you do, choose one way of doing this. You'll be glad that you did. 
-
-We will begin by creating the function `FOSBAAS::f_create_lead_scoring_data`. A best practice is to name a function in a way that tells you exactly what it does. If you aren't familiar with building functions, they are easy to understand. We already looked at an example. A simple _function_ that outputs a y in terms of x is a linear function where m = slope and b = the y intercept:
+An R function accepts inputs, performs a procedure, and returns an output. The following equation provides a small example, where `x`, `slope`, and `yIntercept` are inputs and `y` is the output:
 
 \begin{equation}
 \ {y} = {m}{x} + {b}
 \end{equation}
 
-You can think of the functions that we will write to build our data sets in the same way. We will input a variable (or multiple variables) and the function will process the variables and output a value. An R function to output a y value for x based on a linear equation would look like this.
+The equivalent R function is:
 
 
 ```r
@@ -115,7 +58,7 @@ f_linear_equation <- function(x,slope,yIntercept){
 }
 ```
 
-You will input values for x, the slope, and the y-intercept, and the function will return a value for y. This is a very simplistic example, but it demonstrates functions very well. Let's try it.
+Call the function by supplying each input:
 
 
 ```r
@@ -128,125 +71,10 @@ f_linear_equation( x          = 2,
 #> [1] 27
 ```
   
-Now we have a simple function that we can use to get the y value where x = 2, the slope of the line is 10, and the y intercept is 7. Input, process, output. You now that you have an understanding of the way a function works, you need a way to repetitively apply that function to data. You can do that in many different ways. In most programming languages you'll use a `For` loop. We wrapped each following snippet in the `system.time()` function to demonstrate differences in the speed of each operation. 
+The function returns `27`. The same input-process-output pattern applies to the larger functions used below.
 
 
-```r
-#-----------------------------------------------------------------
-# fake data
-#-----------------------------------------------------------------
-x        <- seq(from=1,to=1000000,by=1)    # x values
-m        <- 10                             # Slope
-b        <- 7                              # Y Intercept
-
-#-----------------------------------------------------------------
-# 1. For Loop
-#-----------------------------------------------------------------
-line_value <- list()
-
-system.time(
-for(i in x){
- line_value[i] <- x[i]*m + b
-}
-)
-#>    user  system elapsed 
-#>    1.08    0.03    1.11
-
-line_value[1:3]
-#> [[1]]
-#> [1] 17
-#> 
-#> [[2]]
-#> [1] 27
-#> 
-#> [[3]]
-#> [1] 37
-```
-
-A `while` loop does the same thing, but is open-ended and is generally used much less frequently. In python, while loops are typically discouraged. However, I find them easier to read than other methods found here. What you choose to use should consider how fast it might run and readability. Just work with what you find most comfortable if you aren't working with large data sets.
-
-
-
-```r
-#-----------------------------------------------------------------
-# 2. While Loop
-#-----------------------------------------------------------------
-i <- 1                               # Iterator
-line_value <- list()
-
-system.time(
-while(i <= length(x)){
- line_value[i] <- x[i]*m + b
- i <- i + 1
-}
-)
-#>    user  system elapsed 
-#>    0.94    0.03    0.97
-
-line_value[1:3]
-#> [[1]]
-#> [1] 17
-#> 
-#> [[2]]
-#> [1] 27
-#> 
-#> [[3]]
-#> [1] 37
-```
-A third approach, and the one that is preferred is to use an `apply` function. See `?apply`. These functions might be more confusing at first, but they are useful and typically work much more quickly. 
-
-
-```r
-
-#-----------------------------------------------------------------
-# 3. lapply
-#-----------------------------------------------------------------
-system.time(
-line_value <- lapply(1:length(x), function(i) x[i]*m + b)
-)
-#>    user  system elapsed 
-#>    0.86    0.03    0.89
-
-line_value[1:3]
-#> [[1]]
-#> [1] 17
-#> 
-#> [[2]]
-#> [1] 27
-#> 
-#> [[3]]
-#> [1] 37
-```
-The apply functions have even been improved upon in specific ways. The following snippet uses the `imap` function from the `purrr` [@R-purrr] package. 
-
-
-```r
-
-#-----------------------------------------------------------------
-# 4. purrr:imap
-#-----------------------------------------------------------------
-system.time(
-line_value <- purrr::imap(x,~ .x*m + b)
-)
-#>    user  system elapsed 
-#>       1       0       1
-
-line_value[1:3]
-#> [[1]]
-#> [1] 17
-#> 
-#> [[2]]
-#> [1] 27
-#> 
-#> [[3]]
-#> [1] 37
-```
-
-These are the basic tools that you will use for everything we are going to do going forward. As I said, there are tradeoffs that you will need to contemplate. Speed and readability are important considerations. Ultimately, you can use whatever you feel most comfortable with. 
-
-The following sections will demonstrate the functions used to build some of the data sets that you will find in this book. We won't go into full detail with every data set. Full documentation on them can be found in the help section of the FOSBAAS package. Additionally, we did something a little strange on this first function, we feed it other helper functions. One of the helper functions requires the use of a function as well. We won't do this on the other data sets, but it is an important feature of R to understand. Everything you _do_ in R can be based on a function, and you can use them in a similar way to _methods_ in other languages. 
-
-We have already built these functions. The first one simply creates data for lead scoring. Lead scoring means that we are going to use the data to predict which groups of people are more likely to purchase a ticket. 
+The `FOSBAAS` package includes the completed renewal-data function and its helper functions. Run it with the following inputs:
 
 
 ```r
@@ -254,41 +82,27 @@ We have already built these functions. The first one simply creates data for lea
 # Create lead scoring data
 #-----------------------------------------------------------------
 library(FOSBAAS)
-f_create_lead_scoring_data(714, 
-                           5000,
-                           "2021",
-                           f_calculate_tenure,
-                           f_calculate_spend,
-                           f_calculate_ticket_use,
-                           f_renewal_assignment,
-                           f_assign_renewal,
-                           renew = T)
+
+renewal_data <- f_create_lead_scoring_data(
+  714,
+  5000,
+  "2021",
+  f_calculate_tenure,
+  f_calculate_spend,
+  f_calculate_ticket_use,
+  f_renewal_assignment,
+  f_assign_renewal,
+  renew = TRUE
+)
 ```
 
 
-This function also accepts several arguments: 
+The inputs set the random-number seed, number of accounts, season, helper functions, and whether to create a renewal outcome. A fixed seed makes the simulation reproducible: the same inputs produce the same records.
 
-1. A `seed` variable that enables us to create reproducible data sets.
-2. the number of rows that we want.
-3. Five functions that create tenure, spend, and ticket usage
-4. Two functions that help assign renewal
-5. A renewal argument that will produce a column indicating if the account renewed.
-
-If you want to see the code that this function uses, you can use the following command (Assuming you installed the package):
+The function produces the following structure:
 
 
-```r
-#-----------------------------------------------------------------
-# View your functions
-#-----------------------------------------------------------------
-edit(getAnywhere('f_create_lead_scoring_data'), 
-     file = 'f_create_lead_scoring_data.r')
-```
-
-Calling this function will produce a data set that looks something like this. If you use the same parameters, you will get exactly the same data.  
-
-
-Table: (\#tab:leadscorecreation2)customer renewal data
+Table: (\#tab:leadscorecreation2) Customer renewal data
 
 |variable   |class    |first_values                        |
 |:----------|:--------|:-----------------------------------|
@@ -303,30 +117,18 @@ Table: (\#tab:leadscorecreation2)customer renewal data
 |distance   |double   |61.6614648674555, 19.5341155295423  |
 |renewed    |character|nr, nr                              |
 
-This data set includes several columns:
+Each row represents one account. The columns identify the account and season, distinguish corporate from individual buyers, describe plan type, usage, tenure, spend, ticket quantity, and distance from the ballpark, and record the renewal outcome. Before modeling, verify that the row definition and each field have this same level of clarity.
 
-1. An account id representing a specific individual
-2. Is the account used by a company or an individual
-3. The season year
-4. The plan type (Partial season or Full season)
-5. Ticket usage percentage
-6. The number of years the account has been with us
-7. The amount spent on tickets in 2021
-8. Distance from the ballpark
-9. Did the account renew at the end of the season
-
-This process is a little involved (see figure \@ref(fig:datacreationprocess)). Let's walk through it step by step.
+Figure \@ref(fig:datacreationprocess) shows how the fields are created. The following sections walk through the process.
 
 <div class="figure">
 <img src="images/ch2_data_creation_process.png" alt="Data creation process" width="100%" />
 <p class="caption">(\#fig:datacreationprocess)Data creation process</p>
 </div>
 
-### Building our function
+### Build the renewal function
 
-The following code creates a _dataframe_ with nine columns and then assigns a list of names to each column. Think of a dataframe as an excel workbook. R uses `<-` for assignment, however you can use the `=` sign if you prefer. We then use the `sapply` function to create a sequence of random letters and numbers to represent account ids. The apply functions are incredibly important. You can type `?sapply` into the console in R studio if you want to learn more. 
-
-This looks weird. `sth_data[,1]` references the first column in the data frame `dataframe[row,column]`. The first argument in `sapply` is giving the function a list of rows to traverse. The second argument uses something called an anonymous function, which is confusing. Look it up if you want a deeper understanding of it. It will begin to make sense as you play with it. `paste(sample(c(0:9, LETTERS), 12, replace=TRUE),collapse = ""))` simply creates a random twelve digit alphanumeric string. We follow this up with assigning a season to the season column. 
+First, create an empty data frame, name its columns, generate a 12-character account ID for each row, and assign the season. In `data[row, column]`, leaving the row position blank selects every row. The `sapply()` call repeats the ID procedure once per row.
 
 
 ```r
@@ -336,6 +138,7 @@ This looks weird. `sth_data[,1]` references the first column in the data frame `
   sth_data <- data.frame(matrix(nrow=num_purchasers,ncol=9))
   names(sth_data) <- c("accountID","corporate","season", 
                        "planType","ticketUsage","tenure",
+                       "spend","tickets","distance")
 # 2. Build ids and append to customer data frame
   set.seed(seed)
   sth_data[,1] <- sapply(seq(nrow(sth_data)), function(x)
@@ -345,7 +148,7 @@ This looks weird. `sth_data[,1]` references the first column in the data frame `
   sth_data$season <- season
 ```
 
-Many season ticket accounts are owned by corporations. We'll build a list called _corporate_ and sample it in order to assign a "c" for corporate or "i" for individual to each account. We use the `set.seed()` function for reproducibility. We'll use the `sample` function to sample a _c_ or an _i_ from the list at the rate of 20% corporations and 80% individuals using the `prob` argument. 
+Next, classify 20% of accounts as corporate (`c`) and 80% as individual (`i`). `set.seed()` makes the assignment reproducible, and the `prob` argument sets the proportions.
 
 
 ```r
@@ -362,7 +165,7 @@ Many season ticket accounts are owned by corporations. We'll build a list called
                             prob = c(.20, .80)))
 ```
 
-Season ticket holders can purchase full or partial plans. The proportions change based on if they are a corporate or individual account. These statements could have been generalized and turned into a function. However, we only had to copy-and-paste once, so we left it alone. Always look for opportunities to generalize functions. This function operates exactly the same way as the previous one. 
+Assign a full (`f`) or partial (`p`) plan next. Corporate and individual accounts receive different probabilities so that the simulated groups behave differently.
 
 
 ```r
@@ -377,7 +180,7 @@ set.seed(seed)
            function(x) sample(planType, 
                               1, 
                               replace = TRUE, 
-                              prob = c(.95, .5)))
+                              prob = c(.95, .05)))
 # Individuals
   planType <- c("f","p")
   sth_data[which(sth_data$corporate == "i"),]$planType <- 
@@ -388,7 +191,7 @@ set.seed(seed)
                               prob = c(.60, .40)))
 ```
 
-To simulate a distance from the stadium we'll leverage the `rexp()` function to give us an exponentially distributed list of numbers that we can modify and sample for each account. This density pattern is common in many urban areas where population density is much higher in certain centralized areas. We'll show you how to visualize this pattern in a subsequent chapter. The outcome here is that individuals will tend to live further away than corporations.
+Use `rexp()` to simulate distance from the stadium. The separate corporate and individual distributions make individual accounts more likely to be farther away.
 
 
 ```r
@@ -413,7 +216,7 @@ To simulate a distance from the stadium we'll leverage the `rexp()` function to 
                               replace = TRUE))
 ```
 
-Next, we'll build a list of numbers that will refer to the number of season tickets purchased by each account. We'll then assign a number of tickets based on the distributions denoted in the `prob` argument of the `sample()` function. Basically, we want corporations to purchase more tickets. 
+Assign the number of tickets with another weighted sample. The weights make larger quantities more common for corporate accounts.
 
 
 ```r
@@ -434,16 +237,14 @@ Next, we'll build a list of numbers that will refer to the number of season tick
              prob = c(0,0,.10,.05,.40,.05,.30,.10))) 
 ```
   
-For tenure, if we set the `renew` argument `= TRUE`, we leverage our `f_tenure` function to assign the number of years based on a list of arguments that we have created within our main function. Flow control with conditions is really important to understand. A simple way to explain them is like this: "If(some condition == TRUE), then do something. If(condition == FALSE), then do something else". In R, `==` is used to compare things. `=` is used for assignment.
-
-In this function we use `mapply`. It works like `sapply`, but it accepts multiple arguments. We also used a `with` statement. With just means you have to type less. It tells R that everything within it belongs to one frame of data.
+When `renew = TRUE`, calculate account tenure from account type, plan type, and distance. `mapply()` passes several columns to the helper function one row at a time. The `if` statement controls whether tenure is calculated; `==` compares values, while `<-` assigns them.
   
 
 ```r
 #-----------------------------------------------------------------
 # 8a. Assign years the account holder has had tickets
 #-----------------------------------------------------------------
-  if(renew == T){
+  if (renew) {
   avgDist <- mean(sth_data$distance)
   set.seed(seed)
   tenures <- with(sth_data,mapply(f_calculate_tenure,
@@ -456,12 +257,12 @@ In this function we use `mapply`. It works like `sapply`, but it accepts multipl
 
 ```
 
-The `f_calculate_tenure()` function accepts four arguments. These arguments are constructed from the code chunks that we have been running. This function is simply a long if-else statement. We did it like this because we have specific patterns we would like to construct within the tenure column. 
+The helper function uses `if` and `else if` conditions to create the intended tenure patterns. For example, nearby corporate full-plan accounts receive a higher average tenure than distant individual partial-plan accounts.
 
 
 ```r
 #----------------------------------------------------------------- 
-# 9b. Function to calculate tenure
+# 8b. Function to calculate tenure
 #-----------------------------------------------------------------
 f_calculate_tenure<-function(corporate,planType,distance,avgDist){
 if(corporate == "c" & planType == "f" & distance <= avgDist){
@@ -485,7 +286,7 @@ else{ten <-round(abs(rnorm(1,mean = 8,sd = 3)),0)}
 }
 ```
 
-We based season ticket holder spend on tenure, plan-type, and the account type.
+Calculate spend from account type, plan type, tenure, and ticket quantity.
 
 
 ```r
@@ -502,7 +303,7 @@ We based season ticket holder spend on tenure, plan-type, and the account type.
   sth_data$spend <- as.vector(spend) * sth_data$tickets
 ```
 
-The function `f_calculate_spend` uses the `rnorm()` function. This function accepts a mean and standard deviation argument that allows us to sample a number on a specific normal distribution. Once again, we could have generalized this function a little more, but since it's just a helper function with one purpose we hard-coded our numbers into it.
+`f_calculate_spend()` uses `rnorm()` to draw values from distributions with specified means and standard deviations. The assumptions are hard-coded because this helper has one purpose: creating the book's example data.
 
 
 ```r
@@ -553,7 +354,7 @@ Similarly to the previous examples, we are building ticket usage in a particular
   sth_data$ticketUsage <- as.vector(ticket_use)
 ```
 
-The function `f_calculate_ticket_use` uses the `runif()` function that produces a random number on a uniform distribution based on a minimum and maximum value. These numbers are also hard-coded so that we can produce specific patterns.
+`f_calculate_ticket_use()` uses `runif()` to draw a value between a minimum and maximum. The ranges make nearby accounts more likely to use a greater share of their tickets.
 
 
 ```r
@@ -574,26 +375,26 @@ if(corporate == "c" & distance <= avgDist){
 }
 ```
 
-Finally, we check the `renew` argument and if (using an `if` statement) it is true, we determine if the account renewed its tickets based on the values in the dataframe `sth_data`. If `renew_ = _F`, we return our dataframe without a _renewed_ field.
+Finally, when `renew = TRUE`, assign a renewal outcome and return it with the account data. When it is `FALSE`, return the data without a `renewed` column.
 
 
 ```r
 #-----------------------------------------------------------------
-# 11a.Return proper data frame
+# 11a. Return the requested data frame
 #-----------------------------------------------------------------
-  if(renew == T){
+  if (renew) {
    sth_data_renew <-  f_renewal_assignment(seed,sth_data,
                                            f_assign_renewal)
    return(sth_data_renew)
   }else{ return(sth_data)}
 ```
 
-The following statement uses two functions: `f_assign_renewal()` and `f_renewal_assignment()`, which is a little confusing. `f_assign_renewal()` is a helper function that assigns a renewal value based on a cluster assignment designated in `f_renewal_assignment()`.
+Renewal requires two functions. `f_renewal_assignment()` groups accounts by usage and distance; `f_assign_renewal()` converts each group into a renewal probability.
 
 
 ```r
 #-----------------------------------------------------------------
-# 11b.Calculate renewal percentage
+# 11b. Assign a renewal probability
 #----------------------------------------------------------------- 
 f_assign_renewal <- function(x,renew){
   
@@ -611,15 +412,13 @@ f_assign_renewal <- function(x,renew){
 }
 ```
 
-`f_renewal_assignment()` accepts `f_assign_renewal()` as an argument. It does a couple of things. First, it clusters _ticket_usage_ and _distance_ using the `kmeans()` function. We'll cover some clustering exercises in chapter \@ref(chapter4). The cluster assignments are added together and biased renewals are assigned based on how high or low the number is. Higher numbers are more likely to renew. We use a `while` loop instead of the `mapply()` function in this example. Vectorizing the loop with an `apply()` function is typically a better method when using _R_. 
-
-This function is more complex than the others and has a dependency `dplyr`. We also call a `list()` which is the most used data structure in R. A list is simply an indexed array. Dataframes are collections of lists. 
+`f_renewal_assignment()` uses `kmeans()` to group ticket usage and distance, combines the group values, and assigns higher renewal probabilities to stronger combinations. Chapter \@ref(chapter4) explains clustering. This function also uses `dplyr` to join and select columns.
 
 
 
 ```r
 #-----------------------------------------------------------------
-# 11c.Calculate renewal percentage
+# 11c. Add the renewal outcome
 #-----------------------------------------------------------------
 f_renewal_assignment <- function(seed,sth_data,f_assign_renewal){
 
@@ -664,23 +463,23 @@ f_renewal_assignment <- function(seed,sth_data,f_assign_renewal){
 } # End
 ```
 
-We just walked through everything in figure \@ref(fig:datacreationprocess). This process would be much more succinct if the patterns that we are constructing weren't based on specific features that we are creating. However, we were able to take a look at several programming features and some features endemic to R.
+The completed workflow uses several R features:
 
 - Building your own functions
 - The apply family of functions
 - If statements
 - While/for loops
-- kmeans clustering
+- `k`-means clustering
 - rnorm and rexp functions for distributions
 - runif for creating random numbers
 - subsetting with dplyr
 
-We can now call the function with different input variables to produce a different result:
+Change the inputs to create another data set. Here, `renew = FALSE` omits the outcome column:
 
 
 ```r
 #-----------------------------------------------------------------
-# Function to build a parabola
+# Create renewal data without an outcome
 #-----------------------------------------------------------------
 library(FOSBAAS)
 new_data <- f_create_lead_scoring_data(434, 
@@ -691,14 +490,14 @@ new_data <- f_create_lead_scoring_data(434,
                                        f_calculate_ticket_use,
                                        f_renewal_assignment,
                                        f_assign_renewal,
-                                       renew = F)
+                                       renew = FALSE)
 ```
 
-Calling this function will produce a data set that looks something like this: 
+The resulting data has the same predictors but no renewal outcome:
 
 
 
-Table: (\#tab:leadscorecreation4)customer renewal data
+Table: (\#tab:leadscorecreation4) Customer account data without an outcome
 
 |variable   |class    |first_values                        |
 |:----------|:--------|:-----------------------------------|
@@ -712,17 +511,15 @@ Table: (\#tab:leadscorecreation4)customer renewal data
 |tickets    |double   |4, 2                                |
 |distance   |double   |25.237493169165, 4.39980797935277   |
 
-This is a typical data set that you would find in the wild. The data is also beautiful. By beautiful I mean that it isn't missing features and will be easy to prep for analysis. This is not something that you typically find. We'll discuss what to do with incomplete data and other problems further into the book.  
+This simulated table is intentionally complete. Operational data is rarely this clean: expect missing values, duplicate records, and inconsistent definitions. Chapter \@ref(chapter3) covers the checks and preparation required before analysis.
 
-We can now use this function to produce as many different data sets as we would like. We'll follow this same procedure of building helper functions to build our other data sets. 
+## Build operations data
 
-## Simulating Operations data
-
-Operations data includes many different data sets. We'll cover building a ballpark ingress scans table here. However, there could be many others such as line length at a concessions stand or the number of transactions for F&B. 
+Operations data records how guests and products move through the venue. Common examples include ticket scans, concession transactions, line lengths, and staffing levels. This example creates ticket scans for one event.
 
 ### Ticket scans
 
-First we can build a simple function to help us build a parabola. This function builds a parabola that has an x intercept at `x = 1` and `x = 300`. These points will refer to the number of observations that we will make in Chapter \@ref(chapter10). All we are doing is building a quadratic function that spits out a y value for a value of x. This function takes the familiar form of a quadratic function:
+An ingress curve usually rises as gates become busy and falls after the crowd enters. We represent that pattern with a quadratic function across 300 one-minute observations. Chapter \@ref(chapter10) uses these records to evaluate ingress.
 
 \begin{equation}
 \ {f(x)} = {ax^2} + {bx} + c
@@ -741,7 +538,7 @@ f_calc_scans <- function(x,y,j){
 ```
 
 
-We can then build a function to create many different data sets. This function will calculate the number of scans per increment on a normal distribution.
+The next function calculates the expected scan count for each minute and adds random variation.
 
 
 ```r
@@ -764,7 +561,7 @@ f_get_scan_data <- function(x_value,y_value,seed,sd_mod){
 ```
 
 
-This function will produce a data set that looks like this:
+Load the packaged result to inspect its structure:
 
 ```r
 scan_data <- FOSBAAS::scan_data
@@ -786,40 +583,33 @@ scan_data <- FOSBAAS::scan_data
 
 
 
-This tells you the number of scans that happened in one minute increments on a particular event.
+Each row records the number of scans during one minute of the event.
 
-## Simulating and understanding ticketing data sets
+## Build ticketing data
  
-Ticketing data seems like it should be relatively straight-forward. It isn't. There is a lot of complexity. The environment is very dynamic, and in some cases we can get into big-data territory. For the context of this book, we stay away from big-data problems. Many big-data problems are nothing more than small-data problems in disguise. Because of the nature of sports, three years of data is likely enough to do everything that we will need.   
-
-We'll begin by simulating three seasons worth of data. For the sake of simplicity, we'll transform the data into a format that will be useful for the applications we'll be demonstrating throughout the book. There are four features of this data that are the most important:
+Ticketing data connects events, inventory, purchases, plans, and customers. Source systems often store these subjects in separate tables, so an analyst must join and reshape them before use. The examples use three seasons of already transformed data and focus on four subjects:
 
 - Customer details and demographics
 - Ticket purchases (including secondary market purchases)
 - Plan purchases
 - Qualitative data obtained through surveys
 
-Elements of the season will be important from a macro level. Some of our analysis will cover a top-down approach to forecasting sales and revenue. 
+Together, these tables support both account-level analysis and top-down sales and revenue forecasts.
 
-## Simulating season data
+## Build season data
 
-Professional baseball teams typically play 81 games. We'll be simulating three seasons of data. While building a schedule is a complex process, we aren't hindered by the myriad constraints and will therefore make this easy on ourselves. The schedule will provide the framework for the customer and ticketing data that we will build in subsequent sections of this chapter. It is also important to note that this is a top-down approach as opposed to bottom-up approach consisting of sales at a more granular level. 
+Each simulated season contains 81 home games. The schedule provides the event key and context for the customer and purchase records created later. It supports a top-down forecast at the game level rather than a bottom-up forecast from individual transactions.
 
-### Function to manually bias our season data
+### Add realistic sales patterns
 
-This function `f_simulate_sales` modifies certain characteristics we'll use to forecast sales. It is creating distributions of numbers that will be used to place our variables on a defined range of possibilities. Instead of walking through the code this time, I'll just tell you what it does:
+`f_simulate_sales()` creates deliberate relationships between game characteristics and ticket sales:
 
-1. Creates a base attendance for each team. For instance, if we play BOS, CHC, NYY, LAD, or STL we get the highest sales base.
-2. If the day of the week falls on the weekend the sales base is higher than a weekday.
-3. If we are playing in the summer months, sales are higher.
-4. If school is out, sales are higher.
-5. If it is the last game of the year, sales are higher.
-6. If it is opening day, sales are higher.
-7. If there is a bobblehead, sales are higher
+1. Opponents such as Boston, Chicago, New York, Los Angeles, and St. Louis receive a higher sales baseline.
+2. Weekends, summer dates, and days when school is out increase sales.
+3. Opening Day and the final home game increase sales.
+4. A bobblehead promotion increases sales.
 
-This function creates a pattern in the ticket sales data based on the averages of normal distributions. You can access the function through the FOSBAAS package.  
-
-This function accepts several arguments. One of them is the function `f_simulate_sales`. It asks for three random numbers, three modifiers which are simply coefficients to bias the results further, and a season.
+`f_build_season()` accepts three seeds, the season, the sales function, and modifiers for the overall level, day of week, and month. The modifiers control the strength of the simulated effects.
 
 
 ```r
@@ -845,7 +635,7 @@ season23   <- f_build_season(seed1,
 
 ```
 
-The resulting data set looks like this:
+Load the packaged three-season data to inspect its structure:
 
 
 ```r
@@ -853,7 +643,7 @@ season_data <- FOSBAAS::season_data
 ```
 
 
-Table: (\#tab:seasondataframe4)Sample season purchase data
+Table: (\#tab:seasondataframe4) Sample season purchase data
 
 |variable         |class    |first_values          |
 |:----------------|:--------|:---------------------|
@@ -870,28 +660,15 @@ Table: (\#tab:seasondataframe4)Sample season purchase data
 |ticketSales      |double   |42928, 25759          |
 |season           |double   |2022, 2022            |
 
-This data set is a simulated schedule with several fields:
+Each row represents one home game. The columns describe the opponent, date, calendar conditions, time since the previous home game, Opening Day status, promotion, ticket sales, and season.
 
-- The game number
-- opposing team
-- date
-- day of the week
-- the month
-- if it was a weekend
-- if schools is in or out
-- the days since the last game
-- if it is opening day
-- if there was a promotion
-- the number of ticket sales
-- the season year
-
-This is fine for a base package. When modeling you can obviously go much deeper and include statistics such as _Las Vegas odds_ for the playoffs, more granular promotional data, and many others. We are ignoring the current divisional structure here for the sake of simplicity. Structuring a calendar is a complex task that involves many factors that we aren't considering such as:
+A production forecast may add team performance, playoff odds, weather, detailed promotions, or other known sales drivers. This simulation excludes schedule constraints such as:
 
 - Travel time
 - Restrictions based on the collective bargaining agreement
 - Team level requests
 
-This data looks similar to data that you would actually have at the beginning of the season. We'll use it to forecast ticket sales in chapter six. Another important piece of data is the manifest. The manifest represents seating inventory. It is interesting because it represents an upper bound for what is available to sell. A typical manifest would look like this:
+Chapter \@ref(chapter6) uses the schedule to forecast ticket sales. The next required table is the manifest: the seat-level inventory available for sale. It establishes the maximum capacity and the available price types.
 
 
 ```r
@@ -899,9 +676,9 @@ manifest_data <- FOSBAAS::manifest_data
 ```
 
 
-Table: (\#tab:seasondataframe5)Sample manifest data
+Table: (\#tab:seasondataframe5) Sample manifest data
 
-|variable     |classe|first_values|
+|variable     |class |first_values|
 |:------------|:-----|:-----------|
 |seatID       |double|1, 2        |
 |section      |double|1, 1        |
@@ -913,9 +690,9 @@ Table: (\#tab:seasondataframe5)Sample manifest data
 |singlePrice  |double|218.5, 218.5|
 
 
-### Simulating customer data
+### Build customer and transaction data
 
-This data set is simply a customer id and a name. We'll make up some names for each id. We built our list of names from a couple of government websites [@SSA2020] and [@Census2020]. 
+The customer table assigns a unique ID and simulated name to each customer. The names are based on public data from the Social Security Administration and U.S. Census Bureau [@SSA2020; @Census2020].
 
 
 ```r
@@ -925,7 +702,7 @@ customer_data <- FOSBAAS::customer_data
 
 
 
-We'll use this data frame to simulate a transformed data set that could be pulled from a ticketing system. Now we can use this data to create a data set for purchases on the secondary market. 
+Use the customer IDs to connect people to their secondary-market purchases:
 
 
 ```r
@@ -934,9 +711,9 @@ secondary_data <- head(FOSBAAS::secondary_data)
 
 
 
-Table: (\#tab:customerdataframeid)Secondary market purchases
+Table: (\#tab:customerdataframeid) Secondary market purchases
 
-|variable      |classe   |first_values              |
+|variable      |class    |first_values              |
 |:-------------|:--------|:-------------------------|
 |seatID        |double   |9010, 20950               |
 |custID        |character|N22J8UPWACNO, II3IGIN0PY15|
@@ -949,7 +726,7 @@ Table: (\#tab:customerdataframeid)Secondary market purchases
 |secondayrPrice|double   |60.51, 37.11              |
 
 
-This data set contains:
+Each row represents a secondary-market purchase and connects:
 
 - A seat id corresponding to the manifest
 - A customer id corresponding to our customer list
@@ -962,12 +739,12 @@ This data set contains:
 - The price sold on the secondary market
 
 
-A completely clean data set like this is unlikely to be encountered outside of _the lab_. In reality, customer data will be fraught with duplication and other problems. This data is already transformed. In practice you would have to join a few tables to produce a data set that looks like this. 
+A source system will rarely provide this analysis-ready table. In practice, you will join customer, event, seat, and transaction tables and resolve duplicate or missing customer IDs.
 
 
-## Simulating demographic data
+## Build demographic data
 
-Demographic data can be used for a variety of tasks such as segmentation and other targeted marketing efforts. 
+Demographic data supplements customer records for segmentation and targeted marketing. Join it to customer data with the customer ID.
 
 
 ```r
@@ -979,7 +756,7 @@ demo_data <- head(FOSBAAS::demographic_data)
 
 
 
-Demographic data is typically purchased from one of several vendors and may contain hundreds of columns. This data contains:
+Purchased demographic files may contain hundreds of columns. This example retains the following fields:
 
 - A customer ID
 - The first name of the customer
@@ -996,26 +773,26 @@ Demographic data is typically purchased from one of several vendors and may cont
 - The county where the customer lives
 
 
-## Simulating survey data
+## Build survey data
 
-We'll use an example of survey data to construct a specific segmentation scheme based on a factor analysis. We'll base some of this analysis on an example from Chapman and Feit's excellent "R for Marketing Research and Analytics"  [@Chapman-Feit2015]. We'll cover survey construction in a later chapter.
+The book uses survey data for perceptual mapping, segmentation, and pricing analysis. The examples draw on Chapman and Feit [@Chapman-Feit2015]. Chapter \@ref(chapter9) covers survey design and administration.
 
 ### Perceptual data
 
-This initial data set will take the form of a multi-select table: 
+The perceptual survey asks respondents to associate attributes with each team. A response form might look like this:
 
 |Team|Friendly|Exciting|Winners|Losers|
 |:-:|:-:|:-:|:-:|:-:|
-|Came Hens|   |   | |  |
+|Game Hens|   |   | |  |
 |Predators|  |  |  |  |
 |Grizzlies  |   |   |   |  |
 
 
-This data takes the form of an aggregated survey response where specific answers are counted and aggregated for each team in the questions. The question would read like this:
+After collection, count the number of respondents who selected each attribute for each team.
 
 > How do you feel about the following sports properties? Please check all that apply for each of the teams listed. 
 
-This question will allow us to create a perceptual map. We'll send it to 5,000 of our customers that we created in Section \@ref(simulating-customer-data). 
+The simulated results represent responses from 5,000 customers and will support a perceptual map.
 
 
 
@@ -1024,7 +801,7 @@ This question will allow us to create a perceptual map. We'll send it to 5,000 o
 #-----------------------------------------------------------------
 perceptual_data             <- as.data.frame(matrix(nrow=3,ncol=10))
 names(perceptual_data)      <- c('Friendly','Exciting','Fresh',
-                                 'Inovative','Fun','Old','Historic',
+                                 'Innovative','Fun','Old','Historic',
                                  'Winners','Great','Expensive')
 row.names(perceptual_data)  <- c('Game Hens','Grizzlies',
                                  'Predators')
@@ -1034,12 +811,12 @@ perceptual_data <- apply(perceptual_data,1:2,
                          function(x) round(rnorm(1,3000,1000),0))
 ```
 
-This produces the following table:
+The aggregated data has one row per team and one column per attribute:
 
 
-Table: (\#tab:customerdataframesurveydata2)Perceptual data
+Table: (\#tab:customerdataframesurveydata2) Perceptual data
 
-|Friendly|Exciting|Fresh|Inovative|Fun |
+|Friendly|Exciting|Fresh|Innovative|Fun |
 |:------:|:------:|:---:|:-------:|:--:|
 |  1930  |  3080  |1955 |  2128   |2861|
 |  2646  |  4732  |1444 |  2569   |3508|
@@ -1048,7 +825,7 @@ Table: (\#tab:customerdataframesurveydata2)Perceptual data
 
 ### Pricing survey data
 
-This data will be used to perform a Van Westendorp analysis and to demonstrate the basics of qualitative pricing analytics. You'll want this data in a specific format. 
+The pricing survey supports the Van Westendorp price-sensitivity analysis used later in the book. Each row represents one respondent and contains four price thresholds.
 
 
 ```r
@@ -1068,17 +845,17 @@ vw_data[,6] <- round(rnorm(1000,160,20),0)
 ```
 
 
-A Van Westendorp^[https://en.wikipedia.org/wiki/Van_Westendorp%27s_Price_Sensitivity_Meter] analysis asks the respondent to answer a series of questions about a product related to their perception of the price. The questions would take the following form:
+A Van Westendorp analysis asks four questions about the acceptable price range:^[https://en.wikipedia.org/wiki/Van_Westendorp%27s_Price_Sensitivity_Meter]
 
-1. At what price would you consider the product to be so expensive that you would not consider buying it? (Too expensive)
-2. At what price would you consider the product to be priced so low that you would feel the quality couldn’t be very good? (Too cheap)
-3. At what price would you consider the product starting to get expensive, so that it is not out of the question, but you would have to give some thought to buying it? (Expensive/High Side)
-4. At what price would you consider the product to be a bargain—a great buy for the money? (Cheap/Good Value)
+1. At what price is the product too expensive to consider?
+2. At what price does the product seem too cheap to be credible?
+3. At what price does the product begin to feel expensive?
+4. At what price does the product seem like a good value?
 
-These questions were taken directly from the Wikipedia article. The resulting data set would resemble the following:
+The response data has the following structure:
 
 
-Table: (\#tab:vwchtwoa)Van Westendorp survey data
+Table: (\#tab:vwchtwoa) Van Westendorp survey data
 
 |DugoutSeats|PriceExpectation|TooExpensive|TooCheap|WayTooCheap|WayTooExpensive|
 |:---------:|:--------------:|:----------:|:------:|:---------:|:-------------:|
@@ -1089,93 +866,91 @@ Table: (\#tab:vwchtwoa)Van Westendorp survey data
 |DugoutSeats|       99       |     88     |   46   |    37     |      163      |
 |DugoutSeats|       83       |    123     |   77   |    59     |      145      |
 
-These data sets represent the main top-line data that you would tend to use working for a club. 
+These examples cover the core data types used in the remaining chapters. Your organization may add other sources, but each should have a defined row, documented fields, and a reliable key for joining tables.
 
 
-## Housing your data and functions in a package
+## Store reusable work in an R package
 
-While this book isn't meant to be an expose on how to use the R language, R has some great features for analytics work that are worth exploring. They will make our lives easier as we move through the subsequent chapters. Analytically focused work tends to be repetitive and housing your functions in a package will make your life easier and worth living. There are many resources available that make building your own package easy and we'll cover the basics here.
+An internal R package gives your team one documented location for reusable functions and reference data. It reduces copy-and-paste work and makes updates easier to distribute. The following exercise creates a minimal package with one data set.
 
-There are two packages that will make building packages really simple: `devtools` [@R-devtools] and `roxygen` [@R-roxygen2]. There are also numerous resources on how to build your own package. Rstudio even has some built-in-tools that makes this process even easier. I want to demonstrate this process because it is really easy and is incredibly useful. 
+### Build a simple package
 
-### Building a simple package
-
-You'll want to open RStudio and create a new R file. Creating a basic package only takes a few steps:
+Open RStudio and install the package-development tools. You only need to install them once:
 
 
 ```r
 #-----------------------------------------------------------------
-# Step 1: Download the utility packages
+# Step 1: Install package-development tools
 #-----------------------------------------------------------------
-install.packages("devtools")
-install.packages("roxygen2")
-##browseVignettes("devtools")
-##browseVignettes("roxygen2")
+install.packages(c("devtools", "usethis"))
 ```
 
-Now that you have installed the packages that you need you can use them to create the package:
+Create the package project in a location you can find. RStudio will open the new project when the command finishes:
 
 
 ```r
 #-----------------------------------------------------------------
-# Step 2: Create a shell for your package
+# Step 2: Create and open the package project
 #-----------------------------------------------------------------
-devtools::create("UselessRPackage")
+usethis::create_package("ReusableData")
 ```
 
-You can then create a data set that we want to include in the package.
+In the new `ReusableData` project, create the object you want to store:
 
 
 ```r
 #-----------------------------------------------------------------
-# Step 3: Build a data set
+# Step 3: Create a data set
+#-----------------------------------------------------------------
+example_data <- data.frame(id = 1:755)
+```
+
+Add the object to the package's `data` directory:
+
+
+```r
+#-----------------------------------------------------------------
+# Step 4: Add the data set to the package
+#-----------------------------------------------------------------
+usethis::use_data(example_data, overwrite = TRUE)
+
+```
+
+Document and install the package:
+
+
+```r
+#-----------------------------------------------------------------
+# Step 5: Document and install the package
 #-----------------------------------------------------------------
 devtools::document()
-uselessData <- seq(1:755)
-```
-
-We then place the data in the package.
-
-
-```r
-#-----------------------------------------------------------------
-# Step 4: Place data set in package
-#-----------------------------------------------------------------
-usethis::use_data(uselessData, overwrite = T)
-
-```
-
-Finally, we install the package. 
-
-
-```r
-#-----------------------------------------------------------------
-# Step 5: Install the package
-#-----------------------------------------------------------------
 devtools::install()
 ```
 
-You can access the data using your packages namespace. 
+Access the data with the package namespace:
 
 
 ```r
 #-----------------------------------------------------------------
-# Step 5: Access your data
+# Step 6: Access the packaged data
 #-----------------------------------------------------------------
-UselessRPackage::uselessData
+ReusableData::example_data
 ```
 
 
-There is a lot more that you have to do, especially around documentation. However, you have now housed data in a package that you can easily access. Once you begin using R more heavily I highly recommend putting some time into understanding how to create and use your own packages. This little feature will save you a lot of time. This also allows you to share your work through a service such a Github if you are working remotely or with a team. 
+Production packages also need complete documentation, tests, version control, and an agreed release process. This example establishes the basic workflow: create the project, add an object, document the package, install it, and access the object through the package namespace.
 
 
 ## Key concepts and chapter summary
 
-This chapter was written to introduce you to a little code in R and to explain our data and data sets. It also demonstrates some of the concepts that we will cover in ensuing chapters. We also covered why R may or may not be a good choice for you to use for analysis.
+- Define what one row represents before analyzing a data set.
+- Document every field and the keys used to join tables.
+- Use fixed random-number seeds when simulated results must be reproducible.
+- Build deliberate relationships into simulated data so it can test a specific method.
+- Expect operational data to contain missing values, duplicates, and inconsistent definitions.
+- Store shared functions and reference data in a version-controlled package when reuse justifies the maintenance.
 
-Additionally, we covered the basics of how to build a package in R. Analysis tends to be repetitive. Housing some of your specific functions in a package is a very simple way to document what those functions do and to easily access them. R's extensibility is one of its best features and makes it an incredibly flexible tool (especially when coupled with RStudio). 
-
-In Chapter \@ref(chapter3) will delve into what to do with this data by creating graphics and summarizing some data. Subsequent chapters will explore additional functionality and will delve into solving more specific problems. They will also spend a significant amount of time explaining how to think about those problems and how to solve them. 
+Chapter \@ref(chapter3) uses these data sets to demonstrate data checks, summaries, and visual exploration.
 
 
 
