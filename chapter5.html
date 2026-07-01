@@ -973,9 +973,19 @@ Figure 5.5: Ethnicity by latent class
 <span class="header-section-number">5.3</span> A benefits-sought approach to segmentation<a class="anchor" aria-label="anchor" href="#a-benefits-sought-approach-to-segmentation"><i class="fas fa-link"></i></a>
 </h2>
 <p>Behavioral segmentation groups people by what they want. A <em>benefits-sought</em> approach — grouping fans by what they come to the ballpark to do — gives sharp guidance on how to position an offer. The trade-off is discoverability: it is harder to find these people in a database than it is to find a 40-year-old who lives ten miles away.</p>
+<p>We will build the behavioral scheme in three deliberate steps, each answering a different question:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Exploratory factor analysis (EFA)</strong> — <em>what underlying tastes does the survey measure?</em> It compresses many stated behaviors into a few archetypes and lets the data suggest how many there are.</li>
+<li>
+<strong>Confirmatory factor analysis (CFA)</strong> — <em>does the structure we think we found actually hold up?</em> We write down the model explicitly and test its fit.</li>
+<li>
+<strong>A model-based mixture (GMM)</strong> — <em>given those tastes, do fans fall into distinct groups?</em> We cluster fans in the space of their factor scores.</li>
+</ol>
+<p>This is more machinery than the demographic side, and it is worth being honest up front about why. Each step is a chance to be wrong, and the last step — turning a smooth cloud of preferences into a handful of named personas — is where analysts most often fool themselves. We will end by asking whether the personas are real enough to act on.</p>
 <div id="factoranalysis" class="section level3" number="5.3.1">
 <h3>
-<span class="header-section-number">5.3.1</span> Using a factor analysis<a class="anchor" aria-label="anchor" href="#factoranalysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.1</span> Compressing the survey with factor analysis<a class="anchor" aria-label="anchor" href="#factoranalysis"><i class="fas fa-link"></i></a>
 </h3>
 <p>Factor analysis is a data-reduction technique, related to principal components analysis. We use it to compress many stated behaviors into a few underlying archetypes. The survey lives in <code>FOSBAAS</code> as <code>fa_survey_data</code>.</p>
 <div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
@@ -1042,44 +1052,31 @@ Figure 5.5: Ethnicity by latent class
 </tr>
 </tbody>
 </table></div>
-<p>Respondents rated a list of ballpark activities from 0 to 10 and gave a reason for attending. The data was not built around specific people, so we will attach customer IDs later to simulate that. First we scale the numeric columns, which matters when variables are on different ranges, and keep the result as a data frame.</p>
+<p>Respondents rated a list of 25 ballpark activities from 0 to 10 and gave a reason for attending. The data was not built around specific people, so we will attach customer IDs later to simulate that. First we scale the numeric columns, which matters when variables are on different ranges, and keep the result as a data frame.</p>
 <div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">survey_sc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">survey</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">26</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>How many factors should we extract? The <code>nScree</code> function in <code>nFactors</code> <span class="citation">(<a href="references.html#ref-R-nFactors">Raiche and Magis 2020</a>)</span> suggests a range.</p>
+<p>How many factors should we extract? A common mistake is to pick a number because it is tidy. <strong>Parallel analysis</strong> answers the question properly: it compares the structure in your data against the structure you would see in pure noise of the same size, and keeps only the factors that beat noise. The <code>psych</code> package <span class="citation">(<a href="references.html#ref-R-psych">Revelle 2021</a>)</span> runs it.</p>
 <div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">n_factors</span> <span class="op">&lt;-</span> <span class="fu">nFactors</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/nFactors/man/nScree.html">nScree</a></span><span class="op">(</span><span class="va">survey_sc</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">755</span><span class="op">)</span></span>
+<span><span class="va">parallel</span> <span class="op">&lt;-</span> <span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/fa.parallel.html">fa.parallel</a></span><span class="op">(</span><span class="va">survey_sc</span>, fm <span class="op">=</span> <span class="st">"ml"</span>, fa <span class="op">=</span> <span class="st">"fa"</span>, plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:seg-fa-nscree-table">Table 5.13: </span>Suggested number of factors</caption>
+<span id="tab:seg-fa-parallel-out">Table 5.13: </span>How many factors beat noise?</caption>
 <thead><tr class="header">
-<th align="right">rule</th>
-<th align="right">factors</th>
+<th align="left">metric</th>
+<th align="left">value</th>
 </tr></thead>
-<tbody>
-<tr class="odd">
-<td align="right">noc</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="right">naf</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">nparallel</td>
-<td align="right">5</td>
-</tr>
-<tr class="even">
-<td align="right">nkaiser</td>
-<td align="right">5</td>
-</tr>
-</tbody>
+<tbody><tr class="odd">
+<td align="left">Suggested factors (parallel analysis)</td>
+<td align="left">3</td>
+</tr></tbody>
 </table></div>
-<p>The rules point to somewhere between three and five factors. We will use five and add an oblique rotation (<code>oblimin</code>, from <code>GPArotation</code> <span class="citation">(<a href="references.html#ref-R-GPArotation">Bernaards and Jennrich 2014</a>)</span>) to make the result easier to read.</p>
+<p>Parallel analysis suggests <strong>three</strong> factors. This is a useful discipline. The temptation is always to extract more — five factors <em>feel</em> richer than three — but the extra factors are usually noise dressed up as insight. We fit three factors with an oblique rotation (<code>oblimin</code>, from <code>GPArotation</code> <span class="citation">(<a href="references.html#ref-R-GPArotation">Bernaards and Jennrich 2014</a>)</span>), which lets the factors correlate, as real tastes do.</p>
 <div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://optimizer.r-forge.r-project.org/GPArotation_www/">GPArotation</a></span><span class="op">)</span></span>
-<span><span class="va">survey_fa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/factanal.html">factanal</a></span><span class="op">(</span><span class="va">survey_sc</span>, factors <span class="op">=</span> <span class="fl">5</span>,</span>
-<span>                      rotation <span class="op">=</span> <span class="st">"oblimin"</span>, scores <span class="op">=</span> <span class="st">"Bartlett"</span><span class="op">)</span></span></code></pre></div>
-<p>To visualize which activities load on which factor, we reshape the loadings into long form.</p>
+<span><span class="va">survey_fa</span> <span class="op">&lt;-</span> <span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/fa.html">fa</a></span><span class="op">(</span><span class="va">survey_sc</span>, nfactors <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>                       rotate <span class="op">=</span> <span class="st">"oblimin"</span>, fm <span class="op">=</span> <span class="st">"ml"</span>, scores <span class="op">=</span> <span class="st">"regression"</span><span class="op">)</span></span></code></pre></div>
+<p>To see which activities load on which factor, we reshape the loadings into long form.</p>
 <div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">loadings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="va">survey_fa</span><span class="op">$</span><span class="va">loadings</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">loadings</span><span class="op">$</span><span class="va">activity</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">loadings</span><span class="op">)</span></span>
@@ -1093,7 +1090,7 @@ Figure 5.5: Ethnicity by latent class
 <span>  <span class="fu">geom_text</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">loading</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2.6</span>, color <span class="op">=</span> <span class="st">"grey30"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">scale_fill_gradient</span><span class="op">(</span>low <span class="op">=</span> <span class="st">"white"</span>, high <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Factor"</span>, y <span class="op">=</span> <span class="st">"Activity"</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">"Activities cluster onto a few underlying factors"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>       title <span class="op">=</span> <span class="st">"Activities cluster onto three underlying factors"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
@@ -1102,70 +1099,232 @@ Figure 5.5: Ethnicity by latent class
 Figure 5.6: Factor loadings by activity
 </p>
 </div>
-<p>Naming factors is an art. Here is a first, deliberately rough pass:</p>
+<p>Naming factors is an art, but three groupings fall out cleanly:</p>
 <ol style="list-style-type: decimal">
 <li>
-<strong>Avid fans</strong> — activities centered on the game itself: watching, meeting players, upgrading seats.</li>
+<strong>Avid fans</strong> — activities centered on the game itself: watching the game, meeting players, getting autographs, upgrading seats, watching practice.</li>
 <li>
-<strong>Socializers</strong> — tailgating, posting to social media, seeing friends, kids’ activities.</li>
+<strong>Socializers</strong> — the social and family side: tailgating, posting to social media, taking selfies, seeing friends, and the kids’ activities.</li>
 <li>
-<strong>Foodies</strong> — drinking beer, sampling and eating park food, getting dinner.</li>
-<li>
-<strong>Parkies</strong> — being at the park for its own sake: tours, watching practice.</li>
-<li>
-<strong>Strangers</strong> — no clear grouping.</li>
+<strong>Foodies</strong> — eating and drinking: dinner, park food, sampling, drinks, beer.</li>
 </ol>
-<p>A marketing-minded consultant would spin richer stories from these, backed by deeper analysis. We will not take the contrived data that far; you get the idea.</p>
-<p>These behavioral segments have two real weaknesses. First, you cannot assign them to people who did not take the survey. Second, belonging is mutable — a fan might be a Socializer one night and a Foodie the next. If you had richer data you might <em>predict</em> someone’s archetype. Let’s test whether the factors can at least predict the stated reason for attending, using a multinomial model from <code>nnet</code> <span class="citation">(<a href="references.html#ref-R-nnet">Ripley 2022</a>)</span>. We are just curious here, so we will happily overfit.</p>
+<p>Notice what is <em>not</em> here. The old temptation to force five factors invented two extra archetypes — a vague “Parkies” and a catch-all “Strangers” — that carried almost no signal. Parallel analysis spared us that. The loadings here are also modest (mostly 0.2 to 0.4), which is a warning we should keep in mind: the tastes are real but not sharp, and weak structure is exactly the kind that produces fragile segments later.</p>
+</div>
+<div id="confirming-the-structure-with-a-cfa" class="section level3" number="5.3.2">
+<h3>
+<span class="header-section-number">5.3.2</span> Confirming the structure with a CFA<a class="anchor" aria-label="anchor" href="#confirming-the-structure-with-a-cfa"><i class="fas fa-link"></i></a>
+</h3>
+<p>The factor analysis above is <em>exploratory</em>: we let the data decide which activities group together. A <strong>confirmatory factor analysis</strong> turns the logic around. We write down the structure we believe — Avid, Socializer, and Foodie factors, each measured by a specific set of activities — and test how well that model reproduces the correlations in the data. It is the difference between “what patterns are in here?” and “does the pattern I claim is here actually hold?” <code>lavaan</code> <span class="citation">(<a href="references.html#ref-R-lavaan">Rosseel et al. 2025</a>)</span> is the standard tool.</p>
+<p>We assign each activity to the factor it loaded on most strongly.</p>
 <div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">nnet</a></span><span class="op">)</span></span>
-<span><span class="va">fa_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">survey_fa</span><span class="op">$</span><span class="va">scores</span><span class="op">)</span></span>
-<span><span class="va">fa_scores</span><span class="op">$</span><span class="va">Reason</span> <span class="op">&lt;-</span> <span class="va">survey</span><span class="op">$</span><span class="va">ReasonForAttending</span></span>
+<code class="sourceCode R"><span><span class="va">avid</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"WatchGame"</span>, <span class="st">"MeetPlayers"</span>, <span class="st">"GetAutographs"</span>, <span class="st">"UpgradeSeats"</span>,</span>
+<span>            <span class="st">"SeePractice"</span>, <span class="st">"WatchPregameShow"</span>, <span class="st">"VisitAttractions"</span>,</span>
+<span>            <span class="st">"BuyGear"</span>, <span class="st">"TourThePark"</span>, <span class="st">"SeeTheChicken"</span><span class="op">)</span></span>
+<span><span class="va">social</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Socialize"</span>, <span class="st">"Tailgate"</span>, <span class="st">"PostToSocialMedia"</span>, <span class="st">"TakeSelfies"</span>,</span>
+<span>            <span class="st">"SeeFriends"</span>, <span class="st">"KidsRunBases"</span>, <span class="st">"VisitKidAttractions"</span>,</span>
+<span>            <span class="st">"MeetMascot"</span>, <span class="st">"SnacksForKids"</span>, <span class="st">"KidsSlide"</span><span class="op">)</span></span>
+<span><span class="va">food</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GetDinner"</span>, <span class="st">"EatParkFood"</span>, <span class="st">"SampleFood"</span>, <span class="st">"GetDrinks"</span>, <span class="st">"DrinkBeer"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">reason_model</span> <span class="op">&lt;-</span> <span class="fu">nnet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/nnet/man/multinom.html">multinom</a></span><span class="op">(</span><span class="va">Reason</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">fa_scores</span>, trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="va">fa_scores</span><span class="op">$</span><span class="va">predicted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">reason_model</span>, <span class="va">fa_scores</span>, type <span class="op">=</span> <span class="st">"class"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">cfa_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Avid   =~"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">avid</span>,   collapse <span class="op">=</span> <span class="st">" + "</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Social =~"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">social</span>, collapse <span class="op">=</span> <span class="st">" + "</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Food   =~"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">food</span>,   collapse <span class="op">=</span> <span class="st">" + "</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  sep <span class="op">=</span> <span class="st">"\n"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>The <code>=~</code> operator reads “is measured by.” We fit the model with <code>std.lv = TRUE</code> so the factors are on a standard scale, and use the robust <code>MLR</code> estimator, which does not lean on the assumption that the ratings are perfectly normal.</p>
 <div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">confusion</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span></span>
-<span>  actual <span class="op">=</span> <span class="va">fa_scores</span><span class="op">$</span><span class="va">Reason</span>,</span>
-<span>  predicted <span class="op">=</span> <span class="va">fa_scores</span><span class="op">$</span><span class="va">predicted</span></span>
-<span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">cfa_fit</span> <span class="op">&lt;-</span> <span class="fu">lavaan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/cfa.html">cfa</a></span><span class="op">(</span><span class="va">cfa_model</span>, data <span class="op">=</span> <span class="va">survey_sc</span>,</span>
+<span>                       std.lv <span class="op">=</span> <span class="cn">TRUE</span>, estimator <span class="op">=</span> <span class="st">"MLR"</span><span class="op">)</span></span></code></pre></div>
+<p>The point of a CFA is the <strong>fit indices</strong> — a handful of numbers that summarize how well the claimed structure matches the data. The usual rules of thumb are CFI and TLI above ~0.95, RMSEA below ~0.06, and SRMR below ~0.08.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:seg-cfa-fit-table">Table 5.14: </span>CFA fit indices</caption>
+<thead><tr class="header">
+<th align="right">index</th>
+<th align="right">value</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">CFI</td>
+<td align="right">1.000</td>
+</tr>
+<tr class="even">
+<td align="right">TLI</td>
+<td align="right">1.001</td>
+</tr>
+<tr class="odd">
+<td align="right">RMSEA</td>
+<td align="right">0.000</td>
+</tr>
+<tr class="even">
+<td align="right">SRMR</td>
+<td align="right">0.008</td>
+</tr>
+</tbody>
+</table></div>
+<p>The fit is excellent — essentially perfect. That should make you suspicious, not happy. This survey was <em>simulated</em> from a clean three-factor structure, so a three-factor model recovers it almost exactly. Real survey data never fits this cleanly; you fight for a CFI of 0.93 and argue about whether to free a residual covariance or two. Treat this result as a demonstration of what CFA measures, not as a promise of how your own data will behave. What it does buy us is a defensible set of factor scores — one Avid, Social, and Food score per respondent — extracted the Bartlett way.</p>
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fa_scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">lavaan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/lavPredict.html">lavPredict</a></span><span class="op">(</span><span class="va">cfa_fit</span>, method <span class="op">=</span> <span class="st">"Bartlett"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">fa_scores</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    Avid Social  Food
+## 1 -1.57  -1.76 -1.65
+## 2 -3.50  -2.58  0.13
+## 3 -2.84  -1.51 -2.00</code></pre>
+</div>
+<div id="model-based-segments-with-a-gaussian-mixture" class="section level3" number="5.3.3">
+<h3>
+<span class="header-section-number">5.3.3</span> Model-based segments with a Gaussian mixture<a class="anchor" aria-label="anchor" href="#model-based-segments-with-a-gaussian-mixture"><i class="fas fa-link"></i></a>
+</h3>
+<p>We now have three continuous scores per fan. The naive next move — the one the previous edition of this chapter made — is to label each fan by whichever score is highest. That throws away most of the information: a fan who is high on everything and a fan who is barely above zero on everything both get filed under their single top score.</p>
+<p>A better approach treats segmentation as a <em>model</em>. A <strong>Gaussian mixture model</strong> (GMM) assumes the fans are a blend of several overlapping clusters, each a cloud in the three-dimensional score space, and estimates both the clouds and each fan’s probability of belonging to each one. The <code>mclust</code> package <span class="citation">(<a href="references.html#ref-R-mclust">Fraley et al. 2025</a>)</span> fits it and — crucially — uses the <strong>BIC</strong> to choose how many clusters the data actually supports, rather than making us guess.</p>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mclust-org.github.io/mclust/">mclust</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">363</span><span class="op">)</span></span>
+<span><span class="va">gmm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mclust-org.github.io/mclust/reference/Mclust.html">Mclust</a></span><span class="op">(</span><span class="va">fa_scores</span>, G <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">7</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># mclust already computed the BIC for every k while fitting; reuse it.</span></span>
+<span><span class="va">bic_by_k</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  k <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">gmm</span><span class="op">$</span><span class="va">BIC</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  BIC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">gmm</span><span class="op">$</span><span class="va">BIC</span>, <span class="fl">1</span>, <span class="va">max</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">confusion</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">actual</span>, y <span class="op">=</span> <span class="va">predicted</span>, fill <span class="op">=</span> <span class="va">Freq</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_tile</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_fill_gradient</span><span class="op">(</span><span class="st">"Count"</span>, low <span class="op">=</span> <span class="st">"#f2f2f2"</span>, high <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
-<span>                      labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Actual reason"</span>, y <span class="op">=</span> <span class="st">"Predicted reason"</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">"The factors do not predict the reason for attending"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">book_theme</span> <span class="op">+</span></span>
-<span>  <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span>, hjust <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">7</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">bic_by_k</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">k</span>, y <span class="op">=</span> <span class="va">BIC</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span>color <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span>color <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">bic_by_k</span>, <span class="va">k</span> <span class="op">==</span> <span class="va">gmm</span><span class="op">$</span><span class="va">G</span><span class="op">)</span>, color <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Number of clusters (k)"</span>, y <span class="op">=</span> <span class="st">"BIC (higher is better)"</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">"The BIC prefers four clusters"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="va">book_theme</span></span></code></pre></div>
 <div class="figure">
-<span style="display:block;" id="fig:seg-fa-multinom-plot"></span>
-<img src="_main_files/figure-html/seg-fa-multinom-plot-1.png" alt="Predicted versus actual reason for attending" width="672"><p class="caption">
-Figure 5.7: Predicted versus actual reason for attending
+<span style="display:block;" id="fig:seg-gmm-bic"></span>
+<img src="_main_files/figure-html/seg-gmm-bic-1.png" alt="BIC across candidate cluster counts" width="672"><p class="caption">
+Figure 5.7: BIC across candidate cluster counts
 </p>
 </div>
-<p>The model is no better than guessing — accuracy lands near chance. That is the expected result, because the reasons in this data set were assigned at random. A good prediction would show a bright diagonal band; this shows noise. In real work, a dead end like this sends you back to the data to look at it another way. It happens constantly.</p>
+<p>The BIC peaks at 4 clusters, so <code>mclust</code> settles on a 4-segment solution (model type VVI). The segments are far from equal in size.</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:seg-gmm-sizes">Table 5.15: </span>Members per behavioral segment</caption>
+<thead><tr class="header">
+<th align="right">segment</th>
+<th align="right">members</th>
+<th align="right">percent</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1005</td>
+<td align="right">10.1</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">5520</td>
+<td align="right">55.2</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">969</td>
+<td align="right">9.7</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">2506</td>
+<td align="right">25.1</td>
+</tr>
+</tbody>
+</table></div>
+<p>To interpret the segments, we profile them by their average factor score. Because <code>mclust</code> numbers the segments arbitrarily, we label each one by the factor it is most extreme on — a small, data-driven rule that survives a re-run.</p>
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">seg_profile</span> <span class="op">&lt;-</span> <span class="va">fa_scores</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>segment <span class="op">=</span> <span class="va">gmm</span><span class="op">$</span><span class="va">classification</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">segment</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Avid</span>, <span class="va">Social</span>, <span class="va">Food</span><span class="op">)</span>, <span class="va">mean</span><span class="op">)</span>,</span>
+<span>                   n <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">seg_profile</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Avid"</span>, <span class="st">"Social"</span>, <span class="st">"Food"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">seg_profile</span><span class="op">$</span><span class="va">label</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">z</span>, <span class="fl">1</span>, <span class="kw">function</span><span class="op">(</span><span class="va">r</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Avid"</span>, <span class="st">"Social"</span>, <span class="st">"Food"</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">f</span>, <span class="kw">if</span> <span class="op">(</span><span class="va">r</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span><span class="op">)</span><span class="op">]</span> <span class="op">&gt;=</span> <span class="fl">0</span><span class="op">)</span> <span class="st">"high"</span> <span class="kw">else</span> <span class="st">"low"</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">seg_profile</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Avid</span>, <span class="va">Social</span>, <span class="va">Food</span><span class="op">)</span>,</span>
+<span>                      names_to <span class="op">=</span> <span class="st">"factor"</span>, values_to <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">factor</span>, y <span class="op">=</span> <span class="va">label</span>, fill <span class="op">=</span> <span class="va">score</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_tile</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_text</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">score</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span>, color <span class="op">=</span> <span class="st">"grey20"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_fill_gradient2</span><span class="op">(</span>low <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, mid <span class="op">=</span> <span class="st">"#f2f2f2"</span>,</span>
+<span>                       high <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, midpoint <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Factor"</span>, y <span class="op">=</span> <span class="st">"Segment"</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">"Two segments are engagement tiers, not tastes"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="va">book_theme</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:seg-gmm-profile-plot"></span>
+<img src="_main_files/figure-html/seg-gmm-profile-plot-1.png" alt="Behavioral segments by mean factor score" width="672"><p class="caption">
+Figure 5.8: Behavioral segments by mean factor score
+</p>
 </div>
-<div id="casting-segments-onto-other-groups" class="section level3" number="5.3.2">
+<p>The profile is revealing, and a little deflating. Only two of the four segments look like the <em>tastes</em> we set out to find: a large <strong>Social-leaning mainstream</strong> (about 55% of fans) and a distinct <strong>Foodie</strong> group (about 25%) that scores far above everyone on food. The other two segments are essentially <strong>engagement tiers</strong> — one group that is low on the social and food factors, and one that is low on <em>everything</em>. The mixture did not carve the fan base into Avid-versus-Social-versus-Foodie; it mostly sorted fans by <em>how much</em> they want to do, not <em>what</em>. That is the difference between market structure and a behavioral segment, showing up in the output.</p>
+</div>
+<div id="are-the-segments-real-enough-to-act-on" class="section level3" number="5.3.4">
 <h3>
-<span class="header-section-number">5.3.2</span> Casting segments onto other groups<a class="anchor" aria-label="anchor" href="#casting-segments-onto-other-groups"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3.4</span> Are the segments real enough to act on?<a class="anchor" aria-label="anchor" href="#are-the-segments-real-enough-to-act-on"><i class="fas fa-link"></i></a>
 </h3>
-<p>Could we use demographics to <em>estimate</em> someone’s behavioral archetype, and so extend these segments to fans who never took the survey? To explore it, we attach each survey respondent to a customer and assign them to whichever factor they score highest on.</p>
-<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<p>Before we name these groups and hand them to marketing, we owe the organization two checks. This is the “first, do no harm” standard from the start of the chapter, made concrete.</p>
+<p>First, <strong>how confident is each assignment?</strong> A GMM gives every fan a probability of belonging to each segment, so we can look at how crisp the assignments are.</p>
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">max_posterior</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">gmm</span><span class="op">$</span><span class="va">z</span>, <span class="fl">1</span>, <span class="va">max</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  avg_confidence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">max_posterior</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<span>  share_below_80 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">max_posterior</span> <span class="op">&lt;</span> <span class="fl">0.80</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   avg_confidence share_below_80
+## 1          0.774          0.543</code></pre>
+<p>More than half of fans have a top-segment probability below 0.80. In other words, the crisp four-box picture is an overstatement: a large share of fans sit in the fuzzy overlap between segments and could be assigned either way. Any profile that reports hard-segment averages as if every member truly belonged is quietly inflating the differences.</p>
+<p>Second, <strong>would we get the same segments again?</strong> We resample the fans with replacement, refit the mixture, and measure how well the new segment labels agree with the original using the Adjusted Rand Index (ARI), where 1 is perfect agreement and 0 is chance. A dozen resamples is plenty to see the pattern and keeps the render quick.</p>
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">99</span><span class="op">)</span></span>
+<span><span class="va">base_class</span> <span class="op">&lt;-</span> <span class="va">gmm</span><span class="op">$</span><span class="va">classification</span></span>
+<span><span class="va">ari</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">12</span>, <span class="op">{</span></span>
+<span>  <span class="va">idx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">fa_scores</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">mclust</span><span class="fu">::</span><span class="fu"><a href="https://mclust-org.github.io/mclust/reference/Mclust.html">Mclust</a></span><span class="op">(</span><span class="va">fa_scores</span><span class="op">[</span><span class="va">idx</span>, <span class="op">]</span>, G <span class="op">=</span> <span class="va">gmm</span><span class="op">$</span><span class="va">G</span>,</span>
+<span>                        modelNames <span class="op">=</span> <span class="va">gmm</span><span class="op">$</span><span class="va">modelName</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>  <span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit</span>, <span class="va">fa_scores</span><span class="op">)</span><span class="op">$</span><span class="va">classification</span></span>
+<span>  <span class="fu">mclust</span><span class="fu">::</span><span class="fu"><a href="https://mclust-org.github.io/mclust/reference/adjustedRandIndex.html">adjustedRandIndex</a></span><span class="op">(</span><span class="va">pred</span>, <span class="va">base_class</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>mean_ari <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">ari</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>           min_ari <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">ari</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>           max_ari <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">ari</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   mean_ari min_ari max_ari
+## 1      0.4    0.27    0.52</code></pre>
+<p>The average ARI lands around 0.4 — moderate, not strong. The segments are not random noise, but they are not rock-solid either; resample the survey and the boundaries move.</p>
+<p>Put the two findings together and you have a governance decision, not just a statistical one. Serious segmentation programs write down <strong>acceptance gates</strong> in advance — a segment scheme is only approved for activation if, say, every segment clears a minimum size, assignments are confident enough, and the scheme reproduces on resampled data. Judged against gates like those, this hard four-persona scheme is shaky: two “segments” are engagement tiers rather than tastes, over half of assignments are low-confidence, and stability is only moderate.</p>
+<p>The constructive response is not to abandon the work — it is to <strong>activate on the continuous factor scores rather than the hard personas</strong>. The three Avid/Social/Food scores predict how a fan will behave more reliably than a box labeled “Segment 3,” because they keep the very information the hard assignment throws away. The named personas still earn their keep as a <em>communication layer</em> — it is far easier to brief a marketing team on “Foodies” than on a vector of factor scores — but the targeting logic underneath should run on the scores. Naming a segment is cheap; being able to reach it, and being right about it, is not.</p>
+</div>
+<div id="casting-behavioral-segments-onto-demographics" class="section level3" number="5.3.5">
+<h3>
+<span class="header-section-number">5.3.5</span> Casting behavioral segments onto demographics<a class="anchor" aria-label="anchor" href="#casting-behavioral-segments-onto-demographics"><i class="fas fa-link"></i></a>
+</h3>
+<p>The behavioral scheme has one unavoidable weakness: you can only assign it to people who took the survey. A natural question is whether demographics could <em>predict</em> someone’s behavioral segment, extending the scheme to fans who never answered. Our survey was not tied to real customers, so we simulate the link by attaching each respondent to a random customer from the demographic segmentation — enough to show the mechanics, honest about the fact that any relationship we see is manufactured.</p>
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">755</span><span class="op">)</span></span>
-<span><span class="va">fa_scores</span><span class="op">$</span><span class="va">Class</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">fa_scores</span><span class="op">)</span><span class="op">[</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/maxCol.html">max.col</a></span><span class="op">(</span><span class="va">fa_scores</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, ties.method <span class="op">=</span> <span class="st">"first"</span><span class="op">)</span></span>
-<span><span class="op">]</span></span>
+<span><span class="va">fa_scores</span><span class="op">$</span><span class="va">behavior_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">gmm</span><span class="op">$</span><span class="va">classification</span><span class="op">)</span></span>
 <span><span class="va">fa_scores</span><span class="op">$</span><span class="va">custID</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">demo_data_segments</span><span class="op">$</span><span class="va">custID</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">fa_scores</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">combined</span> <span class="op">&lt;-</span> <span class="va">demo_data_segments</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">fa_scores</span>, by <span class="op">=</span> <span class="st">"custID"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>Then we give both the behavioral and the demographic classes readable names. The behavioral names come from the factors above; the demographic names summarize what we learned from the cross-tabs — the low-income youngsters, the single-gender older groups, the nearly-all-white group, and the small, distant, no-white group we ironically call Nearby Ned.</p>
-<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">combined</span><span class="op">$</span><span class="va">behavior_segment</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode</a></span><span class="op">(</span><span class="va">combined</span><span class="op">$</span><span class="va">Class</span>,</span>
-<span>  Factor1 <span class="op">=</span> <span class="st">"Avid fan"</span>, Factor2 <span class="op">=</span> <span class="st">"Socializers"</span>, Factor3 <span class="op">=</span> <span class="st">"Foodies"</span>,</span>
-<span>  Factor4 <span class="op">=</span> <span class="st">"Parkies"</span>,  Factor5 <span class="op">=</span> <span class="st">"Strangers"</span><span class="op">)</span></span>
+<p>We give both schemes readable names. The behavioral names come from the segment profiles above; the demographic names summarize what we learned from the cross-tabs — the low-income youngsters, the single-gender older groups, and so on.</p>
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">beh_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html">setNames</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">seg_profile</span><span class="op">$</span><span class="va">label</span> <span class="op">==</span> <span class="st">"Social high"</span>, <span class="st">"Social Mainstream"</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">seg_profile</span><span class="op">$</span><span class="va">label</span> <span class="op">==</span> <span class="st">"Food high"</span>,   <span class="st">"Foodies"</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">seg_profile</span><span class="op">$</span><span class="va">label</span> <span class="op">==</span> <span class="st">"Social low"</span>,  <span class="st">"No-frills Fans"</span>, <span class="st">"Low-involvement"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="va">seg_profile</span><span class="op">$</span><span class="va">segment</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">combined</span><span class="op">$</span><span class="va">behavior_segment</span> <span class="op">&lt;-</span> <span class="va">beh_names</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">combined</span><span class="op">$</span><span class="va">behavior_raw</span><span class="op">)</span><span class="op">]</span></span>
 <span></span>
 <span><span class="va">combined</span><span class="op">$</span><span class="va">demo_segment</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">combined</span><span class="op">$</span><span class="va">lcrClass</span><span class="op">)</span>,</span>
 <span>  <span class="st">"1"</span> <span class="op">=</span> <span class="st">"Young and Broke"</span>, <span class="st">"2"</span> <span class="op">=</span> <span class="st">"Marty Male"</span>, <span class="st">"3"</span> <span class="op">=</span> <span class="st">"Fiona Female"</span>,</span>
@@ -1177,33 +1336,34 @@ Figure 5.7: Predicted versus actual reason for attending
 <span class="header-section-number">5.4</span> Psychographic segmentation<a class="anchor" aria-label="anchor" href="#psychographic-segmentation"><i class="fas fa-link"></i></a>
 </h2>
 <p>Psychographic schemes are the abstract, alliteratively named profiles you see everywhere — “Jets-fan Jeff,” “Tailgating Tina.” They combine behavioral and demographic schemes. We can build a simple version by crossing our two segmentations.</p>
-<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">segment_grid</span> <span class="op">&lt;-</span> <span class="va">combined</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">behavior_segment</span>, <span class="va">demo_segment</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">summarise</span><span class="op">(</span>n <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">segment_grid</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">behavior_segment</span>, y <span class="op">=</span> <span class="va">demo_segment</span>, fill <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_tile</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">scale_fill_gradient</span><span class="op">(</span><span class="st">"Count"</span>, low <span class="op">=</span> <span class="st">"#f2f2f2"</span>, high <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
 <span>                      labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Behavioral segment"</span>, y <span class="op">=</span> <span class="st">"Demographic segment"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Crossing the two schemes yields psychographic cells"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">book_theme</span></span></code></pre></div>
+<span>  <span class="va">book_theme</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">20</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:seg-psy-tile"></span>
 <img src="_main_files/figure-html/seg-psy-tile-1.png" alt="Behavioral segment by demographic segment" width="672"><p class="caption">
-Figure 5.8: Behavioral segment by demographic segment
+Figure 5.9: Behavioral segment by demographic segment
 </p>
 </div>
 <p>Every behavioral segment appears inside every demographic segment, which is the tell-tale sign that, in this contrived data, the two schemes are independent. To see it numerically, scale age and distance and average them within each cell.</p>
-<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">combined</span><span class="op">$</span><span class="va">age_s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">combined</span><span class="op">$</span><span class="va">age</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">combined</span><span class="op">$</span><span class="va">distance_s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">combined</span><span class="op">$</span><span class="va">distance</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">segment_profile</span> <span class="op">&lt;-</span> <span class="va">combined</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">behavior_segment</span>, <span class="va">demo_segment</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">summarise</span><span class="op">(</span>age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">age_s</span><span class="op">)</span>, distance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">distance_s</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">segment_profile</span>,</span>
 <span>       <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">age</span>, y <span class="op">=</span> <span class="va">distance</span>, color <span class="op">=</span> <span class="va">behavior_segment</span>, shape <span class="op">=</span> <span class="va">demo_segment</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1217,7 +1377,7 @@ Figure 5.8: Behavioral segment by demographic segment
 <div class="figure">
 <span style="display:block;" id="fig:seg-psy-point"></span>
 <img src="_main_files/figure-html/seg-psy-point-1.png" alt="Segments by scaled age and distance" width="672"><p class="caption">
-Figure 5.9: Segments by scaled age and distance
+Figure 5.10: Segments by scaled age and distance
 </p>
 </div>
 <p>The picture is clear once you know what to look for. The points separate left-to-right by <strong>demographic</strong> segment (the shapes) and barely at all by <strong>behavioral</strong> segment (the colors). The single-gender groups, Marty Male and Fiona Female, index oldest; Young and Broke is youngest; and Nearby Ned, despite the name, sits furthest from the park. The behavioral archetypes carry no age or distance signal here — exactly what we would expect, since they were layered on at random. With real survey data tied to real customers, this is where genuine psychographic profiles would start to emerge.</p>
@@ -1242,27 +1402,27 @@ Figure 5.9: Segments by scaled age and distance
 </h2>
 <p>Segmentation is part art, part science, and mostly patience. We worked through a fairly complete example and hit the high points:</p>
 <ul>
-<li>Exploring data for a demographic segmentation</li>
-<li>Preparing data, including missing-data imputation</li>
-<li>A hierarchical clustering approach</li>
-<li>A latent class regression built on demographics</li>
-<li>A benefits-sought approach using factor analysis</li>
+<li>Exploring and preparing data for a demographic segmentation, including missing-data imputation</li>
+<li>A hierarchical clustering approach and a latent class regression on demographics</li>
+<li>A benefits-sought approach built as a three-step measurement pipeline: exploratory factor analysis, a confirmatory factor analysis, and a Gaussian mixture model</li>
+<li>Checking whether the resulting segments are stable and confident enough to act on</li>
 <li>Combining the schemes into psychographic profiles</li>
 </ul>
 <p>A few lessons are worth keeping:</p>
 <ul>
-<li>The goal is to find <strong>exploitable differences</strong>, not just market structure. Groups that do not behave differently are not segments.</li>
+<li>The goal is to find <strong>exploitable differences</strong>, not just market structure. Groups that differ only in <em>how much</em> they engage — the engagement tiers our mixture surfaced — are market structure, not segments.</li>
 <li>
 <strong>Demographic segmentation</strong> is the easiest place to start and often the least useful. It is discoverable, which is its main virtue.</li>
 <li>
 <strong>Preparing the data</strong> — especially handling missing values — will take most of your time and bears heavily on the result. There is rarely one right method; document your judgment calls.</li>
 <li>
-<strong>Hierarchical clustering</strong> is easy to show but often tells you what you already know.</li>
+<strong>Let the data choose the number of factors and clusters.</strong> Parallel analysis and the BIC guard against the ever-present temptation to extract more structure than the data supports.</li>
 <li>
-<strong>Latent class regression</strong> tends to produce durable segments and is a good second step.</li>
+<strong>Exploratory and confirmatory factor analysis answer different questions.</strong> EFA finds the structure; CFA tests a structure you specify. Good CFA fit on real data is hard-won — be suspicious when it comes easily.</li>
 <li>
-<strong>Benefits-sought</strong> segmentation is behaviorally rich but hard to discover; factor analysis is a good way to compress the survey data behind it.</li>
-<li>You can <strong>ensemble</strong> these methods to build richer profiles than any one of them gives alone.</li>
+<strong>A model-based mixture beats labeling fans by their single top score</strong>, because it keeps the probability that a fan belongs to each group. Most fans are not crisply one thing.</li>
+<li>
+<strong>Validate before you deploy.</strong> Check segment sizes, assignment confidence, and stability against resampling. When hard personas are fragile — as ours were — <strong>activate on the continuous factor scores</strong> and keep the personas as a communication layer.</li>
 </ul>
 <p>Above all, hold the standard we started with: it is fine to find nothing, and far better than deploying a segment that is not real. Chapter <a href="chapter6.html#chapter6">6</a> turns to pricing and forecasting, where the cost of a confident wrong answer shows up directly on the revenue line.</p>
 
@@ -1288,8 +1448,11 @@ Figure 5.9: Segments by scaled age and distance
 </li>
 <li>
 <a class="nav-link" href="#a-benefits-sought-approach-to-segmentation"><span class="header-section-number">5.3</span> A benefits-sought approach to segmentation</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#factoranalysis"><span class="header-section-number">5.3.1</span> Using a factor analysis</a></li>
-<li><a class="nav-link" href="#casting-segments-onto-other-groups"><span class="header-section-number">5.3.2</span> Casting segments onto other groups</a></li>
+<li><a class="nav-link" href="#factoranalysis"><span class="header-section-number">5.3.1</span> Compressing the survey with factor analysis</a></li>
+<li><a class="nav-link" href="#confirming-the-structure-with-a-cfa"><span class="header-section-number">5.3.2</span> Confirming the structure with a CFA</a></li>
+<li><a class="nav-link" href="#model-based-segments-with-a-gaussian-mixture"><span class="header-section-number">5.3.3</span> Model-based segments with a Gaussian mixture</a></li>
+<li><a class="nav-link" href="#are-the-segments-real-enough-to-act-on"><span class="header-section-number">5.3.4</span> Are the segments real enough to act on?</a></li>
+<li><a class="nav-link" href="#casting-behavioral-segments-onto-demographics"><span class="header-section-number">5.3.5</span> Casting behavioral segments onto demographics</a></li>
 </ul>
 </li>
 <li><a class="nav-link" href="#psychographic-segmentation"><span class="header-section-number">5.4</span> Psychographic segmentation</a></li>

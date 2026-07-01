@@ -113,7 +113,7 @@
 <span class="header-section-number">7.1</span> Recency, frequency, and monetary value<a class="anchor" aria-label="anchor" href="#recency-frequency-and-monetary-value"><i class="fas fa-link"></i></a>
 </h2>
 <p>RFM scoring is sometimes called the poor analyst’s technique. The idea is to score each customer on three dimensions — how recently they engaged, how often, and how much they spent — and to build campaign lists from the highest combined scores. Let’s fabricate a small data set to show the mechanics. We take the customer file and bolt on three behavioral fields.</p>
-<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">44</span><span class="op">)</span></span>
 <span><span class="va">rfm_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/demographic_data.html">demographic_data</a></span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">custID</span>, <span class="va">nameFull</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -185,7 +185,7 @@
 </tbody>
 </table></div>
 <p>RFM scores traditionally run from 1 to 5, with 5 the best. The cleanest way to cut a column into five equal groups is <code><a href="https://dplyr.tidyverse.org/reference/ntile.html">dplyr::ntile</a></code>. Recency is the one twist: a <em>smaller</em> number of days since the last interaction is better, so we rank on its negative.</p>
-<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rfm_scored</span> <span class="op">&lt;-</span> <span class="va">rfm_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span></span>
 <span>    recency_score   <span class="op">=</span> <span class="fu">ntile</span><span class="op">(</span><span class="op">-</span><span class="va">last_interaction</span>, <span class="fl">5</span><span class="op">)</span>,</span>
@@ -194,7 +194,7 @@
 <span>    RFM <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">recency_score</span>, <span class="va">frequency_score</span>, <span class="va">monetary_score</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p>Each customer now carries an RFM code. To build a campaign for the very best prospects, pull the customers who land in the top group on all three dimensions.</p>
-<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">top_prospects</span> <span class="op">&lt;-</span> <span class="va">rfm_scored</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">RFM</span> <span class="op">==</span> <span class="st">"555"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">nameFull</span>, <span class="va">recency_score</span>, <span class="va">frequency_score</span>, <span class="va">monetary_score</span>, <span class="va">RFM</span><span class="op">)</span></span></code></pre></div>
@@ -294,7 +294,7 @@
 <span class="header-section-number">7.2.1.2</span> Understand the data<a class="anchor" aria-label="anchor" href="#understand-the-data"><i class="fas fa-link"></i></a>
 </h4>
 <p>The data is in the <code>FOSBAAS</code> package as <code>customer_renewals</code> (see Section <a href="chapter2.html#renewaldata">2.3</a>). Each row is a season-ticket account in a given season.</p>
-<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Justin-Watkins/FOSBAAS">FOSBAAS</a></span><span class="op">)</span></span>
 <span><span class="va">mod_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/customer_renewals.html">customer_renewals</a></span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
@@ -359,9 +359,9 @@
 </tbody>
 </table></div>
 <p>Before modeling, look at the outcome itself.</p>
-<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod_data</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">count</span><span class="op">(</span><span class="va">renewed</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://mclust-org.github.io/mclust/reference/mclust-internal.html">count</a></span><span class="op">(</span><span class="va">renewed</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>share <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 2 × 3
 ##   renewed     n share
@@ -370,7 +370,7 @@
 ## 2 r       11142 0.813</code></pre>
 <p>This matters enormously. About 81% of accounts renew. That class imbalance shapes everything that follows: a model that blindly predicts “renew” for everyone would be 81% accurate while being useless for the actual task, which is finding the minority who <em>leave</em>. Keep that 81% baseline in mind — it is the number any model has to beat to be worth anything.</p>
 <p>The data is already clean (we covered missing data in Chapter <a href="chapter5.html#chapter5">5</a>), so preparation is light. Different algorithms want different formats, so we build a second, all-numeric copy with the categorical fields dummy-coded.</p>
-<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/dummy.code.html">dummy.code</a></span><span class="op">(</span><span class="va">mod_data</span><span class="op">$</span><span class="va">corporate</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">d2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/dummy.code.html">dummy.code</a></span><span class="op">(</span><span class="va">mod_data</span><span class="op">$</span><span class="va">planType</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -475,7 +475,7 @@
 <span class="header-section-number">7.2.1.3</span> A note on geography and maps<a class="anchor" aria-label="anchor" href="#a-note-on-geography-and-maps"><i class="fas fa-link"></i></a>
 </h4>
 <p>Before modeling, a quick detour. Geography matters a great deal in selling tickets, especially for a long season like baseball’s, and it deserves more space than we can give it. R is not the best GIS tool, but it can produce a usable map inside the same workflow. The map below was made with <code>ggmap</code>. Note that the basemap services have changed — the old Stamen tiles now route through Stadia Maps and require a free API key — so this chunk is shown but not run here.</p>
-<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dkahle/ggmap">ggmap</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">demos</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/demographic_data.html">demographic_data</a></span></span>
@@ -503,7 +503,7 @@ Figure 7.1: Customer locations plotted on a basemap
 <span class="header-section-number">7.2.1.4</span> Model the data<a class="anchor" aria-label="anchor" href="#model"><i class="fas fa-link"></i></a>
 </h4>
 <p>We will use <code>mlr3</code>. Loading its packages also lets us quiet its progress logging so the output stays readable.</p>
-<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3.mlr-org.com">mlr3</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3learners.mlr-org.com">mlr3learners</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mlr3viz.mlr-org.com">mlr3viz</a></span><span class="op">)</span></span>
@@ -513,7 +513,7 @@ Figure 7.1: Customer locations plotted on a basemap
 <span><span class="fu">lgr</span><span class="fu">::</span><span class="fu"><a href="https://s-fleck.github.io/lgr/reference/get_logger.html">get_logger</a></span><span class="op">(</span><span class="st">"mlr3"</span><span class="op">)</span><span class="op">$</span><span class="fu">set_threshold</span><span class="op">(</span><span class="st">"warn"</span><span class="op">)</span></span>
 <span><span class="fu">lgr</span><span class="fu">::</span><span class="fu"><a href="https://s-fleck.github.io/lgr/reference/get_logger.html">get_logger</a></span><span class="op">(</span><span class="st">"bbotk"</span><span class="op">)</span><span class="op">$</span><span class="fu">set_threshold</span><span class="op">(</span><span class="st">"warn"</span><span class="op">)</span></span></code></pre></div>
 <p><code>mlr3</code> follows a consistent pattern. First, wrap the data in a <strong>task</strong> — here a classification task whose target is <code>renewed</code> and whose positive class is <code>"r"</code>.</p>
-<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">task_renew</span> <span class="op">&lt;-</span> <span class="va"><a href="https://mlr3.mlr-org.com/reference/TaskClassif.html">TaskClassif</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span></span>
 <span>  id <span class="op">=</span> <span class="st">"task_renew"</span>,</span>
 <span>  backend <span class="op">=</span> <span class="va">mod_data_numeric</span>,</span>
@@ -521,21 +521,21 @@ Figure 7.1: Customer locations plotted on a basemap
 <span>  positive <span class="op">=</span> <span class="st">"r"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Next, choose a <strong>learner</strong>. We will fit a random forest from the <code>ranger</code> package <span class="citation">(<a href="references.html#ref-R-ranger">Wright et al. 2021</a>)</span>, asking for probability output.</p>
-<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">learner_rf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">lrn</a></span><span class="op">(</span><span class="st">"classif.ranger"</span>,</span>
 <span>                  predict_type <span class="op">=</span> <span class="st">"prob"</span>,</span>
 <span>                  mtry <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>                  num.trees <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span></code></pre></div>
 <p>Split the data into training and test sets.</p>
-<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">44</span><span class="op">)</span></span>
 <span><span class="va">train_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">task_renew</span><span class="op">$</span><span class="va">nrow</span>, <span class="fl">0.75</span> <span class="op">*</span> <span class="va">task_renew</span><span class="op">$</span><span class="va">nrow</span><span class="op">)</span></span>
 <span><span class="va">test_ids</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="va">task_renew</span><span class="op">$</span><span class="va">nrow</span><span class="op">)</span>, <span class="va">train_ids</span><span class="op">)</span></span></code></pre></div>
 <p>Training is a single call.</p>
-<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">learner_rf</span><span class="op">$</span><span class="fu">train</span><span class="op">(</span><span class="va">task_renew</span>, row_ids <span class="op">=</span> <span class="va">train_ids</span><span class="op">)</span></span></code></pre></div>
 <p>The fitted learner holds useful information.</p>
-<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">learner_output</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>  num_trees <span class="op">=</span> <span class="va">learner_rf</span><span class="op">$</span><span class="va">model</span><span class="op">$</span><span class="va">num.trees</span>,</span>
 <span>  mtry      <span class="op">=</span> <span class="va">learner_rf</span><span class="op">$</span><span class="va">model</span><span class="op">$</span><span class="va">mtry</span>,</span>
@@ -559,14 +559,14 @@ Figure 7.1: Customer locations plotted on a basemap
 </tr></tbody>
 </table></div>
 <p>Now predict on the held-out test set and look at the <strong>confusion matrix</strong>, which shows how often the model was right and wrong for each class.</p>
-<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">prediction</span> <span class="op">&lt;-</span> <span class="va">learner_rf</span><span class="op">$</span><span class="fu">predict</span><span class="op">(</span><span class="va">task_renew</span>, row_ids <span class="op">=</span> <span class="va">test_ids</span><span class="op">)</span></span>
 <span><span class="va">prediction</span><span class="op">$</span><span class="va">confusion</span></span></code></pre></div>
 <pre><code>##         truth
 ## response    r   nr
 ##       r  2662  508
 ##       nr  106  151</code></pre>
-<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">prediction</span><span class="op">$</span><span class="fu">score</span><span class="op">(</span><span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">msr</a></span><span class="op">(</span><span class="st">"classif.acc"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## classif.acc 
 ##   0.8208345</code></pre>
@@ -583,7 +583,7 @@ Figure 7.2: The resampling concept
 </p>
 </div>
 <p>Ten-fold cross-validation runs the fit ten times and averages the ten error estimates <span class="citation">(<a href="references.html#ref-Witten2011"><span class="nocase">Ian H. Witten</span> 2011</a>)</span>. <code>mlr3</code> makes this easy.</p>
-<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">resampling</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">rsmp</a></span><span class="op">(</span><span class="st">"cv"</span><span class="op">)</span></span>
 <span><span class="va">resampling</span><span class="op">$</span><span class="fu">instantiate</span><span class="op">(</span><span class="va">task_renew</span><span class="op">)</span></span>
 <span></span>
@@ -598,14 +598,14 @@ Figure 7.2: The resampling concept
 <span class="header-section-number">7.2.1.4.2</span> Tuning the model<a class="anchor" aria-label="anchor" href="#tuning-the-model"><i class="fas fa-link"></i></a>
 </h5>
 <p>Most algorithms have parameters that change their behavior — a random forest, for instance, can vary the number of trees and how deep they grow. How do you know you have set them well? You search. We pick a few <code>ranger</code> parameters and a range for each.</p>
-<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tune_space</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/ps.html">ps</a></span><span class="op">(</span></span>
 <span>  min.node.size <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/Domain.html">p_int</a></span><span class="op">(</span>lower <span class="op">=</span> <span class="fl">10</span>,  upper <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>,</span>
 <span>  max.depth     <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/Domain.html">p_int</a></span><span class="op">(</span>lower <span class="op">=</span> <span class="fl">2</span>,   upper <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>,</span>
 <span>  num.trees     <span class="op">=</span> <span class="fu"><a href="https://paradox.mlr-org.com/reference/Domain.html">p_int</a></span><span class="op">(</span>lower <span class="op">=</span> <span class="fl">500</span>, upper <span class="op">=</span> <span class="fl">600</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>We need a resampling strategy, a measure, and a stopping rule. Cross-validation gave similar errors, so a holdout split is fine here; classification error is the measure; and we stop after ten evaluations.</p>
-<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tune_instance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3tuning.mlr-org.com/reference/ti.html">ti</a></span><span class="op">(</span></span>
 <span>  task <span class="op">=</span> <span class="va">task_renew</span>,</span>
 <span>  learner <span class="op">=</span> <span class="va">learner_rf</span>,</span>
@@ -615,7 +615,7 @@ Figure 7.2: The resampling concept
 <span>  terminator <span class="op">=</span> <span class="fu"><a href="https://bbotk.mlr-org.com/reference/trm.html">trm</a></span><span class="op">(</span><span class="st">"evals"</span>, n_evals <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>A random search samples parameter combinations from those ranges.</p>
-<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">44</span><span class="op">)</span></span>
 <span><span class="va">tuner</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3tuning.mlr-org.com/reference/tnr.html">tnr</a></span><span class="op">(</span><span class="st">"random_search"</span><span class="op">)</span></span>
 <span><span class="va">tuner</span><span class="op">$</span><span class="fu">optimize</span><span class="op">(</span><span class="va">tune_instance</span><span class="op">)</span></span></code></pre></div>
@@ -623,12 +623,12 @@ Figure 7.2: The resampling concept
 ##            &lt;int&gt;     &lt;int&gt;     &lt;int&gt;             &lt;list&gt;    &lt;list&gt;      &lt;num&gt;
 ## 1:            44         3       543          &lt;list[5]&gt; &lt;list[3]&gt;   0.170278</code></pre>
 <p>The best combination found was a minimum node size of 44 and a maximum depth of 3, with a classification error of:</p>
-<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tune_instance</span><span class="op">$</span><span class="va">result_y</span></span></code></pre></div>
 <pre><code>## classif.ce 
 ##   0.170278</code></pre>
 <p>We push the winning parameters back into the learner, refit, and predict again.</p>
-<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">learner_rf</span><span class="op">$</span><span class="va">param_set</span><span class="op">$</span><span class="va">values</span> <span class="op">&lt;-</span> <span class="va">tune_instance</span><span class="op">$</span><span class="va">result_learner_param_vals</span></span>
 <span><span class="va">learner_rf</span><span class="op">$</span><span class="fu">train</span><span class="op">(</span><span class="va">task_renew</span><span class="op">)</span></span>
 <span></span>
@@ -638,7 +638,7 @@ Figure 7.2: The resampling concept
 ## response    r   nr
 ##       r  2715  514
 ##       nr   53  145</code></pre>
-<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">prediction_tuned</span><span class="op">$</span><span class="fu">score</span><span class="op">(</span><span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">msr</a></span><span class="op">(</span><span class="st">"classif.acc"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## classif.acc 
 ##   0.8345492</code></pre>
@@ -650,7 +650,7 @@ Figure 7.2: The resampling concept
 <span class="header-section-number">7.2.1.5</span> Comparing different models<a class="anchor" aria-label="anchor" href="#comparing-different-models"><i class="fas fa-link"></i></a>
 </h4>
 <p>Is a random forest the right choice? You only know by trying others. <code>mlr3</code> makes a fair comparison straightforward through a <strong>benchmark</strong>: same data, same resampling, several learners. We pit gradient boosting (<code>xgboost</code>), the random forest (<code>ranger</code>), and naive Bayes against each other.</p>
-<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">design</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/benchmark_grid.html">benchmark_grid</a></span><span class="op">(</span></span>
 <span>  tasks <span class="op">=</span> <span class="va">task_renew</span>,</span>
 <span>  learners <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
@@ -664,7 +664,7 @@ Figure 7.2: The resampling concept
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">44</span><span class="op">)</span></span>
 <span><span class="va">bmr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/benchmark.html">benchmark</a></span><span class="op">(</span><span class="va">design</span><span class="op">)</span></span></code></pre></div>
 <p>We compare them on AUC (area under the ROC curve — higher is better discrimination) and classification error (lower is better).</p>
-<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bmr</span><span class="op">$</span><span class="fu">score</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">msr</a></span><span class="op">(</span><span class="st">"classif.auc"</span>, id <span class="op">=</span> <span class="st">"auc"</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">msr</a></span><span class="op">(</span><span class="st">"classif.ce"</span>, id <span class="op">=</span> <span class="st">"ce"</span><span class="op">)</span></span>
@@ -674,7 +674,7 @@ Figure 7.2: The resampling concept
 ## 1:     classif.xgboost 0.6426902 0.2298096
 ## 2:      classif.ranger 0.6892485 0.1785949
 ## 3: classif.naive_bayes 0.6917434 0.1982928</code></pre>
-<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">bmr</span>, measure <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">msr</a></span><span class="op">(</span><span class="st">"classif.ce"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="va">book_theme</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:ls-benchmark-plot"></span>
@@ -689,7 +689,7 @@ Figure 7.3: Benchmark classification error by model
 <span class="header-section-number">7.2.1.6</span> A logistic regression for comparison<a class="anchor" aria-label="anchor" href="#a-logistic-regression-for-comparison"><i class="fas fa-link"></i></a>
 </h4>
 <p>Logistic regression “builds a linear model based on a transformed target variable” <span class="citation">(<a href="references.html#ref-Witten2011"><span class="nocase">Ian H. Witten</span> 2011</a>)</span> — here the probability of renewing. It is interpretable and a sensible first model for a binary outcome, so it is worth fitting directly.</p>
-<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">glm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span></span>
 <span>  <span class="va">renewed</span> <span class="op">~</span> <span class="va">ticketUsage</span> <span class="op">+</span> <span class="va">tenure</span> <span class="op">+</span> <span class="va">spend</span> <span class="op">+</span> <span class="va">distance</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">mod_data_numeric</span>,</span>
@@ -726,11 +726,11 @@ Figure 7.3: Benchmark classification error by model
 <span class="header-section-number">7.2.2</span> Measuring performance<a class="anchor" aria-label="anchor" href="#measuring-performance"><i class="fas fa-link"></i></a>
 </h3>
 <p>Performance metrics can be technical and confusing. With a proper holdout or cross-validation, classification error plus a look at the confusion matrix is often enough. Two plots add intuition. We will score every account with the random forest’s probability of renewing and visualize how well those scores separate the two groups.</p>
-<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">scores</span> <span class="op">&lt;-</span> <span class="va">learner_rf</span><span class="op">$</span><span class="fu">predict_newdata</span><span class="op">(</span><span class="va">mod_data_numeric</span><span class="op">)</span></span>
 <span><span class="va">mod_data_numeric</span><span class="op">$</span><span class="va">score_renew</span> <span class="op">&lt;-</span> <span class="va">scores</span><span class="op">$</span><span class="va">prob</span><span class="op">[</span>, <span class="st">"r"</span><span class="op">]</span></span></code></pre></div>
 <p>A density plot shows whether renewers and non-renewers receive different scores.</p>
-<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">mod_data_numeric</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">score_renew</span>, fill <span class="op">=</span> <span class="va">renewed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_density</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">scale_fill_manual</span><span class="op">(</span><span class="st">"Renewed"</span>, values <span class="op">=</span> <span class="va">plot_palette</span><span class="op">)</span> <span class="op">+</span></span>
@@ -745,7 +745,7 @@ Figure 7.4: Renewal-score density by actual outcome
 </p>
 </div>
 <p>The two distributions shift apart — renewers score higher — but they overlap a lot, which is the visual version of the modest AUC we saw. An ROC curve summarizes that trade-off between catching true renewers (sensitivity) and false alarms (specificity) across every threshold.</p>
-<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://xrobin.github.io/pROC/">pROC</a></span><span class="op">)</span></span>
 <span><span class="va">roc_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pROC/man/roc.html">roc</a></span><span class="op">(</span><span class="va">mod_data_numeric</span><span class="op">$</span><span class="va">renewed</span>, <span class="va">mod_data_numeric</span><span class="op">$</span><span class="va">score_renew</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
@@ -773,7 +773,7 @@ Figure 7.5: ROC curve for the renewal model
 <span class="header-section-number">7.3.1</span> Cumulative gains charts<a class="anchor" aria-label="anchor" href="#cumulative-gains-charts"><i class="fas fa-link"></i></a>
 </h3>
 <p>How much does the model actually help in practice? A cumulative gains chart answers that. Sort everyone by their score, then ask: if we work the top X% of the list, what share of all renewers have we reached? A model with no skill captures renewers at the same rate as the population — the diagonal. A useful model bows above it.</p>
-<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gains</span> <span class="op">&lt;-</span> <span class="va">mod_data_numeric</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">renewed</span>, <span class="va">score_renew</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">score_renew</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -782,7 +782,7 @@ Figure 7.5: ROC curve for the renewal model
 <span>    population_pct <span class="op">=</span> <span class="fu">row_number</span><span class="op">(</span><span class="op">)</span> <span class="op">/</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    captured_pct <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">renew_flag</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">renew_flag</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">gains</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">population_pct</span>, y <span class="op">=</span> <span class="va">captured_pct</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_line</span><span class="op">(</span>color <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, linewidth <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_abline</span><span class="op">(</span>slope <span class="op">=</span> <span class="fl">1</span>, intercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="fl">2</span>, color <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span> <span class="op">+</span></span>

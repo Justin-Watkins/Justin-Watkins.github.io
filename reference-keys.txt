@@ -71,9 +71,12 @@ tab:seg-lc-income
 tab:seg-lc-gender
 fig:seg-lc-ethnicity-plot
 tab:seg-fa-head
-tab:seg-fa-nscree-table
+tab:seg-fa-parallel-out
 fig:seg-fa-loadings-plot
-fig:seg-fa-multinom-plot
+tab:seg-cfa-fit-table
+fig:seg-gmm-bic
+tab:seg-gmm-sizes
+fig:seg-gmm-profile-plot
 fig:seg-psy-tile
 fig:seg-psy-point
 fig:prf-linear
@@ -209,7 +212,10 @@ hierarchical-clustering
 latent-class-regression
 a-benefits-sought-approach-to-segmentation
 factoranalysis
-casting-segments-onto-other-groups
+confirming-the-structure-with-a-cfa
+model-based-segments-with-a-gaussian-mixture
+are-the-segments-real-enough-to-act-on
+casting-behavioral-segments-onto-demographics
 psychographic-segmentation
 other-segmentation-methods
 key-concepts-and-chapter-summary-4

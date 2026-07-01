@@ -123,7 +123,7 @@ Figure 10.1: A typical gate-entry process
 </p>
 </div>
 <p>What data falls out of this process? Scan counts from ticketing, magnetometer passes and failures, and per-gate timing. Let’s look at aggregated scan data.</p>
-<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">scan_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/scan_data.html">scan_data</a></span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
@@ -174,7 +174,7 @@ Figure 10.1: A typical gate-entry process
 </tbody>
 </table></div>
 <p>The data is scans per minute, bucketed across the entry window.</p>
-<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">scan_data</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">observations</span>, y <span class="op">=</span> <span class="va">scans</span>, color <span class="op">=</span> <span class="va">date</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">stat_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span><span class="op">)</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"grey25"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -190,7 +190,7 @@ Figure 10.2: Distribution of ticket scans at the gates
 </p>
 </div>
 <p>Scans follow a predictable cadence — they build toward a peak and taper off. Our ballpark has four entry points with four scanners each (sixteen total). What is the system’s maximum capacity? It is harder to answer than it sounds, because gates are busier at different times; we want the busiest gate under load, which takes several days of observation.</p>
-<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">max_scans</span> <span class="op">&lt;-</span> <span class="va">scan_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">summarise</span><span class="op">(</span></span>
@@ -304,12 +304,12 @@ Figure 10.2: Distribution of ticket scans at the gates
 <span class="header-section-number">10.3.2</span> Line length and scans<a class="anchor" aria-label="anchor" href="#line-length-and-scans"><i class="fas fa-link"></i></a>
 </h3>
 <p>We need two data sets: scans and line length. We can generate realistic examples with package helpers.</p>
-<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">scans_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_get_scan_data.html">f_get_scan_data</a></span><span class="op">(</span>x_value <span class="op">=</span> <span class="fl">230</span>, y_value <span class="op">=</span> <span class="fl">90</span>, seed <span class="op">=</span> <span class="fl">714</span>, sd_mod <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">scans_a</span><span class="op">$</span><span class="va">action_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_get_time_observations.html">f_get_time_observations</a></span><span class="op">(</span><span class="fl">17</span>, <span class="fl">21</span><span class="op">)</span></span>
 <span><span class="va">scans_a</span><span class="op">$</span><span class="va">cumScans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">scans_a</span><span class="op">$</span><span class="va">scans</span><span class="op">)</span></span></code></pre></div>
 <p>Line-length data would be collected by counting the line every minute. It is noisy: four people may be in line while one orders, or one person may order for several. When data has quirks, write them down — you will have to explain them later.</p>
-<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">line_length_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_get_line_length.html">f_get_line_length</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">755</span>, n <span class="op">=</span> <span class="fl">300</span>, u1 <span class="op">=</span> <span class="fl">22</span>, sd1 <span class="op">=</span> <span class="fl">8</span>, u2 <span class="op">=</span> <span class="fl">8</span>, sd2 <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">line_length_a</span><span class="op">$</span><span class="va">action_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_get_time_observations.html">f_get_time_observations</a></span><span class="op">(</span><span class="fl">17</span>, <span class="fl">21</span><span class="op">)</span></span>
 <span></span>
@@ -356,7 +356,7 @@ Figure 10.2: Distribution of ticket scans at the gates
 </tbody>
 </table></div>
 <p>Does line length track the number of people entering the park?</p>
-<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">line_scans</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">cumScans</span>, y <span class="op">=</span> <span class="va">lineLength</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>color <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">stat_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"loess"</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, color <span class="op">=</span> <span class="st">"grey25"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -377,7 +377,7 @@ Figure 10.3: Line length versus cumulative scans
 <span class="header-section-number">10.3.3</span> Analyzing the results<a class="anchor" aria-label="anchor" href="#analyzing-the-results"><i class="fas fa-link"></i></a>
 </h3>
 <p>We can analyze this much as before, but here we introduce a <strong>generalized additive model</strong> (GAM). Be careful with it: it can fit almost anything, which is exactly why it is harder to reason about than a regression equation. We use <code>mgcv</code> <span class="citation">(<a href="references.html#ref-R-mgcv">Wood 2021</a>)</span>.</p>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mgcv</span><span class="op">)</span></span>
 <span><span class="va">gam_line</span> <span class="op">&lt;-</span> <span class="fu">mgcv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam</a></span><span class="op">(</span><span class="va">lineLength</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span><span class="op">(</span><span class="va">cumScans</span>, bs <span class="op">=</span> <span class="st">"ps"</span>, sp <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">line_scans</span><span class="op">)</span></span>
 <span><span class="va">line_scans</span><span class="op">$</span><span class="va">pred_line</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">gam_line</span><span class="op">)</span></span></code></pre></div>
@@ -403,7 +403,7 @@ Figure 10.3: Line length versus cumulative scans
 <td align="right">17.729</td>
 </tr></tbody>
 </table></div>
-<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">line_scans</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">cumScans</span>, y <span class="op">=</span> <span class="va">lineLength</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color <span class="op">=</span> <span class="va">lineLength</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">pred_line</span><span class="op">)</span>, color <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, linewidth <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span></span>
@@ -425,7 +425,7 @@ Figure 10.4: GAM fit on line-length data
 <span class="header-section-number">10.3.4</span> Understanding wait times<a class="anchor" aria-label="anchor" href="#understanding-wait-times"><i class="fas fa-link"></i></a>
 </h3>
 <p>Now we look at what drives the wait itself. The package helper <code>f_get_wait_times</code> breaks each transaction into three exponentially distributed stages — order, payment, and fulfillment — which is what you would have had to measure directly.</p>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wait_times_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_get_wait_times.html">f_get_wait_times</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">755</span>, n <span class="op">=</span> <span class="fl">300</span>, rate1 <span class="op">=</span> <span class="fl">0.03</span>, rate2 <span class="op">=</span> <span class="fl">0.06</span>, rate3 <span class="op">=</span> <span class="fl">0.15</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
@@ -483,7 +483,7 @@ Figure 10.4: GAM fit on line-length data
 </tbody>
 </table></div>
 <p>The distribution of each stage tells us where the variance lives.</p>
-<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wait_dist</span> <span class="op">&lt;-</span> <span class="va">wait_times_a</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">orderTimes</span>, <span class="va">paymentTimes</span>, <span class="va">fulfillTimes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu">everything</span><span class="op">(</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"component"</span>, values_to <span class="op">=</span> <span class="st">"seconds"</span><span class="op">)</span></span>
@@ -507,10 +507,10 @@ Figure 10.5: Distribution of wait-time components
 <span class="header-section-number">10.3.5</span> Simulating a component of the process<a class="anchor" aria-label="anchor" href="#simulating-a-component-of-the-process"><i class="fas fa-link"></i></a>
 </h3>
 <p>Simulation is a large topic and exactly the right tool here. We have used <code>rexp</code> and <code>rnorm</code> to <em>generate</em> data from known distributions; the harder question is fitting a distribution to data we already have and then simulating it under new conditions. We will build a small Monte Carlo simulation by hand so you understand what a packaged tool does under the hood.</p>
-<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wait_times</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/wait_times_data.html">wait_times_data</a></span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">300</span>, <span class="op">]</span></span></code></pre></div>
 <p>First, which stage drives the total? A correlation table answers it.</p>
-<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">component_cor</span> <span class="op">&lt;-</span> <span class="va">wait_times</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">orderTimes</span>, <span class="va">paymentTimes</span>, <span class="va">fulfillTimes</span>, <span class="va">totalTime</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -557,7 +557,7 @@ Figure 10.5: Distribution of wait-time components
 </tbody>
 </table></div>
 <p>Order time is by far the most correlated with total time (around 0.9), while payment and fulfillment contribute much less. That makes sense — no other work happens while a customer is ordering, and fulfillment is partly buffered. So a solution should target order time. A box plot confirms where the spread is.</p>
-<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wait_long</span> <span class="op">&lt;-</span> <span class="va">wait_times</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">orderTimes</span>, <span class="va">paymentTimes</span>, <span class="va">fulfillTimes</span>, <span class="va">totalTime</span><span class="op">)</span>,</span>
 <span>                      names_to <span class="op">=</span> <span class="st">"component"</span>, values_to <span class="op">=</span> <span class="st">"seconds"</span><span class="op">)</span></span>
@@ -573,7 +573,7 @@ Figure 10.5: Distribution of wait-time components
 Figure 10.6: Variance of transaction components
 </p>
 </div>
-<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wait_quantiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span></span>
 <span>  <span class="va">wait_times</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span>, <span class="fl">2</span>,</span>
 <span>  <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">x</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.10</span>, <span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>, <span class="fl">0.90</span><span class="op">)</span><span class="op">)</span></span>
@@ -628,7 +628,7 @@ Figure 10.6: Variance of transaction components
 </table></div>
 <p>The upper quartile of order times stretches far past the median — that long right tail is the real problem, because it is what makes the system unpredictable.</p>
 <p>Because total time is just the sum of the three stages, a regression on it should fit almost perfectly. That is a useful sanity check, not a model.</p>
-<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">time_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">totalTime</span> <span class="op">~</span> <span class="va">orderTimes</span> <span class="op">+</span> <span class="va">paymentTimes</span> <span class="op">+</span> <span class="va">fulfillTimes</span>, data <span class="op">=</span> <span class="va">wait_times</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">time_model</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span></span></code></pre></div>
 <pre><code>## [1] 0.9997996</code></pre>
@@ -638,18 +638,18 @@ Figure 10.6: Variance of transaction components
 <span class="header-section-number">10.3.5.1</span> Building the simulation<a class="anchor" aria-label="anchor" href="#building-the-simulation"><i class="fas fa-link"></i></a>
 </h4>
 <p>We fit and simulate using the <code>wait_times_distribution_data</code> table. We take a sample to act as our observed history.</p>
-<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wait_distribution</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/wait_times_distribution_data.html">wait_times_distribution_data</a></span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">755</span><span class="op">)</span></span>
 <span><span class="va">wait_sample</span> <span class="op">&lt;-</span> <span class="va">wait_distribution</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span><span class="fl">0.70</span><span class="op">)</span></span></code></pre></div>
 <p>The empirical cumulative distribution function (ECDF) is the inverse of the quantile function — it maps a value to the share of observations at or below it.</p>
-<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">order_cdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/ecdf.html">ecdf</a></span><span class="op">(</span><span class="va">wait_sample</span><span class="op">$</span><span class="va">orderTimes</span><span class="op">)</span></span>
 <span><span class="fu">order_cdf</span><span class="op">(</span><span class="fl">50</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.7785714</code></pre>
 <p>About 78% of orders take 50 seconds or less, matching the quantile at that probability. Plotting it shows the familiar S-curve.</p>
-<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">wait_sample</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">orderTimes</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">stat_ecdf</span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"step"</span>, color <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, linewidth <span class="op">=</span> <span class="fl">1.1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_hline</span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fu">order_cdf</span><span class="op">(</span><span class="fl">50</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="fl">2</span>, color <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -665,7 +665,7 @@ Figure 10.7: ECDF of order time
 </p>
 </div>
 <p>Because order time is roughly exponential, we can simulate it by drawing from an exponential with the observed mean, and compare to the real data.</p>
-<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">715</span><span class="op">)</span></span>
 <span><span class="va">sim_compare</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>  Simulated <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span><span class="op">(</span><span class="fl">400</span>, rate <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">wait_sample</span><span class="op">$</span><span class="va">orderTimes</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -689,7 +689,7 @@ Figure 10.8: Simulated versus actual order times
 <blockquote>
 <p>If we cut order time in half, how would average total wait change?</p>
 </blockquote>
-<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">500</span></span>
 <span><span class="va">sim_orders</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"list"</span>, <span class="fl">500</span><span class="op">)</span></span>
 <span><span class="va">sim_pay</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"list"</span>, <span class="fl">500</span><span class="op">)</span></span>
@@ -708,7 +708,7 @@ Figure 10.8: Simulated versus actual order times
 <span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">mean_total</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 56.5</code></pre>
 <p>The simulated average total time matches what we observed, around 56 seconds. Now use the simulation to ask how many orders a single register could clear in an hour when the queue is always full — and how much that number <em>varies</em>, since variance is the whole point.</p>
-<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">total_time_sample</span> <span class="op">&lt;-</span> <span class="va">sim_orders</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">sim_pay</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">sim_fulfill</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">715</span><span class="op">)</span></span>
@@ -722,7 +722,7 @@ Figure 10.8: Simulated versus actual order times
 <span>  <span class="op">}</span></span>
 <span>  <span class="va">served_per_hour</span><span class="op">[</span><span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">count</span> <span class="op">-</span> <span class="fl">1</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">served</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>simulation <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">30</span>, served <span class="op">=</span> <span class="va">served_per_hour</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">served</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">simulation</span>, y <span class="op">=</span> <span class="va">served</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -746,7 +746,7 @@ Figure 10.9: Simulated fans served per hour, per register
 <span class="header-section-number">10.4</span> Fitting distributions<a class="anchor" aria-label="anchor" href="#fitting-distributions"><i class="fas fa-link"></i></a>
 </h2>
 <p>Simulation depends on fitting a distribution to your data, and there is more than one way. We build a small frequency table — really a histogram — and fit several curves to its cumulative form. The package ships a prepared table.</p>
-<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">freq_table</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/freq_table_data.html">freq_table_data</a></span></span>
 <span><span class="va">freq_table</span><span class="op">$</span><span class="va">cumprob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">freq_table</span><span class="op">$</span><span class="va">prob</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
@@ -798,7 +798,7 @@ Figure 10.9: Simulated fans served per hour, per register
 </tbody>
 </table></div>
 <p>We try an exponential, a (deliberately overfit) fifth-degree polynomial, a GAM, and a spline.</p>
-<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mgcv</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">fit_exp</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/nls.html">nls</a></span><span class="op">(</span><span class="va">variable</span> <span class="op">~</span> <span class="va">a</span> <span class="op">*</span> <span class="va">cumprob</span><span class="op">^</span><span class="va">m</span>, data <span class="op">=</span> <span class="va">freq_table</span>, start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">300</span>, m <span class="op">=</span> <span class="fl">0.15</span><span class="op">)</span><span class="op">)</span></span>
@@ -814,7 +814,7 @@ Figure 10.9: Simulated fans served per hour, per register
 <span>    pred_spline <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit_spline</span><span class="op">)</span><span class="op">$</span><span class="va">y</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p>A logit curve is a poor fit here and <code>nls</code> fails to converge on it — a common outcome you should expect, not fear. Plotting the fits shows which work.</p>
-<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fits_long</span> <span class="op">&lt;-</span> <span class="va">freq_table</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">pred_exp</span>, <span class="va">pred_poly</span>, <span class="va">pred_gam</span>, <span class="va">pred_spline</span><span class="op">)</span>,</span>
 <span>                      names_to <span class="op">=</span> <span class="st">"fit"</span>, values_to <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -836,7 +836,7 @@ Figure 10.10: Distribution fits to the cumulative order-time data
 </p>
 </div>
 <p>The GAM and spline track the data closely; the exponential and polynomial fit the curve less well. For linear models you compare with ANOVA; for these, AIC and BIC are the usual tools (lower is better).</p>
-<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_diagnostics</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>  model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Exponential"</span>, <span class="st">"Polynomial"</span>, <span class="st">"GAM"</span><span class="op">)</span>,</span>
 <span>  AIC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit_exp</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit_poly</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit_gam</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -869,7 +869,7 @@ Figure 10.10: Distribution fits to the cumulative order-time data
 </tbody>
 </table></div>
 <p>The exponential has the worst (highest) AIC. The polynomial <em>looks</em> fine on the fit, which is the trap: if you simulate from it, you get garbage. Watch what happens when we run the fifth-degree fit across the full probability range.</p>
-<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">poly_curve</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>  cumprob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.005</span><span class="op">)</span></span>
 <span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -896,7 +896,7 @@ Figure 10.11: A fifth-degree polynomial produces an unusable simulated curve
 <p>Picture a concept with a few registers and limited line space — an <strong>M/M/k/N</strong> queue: multi-server, finite capacity, with exponential inter-arrival and service times. The notation:</p>
 <p>Average time between arrivals: <span class="math inline">\(\tau_{a} = 1/\lambda\)</span>. Average service time: <span class="math inline">\(\tau_{s} = 1/\mu\)</span>. Number of servers: <span class="math inline">\(k\)</span>. Queue capacity: <span class="math inline">\(N\)</span>. Utilization: <span class="math inline">\(\rho = \lambda/\mu\)</span>, where <span class="math inline">\(\rho/k &lt; 1\)</span> keeps the system stable.</p>
 <p>When you meet Greek letters, write them out — this analysis gets confusing fast. We define the inputs for a small concept: two registers, room for five in line, an arrival roughly every ten time units, and eight units to serve each.</p>
-<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">k</span>     <span class="op">&lt;-</span> <span class="fl">2</span>          <span class="co"># registers (servers)</span></span>
 <span><span class="va">N</span>     <span class="op">&lt;-</span> <span class="fl">5</span>          <span class="co"># queue capacity</span></span>
 <span><span class="va">tau_a</span> <span class="op">&lt;-</span> <span class="fl">10</span>         <span class="co"># average time between arrivals</span></span>
@@ -909,7 +909,7 @@ Figure 10.11: A fifth-degree polynomial produces an unusable simulated curve
 P_{0} = 1 \Big/ \Big\{\sum_{n=0}^{k-1} \rho^n/n! + \frac{\rho^k}{k!}\Big[\frac{k^{N-k+1} - \rho^{N-k+1}}{(k - \rho)k^{N-k}}\Big]\Big\}
 \end{equation}\]</span></p>
 <p>The only hard part of translating an equation like this is getting the parentheses right.</p>
-<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">N</span> <span class="op">-</span> <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">P0</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span></span>
 <span>  <span class="op">(</span><span class="va">rho</span><span class="op">^</span><span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -918,7 +918,7 @@ P_{0} = 1 \Big/ \Big\{\sum_{n=0}^{k-1} \rho^n/n! + \frac{\rho^k}{k!}\Big[\frac{k
 <span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">P0</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 0.431</code></pre>
 <p>From there, the per-state probabilities and the expected waits follow. Rather than retype the algebra, the package wraps it in <code>f_get_MMKN</code>, which takes the four inputs and returns the key figures.</p>
-<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_get_MMKN.html">f_get_MMKN</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">2</span>, N <span class="op">=</span> <span class="fl">5</span>, ta <span class="op">=</span> <span class="fl">10</span>, ts <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##                   Metric     Value
 ## 1               Servers:  2.000000
