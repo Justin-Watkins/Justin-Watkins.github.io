@@ -11,10 +11,18 @@
   --fos-muted: #6b7280;
   --fos-rule: #e6e8eb;
   --fos-code-bg: #f6f8fa;
+  /* Always end the stacks in a generic family. bslib emits a bare
+     "font-family: Inter" with no fallback, so if Inter fails to load the
+     browser drops to its default serif. These stacks keep text sans/mono. */
+  --fos-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+              "Helvetica Neue", Arial, sans-serif;
+  --fos-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
+              Consolas, "Liberation Mono", monospace;
 }
 
 /* --- Reading comfort ------------------------------------------------- */
 body {
+  font-family: var(--fos-sans);
   font-size: 1.05rem;
   line-height: 1.65;
   color: var(--fos-ink);
@@ -40,6 +48,7 @@ main h1,
 main h2,
 main h3,
 main h4 {
+  font-family: var(--fos-sans);
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.25;
@@ -64,6 +73,9 @@ main a {
 main a:hover { text-decoration-thickness: 2px; }
 
 /* --- Code ------------------------------------------------------------ */
+pre, code, kbd, samp {
+  font-family: var(--fos-mono);
+}
 pre {
   background: var(--fos-code-bg);
   border: 1px solid var(--fos-rule);
