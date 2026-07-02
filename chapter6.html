@@ -421,12 +421,429 @@ Figure 6.3: The revenue-relevant peak of the curve
 <pre><code>## [1] 8495.97</code></pre>
 <p>That gap is the entire argument for variable and dynamic pricing. It also depends on the assumptions we made, and the picture changes the moment other constraints enter. If season-ticket holders already pay $29, a single-game price of $25 creates a brand problem. And when inventory is limited, these choices become more discrete.</p>
 </div>
-<div id="basics-of-forecasting" class="section level2" number="6.3">
+<div id="optimizing-a-full-price-structure" class="section level2" number="6.3">
 <h2>
-<span class="header-section-number">6.3</span> Basics of forecasting<a class="anchor" aria-label="anchor" href="#basics-of-forecasting"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.3</span> Optimizing a full price structure<a class="anchor" aria-label="anchor" href="#optimizing-a-full-price-structure"><i class="fas fa-link"></i></a>
+</h2>
+<p>We found the peak of one section’s demand curve with a little calculus. A real venue has dozens of sections, each with its own curve, and they do not stand alone: raising the price behind home plate pushes some fans to the outfield, and you cannot let a bleacher seat cost more than a field-level one without confusing the market. You also cannot move any single price too far in one season without a brand or fairness problem. Set all of those prices at once, under all of those constraints, and there is no formula to solve by hand.</p>
+<p>This is a <strong>constrained optimization</strong> problem: choose the prices that maximize revenue subject to rules you impose. R has good tooling for it. We will use <code>nloptr</code> <span class="citation">(<a href="references.html#ref-R-nloptr">Ypma and Johnson 2025</a>)</span>, an interface to the NLopt library, which can maximize a function you define while respecting bounds and constraints. The steps mirror a real pricing project: assemble the history, estimate a demand curve for each section, decide what the prices are and are not allowed to do, and let the optimizer search.</p>
+<p>Start with the data. The <code>FOSBAAS</code> package ships a seating manifest with a single-game price for every seat, and secondary-market transactions we can trace back to a section. Aggregating gives one row per section: its price and the single-game tickets it sold.</p>
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/astamm/nloptr">nloptr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">man</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/manifest_data.html">manifest_data</a></span></span>
+<span><span class="va">sec</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/secondary_data.html">secondary_data</a></span></span>
+<span></span>
+<span><span class="va">section_sales</span> <span class="op">&lt;-</span> <span class="va">sec</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">man</span>, <span class="va">seatID</span>, <span class="va">sectionNumber</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">"seatID"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ticketType</span> <span class="op">==</span> <span class="st">"si"</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">sectionNumber</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sectionNumber</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>tickets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">tickets</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sections</span> <span class="op">&lt;-</span> <span class="va">man</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sectionNumber</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">singlePrice</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>                   seats <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">section_sales</span>, by <span class="op">=</span> <span class="st">"sectionNumber"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:opt-sections-table">Table 6.3: </span>Single-game price and volume by section</caption>
+<thead><tr class="header">
+<th align="center">sectionNumber</th>
+<th align="center">price</th>
+<th align="center">seats</th>
+<th align="center">tickets</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">82.14</td>
+<td align="center">5305</td>
+<td align="center">37437</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">67.09</td>
+<td align="center">4427</td>
+<td align="center">29518</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">56.72</td>
+<td align="center">3689</td>
+<td align="center">27006</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">50.91</td>
+<td align="center">3247</td>
+<td align="center">19770</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">44.47</td>
+<td align="center">2741</td>
+<td align="center">15658</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">41.05</td>
+<td align="center">2472</td>
+<td align="center">17614</td>
+</tr>
+</tbody>
+</table></div>
+<p>We have 29 sections spanning about $14 to $82. To fit a demand curve we need more than one point per section — we need to see how volume moved when price moved. In a real project that comes straight from your ticketing system’s history. The package does not ship two seasons at the section level, so we synthesize a plausible prior season: last year each section was priced a little lower, and the cheaper, more price-sensitive sections gave up proportionally more volume when prices rose. (With real history you would skip this step and use your own numbers.)</p>
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">715</span><span class="op">)</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sections</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Cheaper sections are more price-sensitive; scale sensitivity to price rank.</span></span>
+<span><span class="va">sensitivity</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">sections</span><span class="op">$</span><span class="va">price</span><span class="op">)</span> <span class="op">-</span> <span class="va">sections</span><span class="op">$</span><span class="va">price</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">sections</span><span class="op">$</span><span class="va">price</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">price_cut</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">0.03</span>, <span class="fl">0.09</span><span class="op">)</span>                       <span class="co"># last year was 3-9% cheaper</span></span>
+<span><span class="va">demand_gain</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">0.6</span> <span class="op">+</span> <span class="fl">1.3</span> <span class="op">*</span> <span class="va">sensitivity</span><span class="op">)</span> <span class="op">*</span> <span class="va">price_cut</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">n</span>, <span class="fl">0</span>, <span class="fl">0.02</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sections</span> <span class="op">&lt;-</span> <span class="va">sections</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    price_ly   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">price</span> <span class="op">/</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">price_cut</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,        <span class="co"># last year's price</span></span>
+<span>    tickets_ly <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">tickets</span> <span class="op">*</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="va">demand_gain</span><span class="op">)</span><span class="op">)</span>        <span class="co"># last year's volume</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<p>Two points define a line. We fit a linear demand curve <span class="math inline">\(q = a - b\,p\)</span> through each section’s two seasons, which also gives us the section’s price elasticity at today’s price and the single-section revenue peak — the same vertex we found by hand earlier, now computed for all 29 at once.</p>
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sections</span> <span class="op">&lt;-</span> <span class="va">sections</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    b      <span class="op">=</span> <span class="op">-</span><span class="op">(</span><span class="va">tickets</span> <span class="op">-</span> <span class="va">tickets_ly</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">price</span> <span class="op">-</span> <span class="va">price_ly</span><span class="op">)</span>, <span class="co"># slope of demand</span></span>
+<span>    a      <span class="op">=</span> <span class="va">tickets</span> <span class="op">+</span> <span class="va">b</span> <span class="op">*</span> <span class="va">price</span>,                          <span class="co"># intercept</span></span>
+<span>    elast  <span class="op">=</span> <span class="op">-</span><span class="va">b</span> <span class="op">*</span> <span class="va">price</span> <span class="op">/</span> <span class="va">tickets</span>,                         <span class="co"># elasticity at current price</span></span>
+<span>    vertex <span class="op">=</span> <span class="va">a</span> <span class="op">/</span> <span class="op">(</span><span class="fl">2</span> <span class="op">*</span> <span class="va">b</span><span class="op">)</span>                                   <span class="co"># single-section revenue peak</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<p>The elasticities run from about -0.8 to -2.5, averaging near -1.8: most sections are elastic (a 1% price rise costs more than 1% of volume), but the premium seats are not. Elasticity is the whole story of what follows. Where demand is inelastic (elasticity between 0 and -1), raising the price raises revenue; where it is elastic, a discount can raise revenue by selling enough extra seats to more than make up for the lower price.</p>
+<p>Now the rules. Two constraints tie the sections together, which is exactly why we cannot just set each one to its own vertex:</p>
+<ul>
+<li>
+<strong>Price-change bounds.</strong> No section’s price may move more than 20% from its current level in a single season — a guard against brand damage and sticker shock.</li>
+<li>
+<strong>A price ladder.</strong> Sections must stay ordered: a more expensive section can never end up priced below a cheaper one. Inverting the ladder cannibalizes your best inventory.</li>
+</ul>
+<p>We write the objective (total revenue, negated because <code>nloptr</code> minimizes) and the ladder as an inequality constraint, then bound each price to its 20% band.</p>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">sections</span><span class="op">$</span><span class="va">a</span>; <span class="va">b</span> <span class="op">&lt;-</span> <span class="va">sections</span><span class="op">$</span><span class="va">b</span></span>
+<span><span class="va">p0</span> <span class="op">&lt;-</span> <span class="va">sections</span><span class="op">$</span><span class="va">price</span></span>
+<span></span>
+<span><span class="va">demand_at</span>  <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="va">a</span> <span class="op">-</span> <span class="va">b</span> <span class="op">*</span> <span class="va">p</span></span>
+<span><span class="va">f_objective</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">p</span> <span class="op">*</span> <span class="fu">demand_at</span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">)</span>        <span class="co"># maximize revenue</span></span>
+<span><span class="va">f_ladder</span>    <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.01</span>                <span class="co"># prices must stay descending</span></span>
+<span></span>
+<span><span class="va">lower</span> <span class="op">&lt;-</span> <span class="va">p0</span> <span class="op">*</span> <span class="fl">0.80</span></span>
+<span><span class="va">upper</span> <span class="op">&lt;-</span> <span class="va">p0</span> <span class="op">*</span> <span class="fl">1.20</span></span></code></pre></div>
+<p><code>nloptr</code> needs a starting point (the current prices), the objective, the inequality constraints, and the bounds. We use COBYLA, a derivative-free algorithm that handles constraints well — a safe default when you do not want to hand it a gradient.</p>
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://astamm.github.io/nloptr/reference/nloptr.html">nloptr</a></span><span class="op">(</span></span>
+<span>  x0          <span class="op">=</span> <span class="va">p0</span>,</span>
+<span>  eval_f      <span class="op">=</span> <span class="va">f_objective</span>,</span>
+<span>  eval_g_ineq <span class="op">=</span> <span class="va">f_ladder</span>,</span>
+<span>  lb          <span class="op">=</span> <span class="va">lower</span>,</span>
+<span>  ub          <span class="op">=</span> <span class="va">upper</span>,</span>
+<span>  opts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>algorithm <span class="op">=</span> <span class="st">"NLOPT_LN_COBYLA"</span>,</span>
+<span>              xtol_rel <span class="op">=</span> <span class="fl">1e-7</span>, ftol_rel <span class="op">=</span> <span class="fl">1e-9</span>, maxeval <span class="op">=</span> <span class="fl">20000</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">opt_price</span>  <span class="op">&lt;-</span> <span class="va">result</span><span class="op">$</span><span class="va">solution</span></span>
+<span><span class="va">opt_demand</span> <span class="op">&lt;-</span> <span class="fu">demand_at</span><span class="op">(</span><span class="va">opt_price</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">revenue_summary</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  current_revenue   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">p0</span> <span class="op">*</span> <span class="va">sections</span><span class="op">$</span><span class="va">tickets</span><span class="op">)</span>,</span>
+<span>  optimal_revenue   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">opt_price</span> <span class="op">*</span> <span class="va">opt_demand</span><span class="op">)</span>,</span>
+<span>  revenue_lift      <span class="op">=</span> <span class="va">optimal_revenue</span> <span class="op">/</span> <span class="va">current_revenue</span> <span class="op">-</span> <span class="fl">1</span>,</span>
+<span>  attendance_change <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">opt_demand</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">sections</span><span class="op">$</span><span class="va">tickets</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:opt-revenue-table">Table 6.4: </span>Revenue and attendance under the optimized prices</caption>
+<thead><tr class="header">
+<th align="center">current_revenue</th>
+<th align="center">optimal_revenue</th>
+<th align="center">revenue_lift</th>
+<th align="center">attendance_change</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="center">$13,159,973</td>
+<td align="center">$13,729,032</td>
+<td align="center">4.3%</td>
+<td align="center">23.7%</td>
+</tr></tbody>
+</table></div>
+<p>The optimizer lifts modeled revenue from about $13.2M to $13.7M — roughly 4% — and it does so mostly by filling seats: attendance rises about 24%. That volume figure is optimistic, because the model trusts a straight line all the way out to a 20% price cut; treat the <em>direction</em> as the lesson, not the exact magnitude. Here is the resulting price sheet.</p>
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">price_plan</span> <span class="op">&lt;-</span> <span class="va">sections</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html">transmute</a></span><span class="op">(</span></span>
+<span>    section    <span class="op">=</span> <span class="va">sectionNumber</span>,</span>
+<span>    elasticity <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">elast</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>    current    <span class="op">=</span> <span class="va">price</span>,</span>
+<span>    optimal    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">opt_price</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>    change     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">100</span> <span class="op">*</span> <span class="op">(</span><span class="va">opt_price</span> <span class="op">-</span> <span class="va">price</span><span class="op">)</span> <span class="op">/</span> <span class="va">price</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:opt-plan-table">Table 6.5: </span>Optimized single-game price sheet</caption>
+<thead><tr class="header">
+<th align="center">section</th>
+<th align="center">elasticity</th>
+<th align="center">current</th>
+<th align="center">optimal</th>
+<th align="center">change</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">-0.91</td>
+<td align="center">82.14</td>
+<td align="center">86.32</td>
+<td align="center">5.1</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">-1.02</td>
+<td align="center">67.09</td>
+<td align="center">66.40</td>
+<td align="center">-1.0</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">-1.85</td>
+<td align="center">56.72</td>
+<td align="center">45.38</td>
+<td align="center">-20.0</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">-1.26</td>
+<td align="center">50.91</td>
+<td align="center">45.37</td>
+<td align="center">-10.9</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">-1.72</td>
+<td align="center">44.47</td>
+<td align="center">36.29</td>
+<td align="center">-18.4</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">-1.20</td>
+<td align="center">41.05</td>
+<td align="center">36.28</td>
+<td align="center">-11.6</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">-1.43</td>
+<td align="center">37.55</td>
+<td align="center">32.15</td>
+<td align="center">-14.4</td>
+</tr>
+<tr class="even">
+<td align="center">8</td>
+<td align="center">-1.38</td>
+<td align="center">37.55</td>
+<td align="center">32.14</td>
+<td align="center">-14.4</td>
+</tr>
+<tr class="odd">
+<td align="center">9</td>
+<td align="center">-1.82</td>
+<td align="center">34.35</td>
+<td align="center">27.48</td>
+<td align="center">-20.0</td>
+</tr>
+<tr class="even">
+<td align="center">10</td>
+<td align="center">-1.92</td>
+<td align="center">30.95</td>
+<td align="center">24.77</td>
+<td align="center">-20.0</td>
+</tr>
+<tr class="odd">
+<td align="center">11</td>
+<td align="center">-1.80</td>
+<td align="center">30.95</td>
+<td align="center">24.76</td>
+<td align="center">-20.0</td>
+</tr>
+<tr class="even">
+<td align="center">12</td>
+<td align="center">-1.80</td>
+<td align="center">27.56</td>
+<td align="center">22.61</td>
+<td align="center">-17.9</td>
+</tr>
+<tr class="odd">
+<td align="center">13</td>
+<td align="center">-1.29</td>
+<td align="center">27.56</td>
+<td align="center">22.60</td>
+<td align="center">-18.0</td>
+</tr>
+<tr class="even">
+<td align="center">14</td>
+<td align="center">-1.67</td>
+<td align="center">24.10</td>
+<td align="center">19.30</td>
+<td align="center">-19.9</td>
+</tr>
+<tr class="odd">
+<td align="center">15</td>
+<td align="center">-2.16</td>
+<td align="center">24.10</td>
+<td align="center">19.29</td>
+<td align="center">-20.0</td>
+</tr>
+<tr class="even">
+<td align="center">16</td>
+<td align="center">-2.14</td>
+<td align="center">24.10</td>
+<td align="center">19.28</td>
+<td align="center">-20.0</td>
+</tr>
+<tr class="odd">
+<td align="center">17</td>
+<td align="center">-2.28</td>
+<td align="center">20.62</td>
+<td align="center">16.52</td>
+<td align="center">-19.9</td>
+</tr>
+<tr class="even">
+<td align="center">18</td>
+<td align="center">-2.39</td>
+<td align="center">20.62</td>
+<td align="center">16.51</td>
+<td align="center">-19.9</td>
+</tr>
+<tr class="odd">
+<td align="center">19</td>
+<td align="center">-1.97</td>
+<td align="center">20.61</td>
+<td align="center">16.50</td>
+<td align="center">-20.0</td>
+</tr>
+<tr class="even">
+<td align="center">20</td>
+<td align="center">-2.18</td>
+<td align="center">20.61</td>
+<td align="center">16.49</td>
+<td align="center">-20.0</td>
+</tr>
+<tr class="odd">
+<td align="center">21</td>
+<td align="center">-2.46</td>
+<td align="center">17.21</td>
+<td align="center">13.80</td>
+<td align="center">-19.8</td>
+</tr>
+<tr class="even">
+<td align="center">22</td>
+<td align="center">-1.24</td>
+<td align="center">17.21</td>
+<td align="center">13.79</td>
+<td align="center">-19.9</td>
+</tr>
+<tr class="odd">
+<td align="center">23</td>
+<td align="center">-2.25</td>
+<td align="center">17.21</td>
+<td align="center">13.78</td>
+<td align="center">-19.9</td>
+</tr>
+<tr class="even">
+<td align="center">24</td>
+<td align="center">-1.94</td>
+<td align="center">17.21</td>
+<td align="center">13.77</td>
+<td align="center">-20.0</td>
+</tr>
+<tr class="odd">
+<td align="center">25</td>
+<td align="center">-2.22</td>
+<td align="center">13.80</td>
+<td align="center">11.08</td>
+<td align="center">-19.7</td>
+</tr>
+<tr class="even">
+<td align="center">26</td>
+<td align="center">-1.65</td>
+<td align="center">13.80</td>
+<td align="center">11.07</td>
+<td align="center">-19.8</td>
+</tr>
+<tr class="odd">
+<td align="center">27</td>
+<td align="center">-1.92</td>
+<td align="center">13.80</td>
+<td align="center">11.06</td>
+<td align="center">-19.9</td>
+</tr>
+<tr class="even">
+<td align="center">28</td>
+<td align="center">-0.83</td>
+<td align="center">13.80</td>
+<td align="center">11.05</td>
+<td align="center">-19.9</td>
+</tr>
+<tr class="odd">
+<td align="center">29</td>
+<td align="center">-2.43</td>
+<td align="center">13.80</td>
+<td align="center">11.04</td>
+<td align="center">-20.0</td>
+</tr>
+</tbody>
+</table></div>
+<p>The pattern is textbook. The two premium lower-bowl sections are inelastic, so the optimizer nudges the most expensive one up about 5% and holds the near-unit-elastic one roughly flat. Every elastic section is discounted, most of them all the way to the 20%-cut floor. Plotting the recommended change against elasticity makes the rule visible, with the theoretical break-even at an elasticity of -1.</p>
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">price_plan</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">elasticity</span>, y <span class="op">=</span> <span class="va">change</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_hline</span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, color <span class="op">=</span> <span class="st">"grey70"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, linetype <span class="op">=</span> <span class="fl">2</span>, color <span class="op">=</span> <span class="st">"grey55"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2.6</span>, color <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Estimated price elasticity"</span>, y <span class="op">=</span> <span class="st">"Recommended price change (%)"</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">"Raise inelastic sections, discount elastic ones"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="va">book_theme</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:opt-elast-plot"></span>
+<img src="_main_files/figure-html/opt-elast-plot-1.png" alt="Recommended price change against elasticity" width="100%"><p class="caption">
+Figure 6.4: Recommended price change against elasticity
+</p>
+</div>
+<p>A handful of sections do not sit exactly where their own elasticity would put them — that is the ladder doing its job. An inelastic section stranded at the bottom of the price structure gets pulled down with its neighbors rather than being allowed to leapfrog them. That is the whole point of optimizing every price together instead of one at a time. The last check is that the ladder held: cheaper sections should never overtake expensive ones.</p>
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ladder</span> <span class="op">&lt;-</span> <span class="va">price_plan</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">section</span>, Current <span class="op">=</span> <span class="va">current</span>, Optimal <span class="op">=</span> <span class="va">optimal</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="va">section</span>, names_to <span class="op">=</span> <span class="st">"plan"</span>, values_to <span class="op">=</span> <span class="st">"price"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">ladder</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">section</span><span class="op">)</span>, <span class="va">price</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">price</span>,</span>
+<span>                   color <span class="op">=</span> <span class="va">plan</span>, group <span class="op">=</span> <span class="va">plan</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_color_manual</span><span class="op">(</span><span class="st">""</span>, values <span class="op">=</span> <span class="va">plot_palette</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/dollar_format.html">dollar</a></span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Section (cheapest to most expensive)"</span>, y <span class="op">=</span> <span class="st">"Single-game price"</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">"The optimizer keeps the price ladder intact"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="va">book_theme</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:opt-ladder-plot"></span>
+<img src="_main_files/figure-html/opt-ladder-plot-1.png" alt="Current and optimized price ladder" width="100%"><p class="caption">
+Figure 6.5: Current and optimized price ladder
+</p>
+</div>
+<p>This is a scaffold, not a finished pricing engine, and it is worth being clear about the shortcuts. A demand line fit through two seasons is crude — elasticity from two points is a rough estimate, and the honest fix is more history. We modeled cannibalization with a simple ordering rule; the fuller treatment is a <strong>cross-price elasticity</strong> matrix that says exactly how much demand shifts from each section to every other when a price moves, which needs far more data to estimate well. And we optimized revenue alone. You could just as easily maximize contribution by subtracting seat-level costs, hold total attendance above a floor so you do not gut the gate, or add a constraint that season-ticket value stays protected. The machinery does not change — you add terms to the objective and rows to the constraint list, and <code>nloptr</code> searches the same way. That flexibility is why optimization belongs in a pricing toolkit alongside the price-response functions we started with.</p>
+</div>
+<div id="basics-of-forecasting" class="section level2" number="6.4">
+<h2>
+<span class="header-section-number">6.4</span> Basics of forecasting<a class="anchor" aria-label="anchor" href="#basics-of-forecasting"><i class="fas fa-link"></i></a>
 </h2>
 <p>Forecasting underpins pricing, and it can get very sophisticated. We will stay practical and focus on how to <em>think</em> about it. The <code>FOSBAAS</code> package can build seasons of simulated schedule-and-sales data with <code>f_build_season</code>; the seeds and arguments let you create different conditions. We will build three past seasons.</p>
-<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">season_2022</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_build_season.html">f_build_season</a></span><span class="op">(</span></span>
 <span>  seed1 <span class="op">=</span> <span class="fl">3000</span>, season_year <span class="op">=</span> <span class="fl">2022</span>, seed2 <span class="op">=</span> <span class="fl">714</span>, num_games <span class="op">=</span> <span class="fl">81</span>,</span>
 <span>  seed3 <span class="op">=</span> <span class="fl">366</span>, num_bbh <span class="op">=</span> <span class="fl">5</span>, num_con <span class="op">=</span> <span class="fl">3</span>, num_oth <span class="op">=</span> <span class="fl">5</span>,</span>
@@ -445,7 +862,7 @@ Figure 6.3: The revenue-relevant peak of the curve
 <span><span class="va">past_season</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html">rbind</a></span><span class="op">(</span><span class="va">season_2022</span>, <span class="va">season_2023</span>, <span class="va">season_2024</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:fc-head">Table 6.3: </span>Past-seasons data</caption>
+<span id="tab:fc-head">Table 6.6: </span>Past-seasons data</caption>
 <thead><tr class="header">
 <th align="left"></th>
 <th align="center">gameNumber</th>
@@ -521,14 +938,14 @@ Figure 6.3: The revenue-relevant peak of the curve
 <strong>Bottom-up</strong> forecasts use specific inputs such as the marketing schedule and game attractiveness in your market — rivalry games, for instance.</li>
 </ul>
 <p>We will build a bottom-up forecast. First, split the data into training and test sets so we can evaluate the model honestly rather than scoring it on the data it learned from.</p>
-<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">715</span><span class="op">)</span></span>
 <span><span class="va">test_rows</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">past_season</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                    size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">0.05</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">past_season</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">train</span> <span class="op">&lt;-</span> <span class="va">past_season</span><span class="op">[</span><span class="op">-</span><span class="va">test_rows</span>, <span class="op">]</span></span>
 <span><span class="va">test</span>  <span class="op">&lt;-</span> <span class="va">past_season</span><span class="op">[</span><span class="va">test_rows</span>, <span class="op">]</span></span></code></pre></div>
 <p>Now fit a simple linear model on the training data. Why these variables? Variable selection can be involved, and the goal is a parsimonious model — the simplest one that captures the most variance. For now we pick a few reasonable predictors. Remember that this is mixed data; most regression tutorials use clean, normally distributed numbers, which you rarely get in the wild.</p>
-<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ln_mod_bu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span></span>
 <span>  <span class="va">ticketSales</span> <span class="op">~</span> <span class="va">promotion</span> <span class="op">+</span> <span class="va">daysSinceLastGame</span> <span class="op">+</span> <span class="va">schoolInOut</span> <span class="op">+</span> <span class="va">weekEnd</span> <span class="op">+</span> <span class="va">team</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">train</span></span>
@@ -598,7 +1015,7 @@ Figure 6.3: The revenue-relevant peak of the curve
 <strong>F-statistic</strong> — whether the model as a whole is meaningful.</li>
 </ul>
 <p>This model explains about 63% of the variance in ticket sales. Is that good? Probably not, especially given the standard error. We will pull a few key statistics into a tidy table so we can compare models as we go.</p>
-<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model_stats</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">model</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span>  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
@@ -610,7 +1027,7 @@ Figure 6.3: The revenue-relevant peak of the curve
 <span><span class="op">}</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:fc-stats-table">Table 6.4: </span>Summary statistics for the model</caption>
+<span id="tab:fc-stats-table">Table 6.7: </span>Summary statistics for the model</caption>
 <thead><tr class="header">
 <th align="center">residual_se</th>
 <th align="center">r_squared</th>
@@ -625,12 +1042,12 @@ Figure 6.3: The revenue-relevant peak of the curve
 </tr></tbody>
 </table></div>
 <p>OLS regression makes assumptions about the underlying data, and when they are violated the model can mislead you. The <code>car</code> package <span class="citation">(<a href="references.html#ref-R-car">Fox et al. 2021</a>)</span> has good tools for checking them. We will look at a few.</p>
-<div id="outliers-and-unusual-points" class="section level3" number="6.3.1">
+<div id="outliers-and-unusual-points" class="section level3" number="6.4.1">
 <h3>
-<span class="header-section-number">6.3.1</span> Outliers and unusual points<a class="anchor" aria-label="anchor" href="#outliers-and-unusual-points"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.4.1</span> Outliers and unusual points<a class="anchor" aria-label="anchor" href="#outliers-and-unusual-points"><i class="fas fa-link"></i></a>
 </h3>
 <p>Regression is sensitive to extreme points — a rainout, a runaway promotion. Sometimes it is right to remove them.</p>
-<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/car/">car</a></span><span class="op">)</span></span>
 <span><span class="fu">car</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/car/man/outlierTest.html">outlierTest</a></span><span class="op">(</span><span class="va">ln_mod_bu</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## No Studentized residuals with Bonferroni p &lt; 0.05
@@ -638,26 +1055,26 @@ Figure 6.3: The revenue-relevant peak of the curve
 ##     rstudent unadjusted p-value Bonferroni p
 ## 48 -3.215013          0.0015199      0.35109</code></pre>
 <p>The test reports the single most extreme observation, but its Bonferroni-adjusted p-value is well above 0.05, so it is not actually a significant outlier. That is a useful reminder: “most extreme” is not the same as “problematic.” A Q-Q plot checks the normality assumption against a 95% confidence envelope.</p>
-<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">qq</span> <span class="op">&lt;-</span> <span class="fu">car</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/car/man/qqPlot.html">qqPlot</a></span><span class="op">(</span><span class="va">ln_mod_bu</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fc-qq"></span>
 <img src="_main_files/figure-html/fc-qq-1.png" alt="Q-Q plot of the model residuals" width="100%"><p class="caption">
-Figure 6.4: Q-Q plot of the model residuals
+Figure 6.6: Q-Q plot of the model residuals
 </p>
 </div>
 <p>Most points fall along the line, with a few strays. An influence plot combines several diagnostics: the bigger the bubble, the larger the Cook’s distance — a measure of how much a single point pulls the model.</p>
-<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">influential</span> <span class="op">&lt;-</span> <span class="fu">car</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/car/man/influencePlot.html">influencePlot</a></span><span class="op">(</span><span class="va">ln_mod_bu</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fc-influence"></span>
 <img src="_main_files/figure-html/fc-influence-1.png" alt="Influence plot for the model" width="100%"><p class="caption">
-Figure 6.5: Influence plot for the model
+Figure 6.7: Influence plot for the model
 </p>
 </div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:fc-influence-table">Table 6.5: </span>Influential observations</caption>
+<span id="tab:fc-influence-table">Table 6.8: </span>Influential observations</caption>
 <thead><tr class="header">
 <th align="left"></th>
 <th align="center">StudRes</th>
@@ -704,7 +1121,7 @@ Figure 6.5: Influence plot for the model
 </tbody>
 </table></div>
 <p>Several points carry outsized influence. It can be reasonable to drop them if an outside factor we are not modeling — weather, say — explains them. We will remove exactly the points the influence plot flagged and refit, keeping everything reproducible by using the row labels the plot returned rather than hand-picking numbers.</p>
-<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">train_clean</span> <span class="op">&lt;-</span> <span class="va">train</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">train</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">influential</span><span class="op">)</span>, <span class="op">]</span></span>
 <span></span>
 <span><span class="va">ln_mod_clean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span></span>
@@ -713,7 +1130,7 @@ Figure 6.5: Influence plot for the model
 <span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:fc-clean-table">Table 6.6: </span>Summary statistics after removing influential points</caption>
+<span id="tab:fc-clean-table">Table 6.9: </span>Summary statistics after removing influential points</caption>
 <thead><tr class="header">
 <th align="center">residual_se</th>
 <th align="center">r_squared</th>
@@ -728,7 +1145,7 @@ Figure 6.5: Influence plot for the model
 </tr></tbody>
 </table></div>
 <p>Removing them gives only a modest improvement. What else might help? We can look for interaction terms or transform the response. <code>powerTransform</code> suggests a power to apply.</p>
-<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu">car</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/car/man/powerTransform.html">powerTransform</a></span><span class="op">(</span><span class="va">ln_mod_clean</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## bcPower Transformation to Normality 
 ##    Est Power Rounded Pwr Wald Lwr Bnd Wald Upr Bnd
@@ -743,14 +1160,14 @@ Figure 6.5: Influence plot for the model
 ##                            LRT df       pval
 ## LR test, lambda = (1) 22.39875  1 2.2152e-06</code></pre>
 <p>The suggested power is nowhere near zero, so a log transform is unlikely to help — but let’s confirm by trying it.</p>
-<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ln_mod_log</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">ticketSales</span><span class="op">)</span> <span class="op">~</span> <span class="va">promotion</span> <span class="op">+</span> <span class="va">daysSinceLastGame</span> <span class="op">+</span> <span class="va">schoolInOut</span> <span class="op">+</span> <span class="va">weekEnd</span> <span class="op">+</span> <span class="va">team</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">train_clean</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:fc-log-table">Table 6.7: </span>Summary statistics for the log model</caption>
+<span id="tab:fc-log-table">Table 6.10: </span>Summary statistics for the log model</caption>
 <thead><tr class="header">
 <th align="center">residual_se</th>
 <th align="center">r_squared</th>
@@ -766,7 +1183,7 @@ Figure 6.5: Influence plot for the model
 </table></div>
 <p>The log model is worse and harder to interpret. That is common with sports data. We are not developing a new medicine — we are dealing in dollars and cents, where you do not need clinical precision. Often you do the best you can, and as long as you understand the limitations, you can still make a good decision.</p>
 <p>Now apply the model to the test set. There is one wrinkle: a holdout game can feature an opponent that never appears in the training data, and a linear model cannot score a factor level it has never seen. We drop those games before predicting — a small preview of a problem we hit again below.</p>
-<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_scored</span> <span class="op">&lt;-</span> <span class="va">test</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">team</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">train_clean</span><span class="op">$</span><span class="va">team</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -777,7 +1194,7 @@ Figure 6.5: Influence plot for the model
 <span>  <span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:fc-error">Table 6.8: </span>Test-set error</caption>
+<span id="tab:fc-error">Table 6.11: </span>Test-set error</caption>
 <thead><tr class="header">
 <th align="center">mean_signed_error</th>
 <th align="center">mean_absolute_error</th>
@@ -788,7 +1205,7 @@ Figure 6.5: Influence plot for the model
 </tr></tbody>
 </table></div>
 <p>On average the model is only a few percent off, but the <em>signed</em> average hides the spread: the mean absolute error is much larger, so individual games can miss badly even when the average looks fine. The plot makes that clear.</p>
-<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">forecast_long</span> <span class="op">&lt;-</span> <span class="va">test_scored</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>game <span class="op">=</span> <span class="fu">row_number</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span></span>
@@ -810,23 +1227,23 @@ Figure 6.5: Influence plot for the model
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fc-plot"></span>
 <img src="_main_files/figure-html/fc-plot-1.png" alt="Forecast versus actual on the test set" width="100%"><p class="caption">
-Figure 6.6: Forecast versus actual on the test set
+Figure 6.8: Forecast versus actual on the test set
 </p>
 </div>
 <p>Would I use this model on new data? Yes, while looking for predictors that improve it. The further from the season you forecast, the blunter the estimates: you may not have a promotional schedule, and dropping insignificant teams means you cannot use them to predict at all. You often settle for “good enough.”</p>
 </div>
-<div id="analyzing-a-schedule-and-ranking-games" class="section level3" number="6.3.2">
+<div id="analyzing-a-schedule-and-ranking-games" class="section level3" number="6.4.2">
 <h3>
-<span class="header-section-number">6.3.2</span> Analyzing a schedule and ranking games<a class="anchor" aria-label="anchor" href="#analyzing-a-schedule-and-ranking-games"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.4.2</span> Analyzing a schedule and ranking games<a class="anchor" aria-label="anchor" href="#analyzing-a-schedule-and-ranking-games"><i class="fas fa-link"></i></a>
 </h3>
 <p>How much does the schedule drive a team’s financial success? For baseball, ticket sales are the main revenue stream and most others derive from it. I like an ensemble approach — answering the same question two ways. Here we score games by how attractive they look to fans, using secondary-market purchases as a demand signal.</p>
-<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sm</span>  <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/secondary_data.html">secondary_data</a></span></span>
 <span><span class="va">man</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/manifest_data.html">manifest_data</a></span></span>
 <span><span class="va">sea</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/season_data.html">season_data</a></span></span>
 <span><span class="va">sea</span><span class="op">$</span><span class="va">gameID</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sea</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>We join secondary sales to the manifest (which carries the seat’s single-game price) and summarize by game.</p>
-<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">avg_price_comps</span> <span class="op">&lt;-</span> <span class="va">sm</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">man</span>, by <span class="op">=</span> <span class="st">"seatID"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gameID</span>, <span class="va">price</span>, <span class="va">singlePrice</span>, <span class="va">tickets</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -840,7 +1257,7 @@ Figure 6.6: Forecast versus actual on the test set
 <span>  <span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:sched-summary-table">Table 6.9: </span>Secondary-market summary by game</caption>
+<span id="tab:sched-summary-table">Table 6.12: </span>Secondary-market summary by game</caption>
 <thead><tr class="header">
 <th align="center">gameID</th>
 <th align="center">mean_secondary</th>
@@ -887,19 +1304,19 @@ Figure 6.6: Forecast versus actual on the test set
 </tbody>
 </table></div>
 <p>This data was not built to be linked, so we nudge it to look realistic: we add a scaled version of ticket sales to the mean secondary price, creating a relationship a model can pick up.</p>
-<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sea_adj</span> <span class="op">&lt;-</span> <span class="va">sea</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">avg_price_comps</span>, by <span class="op">=</span> <span class="st">"gameID"</span><span class="op">)</span></span>
 <span><span class="va">sea_adj</span><span class="op">$</span><span class="va">mean_secondary_adj</span> <span class="op">&lt;-</span></span>
 <span>  <span class="va">sea_adj</span><span class="op">$</span><span class="va">mean_secondary</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">sea_adj</span><span class="op">$</span><span class="va">ticketSales</span><span class="op">)</span><span class="op">)</span> <span class="op">*</span> <span class="fl">10</span></span></code></pre></div>
 <p>Now we model the adjusted secondary price.</p>
-<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ln_mod_sec</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span></span>
 <span>  <span class="va">mean_secondary_adj</span> <span class="op">~</span> <span class="va">promotion</span> <span class="op">+</span> <span class="va">daysSinceLastGame</span> <span class="op">+</span> <span class="va">schoolInOut</span> <span class="op">+</span> <span class="va">weekEnd</span> <span class="op">+</span> <span class="va">team</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">sea_adj</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:sched-model-table">Table 6.10: </span>Secondary-price model statistics</caption>
+<span id="tab:sched-model-table">Table 6.13: </span>Secondary-price model statistics</caption>
 <thead><tr class="header">
 <th align="center">residual_se</th>
 <th align="center">r_squared</th>
@@ -915,22 +1332,22 @@ Figure 6.6: Forecast versus actual on the test set
 </table></div>
 <p>This model explains about 92% of the variance in secondary prices. It is overfit, but you get the idea — assume we put in the rigor and move to application.</p>
 </div>
-<div id="applying-the-models-to-a-new-season" class="section level3" number="6.3.3">
+<div id="applying-the-models-to-a-new-season" class="section level3" number="6.4.3">
 <h3>
-<span class="header-section-number">6.3.3</span> Applying the models to a new season<a class="anchor" aria-label="anchor" href="#applying-the-models-to-a-new-season"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.4.3</span> Applying the models to a new season<a class="anchor" aria-label="anchor" href="#applying-the-models-to-a-new-season"><i class="fas fa-link"></i></a>
 </h3>
 <p>With two models in hand — one for primary ticket sales, one for secondary prices — we can score a brand-new schedule. We build a 2025 season with no sales baked in, then predict.</p>
-<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">season_2025</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_build_season.html">f_build_season</a></span><span class="op">(</span></span>
 <span>  seed1 <span class="op">=</span> <span class="fl">755</span>, season_year <span class="op">=</span> <span class="fl">2025</span>, seed2 <span class="op">=</span> <span class="fl">714</span>, num_games <span class="op">=</span> <span class="fl">81</span>,</span>
 <span>  seed3 <span class="op">=</span> <span class="fl">366</span>, num_bbh <span class="op">=</span> <span class="fl">5</span>, num_con <span class="op">=</span> <span class="fl">3</span>, num_oth <span class="op">=</span> <span class="fl">7</span>,</span>
 <span>  seed4 <span class="op">=</span> <span class="fl">366</span>, seed5 <span class="op">=</span> <span class="fl">1</span>, mean_sales <span class="op">=</span> <span class="fl">0</span>, sd_sales <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 <p><code>seed2 = 714</code> controls which opponents appear in the schedule. Change it and you may get teams the models never saw, which they cannot score — the same factor-level problem we hit on the test set. Here we reuse <code>714</code>, so every opponent is familiar.</p>
-<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">season_2025</span><span class="op">$</span><span class="va">pred_tickets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">ln_mod_clean</span>, newdata <span class="op">=</span> <span class="va">season_2025</span><span class="op">)</span></span>
 <span><span class="va">season_2025</span><span class="op">$</span><span class="va">pred_prices</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">ln_mod_sec</span>, newdata <span class="op">=</span> <span class="va">season_2025</span><span class="op">)</span></span></code></pre></div>
 <p>Now we turn the two predictions into a single <strong>event score</strong> by standardizing each and adding them. Standardizing puts both on the same scale before we combine them.</p>
-<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">season_2025</span> <span class="op">&lt;-</span> <span class="va">season_2025</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span></span>
 <span>    score_tickets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">pred_tickets</span><span class="op">)</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span>,</span>
@@ -939,7 +1356,7 @@ Figure 6.6: Forecast versus actual on the test set
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">eventScore</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>rank <span class="op">=</span> <span class="fu">row_number</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">season_2025</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">rank</span>, y <span class="op">=</span> <span class="va">eventScore</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_line</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"grey60"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1.4</span>, color <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
@@ -950,15 +1367,15 @@ Figure 6.6: Forecast versus actual on the test set
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:app-score-plot"></span>
 <img src="_main_files/figure-html/app-score-plot-1.png" alt="Ordered event scores for the 2025 schedule" width="100%"><p class="caption">
-Figure 6.7: Ordered event scores for the 2025 schedule
+Figure 6.9: Ordered event scores for the 2025 schedule
 </p>
 </div>
 <p>The curve shows bands of similarly attractive games. We can price progressively — the highest-demand games carry higher prices. To make the bands explicit, cluster the games on their event score with k-means, a simple, widely used method for grouping numeric data.</p>
-<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">715</span><span class="op">)</span></span>
 <span><span class="va">clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span><span class="va">season_2025</span><span class="op">$</span><span class="va">eventScore</span>, centers <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
 <span><span class="va">season_2025</span><span class="op">$</span><span class="va">cluster</span> <span class="op">&lt;-</span> <span class="va">clusters</span><span class="op">$</span><span class="va">cluster</span></span></code></pre></div>
-<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cluster_summary</span> <span class="op">&lt;-</span> <span class="va">season_2025</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">cluster</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">summarise</span><span class="op">(</span></span>
@@ -971,7 +1388,7 @@ Figure 6.7: Ordered event scores for the 2025 schedule
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">mean_score</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:app-cluster-table">Table 6.11: </span>Event-score clusters</caption>
+<span id="tab:app-cluster-table">Table 6.14: </span>Event-score clusters</caption>
 <thead><tr class="header">
 <th align="center">cluster</th>
 <th align="center">mean_score</th>
@@ -1027,13 +1444,13 @@ Figure 6.7: Ordered event scores for the 2025 schedule
 <p>We now have several tiers of games. We can use them to set reference prices, or to find games that need marketing help — which we pick up in Chapter <a href="chapter8.html#chapter8">8</a>. Attractiveness is a proxy for demand, not a full pricing system: reference pricing, inventory, and season-ticket prices all matter. To improve this bottom-up forecast we would layer on the number of season tickets sold and expected, available inventory by game and how it is allocated, and prices and volume by ticket class. Conditions are never perfect, and a single model is rarely powerful enough — which is why an ensemble that also uses a liquid secondary market is worth the effort.</p>
 </div>
 </div>
-<div id="leveraging-qualitative-data" class="section level2" number="6.4">
+<div id="leveraging-qualitative-data" class="section level2" number="6.5">
 <h2>
-<span class="header-section-number">6.4</span> Leveraging qualitative data<a class="anchor" aria-label="anchor" href="#leveraging-qualitative-data"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.5</span> Leveraging qualitative data<a class="anchor" aria-label="anchor" href="#leveraging-qualitative-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Surveys can support pricing. Two methods we have used in practice are the Van Westendorp price sensitivity meter and conjoint analysis. Both are supported by survey tools such as Qualtrics. Conjoint is complex and beyond our scope; let’s look at Van Westendorp, which is approachable and useful.</p>
 <p>First, some survey data. A Van Westendorp study asks four questions about a product — here, dugout seats — at what price it becomes too cheap, cheap, expensive, and too expensive.</p>
-<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">715</span><span class="op">)</span></span>
 <span><span class="va">vw_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  product         <span class="op">=</span> <span class="st">"DugoutSeats"</span>,</span>
@@ -1044,7 +1461,7 @@ Figure 6.7: Ordered event scores for the 2025 schedule
 <span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:vw-head">Table 6.12: </span>Van Westendorp survey responses</caption>
+<span id="tab:vw-head">Table 6.15: </span>Van Westendorp survey responses</caption>
 <thead><tr class="header">
 <th align="center">product</th>
 <th align="center">TooCheap</th>
@@ -1098,7 +1515,7 @@ Figure 6.7: Ordered event scores for the 2025 schedule
 </tbody>
 </table></div>
 <p>The analysis plots four cumulative curves and reads price points off where they cross. We can build the curves directly with base R’s <code>ecdf</code> — no special package required. By convention, the “too cheap” and “cheap” curves are reversed (the share who consider a price too cheap <em>falls</em> as price rises), while the “expensive” and “too expensive” curves accumulate upward.</p>
-<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">prices</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">220</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">vw_curves</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
@@ -1109,7 +1526,7 @@ Figure 6.7: Ordered event scores for the 2025 schedule
 <span>  `Too expensive` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/ecdf.html">ecdf</a></span><span class="op">(</span><span class="va">vw_data</span><span class="op">$</span><span class="va">TooExpensive</span><span class="op">)</span><span class="op">(</span><span class="va">prices</span><span class="op">)</span></span>
 <span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="op">-</span><span class="va">price</span>, names_to <span class="op">=</span> <span class="st">"series"</span>, values_to <span class="op">=</span> <span class="st">"share"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">vw_curves</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">price</span>, y <span class="op">=</span> <span class="va">share</span>, color <span class="op">=</span> <span class="va">series</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">annotate</span><span class="op">(</span><span class="st">"rect"</span>, xmin <span class="op">=</span> <span class="fl">55</span>, xmax <span class="op">=</span> <span class="fl">145</span>, ymin <span class="op">=</span> <span class="fl">0</span>, ymax <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>           alpha <span class="op">=</span> <span class="fl">0.12</span>, fill <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1123,11 +1540,11 @@ Figure 6.7: Ordered event scores for the 2025 schedule
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:vw-plot"></span>
 <img src="_main_files/figure-html/vw-plot-1.png" alt="Van Westendorp price sensitivity curves" width="100%"><p class="caption">
-Figure 6.8: Van Westendorp price sensitivity curves
+Figure 6.10: Van Westendorp price sensitivity curves
 </p>
 </div>
 <p>The shaded band is the range of acceptable prices — between the point of marginal cheapness and the point of marginal expensiveness. There is also a package, <code>pricesensitivitymeter</code>, that computes these points directly.</p>
-<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://max-alletsee.github.io/pricesensitivitymeter/">pricesensitivitymeter</a></span><span class="op">)</span></span>
 <span><span class="va">price_sensitivity</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://max-alletsee.github.io/pricesensitivitymeter/reference/psm_analysis.html">psm_analysis</a></span><span class="op">(</span></span>
 <span>  toocheap     <span class="op">=</span> <span class="st">"TooCheap"</span>,</span>
@@ -1139,7 +1556,7 @@ Figure 6.8: Van Westendorp price sensitivity curves
 <span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:vw-psm-table">Table 6.13: </span>Price sensitivity metrics</caption>
+<span id="tab:vw-psm-table">Table 6.16: </span>Price sensitivity metrics</caption>
 <thead><tr class="header">
 <th align="center">indifference_price</th>
 <th align="center">optimal_price</th>
@@ -1155,9 +1572,9 @@ Figure 6.8: Van Westendorp price sensitivity curves
 </table></div>
 <p>The acceptable range runs from roughly $55 to $145. This is not willingness to pay, but it bounds the prices fans are likely to find reasonable — a useful input to a pricing decision, not the decision itself.</p>
 </div>
-<div id="implementing-revenue-management-in-sports" class="section level2" number="6.5">
+<div id="implementing-revenue-management-in-sports" class="section level2" number="6.6">
 <h2>
-<span class="header-section-number">6.5</span> Implementing revenue management in sports<a class="anchor" aria-label="anchor" href="#implementing-revenue-management-in-sports"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.6</span> Implementing revenue management in sports<a class="anchor" aria-label="anchor" href="#implementing-revenue-management-in-sports"><i class="fas fa-link"></i></a>
 </h2>
 <p>These techniques are increasingly commoditized. The mechanics of forecasting and pricing are well understood, and ticketing platforms and marketplaces can already push changes across many games at once. We have covered the main considerations, but not all of them:</p>
 <ul>
@@ -1171,9 +1588,9 @@ Figure 6.8: Van Westendorp price sensitivity curves
 <p>Initial prices are hard to set, and reference prices are powerful. For a new product, such as a premium seating area, think carefully about the value proposition and gather some competitive intelligence — do not rely on a pro forma alone.</p>
 <p>How should you evaluate and deploy prices? Set up an internal mechanism with sales, marketing, and operations at the table; pricing is one of the single most important revenue levers. Make sure the technology is ready, too: how does a price reach the market, how is the website updated, and what policies bound how high or low a ticket can go? Your inventory-control protocols feed back into all of it — raising the price in one section changes demand in another, and those links can sometimes be modeled with systems of equations. Finally, how fans respond depends on demand, team success, and the market. Exploiting an opportunity is not always wise. Qualitative research, including conjoint and Van Westendorp studies, can help you gauge the reaction before you commit.</p>
 </div>
-<div id="key-concepts-and-chapter-summary-5" class="section level2" number="6.6">
+<div id="key-concepts-and-chapter-summary-5" class="section level2" number="6.7">
 <h2>
-<span class="header-section-number">6.6</span> Key concepts and chapter summary<a class="anchor" aria-label="anchor" href="#key-concepts-and-chapter-summary-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">6.7</span> Key concepts and chapter summary<a class="anchor" aria-label="anchor" href="#key-concepts-and-chapter-summary-5"><i class="fas fa-link"></i></a>
 </h2>
 <p>Getting pricing right is central to an integrated marketing strategy, and it has both quantitative and qualitative parts. We covered:</p>
 <ul>
@@ -1211,16 +1628,17 @@ Figure 6.8: Van Westendorp price sensitivity curves
 <li><a class="nav-link" href="#chapter6"><span class="header-section-number">6</span> Pricing and forecasting</a></li>
 <li><a class="nav-link" href="#understanding-your-inventory"><span class="header-section-number">6.1</span> Understanding your inventory</a></li>
 <li><a class="nav-link" href="#understanding-pricing-mechanisms"><span class="header-section-number">6.2</span> Understanding pricing mechanisms</a></li>
+<li><a class="nav-link" href="#optimizing-a-full-price-structure"><span class="header-section-number">6.3</span> Optimizing a full price structure</a></li>
 <li>
-<a class="nav-link" href="#basics-of-forecasting"><span class="header-section-number">6.3</span> Basics of forecasting</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#outliers-and-unusual-points"><span class="header-section-number">6.3.1</span> Outliers and unusual points</a></li>
-<li><a class="nav-link" href="#analyzing-a-schedule-and-ranking-games"><span class="header-section-number">6.3.2</span> Analyzing a schedule and ranking games</a></li>
-<li><a class="nav-link" href="#applying-the-models-to-a-new-season"><span class="header-section-number">6.3.3</span> Applying the models to a new season</a></li>
+<a class="nav-link" href="#basics-of-forecasting"><span class="header-section-number">6.4</span> Basics of forecasting</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#outliers-and-unusual-points"><span class="header-section-number">6.4.1</span> Outliers and unusual points</a></li>
+<li><a class="nav-link" href="#analyzing-a-schedule-and-ranking-games"><span class="header-section-number">6.4.2</span> Analyzing a schedule and ranking games</a></li>
+<li><a class="nav-link" href="#applying-the-models-to-a-new-season"><span class="header-section-number">6.4.3</span> Applying the models to a new season</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#leveraging-qualitative-data"><span class="header-section-number">6.4</span> Leveraging qualitative data</a></li>
-<li><a class="nav-link" href="#implementing-revenue-management-in-sports"><span class="header-section-number">6.5</span> Implementing revenue management in sports</a></li>
-<li><a class="nav-link" href="#key-concepts-and-chapter-summary-5"><span class="header-section-number">6.6</span> Key concepts and chapter summary</a></li>
+<li><a class="nav-link" href="#leveraging-qualitative-data"><span class="header-section-number">6.5</span> Leveraging qualitative data</a></li>
+<li><a class="nav-link" href="#implementing-revenue-management-in-sports"><span class="header-section-number">6.6</span> Implementing revenue management in sports</a></li>
+<li><a class="nav-link" href="#key-concepts-and-chapter-summary-5"><span class="header-section-number">6.7</span> Key concepts and chapter summary</a></li>
 </ul>
 
       <div class="book-extra">

@@ -129,7 +129,7 @@ Figure 8.1: Ticket sales versus team payroll
 <span class="header-section-number">8.1</span> Measuring the impact of promotions<a class="anchor" aria-label="anchor" href="#measuring-the-impact-of-promotions"><i class="fas fa-link"></i></a>
 </h2>
 <p>We start with the familiar <code>season_data</code>.</p>
-<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">season</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/season_data.html">season_data</a></span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
@@ -203,7 +203,7 @@ Figure 8.1: Ticket sales versus team payroll
 </tbody>
 </table></div>
 <p>Bobbleheads and concerts are everywhere in sports, which might lead you to assume they are obvious ticket drivers. The truth is more complicated. Plotting every home game across three seasons, colored by promotion, is a good first look.</p>
-<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">season</span> <span class="op">&lt;-</span> <span class="va">season</span> <span class="op">|&gt;</span> <span class="fu">mutate</span><span class="op">(</span>game <span class="op">=</span> <span class="fu">row_number</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">season</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">game</span>, y <span class="op">=</span> <span class="va">ticketSales</span>, color <span class="op">=</span> <span class="va">promotion</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -223,11 +223,11 @@ Figure 8.2: Ticket sales across the schedule by promotion
 </div>
 <p>If you simply averaged sales by promotion, it would look like promotions clearly lift attendance. But the product is not consistent: that wide vertical scatter contains seasonality, opponent quality, day of week, and trend — all confounded with when promotions are scheduled. We have to control for those before believing the lift.</p>
 <p>A tile plot of median sales by promotion and day of week, split by season, shows the confound directly.</p>
-<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">promo_tiles</span> <span class="op">&lt;-</span> <span class="va">season</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">season</span>, <span class="va">dayOfWeek</span>, <span class="va">promotion</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">summarise</span><span class="op">(</span>median_sales <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">ticketSales</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">promo_tiles</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">promotion</span>, y <span class="op">=</span> <span class="va">dayOfWeek</span>, fill <span class="op">=</span> <span class="va">median_sales</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_tile</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">facet_grid</span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">season</span><span class="op">)</span> <span class="op">+</span></span>
@@ -245,7 +245,7 @@ Figure 8.3: Median ticket sales by promotion and day of week
 </p>
 </div>
 <p>Concerts and bobbleheads almost always land on weekends, which already sell well. So a naive promotion-versus-none comparison is partly a weekend-versus-weekday comparison. A box plot that holds day of week on the axis separates the two effects more honestly.</p>
-<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">season</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">dayOfWeek</span>, y <span class="op">=</span> <span class="va">ticketSales</span>, fill <span class="op">=</span> <span class="va">promotion</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_boxplot</span><span class="op">(</span>outlier.alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">scale_fill_manual</span><span class="op">(</span><span class="st">"Promotion"</span>, values <span class="op">=</span> <span class="va">plot_palette</span><span class="op">)</span> <span class="op">+</span></span>
@@ -266,31 +266,31 @@ Figure 8.4: Ticket sales by day of week and promotion
 <span class="header-section-number">8.1.1</span> Estimating the lift with a model<a class="anchor" aria-label="anchor" href="#estimating-the-lift-with-a-model"><i class="fas fa-link"></i></a>
 </h3>
 <p>Regression takes rigor, and it works best with lots of data — a luxury we do not have here. We will use a different framework this time, <code>tidymodels</code> <span class="citation">(<a href="references.html#ref-R-tidymodels">Kuhn and Wickham 2021</a>)</span>, partly to show another good option. Like <code>mlr3</code>, it makes preprocessing and evaluation systematic; its pipe-based recipes are easy to read.</p>
-<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">promo_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/season_data.html">season_data</a></span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">gameNumber</span>, <span class="va">team</span>, <span class="va">month</span>, <span class="va">weekEnd</span>, <span class="va">daysSinceLastGame</span>,</span>
 <span>                <span class="va">promotion</span>, <span class="va">ticketSales</span><span class="op">)</span></span></code></pre></div>
 <p>We want the coefficients to read as “lift versus an ordinary game,” so we relabel <code>none</code> to <code>anone</code>. Because <code>step_dummy</code> drops the first level alphabetically, this makes “no promotion” the reference category that the others are compared against.</p>
-<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">promo_data</span> <span class="op">&lt;-</span> <span class="va">promo_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>promotion <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">promotion</span> <span class="op">==</span> <span class="st">"none"</span>, <span class="st">"anone"</span>, <span class="va">promotion</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>We split the data, holding out 25% with the <code>rsample</code> package <span class="citation">(<a href="references.html#ref-R-rsample">Silge et al. 2021</a>)</span>.</p>
-<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">755</span><span class="op">)</span></span>
 <span><span class="va">promo_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">promo_data</span>, prop <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span></span>
 <span><span class="va">train_data</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">promo_split</span><span class="op">)</span></span>
 <span><span class="va">test_data</span>  <span class="op">&lt;-</span> <span class="fu">testing</span><span class="op">(</span><span class="va">promo_split</span><span class="op">)</span></span></code></pre></div>
 <p>A <code>tidymodels</code> <strong>recipe</strong> describes the preprocessing in layers. We mark <code>gameNumber</code> as an ID (not a predictor), protect against opponents that appear only in the test set with <code>step_novel</code>, dummy-code the categoricals, and drop any zero-variance columns.</p>
-<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sales_rec</span> <span class="op">&lt;-</span> <span class="fu">recipe</span><span class="op">(</span><span class="va">ticketSales</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">train_data</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">update_role</span><span class="op">(</span><span class="va">gameNumber</span>, new_role <span class="op">=</span> <span class="st">"ID"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">step_novel</span><span class="op">(</span><span class="fu">all_nominal_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">step_dummy</span><span class="op">(</span><span class="fu">all_nominal_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">step_zv</span><span class="op">(</span><span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>We pair the recipe with a linear model in a <strong>workflow</strong>.</p>
-<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lm_model</span> <span class="op">&lt;-</span> <span class="fu">linear_reg</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"lm"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">set_mode</span><span class="op">(</span><span class="st">"regression"</span><span class="op">)</span></span>
@@ -299,7 +299,7 @@ Figure 8.4: Ticket sales by day of week and promotion
 <span>  <span class="fu">add_model</span><span class="op">(</span><span class="va">lm_model</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">add_recipe</span><span class="op">(</span><span class="va">sales_rec</span><span class="op">)</span></span></code></pre></div>
 <p>Before trusting a single fit, cross-validate to see how stable the error is.</p>
-<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">755</span><span class="op">)</span></span>
 <span><span class="va">folds</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">train_data</span>, v <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">cv_metrics</span> <span class="op">&lt;-</span> <span class="fu">collect_metrics</span><span class="op">(</span><span class="fu">fit_resamples</span><span class="op">(</span><span class="va">sales_wflow</span>, <span class="va">folds</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -328,7 +328,7 @@ Figure 8.4: Ticket sales by day of week and promotion
 </tbody>
 </table></div>
 <p>The R-squared looks high, but remember the sample is small and the model has many categorical levels, so it can fit the history too closely. With that caveat, fit the model and pull out the coefficients.</p>
-<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sales_fit</span> <span class="op">&lt;-</span> <span class="va">sales_wflow</span> <span class="op">|&gt;</span> <span class="fu">fit</span><span class="op">(</span>data <span class="op">=</span> <span class="va">train_data</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">coefficients</span> <span class="op">&lt;-</span> <span class="va">sales_fit</span> <span class="op">|&gt;</span></span>
@@ -369,7 +369,7 @@ Figure 8.4: Ticket sales by day of week and promotion
 </tbody>
 </table></div>
 <p>We extract the bobblehead effect by name rather than by position, so the code does not break if the column order changes.</p>
-<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bobblehead_lift</span> <span class="op">&lt;-</span> <span class="va">coefficients</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">term</span> <span class="op">==</span> <span class="st">"promotion_bobblehead"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">estimate</span><span class="op">)</span></span>
@@ -386,7 +386,7 @@ Figure 8.4: Ticket sales by day of week and promotion
 </h2>
 <p>Suppose we are convinced bobbleheads and concerts lift sales and we want to add one more bobblehead to next season. Where should it go? The decision usually trades off two goals: maximizing ticket impact and maximizing revenue. We can lean on the event-score model from Chapter <a href="chapter6.html#chapter6">6</a>.</p>
 <p>We rebuild that model here: a ticket-sales model and a secondary-price model fit on three simulated past seasons, then applied to a fresh 2025 schedule.</p>
-<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">build_season</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_build_season.html">f_build_season</a></span></span>
 <span></span>
 <span><span class="va">past_season</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html">rbind</a></span><span class="op">(</span></span>
@@ -418,7 +418,7 @@ Figure 8.4: Ticket sales by day of week and promotion
 <span>  data <span class="op">=</span> <span class="va">sea</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Now build the 2025 schedule, predict tickets and price, and combine them into an event score (standardizing each so they share a scale).</p>
-<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">season_2025</span> <span class="op">&lt;-</span> <span class="fu">build_season</span><span class="op">(</span></span>
 <span>  seed1 <span class="op">=</span> <span class="fl">755</span>, season_year <span class="op">=</span> <span class="fl">2025</span>, seed2 <span class="op">=</span> <span class="fl">714</span>, num_games <span class="op">=</span> <span class="fl">81</span>,</span>
 <span>  seed3 <span class="op">=</span> <span class="fl">366</span>, num_bbh <span class="op">=</span> <span class="fl">5</span>, num_con <span class="op">=</span> <span class="fl">3</span>, num_oth <span class="op">=</span> <span class="fl">7</span>,</span>
@@ -435,12 +435,12 @@ Figure 8.4: Ticket sales by day of week and promotion
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">715</span><span class="op">)</span></span>
 <span><span class="va">season_2025</span><span class="op">$</span><span class="va">cluster</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span><span class="va">season_2025</span><span class="op">$</span><span class="va">event_score</span>, centers <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">$</span><span class="va">cluster</span><span class="op">)</span></span></code></pre></div>
 <p>A scatter of predicted price against predicted sales, colored by cluster, shows the trade-off. The shaded band marks the sellout-risk zone: games whose predicted sales are already within a bobblehead’s lift of the roughly 45,000-seat capacity. We size that band with the <em>upper</em> bound of the bobblehead coefficient’s confidence interval, so we are being conservative.</p>
-<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">capacity</span> <span class="op">&lt;-</span> <span class="fl">45000</span></span>
 <span><span class="va">bobblehead_ci_upper</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span></span>
 <span>  <span class="fu">extract_fit_engine</span><span class="op">(</span><span class="va">sales_fit</span><span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">[</span><span class="st">"promotion_bobblehead"</span>, <span class="fl">2</span><span class="op">]</span></span></code></pre></div>
-<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">season_2025</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">pred_tickets</span>, y <span class="op">=</span> <span class="va">pred_price</span>, color <span class="op">=</span> <span class="va">cluster</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">annotate</span><span class="op">(</span><span class="st">"rect"</span>, xmin <span class="op">=</span> <span class="va">capacity</span> <span class="op">-</span> <span class="va">bobblehead_ci_upper</span>, xmax <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>           ymin <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, ymax <span class="op">=</span> <span class="cn">Inf</span>, alpha <span class="op">=</span> <span class="fl">0.12</span>, fill <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
@@ -458,7 +458,7 @@ Figure 8.5: Predicted sales and price by event cluster
 </p>
 </div>
 <p>Now pick a candidate with explicit logic rather than by eye. We want a game with enough headroom that even the high end of the bobblehead lift will not push it past capacity, and among those we prefer the highest predicted price, on the theory that the ancillary and premium revenue justifies the giveaway.</p>
-<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">candidate</span> <span class="op">&lt;-</span> <span class="va">season_2025</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">pred_tickets</span> <span class="op">+</span> <span class="va">bobblehead_ci_upper</span> <span class="op">&lt;</span> <span class="va">capacity</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">pred_price</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>

@@ -84,6 +84,11 @@ fig:prf-poly
 tab:prf-apply-table
 fig:prf-max
 tab:prf-revenue-table
+tab:opt-sections-table
+tab:opt-revenue-table
+tab:opt-plan-table
+fig:opt-elast-plot
+fig:opt-ladder-plot
 tab:fc-head
 tab:fc-stats-table
 fig:fc-qq
@@ -222,6 +227,7 @@ key-concepts-and-chapter-summary-4
 chapter6
 understanding-your-inventory
 understanding-pricing-mechanisms
+optimizing-a-full-price-structure
 basics-of-forecasting
 outliers-and-unusual-points
 analyzing-a-schedule-and-ranking-games
