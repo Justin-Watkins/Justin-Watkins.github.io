@@ -4,18 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>10 Operations and analytics | Fundamentals of Sports Business Analytics and Strategy</title>
+<title>10 Research methods | Fundamentals of Sports Business Analytics and Strategy</title>
 <meta name="author" content="Justin Watkins">
-<meta name="description" content="If a sports team has two core competencies, they are managing events and selling tickets. A smooth operation is also a pillar of the product, and it shapes how fans perceive the brand. The job of...">
+<meta name="description" content="Consumer research takes many forms. This chapter looks at a few of them in the context of a professional sports team. It would be an easy chapter to skip — most people dislike surveys, dislike...">
 <meta name="generator" content="bookdown 0.47 with bs4_book()">
-<meta property="og:title" content="10 Operations and analytics | Fundamentals of Sports Business Analytics and Strategy">
+<meta property="og:title" content="10 Research methods | Fundamentals of Sports Business Analytics and Strategy">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://justin-watkins.github.io/chapter10.html">
 <meta property="og:image" content="https://justin-watkins.github.io/images/book_cover_b.png">
-<meta property="og:description" content="If a sports team has two core competencies, they are managing events and selling tickets. A smooth operation is also a pillar of the product, and it shapes how fans perceive the brand. The job of...">
+<meta property="og:description" content="Consumer research takes many forms. This chapter looks at a few of them in the context of a professional sports team. It would be an easy chapter to skip — most people dislike surveys, dislike...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="10 Operations and analytics | Fundamentals of Sports Business Analytics and Strategy">
-<meta name="twitter:description" content="If a sports team has two core competencies, they are managing events and selling tickets. A smooth operation is also a pillar of the product, and it shapes how fans perceive the brand. The job of...">
+<meta name="twitter:title" content="10 Research methods | Fundamentals of Sports Business Analytics and Strategy">
+<meta name="twitter:description" content="Consumer research takes many forms. This chapter looks at a few of them in the context of a professional sports team. It would be an easy chapter to skip — most people dislike surveys, dislike...">
 <meta name="twitter:image" content="https://justin-watkins.github.io/images/book_cover_b.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -79,9 +79,10 @@
 <li><a class="" href="chapter6.html"><span class="header-section-number">6</span> Pricing and forecasting</a></li>
 <li><a class="" href="chapter7.html"><span class="header-section-number">7</span> Lead scoring</a></li>
 <li><a class="" href="chapter8.html"><span class="header-section-number">8</span> Marketing promotions</a></li>
-<li><a class="" href="chapter9.html"><span class="header-section-number">9</span> Research methods</a></li>
-<li><a class="active" href="chapter10.html"><span class="header-section-number">10</span> Operations and analytics</a></li>
-<li><a class="" href="chapter11.html"><span class="header-section-number">11</span> Epilogue</a></li>
+<li><a class="" href="chapter9.html"><span class="header-section-number">9</span> Marketing mix modeling</a></li>
+<li><a class="active" href="chapter10.html"><span class="header-section-number">10</span> Research methods</a></li>
+<li><a class="" href="chapter11.html"><span class="header-section-number">11</span> Operations and analytics</a></li>
+<li><a class="" href="chapter12.html"><span class="header-section-number">12</span> Epilogue</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -92,892 +93,551 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="chapter10" class="section level1" number="10">
 <h1>
-<span class="header-section-number">10</span> Operations and analytics<a class="anchor" aria-label="anchor" href="#chapter10"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10</span> Research methods<a class="anchor" aria-label="anchor" href="#chapter10"><i class="fas fa-link"></i></a>
 </h1>
-<p>If a sports team has two core competencies, they are managing events and selling tickets. A smooth operation is also a pillar of the product, and it shapes how fans perceive the brand. The job of operations, broadly, is to get fans into, around, and out of the venue safely, quickly, and conveniently. That involves design, systems, and technology, plus optimization questions: how many point-of-sale units, how much security labor, how many restrooms, how many seats in a section. The list is long.</p>
-<p>This chapter borrows from the overlapping fields of operations research, industrial engineering, and operations management to work two common venue problems. As with the rest of the book, the aim is to make you aware of how to approach them — the ocean only gets deeper. Venues are increasingly built around new capabilities: phone-based food ordering, digital tickets, advanced security scanning, facial recognition, integrated commerce and loyalty, and integrated transit. Each solves a problem and can create new ones. Mobile food ordering without considering kitchen locations invites quality problems. Never adopt a technology without examining whether you can actually execute it; businesses are littered with the husks of solutions that were a poor fit or a pet project.</p>
-<p>At a high level this chapter aims to:</p>
-<ul>
-<li>Introduce some basic operations problems and solutions</li>
-<li>Touch on project management</li>
-<li>Convey the complexity of venue operations</li>
-</ul>
-<div id="understanding-ingress" class="section level2" number="10.1">
-<h2>
-<span class="header-section-number">10.1</span> Understanding ingress<a class="anchor" aria-label="anchor" href="#understanding-ingress"><i class="fas fa-link"></i></a>
-</h2>
-<p>Capacity constraints are unavoidable at the gates. Put 30,000 people in front of the same doors at the same time and lines form. The Romans understood this — the Colosseum’s 76 <em>vomitoria</em> moved 50,000 people, and it was probably more efficient at ingress than a modern stadium, which has to fit magnetometers, bag checks, ticket scans, fire codes, concessions, and mechanical infrastructure into the same space. The problem extends outside too: traffic, ADA access, transit, and ride-share.</p>
-<p>Getting thousands of people in quickly and safely runs into three kinds of constraint — capacity, technology, and procedure — and sports adds <strong>surge demand</strong>, since most fans arrive in the same short window. Technology can ease capacity limits, but it is bound up with the other two.</p>
-<p>Eliyahu Goldratt’s <em>The Goal</em> <span class="citation">(<a href="references.html#ref-Goldratt2004">Goldratt 2004</a>)</span> gives a useful frame, the Theory of Constraints, as a five-step process of ongoing improvement:</p>
+<p>Consumer research takes many forms. This chapter looks at a few of them in the context of a professional sports team. It would be an easy chapter to skip — most people dislike surveys, dislike designing them even more, and find analyzing them tedious. Research is genuinely hard, and unless you have studied it formally you have probably had little practice. The results are also often read only in passing, since the person who understands them best is usually the one who designed and analyzed them.</p>
+<p>Proper research is a huge topic — easily several books — and it overlaps heavily with the pricing and segmentation chapters. Buy a few used references; the material is old, stable, and well understood. This chapter covers two things:</p>
 <ol style="list-style-type: decimal">
-<li>Identify the system’s bottleneck.</li>
-<li>Decide how to exploit it.</li>
-<li>Subordinate every other decision to that.</li>
-<li>Elevate the bottleneck.</li>
-<li>If a bottleneck was broken, return to step one.</li>
+<li>The basics of experiment design and hypothesis testing</li>
+<li>Planning and designing surveys</li>
 </ol>
-<p>A system has only one bottleneck at a time, which is what makes the process iterative — strengthen the weakest link and another becomes weakest. A typical gate process looks like Figure <a href="chapter10.html#fig:ops-gate">10.1</a>.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:ops-gate"></span>
-<img src="images/ch10_gate_process.png" alt="A typical gate-entry process" width="100%"><p class="caption">
-Figure 10.1: A typical gate-entry process
-</p>
-</div>
-<p>What data falls out of this process? Scan counts from ticketing, magnetometer passes and failures, and per-gate timing. Let’s look at aggregated scan data.</p>
-<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">scan_data</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/scan_data.html">scan_data</a></span></span></code></pre></div>
-<div class="inline-table"><table class="table table-sm">
-<caption>
-<span id="tab:ops-scan-head">Table 10.1: </span>Aggregated scan data</caption>
-<thead><tr class="header">
-<th align="left">observations</th>
-<th align="left">scans</th>
-<th align="left">action_time</th>
-<th align="left">date</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">1</td>
-<td align="left">0</td>
-<td align="left">61200 secs</td>
-<td align="left">4/1/2024</td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">61260 secs</td>
-<td align="left">4/1/2024</td>
-</tr>
-<tr class="odd">
-<td align="left">3</td>
-<td align="left">4</td>
-<td align="left">61320 secs</td>
-<td align="left">4/1/2024</td>
-</tr>
-<tr class="even">
-<td align="left">4</td>
-<td align="left">7</td>
-<td align="left">61380 secs</td>
-<td align="left">4/1/2024</td>
-</tr>
-<tr class="odd">
-<td align="left">5</td>
-<td align="left">10</td>
-<td align="left">61440 secs</td>
-<td align="left">4/1/2024</td>
-</tr>
-<tr class="even">
-<td align="left">6</td>
-<td align="left">11</td>
-<td align="left">61500 secs</td>
-<td align="left">4/1/2024</td>
-</tr>
-</tbody>
-</table></div>
-<p>The data is scans per minute, bucketed across the entry window.</p>
-<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">scan_data</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">observations</span>, y <span class="op">=</span> <span class="va">scans</span>, color <span class="op">=</span> <span class="va">date</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">stat_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span><span class="op">)</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, color <span class="op">=</span> <span class="st">"grey25"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_color_manual</span><span class="op">(</span><span class="st">"Date"</span>, values <span class="op">=</span> <span class="va">plot_palette</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Observation (minute)"</span>, y <span class="op">=</span> <span class="st">"Scans"</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">"Scans build to a peak, then taper after first pitch"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:ops-scan-plot"></span>
-<img src="_main_files/figure-html/ops-scan-plot-1.png" alt="Distribution of ticket scans at the gates" width="100%"><p class="caption">
-Figure 10.2: Distribution of ticket scans at the gates
-</p>
-</div>
-<p>Scans follow a predictable cadence — they build toward a peak and taper off. Our ballpark has four entry points with four scanners each (sixteen total). What is the system’s maximum capacity? It is harder to answer than it sounds, because gates are busier at different times; we want the busiest gate under load, which takes several days of observation.</p>
-<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">max_scans</span> <span class="op">&lt;-</span> <span class="va">scan_data</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">date</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">summarise</span><span class="op">(</span></span>
-<span>    max_scans <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">scans</span><span class="op">)</span>,</span>
-<span>    max_per_scanner <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">scans</span><span class="op">)</span> <span class="op">/</span> <span class="fl">16</span>,</span>
-<span>    mean_scans <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">scans</span><span class="op">)</span>,</span>
-<span>    median_scans <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">scans</span><span class="op">)</span>,</span>
-<span>    .groups <span class="op">=</span> <span class="st">"drop"</span></span>
-<span>  <span class="op">)</span></span></code></pre></div>
-<div class="inline-table"><table class="table table-sm">
-<caption>
-<span id="tab:ops-throughput-table">Table 10.2: </span>Observed throughput by day</caption>
-<thead><tr class="header">
-<th align="left">date</th>
-<th align="left">max_scans</th>
-<th align="left">max_per_scanner</th>
-<th align="left">mean_scans</th>
-<th align="left">median_scans</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">4/1/2024</td>
-<td align="left">181</td>
-<td align="left">11.3</td>
-<td align="left">103.6</td>
-<td align="left">116</td>
-</tr>
-<tr class="even">
-<td align="left">4/2/2024</td>
-<td align="left">199</td>
-<td align="left">12.4</td>
-<td align="left">115.7</td>
-<td align="left">129</td>
-</tr>
-<tr class="odd">
-<td align="left">4/3/2024</td>
-<td align="left">212</td>
-<td align="left">13.2</td>
-<td align="left">125.0</td>
-<td align="left">139</td>
-</tr>
-</tbody>
-</table></div>
-<p>At peak, each scanner handles roughly 13 scans a minute — about one person every 4.5 seconds. But that average hides the distribution: some scans took ten seconds, many took one. We cannot tell from this data alone, which points at what is missing — the process steps timed separately, line lengths, per-gate and per-magnetometer detail, inter-arrival times, staffing, and false-positive rates. Even so, the diagram suggests a candidate bottleneck: when a magnetometer trips, the guest walks back through. Adding staff to wand those guests, or changing bag rules, might help — and you could measure the difference. Not every fix needs heavy analysis. We will treat the next problem — concession lines — in more depth.</p>
-</div>
-<div id="reducing-wait-times-at-concessions" class="section level2" number="10.2">
-<h2>
-<span class="header-section-number">10.2</span> Reducing wait times at concessions<a class="anchor" aria-label="anchor" href="#reducing-wait-times-at-concessions"><i class="fas fa-link"></i></a>
-</h2>
-<p>Everyone has waited in a concession line. Ask why it is slow and you will hear “too many people” or “the staff is slow.” In reality it is a system with several parts:</p>
+<p>A few honest takeaways to keep in mind, even if they read a little cynically:</p>
 <ul>
-<li>System constraints (grills, points of sale)</li>
-<li>Labor (experience, training, motivation)</li>
-<li>Back of house (buffering demand, menu design)</li>
-<li>Front of house (queue discipline, ordering, payment)</li>
+<li>You cannot always trust research.</li>
+<li>Different techniques lead to more or less practical outcomes.</li>
+<li>Sampling is difficult and easy to do badly.</li>
+<li>Analyzing results takes care.</li>
+<li>Conflicting findings can stall application.</li>
+<li>It is not always worth conducting.</li>
 </ul>
-<p>It is tempting to declare “we just need more registers” and be done. That is reductive. Let’s set a realistic scenario:</p>
+<p>A recurring difficulty in sports is that <em>stated</em> and <em>observed</em> behavior diverge. Season-ticket holders may react badly to a survey hinting at price increases and then renew at high rates anyway. People also try to game surveys, hoping their answers tilt a decision in their favor. And research is often combined with purchased third-party data, which has its own accuracy problems — a Deloitte study found serious inaccuracies in data from a well-known broker <span class="citation">(<a href="references.html#ref-Lucker2017">John Lucker and Bischof 2017</a>)</span>:</p>
 <blockquote>
-<p>Executives at the Nashville Game Hens have noticed long concession lines, worse on weekends. Satisfaction surveys flag wait times as a top complaint. The concessions manager says the problem is too few points of sale once attendance passes 30,000, and proposes a large capital investment to add a new concept. An executive asks you whether that is a good idea.</p>
+<p>“Our survey findings suggest that the data that brokers sell not only has serious accuracy problems, but may be less current or complete than data buyers expect or need.”</p>
 </blockquote>
-<p>Where do you start? With observation and whatever data you have — here, assume little. The manager tells you her standard is to fill an order in under ninety seconds, an industry figure she says she hits <em>on average</em>.</p>
-<p>Three of the four components above are process-improvement problems, so an off-the-shelf framework fits. We will borrow <strong>DMAIC</strong> from Six Sigma — Define, Measure, Analyze, Improve, Control. Its roots are in manufacturing, but the tools adapt well.</p>
-<p>If you use a framework, go all the way and write a <strong>project charter</strong>. A charter covers objectives, goals, timelines, budgets, stakeholders, and risks. We will focus on objectives and goals, but the broader point holds: a charter forces you to think through the problem and to document it. Undocumented projects get used against you later. Build a charter for anything involving multiple stakeholders.</p>
-<div id="establishing-objectives" class="section level3" number="10.2.1">
-<h3>
-<span class="header-section-number">10.2.1</span> Establishing objectives<a class="anchor" aria-label="anchor" href="#establishing-objectives"><i class="fas fa-link"></i></a>
-</h3>
-<p>Objectives derive from the <strong>business case</strong> and the <strong>problem statement</strong>, and can start vague <span class="citation">(<a href="references.html#ref-Campe2007">Campe 2007</a>)</span>. A business case states why the project matters:</p>
-<blockquote>
-<p>Customer satisfaction is linked to repeat purchases and year-over-year revenue. Satisfaction scores degrade predictably once attendance exceeds 28,000, and surveys point to concession wait times as the main driver. With over 100 games left and capital budgets due in sixty days, there is an opportunity to affect renewals.</p>
-</blockquote>
-<p>That establishes that the project is important, must be done, and is time-boxed. Since we lack data, we will collect some before sharpening the problem.</p>
-</div>
-<div id="understanding-the-problem" class="section level3" number="10.2.2">
-<h3>
-<span class="header-section-number">10.2.2</span> Understanding the problem<a class="anchor" aria-label="anchor" href="#understanding-the-problem"><i class="fas fa-link"></i></a>
-</h3>
-<p>A typical concession concept has eight to fifteen menu items bought at different rates with different prep times, most holdable for about twenty minutes. There are usually four to twelve points of sale. Customers queue, reach a register, order, pay, and wait for fulfillment before leaving.</p>
-<p>The Game Hens’ concepts follow a <strong>multi-channel, single-phase</strong> queue: one register handles the whole transaction (single phase), several registers serve the line (multi-channel), and service is first-in, first-out. The key features:</p>
+<p>Garbage in, garbage out. Whenever practical, <em>trust but verify</em>. Despite all this, research should be a foundation of business strategy — the bigger the decision, the more it matters. Framing a question so research can actually answer it is an overlooked skill that takes experience.</p>
+<p>Most of your work will be simple satisfaction surveys sent by email after games. Survey work follows a recognizable process; we loosely borrow the steps from <em>Designing Surveys</em> <span class="citation">(<a href="references.html#ref-Blair2014">Johnny Blair 2014</a>)</span>:</p>
 <ul>
-<li>FIFO, not asynchronous</li>
-<li>Ordering, payment, and fulfillment all happen at the register</li>
-<li>Fulfillment is hard to buffer because hold times and demand vary</li>
+<li>Planning and survey design</li>
+<li>Questionnaire design and pretesting</li>
+<li>Final design and planning</li>
+<li>Sample selection and data collection</li>
+<li>Data coding, analysis, and reporting</li>
 </ul>
-</div>
-<div id="defining-the-problem-and-goals" class="section level3" number="10.2.3">
-<h3>
-<span class="header-section-number">10.2.3</span> Defining the problem and goals<a class="anchor" aria-label="anchor" href="#defining-the-problem-and-goals"><i class="fas fa-link"></i></a>
-</h3>
-<p>A clear problem statement keeps the project from sprawling:</p>
-<blockquote>
-<p>Concession wait times across the ballpark receive low satisfaction scores (under 10% give the top rating) from season-ticket holders, and low scores correlate with a lower likelihood to renew. The vendor quotes a ninety-second service standard, but observed waits often exceed it by more than 100%.</p>
-</blockquote>
-<p>Goals are more precise than objectives, and we cannot set firm ones without data. The initial goal is to collect it, then see how much wait time we can remove — we do not yet know whether the ninety-second standard is even meaningful.</p>
-</div>
-</div>
-<div id="measurement-and-analysis" class="section level2" number="10.3">
+<div id="designing-experiments-and-hypothesis-testing" class="section level2" number="10.1">
 <h2>
-<span class="header-section-number">10.3</span> Measurement and analysis<a class="anchor" aria-label="anchor" href="#measurement-and-analysis"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.1</span> Designing experiments and hypothesis testing<a class="anchor" aria-label="anchor" href="#designing-experiments-and-hypothesis-testing"><i class="fas fa-link"></i></a>
 </h2>
-<p>We will spend the rest of the chapter on a worked example of collecting and analyzing this data. You rarely have everything you need, so note what you have and plan to gather the rest. Live measurement needs a rubric, a budget, and game-day timing.</p>
-<div id="data-audit-and-capture" class="section level3" number="10.3.1">
+<p>Experiment design is a deep field, and nothing brings on impostor syndrome faster than clinical-grade design. The mechanics of building a specific design are fairly recipe-like; making sure the assumptions behind your analysis hold is the hard part. The good news: you are not testing a vaccine. Most experiments on the business side of a club need far less rigor, and you may not formalize the design at all. But you should understand it well enough to be safe — the way knowing that the area under a curve is an integral keeps you out of trouble even if you rarely compute one by hand.</p>
+<p>Design is really about <strong>validity</strong> — whether your results mean anything in the real world. <em>Statistical conclusion validity</em> asks whether the numbers meet the criteria of your test; <em>construct validity</em> asks whether you drew the right conclusion from them. Most of what we have done so far concerns the first. Keep the second in mind always.</p>
+<p>The vocabulary centers on a <strong>treatment</strong> and a <strong>control</strong> group — the basic structure of an A/B test. One group gets a stimulus (say, a particular ad), the other does not, and you test whether the stimulus changed an outcome such as a purchase. Designs range from a simple A/B test to something very complex, but the aim is the same: decide, with some assurance, whether two or more populations really differ — and then interpret it correctly.</p>
+<div id="hypothesis-testing" class="section level3" number="10.1.1">
 <h3>
-<span class="header-section-number">10.3.1</span> Data audit and capture<a class="anchor" aria-label="anchor" href="#data-audit-and-capture"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.1.1</span> Hypothesis testing<a class="anchor" aria-label="anchor" href="#hypothesis-testing"><i class="fas fa-link"></i></a>
 </h3>
-<p>Be careful and consistent about capture, and mind the politics: you were told ninety seconds is being met, so what happens if your measurements disagree? Keep that in mind as you build the rubric. A data-collection plan starts from the question and specifies data types, what is measured, how it is measured and captured, and how you ensure consistency.</p>
-<p>Some data exists already — scan data tells us how many people are in the park over time. Wait times do not; without cameras and computer vision, we measure them the old-fashioned way, with people and stopwatches. That feels crude, but with firm rules about what counts as a measurement and enough observations, the estimates are reliable. And ask whether you even need perfect data: tracking every customer everywhere is rarely worth it once you weigh it against every other expense.</p>
-</div>
-<div id="line-length-and-scans" class="section level3" number="10.3.2">
-<h3>
-<span class="header-section-number">10.3.2</span> Line length and scans<a class="anchor" aria-label="anchor" href="#line-length-and-scans"><i class="fas fa-link"></i></a>
-</h3>
-<p>We need two data sets: scans and line length. We can generate realistic examples with package helpers.</p>
-<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">scans_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_get_scan_data.html">f_get_scan_data</a></span><span class="op">(</span>x_value <span class="op">=</span> <span class="fl">230</span>, y_value <span class="op">=</span> <span class="fl">90</span>, seed <span class="op">=</span> <span class="fl">714</span>, sd_mod <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="va">scans_a</span><span class="op">$</span><span class="va">action_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_get_time_observations.html">f_get_time_observations</a></span><span class="op">(</span><span class="fl">17</span>, <span class="fl">21</span><span class="op">)</span></span>
-<span><span class="va">scans_a</span><span class="op">$</span><span class="va">cumScans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">scans_a</span><span class="op">$</span><span class="va">scans</span><span class="op">)</span></span></code></pre></div>
-<p>Line-length data would be collected by counting the line every minute. It is noisy: four people may be in line while one orders, or one person may order for several. When data has quirks, write them down — you will have to explain them later.</p>
-<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">line_length_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_get_line_length.html">f_get_line_length</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">755</span>, n <span class="op">=</span> <span class="fl">300</span>, u1 <span class="op">=</span> <span class="fl">22</span>, sd1 <span class="op">=</span> <span class="fl">8</span>, u2 <span class="op">=</span> <span class="fl">8</span>, sd2 <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="va">line_length_a</span><span class="op">$</span><span class="va">action_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_get_time_observations.html">f_get_time_observations</a></span><span class="op">(</span><span class="fl">17</span>, <span class="fl">21</span><span class="op">)</span></span>
+<p>Hypothesis testing confuses people mostly because of how it is phrased. Suppose I want to know whether season-ticket holders spend more on concessions than single-game fans. My <strong>null hypothesis</strong> is that the difference in mean spend is zero. Rejecting the null implies the means differ.</p>
+<p>We start by sampling from both groups. Let’s simulate the populations and draw a sample from each.</p>
+<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">715</span><span class="op">)</span></span>
+<span><span class="va">spend</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span></span>
+<span>  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"Season-ticket holder"</span>, spend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">25</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"Single-game fan"</span>,     spend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">18</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">line_scans</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">scans_a</span>, <span class="va">line_length_a</span>, by <span class="op">=</span> <span class="st">"action_time"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">354</span><span class="op">)</span></span>
+<span><span class="va">sth_sample</span> <span class="op">&lt;-</span> <span class="va">spend</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">"Season-ticket holder"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">slice_sample</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">400</span><span class="op">)</span></span>
+<span><span class="va">fan_sample</span> <span class="op">&lt;-</span> <span class="va">spend</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">"Single-game fan"</span><span class="op">)</span>     <span class="op">|&gt;</span> <span class="fu">slice_sample</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">400</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:ops-line-head">Table 10.3: </span>Line-length data</caption>
+<span id="tab:hyp-head">Table 10.1: </span>Sample spend data</caption>
 <thead><tr class="header">
-<th align="left">observation</th>
-<th align="left">lineLength</th>
-<th align="left">action_time</th>
+<th align="left">type</th>
+<th align="left">spend</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">1</td>
-<td align="left">9</td>
-<td align="left">17:00</td>
+<td align="left">Season-ticket holder</td>
+<td align="left">16.35</td>
 </tr>
 <tr class="even">
-<td align="left">2</td>
-<td align="left">6</td>
-<td align="left">17:01</td>
+<td align="left">Season-ticket holder</td>
+<td align="left">23.84</td>
 </tr>
 <tr class="odd">
-<td align="left">3</td>
-<td align="left">12</td>
-<td align="left">17:02</td>
+<td align="left">Season-ticket holder</td>
+<td align="left">16.24</td>
 </tr>
 <tr class="even">
-<td align="left">4</td>
-<td align="left">27</td>
-<td align="left">17:03</td>
+<td align="left">Season-ticket holder</td>
+<td align="left">32.08</td>
 </tr>
 <tr class="odd">
-<td align="left">5</td>
-<td align="left">12</td>
-<td align="left">17:04</td>
+<td align="left">Season-ticket holder</td>
+<td align="left">36.39</td>
 </tr>
 <tr class="even">
-<td align="left">6</td>
-<td align="left">12</td>
-<td align="left">17:05</td>
+<td align="left">Season-ticket holder</td>
+<td align="left">39.42</td>
 </tr>
 </tbody>
 </table></div>
-<p>Does line length track the number of people entering the park?</p>
-<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">line_scans</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">cumScans</span>, y <span class="op">=</span> <span class="va">lineLength</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span>color <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">stat_smooth</span><span class="op">(</span>method <span class="op">=</span> <span class="st">"loess"</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, color <span class="op">=</span> <span class="st">"grey25"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_x_continuous</span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Cumulative scans"</span>, y <span class="op">=</span> <span class="st">"Line length"</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">"Line length peaks, but not simply with attendance"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:ops-line-plot"></span>
-<img src="_main_files/figure-html/ops-line-plot-1.png" alt="Line length versus cumulative scans" width="100%"><p class="caption">
-Figure 10.3: Line length versus cumulative scans
-</p>
-</div>
-<p>There is a pattern — lines peak at certain times — but the relationship to cumulative scans is loose. Early arrivers seem to rush the stands, while fans who arrive near first pitch sit down and buy later.</p>
-</div>
-<div id="analyzing-the-results" class="section level3" number="10.3.3">
-<h3>
-<span class="header-section-number">10.3.3</span> Analyzing the results<a class="anchor" aria-label="anchor" href="#analyzing-the-results"><i class="fas fa-link"></i></a>
-</h3>
-<p>We can analyze this much as before, but here we introduce a <strong>generalized additive model</strong> (GAM). Be careful with it: it can fit almost anything, which is exactly why it is harder to reason about than a regression equation. We use <code>mgcv</code> <span class="citation">(<a href="references.html#ref-R-mgcv">Wood 2021</a>)</span>.</p>
-<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mgcv</span><span class="op">)</span></span>
-<span><span class="va">gam_line</span> <span class="op">&lt;-</span> <span class="fu">mgcv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam</a></span><span class="op">(</span><span class="va">lineLength</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span><span class="op">(</span><span class="va">cumScans</span>, bs <span class="op">=</span> <span class="st">"ps"</span>, sp <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">line_scans</span><span class="op">)</span></span>
-<span><span class="va">line_scans</span><span class="op">$</span><span class="va">pred_line</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">gam_line</span><span class="op">)</span></span></code></pre></div>
+<p>A hypothesis test has two ways to be right and two ways to be wrong. The grid is worth memorizing:</p>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="left">Null is true</th>
+<th align="left">Null is false</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Reject null</strong></td>
+<td align="left">Type I error (false positive)</td>
+<td align="left">Correct (detected a real difference)</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Fail to reject</strong></td>
+<td align="left">Correct (no difference)</td>
+<td align="left">Type II error (missed a real difference)</td>
+</tr>
+</tbody>
+</table></div>
+<p>A Type I error means crying wolf — declaring a difference that is not there. A Type II error means missing a difference that is. We test the difference in means with a Student’s t-test.</p>
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">t_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">sth_sample</span><span class="op">$</span><span class="va">spend</span>, <span class="va">fan_sample</span><span class="op">$</span><span class="va">spend</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:ops-gam-table">Table 10.4: </span>GAM parametric coefficients</caption>
+<span id="tab:hyp-ttest-table">Table 10.2: </span>t-test results</caption>
 <thead><tr class="header">
-<th align="right">term</th>
-<th align="right">estimate</th>
-<th align="right">std.error</th>
+<th align="right">estimate1</th>
+<th align="right">estimate2</th>
 <th align="right">statistic</th>
 <th align="right">p.value</th>
 <th align="right">conf.low</th>
 <th align="right">conf.high</th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="right">(Intercept)</td>
-<td align="right">16.62</td>
-<td align="right">0.566</td>
-<td align="right">29.382</td>
+<td align="right">25.024</td>
+<td align="right">18.463</td>
+<td align="right">13.247</td>
 <td align="right">0</td>
-<td align="right">15.511</td>
-<td align="right">17.729</td>
+<td align="right">5.588</td>
+<td align="right">7.533</td>
 </tr></tbody>
 </table></div>
-<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">line_scans</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">cumScans</span>, y <span class="op">=</span> <span class="va">lineLength</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color <span class="op">=</span> <span class="va">lineLength</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">pred_line</span><span class="op">)</span>, color <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, linewidth <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_color_gradient</span><span class="op">(</span>low <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, high <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, guide <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_x_continuous</span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Cumulative scans"</span>, y <span class="op">=</span> <span class="st">"Line length"</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">"The average fit is fair, but the scatter is wide"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:ops-gam-plot"></span>
-<img src="_main_files/figure-html/ops-gam-plot-1.png" alt="GAM fit on line-length data" width="100%"><p class="caption">
-Figure 10.4: GAM fit on line-length data
-</p>
+<p>The p-value is tiny, so we <strong>reject the null</strong>: the two groups spend differently. Before trusting any t-test, check its assumptions — roughly equal variances, independent observations, and so on — and use the appropriate variant when they do not hold.</p>
 </div>
-<p>The average fit is fair, but as a point estimate it is weak — there just is not a tight relationship between line length and scans. The data is multimodal: lines fall near first pitch as early arrivers finish ordering and sit down.</p>
-</div>
-<div id="understanding-wait-times" class="section level3" number="10.3.4">
+<div id="sampling" class="section level3" number="10.1.2">
 <h3>
-<span class="header-section-number">10.3.4</span> Understanding wait times<a class="anchor" aria-label="anchor" href="#understanding-wait-times"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.1.2</span> Sampling<a class="anchor" aria-label="anchor" href="#sampling"><i class="fas fa-link"></i></a>
 </h3>
-<p>Now we look at what drives the wait itself. The package helper <code>f_get_wait_times</code> breaks each transaction into three exponentially distributed stages — order, payment, and fulfillment — which is what you would have had to measure directly.</p>
-<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">wait_times_a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_get_wait_times.html">f_get_wait_times</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">755</span>, n <span class="op">=</span> <span class="fl">300</span>, rate1 <span class="op">=</span> <span class="fl">0.03</span>, rate2 <span class="op">=</span> <span class="fl">0.06</span>, rate3 <span class="op">=</span> <span class="fl">0.15</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-table"><table class="table table-sm">
-<caption>
-<span id="tab:ops-wait-head">Table 10.5: </span>Simulated wait-time data</caption>
-<thead><tr class="header">
-<th align="left">transaction</th>
-<th align="left">orderTimes</th>
-<th align="left">paymentTimes</th>
-<th align="left">fulfillTimes</th>
-<th align="left">totalTime</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">1</td>
-<td align="left">39</td>
-<td align="left">28</td>
-<td align="left">0</td>
-<td align="left">67</td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="left">0</td>
-<td align="left">56</td>
-<td align="left">7</td>
-<td align="left">63</td>
-</tr>
-<tr class="odd">
-<td align="left">3</td>
-<td align="left">123</td>
-<td align="left">4</td>
-<td align="left">4</td>
-<td align="left">131</td>
-</tr>
-<tr class="even">
-<td align="left">4</td>
-<td align="left">47</td>
-<td align="left">6</td>
-<td align="left">22</td>
-<td align="left">75</td>
-</tr>
-<tr class="odd">
-<td align="left">5</td>
-<td align="left">4</td>
-<td align="left">38</td>
-<td align="left">10</td>
-<td align="left">52</td>
-</tr>
-<tr class="even">
-<td align="left">6</td>
-<td align="left">4</td>
-<td align="left">37</td>
-<td align="left">6</td>
-<td align="left">47</td>
-</tr>
-</tbody>
-</table></div>
-<p>The distribution of each stage tells us where the variance lives.</p>
-<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">wait_dist</span> <span class="op">&lt;-</span> <span class="va">wait_times_a</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">orderTimes</span>, <span class="va">paymentTimes</span>, <span class="va">fulfillTimes</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu">everything</span><span class="op">(</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"component"</span>, values_to <span class="op">=</span> <span class="st">"seconds"</span><span class="op">)</span></span>
+<p>The validity of an experiment leans heavily on how you sample. The questions are mostly about bias:</p>
+<ul>
+<li>Is the sample representative of the population I care about?</li>
+<li>Is it large enough to generalize?</li>
+<li>Does it need to be random?</li>
+</ul>
+<p>How many people should we have sampled? A <strong>power analysis</strong> answers that. Using the <code>pwr</code> package <span class="citation">(<a href="references.html#ref-R-pwr">Champely 2020</a>)</span>, with an example adapted from Kabacoff <span class="citation">(<a href="references.html#ref-Kabacoff2011">Kabacoff 2011</a>)</span>, we ask how big a sample we need to detect a $3 difference in spend.</p>
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/heliosdrm/pwr">pwr</a></span><span class="op">)</span></span>
+<span><span class="va">effect_size</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">sth_sample</span><span class="op">$</span><span class="va">spend</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">wait_dist</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">seconds</span>, fill <span class="op">=</span> <span class="va">component</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_density</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_fill_manual</span><span class="op">(</span><span class="st">"Component"</span>, values <span class="op">=</span> <span class="va">plot_palette</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Seconds"</span>, y <span class="op">=</span> <span class="st">"Density"</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">"Order time has the widest, longest-tailed distribution"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:ops-wait-dist"></span>
-<img src="_main_files/figure-html/ops-wait-dist-1.png" alt="Distribution of wait-time components" width="100%"><p class="caption">
-Figure 10.5: Distribution of wait-time components
-</p>
-</div>
-<p>Order time has the widest spread and the longest tail. <strong>Variance kills interdependent processes</strong>, and this is the variance we were hunting: reduce it and the whole process becomes more predictable.</p>
-</div>
-<div id="simulating-a-component-of-the-process" class="section level3" number="10.3.5">
-<h3>
-<span class="header-section-number">10.3.5</span> Simulating a component of the process<a class="anchor" aria-label="anchor" href="#simulating-a-component-of-the-process"><i class="fas fa-link"></i></a>
-</h3>
-<p>Simulation is a large topic and exactly the right tool here. We have used <code>rexp</code> and <code>rnorm</code> to <em>generate</em> data from known distributions; the harder question is fitting a distribution to data we already have and then simulating it under new conditions. We will build a small Monte Carlo simulation by hand so you understand what a packaged tool does under the hood.</p>
-<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">wait_times</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/wait_times_data.html">wait_times_data</a></span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">300</span>, <span class="op">]</span></span></code></pre></div>
-<p>First, which stage drives the total? A correlation table answers it.</p>
-<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">component_cor</span> <span class="op">&lt;-</span> <span class="va">wait_times</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">orderTimes</span>, <span class="va">paymentTimes</span>, <span class="va">fulfillTimes</span>, <span class="va">totalTime</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-table"><table class="table table-sm">
-<caption>
-<span id="tab:ops-cor-table">Table 10.6: </span>Correlation among wait-time components</caption>
-<thead><tr class="header">
-<th align="left"></th>
-<th align="right">orderTimes</th>
-<th align="right">paymentTimes</th>
-<th align="right">fulfillTimes</th>
-<th align="right">totalTime</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">orderTimes</td>
-<td align="right">1.00</td>
-<td align="right">-0.04</td>
-<td align="right">0.00</td>
-<td align="right">0.91</td>
-</tr>
-<tr class="even">
-<td align="left">paymentTimes</td>
-<td align="right">-0.04</td>
-<td align="right">1.00</td>
-<td align="right">-0.04</td>
-<td align="right">0.36</td>
-</tr>
-<tr class="odd">
-<td align="left">fulfillTimes</td>
-<td align="right">0.00</td>
-<td align="right">-0.04</td>
-<td align="right">1.00</td>
-<td align="right">0.15</td>
-</tr>
-<tr class="even">
-<td align="left">totalTime</td>
-<td align="right">0.91</td>
-<td align="right">0.36</td>
-<td align="right">0.15</td>
-<td align="right">1.00</td>
-</tr>
-</tbody>
-</table></div>
-<p>Order time is by far the most correlated with total time (around 0.9), while payment and fulfillment contribute much less. That makes sense — no other work happens while a customer is ordering, and fulfillment is partly buffered. So a solution should target order time. A box plot confirms where the spread is.</p>
-<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">wait_long</span> <span class="op">&lt;-</span> <span class="va">wait_times</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">orderTimes</span>, <span class="va">paymentTimes</span>, <span class="va">fulfillTimes</span>, <span class="va">totalTime</span><span class="op">)</span>,</span>
-<span>                      names_to <span class="op">=</span> <span class="st">"component"</span>, values_to <span class="op">=</span> <span class="st">"seconds"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">wait_long</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/reorder.factor.html">reorder</a></span><span class="op">(</span><span class="va">component</span>, <span class="va">seconds</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">seconds</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_boxplot</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, alpha <span class="op">=</span> <span class="fl">0.85</span>, outlier.alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Transaction component"</span>, y <span class="op">=</span> <span class="st">"Seconds"</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">"Order time carries the most variance"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:ops-box"></span>
-<img src="_main_files/figure-html/ops-box-1.png" alt="Variance of transaction components" width="100%"><p class="caption">
-Figure 10.6: Variance of transaction components
-</p>
-</div>
-<div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">wait_quantiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span></span>
-<span>  <span class="va">wait_times</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span>, <span class="fl">2</span>,</span>
-<span>  <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">x</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.10</span>, <span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>, <span class="fl">0.90</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">power_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html">pwr.t.test</a></span><span class="op">(</span></span>
+<span>  d <span class="op">=</span> <span class="va">effect_size</span>,</span>
+<span>  sig.level <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  power <span class="op">=</span> <span class="fl">0.90</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"two.sample"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:ops-quantiles-table">Table 10.7: </span>Quantiles of wait-time components</caption>
+<span id="tab:samp-power-table">Table 10.3: </span>Power analysis</caption>
 <thead><tr class="header">
-<th align="left"></th>
-<th align="right">orderTimes</th>
-<th align="right">paymentTimes</th>
-<th align="right">fulfillTimes</th>
-<th align="right">totalTime</th>
+<th align="right">effect_size</th>
+<th align="right">per_group_n</th>
+<th align="right">power</th>
+<th align="right">sig_level</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="right">0.408</td>
+<td align="right">128</td>
+<td align="right">0.9</td>
+<td align="right">0.05</td>
+</tr></tbody>
+</table></div>
+<p>We need about 128 people per group to detect an effect size of roughly 0.41 with 90% power and a 5% false-positive rate. This is a simplistic example — normality, independence, and correlation between samples all matter — but the point stands: a good sample takes some rigor.</p>
+</div>
+<div id="factorial-designs" class="section level3" number="10.1.3">
+<h3>
+<span class="header-section-number">10.1.3</span> Factorial designs<a class="anchor" aria-label="anchor" href="#factorial-designs"><i class="fas fa-link"></i></a>
+</h3>
+<p>A common design is the <strong>factorial</strong>, where you test every combination of the factors. Full factorials get expensive fast, so a <em>fractional</em> factorial tests a chosen subset. You would rarely build one of these in sports outside a conjoint or other formal study, but it is worth seeing.</p>
+<p>Suppose we want to understand how fans value two sections — dugout and home plate — at three price points each. The <code>AlgDesign</code> package <span class="citation">(<a href="references.html#ref-R-AlgDesign">Wheeler 2019</a>)</span> builds the design.</p>
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jvbraun/AlgDesign">AlgDesign</a></span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Warning: package 'AlgDesign' was built under R version 4.5.2</code></pre>
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">design</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/AlgDesign/man/genFact.html">gen.factorial</a></span><span class="op">(</span></span>
+<span>  levels <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  nVars <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  center <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  varNames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dugout"</span>, <span class="st">"homePlate"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:fac-design-table">Table 10.4: </span>A 3x3 factorial design</caption>
+<thead><tr class="header">
+<th align="center">dugout</th>
+<th align="center">homePlate</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">10%</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">19</td>
+<td align="center">-1</td>
+<td align="center">-1</td>
 </tr>
 <tr class="even">
-<td align="left">25%</td>
-<td align="right">9</td>
-<td align="right">5</td>
-<td align="right">2</td>
-<td align="right">30</td>
+<td align="center">0</td>
+<td align="center">-1</td>
 </tr>
 <tr class="odd">
-<td align="left">50%</td>
-<td align="right">22</td>
-<td align="right">12</td>
-<td align="right">4</td>
-<td align="right">45</td>
+<td align="center">1</td>
+<td align="center">-1</td>
 </tr>
 <tr class="even">
-<td align="left">75%</td>
-<td align="right">42</td>
-<td align="right">23</td>
-<td align="right">8</td>
-<td align="right">70</td>
+<td align="center">-1</td>
+<td align="center">0</td>
 </tr>
 <tr class="odd">
-<td align="left">90%</td>
-<td align="right">81</td>
-<td align="right">39</td>
-<td align="right">14</td>
-<td align="right">107</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">-1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">1</td>
 </tr>
 </tbody>
 </table></div>
-<p>The upper quartile of order times stretches far past the median — that long right tail is the real problem, because it is what makes the system unpredictable.</p>
-<p>Because total time is just the sum of the three stages, a regression on it should fit almost perfectly. That is a useful sanity check, not a model.</p>
-<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">time_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">totalTime</span> <span class="op">~</span> <span class="va">orderTimes</span> <span class="op">+</span> <span class="va">paymentTimes</span> <span class="op">+</span> <span class="va">fulfillTimes</span>, data <span class="op">=</span> <span class="va">wait_times</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">time_model</span><span class="op">)</span><span class="op">$</span><span class="va">r.squared</span></span></code></pre></div>
-<pre><code>## [1] 0.9997996</code></pre>
-<p>The R-squared is essentially one. When you see that, suspect that you have simply added up the pieces — which is exactly what happened here.</p>
-<div id="building-the-simulation" class="section level4" number="10.3.5.1">
-<h4>
-<span class="header-section-number">10.3.5.1</span> Building the simulation<a class="anchor" aria-label="anchor" href="#building-the-simulation"><i class="fas fa-link"></i></a>
-</h4>
-<p>We fit and simulate using the <code>wait_times_distribution_data</code> table. We take a sample to act as our observed history.</p>
-<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">wait_distribution</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/wait_times_distribution_data.html">wait_times_distribution_data</a></span></span>
+<p>The nine rows are every combination of the coded levels (<code>-1</code>, <code>0</code>, <code>1</code>), which we map to prices of $75, $85, and $95. Each respondent sees a picture of both views at the shown prices and chooses one:</p>
+<blockquote>
+<p>Which seat would you prefer at these prices?</p>
+</blockquote>
+<p>To analyze it, we need responses. We simulate two kinds of fan whose preferences genuinely differ: <strong>season-ticket holders</strong> treat the views as interchangeable and choose on price, while <strong>single-game fans</strong> prefer home plate and will pay a premium for it. We let the chance of choosing home plate depend on whether home plate is cheaper, the same, or pricier than the dugout seat.</p>
+<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">price_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>`-1` <span class="op">=</span> <span class="fl">75</span>, `0` <span class="op">=</span> <span class="fl">85</span>, `1` <span class="op">=</span> <span class="fl">95</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">combos</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  dugout    <span class="op">=</span> <span class="va">price_map</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">design</span><span class="op">$</span><span class="va">dugout</span><span class="op">)</span><span class="op">]</span>,</span>
+<span>  homePlate <span class="op">=</span> <span class="va">price_map</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">design</span><span class="op">$</span><span class="va">homePlate</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>hp_position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sign.html">sign</a></span><span class="op">(</span><span class="va">homePlate</span> <span class="op">-</span> <span class="va">dugout</span><span class="op">)</span>,</span>
+<span>                              levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>                              labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cheaper"</span>, <span class="st">"same"</span>, <span class="st">"pricier"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">respondent_types</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  respondent <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Season-ticket holder"</span>, <span class="st">"Single-game fan"</span><span class="op">)</span>,</span>
+<span>  p_cheaper  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.85</span>, <span class="fl">0.92</span><span class="op">)</span>,</span>
+<span>  p_same     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.50</span>, <span class="fl">0.85</span><span class="op">)</span>,</span>
+<span>  p_pricier  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.18</span>, <span class="fl">0.72</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">755</span><span class="op">)</span></span>
-<span><span class="va">wait_sample</span> <span class="op">&lt;-</span> <span class="va">wait_distribution</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span><span class="fl">0.70</span><span class="op">)</span></span></code></pre></div>
-<p>The empirical cumulative distribution function (ECDF) is the inverse of the quantile function — it maps a value to the share of observations at or below it.</p>
-<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">order_cdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/ecdf.html">ecdf</a></span><span class="op">(</span><span class="va">wait_sample</span><span class="op">$</span><span class="va">orderTimes</span><span class="op">)</span></span>
-<span><span class="fu">order_cdf</span><span class="op">(</span><span class="fl">50</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## [1] 0.7785714</code></pre>
-<p>About 78% of orders take 50 seconds or less, matching the quantile at that probability. Plotting it shows the familiar S-curve.</p>
-<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">wait_sample</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">orderTimes</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">stat_ecdf</span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"step"</span>, color <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, linewidth <span class="op">=</span> <span class="fl">1.1</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_hline</span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fu">order_cdf</span><span class="op">(</span><span class="fl">50</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="fl">2</span>, color <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">50</span>, linetype <span class="op">=</span> <span class="fl">2</span>, color <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Order time (seconds)"</span>, y <span class="op">=</span> <span class="st">"Share of observations"</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">"Roughly 78% of orders finish within 50 seconds"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:ops-ecdf-plot"></span>
-<img src="_main_files/figure-html/ops-ecdf-plot-1.png" alt="ECDF of order time" width="100%"><p class="caption">
-Figure 10.7: ECDF of order time
-</p>
-</div>
-<p>Because order time is roughly exponential, we can simulate it by drawing from an exponential with the observed mean, and compare to the real data.</p>
-<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">715</span><span class="op">)</span></span>
-<span><span class="va">sim_compare</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>  Simulated <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span><span class="op">(</span><span class="fl">400</span>, rate <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">wait_sample</span><span class="op">$</span><span class="va">orderTimes</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  Actual    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">wait_sample</span><span class="op">$</span><span class="va">orderTimes</span>, <span class="fl">400</span><span class="op">)</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu">everything</span><span class="op">(</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"source"</span>, values_to <span class="op">=</span> <span class="st">"seconds"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">sim_compare</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">seconds</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_histogram</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, color <span class="op">=</span> <span class="st">"white"</span>, bins <span class="op">=</span> <span class="fl">30</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span> <span class="va">source</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Seconds"</span>, y <span class="op">=</span> <span class="st">"Count"</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">"Simulated order times match the observed shape"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:ops-sim-hist"></span>
-<img src="_main_files/figure-html/ops-sim-hist-1.png" alt="Simulated versus actual order times" width="100%"><p class="caption">
-Figure 10.8: Simulated versus actual order times
-</p>
-</div>
-<p>The simulation matches — it should, since we fit an exponential to exponential-looking data. One run proves nothing, so we run many and average. The question:</p>
-<blockquote>
-<p>If we cut order time in half, how would average total wait change?</p>
-</blockquote>
-<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">500</span></span>
-<span><span class="va">sim_orders</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"list"</span>, <span class="fl">500</span><span class="op">)</span></span>
-<span><span class="va">sim_pay</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"list"</span>, <span class="fl">500</span><span class="op">)</span></span>
-<span><span class="va">sim_fulfill</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"list"</span>, <span class="fl">500</span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">500</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="va">i</span> <span class="op">+</span> <span class="fl">715</span><span class="op">)</span></span>
-<span>  <span class="va">sim_orders</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span><span class="op">(</span><span class="va">n</span>, rate <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">wait_sample</span><span class="op">$</span><span class="va">orderTimes</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="va">sim_pay</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span><span class="op">(</span><span class="va">n</span>, rate <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">wait_sample</span><span class="op">$</span><span class="va">paymentTimes</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="va">sim_fulfill</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span><span class="op">(</span><span class="va">n</span>, rate <span class="op">=</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">wait_sample</span><span class="op">$</span><span class="va">fulfillTimes</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">mean_total</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">sim_orders</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>              <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">sim_pay</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>              <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">sim_fulfill</span>, <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">mean_total</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## [1] 56.5</code></pre>
-<p>The simulated average total time matches what we observed, around 56 seconds. Now use the simulation to ask how many orders a single register could clear in an hour when the queue is always full — and how much that number <em>varies</em>, since variance is the whole point.</p>
-<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">total_time_sample</span> <span class="op">&lt;-</span> <span class="va">sim_orders</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">sim_pay</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">sim_fulfill</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">715</span><span class="op">)</span></span>
-<span><span class="va">served_per_hour</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span><span class="op">(</span><span class="fl">30</span><span class="op">)</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">30</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">elapsed</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
-<span>  <span class="va">count</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
-<span>  <span class="kw">while</span> <span class="op">(</span><span class="va">elapsed</span> <span class="op">&lt;=</span> <span class="fl">60</span> <span class="op">*</span> <span class="fl">60</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">elapsed</span> <span class="op">&lt;-</span> <span class="va">elapsed</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">total_time_sample</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span>    <span class="va">count</span> <span class="op">&lt;-</span> <span class="va">count</span> <span class="op">+</span> <span class="fl">1</span></span>
-<span>  <span class="op">}</span></span>
-<span>  <span class="va">served_per_hour</span><span class="op">[</span><span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">count</span> <span class="op">-</span> <span class="fl">1</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb258"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">served</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>simulation <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">30</span>, served <span class="op">=</span> <span class="va">served_per_hour</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">served</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">simulation</span>, y <span class="op">=</span> <span class="va">served</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_line</span><span class="op">(</span>color <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_hline</span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">64</span>, linetype <span class="op">=</span> <span class="fl">4</span>, color <span class="op">=</span> <span class="st">"grey40"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Simulated hour"</span>, y <span class="op">=</span> <span class="st">"Fans served"</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">"Throughput swings around the ~64/hour average"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:ops-throughput-sim-plot"></span>
-<img src="_main_files/figure-html/ops-throughput-sim-plot-1.png" alt="Simulated fans served per hour, per register" width="100%"><p class="caption">
-Figure 10.9: Simulated fans served per hour, per register
-</p>
-</div>
-<p>At a 56-second average, a register clears about 64 orders an hour (3,600 / 56). But across thirty simulated hours the count swings well above and below that line — several hours fall short purely from variance. Compound that across many registers, varying inter-arrival times, and tiring staff, and you see why reducing variance, not just adding registers, is the key to consistent throughput.</p>
-</div>
-</div>
-</div>
-<div id="fitting-distributions" class="section level2" number="10.4">
-<h2>
-<span class="header-section-number">10.4</span> Fitting distributions<a class="anchor" aria-label="anchor" href="#fitting-distributions"><i class="fas fa-link"></i></a>
-</h2>
-<p>Simulation depends on fitting a distribution to your data, and there is more than one way. We build a small frequency table — really a histogram — and fit several curves to its cumulative form. The package ships a prepared table.</p>
-<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">freq_table</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/freq_table_data.html">freq_table_data</a></span></span>
-<span><span class="va">freq_table</span><span class="op">$</span><span class="va">cumprob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">freq_table</span><span class="op">$</span><span class="va">prob</span><span class="op">)</span></span></code></pre></div>
-<div class="inline-table"><table class="table table-sm">
-<caption>
-<span id="tab:fit-head">Table 10.8: </span>Frequency table of order times</caption>
-<thead><tr class="header">
-<th align="right">variable</th>
-<th align="right">Freq</th>
-<th align="right">prob</th>
-<th align="right">cumprob</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="right">0</td>
-<td align="right">45</td>
-<td align="right">0.021</td>
-<td align="right">0.021</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="right">56</td>
-<td align="right">0.027</td>
-<td align="right">0.048</td>
-</tr>
-<tr class="odd">
-<td align="right">2</td>
-<td align="right">55</td>
-<td align="right">0.026</td>
-<td align="right">0.074</td>
-</tr>
-<tr class="even">
-<td align="right">3</td>
-<td align="right">59</td>
-<td align="right">0.028</td>
-<td align="right">0.102</td>
-</tr>
-<tr class="odd">
-<td align="right">4</td>
-<td align="right">51</td>
-<td align="right">0.024</td>
-<td align="right">0.127</td>
-</tr>
-<tr class="even">
-<td align="right">5</td>
-<td align="right">49</td>
-<td align="right">0.023</td>
-<td align="right">0.150</td>
-</tr>
-</tbody>
-</table></div>
-<p>We try an exponential, a (deliberately overfit) fifth-degree polynomial, a GAM, and a spline.</p>
-<div class="sourceCode" id="cb260"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mgcv</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">fit_exp</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/nls.html">nls</a></span><span class="op">(</span><span class="va">variable</span> <span class="op">~</span> <span class="va">a</span> <span class="op">*</span> <span class="va">cumprob</span><span class="op">^</span><span class="va">m</span>, data <span class="op">=</span> <span class="va">freq_table</span>, start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">300</span>, m <span class="op">=</span> <span class="fl">0.15</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">fit_poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">variable</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">cumprob</span>, <span class="fl">5</span>, raw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">freq_table</span><span class="op">)</span></span>
-<span><span class="va">fit_gam</span>  <span class="op">&lt;-</span> <span class="fu">mgcv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gam.html">gam</a></span><span class="op">(</span><span class="va">variable</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/s.html">s</a></span><span class="op">(</span><span class="va">cumprob</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">freq_table</span><span class="op">)</span></span>
-<span><span class="va">fit_spline</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">freq_table</span>, <span class="fu"><a href="https://rdrr.io/r/stats/smooth.spline.html">smooth.spline</a></span><span class="op">(</span><span class="va">cumprob</span>, <span class="va">variable</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">freq_table</span> <span class="op">&lt;-</span> <span class="va">freq_table</span> <span class="op">|&gt;</span></span>
+<span><span class="va">responses</span> <span class="op">&lt;-</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/expand.html">crossing</a></span><span class="op">(</span><span class="va">combos</span>, <span class="va">respondent_types</span>, draw <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">500</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span></span>
-<span>    pred_exp  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit_exp</span><span class="op">)</span>,</span>
-<span>    pred_poly <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit_poly</span><span class="op">)</span>,</span>
-<span>    pred_gam  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit_gam</span><span class="op">)</span>,</span>
-<span>    pred_spline <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit_spline</span><span class="op">)</span><span class="op">$</span><span class="va">y</span></span>
+<span>    p_homeplate <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span>      <span class="va">hp_position</span> <span class="op">==</span> <span class="st">"cheaper"</span> <span class="op">~</span> <span class="va">p_cheaper</span>,</span>
+<span>      <span class="va">hp_position</span> <span class="op">==</span> <span class="st">"same"</span>    <span class="op">~</span> <span class="va">p_same</span>,</span>
+<span>      <span class="cn">TRUE</span>                     <span class="op">~</span> <span class="va">p_pricier</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    chose_homeplate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fu">n</span><span class="op">(</span><span class="op">)</span>, <span class="fl">1</span>, <span class="va">p_homeplate</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p>A logit curve is a poor fit here and <code>nls</code> fails to converge on it — a common outcome you should expect, not fear. Plotting the fits shows which work.</p>
-<div class="sourceCode" id="cb261"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fits_long</span> <span class="op">&lt;-</span> <span class="va">freq_table</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">pred_exp</span>, <span class="va">pred_poly</span>, <span class="va">pred_gam</span>, <span class="va">pred_spline</span><span class="op">)</span>,</span>
-<span>                      names_to <span class="op">=</span> <span class="st">"fit"</span>, values_to <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">mutate</span><span class="op">(</span>fit <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode</a></span><span class="op">(</span><span class="va">fit</span>,</span>
-<span>                             pred_exp <span class="op">=</span> <span class="st">"Exponential"</span>, pred_poly <span class="op">=</span> <span class="st">"Polynomial"</span>,</span>
-<span>                             pred_gam <span class="op">=</span> <span class="st">"GAM"</span>, pred_spline <span class="op">=</span> <span class="st">"Spline"</span><span class="op">)</span><span class="op">)</span></span>
+<p>An interaction plot shows how the two groups respond differently as the home-plate price moves.</p>
+<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">interaction_data</span> <span class="op">&lt;-</span> <span class="va">responses</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">respondent</span>, <span class="va">hp_position</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">summarise</span><span class="op">(</span>share_homeplate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">chose_homeplate</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">freq_table</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">variable</span>, y <span class="op">=</span> <span class="va">cumprob</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span>, size <span class="op">=</span> <span class="fl">1</span>, color <span class="op">=</span> <span class="st">"grey40"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_line</span><span class="op">(</span>data <span class="op">=</span> <span class="va">fits_long</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span>, y <span class="op">=</span> <span class="va">cumprob</span>, color <span class="op">=</span> <span class="va">fit</span><span class="op">)</span>, linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_color_manual</span><span class="op">(</span><span class="st">"Fit"</span>, values <span class="op">=</span> <span class="va">plot_palette</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Order time (seconds)"</span>, y <span class="op">=</span> <span class="st">"Cumulative probability"</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">"GAM and spline fit well; the exponential lags"</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">interaction_data</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">hp_position</span>, y <span class="op">=</span> <span class="va">share_homeplate</span>,</span>
+<span>                             color <span class="op">=</span> <span class="va">respondent</span>, group <span class="op">=</span> <span class="va">respondent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span>linewidth <span class="op">=</span> <span class="fl">1.1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_color_manual</span><span class="op">(</span><span class="st">"Fan type"</span>, values <span class="op">=</span> <span class="va">plot_palette</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Home-plate price relative to dugout"</span>, y <span class="op">=</span> <span class="st">"Share choosing home plate"</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">"The two fan types respond to price very differently"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:fit-plot"></span>
-<img src="_main_files/figure-html/fit-plot-1.png" alt="Distribution fits to the cumulative order-time data" width="100%"><p class="caption">
-Figure 10.10: Distribution fits to the cumulative order-time data
+<span style="display:block;" id="fig:fac-interaction"></span>
+<img src="_main_files/figure-html/fac-interaction-1.png" alt="Interaction between fan type and relative price" width="100%"><p class="caption">
+Figure 10.1: Interaction between fan type and relative price
 </p>
 </div>
-<p>The GAM and spline track the data closely; the exponential and polynomial fit the curve less well. For linear models you compare with ANOVA; for these, AIC and BIC are the usual tools (lower is better).</p>
-<div class="sourceCode" id="cb262"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fit_diagnostics</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>  model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Exponential"</span>, <span class="st">"Polynomial"</span>, <span class="st">"GAM"</span><span class="op">)</span>,</span>
-<span>  AIC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit_exp</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit_poly</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">AIC</a></span><span class="op">(</span><span class="va">fit_gam</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  BIC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">BIC</a></span><span class="op">(</span><span class="va">fit_exp</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">BIC</a></span><span class="op">(</span><span class="va">fit_poly</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/stats/AIC.html">BIC</a></span><span class="op">(</span><span class="va">fit_gam</span><span class="op">)</span><span class="op">)</span></span>
+<p>The lines are not parallel, which is the signature of an interaction. Season-ticket holders swing sharply — they pick home plate when it is cheaper and abandon it when it is pricier — while single-game fans stay loyal to the view almost regardless of price. The effect of seat location <em>depends on</em> who the fan is. These designs can grow far more complex, but this is the basic idea.</p>
+</div>
+</div>
+<div id="planning-and-designing-a-survey" class="section level2" number="10.2">
+<h2>
+<span class="header-section-number">10.2</span> Planning and designing a survey<a class="anchor" aria-label="anchor" href="#planning-and-designing-a-survey"><i class="fas fa-link"></i></a>
+</h2>
+<p>Since we covered segmentation in Chapter <a href="chapter5.html#chapter5">5</a>, we will frame this example around gathering data to build psychographic segments. A realistic brief:</p>
+<blockquote>
+<p>The marketing department of the Nashville Game Hens wants a more sophisticated understanding of its fan base. Specifically: (1) understand the market structure — who attends games, and how does that compare to the region’s population? — and (2) understand how the brand is perceived and what that perception means.</p>
+</blockquote>
+<p>These are broad, and they do not really ask answerable questions yet — part of your job is to translate them. Question one needs us to group fans into a manageable number of segments that are internally similar and to compare them with a regional or national baseline. (With 100,000 fans you technically have 100,000 segments; forcing them into a few understandable boxes is the hard part.) Question two is about brand perception relative to a competitive set — not a routine satisfaction survey.</p>
+<p>A constant tension runs through this kind of project: <strong>discoverability versus accuracy versus utility</strong>. Will the results target individuals, or be cast onto broad groups? How accurate will they be, and if not very, is the expensive project still worth it? Set expectations clearly up front.</p>
+<div id="understanding-a-clubs-fans" class="section level3" number="10.2.1">
+<h3>
+<span class="header-section-number">10.2.1</span> Understanding a club’s fans<a class="anchor" aria-label="anchor" href="#understanding-a-clubs-fans"><i class="fas fa-link"></i></a>
+</h3>
+<p>Sports brands are unusual — people wear a team’s hat around town, but not their shampoo’s. Fandom spans a wide range of people and has strong cyclical components. A few endemic complications:</p>
+<ul>
+<li>A few small ticket classes (corporate accounts, premium seats) drive outsized revenue.</li>
+<li>Responses shift across the season.</li>
+<li>Fans consume through many channels, on many levels.</li>
+</ul>
+<p>Is a corporate buyer the same as a fan who buys to watch the game? What does “enjoying the game” even mean when people consume through broadcasts, highlights, merchandise, and social feeds the club does not control? For this project we focus on ticket buyers, which is itself an assumption worth stating.</p>
+<p>Even sizing the market requires assumptions. Public attendance figures count <em>tickets</em>, not <em>people</em>. To get from one to the other you might assume an average season-ticket-equivalent count, tickets per account, games and tickets per single-game buyer, and a share from large groups. Different assumptions fork the project in different directions, so make them explicit.</p>
+<p>Some of the data for question one may already exist or be cheap to get: census data, observational research (walking the concourse and recording what you see — increasingly automatable with computer vision), emailed surveys, and third-party data. Question two leans on emailed surveys and third-party data. At a minimum you will want basic demographics — age, children, marital status, gender, ethnicity — each of which can inform channel and message decisions, and can be used longitudinally. Spend time on the question before the questionnaire; it is the cheapest place to catch problems.</p>
+</div>
+<div id="selecting-a-research-method" class="section level3" number="10.2.2">
+<h3>
+<span class="header-section-number">10.2.2</span> Selecting a research method<a class="anchor" aria-label="anchor" href="#selecting-a-research-method"><i class="fas fa-link"></i></a>
+</h3>
+<p>Different needs call for different methods. Common club questions include the competitive set, what fans like, their financial constraints, sponsor awareness, price perception, brand position, and appetite for a loyalty program. Some require specialized survey types that must be designed and interpreted carefully:</p>
+<ul>
+<li>Conjoint experiments</li>
+<li>Van Westendorp</li>
+<li>MaxDiff</li>
+<li>Predictive market studies</li>
+</ul>
+<p>Each has strengths and weaknesses. A Van Westendorp study shows how a price is <em>perceived</em> but not willingness to pay (Chapter <a href="chapter6.html#chapter6">6</a>); a conjoint gets closer to willingness to pay. Longitudinal studies track how perception changes over time. As elsewhere in the book, the usual goal is a credible causal link between an activity and an outcome.</p>
+</div>
+<div id="designing-the-questionnaire" class="section level3" number="10.2.3">
+<h3>
+<span class="header-section-number">10.2.3</span> Designing the questionnaire<a class="anchor" aria-label="anchor" href="#designing-the-questionnaire"><i class="fas fa-link"></i></a>
+</h3>
+<p>Durable surveys are hard to build; for depth see <em>Designing Surveys</em> <span class="citation">(<a href="references.html#ref-Blair2014">Johnny Blair 2014</a>)</span> and, for analysis, <em>Applied Survey Data Analysis</em> <span class="citation">(<a href="references.html#ref-Heeringa2014">Steven G. Heeringa 2010</a>)</span>. A few principles for simple surveys:</p>
+<ol style="list-style-type: decimal">
+<li>Have a plan for how you will use and analyze the data.</li>
+<li>Do not ask a question you will not use.</li>
+<li>Do not survey too much or too often.</li>
+<li>Watch the respondent burden — keep it short.</li>
+</ol>
+<p>Larger surveys often break into sections: demographics, brand, satisfaction, product. Keep it as short and relevant as you can.</p>
+</div>
+<div id="qualifying-the-sample" class="section level3" number="10.2.4">
+<h3>
+<span class="header-section-number">10.2.4</span> Qualifying the sample<a class="anchor" aria-label="anchor" href="#qualifying-the-sample"><i class="fas fa-link"></i></a>
+</h3>
+<p>Screening questions make results more relevant and can lower costs when you pay for respondents. You might enforce gender or ethnicity quotas so the sample is not, say, 85% male:</p>
+<blockquote>
+<p>What is your gender? (Male / Female)</p>
+</blockquote>
+<blockquote>
+<p>What is your ethnicity? (White or Caucasian / Black or African American / South Asian / East Asian / Native American or Pacific Islander / Latino)</p>
+</blockquote>
+<p>Nomenclature shifts over time and is genuinely hard — “Hispanic” and “Latino” are contested, and ethnicity often cross-cuts other categories. Make judgment calls based on the survey’s purpose.</p>
+<p>Respondents can also poison a sample. Surveys often screen out industry insiders, who may recognize the mechanics of, say, a conjoint:</p>
+<blockquote>
+<p>Do you or anyone in your household work in marketing research?</p>
+</blockquote>
+<p>In sports it is common to gauge fan avidity, but asking directly in the screen (“Are you a fan of the Game Hens?”) tips your hand — especially through a third party. A subtler version hides the team in a list:</p>
+<blockquote>
+<p>Please rate your interest in each activity: knitting class / attending an MLB game / attending a concert …</p>
+</blockquote>
+<p>That screens out the uninterested without revealing what the survey is about. Finally, embed an attention check to catch indifferent respondents:</p>
+<blockquote>
+<p>Please select the fourth answer below. (Answer 1 / Answer 2 / Answer 3 / Answer 4)</p>
+</blockquote>
+<p>You will be surprised how many fail it; it is usually best to drop those responses.</p>
+</div>
+<div id="typical-questions" class="section level3" number="10.2.5">
+<h3>
+<span class="header-section-number">10.2.5</span> Typical questions<a class="anchor" aria-label="anchor" href="#typical-questions"><i class="fas fa-link"></i></a>
+</h3>
+<p>Some questions appear on almost every survey. How you ask them matters more than it seems. If you can already tie a respondent to their record, you may not need to ask demographics at all — and if you do, consider placing them at the end so you collect the more important answers first, and ask permission before diving in:</p>
+<blockquote>
+<p>Would you like to answer a few demographic questions?</p>
+</blockquote>
+<p>Prefer <strong>birth year</strong> to age — it is easy to bucket, comparable across years, and supports cleaner scatter plots:</p>
+<blockquote>
+<p>What is your year of birth?</p>
+</blockquote>
+<p><strong>Education</strong> is a useful, less-sensitive proxy for wealth than income:</p>
+<blockquote>
+<p>Highest level of education completed? (High school / Some college / College / Graduate degree)</p>
+</blockquote>
+<p>Keep <strong>marital status</strong> simple unless you have a specific use for the finer categories:</p>
+<blockquote>
+<p>Marital status? (Single / Married / Partnership / Other)</p>
+</blockquote>
+<p><strong>Children</strong> matter because youth development is a long-term play, and ages matter — a five-year-old and a sixteen-year-old are very different fans:</p>
+<blockquote>
+<p>Are there children under 18 in your household? (Yes / No) — and if yes, their age ranges.</p>
+</blockquote>
+<p>Multi-select answers are harder to process on the back end, so the more complex the question, the less likely you are to use it. <strong>Geography</strong> is critical for a club; a zip code is the easiest usable form, though an address (for latitude and longitude) is better:</p>
+<blockquote>
+<p>Please enter your zip code.</p>
+</blockquote>
+<p><strong>Income</strong> is touchy and people skip it on non-anonymous surveys. It is ordinal, so keep the buckets in logical order — and remember that survey tools often shuffle answer order to fight response bias, which you must disable for ordinal scales:</p>
+<blockquote>
+<p>Annual household income? (Under $10,000 / $10,000–$49,999 / $50,000–$99,999 / $100,000–$149,999 / $150,000–$199,999 / $200,000–$249,999 / $250,000+)</p>
+</blockquote>
+<p>Be skeptical of catch-all questions like occupation: is “agriculture” a job or an industry, and does an accountant pick “clerical” or “financial”? If you do not have a specific use for it, leave it out.</p>
+<div id="avidity-questions" class="section level4" number="10.2.5.1">
+<h4>
+<span class="header-section-number">10.2.5.1</span> Avidity questions<a class="anchor" aria-label="anchor" href="#avidity-questions"><i class="fas fa-link"></i></a>
+</h4>
+<p>Avidity is important in sports and widely misunderstood. Of these three, who is the most avid fan?</p>
+<ul>
+<li>Someone who buys $700 season tickets</li>
+<li>Someone who buys $20,000 season tickets</li>
+<li>Someone who buys $1,500 in single-game tickets</li>
+</ul>
+<p>These are explicit signals of affinity, but if you just bucket spend you may be measuring <strong>wealth</strong>, not avidity. Implicit signals (buying merchandise, visiting the site, enrolling a child in a kids’ club) are noisier still — the merchandise might be a gift. You can also ask directly, on a Likert scale:</p>
+<blockquote>
+<p>How big a fan are you? (I live and die for the Game Hens / one of my favorite teams / casual fan / not a fan / I root against them)</p>
+</blockquote>
+<p>Word these carefully; it is easy to write something ambiguous.</p>
+</div>
+</div>
+</div>
+<div id="brand-affinity-and-perceptual-maps" class="section level2" number="10.3">
+<h2>
+<span class="header-section-number">10.3</span> Brand affinity and perceptual maps<a class="anchor" aria-label="anchor" href="#brand-affinity-and-perceptual-maps"><i class="fas fa-link"></i></a>
+</h2>
+<p>Gauging brand perception is hard. A <strong>perceptual map</strong> visualizes how your brand sits relative to others on the attributes fans associate with each. We use the <code>anacor</code> package <span class="citation">(<a href="references.html#ref-R-anacor">Mair and De Leeuw 2017</a>)</span> on the aggregated <code>perceptual_data</code> from Chapter <a href="chapter2.html#chapter2">2</a>, where respondents checked every attribute that applied to each team:</p>
+<blockquote>
+<p>How do you feel about the following sports properties? Check all that apply for each team.</p>
+</blockquote>
+<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/">anacor</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">perceptions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/perceptual_data.html">perceptual_data</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">perceptions</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Chickens"</span>, <span class="st">"Titans"</span>, <span class="st">"Predators"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">correspondence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/anacor/man/anacor.html">anacor</a></span><span class="op">(</span><span class="va">perceptions</span>, ndim <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<p>Correspondence analysis decomposes the table into dimensions, much like principal components. The first two dimensions capture how much of the variation we can show in a flat plot.</p>
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">inertia</span> <span class="op">&lt;-</span> <span class="va">correspondence</span><span class="op">$</span><span class="va">eigen.values</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">correspondence</span><span class="op">$</span><span class="va">eigen.values</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">inertia</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] 0.557 0.443</code></pre>
+<p>We assemble the team scores and the attribute scores into one frame and plot both, so teams sit near the attributes most associated with them.</p>
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">map_data</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span></span>
+<span>  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>    dim1 <span class="op">=</span> <span class="va">correspondence</span><span class="op">$</span><span class="va">row.scores</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>,</span>
+<span>    dim2 <span class="op">=</span> <span class="va">correspondence</span><span class="op">$</span><span class="va">row.scores</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>,</span>
+<span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">correspondence</span><span class="op">$</span><span class="va">row.scores</span><span class="op">)</span>,</span>
+<span>    kind <span class="op">=</span> <span class="st">"Team"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>    dim1 <span class="op">=</span> <span class="va">correspondence</span><span class="op">$</span><span class="va">col.scores</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>,</span>
+<span>    dim2 <span class="op">=</span> <span class="va">correspondence</span><span class="op">$</span><span class="va">col.scores</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>,</span>
+<span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">perceptions</span><span class="op">)</span>,</span>
+<span>    kind <span class="op">=</span> <span class="st">"Attribute"</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="inline-table"><table class="table table-sm">
-<caption>
-<span id="tab:fit-compare-table">Table 10.9: </span>Model comparison</caption>
-<thead><tr class="header">
-<th align="right">model</th>
-<th align="right">AIC</th>
-<th align="right">BIC</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="right">Exponential</td>
-<td align="right">1477</td>
-<td align="right">1486</td>
-</tr>
-<tr class="even">
-<td align="right">Polynomial</td>
-<td align="right">1401</td>
-<td align="right">1423</td>
-</tr>
-<tr class="odd">
-<td align="right">GAM</td>
-<td align="right">1378</td>
-<td align="right">1412</td>
-</tr>
-</tbody>
-</table></div>
-<p>The exponential has the worst (highest) AIC. The polynomial <em>looks</em> fine on the fit, which is the trap: if you simulate from it, you get garbage. Watch what happens when we run the fifth-degree fit across the full probability range.</p>
-<div class="sourceCode" id="cb263"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">poly_curve</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>  cumprob <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.005</span><span class="op">)</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">mutate</span><span class="op">(</span>order_time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit_poly</span>, newdata <span class="op">=</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>cumprob <span class="op">=</span> <span class="va">cumprob</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">poly_curve</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">order_time</span>, y <span class="op">=</span> <span class="va">cumprob</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_line</span><span class="op">(</span>color <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, linewidth <span class="op">=</span> <span class="fl">1.3</span>, linetype <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Order time (seconds)"</span>, y <span class="op">=</span> <span class="st">"Cumulative probability"</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">"Outside the data, the high-order polynomial falls apart"</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">map_data</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">dim1</span>, y <span class="op">=</span> <span class="va">dim2</span>, color <span class="op">=</span> <span class="va">kind</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_segment</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xend <span class="op">=</span> <span class="fl">0</span>, yend <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.4</span>,</span>
+<span>               arrow <span class="op">=</span> <span class="fu">arrow</span><span class="op">(</span>ends <span class="op">=</span> <span class="st">"first"</span>, length <span class="op">=</span> <span class="fu">unit</span><span class="op">(</span><span class="fl">0.15</span>, <span class="st">"cm"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_text</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">label</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3.2</span>, vjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_hline</span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="fl">4</span>, alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="fl">4</span>, alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_color_manual</span><span class="op">(</span><span class="st">""</span>, values <span class="op">=</span> <span class="va">plot_palette</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Dimension 1 ("</span>, <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">inertia</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, accuracy <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, <span class="st">")"</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Dimension 2 ("</span>, <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">inertia</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, accuracy <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, <span class="st">")"</span><span class="op">)</span>,</span>
+<span>    title <span class="op">=</span> <span class="st">"How three Nashville properties are perceived"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:fit-poly-sim"></span>
-<img src="_main_files/figure-html/fit-poly-sim-1.png" alt="A fifth-degree polynomial produces an unusable simulated curve" width="100%"><p class="caption">
-Figure 10.11: A fifth-degree polynomial produces an unusable simulated curve
+<span style="display:block;" id="fig:brand-map"></span>
+<img src="_main_files/figure-html/brand-map-1.png" alt="Perceptual map of Nashville sports properties" width="100%"><p class="caption">
+Figure 10.2: Perceptual map of Nashville sports properties
 </p>
 </div>
-<p>That is why you avoid high-order polynomials: they fit the observed points and then misbehave everywhere else. The lesson of distribution fitting is to be careful about what you fit — think in distributions, not point estimates, and prefer a method that behaves sensibly outside the data you happened to see.</p>
+<p>Reading the map, the Chickens sit near <em>Fun</em> and <em>Expensive</em>, distinct from the more <em>Historic</em> positioning of the others. Whether that is the position you want is a strategic question — being seen as fun and innovative might attract certain sponsors — but the value of the map is that you can track these perceptions over time and see whether your initiatives move them.</p>
 </div>
-<div id="queuing" class="section level2" number="10.5">
+<div id="other-topics" class="section level2" number="10.4">
 <h2>
-<span class="header-section-number">10.5</span> Understanding queuing systems<a class="anchor" aria-label="anchor" href="#queuing"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.4</span> Other topics<a class="anchor" aria-label="anchor" href="#other-topics"><i class="fas fa-link"></i></a>
 </h2>
-<p>Queuing is a large field whose principles apply from computer engineering to amusement parks. A queuing system has three parts <span class="citation">(<a href="references.html#ref-Heizer2014">Jay Heizer 2014</a>)</span>: arrivals into the system, the queue discipline (the waiting line), and the service facility. Analyzing them leans on simulation and careful data collection, but once your assumptions are right it becomes plugging good data into equations. We adapt examples from <em>Fundamentals of Queuing Systems</em> <span class="citation">(<a href="references.html#ref-Thomopoulos2012">Thomopoulos 2012</a>)</span>.</p>
-<p>Picture a concept with a few registers and limited line space — an <strong>M/M/k/N</strong> queue: multi-server, finite capacity, with exponential inter-arrival and service times. The notation:</p>
-<p>Average time between arrivals: <span class="math inline">\(\tau_{a} = 1/\lambda\)</span>. Average service time: <span class="math inline">\(\tau_{s} = 1/\mu\)</span>. Number of servers: <span class="math inline">\(k\)</span>. Queue capacity: <span class="math inline">\(N\)</span>. Utilization: <span class="math inline">\(\rho = \lambda/\mu\)</span>, where <span class="math inline">\(\rho/k &lt; 1\)</span> keeps the system stable.</p>
-<p>When you meet Greek letters, write them out — this analysis gets confusing fast. We define the inputs for a small concept: two registers, room for five in line, an arrival roughly every ten time units, and eight units to serve each.</p>
-<div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">k</span>     <span class="op">&lt;-</span> <span class="fl">2</span>          <span class="co"># registers (servers)</span></span>
-<span><span class="va">N</span>     <span class="op">&lt;-</span> <span class="fl">5</span>          <span class="co"># queue capacity</span></span>
-<span><span class="va">tau_a</span> <span class="op">&lt;-</span> <span class="fl">10</span>         <span class="co"># average time between arrivals</span></span>
-<span><span class="va">tau_s</span> <span class="op">&lt;-</span> <span class="fl">8</span>          <span class="co"># average service time</span></span>
-<span><span class="va">lambda</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="va">tau_a</span> <span class="co"># arrival rate</span></span>
-<span><span class="va">mu</span>     <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="va">tau_s</span> <span class="co"># service rate</span></span>
-<span><span class="va">rho</span>    <span class="op">&lt;-</span> <span class="va">lambda</span> <span class="op">/</span> <span class="va">mu</span></span></code></pre></div>
-<p>The first quantity we need is the probability that the system is empty, <span class="math inline">\(P_0\)</span>:</p>
-<p><span class="math display">\[\begin{equation}
-P_{0} = 1 \Big/ \Big\{\sum_{n=0}^{k-1} \rho^n/n! + \frac{\rho^k}{k!}\Big[\frac{k^{N-k+1} - \rho^{N-k+1}}{(k - \rho)k^{N-k}}\Big]\Big\}
-\end{equation}\]</span></p>
-<p>The only hard part of translating an equation like this is getting the parentheses right.</p>
-<div class="sourceCode" id="cb265"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">N</span> <span class="op">-</span> <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="va">P0</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span></span>
-<span>  <span class="op">(</span><span class="va">rho</span><span class="op">^</span><span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="op">(</span><span class="va">rho</span><span class="op">^</span><span class="va">k</span> <span class="op">/</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Special.html">factorial</a></span><span class="op">(</span><span class="va">k</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="op">(</span><span class="va">k</span><span class="op">^</span><span class="op">(</span><span class="va">N</span> <span class="op">-</span> <span class="va">k</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="va">rho</span><span class="op">^</span><span class="op">(</span><span class="va">N</span> <span class="op">-</span> <span class="va">k</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="op">(</span><span class="va">k</span> <span class="op">-</span> <span class="va">rho</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="va">k</span><span class="op">^</span><span class="op">(</span><span class="va">N</span> <span class="op">-</span> <span class="va">k</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">P0</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## [1] 0.431</code></pre>
-<p>From there, the per-state probabilities and the expected waits follow. Rather than retype the algebra, the package wraps it in <code>f_get_MMKN</code>, which takes the four inputs and returns the key figures.</p>
-<div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/FOSBAAS/man/f_get_MMKN.html">f_get_MMKN</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">2</span>, N <span class="op">=</span> <span class="fl">5</span>, ta <span class="op">=</span> <span class="fl">10</span>, ts <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span></code></pre></div>
-<pre><code>##                   Metric     Value
-## 1               Servers:  2.000000
-## 2       System Capacity:  5.000000
-## 3 Time between arrivals: 10.000000
-## 4  Average service time:  8.000000
-## 5    Minutes in service:  8.000000
-## 6      Minutes in queue:  1.267664
-## 7     Minutes in system:  9.267664</code></pre>
-<p>The output gives expected minutes in service, in the queue, and in the system. Change the inputs — more registers, a faster service time, a larger line — and you can compare configurations before spending a dollar. This is a clean model; reality adds wrinkles, such as inter-arrival times that are normal rather than exponential, and you adapt the model to fit.</p>
+<p>There is far more here than one chapter can hold. We skipped, among others: social listening, brand-personality studies, acquisition models, product recommendation, product positioning, intercept surveys, in-depth interviews, focus groups, competitive intelligence, and respondent incentivization.</p>
+<p>Two deserve a quick word. <strong>Social listening</strong> has become commoditized, with dozens of platforms available. Monitoring and responding to social content matters, but I find sentiment analysis of limited practical value, and word clouds rarely tell you anything surprising. Where social listening earns its keep is media equivalency — helping your sponsorship team value the content placed through social channels, using the same volume-quality-value logic as any other media valuation.</p>
+<p><strong>Focus groups</strong> have a real role in sports public relations, particularly fan councils for season-ticket holders. They need a firm hand, though, or they degrade into complaint sessions.</p>
+<p>For the rest, references and agencies abound. Sports teams are prestigious marketing platforms, so partners are easy to find — the trick is knowing what quality research looks like and finding a partner who knows too. That is harder than it sounds.</p>
 </div>
-<div id="key-concepts-and-chapter-summary-9" class="section level2" number="10.6">
+<div id="key-concepts-and-chapter-summary-9" class="section level2" number="10.5">
 <h2>
-<span class="header-section-number">10.6</span> Key concepts and chapter summary<a class="anchor" aria-label="anchor" href="#key-concepts-and-chapter-summary-9"><i class="fas fa-link"></i></a>
+<span class="header-section-number">10.5</span> Key concepts and chapter summary<a class="anchor" aria-label="anchor" href="#key-concepts-and-chapter-summary-9"><i class="fas fa-link"></i></a>
 </h2>
-<p>Analytics applies across operations, a broad field we barely sampled. This chapter worked two angles on concession throughput — simulation and queuing — and touched several tools:</p>
+<p>Research should underpin strategic decisions — pricing, operations, sponsorship pitches. We followed the survey process and touched its core ideas:</p>
+<ul>
+<li>Planning and survey design</li>
+<li>Questionnaire design and pretesting</li>
+<li>Final design and planning</li>
+<li>Sample selection and data collection</li>
+<li>Data coding, analysis, and reporting</li>
+</ul>
+<p>A few lessons stand out:</p>
 <ul>
 <li>
-<strong>Simulation.</strong> Monte Carlo methods are simple to build and broadly useful. We simulated wait times and measured how throughput varies, not just its average.</li>
+<strong>Experiment design is about validity</strong> — both that the statistics are sound and that you drew the right conclusion. Treatment-and-control (A/B) is the basic structure.</li>
 <li>
-<strong>Distribution fitting.</strong> Simulation rests on fitting distributions. Think in distributions, not point estimates — and avoid high-order polynomials, which fit the data and then misbehave.</li>
+<strong>Hypothesis testing has two ways to be wrong.</strong> A Type I error declares a difference that is not there; a Type II error misses one that is.</li>
 <li>
-<strong>Queuing analysis.</strong> Queues are everywhere; once the assumptions hold, the analysis is plugging good data into equations.</li>
+<strong>Sampling determines whether any of it can be trusted.</strong> A power analysis tells you how large a sample you need before you collect a single response.</li>
 <li>
-<strong>Project management.</strong> A charter with clear objectives and goals keeps an operations project scoped and documented.</li>
+<strong>Factorial designs reveal interactions</strong> — effects that depend on who the respondent is, like single-game fans paying a premium for a view that season-ticket holders treat as interchangeable.</li>
+<li>
+<strong>Perceptual maps</strong> turn brand-attribute data into a picture you can track over time.</li>
 </ul>
-<p>The deeper lesson is to think about operations as a <em>system</em> of interrelated parts, and to resist the easy answer. The concessions manager wanted more registers; the data pointed instead at the variance in order time. Operations is a well-studied field — if you can frame the problem correctly, you can almost always find a way to analyze and improve it.</p>
-<p>This is the last of the applied chapters. Chapter <a href="chapter11.html#chapter11">11</a> steps back to reflect on how these pieces fit together into a practice.</p>
+<p>And the honest caveats remain: you cannot always trust research, sampling is hard, analysis takes care, and it is not always worth conducting. Used well, though, it is the only informed way to confront questions the data you already own cannot answer. Chapter <a href="chapter11.html#chapter11">11</a> turns to operations, where we simulate the systems — gates, concession lines, parking — that shape the fan experience on game day.</p>
 
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="chapter9.html"><span class="header-section-number">9</span> Research methods</a></div>
-<div class="next"><a href="chapter11.html"><span class="header-section-number">11</span> Epilogue</a></div>
+<div class="prev"><a href="chapter9.html"><span class="header-section-number">9</span> Marketing mix modeling</a></div>
+<div class="next"><a href="chapter11.html"><span class="header-section-number">11</span> Operations and analytics</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#chapter10"><span class="header-section-number">10</span> Operations and analytics</a></li>
-<li><a class="nav-link" href="#understanding-ingress"><span class="header-section-number">10.1</span> Understanding ingress</a></li>
+<li><a class="nav-link" href="#chapter10"><span class="header-section-number">10</span> Research methods</a></li>
 <li>
-<a class="nav-link" href="#reducing-wait-times-at-concessions"><span class="header-section-number">10.2</span> Reducing wait times at concessions</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#establishing-objectives"><span class="header-section-number">10.2.1</span> Establishing objectives</a></li>
-<li><a class="nav-link" href="#understanding-the-problem"><span class="header-section-number">10.2.2</span> Understanding the problem</a></li>
-<li><a class="nav-link" href="#defining-the-problem-and-goals"><span class="header-section-number">10.2.3</span> Defining the problem and goals</a></li>
+<a class="nav-link" href="#designing-experiments-and-hypothesis-testing"><span class="header-section-number">10.1</span> Designing experiments and hypothesis testing</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#hypothesis-testing"><span class="header-section-number">10.1.1</span> Hypothesis testing</a></li>
+<li><a class="nav-link" href="#sampling"><span class="header-section-number">10.1.2</span> Sampling</a></li>
+<li><a class="nav-link" href="#factorial-designs"><span class="header-section-number">10.1.3</span> Factorial designs</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#measurement-and-analysis"><span class="header-section-number">10.3</span> Measurement and analysis</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#data-audit-and-capture"><span class="header-section-number">10.3.1</span> Data audit and capture</a></li>
-<li><a class="nav-link" href="#line-length-and-scans"><span class="header-section-number">10.3.2</span> Line length and scans</a></li>
-<li><a class="nav-link" href="#analyzing-the-results"><span class="header-section-number">10.3.3</span> Analyzing the results</a></li>
-<li><a class="nav-link" href="#understanding-wait-times"><span class="header-section-number">10.3.4</span> Understanding wait times</a></li>
-<li><a class="nav-link" href="#simulating-a-component-of-the-process"><span class="header-section-number">10.3.5</span> Simulating a component of the process</a></li>
+<a class="nav-link" href="#planning-and-designing-a-survey"><span class="header-section-number">10.2</span> Planning and designing a survey</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#understanding-a-clubs-fans"><span class="header-section-number">10.2.1</span> Understanding a club’s fans</a></li>
+<li><a class="nav-link" href="#selecting-a-research-method"><span class="header-section-number">10.2.2</span> Selecting a research method</a></li>
+<li><a class="nav-link" href="#designing-the-questionnaire"><span class="header-section-number">10.2.3</span> Designing the questionnaire</a></li>
+<li><a class="nav-link" href="#qualifying-the-sample"><span class="header-section-number">10.2.4</span> Qualifying the sample</a></li>
+<li><a class="nav-link" href="#typical-questions"><span class="header-section-number">10.2.5</span> Typical questions</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#fitting-distributions"><span class="header-section-number">10.4</span> Fitting distributions</a></li>
-<li><a class="nav-link" href="#queuing"><span class="header-section-number">10.5</span> Understanding queuing systems</a></li>
-<li><a class="nav-link" href="#key-concepts-and-chapter-summary-9"><span class="header-section-number">10.6</span> Key concepts and chapter summary</a></li>
+<li><a class="nav-link" href="#brand-affinity-and-perceptual-maps"><span class="header-section-number">10.3</span> Brand affinity and perceptual maps</a></li>
+<li><a class="nav-link" href="#other-topics"><span class="header-section-number">10.4</span> Other topics</a></li>
+<li><a class="nav-link" href="#key-concepts-and-chapter-summary-9"><span class="header-section-number">10.5</span> Key concepts and chapter summary</a></li>
 </ul>
 
       <div class="book-extra">

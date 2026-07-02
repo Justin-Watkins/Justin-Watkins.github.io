@@ -4,18 +4,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>9 Research methods | Fundamentals of Sports Business Analytics and Strategy</title>
+<title>9 Marketing mix modeling | Fundamentals of Sports Business Analytics and Strategy</title>
 <meta name="author" content="Justin Watkins">
-<meta name="description" content="Consumer research takes many forms. This chapter looks at a few of them in the context of a professional sports team. It would be an easy chapter to skip — most people dislike surveys, dislike...">
+<meta name="description" content="The last chapter ended on an uncomfortable note. Promotions, and marketing in general, are hard to attribute: sales happen for many reasons at once, and the marketing that ran alongside them takes...">
 <meta name="generator" content="bookdown 0.47 with bs4_book()">
-<meta property="og:title" content="9 Research methods | Fundamentals of Sports Business Analytics and Strategy">
+<meta property="og:title" content="9 Marketing mix modeling | Fundamentals of Sports Business Analytics and Strategy">
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://justin-watkins.github.io/chapter9.html">
 <meta property="og:image" content="https://justin-watkins.github.io/images/book_cover_b.png">
-<meta property="og:description" content="Consumer research takes many forms. This chapter looks at a few of them in the context of a professional sports team. It would be an easy chapter to skip — most people dislike surveys, dislike...">
+<meta property="og:description" content="The last chapter ended on an uncomfortable note. Promotions, and marketing in general, are hard to attribute: sales happen for many reasons at once, and the marketing that ran alongside them takes...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="9 Research methods | Fundamentals of Sports Business Analytics and Strategy">
-<meta name="twitter:description" content="Consumer research takes many forms. This chapter looks at a few of them in the context of a professional sports team. It would be an easy chapter to skip — most people dislike surveys, dislike...">
+<meta name="twitter:title" content="9 Marketing mix modeling | Fundamentals of Sports Business Analytics and Strategy">
+<meta name="twitter:description" content="The last chapter ended on an uncomfortable note. Promotions, and marketing in general, are hard to attribute: sales happen for many reasons at once, and the marketing that ran alongside them takes...">
 <meta name="twitter:image" content="https://justin-watkins.github.io/images/book_cover_b.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -79,9 +79,10 @@
 <li><a class="" href="chapter6.html"><span class="header-section-number">6</span> Pricing and forecasting</a></li>
 <li><a class="" href="chapter7.html"><span class="header-section-number">7</span> Lead scoring</a></li>
 <li><a class="" href="chapter8.html"><span class="header-section-number">8</span> Marketing promotions</a></li>
-<li><a class="active" href="chapter9.html"><span class="header-section-number">9</span> Research methods</a></li>
-<li><a class="" href="chapter10.html"><span class="header-section-number">10</span> Operations and analytics</a></li>
-<li><a class="" href="chapter11.html"><span class="header-section-number">11</span> Epilogue</a></li>
+<li><a class="active" href="chapter9.html"><span class="header-section-number">9</span> Marketing mix modeling</a></li>
+<li><a class="" href="chapter10.html"><span class="header-section-number">10</span> Research methods</a></li>
+<li><a class="" href="chapter11.html"><span class="header-section-number">11</span> Operations and analytics</a></li>
+<li><a class="" href="chapter12.html"><span class="header-section-number">12</span> Epilogue</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -92,551 +93,585 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="chapter9" class="section level1" number="9">
 <h1>
-<span class="header-section-number">9</span> Research methods<a class="anchor" aria-label="anchor" href="#chapter9"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9</span> Marketing mix modeling<a class="anchor" aria-label="anchor" href="#chapter9"><i class="fas fa-link"></i></a>
 </h1>
-<p>Consumer research takes many forms. This chapter looks at a few of them in the context of a professional sports team. It would be an easy chapter to skip — most people dislike surveys, dislike designing them even more, and find analyzing them tedious. Research is genuinely hard, and unless you have studied it formally you have probably had little practice. The results are also often read only in passing, since the person who understands them best is usually the one who designed and analyzed them.</p>
-<p>Proper research is a huge topic — easily several books — and it overlaps heavily with the pricing and segmentation chapters. Buy a few used references; the material is old, stable, and well understood. This chapter covers two things:</p>
-<ol style="list-style-type: decimal">
-<li>The basics of experiment design and hypothesis testing</li>
-<li>Planning and designing surveys</li>
-</ol>
-<p>A few honest takeaways to keep in mind, even if they read a little cynically:</p>
-<ul>
-<li>You cannot always trust research.</li>
-<li>Different techniques lead to more or less practical outcomes.</li>
-<li>Sampling is difficult and easy to do badly.</li>
-<li>Analyzing results takes care.</li>
-<li>Conflicting findings can stall application.</li>
-<li>It is not always worth conducting.</li>
-</ul>
-<p>A recurring difficulty in sports is that <em>stated</em> and <em>observed</em> behavior diverge. Season-ticket holders may react badly to a survey hinting at price increases and then renew at high rates anyway. People also try to game surveys, hoping their answers tilt a decision in their favor. And research is often combined with purchased third-party data, which has its own accuracy problems — a Deloitte study found serious inaccuracies in data from a well-known broker <span class="citation">(<a href="references.html#ref-Lucker2017">John Lucker and Bischof 2017</a>)</span>:</p>
+<p>The last chapter ended on an uncomfortable note. Promotions, and marketing in general, are hard to attribute: sales happen for many reasons at once, and the marketing that ran alongside them takes credit it may not deserve. A famous line, usually pinned on the retailer John Wanamaker, captures the frustration:</p>
 <blockquote>
-<p>“Our survey findings suggest that the data that brokers sell not only has serious accuracy problems, but may be less current or complete than data buyers expect or need.”</p>
+<p>“Half the money I spend on advertising is wasted; the trouble is I don’t know which half.”</p>
 </blockquote>
-<p>Garbage in, garbage out. Whenever practical, <em>trust but verify</em>. Despite all this, research should be a foundation of business strategy — the bigger the decision, the more it matters. Framing a question so research can actually answer it is an overlooked skill that takes experience.</p>
-<p>Most of your work will be simple satisfaction surveys sent by email after games. Survey work follows a recognizable process; we loosely borrow the steps from <em>Designing Surveys</em> <span class="citation">(<a href="references.html#ref-Blair2014">Johnny Blair 2014</a>)</span>:</p>
-<ul>
-<li>Planning and survey design</li>
-<li>Questionnaire design and pretesting</li>
-<li>Final design and planning</li>
-<li>Sample selection and data collection</li>
-<li>Data coding, analysis, and reporting</li>
-</ul>
-<div id="designing-experiments-and-hypothesis-testing" class="section level2" number="9.1">
+<p><strong>Marketing mix modeling</strong> — MMM for short — is one disciplined answer to that question. Instead of trying to follow each individual customer from an ad to a purchase, it steps back and looks at the whole business from the top down. You line up what you spent on each marketing channel, day by day, next to what you sold, and you use a regression to estimate how much each channel contributed and what it returned. It is the same basic tool as the pricing regression in Chapter <a href="chapter6.html#chapter6">6</a>, pointed at a different question.</p>
+<p>MMM has become popular again for a practical reason: the bottom-up, cookie-based attribution that dominated digital marketing for a decade is breaking down as privacy rules tighten and tracking gets harder. MMM never needed to follow individuals. It works from aggregate spend and aggregate outcomes, which makes it durable. It is not magic — it is correlational, it needs your spending to actually vary, and it can mislead you if you are careless. But used with judgment it answers the two questions a marketing director actually has: <em>what is our marketing doing, and where should the next dollar go?</em></p>
+<p>This chapter builds a small MMM end to end on a simulated season of spending. Because we built the data, we know the true answer, so at each step we can check whether the model recovers it — and, just as usefully, see where it cannot.</p>
+<div id="what-a-marketing-mix-model-is" class="section level2" number="9.1">
 <h2>
-<span class="header-section-number">9.1</span> Designing experiments and hypothesis testing<a class="anchor" aria-label="anchor" href="#designing-experiments-and-hypothesis-testing"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.1</span> What a marketing mix model is<a class="anchor" aria-label="anchor" href="#what-a-marketing-mix-model-is"><i class="fas fa-link"></i></a>
 </h2>
-<p>Experiment design is a deep field, and nothing brings on impostor syndrome faster than clinical-grade design. The mechanics of building a specific design are fairly recipe-like; making sure the assumptions behind your analysis hold is the hard part. The good news: you are not testing a vaccine. Most experiments on the business side of a club need far less rigor, and you may not formalize the design at all. But you should understand it well enough to be safe — the way knowing that the area under a curve is an integral keeps you out of trouble even if you rarely compute one by hand.</p>
-<p>Design is really about <strong>validity</strong> — whether your results mean anything in the real world. <em>Statistical conclusion validity</em> asks whether the numbers meet the criteria of your test; <em>construct validity</em> asks whether you drew the right conclusion from them. Most of what we have done so far concerns the first. Keep the second in mind always.</p>
-<p>The vocabulary centers on a <strong>treatment</strong> and a <strong>control</strong> group — the basic structure of an A/B test. One group gets a stimulus (say, a particular ad), the other does not, and you test whether the stimulus changed an outcome such as a purchase. Designs range from a simple A/B test to something very complex, but the aim is the same: decide, with some assurance, whether two or more populations really differ — and then interpret it correctly.</p>
-<div id="hypothesis-testing" class="section level3" number="9.1.1">
-<h3>
-<span class="header-section-number">9.1.1</span> Hypothesis testing<a class="anchor" aria-label="anchor" href="#hypothesis-testing"><i class="fas fa-link"></i></a>
-</h3>
-<p>Hypothesis testing confuses people mostly because of how it is phrased. Suppose I want to know whether season-ticket holders spend more on concessions than single-game fans. My <strong>null hypothesis</strong> is that the difference in mean spend is zero. Rejecting the null implies the means differ.</p>
-<p>We start by sampling from both groups. Let’s simulate the populations and draw a sample from each.</p>
+<p>At its core an MMM is a regression:</p>
+<p><span class="math display" id="eq:mmm">\[\begin{equation}
+\text{sales}_t = \text{baseline}_t + \sum_{c}\, \beta_c \cdot f(\text{spend}_{c,t}) + \varepsilon_t
+\tag{9.1}
+\end{equation}\]</span></p>
+<p>Daily sales are explained by a baseline — the demand you would have had anyway, driven by the season, the day of week, and whether there is a home game — plus a contribution from each marketing channel <span class="math inline">\(c\)</span>, plus noise. Three ideas separate a real MMM from a naive “regress sales on spend”:</p>
+<ul>
+<li>
+<strong>Carryover (adstock).</strong> Advertising you run today keeps working for days or weeks. A television campaign does not stop mattering the moment it airs.</li>
+<li>
+<strong>Diminishing returns (saturation).</strong> The first dollar into a channel does more than the millionth. Response curves bend.</li>
+<li>
+<strong>Controlling for the baseline.</strong> Most of the day-to-day movement in ticket sales has nothing to do with marketing. If you do not account for the season and the schedule, the model will hand marketing credit that belongs to a July weekend.</li>
+</ul>
+<p>We will add these one at a time. The honest framing up front: an MMM tells you about <em>association</em>, not proof. It is strongest as a strategic, budget-level guide and weakest as a precise per-campaign scorecard. It complements experiments and attribution rather than replacing them.</p>
+</div>
+<div id="the-data" class="section level2" number="9.2">
+<h2>
+<span class="header-section-number">9.2</span> The data<a class="anchor" aria-label="anchor" href="#the-data"><i class="fas fa-link"></i></a>
+</h2>
+<p>The <code>marketing_mix_data</code> set in the <code>FOSBAAS</code> package is three seasons of daily records for our club: tickets sold, ticket revenue, and the raw dollars spent that day on five channels — television, radio, paid social, paid search, and email — together with a few calendar fields.</p>
 <div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">715</span><span class="op">)</span></span>
-<span><span class="va">spend</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span></span>
-<span>  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"Season-ticket holder"</span>, spend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">25</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"Single-game fan"</span>,     spend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">18</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">354</span><span class="op">)</span></span>
-<span><span class="va">sth_sample</span> <span class="op">&lt;-</span> <span class="va">spend</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">"Season-ticket holder"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">slice_sample</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">400</span><span class="op">)</span></span>
-<span><span class="va">fan_sample</span> <span class="op">&lt;-</span> <span class="va">spend</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">"Single-game fan"</span><span class="op">)</span>     <span class="op">|&gt;</span> <span class="fu">slice_sample</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">400</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mmm</span> <span class="op">&lt;-</span> <span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/marketing_mix_data.html">marketing_mix_data</a></span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">mmm</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"date"</span>,<span class="st">"ticketSales"</span>,<span class="st">"spendTv"</span>,<span class="st">"spendRadio"</span>,</span>
+<span>                   <span class="st">"spendSocial"</span>,<span class="st">"spendSearch"</span>,<span class="st">"spendEmail"</span>,<span class="st">"seasonPhase"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>      caption <span class="op">=</span> <span class="st">"The first days of the marketing-mix data set."</span>,</span>
+<span>      align <span class="op">=</span> <span class="st">"c"</span>, format <span class="op">=</span> <span class="st">"markdown"</span>, padding <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:hyp-head">Table 9.1: </span>Sample spend data</caption>
-<thead><tr class="header">
-<th align="left">type</th>
-<th align="left">spend</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">Season-ticket holder</td>
-<td align="left">16.35</td>
-</tr>
-<tr class="even">
-<td align="left">Season-ticket holder</td>
-<td align="left">23.84</td>
-</tr>
-<tr class="odd">
-<td align="left">Season-ticket holder</td>
-<td align="left">16.24</td>
-</tr>
-<tr class="even">
-<td align="left">Season-ticket holder</td>
-<td align="left">32.08</td>
-</tr>
-<tr class="odd">
-<td align="left">Season-ticket holder</td>
-<td align="left">36.39</td>
-</tr>
-<tr class="even">
-<td align="left">Season-ticket holder</td>
-<td align="left">39.42</td>
-</tr>
-</tbody>
-</table></div>
-<p>A hypothesis test has two ways to be right and two ways to be wrong. The grid is worth memorizing:</p>
-<div class="inline-table"><table class="table table-sm">
+<span id="tab:mmm-data">Table 9.1: </span>The first days of the marketing-mix data set.</caption>
 <colgroup>
-<col width="33%">
-<col width="33%">
-<col width="33%">
+<col width="12%">
+<col width="13%">
+<col width="8%">
+<col width="12%">
+<col width="13%">
+<col width="13%">
+<col width="12%">
+<col width="13%">
 </colgroup>
 <thead><tr class="header">
-<th align="left"></th>
-<th align="left">Null is true</th>
-<th align="left">Null is false</th>
+<th align="center">date</th>
+<th align="center">ticketSales</th>
+<th align="center">spendTv</th>
+<th align="center">spendRadio</th>
+<th align="center">spendSocial</th>
+<th align="center">spendSearch</th>
+<th align="center">spendEmail</th>
+<th align="center">seasonPhase</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left"><strong>Reject null</strong></td>
-<td align="left">Type I error (false positive)</td>
-<td align="left">Correct (detected a real difference)</td>
+<td align="center">2022-01-01</td>
+<td align="center">1622</td>
+<td align="center">3200</td>
+<td align="center">1146</td>
+<td align="center">9071</td>
+<td align="center">3340</td>
+<td align="center">926</td>
+<td align="center">offseason</td>
 </tr>
 <tr class="even">
-<td align="left"><strong>Fail to reject</strong></td>
-<td align="left">Correct (no difference)</td>
-<td align="left">Type II error (missed a real difference)</td>
+<td align="center">2022-01-02</td>
+<td align="center">1464</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">10731</td>
+<td align="center">3113</td>
+<td align="center">841</td>
+<td align="center">offseason</td>
+</tr>
+<tr class="odd">
+<td align="center">2022-01-03</td>
+<td align="center">1541</td>
+<td align="center">7136</td>
+<td align="center">1858</td>
+<td align="center">3295</td>
+<td align="center">4347</td>
+<td align="center">495</td>
+<td align="center">offseason</td>
+</tr>
+<tr class="even">
+<td align="center">2022-01-04</td>
+<td align="center">1427</td>
+<td align="center">9002</td>
+<td align="center">2106</td>
+<td align="center">3281</td>
+<td align="center">4683</td>
+<td align="center">555</td>
+<td align="center">offseason</td>
+</tr>
+<tr class="odd">
+<td align="center">2022-01-05</td>
+<td align="center">1321</td>
+<td align="center">6199</td>
+<td align="center">1511</td>
+<td align="center">2712</td>
+<td align="center">3936</td>
+<td align="center">579</td>
+<td align="center">offseason</td>
+</tr>
+<tr class="even">
+<td align="center">2022-01-06</td>
+<td align="center">1525</td>
+<td align="center">7651</td>
+<td align="center">2332</td>
+<td align="center">3293</td>
+<td align="center">4403</td>
+<td align="center">536</td>
+<td align="center">offseason</td>
 </tr>
 </tbody>
 </table></div>
-<p>A Type I error means crying wolf — declaring a difference that is not there. A Type II error means missing a difference that is. We test the difference in means with a Student’s t-test.</p>
+<p>Sales follow the shape you would expect: quiet in the winter, rising through spring training and the early season, peaking in the summer, and tailing off (Figure <a href="chapter9.html#fig:mmm-sales">9.1</a>).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:mmm-sales"></span>
+<img src="_main_files/figure-html/mmm-sales-1.png" alt="Daily ticket sales across three simulated seasons. Marketing has to be measured against this strong seasonal baseline." width="100%"><p class="caption">
+Figure 9.1: Daily ticket sales across three simulated seasons. Marketing has to be measured against this strong seasonal baseline.
+</p>
+</div>
+<p>Spend is seasonal too — the club leans in when demand is there — and the channels are run in campaigns, so they move in bursts (Figure <a href="chapter9.html#fig:mmm-spend">9.2</a>).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:mmm-spend"></span>
+<img src="_main_files/figure-html/mmm-spend-1.png" alt="Weekly spend by channel. Television is the largest line; email is a small, steady, always-on channel." width="100%"><p class="caption">
+Figure 9.2: Weekly spend by channel. Television is the largest line; email is a small, steady, always-on channel.
+</p>
+</div>
+<p>Before modeling anything, it is tempting to just correlate spend with sales. Doing so is a good way to see why we need more than correlation.</p>
 <div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">t_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">sth_sample</span><span class="op">$</span><span class="va">spend</span>, <span class="va">fan_sample</span><span class="op">$</span><span class="va">spend</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">raw_cor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">mmm</span><span class="op">[</span>, <span class="va">channels</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">mmm</span><span class="op">$</span><span class="va">ticketSales</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">tv_radio</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">mmm</span><span class="op">$</span><span class="va">spendTv</span>, <span class="va">mmm</span><span class="op">$</span><span class="va">spendRadio</span><span class="op">)</span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>channel <span class="op">=</span> <span class="va">channel_lab</span>,</span>
+<span>                 `cor with sales` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">raw_cor</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>                 check.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>      caption <span class="op">=</span> <span class="st">"Raw correlation of each channel's spend with ticket sales."</span>,</span>
+<span>      align <span class="op">=</span> <span class="st">"c"</span>, format <span class="op">=</span> <span class="st">"markdown"</span>, padding <span class="op">=</span> <span class="fl">0</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:hyp-ttest-table">Table 9.2: </span>t-test results</caption>
+<span id="tab:mmm-rawcor">Table 9.2: </span>Raw correlation of each channel’s spend with ticket sales.</caption>
 <thead><tr class="header">
-<th align="right">estimate1</th>
-<th align="right">estimate2</th>
-<th align="right">statistic</th>
-<th align="right">p.value</th>
-<th align="right">conf.low</th>
-<th align="right">conf.high</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td align="right">25.024</td>
-<td align="right">18.463</td>
-<td align="right">13.247</td>
-<td align="right">0</td>
-<td align="right">5.588</td>
-<td align="right">7.533</td>
-</tr></tbody>
-</table></div>
-<p>The p-value is tiny, so we <strong>reject the null</strong>: the two groups spend differently. Before trusting any t-test, check its assumptions — roughly equal variances, independent observations, and so on — and use the appropriate variant when they do not hold.</p>
-</div>
-<div id="sampling" class="section level3" number="9.1.2">
-<h3>
-<span class="header-section-number">9.1.2</span> Sampling<a class="anchor" aria-label="anchor" href="#sampling"><i class="fas fa-link"></i></a>
-</h3>
-<p>The validity of an experiment leans heavily on how you sample. The questions are mostly about bias:</p>
-<ul>
-<li>Is the sample representative of the population I care about?</li>
-<li>Is it large enough to generalize?</li>
-<li>Does it need to be random?</li>
-</ul>
-<p>How many people should we have sampled? A <strong>power analysis</strong> answers that. Using the <code>pwr</code> package <span class="citation">(<a href="references.html#ref-R-pwr">Champely 2020</a>)</span>, with an example adapted from Kabacoff <span class="citation">(<a href="references.html#ref-Kabacoff2011">Kabacoff 2011</a>)</span>, we ask how big a sample we need to detect a $3 difference in spend.</p>
-<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/heliosdrm/pwr">pwr</a></span><span class="op">)</span></span>
-<span><span class="va">effect_size</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">sth_sample</span><span class="op">$</span><span class="va">spend</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">power_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pwr/man/pwr.t.test.html">pwr.t.test</a></span><span class="op">(</span></span>
-<span>  d <span class="op">=</span> <span class="va">effect_size</span>,</span>
-<span>  sig.level <span class="op">=</span> <span class="fl">0.05</span>,</span>
-<span>  power <span class="op">=</span> <span class="fl">0.90</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">"two.sample"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<div class="inline-table"><table class="table table-sm">
-<caption>
-<span id="tab:samp-power-table">Table 9.3: </span>Power analysis</caption>
-<thead><tr class="header">
-<th align="right">effect_size</th>
-<th align="right">per_group_n</th>
-<th align="right">power</th>
-<th align="right">sig_level</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td align="right">0.408</td>
-<td align="right">128</td>
-<td align="right">0.9</td>
-<td align="right">0.05</td>
-</tr></tbody>
-</table></div>
-<p>We need about 128 people per group to detect an effect size of roughly 0.41 with 90% power and a 5% false-positive rate. This is a simplistic example — normality, independence, and correlation between samples all matter — but the point stands: a good sample takes some rigor.</p>
-</div>
-<div id="factorial-designs" class="section level3" number="9.1.3">
-<h3>
-<span class="header-section-number">9.1.3</span> Factorial designs<a class="anchor" aria-label="anchor" href="#factorial-designs"><i class="fas fa-link"></i></a>
-</h3>
-<p>A common design is the <strong>factorial</strong>, where you test every combination of the factors. Full factorials get expensive fast, so a <em>fractional</em> factorial tests a chosen subset. You would rarely build one of these in sports outside a conjoint or other formal study, but it is worth seeing.</p>
-<p>Suppose we want to understand how fans value two sections — dugout and home plate — at three price points each. The <code>AlgDesign</code> package <span class="citation">(<a href="references.html#ref-R-AlgDesign">Wheeler 2019</a>)</span> builds the design.</p>
-<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jvbraun/AlgDesign">AlgDesign</a></span><span class="op">)</span></span></code></pre></div>
-<pre><code>## Warning: package 'AlgDesign' was built under R version 4.5.2</code></pre>
-<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">design</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/AlgDesign/man/genFact.html">gen.factorial</a></span><span class="op">(</span></span>
-<span>  levels <span class="op">=</span> <span class="fl">3</span>,</span>
-<span>  nVars <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  center <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  varNames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dugout"</span>, <span class="st">"homePlate"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<div class="inline-table"><table class="table table-sm">
-<caption>
-<span id="tab:fac-design-table">Table 9.4: </span>A 3x3 factorial design</caption>
-<thead><tr class="header">
-<th align="center">dugout</th>
-<th align="center">homePlate</th>
+<th align="center">channel</th>
+<th align="center">cor with sales</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="center">-1</td>
-<td align="center">-1</td>
+<td align="center">TV</td>
+<td align="center">0.62</td>
 </tr>
 <tr class="even">
-<td align="center">0</td>
-<td align="center">-1</td>
+<td align="center">Radio</td>
+<td align="center">0.56</td>
 </tr>
 <tr class="odd">
-<td align="center">1</td>
-<td align="center">-1</td>
+<td align="center">Social</td>
+<td align="center">0.47</td>
 </tr>
 <tr class="even">
-<td align="center">-1</td>
-<td align="center">0</td>
+<td align="center">Search</td>
+<td align="center">0.27</td>
 </tr>
 <tr class="odd">
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr class="even">
-<td align="center">1</td>
-<td align="center">0</td>
-</tr>
-<tr class="odd">
-<td align="center">-1</td>
-<td align="center">1</td>
-</tr>
-<tr class="even">
-<td align="center">0</td>
-<td align="center">1</td>
-</tr>
-<tr class="odd">
-<td align="center">1</td>
-<td align="center">1</td>
+<td align="center">Email</td>
+<td align="center">0.00</td>
 </tr>
 </tbody>
 </table></div>
-<p>The nine rows are every combination of the coded levels (<code>-1</code>, <code>0</code>, <code>1</code>), which we map to prices of $75, $85, and $95. Each respondent sees a picture of both views at the shown prices and chooses one:</p>
-<blockquote>
-<p>Which seat would you prefer at these prices?</p>
-</blockquote>
-<p>To analyze it, we need responses. We simulate two kinds of fan whose preferences genuinely differ: <strong>season-ticket holders</strong> treat the views as interchangeable and choose on price, while <strong>single-game fans</strong> prefer home plate and will pay a premium for it. We let the chance of choosing home plate depend on whether home plate is cheaper, the same, or pricier than the dugout seat.</p>
+<p>Two traps are already visible. First, email’s raw correlation with sales is about zero, even though email genuinely drives sales in this data — it is an always-on channel that does not track the seasonal demand cycle, so the simple correlation misses it entirely. Second, television and radio spend correlate with <em>each other</em> at 0.71, because they run in the same campaigns. That will make it hard to tell their effects apart, a problem we return to later.</p>
+</div>
+<div id="adstock-advertising-carryover" class="section level2" number="9.3">
+<h2>
+<span class="header-section-number">9.3</span> Adstock: advertising carryover<a class="anchor" aria-label="anchor" href="#adstock-advertising-carryover"><i class="fas fa-link"></i></a>
+</h2>
+<p>Advertising has a memory. A television flight this week still nudges sales next week, fading over time. The standard way to model that is <strong>geometric adstock</strong>: each day’s effective advertising is today’s spend plus a decaying fraction of yesterday’s effective advertising.</p>
+<p><span class="math display" id="eq:adstock">\[\begin{equation}
+A_t = \text{spend}_t + \theta \, A_{t-1}
+\tag{9.2}
+\end{equation}\]</span></p>
+<p>The decay rate <span class="math inline">\(\theta\)</span> controls how long advertising lingers. A rate near zero means an ad is spent the day it runs; a rate near one means it echoes for weeks. The transform is a three-line function:</p>
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">adstock</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">rate</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>; <span class="va">out</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="va">out</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">+</span> <span class="va">rate</span> <span class="op">*</span> <span class="va">out</span><span class="op">[</span><span class="va">i</span> <span class="op">-</span> <span class="fl">1</span><span class="op">]</span></span>
+<span>  <span class="va">out</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>Applied to television spend, adstock smooths the spiky raw series into something that better resembles how the advertising actually works on demand (Figure <a href="chapter9.html#fig:mmm-adstock">9.3</a>).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:mmm-adstock"></span>
+<img src="_main_files/figure-html/mmm-adstock-1.png" alt="Raw versus adstocked television spend over one season. Carryover spreads each burst forward in time." width="100%"><p class="caption">
+Figure 9.3: Raw versus adstocked television spend over one season. Carryover spreads each burst forward in time.
+</p>
+</div>
+<p>How do you choose the decay rate? This is where beginners get burned. A natural idea is to try many rates and keep the one whose adstocked series correlates most strongly with sales. Try it, and every channel comes back with a rate near the maximum:</p>
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">rates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
+<span><span class="va">y</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">mmm</span><span class="op">$</span><span class="va">ticketSales</span><span class="op">)</span></span>
+<span><span class="va">naive_rate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">channels</span>, <span class="kw">function</span><span class="op">(</span><span class="va">ch</span><span class="op">)</span></span>
+<span>  <span class="va">rates</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">rates</span>, <span class="kw">function</span><span class="op">(</span><span class="va">r</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="fu">adstock</span><span class="op">(</span><span class="va">mmm</span><span class="op">[[</span><span class="va">ch</span><span class="op">]</span><span class="op">]</span>, <span class="va">r</span><span class="op">)</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<p>The reason is subtle: a high decay rate smooths the spend series into a slow seasonal wave, and <em>anything</em> smooth correlates with the smooth seasonal sales curve. The grid is not measuring carryover; it is measuring smoothness. A better approach first removes the predictable baseline — season, day of week, home games — and looks at what carryover explains in the <em>leftover</em>:</p>
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">baseline</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">ticketSales</span><span class="op">)</span> <span class="op">~</span> <span class="va">dayOfWeek</span> <span class="op">+</span> <span class="va">seasonPhase</span> <span class="op">+</span> <span class="va">isGameDay</span> <span class="op">+</span></span>
+<span>                 <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">date</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fl">365</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mmm</span><span class="op">)</span></span>
+<span><span class="va">resid_y</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">baseline</span><span class="op">)</span></span>
+<span><span class="va">resid_rate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">channels</span>, <span class="kw">function</span><span class="op">(</span><span class="va">ch</span><span class="op">)</span></span>
+<span>  <span class="va">rates</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">rates</span>, <span class="kw">function</span><span class="op">(</span><span class="va">r</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">adstock</span><span class="op">(</span><span class="va">mmm</span><span class="op">[[</span><span class="va">ch</span><span class="op">]</span><span class="op">]</span>, <span class="va">r</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="fu">saturate</span><span class="op">(</span><span class="va">a</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">)</span>, <span class="va">resid_y</span><span class="op">)</span> <span class="op">}</span><span class="op">)</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">truth_theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>spendTv <span class="op">=</span> <span class="fl">0.70</span>, spendRadio <span class="op">=</span> <span class="fl">0.50</span>, spendSocial <span class="op">=</span> <span class="fl">0.30</span>,</span>
+<span>                 spendSearch <span class="op">=</span> <span class="fl">0.10</span>, spendEmail <span class="op">=</span> <span class="fl">0.20</span><span class="op">)</span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>channel <span class="op">=</span> <span class="va">channel_lab</span>,</span>
+<span>                 `naive grid`   <span class="op">=</span> <span class="va">naive_rate</span>,</span>
+<span>                 `residualized` <span class="op">=</span> <span class="va">resid_rate</span>,</span>
+<span>                 `true rate`    <span class="op">=</span> <span class="va">truth_theta</span>, check.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>      caption <span class="op">=</span> <span class="st">"Estimated adstock decay rates. The naive grid pins everything at 0.9; residualizing helps but is still noisy."</span>,</span>
+<span>      align <span class="op">=</span> <span class="st">"c"</span>, format <span class="op">=</span> <span class="st">"markdown"</span>, padding <span class="op">=</span> <span class="fl">0</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:mmm-adstock-resid">Table 9.3: </span>Estimated adstock decay rates. The naive grid pins everything at 0.9; residualizing helps but is still noisy.</caption>
+<thead><tr class="header">
+<th align="center">channel</th>
+<th align="center">naive grid</th>
+<th align="center">residualized</th>
+<th align="center">true rate</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">TV</td>
+<td align="center">0.9</td>
+<td align="center">0.55</td>
+<td align="center">0.7</td>
+</tr>
+<tr class="even">
+<td align="center">Radio</td>
+<td align="center">0.9</td>
+<td align="center">0.50</td>
+<td align="center">0.5</td>
+</tr>
+<tr class="odd">
+<td align="center">Social</td>
+<td align="center">0.9</td>
+<td align="center">0.50</td>
+<td align="center">0.3</td>
+</tr>
+<tr class="even">
+<td align="center">Search</td>
+<td align="center">0.9</td>
+<td align="center">0.75</td>
+<td align="center">0.1</td>
+</tr>
+<tr class="odd">
+<td align="center">Email</td>
+<td align="center">0.9</td>
+<td align="center">0.75</td>
+<td align="center">0.2</td>
+</tr>
+</tbody>
+</table></div>
+<p>Residualizing is much better — it recovers television’s long carryover and radio’s medium carryover — but it is still noisy and gets search and email wrong. This is the honest lesson: <strong>adstock rates are only weakly identified from observational data.</strong> In practice you set them from domain knowledge and priors — television and brand campaigns linger, search is nearly immediate — and then test how sensitive your conclusions are to the choice. Because we built this data we happen to know the true rates, so for the rest of the chapter we use them and move on.</p>
+<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">carry</span> <span class="op">&lt;-</span> <span class="va">truth_theta</span></span>
+<span><span class="va">ad</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">ch</span>, <span class="va">r</span><span class="op">)</span> <span class="fu">adstock</span><span class="op">(</span><span class="va">mmm</span><span class="op">[[</span><span class="va">ch</span><span class="op">]</span><span class="op">]</span>, <span class="va">r</span><span class="op">)</span>, <span class="va">channels</span>, <span class="va">carry</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">ad</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">channels</span></span></code></pre></div>
+</div>
+<div id="saturation-diminishing-returns" class="section level2" number="9.4">
+<h2>
+<span class="header-section-number">9.4</span> Saturation: diminishing returns<a class="anchor" aria-label="anchor" href="#saturation-diminishing-returns"><i class="fas fa-link"></i></a>
+</h2>
+<p>The second transform captures the fact that channels wear out. Pouring more into a channel keeps adding sales, but each extra dollar adds less than the one before. A simple, well-behaved way to bend the response is the <strong>Hill</strong> curve with a half-saturation point <span class="math inline">\(K\)</span> — the spend level at which the channel reaches half of its maximum effect.</p>
+<p><span class="math display" id="eq:saturation">\[\begin{equation}
+S(x) = \frac{x}{x + K}
+\tag{9.3}
+\end{equation}\]</span></p>
+<p>Below <span class="math inline">\(K\)</span> the channel is in its efficient range; well above it, extra spend barely moves the needle (Figure <a href="chapter9.html#fig:mmm-saturation">9.4</a>).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:mmm-saturation"></span>
+<img src="_main_files/figure-html/mmm-saturation-1.png" alt="A saturation curve. Response rises steeply at first, then flattens; K marks the half-saturation point." width="100%"><p class="caption">
+Figure 9.4: A saturation curve. Response rises steeply at first, then flattens; K marks the half-saturation point.
+</p>
+</div>
+<p>Like the decay rate, <span class="math inline">\(K\)</span> is hard to pin down precisely from the data, and production models tune it by cross-validation. A robust, simple default is to set each channel’s half-saturation point at its own typical (mean) level of adstocked spend, so the channel sits in the responsive part of its curve. We use that here.</p>
 <div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">price_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>`-1` <span class="op">=</span> <span class="fl">75</span>, `0` <span class="op">=</span> <span class="fl">85</span>, `1` <span class="op">=</span> <span class="fl">95</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">combos</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>  dugout    <span class="op">=</span> <span class="va">price_map</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">design</span><span class="op">$</span><span class="va">dugout</span><span class="op">)</span><span class="op">]</span>,</span>
-<span>  homePlate <span class="op">=</span> <span class="va">price_map</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">design</span><span class="op">$</span><span class="va">homePlate</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">mutate</span><span class="op">(</span>hp_position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sign.html">sign</a></span><span class="op">(</span><span class="va">homePlate</span> <span class="op">-</span> <span class="va">dugout</span><span class="op">)</span>,</span>
-<span>                              levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
-<span>                              labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cheaper"</span>, <span class="st">"same"</span>, <span class="st">"pricier"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">respondent_types</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>  respondent <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Season-ticket holder"</span>, <span class="st">"Single-game fan"</span><span class="op">)</span>,</span>
-<span>  p_cheaper  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.85</span>, <span class="fl">0.92</span><span class="op">)</span>,</span>
-<span>  p_same     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.50</span>, <span class="fl">0.85</span><span class="op">)</span>,</span>
-<span>  p_pricier  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.18</span>, <span class="fl">0.72</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">755</span><span class="op">)</span></span>
-<span><span class="va">responses</span> <span class="op">&lt;-</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/expand.html">crossing</a></span><span class="op">(</span><span class="va">combos</span>, <span class="va">respondent_types</span>, draw <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">500</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">mutate</span><span class="op">(</span></span>
-<span>    p_homeplate <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
-<span>      <span class="va">hp_position</span> <span class="op">==</span> <span class="st">"cheaper"</span> <span class="op">~</span> <span class="va">p_cheaper</span>,</span>
-<span>      <span class="va">hp_position</span> <span class="op">==</span> <span class="st">"same"</span>    <span class="op">~</span> <span class="va">p_same</span>,</span>
-<span>      <span class="cn">TRUE</span>                     <span class="op">~</span> <span class="va">p_pricier</span></span>
-<span>    <span class="op">)</span>,</span>
-<span>    chose_homeplate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">rbinom</a></span><span class="op">(</span><span class="fu">n</span><span class="op">(</span><span class="op">)</span>, <span class="fl">1</span>, <span class="va">p_homeplate</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code></pre></div>
-<p>An interaction plot shows how the two groups respond differently as the home-plate price moves.</p>
+<code class="sourceCode R"><span><span class="va">half</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">ad</span>, <span class="va">mean</span><span class="op">)</span></span>
+<span><span class="va">sat</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">ch</span><span class="op">)</span> <span class="fu">saturate</span><span class="op">(</span><span class="va">ad</span><span class="op">[[</span><span class="va">ch</span><span class="op">]</span><span class="op">]</span>, <span class="va">half</span><span class="op">[[</span><span class="va">ch</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>, <span class="va">channels</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">sat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">channels</span></span></code></pre></div>
+</div>
+<div id="fitting-the-model" class="section level2" number="9.5">
+<h2>
+<span class="header-section-number">9.5</span> Fitting the model<a class="anchor" aria-label="anchor" href="#fitting-the-model"><i class="fas fa-link"></i></a>
+</h2>
+<p>Now we assemble the regression: log daily sales on the transformed channels plus the baseline controls. Modeling sales in logs makes each channel’s effect a multiplicative lift, which is what “diminishing returns on a percentage basis” implies, and keeps predictions positive.</p>
 <div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">interaction_data</span> <span class="op">&lt;-</span> <span class="va">responses</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">respondent</span>, <span class="va">hp_position</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">summarise</span><span class="op">(</span>share_homeplate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">chose_homeplate</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">model_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  logSales    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">mmm</span><span class="op">$</span><span class="va">ticketSales</span><span class="op">)</span>,</span>
+<span>  <span class="va">sat</span>,</span>
+<span>  dayOfWeek   <span class="op">=</span> <span class="va">mmm</span><span class="op">$</span><span class="va">dayOfWeek</span>,</span>
+<span>  seasonPhase <span class="op">=</span> <span class="va">mmm</span><span class="op">$</span><span class="va">seasonPhase</span>,</span>
+<span>  isGameDay   <span class="op">=</span> <span class="va">mmm</span><span class="op">$</span><span class="va">isGameDay</span>,</span>
+<span>  trend       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">mmm</span><span class="op">$</span><span class="va">date</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">mmm</span><span class="op">$</span><span class="va">date</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fl">365</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">interaction_data</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">hp_position</span>, y <span class="op">=</span> <span class="va">share_homeplate</span>,</span>
-<span>                             color <span class="op">=</span> <span class="va">respondent</span>, group <span class="op">=</span> <span class="va">respondent</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_line</span><span class="op">(</span>linewidth <span class="op">=</span> <span class="fl">1.1</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_y_continuous</span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_color_manual</span><span class="op">(</span><span class="st">"Fan type"</span>, values <span class="op">=</span> <span class="va">plot_palette</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Home-plate price relative to dugout"</span>, y <span class="op">=</span> <span class="st">"Share choosing home plate"</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">"The two fan types respond to price very differently"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:fac-interaction"></span>
-<img src="_main_files/figure-html/fac-interaction-1.png" alt="Interaction between fan type and relative price" width="100%"><p class="caption">
-Figure 9.1: Interaction between fan type and relative price
-</p>
+<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">logSales</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">model_df</span><span class="op">)</span></span></code></pre></div>
+<p>Before reading the marketing coefficients, notice how much work the baseline does. A model with <em>only</em> the calendar controls already explains about 98% of the day-to-day variation in log sales; adding all five marketing channels lifts that to 98.7%. That is not a sign marketing does not matter — it is a reminder that marketing is a modest slice of the <em>variance</em> even when it drives a meaningful slice of the <em>sales</em>. It also explains why you must model the baseline carefully: get it wrong and marketing will absorb the difference.</p>
+<p>The estimated channel coefficients are the maximum log-lift each channel can add. Because this is simulated data, we can lay them next to the truth:</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:mmm-coefs">Table 9.4: </span>Estimated marketing coefficients versus the values used to build the data.</caption>
+<thead><tr class="header">
+<th align="center">channel</th>
+<th align="center">estimate</th>
+<th align="center">truth</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">TV</td>
+<td align="center">0.140</td>
+<td align="center">0.16</td>
+</tr>
+<tr class="even">
+<td align="center">Radio</td>
+<td align="center">0.077</td>
+<td align="center">0.09</td>
+</tr>
+<tr class="odd">
+<td align="center">Social</td>
+<td align="center">0.107</td>
+<td align="center">0.14</td>
+</tr>
+<tr class="even">
+<td align="center">Search</td>
+<td align="center">0.090</td>
+<td align="center">0.11</td>
+</tr>
+<tr class="odd">
+<td align="center">Email</td>
+<td align="center">0.023</td>
+<td align="center">0.06</td>
+</tr>
+</tbody>
+</table></div>
+<p>Every channel comes back positive and in roughly the right order — television and social carry the largest per-unit effects. The estimates are pulled toward each other and are not perfect, especially email, which the model understates because email is always-on and barely correlates with the demand cycle. That difficulty is real and worth remembering: the channels that are hardest to measure are often the owned, steady ones.</p>
 </div>
-<p>The lines are not parallel, which is the signature of an interaction. Season-ticket holders swing sharply — they pick home plate when it is cheaper and abandon it when it is pricier — while single-game fans stay loyal to the view almost regardless of price. The effect of seat location <em>depends on</em> who the fan is. These designs can grow far more complex, but this is the basic idea.</p>
-</div>
-</div>
-<div id="planning-and-designing-a-survey" class="section level2" number="9.2">
+<div id="from-coefficients-to-roi" class="section level2" number="9.6">
 <h2>
-<span class="header-section-number">9.2</span> Planning and designing a survey<a class="anchor" aria-label="anchor" href="#planning-and-designing-a-survey"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.6</span> From coefficients to ROI<a class="anchor" aria-label="anchor" href="#from-coefficients-to-roi"><i class="fas fa-link"></i></a>
 </h2>
-<p>Since we covered segmentation in Chapter <a href="chapter5.html#chapter5">5</a>, we will frame this example around gathering data to build psychographic segments. A realistic brief:</p>
-<blockquote>
-<p>The marketing department of the Nashville Game Hens wants a more sophisticated understanding of its fan base. Specifically: (1) understand the market structure — who attends games, and how does that compare to the region’s population? — and (2) understand how the brand is perceived and what that perception means.</p>
-</blockquote>
-<p>These are broad, and they do not really ask answerable questions yet — part of your job is to translate them. Question one needs us to group fans into a manageable number of segments that are internally similar and to compare them with a regional or national baseline. (With 100,000 fans you technically have 100,000 segments; forcing them into a few understandable boxes is the hard part.) Question two is about brand perception relative to a competitive set — not a routine satisfaction survey.</p>
-<p>A constant tension runs through this kind of project: <strong>discoverability versus accuracy versus utility</strong>. Will the results target individuals, or be cast onto broad groups? How accurate will they be, and if not very, is the expensive project still worth it? Set expectations clearly up front.</p>
-<div id="understanding-a-clubs-fans" class="section level3" number="9.2.1">
-<h3>
-<span class="header-section-number">9.2.1</span> Understanding a club’s fans<a class="anchor" aria-label="anchor" href="#understanding-a-clubs-fans"><i class="fas fa-link"></i></a>
-</h3>
-<p>Sports brands are unusual — people wear a team’s hat around town, but not their shampoo’s. Fandom spans a wide range of people and has strong cyclical components. A few endemic complications:</p>
-<ul>
-<li>A few small ticket classes (corporate accounts, premium seats) drive outsized revenue.</li>
-<li>Responses shift across the season.</li>
-<li>Fans consume through many channels, on many levels.</li>
-</ul>
-<p>Is a corporate buyer the same as a fan who buys to watch the game? What does “enjoying the game” even mean when people consume through broadcasts, highlights, merchandise, and social feeds the club does not control? For this project we focus on ticket buyers, which is itself an assumption worth stating.</p>
-<p>Even sizing the market requires assumptions. Public attendance figures count <em>tickets</em>, not <em>people</em>. To get from one to the other you might assume an average season-ticket-equivalent count, tickets per account, games and tickets per single-game buyer, and a share from large groups. Different assumptions fork the project in different directions, so make them explicit.</p>
-<p>Some of the data for question one may already exist or be cheap to get: census data, observational research (walking the concourse and recording what you see — increasingly automatable with computer vision), emailed surveys, and third-party data. Question two leans on emailed surveys and third-party data. At a minimum you will want basic demographics — age, children, marital status, gender, ethnicity — each of which can inform channel and message decisions, and can be used longitudinally. Spend time on the question before the questionnaire; it is the cheapest place to catch problems.</p>
-</div>
-<div id="selecting-a-research-method" class="section level3" number="9.2.2">
-<h3>
-<span class="header-section-number">9.2.2</span> Selecting a research method<a class="anchor" aria-label="anchor" href="#selecting-a-research-method"><i class="fas fa-link"></i></a>
-</h3>
-<p>Different needs call for different methods. Common club questions include the competitive set, what fans like, their financial constraints, sponsor awareness, price perception, brand position, and appetite for a loyalty program. Some require specialized survey types that must be designed and interpreted carefully:</p>
-<ul>
-<li>Conjoint experiments</li>
-<li>Van Westendorp</li>
-<li>MaxDiff</li>
-<li>Predictive market studies</li>
-</ul>
-<p>Each has strengths and weaknesses. A Van Westendorp study shows how a price is <em>perceived</em> but not willingness to pay (Chapter <a href="chapter6.html#chapter6">6</a>); a conjoint gets closer to willingness to pay. Longitudinal studies track how perception changes over time. As elsewhere in the book, the usual goal is a credible causal link between an activity and an outcome.</p>
-</div>
-<div id="designing-the-questionnaire" class="section level3" number="9.2.3">
-<h3>
-<span class="header-section-number">9.2.3</span> Designing the questionnaire<a class="anchor" aria-label="anchor" href="#designing-the-questionnaire"><i class="fas fa-link"></i></a>
-</h3>
-<p>Durable surveys are hard to build; for depth see <em>Designing Surveys</em> <span class="citation">(<a href="references.html#ref-Blair2014">Johnny Blair 2014</a>)</span> and, for analysis, <em>Applied Survey Data Analysis</em> <span class="citation">(<a href="references.html#ref-Heeringa2014">Steven G. Heeringa 2010</a>)</span>. A few principles for simple surveys:</p>
-<ol style="list-style-type: decimal">
-<li>Have a plan for how you will use and analyze the data.</li>
-<li>Do not ask a question you will not use.</li>
-<li>Do not survey too much or too often.</li>
-<li>Watch the respondent burden — keep it short.</li>
-</ol>
-<p>Larger surveys often break into sections: demographics, brand, satisfaction, product. Keep it as short and relevant as you can.</p>
-</div>
-<div id="qualifying-the-sample" class="section level3" number="9.2.4">
-<h3>
-<span class="header-section-number">9.2.4</span> Qualifying the sample<a class="anchor" aria-label="anchor" href="#qualifying-the-sample"><i class="fas fa-link"></i></a>
-</h3>
-<p>Screening questions make results more relevant and can lower costs when you pay for respondents. You might enforce gender or ethnicity quotas so the sample is not, say, 85% male:</p>
-<blockquote>
-<p>What is your gender? (Male / Female)</p>
-</blockquote>
-<blockquote>
-<p>What is your ethnicity? (White or Caucasian / Black or African American / South Asian / East Asian / Native American or Pacific Islander / Latino)</p>
-</blockquote>
-<p>Nomenclature shifts over time and is genuinely hard — “Hispanic” and “Latino” are contested, and ethnicity often cross-cuts other categories. Make judgment calls based on the survey’s purpose.</p>
-<p>Respondents can also poison a sample. Surveys often screen out industry insiders, who may recognize the mechanics of, say, a conjoint:</p>
-<blockquote>
-<p>Do you or anyone in your household work in marketing research?</p>
-</blockquote>
-<p>In sports it is common to gauge fan avidity, but asking directly in the screen (“Are you a fan of the Game Hens?”) tips your hand — especially through a third party. A subtler version hides the team in a list:</p>
-<blockquote>
-<p>Please rate your interest in each activity: knitting class / attending an MLB game / attending a concert …</p>
-</blockquote>
-<p>That screens out the uninterested without revealing what the survey is about. Finally, embed an attention check to catch indifferent respondents:</p>
-<blockquote>
-<p>Please select the fourth answer below. (Answer 1 / Answer 2 / Answer 3 / Answer 4)</p>
-</blockquote>
-<p>You will be surprised how many fail it; it is usually best to drop those responses.</p>
-</div>
-<div id="typical-questions" class="section level3" number="9.2.5">
-<h3>
-<span class="header-section-number">9.2.5</span> Typical questions<a class="anchor" aria-label="anchor" href="#typical-questions"><i class="fas fa-link"></i></a>
-</h3>
-<p>Some questions appear on almost every survey. How you ask them matters more than it seems. If you can already tie a respondent to their record, you may not need to ask demographics at all — and if you do, consider placing them at the end so you collect the more important answers first, and ask permission before diving in:</p>
-<blockquote>
-<p>Would you like to answer a few demographic questions?</p>
-</blockquote>
-<p>Prefer <strong>birth year</strong> to age — it is easy to bucket, comparable across years, and supports cleaner scatter plots:</p>
-<blockquote>
-<p>What is your year of birth?</p>
-</blockquote>
-<p><strong>Education</strong> is a useful, less-sensitive proxy for wealth than income:</p>
-<blockquote>
-<p>Highest level of education completed? (High school / Some college / College / Graduate degree)</p>
-</blockquote>
-<p>Keep <strong>marital status</strong> simple unless you have a specific use for the finer categories:</p>
-<blockquote>
-<p>Marital status? (Single / Married / Partnership / Other)</p>
-</blockquote>
-<p><strong>Children</strong> matter because youth development is a long-term play, and ages matter — a five-year-old and a sixteen-year-old are very different fans:</p>
-<blockquote>
-<p>Are there children under 18 in your household? (Yes / No) — and if yes, their age ranges.</p>
-</blockquote>
-<p>Multi-select answers are harder to process on the back end, so the more complex the question, the less likely you are to use it. <strong>Geography</strong> is critical for a club; a zip code is the easiest usable form, though an address (for latitude and longitude) is better:</p>
-<blockquote>
-<p>Please enter your zip code.</p>
-</blockquote>
-<p><strong>Income</strong> is touchy and people skip it on non-anonymous surveys. It is ordinal, so keep the buckets in logical order — and remember that survey tools often shuffle answer order to fight response bias, which you must disable for ordinal scales:</p>
-<blockquote>
-<p>Annual household income? (Under $10,000 / $10,000–$49,999 / $50,000–$99,999 / $100,000–$149,999 / $150,000–$199,999 / $200,000–$249,999 / $250,000+)</p>
-</blockquote>
-<p>Be skeptical of catch-all questions like occupation: is “agriculture” a job or an industry, and does an accountant pick “clerical” or “financial”? If you do not have a specific use for it, leave it out.</p>
-<div id="avidity-questions" class="section level4" number="9.2.5.1">
-<h4>
-<span class="header-section-number">9.2.5.1</span> Avidity questions<a class="anchor" aria-label="anchor" href="#avidity-questions"><i class="fas fa-link"></i></a>
-</h4>
-<p>Avidity is important in sports and widely misunderstood. Of these three, who is the most avid fan?</p>
-<ul>
-<li>Someone who buys $700 season tickets</li>
-<li>Someone who buys $20,000 season tickets</li>
-<li>Someone who buys $1,500 in single-game tickets</li>
-</ul>
-<p>These are explicit signals of affinity, but if you just bucket spend you may be measuring <strong>wealth</strong>, not avidity. Implicit signals (buying merchandise, visiting the site, enrolling a child in a kids’ club) are noisier still — the merchandise might be a gift. You can also ask directly, on a Likert scale:</p>
-<blockquote>
-<p>How big a fan are you? (I live and die for the Game Hens / one of my favorite teams / casual fan / not a fan / I root against them)</p>
-</blockquote>
-<p>Word these carefully; it is easy to write something ambiguous.</p>
-</div>
-</div>
-</div>
-<div id="brand-affinity-and-perceptual-maps" class="section level2" number="9.3">
-<h2>
-<span class="header-section-number">9.3</span> Brand affinity and perceptual maps<a class="anchor" aria-label="anchor" href="#brand-affinity-and-perceptual-maps"><i class="fas fa-link"></i></a>
-</h2>
-<p>Gauging brand perception is hard. A <strong>perceptual map</strong> visualizes how your brand sits relative to others on the attributes fans associate with each. We use the <code>anacor</code> package <span class="citation">(<a href="references.html#ref-R-anacor">Mair and De Leeuw 2017</a>)</span> on the aggregated <code>perceptual_data</code> from Chapter <a href="chapter2.html#chapter2">2</a>, where respondents checked every attribute that applied to each team:</p>
-<blockquote>
-<p>How do you feel about the following sports properties? Check all that apply for each team.</p>
-</blockquote>
+<p>Coefficients are not what a marketing director wants. They want to know how many tickets each channel drove and what it returned per dollar. We get there by <strong>decomposition</strong>: predict sales with the model, then predict again with one channel turned off, and attribute the difference to that channel. Divided by what we spent, that difference becomes a return on ad spend (ROAS).</p>
 <div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/">anacor</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">price</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">mmm</span><span class="op">$</span><span class="va">ticketRevenue</span> <span class="op">/</span> <span class="va">mmm</span><span class="op">$</span><span class="va">ticketSales</span><span class="op">)</span></span>
+<span><span class="va">pred</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">perceptions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu">FOSBAAS</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/FOSBAAS/man/perceptual_data.html">perceptual_data</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">perceptions</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Chickens"</span>, <span class="st">"Titans"</span>, <span class="st">"Predators"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">correspondence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/anacor/man/anacor.html">anacor</a></span><span class="op">(</span><span class="va">perceptions</span>, ndim <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p>Correspondence analysis decomposes the table into dimensions, much like principal components. The first two dimensions capture how much of the variation we can show in a flat plot.</p>
-<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">inertia</span> <span class="op">&lt;-</span> <span class="va">correspondence</span><span class="op">$</span><span class="va">eigen.values</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">correspondence</span><span class="op">$</span><span class="va">eigen.values</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">inertia</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## [1] 0.557 0.443</code></pre>
-<p>We assemble the team scores and the attribute scores into one frame and plot both, so teams sit near the attributes most associated with them.</p>
-<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">map_data</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span></span>
-<span>  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>    dim1 <span class="op">=</span> <span class="va">correspondence</span><span class="op">$</span><span class="va">row.scores</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>,</span>
-<span>    dim2 <span class="op">=</span> <span class="va">correspondence</span><span class="op">$</span><span class="va">row.scores</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>,</span>
-<span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">correspondence</span><span class="op">$</span><span class="va">row.scores</span><span class="op">)</span>,</span>
-<span>    kind <span class="op">=</span> <span class="st">"Team"</span></span>
-<span>  <span class="op">)</span>,</span>
-<span>  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
-<span>    dim1 <span class="op">=</span> <span class="va">correspondence</span><span class="op">$</span><span class="va">col.scores</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>,</span>
-<span>    dim2 <span class="op">=</span> <span class="va">correspondence</span><span class="op">$</span><span class="va">col.scores</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>,</span>
-<span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">perceptions</span><span class="op">)</span>,</span>
-<span>    kind <span class="op">=</span> <span class="st">"Attribute"</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">map_data</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">dim1</span>, y <span class="op">=</span> <span class="va">dim2</span>, color <span class="op">=</span> <span class="va">kind</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_segment</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xend <span class="op">=</span> <span class="fl">0</span>, yend <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.4</span>,</span>
-<span>               arrow <span class="op">=</span> <span class="fu">arrow</span><span class="op">(</span>ends <span class="op">=</span> <span class="st">"first"</span>, length <span class="op">=</span> <span class="fu">unit</span><span class="op">(</span><span class="fl">0.15</span>, <span class="st">"cm"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_text</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>label <span class="op">=</span> <span class="va">label</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3.2</span>, vjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_hline</span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="fl">4</span>, alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_vline</span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="fl">4</span>, alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">scale_color_manual</span><span class="op">(</span><span class="st">""</span>, values <span class="op">=</span> <span class="va">plot_palette</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Dimension 1 ("</span>, <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">inertia</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, accuracy <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, <span class="st">")"</span><span class="op">)</span>,</span>
-<span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Dimension 2 ("</span>, <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/percent_format.html">percent</a></span><span class="op">(</span><span class="va">inertia</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, accuracy <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, <span class="st">")"</span><span class="op">)</span>,</span>
-<span>    title <span class="op">=</span> <span class="st">"How three Nashville properties are perceived"</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="va">book_theme</span></span></code></pre></div>
+<span><span class="va">roas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">channels</span>, <span class="kw">function</span><span class="op">(</span><span class="va">ch</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">z</span> <span class="op">&lt;-</span> <span class="va">sat</span>; <span class="va">z</span><span class="op">[[</span><span class="va">ch</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span>  <span class="va">off</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">fit</span>, newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">z</span>,</span>
+<span>            dayOfWeek <span class="op">=</span> <span class="va">mmm</span><span class="op">$</span><span class="va">dayOfWeek</span>, seasonPhase <span class="op">=</span> <span class="va">mmm</span><span class="op">$</span><span class="va">seasonPhase</span>,</span>
+<span>            isGameDay <span class="op">=</span> <span class="va">mmm</span><span class="op">$</span><span class="va">isGameDay</span>, trend <span class="op">=</span> <span class="va">model_df</span><span class="op">$</span><span class="va">trend</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">incr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">off</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>channel <span class="op">=</span> <span class="va">channel_lab</span><span class="op">[</span><span class="va">ch</span><span class="op">]</span>, tickets <span class="op">=</span> <span class="va">incr</span>,</span>
+<span>             spend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">mmm</span><span class="op">[[</span><span class="va">ch</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>             roas <span class="op">=</span> <span class="va">incr</span> <span class="op">*</span> <span class="va">price</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">mmm</span><span class="op">[[</span><span class="va">ch</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>             share <span class="op">=</span> <span class="va">incr</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">pred</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">bind_rows</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:mmm-roas-table">Table 9.5: </span>Incremental tickets, spend, return on ad spend, and share of sales by channel.</caption>
+<thead><tr class="header">
+<th align="center">channel</th>
+<th align="center">incremental tickets</th>
+<th align="center">spend</th>
+<th align="center">ROAS</th>
+<th align="center">share of sales</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center">TV</td>
+<td align="center">261,699</td>
+<td align="center">$9,497,920</td>
+<td align="center">$1.24</td>
+<td align="center">6.9%</td>
+</tr>
+<tr class="even">
+<td align="center">Radio</td>
+<td align="center">144,903</td>
+<td align="center">$3,454,795</td>
+<td align="center">$1.88</td>
+<td align="center">3.8%</td>
+</tr>
+<tr class="odd">
+<td align="center">Social</td>
+<td align="center">197,844</td>
+<td align="center">$5,515,079</td>
+<td align="center">$1.61</td>
+<td align="center">5.2%</td>
+</tr>
+<tr class="even">
+<td align="center">Search</td>
+<td align="center">162,282</td>
+<td align="center">$4,813,554</td>
+<td align="center">$1.51</td>
+<td align="center">4.3%</td>
+</tr>
+<tr class="odd">
+<td align="center">Email</td>
+<td align="center">41,014</td>
+<td align="center">$922,104</td>
+<td align="center">$2.00</td>
+<td align="center">1.1%</td>
+</tr>
+</tbody>
+</table></div>
+<p>Two headline findings fall out. Together the five channels account for about 21% of ticket sales — the rest is the baseline demand the club would have had regardless. And the channels rank clearly by efficiency: email and radio return the most per dollar, while <strong>television, the largest line item, returns the least</strong> (Figure <a href="chapter9.html#fig:mmm-roas-plot">9.5</a>). That pattern matches the truth we built in, and it is exactly the kind of conclusion that changes a budget conversation.</p>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:brand-map"></span>
-<img src="_main_files/figure-html/brand-map-1.png" alt="Perceptual map of Nashville sports properties" width="100%"><p class="caption">
-Figure 9.2: Perceptual map of Nashville sports properties
+<span style="display:block;" id="fig:mmm-roas-plot"></span>
+<img src="_main_files/figure-html/mmm-roas-plot-1.png" alt="Return on ad spend by channel. The biggest channel is not the most efficient one." width="100%"><p class="caption">
+Figure 9.5: Return on ad spend by channel. The biggest channel is not the most efficient one.
 </p>
 </div>
-<p>Reading the map, the Chickens sit near <em>Fun</em> and <em>Expensive</em>, distinct from the more <em>Historic</em> positioning of the others. Whether that is the position you want is a strategic question — being seen as fun and innovative might attract certain sponsors — but the value of the map is that you can track these perceptions over time and see whether your initiatives move them.</p>
 </div>
-<div id="other-topics" class="section level2" number="9.4">
+<div id="diminishing-returns-and-the-next-dollar" class="section level2" number="9.7">
 <h2>
-<span class="header-section-number">9.4</span> Other topics<a class="anchor" aria-label="anchor" href="#other-topics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.7</span> Diminishing returns and the next dollar<a class="anchor" aria-label="anchor" href="#diminishing-returns-and-the-next-dollar"><i class="fas fa-link"></i></a>
 </h2>
-<p>There is far more here than one chapter can hold. We skipped, among others: social listening, brand-personality studies, acquisition models, product recommendation, product positioning, intercept surveys, in-depth interviews, focus groups, competitive intelligence, and respondent incentivization.</p>
-<p>Two deserve a quick word. <strong>Social listening</strong> has become commoditized, with dozens of platforms available. Monitoring and responding to social content matters, but I find sentiment analysis of limited practical value, and word clouds rarely tell you anything surprising. Where social listening earns its keep is media equivalency — helping your sponsorship team value the content placed through social channels, using the same volume-quality-value logic as any other media valuation.</p>
-<p><strong>Focus groups</strong> have a real role in sports public relations, particularly fan councils for season-ticket holders. They need a firm hand, though, or they degrade into complaint sessions.</p>
-<p>For the rest, references and agencies abound. Sports teams are prestigious marketing platforms, so partners are easy to find — the trick is knowing what quality research looks like and finding a partner who knows too. That is harder than it sounds.</p>
+<p>ROAS is an <em>average</em> — revenue per dollar across everything we spent. The budget decision depends on the <em>marginal</em> dollar: what the next dollar into a channel would add. That is what the saturation curve was for. By re-running the model with a channel’s spend scaled up and down, we can trace its response curve (Figure <a href="chapter9.html#fig:mmm-response">9.6</a>).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:mmm-response"></span>
+<img src="_main_files/figure-html/mmm-response-1.png" alt="Television response curve. Incremental tickets rise quickly at low spend and flatten; the vertical line marks current spend." width="100%"><p class="caption">
+Figure 9.6: Television response curve. Incremental tickets rise quickly at low spend and flatten; the vertical line marks current spend.
+</p>
 </div>
-<div id="key-concepts-and-chapter-summary-8" class="section level2" number="9.5">
+<p>The curve tells the story a single ROAS number hides. Television’s first dollars work hard, but at current spend the club is well up the flattening part of the curve: doubling television spend would add far fewer tickets than the same dollars added when the channel was smaller. Read together with the ROAS table, the implication is concrete — the club is over-invested in television at the margin, and money moved from television toward the more efficient channels would likely buy more tickets. That reallocation logic, not a single scorecard, is the real product of an MMM.</p>
+</div>
+<div id="when-channels-move-together" class="section level2" number="9.8">
 <h2>
-<span class="header-section-number">9.5</span> Key concepts and chapter summary<a class="anchor" aria-label="anchor" href="#key-concepts-and-chapter-summary-8"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.8</span> When channels move together<a class="anchor" aria-label="anchor" href="#when-channels-move-together"><i class="fas fa-link"></i></a>
 </h2>
-<p>Research should underpin strategic decisions — pricing, operations, sponsorship pitches. We followed the survey process and touched its core ideas:</p>
+<p>Return to the problem we flagged early: television and radio spend correlate at 0.71 because they run in the same campaigns. When two predictors move together, a plain regression struggles to split their effects — it can credit one and debit the other almost arbitrarily, and small changes in the data swing the estimates wildly. We can see the instability by refitting the marketing part of the model on bootstrap resamples of the days:</p>
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Remove the baseline, then model the leftover with the marketing channels.</span></span>
+<span><span class="va">Xc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">dayOfWeek</span> <span class="op">+</span> <span class="va">seasonPhase</span> <span class="op">+</span> <span class="va">isGameDay</span> <span class="op">+</span> <span class="va">trend</span>, data <span class="op">=</span> <span class="va">model_df</span><span class="op">)</span></span>
+<span><span class="va">rX</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">channels</span>, <span class="kw">function</span><span class="op">(</span><span class="va">ch</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">sat</span><span class="op">[[</span><span class="va">ch</span><span class="op">]</span><span class="op">]</span> <span class="op">~</span> <span class="va">Xc</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span>
+<span><span class="va">boot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">150</span>, <span class="op">{</span></span>
+<span>  <span class="va">i</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">rX</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="va">ols</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">resid_y</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">~</span> <span class="va">rX</span><span class="op">[</span><span class="va">i</span>, <span class="op">]</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span>
+<span>  <span class="va">ridge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="fu">glmnet</span><span class="op">(</span><span class="va">rX</span><span class="op">[</span><span class="va">i</span>, <span class="op">]</span>, <span class="va">resid_y</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, alpha <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>             lambda <span class="op">=</span> <span class="fl">0.02</span>, intercept <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"spendTv"</span>,<span class="st">"spendRadio"</span><span class="op">)</span>, <span class="fl">1</span><span class="op">]</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">ols</span>, <span class="va">ridge</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
+<p>The remedy is <strong>ridge regression</strong>, which we can fit with <code>glmnet</code> <span class="citation">(<a href="references.html#ref-R-glmnet">Friedman et al. 2025</a>)</span>. Ridge adds a penalty on the size of the coefficients, which nudges correlated predictors to share an effect rather than fight over it. It accepts a little bias in exchange for a large drop in variance. The bootstrap makes the trade visible (Figure <a href="chapter9.html#fig:mmm-ridge-plot">9.7</a>): the ordinary estimate of the television coefficient bounces around with a standard deviation of 0.027, while the ridge estimate is far steadier at 0.017.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:mmm-ridge-plot"></span>
+<img src="_main_files/figure-html/mmm-ridge-plot-1.png" alt="Bootstrap distribution of the television coefficient. Ridge produces a much tighter, more reliable estimate than ordinary least squares." width="100%"><p class="caption">
+Figure 9.7: Bootstrap distribution of the television coefficient. Ridge produces a much tighter, more reliable estimate than ordinary least squares.
+</p>
+</div>
+<p>Ridge is not a cure for bad data — if television and radio truly never move independently, no method can fully separate them, and you should model their combined effect and say so. But when channels are merely correlated, regularization gives you estimates you can actually stand behind. Elastic net, which <code>glmnet</code> also fits, extends the same idea and can drop useless channels entirely.</p>
+</div>
+<div id="does-marketing-work-harder-at-some-times" class="section level2" number="9.9">
+<h2>
+<span class="header-section-number">9.9</span> Does marketing work harder at some times?<a class="anchor" aria-label="anchor" href="#does-marketing-work-harder-at-some-times"><i class="fas fa-link"></i></a>
+</h2>
+<p>A season is not uniform, and neither is marketing’s payoff. We can ask the model how each channel’s return changes across the phases of the year by running the same turn-off decomposition within each phase (Table <a href="chapter9.html#tab:mmm-season">9.6</a>).</p>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:mmm-season">Table 9.6: </span>Return on ad spend by channel and season phase.</caption>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="center">offseason</th>
+<th align="center">spring</th>
+<th align="center">early</th>
+<th align="center">mid</th>
+<th align="center">late</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">TV</td>
+<td align="center">0.79</td>
+<td align="center">0.96</td>
+<td align="center">1.33</td>
+<td align="center">1.56</td>
+<td align="center">1.24</td>
+</tr>
+<tr class="even">
+<td align="left">Radio</td>
+<td align="center">1.14</td>
+<td align="center">1.33</td>
+<td align="center">2.12</td>
+<td align="center">2.44</td>
+<td align="center">1.93</td>
+</tr>
+<tr class="odd">
+<td align="left">Social</td>
+<td align="center">0.89</td>
+<td align="center">1.36</td>
+<td align="center">1.89</td>
+<td align="center">2.16</td>
+<td align="center">1.67</td>
+</tr>
+<tr class="even">
+<td align="left">Search</td>
+<td align="center">0.79</td>
+<td align="center">1.27</td>
+<td align="center">1.98</td>
+<td align="center">2.02</td>
+<td align="center">1.63</td>
+</tr>
+<tr class="odd">
+<td align="left">Email</td>
+<td align="center">0.96</td>
+<td align="center">1.63</td>
+<td align="center">2.76</td>
+<td align="center">3.03</td>
+<td align="center">2.28</td>
+</tr>
+</tbody>
+</table></div>
+<p>The dominant pattern is unsurprising and useful: every channel returns more in-season than in the offseason, because that is when tickets are selling. Within that, email and radio are the most efficient channels in every phase, and television the least — the same ranking as before, now with timing attached. The practical read is to concentrate spend when demand is warm and to lean on the efficient channels year-round.</p>
+<p>A word of caution closes the section. Isolating a channel’s <em>own</em> seasonal rhythm — does social specifically punch above its weight in the early season, apart from the general demand cycle? — is much harder, because spend and demand both rise together and the model cannot fully separate them. The table above blends genuine effectiveness with the demand cycle. Treat it as directional guidance on <em>when</em> to spend, not as proof that a channel has a special season.</p>
+</div>
+<div id="a-note-on-trust" class="section level2" number="9.10">
+<h2>
+<span class="header-section-number">9.10</span> A note on trust<a class="anchor" aria-label="anchor" href="#a-note-on-trust"><i class="fas fa-link"></i></a>
+</h2>
+<p>We have skipped the parts a production MMM would treat as mandatory, and you should know what they are. You would hold out the most recent stretch of time, refit on the rest, and check that the model predicts the held-out period better than a naive seasonal guess — if it does not, its ROAS numbers are not worth acting on. You would put uncertainty bands on every ROAS and response curve, because a point estimate of “1.9” with a wide interval is a different decision than a tight one. And you would sanity-check the model against any real experiments you have run.</p>
+<p>The deeper caveats are the ones this chapter demonstrated rather than asserted. Adstock and saturation are weakly identified, so lean on priors and test sensitivity. Correlated channels cannot be fully separated, so regularize and be honest about what you cannot resolve. The model is correlational, so it needs your spending to have actually varied to learn anything, and it can be fooled by anything that moves with both spend and sales. An MMM is a strong instrument for steering a budget at the strategic level. It is a weak one for settling a fight over which specific campaign deserves credit — and pretending otherwise is how it earns a bad name.</p>
+</div>
+<div id="key-concepts-and-chapter-summary-8" class="section level2" number="9.11">
+<h2>
+<span class="header-section-number">9.11</span> Key concepts and chapter summary<a class="anchor" aria-label="anchor" href="#key-concepts-and-chapter-summary-8"><i class="fas fa-link"></i></a>
+</h2>
+<p>Marketing mix modeling answers a top-down question that per-customer attribution cannot: across everything we spent, what did each channel contribute, and where should the next dollar go? We built one from the ground up on a simulated season and checked it against the truth.</p>
 <ul>
-<li>Planning and survey design</li>
-<li>Questionnaire design and pretesting</li>
-<li>Final design and planning</li>
-<li>Sample selection and data collection</li>
-<li>Data coding, analysis, and reporting</li>
+<li>
+<strong>Adstock</strong> captures advertising carryover with a single decay rate; it is weakly identified, so set it from priors and test sensitivity.</li>
+<li>
+<strong>Saturation</strong> captures diminishing returns; the half-saturation point is best set at a channel’s typical spend and tuned by validation.</li>
+<li>
+<strong>The baseline matters most.</strong> Season, day of week, and games explain the bulk of sales; model them well or marketing will absorb the error.</li>
+<li>
+<strong>Decomposition turns coefficients into ROAS</strong> and contribution, which is what a budget owner actually uses. Here television was the largest and least efficient channel.</li>
+<li>
+<strong>Response curves, not average ROAS, guide the marginal dollar.</strong> Television was deep into diminishing returns, arguing for reallocation.</li>
+<li>
+<strong>Ridge regression</strong> stabilizes the correlated channels that break ordinary regression, trading a little bias for much less variance.</li>
 </ul>
-<p>A few lessons stand out:</p>
-<ul>
-<li>
-<strong>Experiment design is about validity</strong> — both that the statistics are sound and that you drew the right conclusion. Treatment-and-control (A/B) is the basic structure.</li>
-<li>
-<strong>Hypothesis testing has two ways to be wrong.</strong> A Type I error declares a difference that is not there; a Type II error misses one that is.</li>
-<li>
-<strong>Sampling determines whether any of it can be trusted.</strong> A power analysis tells you how large a sample you need before you collect a single response.</li>
-<li>
-<strong>Factorial designs reveal interactions</strong> — effects that depend on who the respondent is, like single-game fans paying a premium for a view that season-ticket holders treat as interchangeable.</li>
-<li>
-<strong>Perceptual maps</strong> turn brand-attribute data into a picture you can track over time.</li>
-</ul>
-<p>And the honest caveats remain: you cannot always trust research, sampling is hard, analysis takes care, and it is not always worth conducting. Used well, though, it is the only informed way to confront questions the data you already own cannot answer. Chapter <a href="chapter10.html#chapter10">10</a> turns to operations, where we simulate the systems — gates, concession lines, parking — that shape the fan experience on game day.</p>
+<p>Above all, an MMM is a strategic guide with honest limits. It tells you the shape of your marketing’s contribution and where the leverage is, provided your spending varied enough to leave a signal and you resist reading it as proof.</p>
+<p>Chapter <a href="chapter10.html#chapter10">10</a> turns from measuring marketing to gathering new information directly, through formal research methods — survey design, hypothesis testing, and the sampling decisions that determine whether any of it can be trusted.</p>
 
 </div>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="chapter8.html"><span class="header-section-number">8</span> Marketing promotions</a></div>
-<div class="next"><a href="chapter10.html"><span class="header-section-number">10</span> Operations and analytics</a></div>
+<div class="next"><a href="chapter10.html"><span class="header-section-number">10</span> Research methods</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#chapter9"><span class="header-section-number">9</span> Research methods</a></li>
-<li>
-<a class="nav-link" href="#designing-experiments-and-hypothesis-testing"><span class="header-section-number">9.1</span> Designing experiments and hypothesis testing</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#hypothesis-testing"><span class="header-section-number">9.1.1</span> Hypothesis testing</a></li>
-<li><a class="nav-link" href="#sampling"><span class="header-section-number">9.1.2</span> Sampling</a></li>
-<li><a class="nav-link" href="#factorial-designs"><span class="header-section-number">9.1.3</span> Factorial designs</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#planning-and-designing-a-survey"><span class="header-section-number">9.2</span> Planning and designing a survey</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#understanding-a-clubs-fans"><span class="header-section-number">9.2.1</span> Understanding a club’s fans</a></li>
-<li><a class="nav-link" href="#selecting-a-research-method"><span class="header-section-number">9.2.2</span> Selecting a research method</a></li>
-<li><a class="nav-link" href="#designing-the-questionnaire"><span class="header-section-number">9.2.3</span> Designing the questionnaire</a></li>
-<li><a class="nav-link" href="#qualifying-the-sample"><span class="header-section-number">9.2.4</span> Qualifying the sample</a></li>
-<li><a class="nav-link" href="#typical-questions"><span class="header-section-number">9.2.5</span> Typical questions</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#brand-affinity-and-perceptual-maps"><span class="header-section-number">9.3</span> Brand affinity and perceptual maps</a></li>
-<li><a class="nav-link" href="#other-topics"><span class="header-section-number">9.4</span> Other topics</a></li>
-<li><a class="nav-link" href="#key-concepts-and-chapter-summary-8"><span class="header-section-number">9.5</span> Key concepts and chapter summary</a></li>
+<li><a class="nav-link" href="#chapter9"><span class="header-section-number">9</span> Marketing mix modeling</a></li>
+<li><a class="nav-link" href="#what-a-marketing-mix-model-is"><span class="header-section-number">9.1</span> What a marketing mix model is</a></li>
+<li><a class="nav-link" href="#the-data"><span class="header-section-number">9.2</span> The data</a></li>
+<li><a class="nav-link" href="#adstock-advertising-carryover"><span class="header-section-number">9.3</span> Adstock: advertising carryover</a></li>
+<li><a class="nav-link" href="#saturation-diminishing-returns"><span class="header-section-number">9.4</span> Saturation: diminishing returns</a></li>
+<li><a class="nav-link" href="#fitting-the-model"><span class="header-section-number">9.5</span> Fitting the model</a></li>
+<li><a class="nav-link" href="#from-coefficients-to-roi"><span class="header-section-number">9.6</span> From coefficients to ROI</a></li>
+<li><a class="nav-link" href="#diminishing-returns-and-the-next-dollar"><span class="header-section-number">9.7</span> Diminishing returns and the next dollar</a></li>
+<li><a class="nav-link" href="#when-channels-move-together"><span class="header-section-number">9.8</span> When channels move together</a></li>
+<li><a class="nav-link" href="#does-marketing-work-harder-at-some-times"><span class="header-section-number">9.9</span> Does marketing work harder at some times?</a></li>
+<li><a class="nav-link" href="#a-note-on-trust"><span class="header-section-number">9.10</span> A note on trust</a></li>
+<li><a class="nav-link" href="#key-concepts-and-chapter-summary-8"><span class="header-section-number">9.11</span> Key concepts and chapter summary</a></li>
 </ul>
 
       <div class="book-extra">
