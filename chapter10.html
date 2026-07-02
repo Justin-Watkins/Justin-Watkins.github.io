@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://justin-watkins.github.io/images/book_cover_b.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Prompt-0.4.10/font.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Inter-0.4.10/font.css" rel="stylesheet">
 <link href="libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
 <script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
@@ -48,6 +48,7 @@
       margin-left: 2em;
     }
   </style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -116,7 +117,7 @@
 <li>If a bottleneck was broken, return to step one.</li>
 </ol>
 <p>A system has only one bottleneck at a time, which is what makes the process iterative — strengthen the weakest link and another becomes weakest. A typical gate process looks like Figure <a href="chapter10.html#fig:ops-gate">10.1</a>.</p>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ops-gate"></span>
 <img src="images/ch10_gate_process.png" alt="A typical gate-entry process" width="100%"><p class="caption">
 Figure 10.1: A typical gate-entry process
@@ -183,9 +184,9 @@ Figure 10.1: A typical gate-entry process
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Observation (minute)"</span>, y <span class="op">=</span> <span class="st">"Scans"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Scans build to a peak, then taper after first pitch"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ops-scan-plot"></span>
-<img src="_main_files/figure-html/ops-scan-plot-1.png" alt="Distribution of ticket scans at the gates" width="672"><p class="caption">
+<img src="_main_files/figure-html/ops-scan-plot-1.png" alt="Distribution of ticket scans at the gates" width="100%"><p class="caption">
 Figure 10.2: Distribution of ticket scans at the gates
 </p>
 </div>
@@ -364,9 +365,9 @@ Figure 10.2: Distribution of ticket scans at the gates
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Cumulative scans"</span>, y <span class="op">=</span> <span class="st">"Line length"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Line length peaks, but not simply with attendance"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ops-line-plot"></span>
-<img src="_main_files/figure-html/ops-line-plot-1.png" alt="Line length versus cumulative scans" width="672"><p class="caption">
+<img src="_main_files/figure-html/ops-line-plot-1.png" alt="Line length versus cumulative scans" width="100%"><p class="caption">
 Figure 10.3: Line length versus cumulative scans
 </p>
 </div>
@@ -412,9 +413,9 @@ Figure 10.3: Line length versus cumulative scans
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Cumulative scans"</span>, y <span class="op">=</span> <span class="st">"Line length"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"The average fit is fair, but the scatter is wide"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ops-gam-plot"></span>
-<img src="_main_files/figure-html/ops-gam-plot-1.png" alt="GAM fit on line-length data" width="672"><p class="caption">
+<img src="_main_files/figure-html/ops-gam-plot-1.png" alt="GAM fit on line-length data" width="100%"><p class="caption">
 Figure 10.4: GAM fit on line-length data
 </p>
 </div>
@@ -494,9 +495,9 @@ Figure 10.4: GAM fit on line-length data
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Seconds"</span>, y <span class="op">=</span> <span class="st">"Density"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Order time has the widest, longest-tailed distribution"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ops-wait-dist"></span>
-<img src="_main_files/figure-html/ops-wait-dist-1.png" alt="Distribution of wait-time components" width="672"><p class="caption">
+<img src="_main_files/figure-html/ops-wait-dist-1.png" alt="Distribution of wait-time components" width="100%"><p class="caption">
 Figure 10.5: Distribution of wait-time components
 </p>
 </div>
@@ -567,9 +568,9 @@ Figure 10.5: Distribution of wait-time components
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Transaction component"</span>, y <span class="op">=</span> <span class="st">"Seconds"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Order time carries the most variance"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ops-box"></span>
-<img src="_main_files/figure-html/ops-box-1.png" alt="Variance of transaction components" width="672"><p class="caption">
+<img src="_main_files/figure-html/ops-box-1.png" alt="Variance of transaction components" width="100%"><p class="caption">
 Figure 10.6: Variance of transaction components
 </p>
 </div>
@@ -658,9 +659,9 @@ Figure 10.6: Variance of transaction components
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Order time (seconds)"</span>, y <span class="op">=</span> <span class="st">"Share of observations"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Roughly 78% of orders finish within 50 seconds"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ops-ecdf-plot"></span>
-<img src="_main_files/figure-html/ops-ecdf-plot-1.png" alt="ECDF of order time" width="672"><p class="caption">
+<img src="_main_files/figure-html/ops-ecdf-plot-1.png" alt="ECDF of order time" width="100%"><p class="caption">
 Figure 10.7: ECDF of order time
 </p>
 </div>
@@ -679,9 +680,9 @@ Figure 10.7: ECDF of order time
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Seconds"</span>, y <span class="op">=</span> <span class="st">"Count"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Simulated order times match the observed shape"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ops-sim-hist"></span>
-<img src="_main_files/figure-html/ops-sim-hist-1.png" alt="Simulated versus actual order times" width="672"><p class="caption">
+<img src="_main_files/figure-html/ops-sim-hist-1.png" alt="Simulated versus actual order times" width="100%"><p class="caption">
 Figure 10.8: Simulated versus actual order times
 </p>
 </div>
@@ -731,9 +732,9 @@ Figure 10.8: Simulated versus actual order times
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Simulated hour"</span>, y <span class="op">=</span> <span class="st">"Fans served"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Throughput swings around the ~64/hour average"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ops-throughput-sim-plot"></span>
-<img src="_main_files/figure-html/ops-throughput-sim-plot-1.png" alt="Simulated fans served per hour, per register" width="672"><p class="caption">
+<img src="_main_files/figure-html/ops-throughput-sim-plot-1.png" alt="Simulated fans served per hour, per register" width="100%"><p class="caption">
 Figure 10.9: Simulated fans served per hour, per register
 </p>
 </div>
@@ -829,9 +830,9 @@ Figure 10.9: Simulated fans served per hour, per register
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Order time (seconds)"</span>, y <span class="op">=</span> <span class="st">"Cumulative probability"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"GAM and spline fit well; the exponential lags"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fit-plot"></span>
-<img src="_main_files/figure-html/fit-plot-1.png" alt="Distribution fits to the cumulative order-time data" width="672"><p class="caption">
+<img src="_main_files/figure-html/fit-plot-1.png" alt="Distribution fits to the cumulative order-time data" width="100%"><p class="caption">
 Figure 10.10: Distribution fits to the cumulative order-time data
 </p>
 </div>
@@ -880,9 +881,9 @@ Figure 10.10: Distribution fits to the cumulative order-time data
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Order time (seconds)"</span>, y <span class="op">=</span> <span class="st">"Cumulative probability"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Outside the data, the high-order polynomial falls apart"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:fit-poly-sim"></span>
-<img src="_main_files/figure-html/fit-poly-sim-1.png" alt="A fifth-degree polynomial produces an unusable simulated curve" width="672"><p class="caption">
+<img src="_main_files/figure-html/fit-poly-sim-1.png" alt="A fifth-degree polynomial produces an unusable simulated curve" width="100%"><p class="caption">
 Figure 10.11: A fifth-degree polynomial produces an unusable simulated curve
 </p>
 </div>

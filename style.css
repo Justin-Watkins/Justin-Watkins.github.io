@@ -1,0 +1,128 @@
+/* ---------------------------------------------------------------------
+   FOSBAAS bs4_book custom styles
+   Body/heading font (Inter) and primary colour (#0072B2) are set in the
+   index.Rmd theme block via bslib; this sheet handles reading comfort and
+   component polish on top of that.
+   --------------------------------------------------------------------- */
+
+:root {
+  --fos-primary: #0072B2;
+  --fos-ink: #1f2328;
+  --fos-muted: #6b7280;
+  --fos-rule: #e6e8eb;
+  --fos-code-bg: #f6f8fa;
+}
+
+/* --- Reading comfort ------------------------------------------------- */
+body {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--fos-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Keep prose to a comfortable measure without disturbing the bs4 layout. */
+main p,
+main li,
+main blockquote {
+  max-width: 44rem;
+}
+
+main p,
+main ul,
+main ol {
+  margin-bottom: 1.15rem;
+}
+
+/* --- Headings -------------------------------------------------------- */
+main h1,
+main h2,
+main h3,
+main h4 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+main h1 { margin-bottom: 1.4rem; }
+main h2 { margin-top: 2.6rem; margin-bottom: 1rem; }
+main h3 { margin-top: 1.9rem; margin-bottom: 0.75rem; }
+
+/* Subtle rule under the big section headings for structure. */
+main h2 {
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--fos-rule);
+}
+
+/* --- Links ----------------------------------------------------------- */
+main a {
+  color: var(--fos-primary);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+main a:hover { text-decoration-thickness: 2px; }
+
+/* --- Code ------------------------------------------------------------ */
+pre {
+  background: var(--fos-code-bg);
+  border: 1px solid var(--fos-rule);
+  border-radius: 8px;
+  padding: 0.9rem 1.05rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code { white-space: inherit; }
+
+/* Inline code: quiet tint so it reads as code without shouting. */
+p code, li code, td code {
+  background: #eef1f4;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-size: 0.88em;
+  white-space: inherit;
+}
+
+/* --- Tables ---------------------------------------------------------- */
+main table {
+  width: auto;
+  border-collapse: collapse;
+  margin: 1.25rem 0 1.6rem;
+  font-size: 0.95rem;
+}
+main table th {
+  border-bottom: 2px solid #cfd4da;
+  text-align: left;
+  padding: 0.45rem 0.85rem;
+  font-weight: 600;
+}
+main table td {
+  border-bottom: 1px solid var(--fos-rule);
+  padding: 0.4rem 0.85rem;
+}
+main table tbody tr:nth-child(even) { background: #fafbfc; }
+
+/* --- Blockquotes ----------------------------------------------------- */
+main blockquote {
+  border-left: 3px solid var(--fos-primary);
+  padding: 0.15rem 0 0.15rem 1.1rem;
+  margin: 1.4rem 0;
+  color: #33383d;
+  font-style: normal;
+}
+
+/* --- Figures & captions ---------------------------------------------- */
+main img { max-width: 100%; height: auto; }
+
+p.caption,
+.caption,
+figcaption {
+  color: var(--fos-muted);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Give live-rendered figures a touch of separation from the prose. */
+.figure, main img { margin-top: 0.4rem; margin-bottom: 0.4rem; }

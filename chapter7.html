@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://justin-watkins.github.io/images/book_cover_b.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Prompt-0.4.10/font.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Inter-0.4.10/font.css" rel="stylesheet">
 <link href="libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
 <script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
@@ -48,6 +48,7 @@
       margin-left: 2em;
     }
   </style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -490,7 +491,7 @@
 <span>    <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">longitude</span>, y <span class="op">=</span> <span class="va">latitude</span><span class="op">)</span>,</span>
 <span>    size <span class="op">=</span> <span class="fl">0.2</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="va">plot_palette</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ls-map-img"></span>
 <img src="images/ch7_map_ex.png" alt="Customer locations plotted on a basemap" width="100%"><p class="caption">
 Figure 7.1: Customer locations plotted on a basemap
@@ -576,7 +577,7 @@ Figure 7.1: Customer locations plotted on a basemap
 <span class="header-section-number">7.2.1.4.1</span> Resampling<a class="anchor" aria-label="anchor" href="#resampling"><i class="fas fa-link"></i></a>
 </h5>
 <p>Our model was validated on a single train/test split. That can leave you more confident than you should be. Cross-validation re-runs the procedure on several overlapping splits and averages the error, which calibrates the estimate. Figure <a href="chapter7.html#fig:ls-resample">7.2</a> shows the idea.</p>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ls-resample"></span>
 <img src="images/ch7_resample.png" alt="The resampling concept" width="100%"><p class="caption">
 Figure 7.2: The resampling concept
@@ -676,9 +677,9 @@ Figure 7.2: The resampling concept
 ## 3: classif.naive_bayes 0.6917434 0.1982928</code></pre>
 <div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">bmr</span>, measure <span class="op">=</span> <span class="fu"><a href="https://mlr3.mlr-org.com/reference/mlr_sugar.html">msr</a></span><span class="op">(</span><span class="st">"classif.ce"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ls-benchmark-plot"></span>
-<img src="_main_files/figure-html/ls-benchmark-plot-1.png" alt="Benchmark classification error by model" width="672"><p class="caption">
+<img src="_main_files/figure-html/ls-benchmark-plot-1.png" alt="Benchmark classification error by model" width="100%"><p class="caption">
 Figure 7.3: Benchmark classification error by model
 </p>
 </div>
@@ -738,9 +739,9 @@ Figure 7.3: Benchmark classification error by model
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Predicted probability of renewing"</span>, y <span class="op">=</span> <span class="st">"Density"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"The score separates the groups, but they overlap heavily"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ls-density"></span>
-<img src="_main_files/figure-html/ls-density-1.png" alt="Renewal-score density by actual outcome" width="672"><p class="caption">
+<img src="_main_files/figure-html/ls-density-1.png" alt="Renewal-score density by actual outcome" width="100%"><p class="caption">
 Figure 7.4: Renewal-score density by actual outcome
 </p>
 </div>
@@ -754,9 +755,9 @@ Figure 7.4: Renewal-score density by actual outcome
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"1 - Specificity (false positive rate)"</span>, y <span class="op">=</span> <span class="st">"Sensitivity (true positive rate)"</span>,</span>
 <span>       title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"AUC = "</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">roc_obj</span><span class="op">$</span><span class="va">auc</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ls-roc"></span>
-<img src="_main_files/figure-html/ls-roc-1.png" alt="ROC curve for the renewal model" width="672"><p class="caption">
+<img src="_main_files/figure-html/ls-roc-1.png" alt="ROC curve for the renewal model" width="100%"><p class="caption">
 Figure 7.5: ROC curve for the renewal model
 </p>
 </div>
@@ -791,9 +792,9 @@ Figure 7.5: ROC curve for the renewal model
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Share of accounts worked"</span>, y <span class="op">=</span> <span class="st">"Share of renewers captured"</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Working high-scoring accounts first captures renewers faster"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ls-gains-plot"></span>
-<img src="_main_files/figure-html/ls-gains-plot-1.png" alt="Cumulative gains chart" width="672"><p class="caption">
+<img src="_main_files/figure-html/ls-gains-plot-1.png" alt="Cumulative gains chart" width="100%"><p class="caption">
 Figure 7.6: Cumulative gains chart
 </p>
 </div>

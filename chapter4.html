@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://justin-watkins.github.io/images/book_cover_b.png">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Prompt-0.4.10/font.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="libs/Inter-0.4.10/font.css" rel="stylesheet">
 <link href="libs/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
 <script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
@@ -48,6 +48,7 @@
       margin-left: 2em;
     }
   </style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -287,9 +288,9 @@
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, hjust <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:crm-boxplot"></span>
-<img src="_main_files/figure-html/crm-boxplot-1.png" alt="Revenue per interaction by rep" width="672"><p class="caption">
+<img src="_main_files/figure-html/crm-boxplot-1.png" alt="Revenue per interaction by rep" width="100%"><p class="caption">
 Figure 4.1: Revenue per interaction by rep
 </p>
 </div>
@@ -315,9 +316,9 @@ Figure 4.1: Revenue per interaction by rep
 <span>    title <span class="op">=</span> <span class="st">"A rep's total is built from a handful of large sales"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:crm-cumulative"></span>
-<img src="_main_files/figure-html/crm-cumulative-1.png" alt="Cumulative revenue by rep" width="672"><p class="caption">
+<img src="_main_files/figure-html/crm-cumulative-1.png" alt="Cumulative revenue by rep" width="100%"><p class="caption">
 Figure 4.2: Cumulative revenue by rep
 </p>
 </div>
@@ -353,9 +354,9 @@ Figure 4.2: Cumulative revenue by rep
 <span>    title <span class="op">=</span> <span class="st">"No rep is dramatically more efficient than the rest"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="va">book_theme</span></span></code></pre></div>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:crm-failures"></span>
-<img src="_main_files/figure-html/crm-failures-1.png" alt="Failed calls and interactions by rep" width="672"><p class="caption">
+<img src="_main_files/figure-html/crm-failures-1.png" alt="Failed calls and interactions by rep" width="100%"><p class="caption">
 Figure 4.3: Failed calls and interactions by rep
 </p>
 </div>
@@ -625,7 +626,7 @@ Figure 4.3: Failed calls and interactions by rep
 <span class="header-section-number">4.3.3</span> Choose a technique<a class="anchor" aria-label="anchor" href="#modelingdata"><i class="fas fa-link"></i></a>
 </h3>
 <p>Choosing a method used to require real expertise, partly because computing time was scarce and an analyst had to know the right approach before spending it. Hardware and software have removed that constraint. A modern analyst can afford to try several methods and compare them. Figure <a href="chapter4.html#fig:ch4-technique">4.4</a> sketches one way to narrow the choice.</p>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ch4-technique"></span>
 <img src="images/CH4_ML_Decision.png" alt="Choosing a technique" width="100%"><p class="caption">
 Figure 4.4: Choosing a technique
